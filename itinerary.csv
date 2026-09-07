@@ -1,0 +1,448 @@
+site,day,stop,pump_id,commune,fokontany,pump_type,days_since_last_visit,last_status,people,lat,lon,day_road_km,day_hours
+Maroantsetra,1,1,699597610,Ankofa,Ambodiadabo,Canzee,286,ok,141,-15.4186,49.691133,21,7.2
+Maroantsetra,1,2,699597641,Ankofa,Ambodiadabo,Canzee,never,ok,170,-15.419516,49.688665,21,7.2
+Maroantsetra,1,3,699597658,Ankofa,Ambodiadabo,Canzee,529,ok,182,-15.420471,49.687922,21,7.2
+Maroantsetra,1,4,699597665,Ankofa,Ambodiadabo,Canzee,235,ok,238,-15.419963,49.685931,21,7.2
+Maroantsetra,1,5,699597696,Ankofa,Ambodiadabo,Canzee,never,ok,251,-15.420364,49.684403,21,7.2
+Maroantsetra,1,6,699597720,Ankofa,Ambodiadabo,Canzee,493,ok,254,-15.419999,49.683727,21,7.2
+Maroantsetra,1,7,699597768,Ankofa,Ambodiadabo,Canzee,338,ok,242,-15.420416,49.682415,21,7.2
+Maroantsetra,1,8,699597737,Ankofa,Ambodiadabo,Canzee,500,ok,254,-15.419119,49.682513,21,7.2
+Maroantsetra,2,1,699597775,Ankofa,Ambodiadabo,Canzee,never,ok,234,-15.42019,49.681067,37,7.8
+Maroantsetra,2,2,699597799,Ankofa,Ambodiadabo,Canzee,280,ok,213,-15.419636,49.678722,37,7.8
+Maroantsetra,2,3,699597809,Ankofa,Ambodiadabo,Canzee,282,ok,193,-15.418664,49.676666,37,7.8
+Maroantsetra,2,4,699597854,Ankofa,Sadikamonjo,Canzee,never,ok,190,-15.423003,49.676655,37,7.8
+Maroantsetra,2,5,699597823,Ankofa,Sadikamonjo,Canzee,never,unknown,199,-15.423406,49.678082,37,7.8
+Maroantsetra,2,6,699597861,Ankofa,Mahajinavola,Canzee,never,ok,177,-15.412225,49.667947,37,7.8
+Maroantsetra,2,7,699597885,Ankofa,Mahajinavola,Canzee,never,ok,177,-15.411679,49.667832,37,7.8
+Maroantsetra,2,8,699597892,Ankofa,Mahajinavola,Canzee,never,ok,186,-15.410369,49.667316,37,7.8
+Maroantsetra,3,1,699597919,Ankofa,Mahajinavola,Canzee,never,ok,197,-15.409938,49.667143,28,7.8
+Maroantsetra,3,2,699597933,Ankofa,Mahajinavola,Canzee,never,unknown,205,-15.4096,49.667022,28,7.8
+Maroantsetra,3,3,699597940,Ankofa,Mahajinavola,Canzee,294,ok,237,-15.408443,49.666731,28,7.8
+Maroantsetra,3,4,699597957,Ankofa,Mahajinavola,Canzee,never,ok,255,-15.407696,49.666416,28,7.8
+Maroantsetra,3,5,699597964,Ankofa,Talanaro,Canzee,never,unknown,323,-15.405438,49.662805,28,7.8
+Maroantsetra,3,6,699597988,Ankofa,Talanaro,Canzee,286,ok,208,-15.403592,49.65936,28,7.8
+Maroantsetra,3,7,699598013,Ankofa,Ankofa,Canzee,never,ok,346,-15.399813,49.651685,28,7.8
+Maroantsetra,3,8,743345808,Ankofa,Ankofa,Canzee,never,unknown,297,-15.398566,49.650192,28,7.8
+Maroantsetra,4,1,744500936,Ankofa,Ankofa,Canzee,never,unknown,277,-15.399058,49.649451,36,7.3
+Maroantsetra,4,2,754036928,Ankofa,Ankofa,Canzee,never,unknown,259,-15.397327,49.648871,36,7.3
+Maroantsetra,4,3,743644978,Ankofa,Ankofa,Canzee,never,unknown,253,-15.397368,49.648489,36,7.3
+Maroantsetra,4,4,763107680,Ankofa,Ankofa,Canzee,457,ok,247,-15.396748,49.648185,36,7.3
+Maroantsetra,4,5,766720695,Ankofa,Ankofa,Canzee,382,ok,231,-15.396425,49.646743,36,7.3
+Maroantsetra,4,6,765258739,Ankofa,Ankofa,Canzee,never,ok,221,-15.394587,49.646387,36,7.3
+Maroantsetra,4,7,833032506,Ankofa,Ankofa,Canzee,never,ok,220,-15.394861,49.645602,36,7.3
+Maroantsetra,5,1,765258746,Ankofa,Ankofa,Canzee,never,ok,210,-15.393394,49.645061,67,7.6
+Maroantsetra,5,2,833032513,Ankofa,Ankofa,Canzee,never,unknown,186,-15.392097,49.643761,67,7.6
+Maroantsetra,5,3,742896114,Anjanazana,Ankadimbazaha,Canzee,280,ok,74,-15.396084,49.739541,67,7.6
+Maroantsetra,5,4,742896066,Anjanazana,Ankadimbazaha,Canzee,280,ok,85,-15.394432,49.740603,67,7.6
+Maroantsetra,5,5,742896097,Anjanazana,Ankadimbazaha,Canzee,282,ok,84,-15.39431,49.740453,67,7.6
+Maroantsetra,5,6,742896059,Anjanazana,Ankadimbazaha,Canzee,283,ok,87,-15.393495,49.740939,67,7.6
+Maroantsetra,6,1,742896107,Anjanazana,Ankadimbazaha,Canzee,282,ok,96,-15.393288,49.741827,39,7.8
+Maroantsetra,6,2,742896080,Anjanazana,Ankadimbazaha,Canzee,280,ok,95,-15.392411,49.741792,39,7.8
+Maroantsetra,6,3,742896073,Anjanazana,Ankadimbazaha,Canzee,280,ok,120,-15.390345,49.743363,39,7.8
+Maroantsetra,6,4,742895979,Anjanazana,Anjanazana,Canzee,291,ok,119,-15.389875,49.750308,39,7.8
+Maroantsetra,6,5,742895962,Anjanazana,Anjanazana,Canzee,228,ok,114,-15.39008,49.751562,39,7.8
+Maroantsetra,6,6,742895890,Anjanazana,Anjanazana,Canzee,291,ok,138,-15.387924,49.752095,39,7.8
+Maroantsetra,6,7,742895917,Anjanazana,Anjanazana,Canzee,291,ok,152,-15.386323,49.753606,39,7.8
+Maroantsetra,6,8,742895924,Anjanazana,Anjanazana,Canzee,283,ok,161,-15.385391,49.754695,39,7.8
+Maroantsetra,7,1,742895931,Anjanazana,Anjanazana,Canzee,283,ok,172,-15.384622,49.75533,34,7.6
+Maroantsetra,7,2,742895955,Anjanazana,Anjanazana,Canzee,285,ok,165,-15.383964,49.75618,34,7.6
+Maroantsetra,7,3,742895948,Anjanazana,Anjanazana,Canzee,287,partial,154,-15.383162,49.75684,34,7.6
+Maroantsetra,7,4,742896042,Anjanazana,Tanambao Anjanazana,Canzee,283,ok,154,-15.379363,49.750989,34,7.6
+Maroantsetra,7,5,742896028,Anjanazana,Tanambao Anjanazana,Canzee,283,ok,130,-15.37827,49.749933,34,7.6
+Maroantsetra,7,6,742896035,Anjanazana,Tanambao Anjanazana,Canzee,283,ok,122,-15.37748,49.750389,34,7.6
+Maroantsetra,7,7,742896200,Anjanazana,Vohidravina ,Canzee,291,ok,120,-15.395672,49.749244,34,7.6
+Maroantsetra,7,8,742896217,Anjanazana,Vohidravina,Canzee,283,ok,89,-15.404082,49.745107,34,7.6
+Maroantsetra,8,1,742896138,Anjanazana,Vohidravina,Canzee,291,ok,88,-15.404796,49.744891,27,7.2
+Maroantsetra,8,2,742896121,Anjanazana,Vohidravina,Canzee,291,ok,88,-15.404842,49.744849,27,7.2
+Maroantsetra,8,3,742896152,Anjanazana,Vohidravina,Canzee,292,ok,88,-15.404905,49.744871,27,7.2
+Maroantsetra,8,4,742896176,Anjanazana,Vohidravina,Canzee,286,ok,88,-15.40504,49.745473,27,7.2
+Maroantsetra,8,5,742896169,Anjanazana,Vohidravina,Canzee,292,ok,88,-15.405583,49.744691,27,7.2
+Maroantsetra,8,6,742895467,Anjanazana,Ambodimandrorofo,Canzee,298,ok,123,-15.414092,49.756504,27,7.2
+Maroantsetra,8,7,742895584,Anjanazana,Ambodimandrorofo,Canzee,297,ok,154,-15.421638,49.764814,27,7.2
+Maroantsetra,8,8,742895254,Anjanazana,Ambodimandrorofo,Canzee,297,ok,196,-15.422934,49.765885,27,7.2
+Maroantsetra,9,1,718551997,Anjanazana,Ambodimandrorofo,Canzee,298,ok,202,-15.421986,49.768239,14,6.8
+Maroantsetra,9,2,742895474,Anjanazana,Ambodimandrorofo,Canzee,258,ok,192,-15.425218,49.76997,14,6.8
+Maroantsetra,9,3,742895436,Anjanazana,Ambodimandrorofo,Canzee,296,ok,168,-15.426709,49.771176,14,6.8
+Maroantsetra,9,4,742895429,Anjanazana,Ambodimandrorofo,Canzee,264,ok,164,-15.42616,49.772668,14,6.8
+Maroantsetra,9,5,742895443,Anjanazana,Ambodimandrorofo,Canzee,297,ok,158,-15.428107,49.772994,14,6.8
+Maroantsetra,9,6,742895481,Anjanazana,Ambodimandrorofo,Canzee,296,ok,161,-15.428853,49.771468,14,6.8
+Maroantsetra,9,7,742895371,Anjanazana,Ambodimandrorofo,Canzee,296,ok,165,-15.429196,49.769784,14,6.8
+Maroantsetra,9,8,742895515,Anjanazana,Ambodimandrorofo,Canzee,297,ok,175,-15.428119,49.767725,14,6.8
+Maroantsetra,10,1,742895326,Anjanazana,Ambodimandrorofo,Canzee,290,ok,170,-15.428534,49.766954,20,7.3
+Maroantsetra,10,2,742895450,Anjanazana,Ambodimandrorofo,Canzee,294,ok,37,-15.442925,49.770555,20,7.3
+Maroantsetra,10,3,742895546,Anjanazana,Anteviala,Canzee,303,ok,98,-15.409756,49.774375,20,7.3
+Maroantsetra,10,4,742895522,Anjanazana,Anteviala,Canzee,304,ok,119,-15.407923,49.77642,20,7.3
+Maroantsetra,10,5,742895883,Anjanazana,Anteviala,Canzee,210,ok,131,-15.407051,49.776982,20,7.3
+Maroantsetra,10,6,742895539,Anjanazana,Anteviala,Canzee,298,ok,138,-15.40644,49.777782,20,7.3
+Maroantsetra,10,7,742895553,Anjanazana,Anteviala,Canzee,298,ok,135,-15.40596,49.779824,20,7.3
+Maroantsetra,10,8,742895560,Anjanazana,Anteviala,Canzee,298,ok,118,-15.405557,49.781527,20,7.3
+Maroantsetra,11,1,742895649,Anjanazana,Anteviala,Canzee,299,ok,83,-15.404761,49.78446,29,7.7
+Maroantsetra,11,2,742895601,Anjanazana,Anteviala,Canzee,298,ok,84,-15.404352,49.784346,29,7.7
+Maroantsetra,11,3,742895656,Anjanazana,Anteviala,Canzee,226,ok,72,-15.40443,49.785393,29,7.7
+Maroantsetra,11,4,742895618,Anjanazana,Anteviala,Canzee,303,ok,64,-15.404199,49.786558,29,7.7
+Maroantsetra,11,5,742895632,Anjanazana,Anteviala,Canzee,303,ok,59,-15.403212,49.788028,29,7.7
+Maroantsetra,11,6,742895852,Anjanazana,Ambodivoanio,Canzee,310,ok,172,-15.395288,49.77898,29,7.7
+Maroantsetra,11,7,742895845,Anjanazana,Ambodivoanio,Canzee,308,ok,158,-15.39609,49.77817,29,7.7
+Maroantsetra,11,8,742895780,Anjanazana,Ambodivoanio,Canzee,243,ok,137,-15.396734,49.77708,29,7.7
+Maroantsetra,12,1,742895735,Anjanazana,Ambodivoanio,Canzee,304,ok,122,-15.396979,49.776626,42,7.5
+Maroantsetra,12,2,815285539,Anjanazana,Ambodivoanio,Canzee,306,ok,122,-15.397012,49.776606,42,7.5
+Maroantsetra,12,3,718552008,Anjanazana,Ambodivoanio,Canzee,305,ok,123,-15.397913,49.774905,42,7.5
+Maroantsetra,12,4,742895766,Anjanazana,Ambodivoanio,Canzee,304,ok,124,-15.398325,49.774174,42,7.5
+Maroantsetra,12,5,742895869,Anjanazana,Ambodivoanio,Canzee,222,ok,122,-15.398769,49.773119,42,7.5
+Maroantsetra,12,6,742895663,Anjanazana,Ambodivoanio,Canzee,304,ok,169,-15.400819,49.775054,42,7.5
+Maroantsetra,12,7,742896183,Anjanazana,Andasibe,Canzee,285,ok,311,-15.364814,49.769012,42,7.5
+Maroantsetra,13,1,742896145,Anjanazana,Andasibe,Canzee,285,ok,375,-15.360527,49.769667,41,7.5
+Maroantsetra,13,2,742896190,Anjanazana,Andasibe,Canzee,285,ok,378,-15.358859,49.769846,41,7.5
+Maroantsetra,13,3,742896956,Andranofotsy,Ivato,Canzee,298,ok,477,-15.383697,49.780406,41,7.5
+Maroantsetra,13,4,742896949,Andranofotsy,Ivato,Canzee,311,ok,245,-15.388784,49.784322,41,7.5
+Maroantsetra,13,5,742896963,Andranofotsy,Ivato,Canzee,311,ok,300,-15.386841,49.786726,41,7.5
+Maroantsetra,13,6,742896987,Andranofotsy,Ivato,Canzee,312,ok,275,-15.388852,49.788361,41,7.5
+Maroantsetra,13,7,742896901,Andranofotsy,Ankazomandroko,Canzee,369,ok,191,-15.386502,49.792379,41,7.5
+Maroantsetra,14,1,742896925,Andranofotsy,Ankazomandroko,Canzee,312,ok,174,-15.386448,49.793191,23,7.4
+Maroantsetra,14,2,742896877,Andranofotsy,Ankazomandroko,Canzee,300,ok,171,-15.38659,49.793514,23,7.4
+Maroantsetra,14,3,742896891,Andranofotsy,Ankazomandroko,Canzee,209,ok,166,-15.38614,49.793576,23,7.4
+Maroantsetra,14,4,742896884,Andranofotsy,Ankazomandroko,Canzee,229,ok,168,-15.386198,49.793966,23,7.4
+Maroantsetra,14,5,742896853,Andranofotsy,Ankazomandroko,Canzee,313,ok,168,-15.386393,49.794738,23,7.4
+Maroantsetra,14,6,742896846,Andranofotsy,Ankazomandroko,Canzee,317,ok,168,-15.386451,49.794771,23,7.4
+Maroantsetra,14,7,742896860,Andranofotsy,Ankazomandroko,Canzee,314,ok,162,-15.385646,49.795544,23,7.4
+Maroantsetra,14,8,742896839,Andranofotsy,Ankazomandroko,Canzee,317,down,166,-15.38616,49.795893,23,7.4
+Maroantsetra,15,1,742896808,Andranofotsy,Ankazomandroko,Canzee,314,ok,163,-15.385491,49.796523,32,7.3
+Maroantsetra,15,2,742896822,Andranofotsy,Ankazomandroko,Canzee,314,ok,164,-15.384791,49.79659,32,7.3
+Maroantsetra,15,3,742896815,Andranofotsy,Ankazomandroko,Canzee,314,ok,184,-15.384813,49.797389,32,7.3
+Maroantsetra,15,4,742896918,Andranofotsy,Ankazomandroko,Canzee,312,ok,164,-15.385566,49.793393,32,7.3
+Maroantsetra,15,5,814646306,Andranofotsy,Ankazomandroko,Canzee,312,ok,179,-15.378797,49.792474,32,7.3
+Maroantsetra,15,6,742897029,Andranofotsy,Antsangambato,Canzee,313,down,194,-15.380379,49.804184,32,7.3
+Maroantsetra,15,7,742897036,Andranofotsy,Antsangambato,Canzee,313,ok,185,-15.379623,49.805043,32,7.3
+Maroantsetra,16,1,742897067,Andranofotsy,Antsangambato,Canzee,313,ok,204,-15.377897,49.807785,30,7.9
+Maroantsetra,16,2,742897043,Andranofotsy,Antsangambato,Canzee,313,ok,204,-15.377949,49.807834,30,7.9
+Maroantsetra,16,3,743091752,Andranofotsy,Antsangambato,Canzee,313,ok,235,-15.377465,49.808999,30,7.9
+Maroantsetra,16,4,742897050,Andranofotsy,Antsangambato,Canzee,313,ok,163,-15.37226,49.81309,30,7.9
+Maroantsetra,16,5,742896743,Andranofotsy,Ambohimoko,Canzee,319,ok,188,-15.393863,49.805707,30,7.9
+Maroantsetra,16,6,742896750,Andranofotsy,Ambohimoko,Canzee,319,ok,189,-15.394383,49.805084,30,7.9
+Maroantsetra,16,7,742896781,Andranofotsy,Ambohimoko,Canzee,317,ok,188,-15.395203,49.80551,30,7.9
+Maroantsetra,16,8,742896774,Andranofotsy,Ambohimoko,Canzee,317,ok,223,-15.396669,49.805478,30,7.9
+Maroantsetra,17,1,742896767,Andranofotsy,Ambohimoko,Canzee,318,ok,254,-15.397359,49.805308,33,8.0
+Maroantsetra,17,2,742896798,Andranofotsy,Ampafatra,Canzee,278,ok,223,-15.393917,49.799305,33,8.0
+Maroantsetra,17,3,742896736,Andranofotsy,Ambohimoko,Canzee,318,ok,108,-15.404934,49.806654,33,8.0
+Maroantsetra,17,4,742896554,Andranofotsy,Matsotarihina,Canzee,319,ok,93,-15.419912,49.799127,33,8.0
+Maroantsetra,17,5,742896530,Andranofotsy,Matsotarihina,Canzee,324,ok,105,-15.420891,49.799331,33,8.0
+Maroantsetra,17,6,742896585,Andranofotsy,Matsotarihina,Canzee,325,ok,96,-15.420492,49.798071,33,8.0
+Maroantsetra,17,7,742896640,Andranofotsy,Matsotarihina,Canzee,205,ok,86,-15.419855,49.797036,33,8.0
+Maroantsetra,17,8,742896561,Andranofotsy,Matsotarihina,Canzee,327,ok,88,-15.420643,49.796547,33,8.0
+Maroantsetra,18,1,742896578,Andranofotsy,Matsotarihina,Canzee,195,ok,90,-15.421319,49.795776,24,7.4
+Maroantsetra,18,2,742896523,Andranofotsy,Matsotarihina,Canzee,206,ok,97,-15.421944,49.796774,24,7.4
+Maroantsetra,18,3,742896516,Andranofotsy,Matsotarihina,Canzee,319,ok,108,-15.421893,49.797846,24,7.4
+Maroantsetra,18,4,742896695,Andranofotsy,Matsotarihina,Canzee,326,ok,118,-15.423367,49.797278,24,7.4
+Maroantsetra,18,5,742896499,Andranofotsy,Matsotarihina,Canzee,328,ok,120,-15.424953,49.79671,24,7.4
+Maroantsetra,18,6,742896664,Andranofotsy,Matsotarihina,Canzee,328,ok,89,-15.424323,49.794154,24,7.4
+Maroantsetra,18,7,742896602,Andranofotsy,Matsotarihina,Canzee,324,ok,97,-15.421464,49.794436,24,7.4
+Maroantsetra,18,8,742896671,Andranofotsy,Matsotarihina,Canzee,325,ok,105,-15.420967,49.793645,24,7.4
+Maroantsetra,19,1,742896626,Andranofotsy,Matsotarihina,Canzee,328,ok,93,-15.418593,49.79625,25,7.4
+Maroantsetra,19,2,742896509,Andranofotsy,Matsotarihina,Canzee,287,ok,130,-15.421883,49.800551,25,7.4
+Maroantsetra,19,3,742896444,Andranofotsy,Andranofotsy,Canzee,331,ok,104,-15.425674,49.804188,25,7.4
+Maroantsetra,19,4,742896389,Andranofotsy,Andranofotsy,Canzee,332,ok,91,-15.425853,49.805001,25,7.4
+Maroantsetra,19,5,742896396,Andranofotsy,Andranofotsy,Canzee,332,ok,83,-15.426235,49.805528,25,7.4
+Maroantsetra,19,6,742896365,Andranofotsy,Andranofotsy,Canzee,332,ok,78,-15.427659,49.805188,25,7.4
+Maroantsetra,19,7,742896372,Andranofotsy,Andranofotsy,Canzee,334,ok,74,-15.428468,49.805452,25,7.4
+Maroantsetra,19,8,742896293,Andranofotsy,Andranofotsy,Canzee,287,ok,77,-15.428515,49.804714,25,7.4
+Maroantsetra,20,1,742896482,Andranofotsy,Andranofotsy,Canzee,332,ok,81,-15.4283,49.803841,21,7.3
+Maroantsetra,20,2,742896420,Andranofotsy,Andranofotsy,Canzee,332,ok,93,-15.427709,49.803405,21,7.3
+Maroantsetra,20,3,742896255,Andranofotsy,Andranofotsy,Canzee,332,ok,87,-15.428456,49.802888,21,7.3
+Maroantsetra,20,4,742896231,Andranofotsy,Andranofotsy,Canzee,333,partial,83,-15.42928,49.802121,21,7.3
+Maroantsetra,20,5,742896262,Andranofotsy,Andranofotsy,Canzee,333,ok,83,-15.429298,49.802063,21,7.3
+Maroantsetra,20,6,742896303,Andranofotsy,Andranofotsy,Canzee,331,ok,100,-15.428464,49.801564,21,7.3
+Maroantsetra,20,7,742896475,Andranofotsy,Andranofotsy,Canzee,331,ok,113,-15.427728,49.801636,21,7.3
+Maroantsetra,20,8,742896224,Andranofotsy,Andranofotsy,Canzee,331,ok,89,-15.429589,49.800339,21,7.3
+Maroantsetra,21,1,742896279,Andranofotsy,Andranofotsy,Canzee,332,ok,78,-15.43035,49.801891,22,7.5
+Maroantsetra,21,2,742896334,Andranofotsy,Andranofotsy,Canzee,333,ok,77,-15.429391,49.804273,22,7.5
+Maroantsetra,21,3,742896310,Andranofotsy,Andranofotsy,Canzee,334,ok,75,-15.429668,49.805059,22,7.5
+Maroantsetra,21,4,742896341,Andranofotsy,Andranofotsy,Canzee,334,ok,81,-15.430068,49.806762,22,7.5
+Maroantsetra,21,5,742896406,Andranofotsy,Andranofotsy,Canzee,334,ok,74,-15.428199,49.807321,22,7.5
+Maroantsetra,21,6,742896327,Andranofotsy,Andranofotsy,Canzee,332,ok,72,-15.427482,49.806655,22,7.5
+Maroantsetra,21,7,742896451,Andranofotsy,Andranofotsy,Canzee,332,ok,222,-15.432599,49.81979,22,7.5
+Maroantsetra,21,8,742896468,Andranofotsy,Andranofotsy,Canzee,332,ok,221,-15.43256,49.821277,22,7.5
+Maroantsetra,22,1,742896705,Andranofotsy,Matsotarihina,Canzee,320,ok,123,-15.414054,49.791417,31,7.7
+Maroantsetra,22,2,742896688,Andranofotsy,Matsotarihina,Canzee,220,ok,123,-15.414213,49.789768,31,7.7
+Maroantsetra,22,3,742896729,Andranofotsy,Matsotarihina,Canzee,321,ok,117,-15.414692,49.78727,31,7.7
+Maroantsetra,22,4,742896712,Andranofotsy,Matsotarihina,Canzee,320,ok,118,-15.415118,49.784886,31,7.7
+Maroantsetra,22,5,742897074,Anjahana,Navana,Canzee,339,ok,123,-15.412947,49.859259,31,7.7
+Maroantsetra,22,6,742897232,Anjahana,Navana,Canzee,340,ok,146,-15.413204,49.861233,31,7.7
+Maroantsetra,22,7,742897115,Anjahana,Navana,Canzee,340,ok,163,-15.413094,49.863194,31,7.7
+Maroantsetra,23,1,742897108,Anjahana,Navana,Canzee,340,ok,165,-15.412103,49.863147,59,7.8
+Maroantsetra,23,2,742897122,Anjahana,Navana,Canzee,339,ok,170,-15.410731,49.863418,59,7.8
+Maroantsetra,23,3,742897098,Anjahana,Navana,Canzee,339,down,157,-15.409223,49.862395,59,7.8
+Maroantsetra,23,4,742897081,Anjahana,Navana,Canzee,236,ok,146,-15.411227,49.860926,59,7.8
+Maroantsetra,23,5,742897160,Anjahana,Navana,Canzee,346,ok,188,-15.411052,49.865429,59,7.8
+Maroantsetra,23,6,742897177,Anjahana,Navana,Canzee,347,ok,192,-15.411399,49.86676,59,7.8
+Maroantsetra,24,1,742897249,Anjahana,Navana,Canzee,188,ok,195,-15.411327,49.867477,59,7.8
+Maroantsetra,24,2,742897304,Anjahana,Navana,Canzee,330,down,194,-15.410449,49.867235,59,7.8
+Maroantsetra,24,3,742897225,Anjahana,Navana,Canzee,345,ok,192,-15.409188,49.867005,59,7.8
+Maroantsetra,24,4,742897218,Anjahana,Navana,Canzee,236,ok,187,-15.408763,49.865818,59,7.8
+Maroantsetra,24,5,742897184,Anjahana,Navana,Canzee,345,ok,191,-15.412131,49.866277,59,7.8
+Maroantsetra,24,6,742897191,Anjahana,Navana,Canzee,340,ok,192,-15.412983,49.866655,59,7.8
+Maroantsetra,25,1,742897146,Anjahana,Navana,Canzee,346,ok,185,-15.41322,49.865247,44,7.4
+Maroantsetra,25,2,742897201,Anjahana,Navana,Canzee,340,ok,189,-15.414941,49.866304,44,7.4
+Maroantsetra,25,3,742897294,Anjahana,Navana,Canzee,340,ok,193,-15.413084,49.870428,44,7.4
+Maroantsetra,25,4,742897397,Anjahana,Navana,Canzee,240,ok,192,-15.411978,49.871109,44,7.4
+Maroantsetra,25,5,742897328,Anjahana,Navana,Canzee,340,ok,193,-15.410824,49.872664,44,7.4
+Maroantsetra,25,6,742897311,Anjahana,Navana,Canzee,339,ok,182,-15.409757,49.872022,44,7.4
+Maroantsetra,26,1,771799310,Anjahana,Navana,Canzee,345,ok,183,-15.410056,49.871222,46,7.5
+Maroantsetra,26,2,742897342,Anjahana,Navana,Canzee,345,ok,179,-15.409064,49.871324,46,7.5
+Maroantsetra,26,3,742897335,Anjahana,Navana,Canzee,241,ok,181,-15.409552,49.87296,46,7.5
+Maroantsetra,26,4,742897263,Anjahana,Navana,Canzee,189,ok,196,-15.412673,49.87306,46,7.5
+Maroantsetra,26,5,742897256,Anjahana,Navana,Canzee,340,ok,178,-15.4127,49.87512,46,7.5
+Maroantsetra,26,6,742897366,Anjahana,Anjahana,Canzee,211,ok,163,-15.414481,49.880871,46,7.5
+Maroantsetra,27,1,742897407,Anjahana,Anjahana,Canzee,352,ok,137,-15.416512,49.882805,80,7.9
+Maroantsetra,27,2,742897438,Anjahana,Anjahana,Canzee,351,ok,174,-15.41498,49.885978,80,7.9
+Maroantsetra,27,3,742897445,Anjahana,Anjahana,Canzee,326,down,182,-15.414573,49.887936,80,7.9
+Maroantsetra,27,4,742897469,Anjahana,Anjahana,Canzee,362,ok,158,-15.416191,49.888981,80,7.9
+Maroantsetra,27,5,742897634,Anjahana,Anjahana,Canzee,360,ok,150,-15.414602,49.89118,80,7.9
+Maroantsetra,28,1,742897603,Anjahana,Anjahana,Canzee,354,ok,125,-15.410873,49.893398,33,7.3
+Maroantsetra,28,2,742897562,Anjahana,Anjahana,Canzee,360,ok,117,-15.409682,49.893858,33,7.3
+Maroantsetra,28,3,742897593,Anjahana,Anjahana,Canzee,361,ok,165,-15.410189,49.891509,33,7.3
+Maroantsetra,28,4,742897531,Anjahana,Anjahana,Canzee,361,ok,196,-15.409501,49.88995,33,7.3
+Maroantsetra,28,5,742897586,Anjahana,Anjahana,Canzee,343,ok,201,-15.408102,49.889031,33,7.3
+Maroantsetra,28,6,742897548,Anjahana,Anjahana,Canzee,347,ok,195,-15.406732,49.888703,33,7.3
+Maroantsetra,29,1,742897555,Anjahana,Anjahana,Canzee,354,ok,229,-15.40854,49.887466,32,7.2
+Maroantsetra,29,2,742897483,Anjahana,Anjahana,Canzee,363,ok,238,-15.410836,49.887005,32,7.2
+Maroantsetra,29,3,742897500,Anjahana,Anjahana,Canzee,362,ok,228,-15.410955,49.887966,32,7.2
+Maroantsetra,29,4,742897414,Anjahana,Anjahana,Canzee,275,ok,219,-15.4083,49.883952,32,7.2
+Maroantsetra,29,5,742897421,Anjahana,Anjahana,Canzee,351,ok,227,-15.409875,49.882394,32,7.2
+Maroantsetra,29,6,742897380,Anjahana,Anjahana,Canzee,363,ok,203,-15.407925,49.880797,32,7.2
+Maroantsetra,30,1,742897490,Anjahana,Anjahana,Canzee,344,ok,146,-15.404743,49.882554,32,7.2
+Maroantsetra,30,2,742897476,Anjahana,Anjahana,Canzee,362,partial,156,-15.405157,49.884068,32,7.2
+Maroantsetra,30,3,742897452,Anjahana,Anjahana,Canzee,275,ok,142,-15.404029,49.884329,32,7.2
+Maroantsetra,30,4,742897524,Anjahana,Anjahana,Canzee,344,ok,150,-15.403919,49.886211,32,7.2
+Maroantsetra,30,5,742897517,Anjahana,Anjahana,Canzee,353,ok,113,-15.402075,49.881402,32,7.2
+Maroantsetra,30,6,742897287,Anjahana,Navana,Canzee,341,ok,197,-15.41091,49.868931,32,7.2
+Maroantsetra,31,1,742897610,Anjahana,Anjahana,Canzee,361,ok,99,-15.411699,49.895107,46,7.5
+Maroantsetra,31,2,699595931,Anjahana,Mahafidina II,Canzee,never,unknown,229,-15.382973,49.870424,46,7.5
+Maroantsetra,31,3,782134540,Anjahana,Mahafidina II,Canzee,436,partial,,-15.379221,49.870494,46,7.5
+Maroantsetra,31,4,742897751,Mahalevona,Mahalevona Sud,Canzee,352,ok,167,-15.416655,49.911469,46,7.5
+Maroantsetra,31,5,742897672,Mahalevona,Mahalevona Sud,Canzee,297,ok,159,-15.417283,49.91146,46,7.5
+Maroantsetra,32,1,742897689,Mahalevona,Mahalevona Sud,Canzee,353,ok,169,-15.417096,49.912041,38,7.6
+Maroantsetra,32,2,742897696,Mahalevona,Mahalevona Sud,Canzee,353,ok,155,-15.417817,49.911807,38,7.6
+Maroantsetra,32,3,742897744,Mahalevona,Mahalevona Sud,Canzee,352,down,187,-15.416793,49.912811,38,7.6
+Maroantsetra,32,4,742897720,Mahalevona,Mahalevona Sud,Canzee,321,down,208,-15.415762,49.913566,38,7.6
+Maroantsetra,32,5,742897665,Mahalevona,Mahalevona Sud,Canzee,337,ok,214,-15.414955,49.913911,38,7.6
+Maroantsetra,32,6,742897799,Mahalevona,Mahalevona Sud,Canzee,never,unknown,216,-15.415232,49.914487,38,7.6
+Maroantsetra,33,1,742897816,Mahalevona,Mahalevona Sud,Canzee,352,ok,240,-15.41385,49.914886,38,7.7
+Maroantsetra,33,2,742897775,Mahalevona,Mahalevona Sud,Canzee,330,ok,240,-15.41361,49.916041,38,7.7
+Maroantsetra,33,3,742897854,Mahalevona,Mahalevona Nord,Canzee,208,ok,240,-15.413031,49.915894,38,7.7
+Maroantsetra,33,4,742897861,Mahalevona,Mahalevona Nord,Canzee,350,ok,240,-15.412856,49.915846,38,7.7
+Maroantsetra,33,5,742897768,Mahalevona,Mahalevona Sud,Canzee,287,ok,236,-15.412998,49.916594,38,7.7
+Maroantsetra,33,6,742897830,Mahalevona,Mahalevona Nord,Canzee,332,ok,234,-15.412643,49.916873,38,7.7
+Maroantsetra,34,1,742897847,Mahalevona,Mahalevona Nord,Canzee,347,ok,227,-15.412242,49.917675,39,7.8
+Maroantsetra,34,2,742897892,Mahalevona,Mahalevona Nord,Canzee,348,ok,226,-15.411795,49.917815,39,7.8
+Maroantsetra,34,3,742897902,Mahalevona,Mahalevona Nord,Canzee,347,ok,225,-15.41143,49.917748,39,7.8
+Maroantsetra,34,4,742897964,Mahalevona,Mahalevona Nord,Canzee,346,ok,228,-15.411589,49.917066,39,7.8
+Maroantsetra,34,5,897923486,Mahalevona,Mahalevona Nord,Canzee,347,ok,215,-15.411271,49.918503,39,7.8
+Maroantsetra,34,6,742898006,Mahalevona,Mahalevona Nord,Canzee,never,unknown,154,-15.408639,49.920608,39,7.8
+Maroantsetra,35,1,771820645,Ankofabe,Antoraka,Canzee,272,ok,,-15.478797,49.669303,40,7.9
+Maroantsetra,35,2,771825925,Ankofabe,Antoraka,Canzee,271,ok,121,-15.480086,49.667236,40,7.9
+Maroantsetra,35,3,699595955,Ankofabe,Antoraka,Canzee,272,ok,126,-15.480761,49.665801,40,7.9
+Maroantsetra,35,4,699595962,Ankofabe,Antoraka,Canzee,271,ok,127,-15.480771,49.665358,40,7.9
+Maroantsetra,35,5,699595979,Ankofabe,Antoraka,Canzee,270,ok,129,-15.481817,49.664581,40,7.9
+Maroantsetra,35,6,699596011,Ankofabe,Antoraka,Canzee,267,ok,129,-15.482053,49.66369,40,7.9
+Maroantsetra,35,7,698771062,Ankofabe,Antoraka,Canzee,270,ok,129,-15.481311,49.663767,40,7.9
+Maroantsetra,35,8,698771048,Ankofabe,Antoraka,Canzee,267,ok,129,-15.48165,49.663031,40,7.9
+Maroantsetra,36,1,698770982,Ankofabe,Antoraka,Canzee,267,ok,130,-15.480895,49.662957,45,7.2
+Maroantsetra,36,2,698771031,Ankofabe,Antoraka,Canzee,267,ok,131,-15.481361,49.662278,45,7.2
+Maroantsetra,36,3,699595993,Ankofabe,Antoraka,Canzee,270,ok,132,-15.480697,49.661481,45,7.2
+Maroantsetra,36,4,698770999,Ankofabe,Antoraka,Canzee,271,partial,131,-15.479985,49.660686,45,7.2
+Maroantsetra,36,5,698771000,Ankofabe,Antoraka,Canzee,267,ok,125,-15.479503,49.658959,45,7.2
+Maroantsetra,36,6,699595986,Ankofabe,Antoraka,Canzee,269,ok,125,-15.478864,49.663332,45,7.2
+Maroantsetra,36,7,698771103,Ankofabe,Antoraka,Canzee,374,ok,129,-15.483088,49.665198,45,7.2
+Maroantsetra,37,1,698771110,Ankofabe,Antoraka,Canzee,269,ok,129,-15.484701,49.664297,49,7.7
+Maroantsetra,37,2,699596004,Ankofabe,Antoraka,Canzee,269,ok,120,-15.486338,49.662618,49,7.7
+Maroantsetra,37,3,699596059,Ankofabe,Manambia,Canzee,264,ok,63,-15.500624,49.649237,49,7.7
+Maroantsetra,37,4,699596066,Ankofabe,Manambia,Canzee,264,ok,62,-15.502181,49.64762,49,7.7
+Maroantsetra,37,5,699596073,Ankofabe,Manambia,Canzee,264,ok,74,-15.506466,49.643582,49,7.7
+Maroantsetra,37,6,698771196,Ankofabe,Manambia,Canzee,264,ok,81,-15.511547,49.637635,49,7.7
+Maroantsetra,37,7,698771172,Ankofabe,Manambia,Canzee,264,ok,95,-15.513605,49.63584,49,7.7
+Maroantsetra,38,1,698771220,Ankofabe,Manambia,Canzee,268,ok,105,-15.516081,49.63438,57,7.2
+Maroantsetra,38,2,698771213,Ankofabe,Manambia,Canzee,267,ok,108,-15.515684,49.633559,57,7.2
+Maroantsetra,38,3,699596121,Ankofabe,Manambia,Canzee,580,ok,101,-15.519791,49.6334,57,7.2
+Maroantsetra,38,4,699596114,Ankofabe,Manambia,Canzee,261,ok,100,-15.51995,49.633472,57,7.2
+Maroantsetra,38,5,699596107,Ankofabe,Manambia,Canzee,222,ok,107,-15.521209,49.632276,57,7.2
+Maroantsetra,38,6,698771237,Ankofabe,Manambia,Canzee,261,ok,255,-15.519317,49.62292,57,7.2
+Maroantsetra,39,1,699597328,Ankofabe,Ankofabe,Canzee,195,ok,419,-15.518407,49.616604,63,7.4
+Maroantsetra,39,2,699597335,Ankofabe,Ankofabe,Canzee,199,ok,445,-15.515745,49.614611,63,7.4
+Maroantsetra,39,3,699597342,Ankofabe,Ankofabe,Canzee,199,ok,455,-15.51419,49.614192,63,7.4
+Maroantsetra,39,4,699597366,Ankofabe,Ankofabe,Canzee,195,ok,462,-15.515641,49.612208,63,7.4
+Maroantsetra,39,5,699597397,Ankofabe,Ankofabe,Canzee,199,ok,453,-15.514581,49.61013,63,7.4
+Maroantsetra,39,6,699597359,Ankofabe,Ankofabe,Canzee,199,ok,451,-15.513224,49.611641,63,7.4
+Maroantsetra,40,1,699597579,Ankofabe,Anjiabe,Canzee,186,partial,371,-15.499515,49.616008,73,7.9
+Maroantsetra,40,2,699597593,Ankofabe,Sahajinja,Canzee,186,ok,801,-15.486857,49.613446,73,7.9
+Maroantsetra,40,3,699597414,Ankofabe,Tsarahonenana,Canzee,193,ok,156,-15.51629,49.590922,73,7.9
+Maroantsetra,40,4,699597469,Ankofabe,Tsarahonenana,Canzee,184,ok,155,-15.516447,49.59063,73,7.9
+Maroantsetra,40,5,699597476,Ankofabe,Tsarahonenana,Canzee,193,ok,155,-15.516616,49.590651,73,7.9
+Maroantsetra,40,6,699597483,Ankofabe,Tsarahonenana,Canzee,192,ok,150,-15.517117,49.590538,73,7.9
+Maroantsetra,41,1,699597452,Ankofabe,Tsarahonenana,Canzee,193,ok,150,-15.517026,49.591057,71,7.9
+Maroantsetra,41,2,699597438,Ankofabe,Tsarahonenana,Canzee,194,ok,148,-15.518452,49.591539,71,7.9
+Maroantsetra,41,3,699597555,Ankofabe,Tsarahonenana,Canzee,192,ok,227,-15.519856,49.585611,71,7.9
+Maroantsetra,41,4,699597490,Ankofabe,Andrangazaha,Canzee,188,ok,247,-15.515049,49.5836,71,7.9
+Maroantsetra,41,5,699597517,Ankofabe,Andrangazaha,Canzee,never,unknown,209,-15.51603,49.581327,71,7.9
+Maroantsetra,41,6,698774003,Ankofabe,Andrangazaha,Canzee,188,partial,216,-15.516205,49.581356,71,7.9
+Maroantsetra,42,1,699596035,Ankofabe,Analalava,Canzee,270,ok,334,-15.458496,49.66021,68,7.3
+Maroantsetra,42,2,699596028,Ankofabe,Analalava,Canzee,270,ok,363,-15.455799,49.662278,68,7.3
+Maroantsetra,42,3,698771244,Voloina,Ambodipaka,Canzee,262,ok,120,-15.541816,49.620796,68,7.3
+Maroantsetra,42,4,698771251,Voloina,Ambodipaka,Canzee,262,ok,134,-15.542936,49.620242,68,7.3
+Maroantsetra,42,5,698771268,Voloina,Ambodipaka,Canzee,192,ok,138,-15.544158,49.619325,68,7.3
+Maroantsetra,43,1,699596664,Voloina,Ambodipaka,Canzee,258,ok,138,-15.546479,49.618106,71,7.7
+Maroantsetra,43,2,699596688,Voloina,Ambodipaka,Canzee,258,ok,138,-15.547057,49.61788,71,7.7
+Maroantsetra,43,3,699596695,Voloina,Ambodipaka,Canzee,262,partial,146,-15.547393,49.616801,71,7.7
+Maroantsetra,43,4,698771275,Voloina,Ambodipaka,Canzee,258,ok,141,-15.546914,49.616532,71,7.7
+Maroantsetra,43,5,698771880,Voloina,Ambodipaka,Canzee,261,ok,146,-15.548116,49.61685,71,7.7
+Maroantsetra,43,6,699596705,Voloina,Ambodipaka,Canzee,258,ok,133,-15.549538,49.616128,71,7.7
+Maroantsetra,44,1,698771859,Voloina,Ambodipaka,Canzee,261,down,129,-15.549364,49.614943,75,7.3
+Maroantsetra,44,2,699596736,Voloina,Ambodibaro,Canzee,239,ok,122,-15.562563,49.608151,75,7.3
+Maroantsetra,44,3,699596729,Voloina,Ambodibaro,Canzee,239,ok,114,-15.563693,49.607064,75,7.3
+Maroantsetra,44,4,699596712,Voloina,Ambodibaro,Canzee,239,ok,104,-15.564446,49.606107,75,7.3
+Maroantsetra,44,5,698771907,Voloina,Ambodibaro,Canzee,239,ok,83,-15.565255,49.604892,75,7.3
+Maroantsetra,45,1,698771897,Voloina,Ambodibaro,Canzee,239,ok,80,-15.565311,49.60415,81,7.5
+Maroantsetra,45,2,698771921,Voloina,Ambodibaro,Canzee,238,ok,82,-15.566996,49.604619,81,7.5
+Maroantsetra,45,3,698771938,Voloina,Ambodibaro,Canzee,238,ok,81,-15.566796,49.605121,81,7.5
+Maroantsetra,45,4,698771969,Voloina,Voloina,Canzee,225,ok,83,-15.56696,49.605836,81,7.5
+Maroantsetra,45,5,699596743,Voloina,Voloina,Canzee,239,ok,85,-15.566916,49.606058,81,7.5
+Maroantsetra,46,1,698771914,Voloina,Voloina,Canzee,239,ok,89,-15.566263,49.606284,76,7.4
+Maroantsetra,46,2,698771945,Voloina,Voloina,Canzee,236,ok,87,-15.567526,49.606458,76,7.4
+Maroantsetra,46,3,699596808,Voloina,Voloina,Canzee,238,ok,86,-15.567772,49.60597,76,7.4
+Maroantsetra,46,4,699596767,Voloina,Voloina,Canzee,238,ok,90,-15.568168,49.606294,76,7.4
+Maroantsetra,46,5,698771952,Voloina,Voloina,Canzee,236,ok,95,-15.568434,49.606669,76,7.4
+Maroantsetra,47,1,699596815,Voloina,Voloina,Canzee,235,ok,103,-15.568993,49.606902,79,7.6
+Maroantsetra,47,2,698771983,Voloina,Voloina,Canzee,195,ok,101,-15.568672,49.607478,79,7.6
+Maroantsetra,47,3,699596860,Voloina,Voloina,Canzee,231,ok,108,-15.569231,49.608138,79,7.6
+Maroantsetra,47,4,699596877,Voloina,Voloina,Canzee,231,ok,110,-15.569369,49.608025,79,7.6
+Maroantsetra,47,5,698772025,Voloina,Voloina,Canzee,224,ok,117,-15.569748,49.609382,79,7.6
+Maroantsetra,48,1,698772018,Voloina,Voloina,Canzee,229,ok,126,-15.570169,49.609494,77,7.4
+Maroantsetra,48,2,698772001,Voloina,Voloina,Canzee,235,ok,101,-15.56895,49.606223,77,7.4
+Maroantsetra,48,3,699596853,Voloina,Voloina,Canzee,235,ok,98,-15.568672,49.605854,77,7.4
+Maroantsetra,48,4,699596774,Voloina,Voloina,Canzee,235,ok,97,-15.568569,49.605696,77,7.4
+Maroantsetra,48,5,699596781,Voloina,Voloina,Canzee,235,ok,92,-15.568452,49.605904,77,7.4
+Maroantsetra,49,1,699596891,Voloina,Tanantsara,Canzee,224,ok,115,-15.571788,49.613837,79,7.6
+Maroantsetra,49,2,699596901,Voloina,Tanantsara,Canzee,224,ok,110,-15.571884,49.614081,79,7.6
+Maroantsetra,49,3,699596918,Voloina,Tanantsara,Canzee,223,ok,102,-15.572696,49.614601,79,7.6
+Maroantsetra,49,4,699596932,Voloina,Tanantsara,Canzee,223,ok,95,-15.572668,49.615434,79,7.6
+Maroantsetra,49,5,698772094,Voloina,Tanantsara,Canzee,223,ok,95,-15.575666,49.616184,79,7.6
+Maroantsetra,50,1,698772063,Voloina,Tanantsara,Canzee,223,ok,99,-15.578191,49.615426,80,7.7
+Maroantsetra,50,2,698772032,Voloina,Tanantsara,Canzee,223,ok,102,-15.578667,49.615375,80,7.7
+Maroantsetra,50,3,698772087,Voloina,Tanantsara,Canzee,224,ok,104,-15.579352,49.615409,80,7.7
+Maroantsetra,50,4,699596963,Voloina,Tanantsara,Canzee,219,ok,100,-15.580895,49.615504,80,7.7
+Maroantsetra,50,5,699596956,Voloina,Tanantsara,Canzee,219,ok,90,-15.581877,49.615395,80,7.7
+Maroantsetra,51,1,699596970,Voloina,Tanantsara,Canzee,218,ok,91,-15.58159,49.616372,84,7.4
+Maroantsetra,51,2,698772056,Voloina,Tanantsara,Canzee,219,ok,100,-15.578025,49.613917,84,7.4
+Maroantsetra,51,3,699597098,Voloina,Nandrasana,Canzee,218,ok,68,-15.586129,49.617249,84,7.4
+Maroantsetra,51,4,699597005,Voloina,Nandrasana,Canzee,217,ok,54,-15.588467,49.617036,84,7.4
+Maroantsetra,52,1,699596994,Voloina,Nandrasana,Canzee,217,ok,57,-15.593528,49.61801,85,7.5
+Maroantsetra,52,2,698772142,Voloina,Nandrasana,Canzee,217,ok,72,-15.594622,49.617942,85,7.5
+Maroantsetra,52,3,699597081,Voloina,Nandrasana,Canzee,202,ok,84,-15.596542,49.617869,85,7.5
+Maroantsetra,52,4,698772135,Voloina,Nandrasana,Canzee,214,ok,94,-15.601074,49.618821,85,7.5
+Maroantsetra,53,1,698772252,Voloina,Nandrasana,Canzee,214,ok,93,-15.601361,49.618447,85,7.5
+Maroantsetra,53,2,698772111,Voloina,Nandrasana,Canzee,214,ok,95,-15.601797,49.61872,85,7.5
+Maroantsetra,53,3,698772104,Voloina,Nandrasana,Canzee,216,ok,95,-15.601921,49.618723,85,7.5
+Maroantsetra,53,4,698772238,Voloina,Nandrasana,Canzee,214,ok,98,-15.602475,49.618747,85,7.5
+Maroantsetra,54,1,698772245,Voloina,Nandrasana,Canzee,214,ok,104,-15.602721,49.618993,85,7.5
+Maroantsetra,54,2,698772283,Voloina,Nandrasana,Canzee,216,ok,111,-15.60331,49.619044,85,7.5
+Maroantsetra,54,3,699597043,Voloina,Nandrasana,Canzee,216,ok,116,-15.603115,49.619802,85,7.5
+Maroantsetra,54,4,698772214,Voloina,Nandrasana,Canzee,213,ok,125,-15.603822,49.619912,85,7.5
+Maroantsetra,55,1,698772180,Voloina,Nandrasana,Canzee,213,partial,122,-15.604018,49.619468,87,7.0
+Maroantsetra,55,2,698772166,Voloina,Nandrasana,Canzee,213,ok,128,-15.6044,49.619898,87,7.0
+Maroantsetra,55,3,698772197,Voloina,Nandrasana,Canzee,208,ok,127,-15.604612,49.619345,87,7.0
+Maroantsetra,56,1,698772173,Voloina,Nandrasana,Canzee,213,ok,129,-15.603922,49.620615,86,7.6
+Maroantsetra,56,2,698772221,Voloina,Nandrasana,Canzee,213,ok,135,-15.604316,49.620773,86,7.6
+Maroantsetra,56,3,699597029,Voloina,Nandrasana,Canzee,209,ok,138,-15.605552,49.620552,86,7.6
+Maroantsetra,56,4,699597067,Voloina,Nandrasana,Canzee,208,ok,138,-15.605849,49.621218,86,7.6
+Maroantsetra,57,1,699597012,Voloina,Nandrasana,Canzee,207,ok,138,-15.606304,49.621231,87,7.7
+Maroantsetra,57,2,699597036,Voloina,Nandrasana,Canzee,208,ok,139,-15.606452,49.621984,87,7.7
+Maroantsetra,57,3,699597050,Voloina,Nandrasana,Canzee,207,ok,151,-15.60766,49.623311,87,7.7
+Maroantsetra,57,4,698772317,Voloina,Nandrasana,Canzee,207,ok,138,-15.609034,49.624374,87,7.7
+Maroantsetra,58,1,698772331,Voloina,Nandrasana,Canzee,207,ok,125,-15.609823,49.624842,88,7.8
+Maroantsetra,58,2,698772348,Voloina,Nandrasana,Canzee,206,ok,111,-15.610201,49.625619,88,7.8
+Maroantsetra,58,3,699597115,Voloina,Nandrasana,Canzee,206,ok,107,-15.610229,49.626136,88,7.8
+Maroantsetra,58,4,698773617,Voloina,Nandrasana,Canzee,206,ok,115,-15.60966,49.625779,88,7.8
+Maroantsetra,59,1,698773648,Voloina,Nandrasana,Canzee,202,ok,99,-15.610805,49.626815,90,7.2
+Maroantsetra,59,2,698773624,Voloina,Nandrasana,Canzee,never,unknown,100,-15.609912,49.627456,90,7.2
+Maroantsetra,59,3,699597122,Voloina,Nandrasana,Canzee,201,ok,92,-15.610984,49.628079,90,7.2
+Maroantsetra,60,1,833033198,Ambinanitelo,Ambinanitelo,Canzee,never,ok,145,-15.349592,49.578502,53,4.1
+Fort-Dauphin,1,1,670401763,Mahatalaky,Tsiharoa Ampasy,Canzee,199,ok,302,-24.814038,47.082557,71,7.5
+Fort-Dauphin,1,2,742895388,Mahatalaky,Tsiharoa Ambondro,Canzee,never,unknown,,-24.811761,47.086251,71,7.5
+Fort-Dauphin,1,3,742895395,Mahatalaky,Tsiharoa Ambondro,Canzee,199,ok,245,-24.80849,47.083687,71,7.5
+Fort-Dauphin,1,4,742895405,Mahatalaky,Tsiharoa Ambondro,Canzee,199,ok,196,-24.806777,47.080327,71,7.5
+Fort-Dauphin,2,1,742895247,Mahatalaky,Mahatalaky Eroanga,IndiaMark,199,ok,491,-24.789951,47.082413,89,7.7
+Fort-Dauphin,2,2,742895223,Mahatalaky,Mahatalaky Eroanga,Canzee,never,unknown,,-24.775485,47.070314,89,7.7
+Fort-Dauphin,2,3,742895182,Mahatalaky,Tsanoriha,IndiaMark,201,ok,147,-24.752519,47.051945,89,7.7
+Fort-Dauphin,3,1,742895199,Mahatalaky,Tsanoriha,IndiaMark,201,ok,116,-24.750994,47.04746,88,7.6
+Fort-Dauphin,3,2,742895209,Mahatalaky,Tsanoriha,IndiaMark,201,ok,91,-24.749146,47.04482,88,7.6
+Fort-Dauphin,3,3,742895216,Mahatalaky,Tsanoriha,IndiaMark,201,ok,103,-24.752349,47.043367,88,7.6
+Fort-Dauphin,4,1,742895364,Mahatalaky,Ebakika,Canzee,never,unknown,,-24.732064,47.148097,94,7.0
+Fort-Dauphin,5,1,742895357,Mahatalaky,Ebakika,Canzee,never,unknown,,-24.724684,47.149129,96,7.1
+Fort-Dauphin,6,1,670401749,Mahatalaky,Sainte Luce,IndiaMark,never,ok,87,-24.781513,47.173589,99,7.3
+Fort-Dauphin,6,2,670401732,Mahatalaky,Sainte Luce,Canzee,482,ok,86,-24.779329,47.182663,99,7.3
+Fort-Dauphin,7,1,742895285,Mahatalaky,Sainte Luce,IndiaMark,229,ok,145,-24.77527,47.196411,103,6.7
+Fort-Dauphin,8,1,670401615,Iaboakoho,Iaboakoho,Canzee,202,ok,62,-24.625556,47.205117,123,9.2
+Fort-Dauphin,9,1,670401639,Manantenina,Ankaramany,Canzee,never,down,295,-24.42815,47.289226,177,13.1
+Fort-Dauphin,10,1,742895687,Manantenina,Ambalateza,Canzee,266,ok,47,-24.255733,47.287241,230,16.0
+Fort-Dauphin,11,1,742895670,Manantenina,Ambalateza,Canzee,266,ok,106,-24.251656,47.28538,231,16.1
+Fort-Dauphin,12,1,742895711,Manantenina,Ambalateza,Canzee,598,ok,,-24.25441,47.301335,228,16.1
+Fort-Dauphin,13,1,742895704,Manantenina,Ambalateza,IndiaMark,269,ok,82,-24.254508,47.30132,228,16.1
+Fort-Dauphin,14,1,742894356,Isaka-Ivondro,Ambatomainty,IndiaMark,206,ok,168,-24.817614,46.872739,73,7.5
+Fort-Dauphin,14,2,742894370,Isaka-Ivondro,Ambatomainty,IndiaMark,206,ok,274,-24.820735,46.86782,73,7.5
+Fort-Dauphin,14,3,742894363,Isaka-Ivondro,Ambatomainty,IndiaMark,206,ok,256,-24.818879,46.866617,73,7.5
+Fort-Dauphin,14,4,670402094,Isaka-Ivondro,Ihazoambo,IndiaMark,222,ok,228,-24.821987,46.861729,73,7.5
+Fort-Dauphin,15,1,742894301,Isaka-Ivondro,Ihazoambo,IndiaMark,207,ok,188,-24.827812,46.866272,86,7.8
+Fort-Dauphin,15,2,742894318,Isaka-Ivondro,Ihazoambo,IndiaMark,207,ok,325,-24.829746,46.866555,86,7.8
+Fort-Dauphin,15,3,742894387,Isaka-Ivondro,Montifeno,IndiaMark,221,ok,324,-24.854282,46.872702,86,7.8
+Fort-Dauphin,15,4,670402056,Mandiso,Mandiso,IndiaMark,never,ok,253,-24.876126,46.830805,86,7.8
+Fort-Dauphin,16,1,742894222,Mandiso,Nagnarena,IndiaMark,542,ok,207,-24.90859,46.832652,62,7.5
+Fort-Dauphin,16,2,742894208,Ifarantsa,Ifarantsa,IndiaMark,185,partial,122,-24.927412,46.864006,62,7.5
+Fort-Dauphin,16,3,742894198,Ifarantsa,Ifarantsa,IndiaMark,192,ok,123,-24.928137,46.863525,62,7.5
+Fort-Dauphin,16,4,670402221,Ifarantsa,Ifarantsa,IndiaMark,never,unknown,115,-24.933975,46.862376,62,7.5
+Fort-Dauphin,16,5,742894088,Ifarantsa,Vatomivarina,IndiaMark,never,ok,95,-24.953892,46.862238,62,7.5
+Fort-Dauphin,17,1,742894064,Ifarantsa,Vatomivarina,IndiaMark,192,ok,88,-24.957869,46.863175,84,7.9
+Fort-Dauphin,17,2,742894071,Ifarantsa,Vatomivarina,IndiaMark,193,ok,121,-24.977147,46.87103,84,7.9
+Fort-Dauphin,17,3,742894181,Ifarantsa,Vatomivarina,IndiaMark,193,ok,193,-24.983945,46.870925,84,7.9
+Fort-Dauphin,17,4,742894480,Ifarantsa,Fanjahira,IndiaMark,726,down,48,-24.912191,46.884802,84,7.9
+Fort-Dauphin,17,5,742894538,Manambaro,Esalo,IndiaMark,212,ok,174,-24.970916,46.855881,84,7.9
+Fort-Dauphin,18,1,742894569,Manambaro,Nosibe,Canzee,227,ok,99,-24.997018,46.855556,36,6.9
+Fort-Dauphin,18,2,742894583,Manambaro,Nosibe,IndiaMark,235,ok,101,-24.998063,46.853585,36,6.9
+Fort-Dauphin,18,3,742894600,Manambaro,Nosibe,Canzee,never,partial,101,-25.002792,46.854942,36,6.9
+Fort-Dauphin,18,4,742893829,Manambaro,Esalo,IndiaMark,214,ok,40,-25.001749,46.870752,36,6.9
+Fort-Dauphin,18,5,742894514,Manambaro,Esalo,Canzee,236,ok,40,-25.001724,46.871281,36,6.9
+Fort-Dauphin,18,6,742894521,Manambaro,Esalo,Canzee,234,partial,55,-25.000451,46.872577,36,6.9
+Fort-Dauphin,19,1,742894686,Manambaro,Tsihary,IndiaMark,never,ok,538,-25.036473,46.851074,54,7.6
+Fort-Dauphin,19,2,742894655,Manambaro,Manambaro I,Canzee,506,ok,751,-25.033167,46.820597,54,7.6
+Fort-Dauphin,19,3,742893850,Soanierana,Andramaka,Canzee,222,partial,105,-25.010822,46.880112,54,7.6
+Fort-Dauphin,19,4,742893991,Soanierana,Andramaka,IndiaMark,228,ok,152,-25.009178,46.882344,54,7.6
+Fort-Dauphin,19,5,742893874,Soanierana,Soanierana,IndiaMark,208,ok,183,-25.007596,46.891838,54,7.6
+Fort-Dauphin,19,6,742893881,Soanierana,Soanierana,IndiaMark,740,ok,142,-25.004129,46.89222,54,7.6
+Fort-Dauphin,20,1,742893898,Soanierana,Soanierana,IndiaMark,194,ok,68,-24.998833,46.880767,48,7.7
+Fort-Dauphin,20,2,742894033,Soanierana,Soanierana,IndiaMark,194,ok,60,-24.995282,46.87993,48,7.7
+Fort-Dauphin,20,3,742894693,Soanierana,Soanierana,IndiaMark,227,ok,215,-25.018436,46.891169,48,7.7
+Fort-Dauphin,20,4,742894703,Soanierana,Andramaka,IndiaMark,505,down,192,-25.021903,46.88855,48,7.7
+Fort-Dauphin,20,5,742893939,Soanierana,Andramaka,Canzee,never,unknown,276,-25.030851,46.88909,48,7.7
+Fort-Dauphin,20,6,742894026,Soanierana,Ankarefo,Canzee,200,ok,220,-25.013079,46.919054,48,7.7
+Fort-Dauphin,20,7,987623074,—,—,Canzee,never,unknown,,-25.024771,46.982637,48,7.7
+Fort-Dauphin,21,1,670401921,—,—,IndiaMark,never,unknown,,-25.002194,46.855134,77,7.5
+Fort-Dauphin,21,2,670401897,—,—,IndiaMark,never,unknown,,-25.076083,46.687863,77,7.5
+Fort-Dauphin,21,3,742894734,Ankaramena,Ambolifasy,IndiaMark,206,ok,483,-25.03526,46.754151,77,7.5
+Fort-Dauphin,22,1,742894806,Ankaramena,Ebobaka,IndiaMark,384,ok,278,-25.041167,46.758292,76,6.7
+Fort-Dauphin,22,2,742894837,Ranopiso,Ranopiso,IndiaMark,228,ok,114,-25.044372,46.675111,76,6.7
+Fort-Dauphin,23,1,742895113,Ranopiso,Marovatoforiha,Canzee,500,ok,,-25.124529,46.69073,99,7.9
+Fort-Dauphin,23,2,742895120,Analapatsy,Marovatoforiha,Canzee,never,down,1449,-25.123724,46.692749,99,7.9
+Fort-Dauphin,23,3,742895168,Ampasy Nahampoana,Ampasy Centre,IndiaMark,200,ok,694,-24.996441,46.982738,99,7.9
+Fort-Dauphin,24,1,670401770,Ampasy Nahampoana,Ampasy Centre,IndiaMark,304,ok,518,-24.979998,46.979591,22,2.7
+Fort-Dauphin,24,2,742895144,Ampasy Nahampoana,Ampasy Centre,IndiaMark,never,unknown,,-24.967067,46.983291,22,2.7
+Marolinta,1,1,987623555,Marolinta,Mahafaly Centre,IndiaMark,never,unknown,,-25.111318,44.631294,19,7.0
+Marolinta,1,2,987623115,Marolinta,Mahafaly Centre,IndiaMark,never,unknown,,-25.109485,44.632057,19,7.0
+Marolinta,1,3,987623146,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.10842,44.631432,19,7.0
+Marolinta,1,4,987623153,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.107677,44.632118,19,7.0
+Marolinta,1,5,987623184,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.106744,44.632691,19,7.0
+Marolinta,1,6,987623304,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.107462,44.634811,19,7.0
+Marolinta,1,7,987623287,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.108051,44.634935,19,7.0
+Marolinta,1,8,987623294,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.10806,44.635127,19,7.0
+Marolinta,2,1,987623263,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.1074,44.636294,45,6.0
+Marolinta,2,2,987623256,Marolinta,Mahafaly Centre,IndiaMark,never,unknown,,-25.106604,44.635751,45,6.0
+Marolinta,2,3,987623270,Marolinta,Mahafaly Centre,IndiaMark,never,unknown,,-25.107016,44.6387,45,6.0
+Marolinta,2,4,987623397,Marolinta,Mahafaly Centre,Pompe à cordes,never,unknown,,-25.108998,44.633959,45,6.0
+Marolinta,2,5,987623517,Marolinta,Mahafaly Centre,Canzee,never,unknown,,-25.147458,44.597299,45,6.0
