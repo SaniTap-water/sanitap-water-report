@@ -76,6 +76,8 @@ button.tg[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);bo
 .dt{font-weight:600}
 .dt.w{color:var(--warn)} .dt.c{color:var(--crit)}
 .note{font-size:.85rem;color:var(--ink3);margin-top:8px;max-width:80ch}
+.note p{margin:0 0 10px}
+.note p:last-child{margin-bottom:0}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:6px 10px;font-size:.8rem;border-radius:4px;display:none;z-index:9;white-space:nowrap}
 .parts{columns:2;column-gap:28px;font-size:.9rem}
 @media(max-width:700px){.parts{columns:1}}
@@ -174,6 +176,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 <section data-scopes="all mad madx mar">
   <div class="sechead"><div><h2>The fleet at a glance</h2><p>Hand pumps only (live). Status is the last thing anyone recorded about each pump in 2026 — a call-centre contact, a preventive-maintenance visit or a repair.</p></div></div>
   <div class="donuts" id="donuts"></div>
+  <p class="note" id="statusnote"></p>
   <p class="note"><b>Working</b> includes pumps whose guardian described them to the call centre as "partially working". That label is not used as a status: in most cases the guardian is requesting the routine service visit (the pump delivers water and is due for scheduled maintenance), and the remainder are reduced-performance reports (mechanical, low yield, water quality) which are tracked separately below for management follow-up. <b>Unknown</b> = no call, visit or repair record in 2026 at all. <b>Time since last visit</b> counts from the most recent preventive visit or repair, or — where there has been neither — from the date the pump was rehabilitated or constructed, so a pump commissioned last month is not counted as overdue. Pumps with no works record of any kind sit in their own bucket and are excluded from the overdue count until they are commissioned in mWater.</p>
 <details style="margin-top:10px"><summary>Management notes — internal, remove before sharing with a VVB</summary><div class="note" style="margin-top:8px">
 <p>1. <b>Call-centre wording.</b> Guardians who report "partially working" mostly write "désinfection" or "maintenance préventive" in the free-text field — they are asking for the scheduled service visit, and "disinfection" is the word they have been taught for it. Read literally by an outsider it implies the water is unsafe, which it is not (the pumps carry passed E. coli tests). Action: retrain guardians and the call team to log "service visit requested", and change the call form so that option exists; keep "disinfection" for the post-repair procedure only.</p>
@@ -226,8 +229,9 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 </section>
 
 <section data-scopes="all mad">
-  <div class="sechead"><div><h2>This week</h2><p>Activity logged in mWater in the 7 days to 7 Sep, versus the previous 7 days and the last 28 days. Fleet activity figures are from the 7 Sep extract; the register, Marolinta and reconciliation sections were refreshed on 10 Sep. Repairs spike because Fort-Dauphin entered a backlog on 6–7 Sep.</p></div></div>
+  <div class="sechead"><div><h2>This week</h2><p>Activity logged in mWater in the 7 days to 7 September, against the previous 7 days and the last 28. These fleet-activity counts come from the 7 September extract; the register, Marolinta, corrections and reconciliation sections were rebuilt on 15 September. The repair spike is the Fort-Dauphin backlog entered on 6&#8211;7 September. <b>Note on approvals.</b> The counts here include records still awaiting approval in mWater. That is deliberate — the work was done — but it is why this page and the figures reported to the senior leadership team can differ; see the reconciliation note below the table.</p></div></div>
   <div class="wk" id="week"></div>
+  <p class="note" id="weeknote"></p>
 </section>
 
 <section data-scopes="all mad madx mar">
@@ -344,6 +348,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
       <div class="tablewrap" style="max-height:340px"><table id="exctbl"><thead><tr><th>Pump</th><th>Why excluded</th><th>Evidence</th></tr></thead><tbody></tbody></table></div>
     </div>
   </div>
+  <div id="efbox"></div>
   <p class="note" id="corrnote"></p>
 </section>
 
@@ -494,10 +499,10 @@ function renderPop(A){
  const capped=list.filter(p=>p.wpop!=null&&p.wpop_cap&&p.wpop_raw>p.wpop_cap).length;
  const none=A.wpop_n===0;
  $('#poptiles').innerHTML=[
-  [none?'—':fmt(A.wpop_raw),'allocated by WorldPop, before the cap',''],
-  [none?'—':fmt(A.wpop),'people served, after the pump-capacity cap',''],
-  [none?'—':fmt(capped),'water points held down by the cap',''],
-  [`${A.wpop_n} / ${list.length}`,'water points with a WorldPop figure',uncov.length?'warn':'']
+  [none?'—':fmt(A.wpop_raw),'people living within 1 km, after shared areas are divided between neighbouring pumps',''],
+  [none?'—':fmt(A.wpop),'people we report as served, after each pump is limited to what it can supply',''],
+  [none?'—':fmt(capped),'pumps where more people live nearby than the pump can supply, so the lower figure is used',''],
+  [`${A.wpop_n} of ${list.length}`,'pumps that have a population figure from the WorldPop run',uncov.length?'warn':'']
  ].map(([v,l,c])=>`<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`).join('');
  if(none){
   $('#popnote').innerHTML=`<b>No population figure exists for any water point in this scope.</b> The WorldPop run of ${WPOPMETA.run} covered ${WPOPMETA.rows} water points and none of these were in it, and the MadAvance roof-count census does not reach them either. For Marolinta that is expected for now — the works are incomplete and the points sit outside the carbon programme — but it also means Marolinta cannot be counted, sampled or reported on until the water points carry a district and are included in a WorldPop run. `+
@@ -506,14 +511,16 @@ function renderPop(A){
   $('#popcheck').textContent='';
   return;
  }
- const byreason={};uncov.forEach(p=>{const k=p.site==='Marolinta'?'Marolinta (outside the carbon programme)':p.pump==='Pompe à cordes'?'rope pumps (no agreed capacity cap)':'registered after the WorldPop run';byreason[k]=(byreason[k]||0)+1});
+ const byreason={};uncov.forEach(p=>{const k=p.site==='Marolinta'?'in Marolinta, outside the carbon programme':'brought back into the portfolio by the register corrections below, after the WorldPop run';byreason[k]=(byreason[k]||0)+1});
  $('#popnote').innerHTML=
-  `<b>Method.</b> WorldPop 100 m gridded population; a 1 km service-area buffer around each water point per SDWS 1; where buffers overlap, the population in the overlap is split equally between the water points that reach it, so nobody is counted twice; then <span class="mono">min(allocated, pump capacity)</span>. <b>Open gap against the methodology.</b> The 1 km buffer is still a plain circle. Parameter SDWS 1 of the Gold Standard methodology is explicit: &ldquo;If there are any insurmountable barriers (e.g. river without bridge) transecting the circle defined by the 1 km radius or 30 mins distance, then end-users on the far side of the barrier <b>shall be excluded</b> from the count.&rdquo; That exclusion is mandatory and we are not yet applying it, so the figure on this page is <b>not conservative in that respect</b> and will fall once the clip is in. Note the wording: the barrier must be <i>insurmountable</i> &mdash; a river with a bridge or a ford is not one, so the clip must honour crossings rather than cut at every watercourse. The build script is written; it needs the OpenStreetMap extract and the WorldPop raster on a machine that can reach both. `+
-  `<b>Caps:</b> Canzee <b>500</b> — the figure MadAvance signed in the Canzee technical specification (11 Sep 2026); India Mark <b>300</b> — the figure the technical note argues from RWSN and Danert. `+
-  `<b>Sensitivity:</b> at an India Mark cap of 500 the same register gives ${fmt(WPOP_IM500)} instead of ${fmt(A.wpop)}; on the previous basis (Canzee 250, India Mark 500) the same register gives ${fmt(WPOP_C250)}. The India Mark cap is still unsettled between the WorldPop methodology note (500) and the technical note (300); this page uses the lower of the two. `+
-  `<b>Run date ${WPOPMETA.run}</b> on ${WPOPMETA.rows} water points — the register has moved since, which is why ${uncov.length} point${uncov.length===1?'':'s'} in this scope carry no figure: `+
-  Object.entries(byreason).map(([k,v])=>`${v} ${k}`).join('; ')+`. `+
-  `<b>Source file:</b> <a href="${WPOPMETA.folder}" target="_blank" rel="noopener">${esc(WPOPMETA.file)}</a> in the Gold Standard evidence library, with the methodology note, the terms of reference and the reference publication beside it.`;
+  `<p><b>What these four figures mean.</b> We take the population living within 1 km of each pump. Where two pumps are close enough that their areas overlap, the people in the overlap are divided equally between them, so nobody is counted twice. We then apply a <b>capacity limit</b>: a hand pump can only supply so many people in a day, so if more people live near a pump than it can serve, we report the pump's capacity rather than the population. The limit is <b>500 people for a Canzee</b> and <b>300 for an India Mark</b>. That is why the second figure is lower than the first: the difference is people who live near a pump that cannot serve all of them.</p>`+
+  `<p><b>Method.</b> WorldPop 100 m gridded population; a 1 km service-area buffer around each water point per SDWS 1; where buffers overlap, the population in the overlap is split equally between the water points that reach it; then <span class="mono">min(allocated, pump capacity)</span>, rounded per water point before summing.</p>`+
+  `<p><b>Open gap against the methodology.</b> The 1 km buffer is still a plain circle. Parameter SDWS 1 is explicit: &ldquo;If there are any insurmountable barriers (e.g. river without bridge) transecting the circle defined by the 1 km radius or 30 mins distance, then end-users on the far side of the barrier <b>shall be excluded</b> from the count.&rdquo; That exclusion is mandatory and we are not yet applying it, so the figure on this page is <b>not conservative in that respect</b> and will fall once the clip is in. Note the wording: the barrier must be <i>insurmountable</i> &mdash; a river with a bridge or a ford is not one, so the clip must honour crossings rather than cut at every watercourse.</p>`+
+  `<p><b>Where the caps come from.</b> Canzee <b>500</b> is the figure MadAvance signed in the Canzee technical specification of 11 September 2026. India Mark <b>300</b> follows the Rural Water Supply Network and Akvopedia design service population. The India Mark figure is still unsettled between the WorldPop methodology note, which used 500, and the technical note, which argues 300; this page uses the lower of the two.</p>`+
+  `<p><b>Sensitivity.</b> At an India Mark cap of 500 the same register gives ${fmt(WPOP_IM500)} instead of ${fmt(A.wpop)}. On the earlier basis of Canzee 250 and India Mark 500 it gives ${fmt(WPOP_C250)}.</p>`+
+  `<p><b>Coverage.</b> The WorldPop run is dated ${WPOPMETA.run} and covered ${WPOPMETA.rows} water points. ${uncov.length} point${uncov.length===1?'s':''} in this scope carry no figure: `+
+  Object.entries(byreason).map(([k,v])=>`${v} ${k}`).join('; ')+`. Those points contribute nothing to the total, so the figure is understated by however many people they serve.</p>`+
+  `<p><b>Source file:</b> <a href="${WPOPMETA.folder}" target="_blank" rel="noopener">${esc(WPOPMETA.file)}</a> in the Gold Standard evidence library, with the methodology note, the terms of reference and the reference publication beside it.</p>`;
  const rows=SITES.map(site=>{
   const ss=list.filter(p=>p.site===site); if(!ss.length) return '';
   const w=ss.reduce((t,p)=>t+(p.wpop||0),0), r=ss.reduce((t,p)=>t+(p.benef||0),0);
@@ -586,8 +593,9 @@ function renderCorr(){
  et.innerHTML=CORR.excluded.map(r=>`<tr><td class="mono">${esc(r.wp)}</td><td>${esc(r.reason)}</td><td class="muted">${esc(r.evidence)}</td></tr>`).join('');
  $('#corrcount').textContent=`${CORR.corrected.length} corrected \u00b7 ${CORR.excluded.length} excluded`;
  const EF=(CORR.eligibility_flags||[]);
- if(EF.length){
-  $('#corrnote').insertAdjacentHTML('beforebegin',
+ const efBox=$('#efbox');
+ if(EF.length&&efBox){
+  efBox.innerHTML=(
    `<div class="eyebrow" style="margin:16px 0 8px">Eligibility items &mdash; methodology 2.2.1(d), not data errors</div>`+
    `<div class="tablewrap" style="max-height:240px"><table><thead><tr><th>Pump</th><th>Issue</th><th>Action</th></tr></thead><tbody>`+
    EF.map(f=>`<tr><td class="mono">${esc(f.wp)}</td><td>${esc(f.issue)}</td><td class="muted">${esc(f.action)}</td></tr>`).join('')+
@@ -660,17 +668,33 @@ function render(){
  renderPop(A);
  renderTrace();
  renderCorr();
+ (function(){const w=$('#weeknote'); if(!w) return;
+  w.innerHTML=`<p><b>Reconciling with the senior leadership team report.</b> The minutes of 14 September record &ldquo;4 preventive maintenance visits and 13 repairs in Maroantsetra done last week&rdquo; and &ldquo;0 done in Fort-Dauphin&rdquo;. Checked against mWater: since 1 September there are <b>13 repair records in Maroantsetra, every one of them approved</b>, and <b>17 in Fort-Dauphin, every one of them still pending approval</b>. Preventive maintenance: <b>4</b> records, which matches exactly.</p>`+
+  `<p>So the same data is being used, read two ways. The leadership figure counts <b>approved records only</b> and runs <b>from the start of the month</b>, not the last seven days as the minutes say. This page counts records as soon as they are submitted. The difference between the two is the approval queue.</p>`+
+  `<p><b>The finding worth acting on:</b> Fort-Dauphin has 17 completed repairs sitting unapproved in mWater. The work was done and the pumps were fixed; nobody has approved the records. That is why the leadership team heard &ldquo;0 done in Fort-Dauphin&rdquo;.</p>`;
+ })();
  renderAll(A);
  if(!A.n){$('#donuts').innerHTML='<p class="note">No live hand-pump data in this scope. Endur\'O figures are shown in the partner table below; everything else on this page is hand-pump data and is hidden.</p>';return}
  const G2=A.gap;
  $('#donuts').innerHTML=[
-  donut('Last recorded status',[{l:'Working',v:work,c:SC.ok},{l:'Down',v:A.st.down,c:SC.down},{l:'Unknown',v:A.st.unknown,c:SC.unknown}]),
+  donut('Last recorded status',[{l:'Working',v:work,c:SC.ok},{l:'Down',v:A.st.down,c:SC.down},{l:'No status record',v:A.st.unknown,c:SC.unknown}]),
   donut('Time since last visit',[{l:'< 3 months',v:G2['<3 months'],c:'var(--mar)'},{l:'3–6 months',v:G2['3–6 months'],c:'#86b6ef'},{l:'6–12 months',v:G2['6–12 months'],c:'var(--warn)'},{l:'> 12 months',v:G2['>12 months'],c:'var(--ftu)'},{l:'No works record',v:G2['never'],c:'var(--crit)'}]),
   donut('Pumps by site',[{l:'Maroantsetra',v:A.site.Maroantsetra||0,c:'var(--mar)'},{l:'Fort-Dauphin',v:A.site['Fort-Dauphin']||0,c:'var(--ftu)'},{l:'Marolinta',v:A.site.Marolinta||0,c:'#1baf7a'}]),
   donut('Pump technology',[{l:'Canzee',v:A.pump.Canzee||0,c:'var(--mar)'},{l:'India Mark',v:A.pump.IndiaMark||0,c:'var(--ftu)'}]),
   donut('E. coli test on file',[{l:'Passed',v:A.wqp,c:SC.ok},{l:'Failed',v:A.wqf,c:SC.down},{l:'Not tested',v:A.n-A.wqp-A.wqf,c:SC.unknown}]),
   donut('People served — hand pumps vs piped',[{l:'Hand pumps',v:A.wpop,c:'var(--mar)'},{l:'Piped (manual)',v:sc.enduro?ENDURO.people:0,c:'var(--ftu)'}])
  ].join('');
+ (function(){const sn=$('#statusnote'); if(!sn) return;
+  const u=HP.filter(p=>p.status==='unknown');
+  const mar=u.filter(p=>p.site==='Marolinta').length;
+  const wq=u.filter(p=>p.site!=='Marolinta'&&p.wq==='Pass');
+  const rest=u.length-mar-wq.length;
+  if(!u.length){sn.innerHTML='';return}
+  sn.innerHTML=`<p><b>&ldquo;No status record&rdquo; does not mean the pump is missing.</b> It means no form has ever been submitted that records whether it works. There are ${u.length} such pumps in this scope, and they fall into three groups.</p>`+
+   (mar?`<p><b>${mar} in Marolinta.</b> None of the operational forms are used there yet, so no status can exist. Marolinta sits outside the carbon programme.</p>`:'')+
+   (wq.length?`<p><b>${wq.length} have a passed <i>Escherichia coli</i> test and no maintenance or repair visit, ever.</b> A technician stood at the pump and drew a water sample &mdash; which cannot be done from a pump that does not deliver water &mdash; but the water-quality form has no operating-status question, so the visit produced evidence and no status. The honest reading of these is &ldquo;working as at the sampling date, nothing since&rdquo;, not &ldquo;unknown&rdquo;. <b>Fix:</b> add an operating-status question to the water-quality form so a sampling visit records it. Until then they are counted here as no status record, which understates the working count.</p>`:'')+
+   (rest>0?`<p><b>${rest} with no evidence of any kind.</b> These need a visit.</p>`:'');
+ })();
  document.querySelectorAll('.donut path').forEach(p=>{p.addEventListener('mousemove',e=>showTip(e,p.dataset.t));p.addEventListener('mouseleave',hideTip)});
 }
 $('#scopebar').addEventListener('click',e=>{const b=e.target.closest('button[data-s]');if(!b)return;
@@ -712,7 +736,11 @@ $('#chain').innerHTML=[
  [fmt(REG.dashboard_fdmar),'of those in Maroantsetra + Fort-Dauphin',''],
  [fmt(REG.recon.length),'pumps between 738 and 723','warn']
 ].map(([v,l,c])=>`<div class="tile"><div class="v ${c}" style="font-size:1.7rem">${v}</div><div class="l">${l}</div></div>`).join('');
-$('#chainnote').innerHTML=`The register holds <b>${REG.register_total}</b> water points managed by MadAvance. This report's fleet figures cover the ${fmt(S.n)} codes that carry both a district and a recognised pump type, which leaves <b>${REG.register_unclassified}</b> outside every district filter — including the current Marolinta boreholes. <b>That is a defect in this page, not in mWater.</b> Checked against the register directly: all ${REG.register_total} points have coordinates and <b>899</b> carry an administrative reference resolved down to fokontany level, with the full chain (fokontany, commune, district, region) available on the record. Only <b>9</b> points have no administrative reference at all. The ${REG.register_unclassified} gap arises because this report reads district and commune from the form answers rather than from the water point record itself. Fix queued: read the administrative chain from the register, which closes 109 of the ${REG.register_unclassified} without anyone entering anything, and leaves 9 records for MadAvance to complete. Of the ${REG.total_first_rehab} first-rehabilitation records in the old combined form, ${REG.final_records} are final: <b>${REG.succ} successful</b> — Jan's figure exactly — ${REG.fail} not successful and ${REG.blank} with the field left blank. The ${REG.recon.length} pumps below are the difference between the ${REG.dashboard_fdmar} carried in the register and the ${REG.succ} that have a successful rehabilitation on file. <b>What each case needs.</b> <b>7 recorded as not successful</b> — but three of them have since been visited and found working, so either the pump was redone without a new record or the field was set wrongly; MadAvance to add a corrected rehabilitation record or confirm the pump was never rehabilitated. <b>2 with the success field left blank</b> — a one-field correction on an existing record; one of the two was working at its last visit. <b>3 whose rehabilitation record was rejected in mWater</b> — two are working; the rejection reason needs reviewing and the record re-submitted or the rejection upheld in writing. <b>4 with no rehabilitation record at all</b> — three of these also have no commune, which points to register placeholders; each needs either a rehabilitation record or retirement from the register. Resolving all 16 upward would move 723 to 739. Until they are resolved this page reports the conservative figure. Seven of these codes also appear on the water-quality reconciliation as operating but untested, which is consistent: the pump works, the paperwork does not.`;
+$('#chainnote').innerHTML=`<p>The register holds <b>${REG.register_total}</b> water points managed by MadAvance. Of the ${REG.total_first_rehab} first-rehabilitation records in the old combined form, ${REG.final_records} are final: <b>${REG.succ} recorded as successful</b> when this reconciliation was first run, ${REG.fail} not successful and ${REG.blank} with the field left blank.</p>`+
+`<p><b>Where that stands now.</b> Sixteen water points sat between the ${REG.dashboard_fdmar} carried in the register and the ${REG.succ} with a successful rehabilitation on file. All sixteen have been worked through against the evidence and none is still open. <b>Nine were corrections</b> \u2014 the pump exists and works, the record was wrong \u2014 taking the successful count to <b>${fmt(SUCC_CORRECTED)}</b>. Eight of those nine have been written back into mWater itself with a dated correction note in the response history; the ninth has no rehabilitation record to correct and one has not been invented. <b>Seven had no evidence of function of any kind</b> since the rehabilitation attempt and have been excluded from the portfolio. Eight rope pumps were also excluded: they are survey entries, never maintained assets. Every one of those decisions, and the evidence behind it, is listed under <a href="#corrsec">Register corrections and exclusions</a> below.</p>`+
+`<p><b>The portfolio today is ${fmt(S.n)} hand pumps</b> \u2014 ${SITES.map(x=>x+' '+(S.by_site[x]||0)).join(', ')} \u2014 down from the 751 this report carried before the corrections.</p>`+
+`<p><b>One known defect, not yet fixed.</b> ${REG.register_unclassified} water points fall outside every district filter on this page. That is a defect here, not in mWater: checked against the register directly, all ${REG.register_total} points have coordinates and <b>899</b> carry an administrative reference resolved to fokontany level, with the full chain \u2014 fokontany, commune, district, region \u2014 on the record. Only <b>9</b> have no administrative reference at all, and all nine are working Maroantsetra pumps with a rehabilitation record and a passed water test. The gap exists because this page still reads district and commune from the form answers rather than from the water point record. Reading it from the register closes 109 of the ${REG.register_unclassified} with nobody entering anything; the remaining 9 need their field set from their own coordinates. <b>This is queued, not done</b> \u2014 it reallocates points between districts, so it gets its own verification pass rather than being slipped in alongside other changes. It is on the open-actions list above.</p>`;
+
 const RWHY={fail:'Rehabilitation recorded as NOT successful',blank:'Success field left blank',rejected:'Rehabilitation record rejected in mWater',none:'No first-rehabilitation record exists'};
 function drawRecon(){
  const keys=[...document.querySelectorAll('button[data-r][aria-pressed=true]')].map(b=>b.dataset.r);
