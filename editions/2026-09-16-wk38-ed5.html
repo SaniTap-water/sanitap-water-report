@@ -152,7 +152,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 </head>
 <body>
 <div class="wrap">
-<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 6</div>
+<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 5</div>
 <h1 style="margin-top:8px">SaniTap Water Portfolio</h1>
 <p class="sub">One page for the whole safe-water portfolio: MadAvance hand pumps (live from mWater) and Endur'O piped systems (manual figures until Endur'O is on mWater). Built for programme managers: running the work, keeping the Gold Standard file clean, and reporting to donors.</p>
 
@@ -185,16 +185,8 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 </section>
 
 <section data-scopes="all mad madx mar enduro">
-  <div class="sechead"><div><h2>Portfolio by partner</h2><p>MadAvance figures are computed from mWater tonight. Endur'O's mWater group was opened to us on 16 September, so their register is now readable and is reported here beside the agreed programme numbers. The two have <b>not</b> been reconciled and are not the same objects — read the Endur'O column as two separate bases, each with its source.</p></div></div>
+  <div class="sechead"><div><h2>Portfolio by partner</h2><p>MadAvance figures are computed from mWater tonight. Endur'O figures are the agreed programme numbers (Sep 2026) and switch to live data once their forms are shared; Endur'O then gets its own report page beneath this one.</p></div></div>
   <div class="panel" style="padding:0;overflow-x:auto"><table class="ptable" id="ptable"></table></div>
-</section>
-
-<section data-scopes="all mad madx mar enduro" id="estatesec">
-  <div class="sechead"><div><h2>The estate we maintain</h2><p>Every asset on one map, one marker per pump, positions and photographs read live from mWater &mdash; the same record a verifier would open. 906 hand pumps with MadAvance, and the Endur'O register now that it is readable.</p></div></div>
-  <div class="panel" style="padding:0;overflow:hidden">
-    <iframe src="portfolio.html" style="width:100%;height:620px;border:0;display:block" title="The estate we maintain" loading="lazy"></iframe>
-  </div>
-  <p class="note" style="margin-bottom:0"><b>What is on it, and what is not.</b> 906 MadAvance hand pumps with their field photographs, 20 sampled taps on the Moramanga axis, and the 111 southern Endur'O / NatuRano contract sites. The Antananarivo kiosks are deliberately absent: they are diagnosed, not under management, and belong to the project pipeline rather than the maintained estate. The southern UNICEF sites are likewise out of scope for this map. Markers are drawn from mWater positions at the moment the page loads, so the map cannot drift from the register.</p>
 </section>
 
 <section data-scopes="all mad madx mar" id="popsec">
@@ -465,7 +457,7 @@ const fmt=n=>n==null?'—':Number(n).toLocaleString('en-GB');
 const tip=$('#tip');
 function showTip(e,h){tip.innerHTML=h;tip.style.display='block';tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY+12)+'px'}
 function hideTip(){tip.style.display='none'}
-const ENDURO={systems:138,people:146000,grp:'c305b9b85f41417387b553d9a33c795b',reg:{points:181,tana:74,analamanga_other:17,moramanga:5,south:85,systems:24,sys_attr:4,contract:111,contract_mus:88,contract_classic:23,matched_sys:102,matched_pts:65,south_near_contract:10}};
+const ENDURO={systems:138,people:146000};
 // ---- population served (SDWS 1): WorldPop is the method of record ----
 // WPOP[wp] = [allocated, capped, cap]. Attached to each pump as p.wpop (capped)
 // and p.wpop_raw (allocated before the pump-capacity cap).
@@ -483,7 +475,7 @@ const SCOPES={
  mad:{lab:'MadAvance — all',f:()=>PUMPS,enduro:false,note:`All ${fmt(S.n)} MadAvance hand pumps, Marolinta included.`},
  madx:{lab:'MadAvance excl. Marolinta',f:()=>PUMPS.filter(p=>p.site!=='Marolinta'),enduro:false,note:'Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbon file is built on.'},
  mar:{lab:'Marolinta only',f:()=>PUMPS.filter(p=>p.site==='Marolinta'),enduro:false,note:'The 13 Marolinta pumps carried in the maintained register. The current 2026 works are logged in a separate borehole-progress form — see the Marolinta section below; 11 of those 13 progress records point at water points that carry no district, so they are invisible to this filter.'},
- enduro:{lab:"Endur'O",f:()=>[],enduro:true,note:`Endur'O piped systems and kiosks. Headline figures on this page remain the agreed programme numbers (${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people, Sep 2026). Their mWater register has been readable since 16 September and carries ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems; it has not been reconciled to the programme figures and is not a restatement of them.`}
+ enduro:{lab:"Endur'O",f:()=>[],enduro:true,note:`Endur'O piped systems and kiosks. ${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people (agreed programme figures, Sep 2026). Live data arrives when Endur'O forms are shared on mWater.`}
 };
 let SCOPE='all';
 const SITEMAP={all:['Maroantsetra','Fort-Dauphin','Marolinta'],mad:['Maroantsetra','Fort-Dauphin','Marolinta'],madx:['Maroantsetra','Fort-Dauphin'],mar:['Marolinta'],enduro:[]};
@@ -668,7 +660,7 @@ function renderTrace(){
  }).join('');
  const nv=Object.values(RESP).filter(e=>e.v).length, nq=Object.values(RESP).filter(e=>e.q).length, nh=Object.values(RESP).filter(e=>e.h).length;
  $('#tracedeep').innerHTML=`<b>Per-water-point links.</b> Three things on this page open the underlying mWater record directly. The <b>water point code</b> in every table opens that point's <b>first-rehabilitation record</b> \u2014 the document that puts it in the maintained portfolio in the first place, and the first thing a validation and verification body (VVB) asks to see. A <b>last-visit date</b> opens the preventive-maintenance or repair response behind it. A <b>water-quality date</b> opens the E. coli result. Each one is the form as the technician filled it in, with its photographs, its GPS fix, who submitted it and every later edit. ${nh} water points have a rehabilitation record to open, ${nv} have a visit record and ${nq} have a water-quality result. That is the audit trail: not a claim that work happened, but the record of it, one click away.`;
- $('#tracenote').innerHTML=`<b>How to reproduce any number here.</b> Open the form above, export its responses, filter to final responses only, and take the latest response per water point unless the rule says otherwise. Join to the register on the nine-digit water point code. Every figure on this page is built that way — there is no hand-entered number anywhere except the Endur'O totals, which are the agreed programme figures (${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people) and are labelled as such wherever they appear. Endur'O's own mWater register became readable on 16 September and is quoted separately in the partner table; it has not been reconciled to those programme figures and does not replace them. `+
+ $('#tracenote').innerHTML=`<b>How to reproduce any number here.</b> Open the form above, export its responses, filter to final responses only, and take the latest response per water point unless the rule says otherwise. Join to the register on the nine-digit water point code. Every figure on this page is built that way — there is no hand-entered number anywhere except the Endur'O totals, which are the agreed programme figures (${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people) and are labelled as such wherever they appear. `+
  `<b>What this page is not.</b> It is a weekly snapshot rebuilt from mWater, not an archive: the figures move as the field teams enter data. Each edition is frozen under <a href="editions/" target="_blank" rel="noopener">editions/</a>, so a number quoted from a particular week can always be reopened as it stood that week.`;
 }
 
@@ -762,15 +754,15 @@ const NA='<span class="pill na">not in scope</span>';
 const hasMad=SITES.length>0, hasEnd=SCOPES[SCOPE].enduro;
 const m=v=>hasMad?v:NA, e=v=>hasEnd?v:NA;
 const prow=[
- ['Water points under maintenance',m(FULLMAD()?`<b>${fmt(A.n)}</b> hand pumps in this report's maintained register<br><span class="muted">of which ${fmt(REG.succ)} carry a successful rehabilitation record — see the register chain below</span>`:`${fmt(A.n)} hand pumps in the register for this scope`),e(`<b>138</b> piped systems <span class="muted">— agreed programme figure, Sep 2026, not reconciled to the register</span><br><span class="muted">register reads ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems, of which ${ENDURO.reg.sys_attr} carry attributes</span>`),fmt(A.n*(hasMad?1:0)+(hasEnd?138:0))],
- ['By technology',m(`Canzee ${A.pump.Canzee||0} · India Mark ${A.pump.IndiaMark||0}`),e(`gravity and pumped schemes, boreholes, kiosks <span class="muted">— only ${ENDURO.reg.sys_attr} of ${ENDURO.reg.systems} systems in the register carry technical attributes</span>`),'—'],
- ['Regions',m(SITES.map(x=>`${x} ${A.site[x]||0}`).join(' · ')),e(`register water points: South ${ENDURO.reg.south} · Antananarivo ${ENDURO.reg.tana} <span class="muted">(pipeline, not under management)</span> · other Analamanga ${ENDURO.reg.analamanga_other} · Moramanga axis ${ENDURO.reg.moramanga}`),'—'],
- ['People served',m(fmt(A.wpop)+' (WorldPop)'),e(`<b>~146,000</b> <span class="muted">— agreed programme figure, Sep 2026</span><br><span class="muted">the register carries no population field; the four systems with attributes give household counts only</span>`),fmt(A.wpop*(hasMad?1:0)+(hasEnd?146000:0))],
+ ['Water points under maintenance',m(FULLMAD()?`<b>${fmt(A.n)}</b> hand pumps in this report's maintained register<br><span class="muted">of which ${fmt(REG.succ)} carry a successful rehabilitation record — see the register chain below</span>`:`${fmt(A.n)} hand pumps in the register for this scope`),e('138 piped systems'),fmt(A.n*(hasMad?1:0)+(hasEnd?138:0))],
+ ['By technology',m(`Canzee ${A.pump.Canzee||0} · India Mark ${A.pump.IndiaMark||0}`),e('gravity / pumped schemes, kiosks'),'—'],
+ ['Regions',m(SITES.map(x=>`${x} ${A.site[x]||0}`).join(' · ')),e('South (Androy / Anosy) · Alaotra-Mangoro · Tana kiosks pending'),'—'],
+ ['People served',m(fmt(A.wpop)+' (WorldPop)'),e('~146,000 (programme figure)'),fmt(A.wpop*(hasMad?1:0)+(hasEnd?146000:0))],
  ['Last recorded status: working / down / unknown',m(`${A.st.ok+A.st.partial} / ${A.st.down} / ${A.st.unknown}`),e('<span class="pill na">no data yet</span>'),'—'],
  ['No maintenance visit in 6+ months',m(A.n?`${A.over6} (${Math.round(A.over6/A.n*100)}%)`:'—'),e('<span class="pill na">no data yet</span>'),'—'],
  ['Water quality: passed E. coli test on file',m(`${A.wqp} of ${A.n}`),e('<span class="pill na">no data yet</span>'),'—'],
  ['Volume monitoring',m('10 sensor pumps (pilot); stroke test to standardise'),e('meters on systems (to confirm)'),'—'],
- ['Data in mWater',m('<span class="pill ok">live</span>'),e('<span class="pill ok">readable since 16 Sep</span> <span class="muted">register only — no maintenance, status or quality records yet</span>'),'']
+ ['Data in mWater',m('<span class="pill ok">live</span>'),e('<span class="pill warn">pending — Endur\'O onboarding</span>'),'']
 ];
 $('#ptable').innerHTML=`<thead><tr><th></th><th>MadAvance — rural hand pumps</th><th>Endur'O — piped systems &amp; kiosks</th><th class="num">Portfolio</th></tr></thead><tbody>${prow.map(r=>`<tr><td style="color:var(--ink2)">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="num">${r[3]}</td></tr>`).join('')}</tbody>`;
 
@@ -871,7 +863,7 @@ $('#gapnote').textContent=`${A.over6} of ${A.n} pumps (${Math.round(A.over6/A.n*
     const totkm=R.days.reduce((a,d)=>a+d.km,0),toth=R.days.reduce((a,d)=>a+d.hours,0);
     const cap=R.n?`<b>${site}</b> — ${R.n} overdue pumps · ${R.days.length} technician-days · ~${fmt(totkm)} road km · ${Math.round(toth)} h`
                  :`<b>${site}</b> — no pumps overdue for a maintenance visit, so no catch-up route. The map shows the registered water points.`;
-    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
+    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="2026-09-16-wk38-ed5-routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
    || '<p class="note">No regions in this scope.</p>';
 })();
 
