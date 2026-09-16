@@ -29,12 +29,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",
 h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;text-wrap:balance;margin:0}
 h1{font-size:2.3rem;font-weight:700;letter-spacing:-.01em;line-height:1.1}
 h2{font-size:1.25rem;font-weight:700;margin-bottom:4px}
-.sub{color:var(--ink2);max-width:100ch;margin-top:10px}
+.sub{color:var(--ink2);max-width:68ch;margin-top:10px}
 .eyebrow{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-weight:600}
 .mono,.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
 section{margin-top:44px}
 .sechead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:14px}
-.sechead p{margin:0;color:var(--ink2);max-width:92ch}
+.sechead p{margin:0;color:var(--ink2);max-width:70ch}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:28px}
 .tile{background:var(--surface);padding:16px 18px}
 .tile .v{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
@@ -152,7 +152,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 </head>
 <body>
 <div class="wrap">
-<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 9</div>
+<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 7</div>
 <h1 style="margin-top:8px">SaniTap Water Portfolio</h1>
 <p class="sub">One page for the whole safe-water portfolio: MadAvance hand pumps (live from mWater) and Endur'O piped systems (manual figures until Endur'O is on mWater). Built for programme managers: running the work, keeping the Gold Standard file clean, and reporting to donors.</p>
 
@@ -192,7 +192,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 <section data-scopes="all mad madx mar enduro" id="estatesec">
   <div class="sechead"><div><h2>The estate we maintain</h2><p>Every asset on one map, one marker per pump, positions and photographs read live from mWater &mdash; the same record a verifier would open. 906 hand pumps with MadAvance, and the Endur'O register now that it is readable.</p></div></div>
   <div class="panel" style="padding:0;overflow:hidden">
-    <iframe src="portfolio.html" style="width:100%;height:620px;border:0;display:block" title="The estate we maintain" loading="lazy"></iframe>
+    <iframe src="2026-09-16-wk38-ed7-portfolio.html" style="width:100%;height:620px;border:0;display:block" title="The estate we maintain" loading="lazy"></iframe>
   </div>
   <p class="note" style="margin-bottom:0"><b>What is on it, and what is not.</b> 906 MadAvance hand pumps with their field photographs, 20 sampled taps on the Moramanga axis, and the 111 southern Endur'O / NatuRano contract sites. The Antananarivo kiosks are deliberately absent: they are diagnosed, not under management, and belong to the project pipeline rather than the maintained estate. The southern UNICEF sites are likewise out of scope for this map. Markers are drawn from mWater positions at the moment the page loads, so the map cannot drift from the register.</p>
 </section>
@@ -212,14 +212,12 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
   <div class="sechead"><div><h2>From 773 rehabilitations to the pumps we maintain today</h2><p>Where each figure comes from, so that "how many water points do we have?" has one answer. Everything below is computed from mWater on the night of issue.</p></div></div>
   <div class="tiles" style="margin-top:0" id="chain"></div>
   <p class="note" id="chainnote"></p>
-  <details style="margin-top:18px">
-    <summary style="cursor:pointer;font-weight:600">The 16 pumps that sat between 738 and 723 &mdash; resolved 15 September, kept for the audit trail</summary>
-    <p class="note" style="margin-top:10px"><b>Closed.</b> All sixteen were worked through against the evidence on 15 September. Nine were corrections &mdash; the pump exists and works and the record was wrong &mdash; and eight of those nine have been written back into mWater with a dated correction note; the ninth has no rehabilitation record to correct and one was not invented. Seven had no evidence of function of any kind and are excluded from the portfolio. The table below is the working list as it stood, kept so the decision can be audited rather than because anything is outstanding.</p>
-    <div class="sechead" style="margin-bottom:8px"><div class="eyebrow">The 16 pumps that sat between 738 and 723</div><span class="count" id="reconcount"></span></div>
+  <div style="margin-top:18px">
+    <div class="sechead" style="margin-bottom:8px"><div class="eyebrow">The 16 pumps that sit between 738 and 723</div><span class="count" id="reconcount"></span></div>
     <div class="filters"><button class="tg" data-r="fail" aria-pressed="true">Rehabilitation failed</button> <button class="tg" data-r="blank" aria-pressed="true">Success field blank</button> <button class="tg" data-r="rejected" aria-pressed="true">Record rejected</button> <button class="tg" data-r="none" aria-pressed="true">No record at all</button></div>
     <div class="tablewrap" style="max-height:420px"><table id="recontbl"><thead><tr><th>Pump</th><th>Site</th><th>Commune</th><th>Fokontany</th><th>Type</th><th>Why it is not in the 723</th><th>Last status</th><th>Last visit</th></tr></thead><tbody></tbody></table></div>
-    <p class="note">One pump (<span class="mono">742894057</span>) has a successful rehabilitation record but is not in the maintained register, and still needs to be added or explained. Everything else on this list is settled.</p>
-  </details>
+    <p class="note">For Lanja to confirm pump by pump: either the pump exists and works — in which case the rehabilitation record needs correcting in mWater — or it should be retired from the register. Until that is done, 738 and 723 will both keep appearing in reports. One pump (<span class="mono">742894057</span>) has a successful rehabilitation record but is not in the maintained register at all, and should be added or explained.</p>
+  </div>
 </section>
 
 <section data-scopes="all mad madx mar">
@@ -254,18 +252,18 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
   <div class="panel">
     <p class="note" style="margin-top:0"><b>Where the baseline stands.</b> Cathy&rsquo;s team sampled <b>20 distinct taps</b> between 23 March and 11 September 2026, most of them more than once, every one photographed. The companion results form holds <b>45 tests: 38 returned <i>E. coli</i>, 13 of them at 10 CFU/100&nbsp;ml or above, maximum 50; 7 were clean.</b> That is a solid non-potable baseline at system level. It is not yet attributable tap by tap, because until 16 September the results form carried no reference to the sampling record &mdash; see action 9.</p>
     <table class="ind" style="margin-top:6px"><thead><tr><th>Action</th><th>Why it matters</th><th>Records</th></tr></thead><tbody>
-      <tr><td><b>1. Re-take the GPS fix at Amboasary Gara, and confirm what Grand puits Betanatanana is</b> <span class="pill ok">supersedes the original action</span></td><td>All five borehole records became visible on 16 September and four carry sensible coordinates on the Moramanga axis. Two problems remain. <b><span class="mono">928155136</span> Amboasary gara</b> is recorded at &minus;18.9304, 47.5624 &mdash; in Antananarivo, about 75&nbsp;km from the other four, and within 10&nbsp;m of one of the two test records below, which suggests both fixes were taken in the same place rather than at the borehole. And <b><span class="mono">929469261</span> Grand puits Betanatanana</b> is typed <span class="mono">Unprotected dug well</span>: an unprotected source is not an improved source and cannot carry a safe-water claim, so either the type is wrong or the point does not belong in the project.</td><td><span class="mono">928155136</span> &middot; <span class="mono">929469261</span></td></tr>
-      <tr><td><b>2. Have those five records shared with SaniTap</b> <span class="pill ok">done</span></td><td>Coddy opened the Endur&rsquo;O mWater group to SaniTap on 16 September. All five records are now readable, along with 181 Endur&rsquo;O water points and 24 water systems.</td><td>Endur&rsquo;O mWater group <span class="mono">c305b9b8&hellip;</span></td></tr>
+      <tr><td><b>1. Take a GPS fix at each of the five new boreholes</b></td><td>The June survey records them, but the underlying water point records are not visible to SaniTap, so there is no coordinate. Without one they cannot be counted, mapped or carried into SDWS 1.</td><td><span class="mono">928346466 &middot; 928155136 &middot; 929469230 &middot; 929469254 &middot; 929469261</span></td></tr>
+      <tr><td><b>2. Have those five records shared with SaniTap</b></td><td>A field fix is a workaround. The durable fix is for the Endur&rsquo;O mWater administrator to move them into a group SaniTap can view, or to set them public-view as the MG MERL records are.</td><td>Endur&rsquo;O mWater group</td></tr>
       <tr><td><b>3. Count every draw-off point on the system</b></td><td>Sampling covers 20 points; the total number of tap stands, kiosks and household connections is unknown. SDWS 1 needs the denominator, and the capacity ceiling for piped systems is still an open parameter.</td><td>water system <span class="mono">1108783583</span></td></tr>
       <tr><td><b>4. Fix the type of each sampled point, once</b></td><td>The same tap is recorded as a water kiosk in one round and a household connection in another. A VVB reading the sampling file will see the contradiction before we do.</td><td>20 sampled taps</td></tr>
-      <tr><td><b>5. Households and people served per draw-off point</b></td><td>For the piped systems this does <b>not</b> come from WorldPop. Smart taps record every customer and every transaction, so the served population is a count of real users rather than a model of who lives nearby &mdash; which is stronger evidence than the hand pumps can offer, and answers parameter SDWS 26 directly rather than by inference. Until the smart taps are live, the gap is the customer register itself. The southern Endur&rsquo;O modelled figure (about 90,000 across 111 sites) is uncapped and stands only as an interim planning number.</td><td>Endur&rsquo;O customer records &middot; smart tap transactions</td></tr>
+      <tr><td><b>5. Households and people served per draw-off point</b></td><td>Moramanga has no population figure at all. The southern Endur&rsquo;O figure (about 90,000 across 111 sites) is uncapped and was never refined with tap count, flow rate and opening hours as intended.</td><td>SDWS 1 basis</td></tr>
       <tr><td><b>6. Record what each community drank before the system</b></td><td>The baseline source per community is a methodology requirement. At present it is asserted rather than evidenced.</td><td>SDWS baseline</td></tr>
-      <tr><td><b>7. Remove or reclassify two test records in the hand-pump register</b></td><td>Both are <span class="mono">type: kiosk</span> sitting inside the MadAvance hand-pump register, and neither photograph shows a water point &mdash; one is a potted plant, the other a village street. They are excluded from this report and from the map, but they are still in mWater. <b>SaniTap is making this correction</b> &mdash; reclassified, not deleted, so the record of the mistake survives.</td><td><span class="mono">924119262</span> AEPG, Moramanga<br><span class="mono">927104201</span> AEP, Antananarivo</td></tr>
-      <tr><td><b>8. Correct two sampling records</b></td><td>One sample is bound to water system <span class="mono">517790364</span>, which is a water point in Ghana &mdash; the wrong site was picked from the list. Another, dated 11 September, sits at &minus;18.1610, 49.4071, which is 125&nbsp;km away in the Maroantsetra area. Both are in the carbon evidence file. <b>SaniTap is making this correction</b>, with a dated note in each record.</td><td><a href="https://portal.mwater.co/#/forms/43c96af4bc4240c0b5c4402383b9c539" target="_blank" rel="noopener">Echantillonnage &mdash; sampling form</a></td></tr>
-      <tr><td><b>9. Fill the three new fields on the results form from the next round</b></td><td>Added 16 September 2026: <span class="mono">1.2.1</span> sampling record code, <span class="mono">1.2.2</span> sampling date and time, <span class="mono">1.2.3</span> GPS of the sampling point. Until these are filled, every <i>E. coli</i> figure is a statement about the system, not about a tap.</td><td><a href="https://portal.mwater.co/#/forms/0ac68d8274d24f54af0c28b29119b77d" target="_blank" rel="noopener">Piped Water &#124;&#124; Water Quality Testing_SDWS 3__Result</a></td></tr>
+      <tr><td><b>7. Remove or reclassify two test records in the hand-pump register</b></td><td>Both are <span class="mono">type: kiosk</span> sitting inside the MadAvance hand-pump register, and neither photograph shows a water point &mdash; one is a potted plant, the other a village street. They are excluded from this report and from the map, but they are still in mWater.</td><td><span class="mono">924119262</span> AEPG, Moramanga<br><span class="mono">927104201</span> AEP, Antananarivo</td></tr>
+      <tr><td><b>8. Correct two sampling records</b></td><td>One sample is bound to water system <span class="mono">517790364</span>, which is a water point in Ghana &mdash; the wrong site was picked from the list. Another, dated 11 September, sits at &minus;18.1610, 49.4071, which is 125&nbsp;km away in the Maroantsetra area. Both are in the carbon evidence file.</td><td>Echantillonnage (Moramanga)</td></tr>
+      <tr><td><b>9. Fill the three new fields on the results form from the next round</b></td><td>Added 16 September 2026: <span class="mono">1.2.1</span> sampling record code, <span class="mono">1.2.2</span> sampling date and time, <span class="mono">1.2.3</span> GPS of the sampling point. Until these are filled, every <i>E. coli</i> figure is a statement about the system, not about a tap.</td><td>Piped Water &#124;&#124; Water Quality Testing_SDWS 3__Result</td></tr>
       <tr><td><b>10. Bring back site lists with coordinates for Andaingo and Fieferana / Manjakandriana</b></td><td>These are the remaining Endur&rsquo;O schemes with no positions anywhere we can reach. Until they arrive, the Endur&rsquo;O estate cannot be stated as one number.</td><td>Andaingo AEP &middot; Fieferana / Manjakandriana</td></tr>
     </tbody></table>
-    <p class="note" style="margin-bottom:0"><b>One thing worth doing while the team is there.</b> Every action above except 2 and 10 is a form entry. If the team fills them in mWater on site rather than on a notepad, this section empties itself next week without anyone transcribing anything. The two forms they need are the <a href="https://portal.mwater.co/#/forms/43c96af4bc4240c0b5c4402383b9c539" target="_blank" rel="noopener">sampling form</a> and the <a href="https://portal.mwater.co/#/forms/0ac68d8274d24f54af0c28b29119b77d" target="_blank" rel="noopener">results form</a> &mdash; both open directly in mWater, no hunting.</p>
+    <p class="note" style="margin-bottom:0"><b>One thing worth doing while the team is there.</b> Every action above except 2 and 10 is a form entry. If the team fills them in mWater on site rather than on a notepad, this section empties itself next week without anyone transcribing anything.</p>
   </div>
 </section>
 <section data-scopes="all mad madx mar">
@@ -312,11 +310,10 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 <section data-scopes="all mad madx mar">
   <div class="sechead"><div><h2>Catch-up routes for overdue pumps</h2><p>Every overdue pump plotted from its mWater GPS position. Routes run commune by commune, nearest-neighbour from the MadAvance base, starting where the most never-visited pumps are. Days are sized by road time from OpenStreetMap routing (OSRM) plus 45 minutes on site per pump, within an 8-hour day and a maximum of 8 pumps; where a pump is off the road network the last stretch is costed at 12 km/h. The itinerary CSV carries road km and hours per day for the technicians. Maps are live OpenStreetMap with road-following routes from OSRM. Pick a day in each map to draw its route, or "Show days 1–5" to see the first week. Only the regions in the selected scope are shown.</p></div></div>
   <div id="maps"></div>
-  <details style="margin-top:16px" class="panel">
-    <summary style="cursor:pointer;font-weight:600">Day-by-day itinerary for the technicians</summary>
-    <div class="sechead" style="margin-bottom:8px;margin-top:12px"><div class="eyebrow">Itinerary</div><div class="daybtns" id="itinsel"></div></div>
+  <div style="margin-top:16px" class="panel">
+    <div class="sechead" style="margin-bottom:8px"><div class="eyebrow">Itinerary</div><div class="daybtns" id="itinsel"></div></div>
     <div class="tablewrap" style="max-height:420px"><table class="itin" id="itin"><thead><tr><th>Day</th><th>Stop</th><th>Pump</th><th>Commune</th><th>Fokontany</th><th>Type</th><th class="num">Days since visit</th><th>Last status</th><th class="num">People</th></tr></thead><tbody></tbody></table></div>
-  </details>
+  </div>
 </section>
 
 <section data-scopes="all mad madx mar">
@@ -384,9 +381,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 
 <section data-scopes="all mad madx mar" id="mapsec">
   <div class="sechead"><div><h2>Mapping rules: how the 1 km service area is drawn</h2><p>What parameter SDWS 1 requires, what this report does about each requirement, and where we are not yet compliant. Stated here so it is on the record rather than discovered at verification.</p></div></div>
-  <details class="panel" style="padding:14px 16px">
-    <summary style="cursor:pointer;font-weight:600">How the 1 km service area is drawn, and how we comply &mdash; the full method</summary>
-    <div style="margin-top:12px">
+  <div class="panel">
     <p class="note" style="margin-top:0"><b>The rule, as written.</b> Gold Standard, <i>Emission reductions from Safe Drinking Water Supply</i> v1.0, parameter SDWS 1: &ldquo;End users premises (e.g. households, institutions) within 1 km distance of project water source or a total collection time of 30 minutes or less for a round trip, including queuing, using the travel modes of walking or pedaling. &hellip; If there are any insurmountable barriers (e.g. river without bridge) transecting the circle defined by the 1 km radius or 30 mins distance, then end-users on the far side of the barrier <b>shall be excluded</b> from the count.&rdquo;</p>
     <table class="ind" style="margin-top:6px"><thead><tr><th>Requirement</th><th>What this report does</th><th>Status</th></tr></thead><tbody>
       <tr><td><b>1 km service area</b>, demonstrated by satellite imaging or GPS coordinates</td><td>Every water point carries a GPS fix in the mWater register. The service area is a 1&nbsp;km buffer computed on a local equidistant projection, so the radius is a true 1,000&nbsp;m on the ground rather than a degree approximation.</td><td><span class="pill ok">applied</span></td></tr>
@@ -399,14 +394,11 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
     <p class="note"><b>Equal splitting is a choice, and it is the choice that reports the highest total.</b> The methodology requires only that nobody is counted twice; it does not prescribe how to divide a shared population. Dividing equally ignores the fact that a household usually walks to its nearest pump, so a distance-weighted or nearest-source assignment would be more realistic. It would not, however, raise the reported total. The population inside the service areas is fixed, so any rule that divides it differently moves people between pumps without changing the sum &mdash; it can only change the total through the capacity ceiling, and concentrating people onto fewer points pushes more of them above that ceiling, where the excess is discarded. An earlier edition of this page stated the opposite; that was wrong. Equal splitting is retained for now because it is simple to state and simple to reproduce, and the nearest-source and inverse-distance-weighted variants have now been run alongside it. On the raster of record, without barriers, equal reports 91,957, inverse-distance-weighted 91,067 and nearest-source 88,454 &mdash; confirming that a more realistic allocation lowers the reported total rather than raising it. The comparison is filed in the evidence library.</p>
     <p class="note" style="margin-bottom:0"><b>Where the allocation rule does matter.</b> It sets the people-per-pump figure, which drives maintenance cost per credit &mdash; 155 people per pump in Maroantsetra against 338 in Fort-Dauphin. And it governs how a monitored-volume sample must be stratified: a pump in a ten-pump village and a standalone pump are not interchangeable.</p>
   </div>
-  </details>
 </section>
 
 <section data-scopes="all mad madx mar" id="hhsec">
   <div class="sechead"><div><h2>Who is counted as served: the annual usage survey</h2><p>The 1 km service area answers parameter SDWS 1 &mdash; who lives near enough. It does not answer parameter SDWS 26 &mdash; who actually draws water from our pump. These are different numbers and the methodology asks for both.</p></div></div>
-  <details class="panel" style="padding:14px 16px">
-    <summary style="cursor:pointer;font-weight:600">What parameter SDWS 26 requires, and how the usage survey is sampled &mdash; the full method</summary>
-    <div style="margin-top:12px">
+  <div class="panel">
     <p class="note" style="margin-top:0"><b>The rule, as written.</b> Gold Standard, <i>Emission reductions from Safe Drinking Water Supply</i> v1.0, parameter SDWS 26, <span class="mono">HH<sub>p,y</sub></span> &mdash; number of premises served: a survey of the premises within 1 km of the project water source, checking how often each used the project water source during the year. <b>Only premises reporting use at least every two days may be counted.</b> Annual.</p>
     <p class="note"><b>It is a sample, not a census.</b> Surveying every household around 743 hand pumps is neither required nor possible. The registered validated project activity design document for this programme sets the method: the project database drives a digital randomisation tool that randomly selects the water points to be visited for the annual monitoring survey; end users at those points are then selected by the random-walk method, by random selection of premises from rooftop satellite imagery, or by another representative and unbiased method. The survey must reach a <b>90% confidence interval with a 10% margin of error, minimum 100 households</b>. Parameter SDWS 26 is reported as a mean (premises served per water point) together with the proportion reporting use at least every two days.</p>
     <table class="ind" style="margin-top:6px"><thead><tr><th>Requirement</th><th>Where we stand</th><th>Status</th></tr></thead><tbody>
@@ -417,18 +409,17 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
     </tbody></table>
     <p class="note" style="margin-bottom:0"><b>What this means for the figures on this page.</b> The people-served number here is a modelled residential population inside the service areas. It is the SDWS 1 boundary count, and it is the right basis for planning and for this report. It is <b>not</b> the SDWS 26 figure, and the SDWS 26 figure will be lower, because it counts only premises that report using the pump at least every other day. The two are reconciled by the usage survey, not by the model.</p>
   </div>
-  </details>
 </section>
 
 <section data-scopes="all mad madx mar enduro" id="opensec">
-  <div class="sechead"><div><h2>Open actions</h2><p>Work that is decided but not yet done. Carried forward every edition until closed, so nothing quietly disappears. Closed since the last edition: the SDWS 1 barrier exclusion, the allocation-rule comparison, the eight mWater write-backs, and the GPS fixes for the five Moramanga boreholes.</p></div></div>
+  <div class="sechead"><div><h2>Open actions</h2><p>Work that is decided but not yet done. Carried forward every edition until closed, so nothing quietly disappears.</p></div></div>
   <div class="panel"><ul style="margin:0;padding-left:18px;font-size:.9rem;line-height:1.7">
     <li><b>Close out the 6.5% residual against the January population run.</b> On the raster of record the January total reproduces to within about 6.5% and the remainder is unexplained. WorldPop R2025A is an alpha release that may change, and the January download left no checksum, so the difference may not be recoverable. If it is not, the January figures should be formally retired rather than reconciled. <span class="muted">Owner: Adriaan.</span></li>
     <li><b>Move the weekly mWater backup off the laptop.</b> The backup currently depends on a laptop being switched on. It belongs on the always-on server that already runs the MadAvance HR agent. <span class="muted">Owner: Adriaan.</span></li>
     <li><b>Read district and commune from the water point register</b> rather than from form answers. Closes 109 of the 118 points that have no district on this page, with no data entry by anyone; 9 register records then need their administrative field set from their own coordinates. <span class="muted">Owner: Adriaan.</span></li>
+    <li><b>Write the nine corrections back into mWater.</b> The corrections below are applied when this page is built; the underlying mWater records still say the old thing. <span class="muted">Owner: MadAvance data team.</span></li>
     <li><b>Confirm the India Mark capacity cap.</b> Capture installed depth and a timed yield sample at a sample of India Mark points before proposing 500 to the verifier. <span class="muted">Owner: MadAvance field teams.</span></li>
     <li><b>Put the usage question on a live mWater form and run usage survey round one.</b> Parameter SDWS 26 is the only project parameter with no field instrument at all. Frequency of use with an every-two-days threshold, on the randomised water point sample, at 90/10 with a minimum of 100 households. <span class="muted">Owner: Adriaan / MadAvance.</span></li>
-    <li><b>Freeze the estate map when an edition is archived.</b> The map reads live from mWater, so an archived edition renders today's data rather than the data as at issue. Every other figure on the page is frozen; this one is not. <span class="muted">Owner: Adriaan.</span></li>
     <li><b>Point-of-use round one.</b> Translate the Malagasy strings on the survey form, activate the Fort-Dauphin and Maroantsetra deployments, deactivate Marolinta. <span class="muted">Owner: MadAvance / Cathy.</span></li>
   </ul></div>
 </section>
@@ -438,6 +429,11 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
   <div class="tablewrap" style="max-height:none"><table class="ind" id="tracetbl"><thead><tr><th>Figure on this page</th><th>mWater form or table</th><th>Rule applied</th></tr></thead><tbody></tbody></table></div>
   <p class="note" id="tracedeep" style="margin-top:12px"></p>
   <p class="note" id="tracenote"></p>
+</section>
+
+<section data-scopes="all mad madx mar enduro">
+  <div class="sechead"><div><h2>Proposed indicator set</h2><p>What the weekly (W), monthly (M) and annual (A) editions would carry, tagged by who it serves: <span class="tag">ops</span> running the programme, <span class="tag">carbon</span> GS/CORSIA file, <span class="tag">donor</span> external reporting. "Now" = computable from current mWater data.</p></div></div>
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="indicators"><thead><tr><th>Indicator</th><th>For</th><th>Freq</th><th>Source</th><th>Now?</th></tr></thead><tbody></tbody></table></div>
 </section>
 
 <section data-scopes="all mad madx mar enduro">
@@ -711,10 +707,10 @@ function render(){
  $('#tiles').innerHTML=[
   [fmt(np),'water points in scope',''],
   [(A.wpop_n||sc.enduro)?fmt(people):'—','people with safe water',A.wpop_n?'':'warn'],
-  [A.n?pct(A.n-A.st.down,A.n):'—',A.n?'hand pumps not reported down':'water points not reported down',''],
-  [A.n?fmt(A.st.down):'—',A.n?'hand pumps reported down':'water points reported down',A.st.down?'crit':''],
-  [A.n?fmt(A.over6):'—',A.n?'hand pumps with no visit in 6+ months':'water points with no visit in 6+ months',A.over6?'warn':''],
-  [A.n?pct(A.wqp,A.n):'—',A.n?'hand pumps with a passed E. coli test on file':'water points with a passed E. coli test on file','']
+  [A.n?pct(A.n-A.st.down,A.n):'—','hand pumps not reported down',''],
+  [A.n?fmt(A.st.down):'—','hand pumps reported down',A.st.down?'crit':''],
+  [A.n?fmt(A.over6):'—','hand pumps with no visit in 6+ months',A.over6?'warn':''],
+  [A.n?pct(A.wqp,A.n):'—','pumps with a passed E. coli test on file','']
  ].map(([v,l,c])=>`<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`).join('');
  renderPop(A);
  renderTrace();
@@ -875,7 +871,7 @@ $('#gapnote').textContent=`${A.over6} of ${A.n} pumps (${Math.round(A.over6/A.n*
     const totkm=R.days.reduce((a,d)=>a+d.km,0),toth=R.days.reduce((a,d)=>a+d.hours,0);
     const cap=R.n?`<b>${site}</b> — ${R.n} overdue pumps · ${R.days.length} technician-days · ~${fmt(totkm)} road km · ${Math.round(toth)} h`
                  :`<b>${site}</b> — no pumps overdue for a maintenance visit, so no catch-up route. The map shows the registered water points.`;
-    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
+    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="2026-09-16-wk38-ed7-routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
    || '<p class="note">No regions in this scope.</p>';
 })();
 
@@ -931,7 +927,7 @@ const carbon=[
  ['warn','Quantity supplied (SDWS 28) — meters / sensors / stroke test','10 sensor pumps logged (Jun 2025 pilot). Stroke-test alternative (§14.4.4 b) needs a standardised protocol (RWSN/Skat) and enumerator training on file. Sensor gaps >15 days = zero volume unless manual logs exist.'],
  ['ok','Population served (SDWS 30/31)','Beneficiary census on 724 pumps: 135,238 people. Refresh annually; 27 pumps missing.'],
  ['warn','Hygiene education (SDWS 24) — annual','Form "Formation et Suivi promotion de l\'hygiène" exists; check 2026 coverage per site before the monitoring report.'],
- ['warn','Endur\'O piped systems','Register readable since 16 September: 181 water points and 24 water systems, 4 of them with technical attributes, plus a water-quality baseline of 45 tests on the Moramanga axis. Still missing: meter readings, kiosk sales, downtime, and any reconciliation to the 138 programme systems.'],
+ ['na','Endur\'O piped systems','Not visible in mWater yet — meter readings, kiosk sales, water quality and downtime for 138 systems are outside this report until shared.'],
  ['na','Issuance / verification calendar','Not in mWater. Add manually: next monitoring-period end, VVB, CORSIA labelling status, credits issued and sold to date.']
 ];
 $('#carbon').innerHTML=(SCOPE==='mar'?carbonMar:carbon).map(([c,t,d])=>`<div><span class="pill ${c}">${c==='ok'?'on file':c==='warn'?'due':'no data'}</span></div><div><div class="t">${t}</div><div class="d">${d}</div></div><div></div>`).join('');
@@ -967,7 +963,7 @@ const IND=[
  ['Finance: O&M cost per pump, revenue (carbon, water credits), cost per person served','ops,donor','M','accounts','no source'],
  ['Impact: people served trend, DALYs averted, time saved, jobs','donor','A','derived','method needed']
 ];
-if($('#indicators tbody'))$('#indicators tbody').innerHTML=IND.map(r=>`<tr><td>${r[0]}</td><td>${r[1].split(',').map(t=>`<span class="tag">${t}</span>`).join('')}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('');
+$('#indicators tbody').innerHTML=IND.map(r=>`<tr><td>${r[0]}</td><td>${r[1].split(',').map(t=>`<span class="tag">${t}</span>`).join('')}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`).join('');
 
 $('#dq').innerHTML=[
  'Register holds 743 actively managed hand pumps. Marolinta shows 5 of the Deichmann pumps (project in progress; more appear as rehabilitation is logged). Eight rope pumps carried in the mWater register are excluded: they are survey and identification entries with no rehabilitation record, no visit, no status and no population allocation, so they are not part of the actively managed portfolio.',
