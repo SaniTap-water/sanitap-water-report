@@ -152,7 +152,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 </head>
 <body>
 <div class="wrap">
-<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 7</div>
+<div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Wed 16 Sep 2026 · edition 6</div>
 <h1 style="margin-top:8px">SaniTap Water Portfolio</h1>
 <p class="sub">One page for the whole safe-water portfolio: MadAvance hand pumps (live from mWater) and Endur'O piped systems (manual figures until Endur'O is on mWater). Built for programme managers: running the work, keeping the Gold Standard file clean, and reporting to donors.</p>
 
@@ -192,7 +192,7 @@ details summary{cursor:pointer;color:var(--accent);font-size:.9rem}
 <section data-scopes="all mad madx mar enduro" id="estatesec">
   <div class="sechead"><div><h2>The estate we maintain</h2><p>Every asset on one map, one marker per pump, positions and photographs read live from mWater &mdash; the same record a verifier would open. 906 hand pumps with MadAvance, and the Endur'O register now that it is readable.</p></div></div>
   <div class="panel" style="padding:0;overflow:hidden">
-    <iframe src="portfolio.html" style="width:100%;height:620px;border:0;display:block" title="The estate we maintain" loading="lazy"></iframe>
+    <iframe src="2026-09-16-wk38-ed6-portfolio.html" style="width:100%;height:620px;border:0;display:block" title="The estate we maintain" loading="lazy"></iframe>
   </div>
   <p class="note" style="margin-bottom:0"><b>What is on it, and what is not.</b> 906 MadAvance hand pumps with their field photographs, 20 sampled taps on the Moramanga axis, and the 111 southern Endur'O / NatuRano contract sites. The Antananarivo kiosks are deliberately absent: they are diagnosed, not under management, and belong to the project pipeline rather than the maintained estate. The southern UNICEF sites are likewise out of scope for this map. Markers are drawn from mWater positions at the moment the page loads, so the map cannot drift from the register.</p>
 </section>
@@ -871,7 +871,7 @@ $('#gapnote').textContent=`${A.over6} of ${A.n} pumps (${Math.round(A.over6/A.n*
     const totkm=R.days.reduce((a,d)=>a+d.km,0),toth=R.days.reduce((a,d)=>a+d.hours,0);
     const cap=R.n?`<b>${site}</b> — ${R.n} overdue pumps · ${R.days.length} technician-days · ~${fmt(totkm)} road km · ${Math.round(toth)} h`
                  :`<b>${site}</b> — no pumps overdue for a maintenance visit, so no catch-up route. The map shows the registered water points.`;
-    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
+    return `<div class="mapbox"><div class="cap">${cap}</div><iframe loading="lazy" title="${site} catch-up routes" src="2026-09-16-wk38-ed6-routes.html?site=${encodeURIComponent(site)}"></iframe></div>`}).join('')
    || '<p class="note">No regions in this scope.</p>';
 })();
 

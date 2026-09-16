@@ -87,24 +87,23 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
   <h2>What this shows</h2>
   <p>Every asset SaniTap maintains in Madagascar, one marker per asset: <b>906 hand pumps</b> run with MadAvance in Maroantsetra, Anosy and Androy, and <b>111 records from the Endur&rsquo;O register</b> &mdash; the piped joint venture with NatuRano &mdash; across Analamanga, the Moramanga axis and the south. Hover any marker for its field photograph, its village and its water point number.</p><p>Positions and photographs are read live from mWater, so this is the same record a verifier would open. Use the Layers tab to turn a partner or a region on and off.</p>
   <p>The rehabilitation of most of these points was already paid for by other funders. Carbon finance does not repeat that capital cost; it funds the servicing that otherwise stops after a few years.</p>
-  <p class="small">906 hand pump records in the mWater register, 839 of them with a field photograph on file, loaded live from the mWater register &mdash; the same file a verifier would open. Not every record is a point under management: the carbon portfolio is the 731 points in the Data tab, and the difference is Marolinta, survey and identification entries, and points retired or excluded in the September register reconciliation. Endur&rsquo;O southern positions come from the MG MERL register where a record matched and the UNICEF site list of 13 February 2026 otherwise; 83 of the 111 carry a photograph. The Moramanga taps are the points sampled for the water quality baseline. Two test records found inside the hand-pump register have been excluded. Population served follows the Gold Standard SDWS 1 method: a 1&nbsp;km service area per point on the WorldPop R2025A raster of record, the insurmountable-barrier exclusion applied, overlapping areas split equally, then capped at pump capacity.</p>
+  <p class="small">906 hand pumps under management, 839 of them with a field photograph on file, loaded live from the mWater register &mdash; the same file a verifier would open. The carbon portfolio is the 804 points in the Data tab; the difference is Marolinta, which is separately funded, and points retired or excluded in the September register reconciliation. Endur&rsquo;O southern positions come from the MG MERL register where a record matched and the UNICEF site list of 13 February 2026 otherwise; 83 of the 111 carry a photograph. The Moramanga taps are the points sampled for the water quality baseline. Two test records found inside the hand-pump register have been excluded. Population served follows the Gold Standard SDWS 1 method: a 1&nbsp;km service area per point on the WorldPop raster, overlapping areas split equally, capped at pump capacity.</p>
 </section>
 
 <section class="card" id="c-data" hidden>
   <h2>The portfolio today</h2>
   <table>
     <tr><th>Area</th><th class="num">Points</th><th class="num">People served</th></tr>
-    <tr><td>Maroantsetra</td><td class="num">604</td><td class="num">85,818</td></tr>
-    <tr><td>Anosy (Fort-Dauphin)</td><td class="num">127</td><td class="num">40,962</td></tr>
-    <tr class="tot"><td>Carbon portfolio</td><td class="num">731</td><td class="num">126,780</td></tr>
+    <tr><td>Maroantsetra</td><td class="num">627</td><td class="num">93,178</td></tr>
+    <tr><td>Anosy (Fort-Dauphin)</td><td class="num">177</td><td class="num">41,285</td></tr>
+    <tr class="tot"><td>Carbon portfolio</td><td class="num">804</td><td class="num">134,463</td></tr>
   </table>
   <table>
-    <tr><th>Outside the carbon portfolio</th><th class="num">Points</th><th class="num">People served</th></tr>
-    <tr><td>Androy (Marolinta), separately funded</td><td class="num">5</td><td class="num">1,441</td></tr>
+    <tr><th>Outside the carbon portfolio</th><th class="num">Points</th><th class="num"></th></tr>
+    <tr><td>Androy (Marolinta), separately funded</td><td class="num">50</td><td class="num">&mdash;</td></tr>
   </table>
-  <p class="small"><b>Basis.</b> Water points in the maintained register that carry a population figure, 736 in all. Population follows Gold Standard SDWS 1 on the WorldPop R2025A v1 2025 constrained raster (sha256 <span style="font-family:ui-monospace,monospace">838c2fc7&hellip;</span>), 1&nbsp;km service area per point with the insurmountable-barrier clip applied, overlapping areas split equally, then capped at pump capacity &mdash; Canzee 500, India Mark 300. Marolinta is shown for completeness and is never counted in a carbon figure. These are not the marker counts in the Layers tab: those count every register record, including survey and identification entries that are not under management.</p>
   <h2 style="margin-top:14px">Cookstove overlap</h2>
-  <p>17.4% of the carbon hand-pump portfolio &mdash; 127 of 731 points &mdash; sits in a district where we distributed improved cookstoves, and all of it is in Anosy. The 604 points around Maroantsetra carry no exposure at all.</p>
+  <p>24.5% of the carbon hand-pump portfolio sits in a district where we distributed improved cookstoves, and all of it is in Anosy. The 627 points around Maroantsetra carry no exposure at all.</p>
 </section>
 
 <section class="card" id="c-lyr" hidden>
@@ -114,7 +113,7 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
   <label class="lyr"><input type="checkbox" id="l-anosy" checked>
     <div><span class="dot" style="background:#E9A93C"></span> Anosy (Fort-Dauphin) &mdash; 178 points<small>Inside the 120,000-stove footprint.</small></div></label>
   <label class="lyr"><input type="checkbox" id="l-androy" checked>
-    <div><span class="dot" style="background:#9AA3AC"></span> Androy (Marolinta) &mdash; 92 survey records<small>Survey and identification records, <b>not</b> points under management. About 50 are expected to operate once the programme is complete; some are not yet built or rehabilitated. Separately funded and outside the carbon portfolio.</small></div></label>
+    <div><span class="dot" style="background:#9AA3AC"></span> Androy (Marolinta) &mdash; 92 points<small>Separately funded. Outside the carbon portfolio.</small></div></label>
   <label class="lyr"><input type="checkbox" id="l-mora" checked>
     <div><span class="dot" style="background:#C0504D;border-radius:2px;transform:rotate(45deg)"></span> Moramanga piped system &mdash; 20 taps sampled<small>Points Cathy sampled from March to September 2026 to establish the baseline. 45 tests: 38 returned <i>E. coli</i>, 13 at 10 MPN/100&nbsp;ml or above.</small></div></label>
   <label class="lyr"><input type="checkbox" id="l-edreg" checked>
