@@ -367,6 +367,46 @@ def main():
           "unmarked in " + ", ".join(stale[:3]) if stale else "all marked discontinued",
           "discontinued with effect from 1 January 2026, EB 125")
 
+    # ---- 7c. the document skeleton -----------------------------------
+    # Edition 10 shipped with two <section> blocks spliced between "<!doctype"
+    # and " html>", so the page began mid-declaration. Browsers rendered it
+    # anyway and every other check passed. These assert the skeleton itself.
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        head = src.lstrip()[:200].lower()
+        check(f"{f}: starts with a complete doctype", head.startswith("<!doctype html>"),
+              "<!doctype html>", repr(src.lstrip()[:32]),
+              "a split doctype still renders - only this catches it")
+        i_body = src.lower().find("<body")
+        i_sec = src.lower().find("<section")
+        check(f"{f}: no content before <body>", i_body != -1 and (i_sec == -1 or i_sec > i_body),
+              "<section> after <body>",
+              f"body@{i_body} section@{i_sec}" if i_body != -1 else "no <body>")
+        for tag in ("<html", "<head", "</head>", "</body>", "</html>"):
+            check(f"{f}: has {tag}", tag in src.lower(), "present",
+                  "present" if tag in src.lower() else "MISSING")
+
+    # ---- 7d. the Endur'O count is stated once, from the disposition file ---
+    # Earlier editions carried 138, 111 and 131 in different places. The count
+    # must come from data/enduro_disposition.csv and appear with one value.
+    disp = os.path.join(repo_root, "data", "enduro_disposition.csv")
+    if os.path.exists(disp):
+        import csv as _csv
+        with open(disp, encoding="utf8") as fh:
+            rows = list(_csv.DictReader(fh))
+        active = [r for r in rows if r["disposition"] in ("matched", "new", "duplicate")]
+        n = len(active)
+        m = re.search(r"const ENDURO\s*=\s*\{systems:(\d+)", idx)
+        check("Endur'O count matches the disposition file",
+              bool(m) and int(m.group(1)) == n, n, m.group(1) if m else "ENDURO not found",
+              "data/enduro_disposition.csv, matched+new+duplicate")
+        for stale in ("138 systems", "111 southern", "90,000 across 111"):
+            check(f"withdrawn Endur'O figure absent: {stale!r}", stale not in idx,
+                  "absent", "FOUND" if stale in idx else "absent",
+                  "superseded by the disposition file")
+    else:
+        check("data/enduro_disposition.csv present", False, "present", "MISSING",
+              "the Endur'O count has no source file")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):

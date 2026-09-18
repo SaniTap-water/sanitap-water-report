@@ -1,0 +1,149 @@
+disposition,site,contractor,folder,lat,lon,in_128,in_111,list111_site,list111_district,list111_status,distance_m,in_mwater,mwater_code,mwater_dist_m,evidence
+duplicate,ANDRANOMBILO I,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.540444,43.634929,yes,yes,Andranombilo I,Morombe,DEX/PGES,0.0,no,,122441.9,within 0 m of 111-list site 'Andranombilo I'; shares coordinates with another 128-file site
+duplicate,ANDRAVALAMENGOKY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.540444,43.634929,yes,yes,Andravalamengoky,Morombe,DEX/PGES,0.0,no,,122441.9,within 0 m of 111-list site 'Andravalamengoky'; shares coordinates with another 128-file site
+matched,ABORANO,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.714172,43.65725,yes,yes,Aborano,TOLIARA II,Construction,0.6,no,,97776.2,within 1 m of 111-list site 'Aborano'
+matched,AMBAHIJA II,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.553608,43.630099,yes,yes,Ambahija II,TOLIARA II,Construction,1.6,no,,96887.0,within 2 m of 111-list site 'Ambahija II'
+matched,AMBOLOMAILAKY,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-23.052795,43.581693,yes,yes,Ambolomailaky,TOLIARA II,Construction,2.7,no,,119687.0,within 3 m of 111-list site 'Ambolomailaky'
+matched,AMBORY BAS,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.993385,45.436656,yes,yes,Ambory Bas,Antanimora,Construction,1.0,no,,10970.9,within 1 m of 111-list site 'Ambory Bas'
+matched,AMPARE,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-23.443492,43.890575,yes,yes,Ampare,TOLIARA II,Construction,0.0,no,,126505.3,within 0 m of 111-list site 'Ampare'
+matched,AMPASIKIBO II,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.528786,43.636839,yes,yes,Ampasikibo II,TOLIARA II,Construction,0.0,no,,95441.6,within 0 m of 111-list site 'Ampasikibo II'
+matched,AMPIHAMY BETAMENAKY,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.679814,43.638964,yes,yes,Ampihamy Betamenaky,TOLIARA II,Construction,0.0,no,,98574.3,within 0 m of 111-list site 'Ampihamy Betamenaky'
+matched,AMPOZA,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.081319,43.848067,yes,yes,AMPOZA,MOROMBE,Construction,0.0,no,,74045.6,within 0 m of 111-list site 'AMPOZA'
+matched,ANALAMISAMPY EPP,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.485747,43.652228,yes,yes,Analamisampy Epp,TOLIARA II,Construction,0.0,no,,92717.3,within 0 m of 111-list site 'Analamisampy Epp'
+matched,ANKILEMANITSY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.657656,45.491875,yes,yes,Ankilemanintsy,Antanimora Atsimo,Construction,195.8,no,,1539.3,within 196 m of 111-list site 'Ankilemanintsy'
+matched,ANKILIABO CENTRAL,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.780125,43.584578,yes,yes,Ankiliabo Central,TOLIARA II,Construction,0.0,no,,107121.5,within 0 m of 111-list site 'Ankiliabo Central'
+matched,ANKILIMILOPAKA,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.601392,45.718373,yes,yes,Ankilomilopaka,Antanimora Atsimo,Construction,90.1,no,,20687.3,within 90 m of 111-list site 'Ankilomilopaka'
+matched,ANKILIMIRIORIO ATSIMO,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.646733,43.631817,yes,yes,Ankilimiriorio Atsimo,TOLIARA II,Construction,0.0,no,,98459.3,within 0 m of 111-list site 'Ankilimiriorio Atsimo'
+matched,ANTAIVAO CENTRE,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-21.657772,43.692583,yes,yes,Antanivao Centre,MOROMBE,Construction,0.0,no,,109816.8,within 0 m of 111-list site 'Antanivao Centre'
+matched,ANTANILE,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-23.461311,44.820353,yes,yes,ANTANILE,BENENITRA,Construction,0.0,no,,76805.2,within 0 m of 111-list site 'ANTANILE'
+matched,ANTATEZA,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.802772,43.636075,yes,yes,Antateza,TOLIARA II,Construction,0.3,no,,102939.5,within 0 m of 111-list site 'Antateza'
+matched,ANTRANOLAHATRA AVARATRA,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.811142,43.631608,yes,yes,ANTRANOLAHATRA AVARATRA,MOROMBE,Construction,0.0,no,,103674.8,within 0 m of 111-list site 'ANTRANOLAHATRA AVARATRA'
+matched,ANTSEVA,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.630967,43.631461,yes,yes,Antseva,TOLIARA II,Construction,0.0,no,,98147.5,within 0 m of 111-list site 'Antseva'
+matched,BELITSAKY,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.503044,43.643947,yes,yes,BELITSAKY,TOLIARA II,Construction,0.0,no,,93998.0,within 0 m of 111-list site 'BELITSAKY'
+matched,IFARANTSA CENTRE II,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.19687,45.712665,yes,yes,Ifarantsa Centre II,Bekily,Construction,1.7,yes,1137611493,98.3,within 2 m of 111-list site 'Ifarantsa Centre II'
+matched,LANANY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.809742,45.552835,yes,yes,Lanany,Antanimora Atsimo,Construction,107.9,no,,7936.8,within 108 m of 111-list site 'Lanany'
+matched,MAMPANARIVO,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-21.681109,43.716772,yes,yes,Mampanarivo,MOROMBE,Construction,0.1,no,,106275.5,within 0 m of 111-list site 'Mampanarivo'
+matched,MANDILY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-25.013947,45.506088,yes,yes,Andombiry,Beloha,Construction,5.1,no,,9676.1,within 5 m of 111-list site 'Andombiry'
+matched,MANGOTRAKA CENTRE,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.175517,43.839483,yes,yes,MANGOTRAKA CENTRE,MOROMBE,Construction,0.0,no,,72261.4,within 0 m of 111-list site 'MANGOTRAKA CENTRE'
+matched,MANOMBIKA,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-22.235275,43.809038,yes,yes,MANOMBIKA,MOROMBE,Construction,0.4,no,,74457.0,within 0 m of 111-list site 'MANOMBIKA'
+matched,MIARY CENTRE,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-23.427956,45.094798,yes,yes,MIARY CENTRE,BENENITRA,Construction,0.2,no,,49410.4,within 0 m of 111-list site 'MIARY CENTRE'
+matched,SOAVARY,2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-21.708238,43.736738,yes,yes,Soavary,MOROMBE,Construction,6.2,no,,102855.9,within 6 m of 111-list site 'Soavary'
+matched,VATOARIVO I,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.563831,45.435532,yes,yes,Vatoarivo I,Bekily,Construction,1.3,no,,11751.4,within 1 m of 111-list site 'Vatoarivo I'
+matched,VOHIBOLA (ABBREVOIR),2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.709247,45.112666,yes,yes,Vohibola,Beloha,Construction,2.8,no,,4757.1,within 3 m of 111-list site 'Vohibola'
+matched,VOHITSOSY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.566423,45.20306,yes,yes,Vohitsosy,Bekily,Construction,4.0,no,,6882.0,within 4 m of 111-list site 'Vohitsosy'
+matched,ANADABOLAVA ANTANANDAVA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.076953,45.383675,yes,yes,ANTANANDAVA CENTRE,BEKILY,Construction,20.5,no,,27022.7,within 20 m of 111-list site 'ANTANANDAVA CENTRE'
+matched,ANTSELY TOBY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.124343,45.531387,yes,yes,ANTSELY TOBY CENTRE,BEKILY,Construction,0.2,no,,19981.6,within 0 m of 111-list site 'ANTSELY TOBY CENTRE'
+matched,MALEBITSY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.067593,44.673202,yes,yes,MALEBITSY CENTRE,BELOHA,Construction,0.0,no,,55967.4,within 0 m of 111-list site 'MALEBITSY CENTRE'
+matched,MAREVOKY SOASERANA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.089375,45.333608,yes,yes,SOASERANA SUD CENTRE,BEKILY,Construction,1.6,no,,26290.3,within 2 m of 111-list site 'SOASERANA SUD CENTRE'
+matched,AMBARIO,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.397086,44.510631,yes,yes,AMBARIO,Betioky Atsimo,DEX/PGES,89.6,no,,99774.4,within 90 m of 111-list site 'AMBARIO'
+matched,AMBATOMAINTY,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.918136,44.653868,yes,yes,Ambatomainty,Betioky Atsimo,DEX/PGES,0.0,no,,87160.4,within 0 m of 111-list site 'Ambatomainty'
+matched,AMBATOMAINTY CENTRE,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.933003,44.653396,yes,yes,Ambatomainty Centre,Betioky Atsimo,DEX/PGES,0.0,no,,86362.5,within 0 m of 111-list site 'Ambatomainty Centre'
+matched,ANDOHAKAOLO,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.97078,44.94545,yes,yes,Andohakaolo,Betioky Atsimo,DEX/PGES,0.0,no,,59612.0,within 0 m of 111-list site 'Andohakaolo'
+matched,ANKALIMBORO,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.419758,44.485955,yes,yes,Ankalimboro,Betioky Atsimo,DEX/PGES,0.9,no,,102507.1,within 1 m of 111-list site 'Ankalimboro'
+matched,BEAHITSE,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-24.164687,44.44349,yes,yes,Beahitse,Betioky Atsimo,DEX/PGES,0.0,no,,87176.4,within 0 m of 111-list site 'Beahitse'
+matched,BEHERIKE,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.251981,44.465478,yes,yes,BEHERIKE,Betioky Atsimo,DEX/PGES,82.0,no,,84242.7,within 82 m of 111-list site 'BEHERIKE'
+matched,EFOTSY,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.473653,44.744782,yes,yes,Efotsy,Betioky Atsimo,DEX/PGES,1.4,no,,84427.8,within 1 m of 111-list site 'Efotsy'
+matched,MANDISO,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.500825,44.533003,yes,yes,MANDISO,Betioky Atsimo,DEX/PGES,0.0,no,,105945.2,within 0 m of 111-list site 'MANDISO'
+matched,TSILAVONDRIVOTSE,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.899413,44.396736,yes,yes,Tsilavondrivotre,Betioky Atsimo,DEX/PGES,0.7,no,,111246.7,within 1 m of 111-list site 'Tsilavondrivotre'
+matched,VOHIMPOTSY CENTRE,FAHASOAVANA,FAHASOAVANA (MUS CLASSIQUE 11= 33 KIOSQUES),-23.773617,44.903013,yes,yes,VOHIMPOTSY CENTRE,Betioky Atsimo,DEX/PGES,96.0,no,,68242.1,within 96 m of 111-list site 'VOHIMPOTSY CENTRE'
+matched,AMBALAMOA CENTRE,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.525163,43.630747,yes,yes,Ambalamoa Centre,Morombe,DEX/PGES,0.0,no,,123847.4,within 0 m of 111-list site 'Ambalamoa Centre'
+matched,AMPIHAMY AVARATRA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.838235,43.848687,yes,yes,Ampihamy Avaratra,Morombe,DEX/PGES,0.0,no,,85299.0,within 0 m of 111-list site 'Ampihamy Avaratra'
+matched,ANALATELO SUD,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.307753,43.725443,yes,yes,Analatelo Sud,Morombe,DEX/PGES,0.0,no,,82767.4,within 0 m of 111-list site 'Analatelo Sud'
+matched,ANDRANONDEOKE ***,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.037253,43.377362,yes,yes,Andranondeoke,Morombe,DEX/PGES,2.2,no,,122057.2,within 2 m of 111-list site 'Andranondeoke'
+matched,ANKILIFOLO MASIKORO,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.085727,43.87194,yes,yes,Ankilifolo masikoro,Morombe,DEX/PGES,0.3,no,,71558.5,within 0 m of 111-list site 'Ankilifolo masikoro'
+matched,ANTAIMBALA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.133066,43.820677,yes,yes,Antaimbala,Morombe,DEX/PGES,0.0,no,,75155.8,within 0 m of 111-list site 'Antaimbala'
+matched,ANTATAKY TOBY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-23.797707,45.569818,yes,yes,BETAPOAKY SUD,BETROKA,Construction,0.0,no,,385.9,within 0 m of 111-list site 'BETAPOAKY SUD'
+matched,ANTRANOFOTY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.56517,43.585499,yes,yes,Antranofoty,Morombe,DEX/PGES,0.0,no,,124820.7,within 0 m of 111-list site 'Antranofoty'
+matched,BEADABO,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.486882,43.556689,yes,yes,Beadabo,Morombe,DEX/PGES,0.0,no,,132482.5,within 0 m of 111-list site 'Beadabo'
+matched,BEKIMPAY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.158371,43.779564,yes,yes,Bekimpay,Morombe,DEX/PGES,1.2,no,,78680.9,within 1 m of 111-list site 'Bekimpay'
+matched,BEREKETA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.14529,43.788933,yes,yes,Bereketa,Morombe,DEX/PGES,0.1,no,,78032.9,within 0 m of 111-list site 'Bereketa'
+matched,BETAIMBALA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.124071,43.782912,yes,yes,Betaimbala,Morombe,DEX/PGES,0.0,no,,79172.0,within 0 m of 111-list site 'Betaimbala'
+matched,MANOY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.027857,43.796894,yes,yes,Manoy,Morombe,DEX/PGES,0.0,no,,81035.7,within 0 m of 111-list site 'Manoy'
+matched,MAROFOROHA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.120683,43.731131,yes,yes,Maroforoha,Morombe,DEX/PGES,0.0,no,,84446.0,within 0 m of 111-list site 'Maroforoha'
+matched,MAROLINTA CENTRE,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.08081,43.628107,yes,yes,Marolinta centre,Morombe,DEX/PGES,0.0,no,,95811.7,within 0 m of 111-list site 'Marolinta centre'
+matched,SIHANAKA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.128102,43.83827,yes,yes,Sihanaka,Morombe,DEX/PGES,0.0,no,,73532.8,within 0 m of 111-list site 'Sihanaka'
+matched,SOAMANAHY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.563406,43.604363,yes,yes,Soamanahy,Morombe,DEX/PGES,0.0,no,,123372.0,within 0 m of 111-list site 'Soamanahy'
+matched,SOAMIHARY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.12388,43.860151,yes,yes,Soamihary,Morombe,DEX/PGES,2.7,no,,71475.2,within 3 m of 111-list site 'Soamihary'
+matched,SOAMIRANGA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.475275,43.547329,yes,yes,Soamiranga,Morombe,DEX/PGES,2.8,no,,134045.2,within 3 m of 111-list site 'Soamiranga'
+matched,SOATANA TONGAY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-23.505388,45.57148,yes,yes,SOATANA,BETROKA,Construction,0.0,yes,1108785743,109.5,within 0 m of 111-list site 'SOATANA'
+matched,TANANDAVA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.723324,43.753391,yes,yes,Tanandava,Morombe,DEX/PGES,0.0,no,,100488.0,within 0 m of 111-list site 'Tanandava'
+matched,TANTALAVALO,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-21.493191,43.506731,yes,yes,Tantalavalo,Morombe,DEX/PGES,4.8,no,,136136.0,within 5 m of 111-list site 'Tantalavalo'
+matched,AMBARARATA,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-23.814602,44.981518,yes,yes,Point d'eau N2. Ambararata Sud/Vohimary,BETIOKY ATSIMO,Construction,0.0,no,,60234.5,within 0 m of 111-list site 'Point d'eau N2. Ambararata Sud/Vohimary'
+matched,AMBATOTSIVALA,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.782158,45.337447,yes,yes,Ambatotsivala,Beloha,DEX/PGES,0.0,no,,16955.0,within 0 m of 111-list site 'Ambatotsivala'
+matched,AMBOROVORO,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-24.149223,44.775569,yes,yes,AMBOROVORO BAS,AMPANIHY-OUEST,Construction,0.0,no,,65255.0,within 0 m of 111-list site 'AMBOROVORO BAS'
+matched,AMPANGANDRATY,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-25.079281,45.175311,yes,yes,AMPANGANDRATY,Beloha,DEX/PGES,0.0,no,,35712.4,within 0 m of 111-list site 'AMPANGANDRATY'
+matched,AMPIHAMY,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-21.599757,43.635217,yes,yes,Ampihamy,Toliara 2,DEX/PGES,0.0,no,,118400.7,within 0 m of 111-list site 'Ampihamy'
+matched,AMPIPITSY,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-23.88167,44.81056,yes,yes,AMPIPITSY,BETIOKY ATSIMO,Construction,0.0,no,,76479.9,within 0 m of 111-list site 'AMPIPITSY'
+matched,ANALALAVA NORD,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.92876,45.342731,yes,yes,ANALALAVA NORD,Beloha,DEX/PGES,0.0,no,,17647.0,within 0 m of 111-list site 'ANALALAVA NORD'
+matched,ANALASOA,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-22.419765,43.72685,yes,yes,Analasoa,Toliara 2,DEX/PGES,2.7,no,,83754.4,within 3 m of 111-list site 'Analasoa'
+matched,ANDINGOLINGO,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.827939,45.34105,yes,yes,ANDINGOLINGO,Beloha,DEX/PGES,0.0,no,,19388.0,within 0 m of 111-list site 'ANDINGOLINGO'
+matched,ANKARAY SUD,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-22.497541,43.678467,yes,yes,Ankaray sud,Toliara 2,DEX/PGES,0.0,no,,90410.3,within 0 m of 111-list site 'Ankaray sud'
+matched,ANKAZOABO,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-24.65887,45.004321,yes,yes,ANKAZOABO,AMPANIHY-OUEST,Construction,0.0,no,,8161.6,within 0 m of 111-list site 'ANKAZOABO'
+matched,ANKILIMBOTSY,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-22.4786,43.73358,yes,yes,MUS Ankilimbotsy,Toliara 2,DEX/PGES,0.0,no,,84405.0,within 0 m of 111-list site 'MUS Ankilimbotsy'
+matched,ANKOBAY,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.758937,45.323897,yes,yes,ANKOBAY,Beloha,DEX/PGES,1.8,no,,14298.8,within 2 m of 111-list site 'ANKOBAY'
+matched,ANKOTOBE AVARADRANO,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-24.033607,44.91202,yes,yes,FPMH Ankotobe Avaradrano,AMPANIHY OUEST,Construction,0.0,no,,58114.5,within 0 m of 111-list site 'FPMH Ankotobe Avaradrano'
+matched,ANTAFIANTSOA,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.821161,45.355257,yes,yes,ANTAFIANTSOA,Beloha,DEX/PGES,0.0,no,,20215.1,within 0 m of 111-list site 'ANTAFIANTSOA'
+matched,BESAKOA,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-23.87889,44.81583,yes,yes,BESAKOA,BETIOKY ATSIMO,Construction,0.0,no,,76267.3,within 0 m of 111-list site 'BESAKOA'
+matched,BETIOKY TANANDAVA,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-24.600799,44.764495,yes,yes,FPMH Betioky Tanandava,AMPANIHY OUEST,Construction,0.0,no,,32579.2,within 0 m of 111-list site 'FPMH Betioky Tanandava'
+matched,BETSIOKE SOMOTSE,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-22.457419,43.728397,yes,yes,Betsioke Somotse,Toliara 2,DEX/PGES,0.0,no,,84389.1,within 0 m of 111-list site 'Betsioke Somotse'
+matched,MANDAHAZO,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-23.865,44.96889,yes,yes,AMBONIRANO/ MANDAHAZO,BETIOKY ATSIMO,Construction,0.0,no,,61948.3,within 0 m of 111-list site 'AMBONIRANO/ MANDAHAZO'
+matched,MANDARANO,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-23.859233,44.924546,yes,yes,MANDARANO(U2010300876),BETIOKY ATSIMO,Construction,0.0,no,,66356.9,within 0 m of 111-list site 'MANDARANO(U2010300876)'
+matched,MAROBASIA CENTRE,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.949088,45.320395,yes,yes,MAROBASIA CENTRE,Beloha,DEX/PGES,0.0,no,,20040.5,within 0 m of 111-list site 'MAROBASIA CENTRE'
+matched,MAROBASIA NORD,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.94039,45.329693,yes,yes,MAROBASIA NORD,Beloha,DEX/PGES,0.0,no,,19013.8,within 0 m of 111-list site 'MAROBASIA NORD'
+matched,REHAMBOHITSE BAS,SNC,SNC (MUS COMMUNAUTAIRE CONSTRUCTION 10),-24.54715,44.86575,yes,yes,REAMBOHITSE BAS,AMPANIHY-OUEST,Construction,0.0,no,,26885.7,within 0 m of 111-list site 'REAMBOHITSE BAS'
+matched,SAKAVIRO NORD,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.790683,45.313743,yes,yes,SAKAVIRO NORD,Beloha,DEX/PGES,0.4,no,,15444.7,within 0 m of 111-list site 'SAKAVIRO NORD'
+matched,SAKAVIRO SUD,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-24.797868,45.320255,yes,yes,SAKAVIRO SUD,Beloha,DEX/PGES,0.0,no,,16282.1,within 0 m of 111-list site 'SAKAVIRO SUD'
+new,(unnamed),2ADH,2ADH (MUS CLASSIQUE CONSTRUCTION 23),-23.45226,43.89173,yes,no,,,,982.1,no,,127245.7,no 111-list site within 250 m; nearest 'Ampare' at 982 m
+new,ANDRAGNANIVO,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-25.051414,45.598084,yes,no,,,,410.0,no,,15975.5,no 111-list site within 250 m; nearest 'Andragnanivo Centre' at 410 m
+new,ANJAPOHY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.779597,45.245856,yes,no,,,,6963.0,no,,8502.3,no 111-list site within 250 m; nearest 'SAKAVIRO NORD' at 6963 m
+new,MANAKOMPY,2ADH,2ADH (MUS COMMUNAUTAIRE CONSTRUCTION 12),-24.319461,45.391636,yes,no,,,,25914.4,yes,1225560807,55.6,no 111-list site within 250 m; nearest 'ANTSELY TOBY CENTRE' at 25914 m
+new,(unnamed),EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.22765,45.512433,yes,no,,,,11647.1,no,,15995.6,no 111-list site within 250 m; nearest 'ANTSELY TOBY CENTRE' at 11647 m
+new,AMBALASARAKA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.267092,45.667773,yes,no,,,,509.7,no,,9001.0,no 111-list site within 250 m; nearest 'AMBALASARAKA CENTRE' at 510 m
+new,AMBORITRA/ TANALAVE BE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.041255,44.711116,yes,no,,,,4812.8,no,,51202.2,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 4813 m
+new,AMPAMATEMAHO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.731857,45.327256,yes,no,,,,3028.8,no,,13093.4,no 111-list site within 250 m; nearest 'ANKOBAY' at 3029 m
+new,AMPANDRA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.401035,45.269419,yes,no,,,,19574.9,no,,15294.9,no 111-list site within 250 m; nearest 'Vohitsosy' at 19575 m
+new,AMPEHA CENTRE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.232475,45.518164,yes,no,,,,12098.4,no,,16116.4,no 111-list site within 250 m; nearest 'ANTSELY TOBY CENTRE' at 12098 m
+new,AMPILOFILO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.117944,45.524028,yes,no,,,,1031.4,no,,20954.6,no 111-list site within 250 m; nearest 'ANTSELY TOBY CENTRE' at 1031 m
+new,AMPOTAKA SUD,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.069833,44.677194,yes,no,,,,473.0,no,,55862.6,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 473 m
+new,ANDRANODILY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.102107,44.63981,yes,no,,,,5102.7,no,,61060.9,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 5103 m
+new,ANDRANOTSIKIO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.756062,45.166574,yes,no,,,,7534.5,no,,290.7,no 111-list site within 250 m; nearest 'Vohibola' at 7534 m
+new,ANIVORANO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.599711,45.431849,yes,no,,,,4006.0,no,,9137.8,no 111-list site within 250 m; nearest 'Vatoarivo I' at 4006 m
+new,ANKILIMILANGY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.963326,44.811123,yes,no,,,,18098.6,no,,37986.3,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 18099 m
+new,ANTANANTSOA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.262887,45.313112,yes,no,,,,19403.9,no,,10148.5,no 111-list site within 250 m; nearest 'SOASERANA SUD CENTRE' at 19404 m
+new,BEANGILY ANIVORANO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.69155,45.374408,yes,no,,,,9064.2,no,,13911.6,no 111-list site within 250 m; nearest 'ANKOBAY' at 9064 m
+new,BETSITSY NORD,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.708444,45.378528,yes,no,,,,7871.3,no,,14282.3,no 111-list site within 250 m; nearest 'ANKOBAY' at 7871 m
+new,EBOBOKE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.17077,44.537848,yes,no,,,,16389.8,no,,73728.4,no 111-list site within 250 m; nearest 'MENDORAVE CENTRE' at 16390 m
+new,GOGOY CENTRE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.964136,45.34014,yes,no,,,,2600.4,no,,18361.0,no 111-list site within 250 m; nearest 'MAROBASIA CENTRE' at 2600 m
+new,MAHAFALY II,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.145579,44.596391,yes,no,,,,11619.5,no,,67572.9,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 11620 m
+new,MAHASOA,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.270265,45.45118,yes,no,,,,18151.0,no,,8199.1,no 111-list site within 250 m; nearest 'ANTSELY TOBY CENTRE' at 18151 m
+new,MAHATSARA CENTRE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.097028,44.648915,yes,no,,,,4086.0,no,,60015.9,no 111-list site within 250 m; nearest 'MALEBITSY CENTRE' at 4086 m
+new,MAHAZOARIVO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.21813,45.351568,yes,no,,,,14430.8,no,,12009.8,no 111-list site within 250 m; nearest 'SOASERANA SUD CENTRE' at 14431 m
+new,MAIMBO LAMBO,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.653222,45.226778,yes,no,,,,9949.0,no,,3861.6,no 111-list site within 250 m; nearest 'Vohitsosy' at 9949 m
+new,MAROHERY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.796186,45.186337,yes,no,,,,12200.4,no,,4736.9,no 111-list site within 250 m; nearest 'Vohibola' at 12200 m
+new,MENDORAVE,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-25.252803,44.547968,yes,no,,,,12594.6,no,,79653.9,no 111-list site within 250 m; nearest 'MENDORAVE CENTRE' at 12595 m
+new,SAMBAIKY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.164139,45.207444,yes,no,,,,15265.0,no,,25445.4,no 111-list site within 250 m; nearest 'SOASERANA SUD CENTRE' at 15265 m
+new,TSIKOLAKY II,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.337498,45.223528,yes,no,,,,25535.8,no,,17114.0,no 111-list site within 250 m; nearest 'Vohitsosy' at 25536 m
+new,VOHIMANOHY,EAE RAZAFY I,EAE RAZAFY I (29 +1 INCONNU),-24.682278,45.20925,yes,no,,,,10206.9,yes,1137612119,180.3,no 111-list site within 250 m; nearest 'Vohibola' at 10207 m
+new,ANDARO BETSILEO,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-23.797496,45.696821,yes,no,,,,286.5,no,,4418.5,no 111-list site within 250 m; nearest 'Andaro Betsileo' at 286 m
+new,ANDRANOMANESIKY,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-22.762646,45.83413,yes,no,,,,443.4,no,,50464.5,no 111-list site within 250 m; nearest 'Andranomanesiky_FKT SAKAMAHILY _C/R JANGANY' at 443 m
+new,ANDRIABE HAUT,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-23.760228,45.685995,yes,no,,,,326.2,no,,8682.4,no 111-list site within 250 m; nearest 'Andriabe Haut' at 326 m
+new,BERAKETA ANDAKA,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE CONSTRUCTION 07),-23.463998,45.844098,yes,no,,,,642.9,no,,641.3,no 111-list site within 250 m; nearest 'Beraketa Andaka' at 643 m
+new,MILOMBOKE,RANO AN'ALA B,RANO AN'ALA B (MUS COMMUNAUTAIRE ETUDE 23),-22.366019,43.732182,yes,no,,,,6004.0,no,,82434.5,no 111-list site within 250 m; nearest 'Analasoa' at 6004 m
+new,NAMABOHA***,SNC,SNC (MUS COMMUNAUTAIRE ETUDE 16),-22.458131,43.673724,yes,no,,,,3782.6,no,,89902.6,no 111-list site within 250 m; nearest 'Analamisampy Epp' at 3783 m
+retired,ANKILIMARY CENTRE,2ADH,,-23.433281,44.8775,no,yes,ANKILIMARY CENTRE,BENENITRA,Construction,6610.6,no,,71275.7,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANTANILE' at 6611 m"
+retired,Andragnanivo Centre,2ADH,,-25.049558,45.594567,no,yes,Andragnanivo Centre,Antanimora Atsimo,Construction,410.0,no,,15619.2,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANDRAGNANIVO' at 410 m"
+retired,Antsakoamiary Horombe,2ADH,,-24.644364,45.709,no,yes,Antsakoamiary Horombe,Antanimora Atsimo,Construction,4871.3,no,,16482.0,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANKILIMILOPAKA' at 4871 m"
+retired,Antsirasira,2ADH,,-22.807392,43.609286,no,yes,Antsirasira,MOROMBE,Construction,2325.7,no,,105705.6,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANTRANOLAHATRA AVARATRA' at 2326 m"
+retired,Mandily,2ADH,,-25.014997,45.506739,no,yes,Mandily,Antanimora Atsimo,Construction,133.9,no,,9784.4,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'MANDILY' at 134 m; present in the wider 13 Aout file as 'MANDILY' at 134 m"
+retired,AMBALASARAKA CENTRE,EAE,,-24.265486,45.663064,no,yes,AMBALASARAKA CENTRE,BEKILY,Construction,509.7,no,,9096.1,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'AMBALASARAKA' at 510 m"
+retired,MENDORAVE CENTRE,EAE,,-25.252803,44.673202,no,yes,MENDORAVE CENTRE,BELOHA,Construction,12594.6,no,,72053.8,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'MENDORAVE' at 12595 m"
+retired,Andaro Betsileo,RAB,,-23.798445,45.694203,no,yes,Andaro Betsileo,Betroka,Construction,286.5,no,,4436.6,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANDARO BETSILEO' at 286 m"
+retired,Andranomanesiky_FKT SAKAMAHILY _C/R JANGANY,RAB,,-22.761403,45.830021,no,yes,Andranomanesiky_FKT SAKAMAHILY _C/R JANGANY,Betroka,Construction,443.4,no,,50612.6,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANDRANOMANESIKY' at 443 m"
+retired,Andriabe Haut,RAB,,-23.759891,45.682811,no,yes,Andriabe Haut,Betroka,Construction,326.2,no,,8829.2,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANDRIABE HAUT' at 326 m"
+retired,Beraketa Andaka,RAB,,-23.466831,45.838604,no,yes,Beraketa Andaka,Betroka,Construction,642.9,yes,1108785774,89.8,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'BERAKETA ANDAKA' at 643 m"
+retired,FPMH ANDAFIRANO,RAB,,-23.828613,45.487102,no,yes,FPMH ANDAFIRANO,BETROKA,Construction,9089.3,no,,9475.2,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANTATAKY TOBY' at 9089 m"
+retired,Milomboke,RAB,,-21.299349,43.750922,no,yes,Milomboke,Morombe,DEX/PGES,28022.3,no,,132925.6,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'AMBALAMOA CENTRE' at 28022 m"
+retired,AMPAMATA,SNC,,-23.997709,44.963118,no,yes,AMPAMATA,Ampanihy Ouest,DEX/PGES,3491.2,no,,56308.9,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANDOHAKAOLO' at 3491 m"
+retired,FPMH AGNIVORANO,SNC,,-24.034797,44.696164,no,yes,FPMH AGNIVORANO,Ampanihy Ouest,DEX/PGES,12124.3,no,,77315.1,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'AMBATOMAINTY CENTRE' at 12124 m"
+retired,MUS Antanimena,SNC,,-23.529515,43.990124,no,yes,MUS Antanimena,Toliara 2,DEX/PGES,13209.1,no,,129420.1,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point '' at 13209 m"
+retired,Namaboha,SNC,,-22.345259,43.376042,no,yes,Namaboha,Toliara 2,DEX/PGES,32404.2,no,,118820.3,"in the 111 list, absent from Coddy's 128-site managed set; nearest 128 point 'ANALAMISAMPY EPP' at 32404 m"
