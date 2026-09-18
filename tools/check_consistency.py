@@ -29,6 +29,9 @@ wrong", not as proof.
 """
 import argparse, json, os, re, subprocess, sys, tempfile
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from exclude_retired import RETIRED_NAME_PREFIX, KNOWN_RETIRED_CODES  # noqa: E402
+
 FULL_SCALE = 4000          # water points at full programme scale
 CARBON_EXCLUDES = "Marolinta"
 
@@ -256,7 +259,52 @@ def main():
         check(f"retired figure absent: {needle}", not bad, "absent",
               "found in " + ", ".join(bad) if bad else "absent", why)
 
-    # ---- 7. structural ----------------------------------------------------
+    # ---- 7. retired records must not reach the published pages -----------
+    # mWater permissions leave no writable status field, so a retired record is
+    # marked only by its name prefix. See tools/exclude_retired.py. These are the
+    # backstop: if the build's filter is missing or was applied too late, a
+    # retired record's code or name shows up here.
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        hit = RETIRED_NAME_PREFIX in src
+        check(f"{f}: no {RETIRED_NAME_PREFIX!r} record present", not hit,
+              "absent", "FOUND" if hit else "absent",
+              "retired records must be filtered out in the build")
+    # A retired code must not appear in any DATA structure - that is what
+    # "included in a published figure" means. It MAY appear in prose: the report
+    # names these two codes in the Moramanga actions table, which is the report
+    # doing its job. So the hard assertion is on the data, and prose mentions are
+    # surfaced separately rather than failing the build.
+    data_names = ("WPOP", "PUMPS", "RESP", "PHOTOS", "DOWN", "OPENREP", "PARTIAL")
+    data_blobs = []
+    for n in data_names:
+        m = re.search(r"const\s+" + n + r"\s*=\s*('?)(\{.*?\}|\[.*?\])\1\s*;", idx, re.S)
+        if m:
+            data_blobs.append((n, m.group(2)))
+    # portfolio.html embeds its marker data inline; treat the whole file as data
+    # except for the prose blocks, which is close enough to catch a stray code.
+    for code in KNOWN_RETIRED_CODES:
+        inside = [n for n, b in data_blobs if code in b]
+        if code in prt:
+            inside.append("portfolio.html")
+        check(f"retired code in no data structure: {code}", not inside,
+              "in no data object", "in " + ", ".join(inside) if inside else "in no data object",
+              "a retired record must not reach any figure")
+    for code in KNOWN_RETIRED_CODES:
+        n_prose = len(re.findall(r"(?<![0-9A-Za-z])" + re.escape(code) + r"(?![0-9A-Za-z])", idx))
+        n_data = sum(1 for _, b in data_blobs if code in b)
+        check(f"retired code {code}: prose mentions only", n_data == 0,
+              "0 in data", f"{n_prose - n_data} in prose, {n_data} in data",
+              "prose mentions are expected - the report documents the correction")
+
+    # Point counts must be of the filtered set. The register holds more records
+    # than the published figures use; any published count landing on the raw
+    # register total is a sign the filter was skipped.
+    reg_total_with_retired = len(WPOP) + len(KNOWN_RETIRED_CODES)
+    check("published point count is not the unfiltered register count",
+          len(WPOP) != reg_total_with_retired, f"!= {reg_total_with_retired}", len(WPOP),
+          f"{len(KNOWN_RETIRED_CODES)} retired records excluded")
+
+    # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
             o = len(re.findall(r"<" + tag + r"[\s>]", src))
