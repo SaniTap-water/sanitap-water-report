@@ -312,7 +312,7 @@ def main():
     REQUIRED_SOURCES = [
         ("INSTAT RGPH-3", "people per premises, SDWS 25"),
         ("WorldPop R2025A", "the population basis, SDWS 1"),
-        ("TOOL33", "fNRB default values, SDWS 21"),
+        ("A6.4-AMT-009", "fNRB applied basis, SDWS 21"),
         ("VPA-DD", "the registered design document"),
     ]
     both = idx + prt
@@ -345,14 +345,14 @@ def main():
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for m in re.finditer(r"fNRB", src):
             a, b = enclosing_section(src, m.start())
-            if "TOOL33" not in src[a:b]:
+            if "A6.4-AMT-009" not in src[a:b]:
                 lab = f"{f}:{section_label(src, a)}"
                 if lab not in bad:
                     bad.append(lab)
-    check("every fNRB statement cites TOOL33", not bad,
-          "TOOL33 cited in each section naming fNRB",
+    check("every fNRB statement cites A6.4-AMT-009", not bad,
+          "A6.4-AMT-009 cited in each section naming fNRB",
           "uncited in " + ", ".join(bad[:3]) if bad else "all cited",
-          "TOOL33 v03.1 Table 3 national / Table 4 sub-national")
+          "A6.4-AMT-009 v01.0 Table 3 national / Table 4 sub-national")
 
     stale = []
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
@@ -430,6 +430,14 @@ def main():
           "recLink(p.rid)" in idx and "const MWR" in idx,
           "recLink(p.rid) present", "present" if "recLink(p.rid)" in idx else "MISSING",
           "the original free text is one click away, unaltered")
+
+    # TOOL33 may be named as a supporting reference but never as the applied
+    # basis: A6.4-AMT-009 v01.0 is what the parameter values are taken from.
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        bad_basis = re.findall(r"TOOL33[^.<]{0,80}(?:applied basis|basis we apply|is the basis)", src, re.I)
+        check(f"{f}: TOOL33 not claimed as the applied basis", not bad_basis,
+              "absent", f"{len(bad_basis)} found" if bad_basis else "absent",
+              "A6.4-AMT-009 v01.0 is the applied basis")
 
     # ---- 7f. the map reconciles with the report ---------------------------
     # One portfolio, one population basis. The map draws the managed universe
