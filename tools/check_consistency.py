@@ -234,7 +234,7 @@ def main():
     # ---- 5. phasing percentage -------------------------------------------
     mp = re.search(r"<b>([\d,]+) today</b>", prt)
     mw = re.search(r'class="bar"><i style="width:([\d.]+)%"', prt)
-    ms = re.search(r"([\d.]+)% of full programme scale", prt)
+    ms = re.search(r"([\d.]+)% of target programme scale", prt)
     if not (mp and mw and ms):
         check("phasing block parsed", False, "in-scope, bar width, caption", "not found")
     else:
@@ -516,6 +516,44 @@ def main():
         check("no managed point is classified by a shared type",
               not typed_operator, 0, len(typed_operator),
               "a kiosk and a tapstand can share a type across operators")
+
+    # ---- 7h. 874 is retired, and the box agrees with the report ----------
+    # 874 was 736 managed hand pumps + the old ENDURO.systems of 138 - a figure
+    # that mixed hand pumps with piped systems and embedded a withdrawn count.
+    # Both halves are now superseded. It must not come back.
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        hits = re.findall(r"(?<![0-9a-fA-F.])874(?![0-9a-fA-F.])", src)
+        check(f"{f}: retired figure 874 absent", not hits, "absent",
+              f"{len(hits)} found" if hits else "absent",
+              "was 736 + the withdrawn 138; both superseded")
+
+    # the estate box must carry the report's own numbers, not its own
+    if mw:
+        managed = S["points"]
+        for needle, why in ((f"<b>{managed} today</b>", "phasing counts the managed portfolio"),
+                            ("target programme scale", "not 'full' programme scale")):
+            check(f"estate box: {needle!r}", needle in prt, "present",
+                  "present" if needle in prt else "MISSING", why)
+        m_pct = re.search(r"([\d.]+)% of target programme scale", prt)
+        want = round(100.0 * managed / 4000, 1)
+        check("estate box phasing = managed / 4,000",
+              bool(m_pct) and abs(float(m_pct.group(1)) - want) < 0.05,
+              f"{want}%", f"{m_pct.group(1)}%" if m_pct else "not found",
+              f"{managed}/4000")
+        # No register-only language in the estate box itself. The phrase
+        # "register records" is legitimate elsewhere - the dashboard
+        # reconciliation needs it to explain why mWater reports more - so this
+        # is scoped to the phasing box rather than the whole file.
+        pb = prt[prt.find('<div class="phase">'):prt.find("</div>", prt.find("Every point, 15"))] \
+             if '<div class="phase">' in prt else ""
+        # Only phrases that describe non-managed entries as part of the estate.
+        # "has no register record" is the opposite - it explains the 736/735 gap.
+        for phrase in ("survey and identification", "survey entries",
+                       "abandoned point", "being drilled", "not under management"):
+            check(f"estate box free of register-only language: {phrase!r}",
+                  phrase not in pb, "absent from the phasing box",
+                  "FOUND" if phrase in pb else "absent",
+                  "the box describes only what we manage")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
