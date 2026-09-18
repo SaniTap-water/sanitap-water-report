@@ -454,9 +454,15 @@ def main():
               "{'androy'}", str(moved or "{}"),
               "it must not add or remove Fort-Dauphin or Maroantsetra points")
         # every point drawn is one the report counts
+        # 742896839 exists in mWater WITH a GPS fix (ac01735a-c76c-4beb-aed6-
+        # 70c88879bd48) but its _managed_by is "all", not the MadAvance group, so
+        # every group-filtered export skips it and the map can draw only 735.
+        # Open action "Bring water point 742896839 into the MadAvance register"
+        # in index.html tracks the fix. When that lands this assertion SHOULD
+        # start failing: change the -1 to 0 at the same time.
         check("map point count agrees with the report's managed set",
-              n_map == S["points"] - 1, f"{S['points']} - 1 without a position", n_map,
-              "742896839 has no register record, so no position")
+              n_map == S["points"] - 1, f"{S['points']} - 1 not in the MadAvance group", n_map,
+              "742896839: record and GPS exist, group membership does not")
         # photographs come from the completed-works questions only
         nph = sum(1 for w in WPm if w.get("p"))
         check("every drawn photo is a completed-works image",
