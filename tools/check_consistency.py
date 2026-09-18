@@ -642,6 +642,34 @@ def main():
               "asserted on the page", "asserted" if "derives from these files" in blk else "MISSING",
               "DO_p,y is unchanged by the extraction")
 
+    # ---- 7k. DO_p,y is indexed by premises type, not by water point -------
+    # An earlier edition described SDWS 27 as a per-water-point parameter and
+    # said the 347-day ceiling applied for want of calendars. Both were wrong:
+    # p is the premises type (the same p as SDWS 25 and SDWS 26), and the
+    # ceiling attaches to the O&M-log evidence route, which no amount of
+    # calendar coverage lifts. These assertions stop either error returning.
+    check("DO_p,y is described as indexed by premises type",
+          "p is the premises type" in idx, "present",
+          "present" if "p is the premises type" in idx else "MISSING",
+          "the same p as SDWS 25 and SDWS 26, not the water point")
+    for bad in ("347 days operational per point", "capped at 347 days per point",
+                "347 days per point"):
+        check(f"per-point framing of the 347 ceiling absent: {bad!r}",
+              bad not in idx, "absent", "FOUND" if bad in idx else "absent",
+              "the ceiling belongs to the evidence route, not the point")
+    check("the DO_p,y correction is recorded, not applied silently",
+          "was described wrongly on this page" in idx, "recorded in the audit trail",
+          "present" if "was described wrongly on this page" in idx else "MISSING",
+          "corrections are stated, as the allocation error was")
+    check("the methodology-version limitation is stated",
+          "the methodology of record is not in the Central Data Hub" in idx,
+          "stated", "present" if "methodology of record is not in the Central Data Hub" in idx else "MISSING",
+          "readings were checked against v1.0, which may not be binding")
+    check("the SDWS 27 sampling question is recorded as unresolved",
+          "invokes &sect;4.2 nowhere" in idx, "recorded",
+          "present" if "invokes &sect;4.2 nowhere" in idx else "MISSING",
+          "our reading is stated as a reading, not a settled point")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
