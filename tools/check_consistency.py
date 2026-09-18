@@ -494,6 +494,29 @@ def main():
           carbon_p is not None and non_p is not None and carbon_p + non_p == total,
           total, f"{carbon_p} + {non_p} = {(carbon_p or 0)+(non_p or 0)}")
 
+    # ---- 7g. operator is group membership, never water point type ---------
+    # MadAvance and Endur'O assets are distinguished by mWater group membership.
+    # Type is not disjoint between operators - Endur'O will hold hand pumps,
+    # MadAvance holds Canzee, India Mark and boreholes - so any figure derived
+    # from type where operator is meant is wrong by construction.
+    check("operator convention is recorded on the page",
+          'id="opsec"' in idx and "_managed_by" in idx and "group membership" in idx,
+          "stated with the rule", "present" if 'id="opsec"' in idx else "MISSING",
+          "operator = mWater group membership; alt_id_org is a label only")
+
+    # The map's operator split must come from the flags we set from group
+    # membership (m / cb), not from the type field t.
+    if mw:
+        by_type = re.search(r"filter\w*\([^)]*\bt\s*===?\s*[\'\"](?:Canzee|IndiaMark)", prt)
+        check("no map figure is derived from water point type", by_type is None,
+              "operator from group membership", 
+              f"type filter found: {by_type.group(0)[:40]}" if by_type else "none found",
+              "type describes hardware, not who maintains it")
+        typed_operator = [w for w in WPm if w.get("t") in ("kiosk",) and w.get("m") == 1]
+        check("no managed point is classified by a shared type",
+              not typed_operator, 0, len(typed_operator),
+              "a kiosk and a tapstand can share a type across operators")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
