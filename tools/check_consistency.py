@@ -410,36 +410,75 @@ def main():
     # ---- 7e. the wording a verifier reads ---------------------------------
     # Guardians log service-visit requests in the call form using a word that,
     # read literally, implies the water is unsafe. The records are field evidence
-    # and are never edited; the PAGE renders a normalised status instead and links
-    # each row to the mWater record. This asserts the rendered text is clean.
-    # "Rendered text" = everything outside <script> and <style>, plus any string
-    # literal the renderer would emit.
+    # and are never edited; the page carries a PRECOMPUTED normalised status and
+    # links each row to the mWater record. The raw wording is not embedded at
+    # all, so this checks the WHOLE FILE, not just rendered text.
     BANNED = re.compile(r"d[ie]s?infect|d.{0,2}sinfe+ction|desinfe+ction", re.I)
-
-    def rendered_text(src):
-        t = re.sub(r"<script\b.*?</script>", " ", src, flags=re.S | re.I)
-        t = re.sub(r"<style\b.*?</style>", " ", t, flags=re.S | re.I)
-        return t
-
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
-        hits = [m.group(0) for m in BANNED.finditer(rendered_text(src))]
-        check(f"{f}: banned wording absent from rendered text", not hits,
-              "absent", f"{len(hits)} found: {sorted(set(hits))[:3]}" if hits else "absent",
-              "normalised status is rendered; the raw text stays in mWater")
+        hits = [m.group(0) for m in BANNED.finditer(src)]
+        check(f"{f}: banned wording absent from the whole file", not hits,
+              "absent anywhere", f"{len(hits)} found: {sorted(set(hits))[:3]}" if hits else "absent",
+              "status is precomputed; the raw text lives only in mWater")
 
-    # The raw field must not be interpolated into the partial table. Catching the
-    # template directly means a future edit that re-renders it fails here, even
-    # though the raw text legitimately remains in the embedded data.
-    check("partial table renders a normalised status",
-          "esc(p.problem)" not in idx and "normProblem(p.problem)" in idx,
-          "normProblem(p.problem)",
-          "esc(p.problem) still rendered" if "esc(p.problem)" in idx
-          else ("normProblem missing" if "normProblem(p.problem)" not in idx else "normProblem(p.problem)"),
-          "the raw wording must reach the reader only via the mWater link")
+    check("partial table renders the precomputed status",
+          "esc(p.status)" in idx and "esc(p.problem)" not in idx and '"problem":' not in idx,
+          "esc(p.status), no raw field",
+          "raw field still embedded" if '"problem":' in idx
+          else ("esc(p.problem) still rendered" if "esc(p.problem)" in idx else "esc(p.status), no raw field"),
+          "the raw wording reaches the reader only via the mWater link")
     check("each partial row links to its mWater record",
-          "recLink(p.rid)" in idx and 'const MWR' in idx,
+          "recLink(p.rid)" in idx and "const MWR" in idx,
           "recLink(p.rid) present", "present" if "recLink(p.rid)" in idx else "MISSING",
           "the original free text is one click away, unaltered")
+
+    # ---- 7f. the map reconciles with the report ---------------------------
+    # One portfolio, one population basis. The map draws the managed universe
+    # only, and its carbon / non-carbon split must add back to the whole.
+    mw = re.search(r"const\s+WP\s*=\s*(\[.*?\])\s*;", prt, re.S)
+    if not mw:
+        check("map marker array parsed", False, "const WP", "not found")
+    else:
+        WPm = json.loads(mw.group(1))
+        n_map = len(WPm)
+        n_unmanaged = sum(1 for w in WPm if w.get("m") != 1)
+        n_carbon = sum(1 for w in WPm if w.get("cb") == 1)
+        n_non = n_map - n_carbon
+        check("map draws only the managed portfolio", n_unmanaged == 0, 0, n_unmanaged,
+              "register-only points must not be drawn")
+        check("map carbon + non-carbon = every point drawn",
+              n_carbon + n_non == n_map, n_map, n_carbon + n_non,
+              f"{n_carbon} carbon + {n_non} non-carbon")
+        # the toggle may only move non-carbon points, i.e. Marolinta
+        moved = {w.get("r") for w in WPm if w.get("cb") != 1}
+        check("the carbon toggle moves Marolinta only", moved <= {"androy"},
+              "{'androy'}", str(moved or "{}"),
+              "it must not add or remove Fort-Dauphin or Maroantsetra points")
+        # every point drawn is one the report counts
+        check("map point count agrees with the report's managed set",
+              n_map == S["points"] - 1, f"{S['points']} - 1 without a position", n_map,
+              "742896839 has no register record, so no position")
+        # photographs come from the completed-works questions only
+        nph = sum(1 for w in WPm if w.get("p"))
+        check("every drawn photo is a completed-works image",
+              all((not w.get("p")) or w.get("pq") for w in WPm),
+              "each photo carries its source question", f"{nph} photos",
+              "positive filter: rehabilitation form completed-works / water-flowing")
+
+    # population: the map's totals must equal the report's, and split to it
+    def money(t, *pats):
+        for pat in pats:
+            m2 = re.search(pat, t)
+            if m2: return int(m2.group(1).replace(",", ""))
+        return None
+    total = S["reported_after_cap"]
+    carbon_p = money(prt, r"<b>([\d,]+)</b>\s*of it is the carbon portfolio")
+    non_p = money(prt, r"remaining <b>([\d,]+)</b> is Marolinta")
+    shown = money(prt, r"this page reports <b>([\d,]+)</b>")
+    check("map population total equals the report", shown == total, total, shown,
+          "sdws1_summary_equal.json reported_after_cap")
+    check("map carbon + non-carbon population = the total",
+          carbon_p is not None and non_p is not None and carbon_p + non_p == total,
+          total, f"{carbon_p} + {non_p} = {(carbon_p or 0)+(non_p or 0)}")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
