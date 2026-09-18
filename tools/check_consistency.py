@@ -407,6 +407,40 @@ def main():
         check("data/enduro_disposition.csv present", False, "present", "MISSING",
               "the Endur'O count has no source file")
 
+    # ---- 7e. the wording a verifier reads ---------------------------------
+    # Guardians log service-visit requests in the call form using a word that,
+    # read literally, implies the water is unsafe. The records are field evidence
+    # and are never edited; the PAGE renders a normalised status instead and links
+    # each row to the mWater record. This asserts the rendered text is clean.
+    # "Rendered text" = everything outside <script> and <style>, plus any string
+    # literal the renderer would emit.
+    BANNED = re.compile(r"d[ie]s?infect|d.{0,2}sinfe+ction|desinfe+ction", re.I)
+
+    def rendered_text(src):
+        t = re.sub(r"<script\b.*?</script>", " ", src, flags=re.S | re.I)
+        t = re.sub(r"<style\b.*?</style>", " ", t, flags=re.S | re.I)
+        return t
+
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        hits = [m.group(0) for m in BANNED.finditer(rendered_text(src))]
+        check(f"{f}: banned wording absent from rendered text", not hits,
+              "absent", f"{len(hits)} found: {sorted(set(hits))[:3]}" if hits else "absent",
+              "normalised status is rendered; the raw text stays in mWater")
+
+    # The raw field must not be interpolated into the partial table. Catching the
+    # template directly means a future edit that re-renders it fails here, even
+    # though the raw text legitimately remains in the embedded data.
+    check("partial table renders a normalised status",
+          "esc(p.problem)" not in idx and "normProblem(p.problem)" in idx,
+          "normProblem(p.problem)",
+          "esc(p.problem) still rendered" if "esc(p.problem)" in idx
+          else ("normProblem missing" if "normProblem(p.problem)" not in idx else "normProblem(p.problem)"),
+          "the raw wording must reach the reader only via the mWater link")
+    check("each partial row links to its mWater record",
+          "recLink(p.rid)" in idx and 'const MWR' in idx,
+          "recLink(p.rid) present", "present" if "recLink(p.rid)" in idx else "MISSING",
+          "the original free text is one click away, unaltered")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
