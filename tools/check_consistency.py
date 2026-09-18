@@ -488,18 +488,34 @@ def main():
               "all ranked 1-4", f"{len(unranked)} unranked" if unranked else "all ranked 1-4",
               "rank records which form the image came from")
         ranked = collections.Counter(w.get("pr") for w in WPm if w.get("p"))
-        # the prose must state the same split as the data, or the reader is
-        # told one thing while the map draws another
-        for rk, label in ((1, "rehabilitation form"), (2, "preventive-maintenance form"),
-                          (3, "repair-after-breakdown form"), (4, "register record")):
-            m3 = re.search(r"<b>" + re.escape(label) + r"</b>[^(]{0,40}\(<b>(\d+)</b>", prt)
-            check(f"photo prose matches the data: rank {rk} ({label})",
-                  bool(m3) and int(m3.group(1)) == ranked.get(rk, 0),
-                  ranked.get(rk, 0), m3.group(1) if m3 else "not stated")
-        m3 = re.search(r"<b>(\d+)</b> of the 735 have one", prt)
-        check("photo total in the prose matches the data",
-              bool(m3) and int(m3.group(1)) == nph, nph,
-              m3.group(1) if m3 else "not stated")
+        # The explanation boxes no longer carry these counts as literals: the
+        # page fills them from the same arrays the map draws, so there is one
+        # source rather than two kept in step by assertion. What must still be
+        # guarded is that the rendering works - a missing span or an unassigned
+        # id would leave an em dash on the page where a number belongs.
+        LIVE_IDS = ["n-wp", "n-wp2", "n-wp3", "n-mora", "n-edreg", "n-edsys",
+                    "n-carbon", "n-noncarbon", "n-r1", "n-r2", "n-r3", "n-r4",
+                    "n-photo", "n-nophoto"]
+        missing_span = [i for i in LIVE_IDS if f'id="{i}"' not in prt]
+        check("map prose: every live-count placeholder exists in the markup",
+              not missing_span, f"{len(LIVE_IDS)} placeholders",
+              f"missing: {', '.join(missing_span)}" if missing_span else f"{len(LIVE_IDS)} placeholders",
+              "a placeholder with no span renders nothing")
+        unset = [i for i in LIVE_IDS if f"set('{i}'" not in prt]
+        check("map prose: every placeholder is assigned at page load",
+              not unset, f"{len(LIVE_IDS)} assigned",
+              f"unassigned: {', '.join(unset)}" if unset else f"{len(LIVE_IDS)} assigned",
+              "an unassigned placeholder leaves an em dash where a number belongs")
+        check("map prose: the filler reads the drawn arrays, not constants",
+              all(f"{n}." in prt for n in ("WP", "MORA", "EDREG", "EDSYS"))
+              and "liveCounts" in prt,
+              "counts derived from WP/MORA/EDREG/EDSYS", "present" if "liveCounts" in prt else "MISSING",
+              "one source for the map and its explanation")
+        # no stale literal may sit beside a live placeholder
+        stale = re.search(r'id="n-(?:wp|carbon|photo)"[^>]*>\s*\d', prt)
+        check("map prose: no literal left inside a live placeholder",
+              stale is None, "placeholders empty until filled",
+              stale.group(0)[:30] if stale else "placeholders empty until filled")
 
     # population: the map's totals must equal the report's, and split to it
     def money(t, *pats):
@@ -583,6 +599,48 @@ def main():
                   phrase not in pb, "absent from the phasing box",
                   "FOUND" if phrase in pb else "absent",
                   "the box describes only what we manage")
+
+    # ---- 7i. the calendar photograph count agrees with its own parts ------
+    # The headline count was published as 2,348 while the three per-question
+    # figures beneath it summed to 2,367. A total that disagrees with its own
+    # breakdown is exactly what this file exists to catch.
+    m_tot = re.search(r"<b>([\d,]+)</b><span>calendar photographs on file", idx)
+    parts = [re.search(p_, idx) for p_ in (
+        r"carries\s*<b>([\d,]+)</b>\s*of them",
+        r"carries\s*<b>([\d,]+)</b>;",
+        r"carries\s*<b>([\d,]+)</b>\.")]
+    if m_tot and all(parts):
+        tot = int(m_tot.group(1).replace(",", ""))
+        got = sum(int(x.group(1).replace(",", "")) for x in parts)
+        check("calendar photograph total equals its per-question parts",
+              tot == got, tot, got, "headline must equal 2.15.6 + 2.15.5 + 1.3.1.3")
+    else:
+        check("calendar photograph total equals its per-question parts", False,
+              "total and three parts", "not all found",
+              "headline must equal 2.15.6 + 2.15.5 + 1.3.1.3")
+
+    # ---- 7j. the machine extraction stays out of the figures of record ----
+    # Every extracted figure must carry the dagger, and the dagger must say
+    # plainly that it is not the figure of record and feeds no ER calculation.
+    if "Machine extraction from the calendar photographs" in idx:
+        blk_s = idx.find("Machine extraction from the calendar photographs")
+        blk = idx[blk_s:idx.find("</section>", blk_s)]
+        stats = re.findall(r'<div class="stat"><b>[^<]+</b><span>(.*?)</span></div>', blk)
+        undaggered = [t for t in stats if "&dagger;" not in t]
+        check("every machine-extracted headline figure carries the footnote",
+              not undaggered, f"{len(stats)} figures",
+              f"{len(undaggered)} without a footnote" if undaggered else f"{len(stats)} figures",
+              "an unfootnoted figure reads as a figure of record")
+        for phrase, why in (
+                ("Not the figure of record", "must disclaim being the figure of record"),
+                ("not used in any emission reduction calculation", "must disclaim ER use"),
+                ("accuracy assessment in progress", "must name the assessment")):
+            check(f"extraction footnote states: {phrase!r}", phrase in blk,
+                  "present", "present" if phrase in blk else "MISSING", why)
+        check("no emission-reduction figure of record derives from the extraction",
+              "no published emission-reduction or days-operational figure of record derives from these files" in blk,
+              "asserted on the page", "asserted" if "derives from these files" in blk else "MISSING",
+              "DO_p,y is unchanged by the extraction")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):

@@ -85,10 +85,10 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
 <div id="map"></div>
 <section class="card" id="c-info">
 <h2>The SaniTap water estate</h2>
-<p><b>What this map shows.</b> Four layers, each switchable in the <b>Layers</b> tab: <b>735</b> hand pumps under active management, serviced on a six-monthly cycle by MadAvance field teams; <b>20</b> sampled taps at Moramanga; and the Endur&rsquo;O piped joint venture with NatuRano &mdash; <b>107</b> register records and <b>4</b> water systems.</p>
+<p><b>What this map shows.</b> Four layers, each switchable in the <b>Layers</b> tab: <b id="n-wp">&mdash;</b> hand pumps under active management, serviced on a six-monthly cycle by MadAvance field teams; <b id="n-mora">&mdash;</b> sampled taps at Moramanga; and the Endur&rsquo;O piped joint venture with NatuRano &mdash; <b id="n-edreg">&mdash;</b> register records and <b id="n-edsys">&mdash;</b> water systems.</p>
 <p><b>Where the data comes from.</b> Positions and photographs are read <b>live from mWater</b> as this page loads.</p>
-<p><b>The carbon toggle.</b> Of the 735, <b>730</b> are inside the carbon claim. The other <b>5</b> are Marolinta, which is separately funded and is <b>never</b> in a carbon figure &mdash; so it is off by default. The toggle moves only those five; it never adds or removes a point in Fort-Dauphin or Maroantsetra.</p>
-<p><b>About the photographs.</b> Every photograph is a <b>completed-works</b> image &mdash; taken once the pump is restored and running. They are drawn in a fixed order of preference: the completed-works and water-flowing questions of the <b>rehabilitation form</b> (<b>729</b>), then the after-works question of the <b>preventive-maintenance form</b> (<b>1</b>), then the after-works questions of the <b>repair-after-breakdown form</b> (<b>0</b> &mdash; every point it covers already has a better one), and last the photograph held on the <b>register record</b> itself (<b>2</b>). <b>732</b> of the 735 have one. The remaining <b>3</b> are Marolinta points that have never been visited, so no photograph of a completed repair can exist.</p>
+<p><b>The carbon toggle.</b> Of the <span id="n-wp2">&mdash;</span>, <b id="n-carbon">&mdash;</b> are inside the carbon claim. The other <b id="n-noncarbon">&mdash;</b> are Marolinta, which is separately funded and is <b>never</b> in a carbon figure &mdash; so it is off by default. The toggle moves only those five; it never adds or removes a point in Fort-Dauphin or Maroantsetra.</p>
+<p><b>About the photographs.</b> Every photograph is a <b>completed-works</b> image &mdash; taken once the pump is restored and running. They are drawn in a fixed order of preference: the completed-works and water-flowing questions of the <b>rehabilitation form</b> (<b id="n-r1">&mdash;</b>), then the after-works question of the <b>preventive-maintenance form</b> (<b id="n-r2">&mdash;</b>), then the after-works questions of the <b>repair-after-breakdown form</b> (<b id="n-r3">&mdash;</b> &mdash; every point it covers already has a better one), and last the photograph held on the <b>register record</b> itself (<b id="n-r4">&mdash;</b>). <b id="n-photo">&mdash;</b> of the <span id="n-wp3">&mdash;</span> have one. The remaining <b id="n-nophoto">&mdash;</b> are Marolinta points that have never been visited, so no photograph of a completed repair can exist.</p>
 <p class="small">Hover or tap a marker for its village, water point number and photograph. <b>Layers</b> turns a region on and off; <b>Data</b> has the counts and how the population figure is built.</p>
 </section>
 
@@ -269,5 +269,23 @@ document.querySelectorAll('input[name=bm]').forEach(r=>r.addEventListener('chang
   if(e.target.value==='sat'){map.removeLayer(street);sat.addTo(map);satLbl.addTo(map);}
   else{map.removeLayer(sat);map.removeLayer(satLbl);street.addTo(map);}
 }));
+/* ---- the explanation boxes count the same arrays the map draws -------------
+   These sentences used to carry the numbers as literals in the markup, so a
+   build that changed the data without changing the prose left the two
+   disagreeing until the checker caught it. Now there is one source: the arrays
+   above. The build-time assertions stay, but they now guard the rendering
+   rather than keeping two copies in step. */
+(function liveCounts(){
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  const rank = n => WP.filter(w => w.p && w.pr === n).length;
+  const withPhoto = WP.filter(w => w.p).length;
+  set('n-wp', WP.length); set('n-wp2', WP.length); set('n-wp3', WP.length);
+  set('n-mora', MORA.length); set('n-edreg', EDREG.length); set('n-edsys', EDSYS.length);
+  set('n-carbon', WP.filter(w => w.cb === 1).length);
+  set('n-noncarbon', WP.filter(w => w.cb !== 1).length);
+  set('n-r1', rank(1)); set('n-r2', rank(2)); set('n-r3', rank(3)); set('n-r4', rank(4));
+  set('n-photo', withPhoto);
+  set('n-nophoto', WP.length - withPhoto);
+})();
 </script>
 </body></html>
