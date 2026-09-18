@@ -487,7 +487,13 @@ def main():
     total = S["reported_after_cap"]
     carbon_p = money(prt, r"<b>([\d,]+)</b>\s*of it is the carbon portfolio")
     non_p = money(prt, r"remaining <b>([\d,]+)</b> is Marolinta")
-    shown = money(prt, r"this page reports <b>([\d,]+)</b>")
+    # The dashboard-reconciliation block was removed from the donor page (the
+    # mWater dashboard now reports on the same WorldPop basis, so there is no
+    # difference left to explain). The figure is still asserted, now from the
+    # paragraph that survives; the old phrasing stays first so an older build
+    # still validates.
+    shown = money(prt, r"this page reports <b>([\d,]+)</b>",
+                  r"<b>([\d,]+) is the conservative figure")
     check("map population total equals the report", shown == total, total, shown,
           "sdws1_summary_equal.json reported_after_cap")
     check("map carbon + non-carbon population = the total",

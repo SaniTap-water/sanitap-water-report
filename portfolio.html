@@ -71,8 +71,8 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
     <div class="sub">SaniTap with MadAvance and Endur&rsquo;O &middot; Madagascar &middot; live from the mWater register</div>
   </div>
   <div class="spacer"></div>
-  <div class="stat"><b>906</b><span>hand pumps managed</span></div>
-  <div class="stat"><b>804</b><span>in the carbon portfolio</span></div>
+  <div class="stat"><b>736</b><span>hand pumps managed</span></div>
+  <div class="stat"><b>731</b><span>in the carbon portfolio</span></div>
   <div class="stat"><b>20</b><span>Moramanga taps sampled</span></div>
   <div class="stat"><b>111</b><span>Endur&rsquo;O records now live</span></div>
   <div class="stat"><b>4,000</b><span>at full scale</span></div>
@@ -85,10 +85,10 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
 <div id="map"></div>
 <section class="card" id="c-info">
 <h2>The SaniTap water estate</h2>
-<p><b>What this map shows.</b> Every water point SaniTap actively manages in Madagascar &mdash; <b>735</b> hand pumps, each one serviced on a six-monthly cycle by MadAvance field teams. Nothing else is drawn: no survey entries, no abandoned points, no sites still being drilled. If a marker is here, a team maintains it.</p>
-<p><b>Where the data comes from.</b> Positions and photographs are read <b>live from mWater</b> as this page loads, so it is the same record a verifier would open. Historically the estate was held in two registers &mdash; the <b>MadAvance</b> hand-pump register, and the <b>Endur&rsquo;O</b> register for the piped joint venture with NatuRano, which became readable to us on 16 September 2026 and has since been reconciled to 131 sites. That history explains where the records came from; it is not two things the map displays. This map is the hand-pump portfolio.</p>
+<p><b>What this map shows.</b> Four layers, each switchable in the <b>Layers</b> tab: <b>735</b> hand pumps under active management, serviced on a six-monthly cycle by MadAvance field teams; <b>20</b> sampled taps at Moramanga; and the Endur&rsquo;O piped joint venture with NatuRano &mdash; <b>107</b> register records and <b>4</b> water systems.</p>
+<p><b>Where the data comes from.</b> Positions and photographs are read <b>live from mWater</b> as this page loads.</p>
 <p><b>The carbon toggle.</b> Of the 735, <b>730</b> are inside the carbon claim. The other <b>5</b> are Marolinta, which is separately funded and is <b>never</b> in a carbon figure &mdash; so it is off by default. The toggle moves only those five; it never adds or removes a point in Fort-Dauphin or Maroantsetra.</p>
-<p><b>About the photographs.</b> Every photograph is drawn from one place: the <b>completed-works and water-flowing questions of the mWater rehabilitation form</b> &mdash; the images taken once the pump is fully restored and running. Nothing from before or during a repair, no parts close-ups, no survey or drilling records. <b>729</b> of the 735 have one; the remaining <b>6</b> show no photograph, because an empty popup is honest and a misleading one is not.</p>
+<p><b>About the photographs.</b> Every photograph is drawn from one place: the <b>completed-works and water-flowing questions of the mWater rehabilitation form</b> &mdash; the images taken once the pump is fully restored and running. <b>729</b> of the 735 have one; the remaining <b>6</b> show no photograph.</p>
 <p class="small">Hover or tap a marker for its village, water point number and photograph. <b>Layers</b> turns a region on and off; <b>Data</b> has the counts and how the population figure is built.</p>
 </section>
 
@@ -110,13 +110,6 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
 
 <h2 style="margin-top:18px">How the people-served figure is built</h2>
 <p class="small"><b>WorldPop, not a headcount.</b> Population comes from <b>WorldPop R2025A v1 2025 constrained</b>, the 100&nbsp;m gridded population surface (hub dataset 74239), pinned by checksum <span style="font-family:ui-monospace,monospace">838c2fc7&hellip;</span>. For each water point we take a <b>1&nbsp;km service area</b> on a local equidistant projection so the radius is a true 1,000&nbsp;m; apply the SDWS&nbsp;1 <b>barrier clip</b>, so a river with no crossing cuts the area; <b>split the population where service areas overlap</b>, so nobody is counted twice; then <b>cap each point at its pump&rsquo;s capacity</b> &mdash; Canzee 500, India Mark 300.</p>
-<h2 style="margin-top:18px">Why the mWater dashboard shows a bigger number</h2>
-<p class="small">The mWater dashboard reports <b>135,340</b> people; this page reports <b>128,221</b> for the same estate. Both are correct for what they measure, and the difference is deliberate:</p>
-<ul class="small" style="margin:6px 0 0;padding-left:18px">
-<li><b>It counts register records; we count points under management.</b> The register includes survey entries, abandoned points and sites still being drilled. People live near those, but no serviced pump does.</li>
-<li><b>It does not cap at pump capacity.</b> A hand pump cannot serve everyone within a kilometre of it. Where the population exceeds what the pump can deliver, we report the pump&rsquo;s capacity.</li>
-<li><b>It does not split overlaps.</b> Where two pumps reach the same village, those people can be counted against both.</li>
-</ul>
 <p class="small" style="margin-top:6px"><b>128,221 is the conservative figure and the one in the carbon file.</b> <b>126,780</b> of it is the carbon portfolio; the remaining <b>1,441</b> is Marolinta, which is separately funded and excluded from every carbon figure.</p>
 </section>
 
@@ -148,8 +141,8 @@ footer{position:absolute;left:14px;bottom:10px;z-index:900;font-size:10.5px;colo
     <div class="bar"><i style="width:18.4%"></i></div>
     <span>18.4% of target programme scale</span></div>
   <div class="row"><b>4,000 water points</b> <span>at target programme scale</span></div>
-  <p class="small">This map draws the <b>735</b> hand pumps under active management that carry a position in the register. One further managed pump, <span style="font-family:ui-monospace,monospace">742896839</span>, has no register record and therefore no position, so the managed portfolio is <b>736</b> and the map can show 735 of them. Population covers all 736.</p>
-  <p class="small"><b>Basis.</b> The <b>736</b> hand pumps under active management, each carrying a population figure. Population follows Gold Standard SDWS 1 on the WorldPop R2025A v1 2025 constrained raster (sha256 <span style="font-family:ui-monospace,monospace">838c2fc7&hellip;</span>), 1&nbsp;km service area per point with the insurmountable-barrier clip applied, overlapping areas split equally, then capped at pump capacity &mdash; Canzee 500, India Mark 300. Marolinta is shown for completeness and is never counted in a carbon figure. <b>The marker counts in the Layers tab are the same managed portfolio</b>, so every number on this map and in the weekly report is the same number from the same source.</p>
+  <p class="small">This map draws <b>735</b> of the <b>736</b> hand pumps under active management.</p>
+  <p class="small"><b>Basis.</b> The <b>736</b> hand pumps under active management, each carrying a population figure. Population follows Gold Standard SDWS 1 on the WorldPop R2025A v1 2025 constrained raster (sha256 <span style="font-family:ui-monospace,monospace">838c2fc7&hellip;</span>), 1&nbsp;km service area per point with the insurmountable-barrier clip applied, overlapping areas split equally, then capped at pump capacity &mdash; Canzee 500, India Mark 300. <b>The marker counts in the Layers tab are the same managed portfolio</b>, so every number on this map and in the weekly report is the same number from the same source.</p>
   <div class="row" style="margin-bottom:0"><b>Every point, 15 years</b> <span>of funded maintenance, independently verified</span></div>
 </div>
 <footer>SaniTap weekly water report &middot; positions and photographs live from mWater</footer>
