@@ -304,6 +304,69 @@ def main():
           len(WPOP) != reg_total_with_retired, f"!= {reg_total_with_retired}", len(WPOP),
           f"{len(KNOWN_RETIRED_CODES)} retired records excluded")
 
+    # ---- 7b. every parameter/method figure must carry its source --------
+    # A figure in a parameter or method statement is only usable to a verifier if
+    # the page says where it came from. These are the sources the report's own
+    # statements rest on; if a figure block loses its citation the source string
+    # disappears with it, so their presence is the tripwire.
+    REQUIRED_SOURCES = [
+        ("INSTAT RGPH-3", "people per premises, SDWS 25"),
+        ("WorldPop R2025A", "the population basis, SDWS 1"),
+        ("TOOL33", "fNRB default values, SDWS 21"),
+        ("VPA-DD", "the registered design document"),
+    ]
+    both = idx + prt
+    for needle, why in REQUIRED_SOURCES:
+        pat = re.escape(needle).replace(r"\-", r"[-\u2010-\u2015]").replace(r"\ ", r"(?:\s|&nbsp;)+")
+        n = len(re.findall(pat, both))
+        check(f"source cited: {needle}", n > 0, "cited at least once",
+              f"{n} mention(s)" if n else "MISSING", why)
+
+    # An fNRB value statement must carry a TOOL33 citation, and TOOL30 may be
+    # named only as a withdrawn tool. Both are scoped to the ENCLOSING SECTION,
+    # not to a character window: a window wide enough to be useful also reaches
+    # into the neighbouring section's citation, which makes the test vacuous.
+    def enclosing_section(src, pos):
+        """(start, end) of the <section> containing pos, or the whole document."""
+        a = src.rfind("<section", 0, pos)
+        if a == -1:
+            return (0, len(src))
+        b = src.find("</section>", pos)
+        return (a, b + len("</section>") if b != -1 else len(src))
+
+    def section_label(src, a):
+        m = re.search(r'id="([^"]+)"', src[a:a + 300])
+        if m:
+            return m.group(1)
+        h = re.search(r"<h2>(.*?)</h2>", src[a:a + 900])
+        return re.sub(r"<[^>]+>", "", h.group(1))[:32] if h else f"offset {a}"
+
+    bad = []
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        for m in re.finditer(r"fNRB", src):
+            a, b = enclosing_section(src, m.start())
+            if "TOOL33" not in src[a:b]:
+                lab = f"{f}:{section_label(src, a)}"
+                if lab not in bad:
+                    bad.append(lab)
+    check("every fNRB statement cites TOOL33", not bad,
+          "TOOL33 cited in each section naming fNRB",
+          "uncited in " + ", ".join(bad[:3]) if bad else "all cited",
+          "TOOL33 v03.1 Table 3 national / Table 4 sub-national")
+
+    stale = []
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        for m in re.finditer(r"TOOL\s*30", src):
+            a, b = enclosing_section(src, m.start())
+            if not any(w in src[a:b].lower() for w in ("discontinu", "withdrawn", "superseded")):
+                lab = f"{f}:{section_label(src, a)}"
+                if lab not in stale:
+                    stale.append(lab)
+    check("TOOL30 never cited as a live source", not stale,
+          "every section naming TOOL30 marks it discontinued",
+          "unmarked in " + ", ".join(stale[:3]) if stale else "all marked discontinued",
+          "discontinued with effect from 1 January 2026, EB 125")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
