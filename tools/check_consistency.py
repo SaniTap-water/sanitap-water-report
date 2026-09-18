@@ -27,7 +27,7 @@ register count. A sentence that used 908 as a management figure while happening
 to contain the word "register" would pass. Treat a 908 PASS as "nothing obviously
 wrong", not as proof.
 """
-import argparse, json, os, re, subprocess, sys, tempfile
+import argparse, collections, json, os, re, subprocess, sys, tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from exclude_retired import RETIRED_NAME_PREFIX, KNOWN_RETIRED_CODES  # noqa: E402
@@ -477,6 +477,29 @@ def main():
               all((not w.get("p")) or w.get("pq") for w in WPm),
               "each photo carries its source question", f"{nph} photos",
               "positive filter: rehabilitation form completed-works / water-flowing")
+        # Photographs are drawn in a fixed order of preference. Rank 1 is the
+        # rehabilitation form's completed-works / water-flowing questions;
+        # 2 the preventive-maintenance after-works question; 3 the repair-after-
+        # breakdown after-works questions; 4 the register record's own photo,
+        # which is a last resort and carries no completed-works guarantee.
+        # A photo with no rank cannot be traced to a question, so it must not exist.
+        unranked = [w["c"] for w in WPm if w.get("p") and w.get("pr") not in (1, 2, 3, 4)]
+        check("every drawn photo carries its source rank", not unranked,
+              "all ranked 1-4", f"{len(unranked)} unranked" if unranked else "all ranked 1-4",
+              "rank records which form the image came from")
+        ranked = collections.Counter(w.get("pr") for w in WPm if w.get("p"))
+        # the prose must state the same split as the data, or the reader is
+        # told one thing while the map draws another
+        for rk, label in ((1, "rehabilitation form"), (2, "preventive-maintenance form"),
+                          (3, "repair-after-breakdown form"), (4, "register record")):
+            m3 = re.search(r"<b>" + re.escape(label) + r"</b>[^(]{0,40}\(<b>(\d+)</b>", prt)
+            check(f"photo prose matches the data: rank {rk} ({label})",
+                  bool(m3) and int(m3.group(1)) == ranked.get(rk, 0),
+                  ranked.get(rk, 0), m3.group(1) if m3 else "not stated")
+        m3 = re.search(r"<b>(\d+)</b> of the 735 have one", prt)
+        check("photo total in the prose matches the data",
+              bool(m3) and int(m3.group(1)) == nph, nph,
+              m3.group(1) if m3 else "not stated")
 
     # population: the map's totals must equal the report's, and split to it
     def money(t, *pats):
