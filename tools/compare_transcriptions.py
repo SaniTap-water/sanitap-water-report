@@ -47,9 +47,32 @@ One CSV. Rows of kind "calendar" carry per-sheet agreement for one pair;
 rows of kind "pair" carry that pair's summary over calendars. Nothing is
 written to the report page.
 """
-import argparse, collections, csv, itertools, math, os, statistics, sys
+import argparse, collections, csv, itertools, json, math, os, statistics, sys
 
 MACHINE_MAP = {"marked": "X", "illegible": "?", "clear": ""}
+
+# An agreement figure is meaningless without the population it applies to. It
+# is NOT "how well the extraction reads the calendars"; it is "how well it
+# reads the ones it produces any output for at all". That denominator travels
+# with the number - printed above the table, written into the output file, and
+# asserted on the report page.
+COVERAGE = []
+
+
+def coverage_lines(figures_path):
+    try:
+        f = json.load(open(figures_path))
+    except Exception:
+        return []
+    return [
+        "COVERAGE THIS FIGURE APPLIES TO:",
+        f"  the extraction produces day calls for {f['images_with_day_calls']:,} of "
+        f"{f['images_readable']:,} readable calendar photographs and "
+        f"{f['photographs_total']:,} held.",
+        f"  Any agreement figure above describes ONLY those "
+        f"{f['images_with_day_calls']:,}. It says nothing about the rest, which "
+        "the extraction cannot read or cannot date.",
+    ]
 
 
 def read_human(path):
@@ -123,7 +146,30 @@ def main():
     ap.add_argument("--machine", default=None,
                     help="per-cell reader output (extraction_days2.csv)")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--figures", default=None,
+                    help="data/calendar_extraction_figures.json, so the coverage "
+                         "the agreement applies to is printed alongside it")
+    ap.add_argument("--comparable", default=None,
+                    help="CSV of the sheets the extraction produces day calls for "
+                         "(the human-to-machine frame). Sheets outside it are still "
+                         "compared human-to-human, under their own heading, and are "
+                         "never folded into the machine figure.")
     a = ap.parse_args()
+
+    global COVERAGE
+    if a.figures:
+        COVERAGE = coverage_lines(a.figures)
+
+    # The validation frame is "sheets the extraction produces day calls for".
+    # Sheets outside it answer a DIFFERENT question - whether a human can read
+    # what the machine could not - which is the evidence for choosing between
+    # the extraction and manual transcription.
+    frame = None
+    if a.comparable:
+        frame = {r["calendrier"].strip()
+                 for r in csv.DictReader(open(a.comparable))
+                 if r.get("in_frame", "yes").strip().lower() in
+                 ("yes", "oui", "1", "true")}
 
     people = {}
     for p in a.files:
@@ -200,18 +246,24 @@ def main():
 
     names = {who: f"{who[0]} [{who[1][:6]}]" for who in people}
 
-    # human to human
+    def sel(w, inside):
+        """That transcriber's sheets, inside or outside the machine frame."""
+        return {s: r["cells"] for s, r in people[w].items()
+                if frame is None or ((s in frame) == inside)}
+
     for wa, wb in itertools.combinations(sorted(people, key=lambda w: names[w]), 2):
-        ca = {s: r["cells"] for s, r in people[wa].items()}
-        cb = {s: r["cells"] for s, r in people[wb].items()}
         ea = {s: r["excluded"] for s, r in people[wa].items() if r["excluded"]}
         eb = {s: r["excluded"] for s, r in people[wb].items() if r["excluded"]}
-        compare_pair("human-human", names[wa], names[wb], ca, cb, ea, eb)
+        compare_pair("human-human", names[wa], names[wb],
+                     sel(wa, True), sel(wb, True), ea, eb)
+        if frame is not None:
+            compare_pair("human-human-not-machine-readable", names[wa], names[wb],
+                         sel(wa, False), sel(wb, False), ea, eb)
 
     # human to machine
     if machine:
         for w in sorted(people, key=lambda w: names[w]):
-            ca = {s: r["cells"] for s, r in people[w].items()}
+            ca = sel(w, True)
             ea = {s: r["excluded"] for s, r in people[w].items() if r["excluded"]}
             cm = {s: machine[s] for s in ca if s in machine}
             compare_pair("human-machine", names[w], "machine", ca, cm, ea, {})
@@ -221,14 +273,20 @@ def main():
     cols = ["kind", "comparison", "a", "b", "calendrier", "point_eau",
             "cells_compared", "cells_agreeing", "agreement", "status", "detail"]
     with open(a.out, "w", newline="", encoding="utf8") as f:
+        for line in COVERAGE:
+            f.write("# " + line + "\n")
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
         w.writerows(rows)
 
     for r in rows:
         if r["kind"] == "pair":
-            print(f"  {r['comparison']:14s} {r['a']} vs {r['b']}: "
+            print(f"  {r['comparison']:32s} {r['a']} vs {r['b']}: "
                   f"{r['agreement']}  ({r['status']})")
+    if COVERAGE:
+        print()
+        for line in COVERAGE:
+            print(f"  {line}")
     print(f"  -> {a.out}")
 
 

@@ -1088,10 +1088,12 @@ def main():
             ("aggregate error statistics", "their exposure is stated"),
             ("no per-cell output", "the limit of that exposure is stated"),
             ("minimum of <b>30</b>", "the methodology minimum is stated"),
-            ("<b>46</b> can be transcribed", "the transcribable count is stated"),
-            ("the machine could read <b>34</b>", "the comparable count is stated"),
             ("locks every cell the photograph could not show",
              "the comparison is on the same cells for both sides"),
+            ("The validation frame was corrected on",
+             "the frame change is recorded, with its date"),
+            ("transcription/validation_selection.csv",
+             "the selection file is named"),
             ("the calendar", "the unit of variation is stated")):
         check(f"transcription method note: {why}", frag in idx, "present",
               "present" if frag in idx else "MISSING",
@@ -1101,6 +1103,104 @@ def main():
           "reserved", "reserved" if "An accuracy assessment of the machine reading"
           " of these calendars is in progress" in idx else "MISSING",
           "the footnote is placed before the results, and says so")
+
+    # ---- 7sa. an agreement figure never travels without its denominator ----
+    # "The extraction agrees with the human 92% of the time" is not a fact
+    # about the calendars. It is a fact about the subset the extraction
+    # produces output for at all, which is a minority of them. The coverage
+    # sentence is therefore required next to any agreement figure, and the
+    # numbers in it are checked against the figures file rather than trusted.
+    if os.path.exists(figp):
+        fig = json.load(open(figp))
+        cov_span = re.search(r'<span class="agrcov">(.*?)</span>', idx, re.S)
+        check("the page carries the coverage an agreement figure would apply to",
+              cov_span is not None, "present",
+              "present" if cov_span else "MISSING",
+              "an agreement figure means nothing without its population")
+        if cov_span:
+            txt = cov_span.group(1)
+            for key in ("images_with_day_calls", "images_readable",
+                        "photographs_total"):
+                v = f"{fig[key]:,}" if fig[key] >= 1000 else str(fig[key])
+                check(f"coverage sentence states {key}: {v}",
+                      f"<b>{v}</b>" in txt, v,
+                      v if f"<b>{v}</b>" in txt else "NOT IN THE SENTENCE",
+                      "from data/calendar_extraction_figures.json")
+        # any agreement figure on the page must sit in a paragraph that also
+        # carries the coverage sentence. None exists yet; this fires when one does.
+        paras = re.findall(r"<p\b[^>]*>.*?</p>", idx, re.S)
+        AGREE = re.compile(r"(?:agreement|agree[sd]?\s+with|concordance)\b", re.I)
+        offenders = [q[:70] for q in paras
+                     if AGREE.search(q) and re.search(r"\d+(?:\.\d+)?%", q)
+                     and 'class="agrcov"' not in q
+                     and "would apply to" not in q and "will and will not cover" not in q]
+        check("no agreement percentage appears without the coverage sentence",
+              not offenders, "none", f"{len(offenders)} bare" if offenders else "none",
+              "the denominator travels with the number")
+        # and the comparison tool must emit it too
+        cmp_p = os.path.join(here, "tools", "compare_transcriptions.py")
+        if os.path.exists(cmp_p):
+            cmp_s = open(cmp_p, encoding="utf8").read()
+            check("the comparison tool prints the coverage with its figures",
+                  "COVERAGE THIS FIGURE APPLIES TO" in cmp_s, "present",
+                  "present" if "COVERAGE THIS FIGURE APPLIES TO" in cmp_s else "MISSING")
+            check("the comparison tool keeps machine-unreadable sheets separate",
+                  "human-human-not-machine-readable" in cmp_s, "separate",
+                  "separate" if "human-human-not-machine-readable" in cmp_s
+                  else "FOLDED IN",
+                  "sheets the machine could not read answer a different question")
+
+    # ---- 7sb. the validation sample, against its own selection file --------
+    # The frame moved: from "readable calendar photographs" to "photographs the
+    # extraction produces day calls for, dated, and actually calendars". A
+    # verifier has to be able to see that it moved, why, and that the draw
+    # still clears the methodology minimum, so the page is checked against the
+    # selection file rather than against a phrase.
+    selp = os.path.join(here, "transcription", "validation_selection.csv")
+    if not os.path.exists(selp):
+        check("validation selection file present", False,
+              "transcription/validation_selection.csv", "MISSING",
+              "the frame change has to be auditable")
+    else:
+        import csv as _csv3
+        sel = list(_csv3.DictReader(open(selp)))
+        infr = [r for r in sel if r["in_frame"] == "yes"]
+        outfr = [r for r in sel if r["in_frame"] != "yes"]
+        kept = [r for r in infr if r["origin"].startswith("kept")]
+        drew = [r for r in infr if r["origin"].startswith("drawn")]
+        check("the human-to-machine sample clears the methodology minimum of 30",
+              len(infr) >= 30, ">= 30", len(infr),
+              "section 4.2.2, proportion parameter")
+        for v, why in ((len(infr), "the comparison set"),
+                       (len(kept), "the sheets kept from the original draw"),
+                       (len(drew), "the sheets drawn to make up the shortfall"),
+                       (len(outfr), "the sheets scored human-to-human only")):
+            check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
+                  v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
+                  "from transcription/validation_selection.csv")
+        check("every selected sheet records the frame, the reason and the date",
+              all(r["frame"] and r["origin"] and r["seed"] for r in sel)
+              and all(r["drawn_on"] for r in drew),
+              "all recorded",
+              "all recorded" if all(r["frame"] and r["origin"] and r["seed"]
+                                    for r in sel) and all(r["drawn_on"] for r in drew)
+              else "INCOMPLETE",
+              "a verifier must see that the frame moved and why")
+        check("the draw covers both districts",
+              len({r["site"] for r in infr}) == 2,
+              "both", ", ".join(sorted({r["site"] for r in infr})))
+        check("the draw covers the full quality range",
+              len({r["quality_quartile"] for r in infr}) == 4, "4 quartiles",
+              len({r["quality_quartile"] for r in infr}),
+              "a sample of easy sheets would flatter the extraction")
+        # every sheet in the selection must actually be bundled
+        man2 = json.load(open(os.path.join(here, "transcription", "calendars.json")))
+        sheets = {str(c["n"]) for c in man2}
+        missing = [r["calendrier"] for r in sel
+                   if r["calendrier"] and r["calendrier"] not in sheets]
+        check("every selected sheet is bundled on the transcription page",
+              not missing, "all bundled",
+              f"{len(missing)} missing" if missing else "all bundled")
 
     # ---- 7t. the transcription page records who did the work ---------------
     trh = os.path.join(here, "transcription", "index.html")

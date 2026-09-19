@@ -30,14 +30,39 @@ STORE = ("/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documen
 TMPL = os.path.join(HERE, "tmpl_202.png")
 SCALES = np.linspace(0.55, 1.70, 20)
 YEAR = re.compile(r"(?<!\d)20(2[0-9])(?!\d)")
+ORIENTS_A = (0, 180)          # upright and upside down
+ORIENTS_B = (90, 270)         # photographed on its side
 PLAUSIBLE = {"2023", "2024", "2025", "2026", "2027", "2028"}
 
 
-def anchor(gray, tmpl):
-    H = gray.shape[0]
+def upright(gray, k):
+    """The rectified sheet turned the right way up for orientation k.
+
+    The rectifier always warps the detected quad onto the same landscape
+    rectangle, so a sheet photographed on its side comes out both turned AND
+    stretched - a 1.44:1 frame holding what should be a 1:1.44 sheet. Turning
+    it back and resizing to the canonical shape undoes the stretch, which
+    matters because the template match is multi-scale but not anisotropic.
+    """
+    if k == 0:
+        g = gray
+    elif k == 180:
+        g = cv2.rotate(gray, cv2.ROTATE_180)
+    elif k == 90:
+        g = cv2.rotate(gray, cv2.ROTATE_90_CLOCKWISE)
+    else:
+        g = cv2.rotate(gray, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    if k in (90, 270):
+        g = cv2.resize(g, (caltools.CANON_W, caltools.CANON_H),
+                       interpolation=cv2.INTER_AREA)
+    return g
+
+
+def anchor(gray, tmpl, orients=(0, 180)):
     best = None
-    for orient in (0, 180):
-        g = cv2.rotate(gray, cv2.ROTATE_180) if orient else gray
+    for orient in orients:
+        g = upright(gray, orient)
+        H = g.shape[0]
         band = g[:int(0.42 * H)]
         for s in SCALES:
             t = cv2.resize(tmpl, None, fx=s, fy=s, interpolation=cv2.INTER_AREA)
@@ -74,6 +99,8 @@ def main():
     ap.add_argument("--stage", default="extracted")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--skip", type=int, default=0)
+    ap.add_argument("--only", default=None,
+                    help="file of image_ids, one per line: re-read just these")
     ap.add_argument("--out", default=os.path.join(HERE, "sheet_year_ocr.csv"))
     a = ap.parse_args()
 
@@ -84,6 +111,9 @@ def main():
     rows = list(csv.DictReader(open(os.path.join(HERE, "legibility2.csv"))))
     if a.stage:
         rows = [r for r in rows if r["stage"] == a.stage]
+    if a.only:
+        want = {ln.strip() for ln in open(a.only) if ln.strip()}
+        rows = [r for r in rows if r["image_id"] in want]
     if a.skip:
         rows = rows[a.skip:]
     if a.limit:
@@ -104,12 +134,12 @@ def main():
                 if q is not None:
                     rect = caltools.rectify(im, q, im.shape[1] / float(small.shape[1]))
                     gray = cv2.cvtColor(rect, cv2.COLOR_BGR2GRAY)
-                    hit = anchor(gray, tmpl)
+                    hit = anchor(gray, tmpl, ORIENTS_A)
                     hits = []
                     if hit:
                         ascore = hit[0]
                         _, orient, x, y0, tw, th = hit
-                        g = cv2.rotate(gray, cv2.ROTATE_180) if orient else gray
+                        g = upright(gray, orient)
                         dw = tw / 3.0
                         X0 = max(0, int(x - dw * 2.0))
                         X1 = min(g.shape[1], int(x + tw + dw * 7.0))
@@ -122,17 +152,49 @@ def main():
                             route = "anchor"
                     best = pick(hits)
                     if best is None:
-                        # fall back to the whole header band, both ways up
-                        H = rect.shape[0]
-                        for band, rot in ((rect[:int(H * 0.30)], 0),
-                                          (rect[int(H * 0.68):], 1)):
-                            b = cv2.rotate(band, cv2.ROTATE_180) if rot else band
+                        # fall back to the whole header band, each way up
+                        for k in ORIENTS_A:
+                            g = upright(rect, k)
+                            b = g[:int(g.shape[0] * 0.30)]
                             b = cv2.resize(b, None, fx=0.6, fy=0.6,
                                            interpolation=cv2.INTER_AREA)
                             best = pick(read_text(ocr, b))
                             if best:
                                 route = "band"
                                 break
+
+                    if best is None:
+                        # Sideways. Five of eleven undated sheets inspected by
+                        # hand were photographed at 90 degrees, which puts the
+                        # header up the side of the rectified frame where
+                        # nothing above looks. This costs a second sweep, so it
+                        # is only paid on sheets that have already failed.
+                        hit2 = anchor(gray, tmpl, ORIENTS_B)
+                        if hit2:
+                            _, orient, x, y0, tw, th = hit2
+                            g = upright(gray, orient)
+                            dw = tw / 3.0
+                            crop = g[max(0, int(y0 - th * 0.8)):
+                                     min(g.shape[0], int(y0 + th * 1.8)),
+                                     max(0, int(x - dw * 2.0)):
+                                     min(g.shape[1], int(x + tw + dw * 7.0))]
+                            if crop.size and crop.shape[0] > 12 and crop.shape[1] > 30:
+                                best = pick(read_text(ocr, cv2.resize(
+                                    crop, None, fx=2.0, fy=2.0,
+                                    interpolation=cv2.INTER_CUBIC)))
+                                if best:
+                                    route = "sideways-anchor"
+                                    ascore = max(ascore, hit2[0])
+                        if best is None:
+                            for k in ORIENTS_B:
+                                g = upright(rect, k)
+                                b = g[:int(g.shape[0] * 0.30)]
+                                b = cv2.resize(b, None, fx=0.6, fy=0.6,
+                                               interpolation=cv2.INTER_AREA)
+                                best = pick(read_text(ocr, b))
+                                if best:
+                                    route = "sideways-band"
+                                    break
                     if best:
                         year, conf, text = best[0], best[1], best[2][:60]
                         got += 1
