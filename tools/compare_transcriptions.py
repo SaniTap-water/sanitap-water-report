@@ -25,6 +25,10 @@ Human-to-human and human-to-machine are reported SEPARATELY and never
 pooled: they answer different questions, and mixing them would let the
 machine's errors be absorbed into a figure labelled "inter-rater".
 
+Cells outside the photograph's observable window are dropped from both sides:
+the transcription page locks them, so a human never marks them, and comparing
+a machine call there against a forced blank would measure nothing.
+
 A sheet that ANY side marks "ce n'est pas un calendrier" is dropped from
 every comparison involving that side. An excluded sheet is not a sheet of
 blanks; scoring it as zeroes would manufacture perfect agreement out of two
@@ -51,7 +55,8 @@ MACHINE_MAP = {"marked": "X", "illegible": "?", "clear": ""}
 def read_human(path):
     """-> {(who, session): {sheet: {"cells": {(m,d): v}, "excluded": reason}}}"""
     out = collections.defaultdict(lambda: collections.defaultdict(
-        lambda: {"cells": {}, "excluded": None, "wp": "", "secs": 0}))
+        lambda: {"cells": {}, "excluded": None, "wp": "", "secs": 0,
+                 "unobserved": 0}))
     with open(path, encoding="utf-8-sig", newline="") as f:
         for r in csv.DictReader(f):
             who = (r.get("transcripteur", "").strip(), r.get("session_id", "").strip())
@@ -72,11 +77,20 @@ def read_human(path):
                 continue
             if not r["mois"] or not r["jour"]:
                 continue
+            # a cell the photograph could not show is not a blank cell: it is
+            # not evidence either way, and it is kept out of the comparison
+            # rather than scored as agreement between two empty boxes
+            if (r.get("etat_cellule") or "observe").strip() != "observe":
+                rec["unobserved"] = rec.get("unobserved", 0) + 1
+                continue
             rec["cells"][(int(r["mois"]), int(r["jour"]))] = (r["releve"] or "").strip()
     return {k: dict(v) for k, v in out.items()}
 
 
 def read_machine(path, wanted_sheets_by_wp):
+    # NOTE the machine file is per-cell for the whole printed grid. Only the
+    # cells the humans kept are compared, so restricting the humans to the
+    # observed window restricts the machine to it too, automatically.
     """The reader keys on image, the page keys on sheet number, so the join is
     on water point. Only sheets the humans actually transcribed are loaded."""
     want = set(wanted_sheets_by_wp)

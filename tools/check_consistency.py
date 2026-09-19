@@ -728,22 +728,30 @@ def main():
         # and the page must state what the JSON says
         def fmt_n(v):
             return f"{v:,}" if isinstance(v, int) and v >= 1000 else str(v)
-        for key, label in (("pump_periods", "pump-periods"),
-                           ("water_points", "water points"),
-                           ("days_not_operational", "days not operational"),
-                           ("days_illegible", "days illegible"),
-                           ("images_readable", "images readable"),
-                           ("images_with_day_calls", "images with day calls"),
-                           ("impossible_cells", "impossible cells"),
-                           ("real_cells", "real day cells")):
+        # which cell-count keys exist depends on the basis the figures were
+        # computed on; block 7ra asserts the observed-basis ones in detail
+        keys = [("pump_periods", "pump-periods"),
+                ("water_points", "water points"),
+                ("days_not_operational", "days not operational"),
+                ("days_illegible", "days illegible"),
+                ("images_readable", "images readable"),
+                ("images_with_day_calls", "images with day calls"),
+                ("impossible_cells", "impossible cells")]
+        keys += ([("real_cells", "real day cells")] if "real_cells" in fig
+                 else [("observed_cells", "observed day cells")])
+        for key, label in keys:
             want = fmt_n(fig[key])
             check(f"page states the extraction {label}: {want}",
                   f"<b>{want}</b>" in idx, want,
                   want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
                   "from data/calendar_extraction_figures.json")
-        for key, label in (("impossible_marked_pct", "impossible-cell marked rate"),
-                           ("real_marked_pct", "real-cell marked rate"),
-                           ("implied_true_marked_pct", "implied true marked rate")):
+        pct_keys = ([("impossible_marked_pct", "impossible-cell marked rate"),
+                     ("real_marked_pct", "real-cell marked rate")]
+                    if "real_marked_pct" in fig else
+                    [("probe_marked_pct", "impossible-cell marked rate"),
+                     ("observed_marked_pct", "observed-cell marked rate")])
+        pct_keys.append(("implied_true_marked_pct", "implied true marked rate"))
+        for key, label in pct_keys:
             want = f"{fig[key]:.2f}%"
             check(f"page states the {label}: {want}", f"<b>{want}</b>" in idx, want,
                   want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
@@ -904,7 +912,11 @@ def main():
     else:
         tr = open(tr_html, encoding="utf8").read()
         man = json.load(open(tr_man))
-        allowed = {"n", "f", "wp", "site", "date", "w", "h"}
+        # "y" is the year PRINTED ON THE SHEET. It is machine-read, but it is
+        # an identity fact about which year the sheet is for, not a reading of
+        # any mark on it, and the page needs it to lock the cells that were
+        # not yet observable when the photograph was taken.
+        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y"}
         extra = sorted({k for r in man for k in r} - allowed)
         check("transcription manifest carries no derived field",
               not extra, "only identity fields",
@@ -948,36 +960,38 @@ def main():
         import csv as _csv2
         nc = list(_csv2.DictReader(open(ncp)))
         fig = json.load(open(figp))
+        # the list covers every image that is not a calendar, whether the
+        # reader accepted it or threw it out. Only the accepted ones ever
+        # entered a published figure, so only those are excluded from one.
+        accepted = [r for r in nc if r["reader"] == "accepted as a calendar"]
+        rejected = [r for r in nc if r["reader"] == "rejected"]
         check("non-calendar list matches the figures file",
-              len(nc) == fig["photographs_excluded_not_calendar"],
-              fig["photographs_excluded_not_calendar"], len(nc),
-              "the count on the page is the length of the list")
-        check(f"page states the non-calendar count: {len(nc)}",
-              f"<b>{len(nc)}</b>" in idx, len(nc),
-              len(nc) if f"<b>{len(nc)}</b>" in idx else "NOT ON THE PAGE")
+              len(accepted) == fig["photographs_excluded_not_calendar"],
+              fig["photographs_excluded_not_calendar"], len(accepted),
+              "the figures exclude exactly the ones the reader had accepted")
+        for n, what in ((len(accepted), "accepted"), (len(rejected), "rejected"),
+                        (len(nc), "total")):
+            check(f"page states the non-calendar count ({what}): {n}",
+                  f"<b>{n}</b>" in idx, n,
+                  n if f"<b>{n}</b>" in idx else "NOT ON THE PAGE")
         allowed_reasons = {"signboard", "pump", "document", "other", "bottle_on_pump"}
         bad = [r for r in nc if r["reason"] not in allowed_reasons
-               or not r["water_point"] or not r["image_id"]]
-        check("every excluded image carries a water point, an id and a reason",
-              not bad, "all 37 complete", f"{len(bad)} incomplete",
+               or not r["water_point"] or not r["image_id"]
+               or r["reader"] not in ("accepted as a calendar", "rejected")]
+        check("every non-calendar image carries a point, an id, a reason and its reader outcome",
+              not bad, f"all {len(nc)} complete", f"{len(bad)} incomplete",
               "a bare count is not something Jan can act on")
         check("the page points at the non-calendar list",
               "data/calendar_not_calendar.csv" in idx, "named", 
               "named" if "data/calendar_not_calendar.csv" in idx else "NOT NAMED")
-        # every sheet prints 12 x 31 cells, so the two cell counts must close
-        grid = fig["images_with_day_calls"] * 12 * 31
-        tot = fig["real_cells"] + fig["impossible_cells"]
-        check("day cells close against the printed 12 x 31 grid",
-              tot == grid, grid, tot,
-              "real + impossible must be the whole sheet, for every sheet")
-        # 2025 and 2026 are both common years: seven cells per sheet cannot exist
-        per_sheet = fig["impossible_cells"] / fig["images_with_day_calls"]
-        check("seven impossible cells per sheet, not six",
-              abs(per_sheet - 7) < 1e-9, 7, round(per_sheet, 4),
-              "29, 30 and 31 February plus four 31sts; neither year is a leap year")
-        check("the page says seven, not six",
-              "<b>seven</b>" in idx and "Six cells on every sheet" not in idx,
-              "seven", "seven" if "<b>seven</b>" in idx else "STILL SAYS SIX")
+        # the cell arithmetic and the per-year impossible-cell count are
+        # asserted in 7ra, which knows which years are leap years
+        check("the page states the impossible-cell count per sheet by year",
+              "<b>seven</b>" in idx and "in a leap year six" in idx
+              and "Six cells on every sheet" not in idx,
+              "seven, or six in a leap year",
+              "seven, or six in a leap year" if "in a leap year six" in idx
+              else "NOT STATED BY YEAR")
         check("visits with and without a readable image sum to the total",
               fig["visits_with_readable"] + fig["visits_without_readable"]
               == fig["visits_total"], fig["visits_total"],
@@ -989,6 +1003,81 @@ def main():
                   len(nu) == fig["points_without_readable"],
                   fig["points_without_readable"], len(nu),
                   "data/calendar_no_usable_image.csv is that list, not a sample")
+            # a point whose photographs are all signboards needs a different
+            # instruction from one whose calendar simply could not be read
+            cats = {"no calendar was ever photographed",
+                    "some photographs are of something else",
+                    "calendar photographed, not readable"}
+            check("every point on the reissue list carries a cause and a field action",
+                  all(r.get("category") in cats and r.get("field_action") for r in nu),
+                  "all classified",
+                  "all classified" if all(r.get("category") in cats and r.get("field_action")
+                                          for r in nu) else "UNCLASSIFIED ROWS",
+                  "'photograph unreadable' is the wrong instruction for a signboard")
+            never = sum(1 for r in nu if r["category"] == "no calendar was ever photographed")
+            check(f"page states how many points never had a calendar photographed: {never}",
+                  f"<b>{never}</b>" in idx, never,
+                  never if f"<b>{never}</b>" in idx else "NOT ON THE PAGE")
+
+    # ---- 7ra. the observed-cell basis -------------------------------------
+    # A calendar photographed on date D can only carry marks for days up to D.
+    # Cells after D were blank by construction, so a rate computed over them
+    # measures the passage of time, not the pump. Every extraction rate is now
+    # computed over observed cells only, and the arithmetic has to close.
+    if os.path.exists(figp):
+        fig = json.load(open(figp))
+        if "observed_cells" in fig:
+            check("the figures declare the basis they are computed on",
+                  "observed cells" in fig.get("basis", ""),
+                  "observed cells only", fig.get("basis", "MISSING"),
+                  "a rate means nothing without its denominator's definition")
+            # every sheet prints 12 x 31, whatever year it is for
+            grid = fig["images_with_day_calls"] * 12 * 31
+            tot3 = (fig["observed_cells"] + fig["unobserved_cells"]
+                    + fig["impossible_cells"])
+            check("observed + unobserved + impossible is the whole printed grid",
+                  tot3 == grid, grid, tot3,
+                  "no cell may be dropped or counted twice")
+            # impossible cells are 7 per sheet in a common year, 6 in a leap year
+            by_y = fig.get("sheets_by_year", {})
+            want_imp = sum(v * (6 if (int(k) % 4 == 0 and (int(k) % 100 != 0
+                           or int(k) % 400 == 0)) else 7)
+                           for k, v in by_y.items() if k.isdigit())
+            if want_imp:
+                check("impossible cells follow each sheet's own year",
+                      want_imp == fig["impossible_cells"],
+                      want_imp, fig["impossible_cells"],
+                      "2024 is a leap year: 29 February is a real day, and six cells cannot exist")
+            check("the impossible-cell probe is a subset of the impossible cells",
+                  fig["probe_cells"] <= fig["impossible_cells"],
+                  f"<= {fig['impossible_cells']}", fig["probe_cells"],
+                  "a month that had not started cannot probe anything")
+            check("\"could not be read\" and \"had not happened yet\" are separate",
+                  "unobserved_called_illegible" in fig and "days_unobserved" in fig,
+                  "counted separately",
+                  "counted separately" if "unobserved_called_illegible" in fig
+                  else "CONFLATED",
+                  "an unobserved blank is not an illegible cell")
+            check("the implied true marked rate is the observed rate less the probe",
+                  abs(fig["implied_true_marked_pct"]
+                      - (fig["observed_marked_pct"] - fig["probe_marked_pct"])) < 0.011,
+                  round(fig["observed_marked_pct"] - fig["probe_marked_pct"], 2),
+                  fig["implied_true_marked_pct"])
+            for key, label in (("observed_cells", "observed cells"),
+                               ("unobserved_cells", "unobserved cells"),
+                               ("sheets_not_dated", "sheets that could not be dated")):
+                v = fig[key]
+                want = f"{v:,}" if v >= 1000 else str(v)
+                check(f"page states the {label}: {want}",
+                      f"<b>{want}</b>" in idx, want,
+                      want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE")
+            for key, label in (("observed_marked_pct", "observed-cell marked rate"),
+                               ("probe_marked_pct", "impossible-cell marked rate"),
+                               ("implied_true_marked_pct", "implied true marked rate")):
+                want = f"{fig[key]:.2f}%"
+                check(f"page states the {label}: {want}",
+                      f"<b>{want}</b>" in idx, want,
+                      want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE")
 
     # ---- 7s. the transcription round's method is stated, not assumed -------
     # A reference transcription made by someone who had seen the aggregate
@@ -999,7 +1088,10 @@ def main():
             ("aggregate error statistics", "their exposure is stated"),
             ("no per-cell output", "the limit of that exposure is stated"),
             ("minimum of <b>30</b>", "the methodology minimum is stated"),
-            ("18,300", "the day-cell count is stated"),
+            ("<b>46</b> can be transcribed", "the transcribable count is stated"),
+            ("the machine could read <b>34</b>", "the comparable count is stated"),
+            ("locks every cell the photograph could not show",
+             "the comparison is on the same cells for both sides"),
             ("the calendar", "the unit of variation is stated")):
         check(f"transcription method note: {why}", frag in idx, "present",
               "present" if frag in idx else "MISSING",
@@ -1017,10 +1109,10 @@ def main():
         # the columns are asserted on the export header itself, not on the
         # word appearing somewhere in the file: an earlier version of this
         # check passed after the column had been deleted from the export
-        want_cols = ["calendrier", "point_eau", "date_photo", "mois", "jour",
-                     "releve", "exclu", "exclu_motif", "transcripteur",
-                     "session_id", "secondes_sur_calendrier", "notes",
-                     "exporte_le"]
+        want_cols = ["calendrier", "point_eau", "date_photo", "annee_feuille",
+                     "mois", "jour", "releve", "etat_cellule", "exclu",
+                     "exclu_motif", "transcripteur", "session_id",
+                     "secondes_sur_calendrier", "notes", "exporte_le"]
         hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
         check("transcription export header carries every column, in order",
               hdr in tr2.replace(" ", ""), ",".join(want_cols),
@@ -1029,18 +1121,30 @@ def main():
         for frag, why in (
                 ("Ce n\u2019est pas un calendrier", "the not-a-calendar control exists"),
                 ("EXCLU", "an excluded sheet exports as excluded, not as blanks"),
-                ("out.push([c.n,c.wp,c.date,'','','EXCLU'", "the excluded row has no day cells")):
+                ("out.push([c.n,c.wp,c.date,c.y||'','','','EXCLU'", "the excluded row has no day cells")):
             check(f"transcription page: {why}", frag in tr2, "present",
                   "present" if frag in tr2 else "MISSING")
         check("transcription page refuses an unnamed export",
               "avant d\u2019exporter" in tr2, "refused", 
               "refused" if "avant d\u2019exporter" in tr2 else "NOT ENFORCED",
               "an anonymous transcript cannot be compared to anything")
-        check("transcription grid uses real month lengths",
-              "const DIM=[31,28,31,30,31,30,31,31,30,31,30,31]" in tr2,
-              "February 28", 
-              "February 28" if "const DIM=[31,28,31,30,31,30,31,31,30,31,30,31]" in tr2
-              else "WRONG", "2025 and 2026 are both common years")
+        flat = tr2.replace(" ", "")
+        okdim = ("constdim=y=>[31,leap(y)?29:28," in flat
+                 and "constleap=" in flat
+                 and "constDIM=[31,28," not in flat)
+        check("transcription month lengths follow the sheet's own year",
+              okdim, "derived from the year",
+              "derived from the year" if okdim else "HARD-CODED",
+              "2024 is a leap year and 29 February is a real day on a 2024 sheet")
+        for frag, why in (
+                ("jours observables jusqu", "the observable window is shown"),
+                ("unobs", "cells after the photograph date are locked"),
+                ("etat_cellule", "the export says whether a cell was observable"),
+                ("annee_feuille", "the export carries the sheet's year"),
+                ("unobs.keep", "a mark on a now-unobservable cell is kept and flagged")):
+            check(f"transcription page: {why}", frag in tr2, "present",
+                  "present" if frag in tr2 else "MISSING",
+                  "the human and the machine must be compared on the same cells")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):

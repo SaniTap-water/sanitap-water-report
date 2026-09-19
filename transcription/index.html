@@ -39,6 +39,9 @@ table.cal td.dn{border:none;color:var(--ink3);padding-right:5px;text-align:right
 .c.x{color:var(--mark);background:#fef2f2}
 .c.q{color:var(--ill);background:#fefce8}
 .c.na{background:#f1f5f9;cursor:default}
+.c.unobs{background:repeating-linear-gradient(45deg,#e8edf3,#e8edf3 3px,#dde4ec 3px,#dde4ec 6px);cursor:not-allowed;color:transparent}
+.c.unobs:hover{background:repeating-linear-gradient(45deg,#e8edf3,#e8edf3 3px,#dde4ec 3px,#dde4ec 6px);outline:none}
+.c.unobs.keep{color:#b45309;background:#fff7ed;outline:1px dashed #f59e0b}
 .c.cur{outline:2px solid var(--acc);outline-offset:-2px}
 .foot{padding:10px 12px;border-top:1px solid var(--rule)}
 textarea{width:100%;font:inherit;font-size:.9rem;padding:8px;border:1px solid var(--rule);border-radius:7px;resize:vertical;min-height:52px}
@@ -47,6 +50,9 @@ details.help{background:#fff;border:1px solid var(--rule);border-radius:10px;mar
 details.help>summary{cursor:pointer;font-weight:600;padding:10px 14px}
 details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-width:none}
 .key{display:inline-block;border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.82rem;background:#fff;color:var(--ink)}
+.win{background:#ecfeff;border:1px solid #a5f3fc;border-radius:8px;padding:8px 11px;margin:0 0 10px;font-size:.89rem;color:#164e63}
+.win b{color:#083344}
+.win.none{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
 .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 12px;margin-top:10px;font-size:.9rem;color:#78350f}
 .who{font-size:.86rem;color:var(--ink2);white-space:nowrap}
 .who b{color:var(--ink)}
@@ -87,6 +93,7 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <p style="margin:.4em 0"><b>N’en discutez avec personne ayant vu un résultat automatique.</b> Ce relevé ne sert que s’il est fait indépendamment.</p>
     <p style="margin:.4em 0">Cliquez une case pour faire défiler <b>vide → X → ?</b>. Au clavier : flèches pour se déplacer, <span class="key">X</span> pour marquer, <span class="key">?</span> ou <span class="key">/</span> pour illisible, <span class="key">Espace</span> pour faire défiler, <span class="key">Retour arrière</span> pour effacer.</p>
     <p style="margin:.4em 0">Votre travail est enregistré dans ce navigateur au fur et à mesure. Vous pouvez fermer la page et reprendre plus tard. Quand vous avez terminé, cliquez sur <b>Exporter mes relevés</b> et envoyez le fichier au superviseur.</p>
+    <p style="margin:.4em 0"><b>Les cases grisées et hachurées ne sont pas à remplir.</b> Une photographie ne peut montrer que les jours déjà passés au moment où elle a été prise : les jours postérieurs étaient vides parce qu’ils n’étaient pas encore arrivés, pas parce que la pompe fonctionnait. Ces cases sont verrouillées, et la fenêtre observable est rappelée au-dessus de la grille.</p>
     <p style="margin:.4em 0"><b>Si la photographie ne montre pas un calendrier</b> — un panneau, une pompe, un autre document, un portrait — cochez <b style="color:#b91c1c">Ce n’est pas un calendrier</b> sous la grille et indiquez le motif. La feuille est alors comptée comme <b>exclue</b>, et non comme un calendrier entièrement vide. <b>Ne cochez pas</b> pour une photographie simplement floue ou mal cadrée : dans ce cas mettez <b style="color:var(--ill)">?</b> dans les cases concernées.</p>
     <p style="margin:.4em 0"><b>Votre nom est demandé au premier lancement.</b> Il est enregistré avec votre travail et figure dans chaque ligne du fichier exporté, avec un identifiant de série. Si plusieurs personnes utilisent le même navigateur, chacune démarre sa propre série avec <b>Nouvelle série</b>.</p>
     <div class="warn">Les images sont celles enregistrées dans mWater au moment de la sélection. Elles ne sont pas retouchées. Une photographie floue ou coupée se relève avec des <b>?</b> ; elle ne s’exclut pas.</div>
@@ -118,6 +125,7 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   </div>
   <div class="card">
     <div class="meta"><span>Grille — <b id="gtitle"></b></span><span class="sp"></span><span id="gcount"></span></div>
+    <div style="padding:10px 12px 0"><div class="win" id="win"></div></div>
     <div class="gridwrap"><table class="cal" id="grid"></table></div>
     <div class="foot">
       <label for="notes">Notes de travail (par exemple : « tiers inférieur illisible »)</label>
@@ -145,9 +153,35 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
 
 <script>
 const MONTHS=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-/* Every sheet covers 2025 or 2026. Neither is a bissextile year, so February
-   has 28 days and the rest of each column is not a date at all. */
-const DIM=[31,28,31,30,31,30,31,31,30,31,30,31];
+/* Month lengths follow the YEAR PRINTED ON THE SHEET, not the year the
+   photograph was taken. 2024 is a bissextile year and has 29 February; 2025,
+   2026 and 2027 do not. Reading it off the sheet is the only way to get both
+   the month lengths and the observable window right. */
+const leap=y=>(y%4===0&&y%100!==0)||y%400===0;
+const dim=y=>[31,leap(y)?29:28,31,30,31,30,31,31,30,31,30,31];
+let DIM=dim(2026);
+const MOISFR=['janvier','f\u00e9vrier','mars','avril','mai','juin','juillet',
+              'ao\u00fbt','septembre','octobre','novembre','d\u00e9cembre'];
+/* A calendar photographed on date D can only carry marks for days up to D.
+   Later cells were blank because nobody had reached them yet, so they are
+   locked: a transcriber must not spend time on them, and the machine must be
+   compared with the human on exactly the same cells. */
+let WIN={y:null,last:null};
+function windowFor(c){
+  const y=c.y?+c.y:null;
+  if(!y||!c.date) return {y:y,last:null};
+  const p=new Date(c.date+'T00:00:00');
+  const end=new Date(y,11,31), start=new Date(y,0,1);
+  if(p<start) return {y:y,last:-1};          // sheet for a year not yet begun
+  if(p>=end)  return {y:y,last:null};        // whole year elapsed
+  return {y:y,last:new Date(y,p.getMonth(),p.getDate())};
+}
+function observable(m,d){
+  if(d+1>DIM[m]) return false;               // not a date at all
+  if(WIN.last===null) return true;           // fully observed, or year unknown
+  if(WIN.last===-1) return false;            // nothing observed yet
+  return new Date(WIN.y,m,d+1)<=WIN.last;
+}
 const KEY='sanitap-transcription-v2';
 let CAL=[], cur=0, store={sets:{},active:''}, st={}, curCell={m:0,d:0};
 const $=s=>document.querySelector(s);
@@ -187,14 +221,58 @@ function started(){
 function paintCounts(){
   const r=rec(CAL[cur].n); let x=0,q=0;
   for(const v of Object.values(r.cells)){ if(v==='X')x++; else if(v==='?')q++; }
-  let days=0; for(let m=0;m<12;m++) days+=DIM[m];
+  let days=0, kept=0;
+  for(let m=0;m<12;m++) for(let d=0;d<DIM[m];d++){
+    if(observable(m,d)) days++;
+    else if((r.cells||{})[m+'-'+d]) kept++;
+  }
+  let xo=0,qo=0;
+  for(const [k,v] of Object.entries(r.cells||{})){
+    const [m,d]=k.split('-').map(Number);
+    if(!observable(m,d)) continue;
+    if(v==='X')xo++; else if(v==='?')qo++;
+  }
+  x=xo; q=qo;
   const blank=days-x-q;
-  $('#gcount').textContent = r.exclu ? 'feuille exclue — pas un calendrier' : `${x} X · ${q} ? · ${blank} vides`;
+  $('#gcount').textContent = r.exclu ? 'feuille exclue — pas un calendrier'
+    : `${x} X · ${q} ? · ${blank} vides` + (kept?` · ${kept} hors fenêtre`:'');
   const doneCal=started();
   const mm=Math.floor(r.secs/60), ss=r.secs%60;
   $('#counts').innerHTML=`Calendrier <b>${cur+1}</b>/<b>${CAL.length}</b> · commencés <b>${doneCal}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
   const w=setInfo().transcripteur;
   $('#who').innerHTML = w ? `Relevé par <b>${w.replace(/[<>&]/g,'')}</b>` : '<b style="color:#b91c1c">Nom non renseigné</b>';
+}
+
+/* ---- the observable window ---- */
+function frDate(iso){
+  if(!iso) return '—';
+  const [y,m,d]=iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+function paintWindow(c){
+  const el=$('#win');
+  if(!c.y){
+    el.className='win none';
+    el.innerHTML=`<b>Année de la feuille non lue.</b> Toutes les cases sont ouvertes. `+
+      `Si vous voyez l’année imprimée en haut de la feuille, notez-la dans les notes.`;
+    return;
+  }
+  el.className='win';
+  if(WIN.last===-1){
+    el.className='win none';
+    el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+      `<b>avant le début de l’année</b>. Aucun jour n’était observable : la feuille devrait être vierge.`;
+    return;
+  }
+  if(WIN.last===null){
+    el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+      `année entièrement écoulée, <b>les 12 mois sont observables</b>.`;
+    return;
+  }
+  const m=MOISFR[WIN.last.getMonth()], d=WIN.last.getDate();
+  el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+    `<b>jours observables jusqu’au ${d} ${m}</b>. Les cases postérieures sont grisées et verrouillées : `+
+    `elles étaient vides parce que le jour n’était pas encore arrivé, et non parce que la pompe fonctionnait.`;
 }
 
 /* ---- who is transcribing ---- */
@@ -244,13 +322,20 @@ function buildGrid(){
     for(let m=0;m<12;m++){
       if(d+1>DIM[m]){ h+='<td><div class="c na"></div></td>'; continue; }
       const v=r.cells[m+'-'+d]||'';
+      if(!observable(m,d)){
+        /* a mark made before the window was known is kept and flagged, never
+           silently thrown away */
+        const keep=v?' keep':'';
+        h+=`<td><div class="c unobs${keep}" data-m="${m}" data-d="${d}" title="Jour non observable sur cette photographie">${v||''}</div></td>`;
+        continue;
+      }
       const cls=v==='X'?'x':(v==='?'?'q':'');
       h+=`<td><div class="c ${cls}" data-m="${m}" data-d="${d}">${v||'·'}</div></td>`;
     }
     h+='</tr>';
   }
   t.innerHTML=h+'</tbody>';
-  t.querySelectorAll('.c:not(.na)').forEach(el=>{
+  t.querySelectorAll('.c:not(.na):not(.unobs)').forEach(el=>{
     el.addEventListener('click',()=>{ curCell={m:+el.dataset.m,d:+el.dataset.d}; cycle(el); markCur(); });
   });
   markCur();
@@ -319,13 +404,16 @@ function show(i){
   stopTimer();
   cur=(i+CAL.length)%CAL.length;
   const c=CAL[cur], r=rec(c.n);
-  $('#meta').innerHTML=`<span>Feuille <b>${c.n}</b> / ${CAL.length}</span><span>Point d’eau <b>${c.wp}</b></span><span>Site <b>${c.site}</b></span><span>Photo du <b>${c.date||'—'}</b></span>`;
+  DIM=dim(c.y?+c.y:2026);
+  WIN=windowFor(c);
+  $('#meta').innerHTML=`<span>Feuille <b>${c.n}</b> / ${CAL.length}</span><span>Point d’eau <b>${c.wp}</b></span><span>Site <b>${c.site}</b></span><span>Photo du <b>${c.date||'—'}</b></span><span>Année feuille <b>${c.y||'?'}</b></span>`;
   $('#gtitle').textContent=`point d’eau ${c.wp}`;
   $('#notes').value=r.notes||'';
   natW=c.w; natH=c.h;
   const img=$('#ph'); img.src=c.f; img.onload=fit; img.width=c.w; img.height=c.h;
   $('#pick').value=String(cur);
   curCell={m:0,d:0};
+  paintWindow(c);
   buildGrid(); paintExcl(); paintCounts(); startTimer();
 }
 $('#prev').onclick=()=>show(cur-1);
@@ -343,7 +431,7 @@ $('#exp').onclick=()=>{
   }
   const n0=started();
   if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return;
-  const out=[['calendrier','point_eau','date_photo','mois','jour','releve','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
+  const out=[['calendrier','point_eau','date_photo','annee_feuille','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
   const now=new Date().toISOString();
   const who=info.transcripteur.trim(), sid=info.session_id;
   for(const c of CAL){
@@ -352,12 +440,23 @@ $('#exp').onclick=()=>{
     if(r.exclu){
       /* one row for the whole sheet: excluded is not the same as all-blank,
          and the comparison must never read it as a sheet of zeroes */
-      out.push([c.n,c.wp,c.date,'','','EXCLU','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,c.y||'','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
       continue;
     }
-    for(let m=0;m<12;m++) for(let d=0;d<DIM[m];d++){
+    const D2=dim(c.y?+c.y:2026), W2=windowFor(c);
+    const obs=(m,d)=>{
+      if(d+1>D2[m]) return false;
+      if(W2.last===null) return true;
+      if(W2.last===-1) return false;
+      return new Date(W2.y,m,d+1)<=W2.last;
+    };
+    for(let m=0;m<12;m++) for(let d=0;d<D2[m];d++){
       const v=(r.cells||{})[m+'-'+d]||'';
-      out.push([c.n,c.wp,c.date,m+1,d+1,v,'non','',who,sid,r.secs||0,r.notes||'',now]);
+      const stt=obs(m,d)?'observe':'non_observe';
+      /* an unobserved cell is exported as unobserved, with any mark made on it
+         before the window was known kept and visible - never dropped, and
+         never pooled with the observed cells */
+      out.push([c.n,c.wp,c.date,c.y||'',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now]);
     }
   }
   if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return; }

@@ -1,38 +1,207 @@
-contact_n,image_id,water_point,question,sheet,reason
-11,0242d5e4a0364fc784d5c006a78f9689,742895993,1.3.1.3 ,1,signboard
-13,02dce8b6aee348539d4b0cc4bed34f61,742896406,2.15.6 d,1,signboard
-28,04c336bb540f4473ace47465de5e8ee5,833032764,2.15.5 c,1,signboard
-46,07d1904ef6264a6095b2c747204251c6,742896619,2.15.5 c,1,pump
-57,09c5faa8321046f8a7c2fc131ab543f3,742896437,2.15.6 d,1,signboard
-62,0a9c7f1ec5544635b6b02275f002a913,742896808,2.15.5 c,1,pump
-69,0c15ae5e715244ba9c83392a4bd28913,698771969,2.15.6 d,2,signboard
-107,1471f648e2704eb28a720002a102451c,742896918,2.15.6 d,2,pump
-116,153fa25eb70640e88c6de732fc29e02e,825513589,2.15.5 c,2,bottle_on_pump
-175,1f02774e423246b3b469c7a521eb5033,814009107,2.15.5 c,3,signboard
-197,230c3d2a230d4449bba9c51ac4e25a82,698772094,2.15.6 d,4,signboard
-347,3f4d6acc82de4813851f96898836df87,814009107,2.15.6 d,6,pump
-457,5278a60bc7c940bd9dd4868147cf78cb,742896011,2.15.5 c,8,signboard
-488,57d2ad4adf284d588471f8537a01ecd5,792699587,2.15.6 d,8,pump
-513,5c901f7faca8407a9279388f269949b9,742897672,2.15.6 d,9,signboard
-529,5eec96481d3443669dba88755759b705,742895986,1.3.1.3 ,9,signboard
-605,6bbd509c2684485ab7106959987584a8,742895852,2.15.5 c,10,signboard
-627,6f2f6dbf683c4af58208778963f940ac,698772245,2.15.6 d,10,pump
-648,739683ded4b8443ebd91c8cd13f79ab1,742897744,1.3.1.3 ,11,signboard
-774,8a70b346e12c41b28207872029c7dfba,698772025,2.15.6 d,13,signboard
-844,9616721afd2144cba635df8b18f22c42,825513589,2.15.6 d,14,document
-916,a1385c0723fd42aba0440fdcfcc9cd3e,742895986,1.3.1.3 ,15,document
-934,a50905d4ccda41f1a10332061962f2e7,742895405,2.15.5 c,15,document
-1010,b1ffb887581f4992ac5285085d02037b,742897634,2.15.5 c,16,pump
-1036,b813dbfa4d1746ec9f885fa407db44f1,699596860,2.15.6 d,17,pump
-1077,bf782b5473bf4a8bb5acde4a47b4eea5,742897919,2.15.6 d,17,document
-1097,c1cabe58e6a040f691bf44999ea4fc36,742894442,2.15.5 c,18,other
-1177,d37f559fc936478299ca207947bb6d7d,742897397,2.15.5 c,19,other
-1188,d5da1978b9e44da0b9240faec3d08dff,699596767,2.15.6 d,19,signboard
-1219,da2ac072b6604c3ea4bf22aa77099d9b,905251341,2.15.6 d,20,document
-1232,db838c74491445118ea1b378421ee88b,905251358,2.15.5 c,20,other
-1256,df92ecce7b534bb38a7abcf308761cba,699596767,2.15.5 c,20,signboard
-1269,e20c33a518374b789f6001cb28001d81,742896169,2.15.5 c,20,signboard
-1272,e240216764de4fffbda1bb159a659724,786871997,2.15.5 c,20,other
-1309,e81e2ca7a4964741a657c44c63c494e7,742897782,2.15.5 c,21,other
-1311,e8658b109c654adaa1447cfb8928c6a8,742897971,2.15.6 d,21,signboard
-1419,fa4950f658a44e8b89fed7920b960994,742895687,2.15.5 c,23,other
+image_id,water_point,site,question,date,reason,reader,reader_detail
+0c15ae5e715244ba9c83392a4bd28913,698771969,Maroantsetra,2.15.6,2026-01-19,signboard,accepted as a calendar,day cells were extracted from it
+8a70b346e12c41b28207872029c7dfba,698772025,Maroantsetra,2.15.6,2026-01-26,signboard,accepted as a calendar,day cells were extracted from it
+230c3d2a230d4449bba9c51ac4e25a82,698772094,Maroantsetra,2.15.6,2026-01-27,signboard,accepted as a calendar,day cells were extracted from it
+6f2f6dbf683c4af58208778963f940ac,698772245,Maroantsetra,2.15.6,2026-02-05,pump,accepted as a calendar,day cells were extracted from it
+d5da1978b9e44da0b9240faec3d08dff,699596767,Maroantsetra,2.15.6,2026-01-12,signboard,accepted as a calendar,day cells were extracted from it
+df92ecce7b534bb38a7abcf308761cba,699596767,Maroantsetra,2.15.5,2026-01-12,signboard,accepted as a calendar,day cells were extracted from it
+b813dbfa4d1746ec9f885fa407db44f1,699596860,Maroantsetra,2.15.6,2026-01-19,pump,accepted as a calendar,day cells were extracted from it
+c1cabe58e6a040f691bf44999ea4fc36,742894442,Fort-Dauphin,2.15.5,2026-04-21,other,accepted as a calendar,day cells were extracted from it
+a50905d4ccda41f1a10332061962f2e7,742895405,Fort-Dauphin,2.15.5,2026-04-21,document,accepted as a calendar,day cells were extracted from it
+fa4950f658a44e8b89fed7920b960994,742895687,Fort-Dauphin,2.15.5,2025-09-21,other,accepted as a calendar,day cells were extracted from it
+6bbd509c2684485ab7106959987584a8,742895852,Maroantsetra,2.15.5,2025-11-01,signboard,accepted as a calendar,day cells were extracted from it
+5eec96481d3443669dba88755759b705,742895986,Maroantsetra,1.3.1.3,2026-09-03,signboard,accepted as a calendar,day cells were extracted from it
+a1385c0723fd42aba0440fdcfcc9cd3e,742895986,Maroantsetra,1.3.1.3,2026-09-03,document,accepted as a calendar,day cells were extracted from it
+0242d5e4a0364fc784d5c006a78f9689,742895993,Maroantsetra,1.3.1.3,2026-09-03,signboard,accepted as a calendar,day cells were extracted from it
+5278a60bc7c940bd9dd4868147cf78cb,742896011,Maroantsetra,2.15.5,2025-11-27,signboard,accepted as a calendar,day cells were extracted from it
+e20c33a518374b789f6001cb28001d81,742896169,Maroantsetra,2.15.5,2025-11-19,signboard,accepted as a calendar,day cells were extracted from it
+02dce8b6aee348539d4b0cc4bed34f61,742896406,Maroantsetra,2.15.6,2025-10-08,signboard,accepted as a calendar,day cells were extracted from it
+09c5faa8321046f8a7c2fc131ab543f3,742896437,Maroantsetra,2.15.6,2025-10-08,signboard,accepted as a calendar,day cells were extracted from it
+07d1904ef6264a6095b2c747204251c6,742896619,Maroantsetra,2.15.5,2025-10-17,pump,accepted as a calendar,day cells were extracted from it
+0a9c7f1ec5544635b6b02275f002a913,742896808,Maroantsetra,2.15.5,2025-10-28,pump,accepted as a calendar,day cells were extracted from it
+1471f648e2704eb28a720002a102451c,742896918,Maroantsetra,2.15.6,2025-10-30,pump,accepted as a calendar,day cells were extracted from it
+d37f559fc936478299ca207947bb6d7d,742897397,Maroantsetra,2.15.5,2025-10-03,other,accepted as a calendar,day cells were extracted from it
+b1ffb887581f4992ac5285085d02037b,742897634,Maroantsetra,2.15.5,2025-09-12,pump,accepted as a calendar,day cells were extracted from it
+5c901f7faca8407a9279388f269949b9,742897672,Maroantsetra,2.15.6,2026-09-10,signboard,accepted as a calendar,day cells were extracted from it
+739683ded4b8443ebd91c8cd13f79ab1,742897744,Maroantsetra,1.3.1.3,2026-09-10,signboard,accepted as a calendar,day cells were extracted from it
+e81e2ca7a4964741a657c44c63c494e7,742897782,Maroantsetra,2.15.5,2026-03-26,other,accepted as a calendar,day cells were extracted from it
+bf782b5473bf4a8bb5acde4a47b4eea5,742897919,Maroantsetra,2.15.6,2026-04-21,document,accepted as a calendar,day cells were extracted from it
+e8658b109c654adaa1447cfb8928c6a8,742897971,Maroantsetra,2.15.6,2026-06-09,signboard,accepted as a calendar,day cells were extracted from it
+e240216764de4fffbda1bb159a659724,786871997,Maroantsetra,2.15.5,2026-06-03,other,accepted as a calendar,day cells were extracted from it
+57d2ad4adf284d588471f8537a01ecd5,792699587,Maroantsetra,2.15.6,2026-05-30,pump,accepted as a calendar,day cells were extracted from it
+1f02774e423246b3b469c7a521eb5033,814009107,Maroantsetra,2.15.5,2026-06-24,signboard,accepted as a calendar,day cells were extracted from it
+3f4d6acc82de4813851f96898836df87,814009107,Maroantsetra,2.15.6,2026-06-24,pump,accepted as a calendar,day cells were extracted from it
+153fa25eb70640e88c6de732fc29e02e,825513589,Maroantsetra,2.15.5,2026-06-03,bottle_on_pump,accepted as a calendar,day cells were extracted from it
+9616721afd2144cba635df8b18f22c42,825513589,Maroantsetra,2.15.6,2026-06-03,document,accepted as a calendar,day cells were extracted from it
+04c336bb540f4473ace47465de5e8ee5,833032764,Maroantsetra,2.15.5,2026-06-06,signboard,accepted as a calendar,day cells were extracted from it
+da2ac072b6604c3ea4bf22aa77099d9b,905251341,Maroantsetra,2.15.6,2026-06-04,document,accepted as a calendar,day cells were extracted from it
+db838c74491445118ea1b378421ee88b,905251358,Maroantsetra,2.15.5,2026-06-04,other,accepted as a calendar,day cells were extracted from it
+5df948ffdac14af29188ee6d71994ff0,670401615,Fort-Dauphin,2.15.5,2025-09-21,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+1ea95df8fde845a8bf20bb637d47e77a,670401684,Fort-Dauphin,2.15.5,2025-09-21,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+244e9a67582944b0b9cb82a3e183a400,698771268,Maroantsetra,2.15.5,2025-12-22,signboard,rejected,no twelve-column grid fits the rules here (fit 0.46)
+28a662db96d1497788c3de2395c307a1,698771268,Maroantsetra,2.15.6,2025-12-22,signboard,rejected,no twelve-column grid fits the rules here (fit 0.46)
+2c5debfad0cb4202b06c78ad61273429,698771897,Maroantsetra,2.15.5,2026-01-11,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+db1f99cbd7a14d0d85a429e63f3ecf39,698771921,Maroantsetra,2.15.6,2026-01-12,signboard,rejected,grid found but wrong shape (month pitch 86 px outside 95-165)
+f8b0fea3eb7f43f997efac87e7c64ee9,698771921,Maroantsetra,2.15.5,2026-01-12,signboard,rejected,grid found but wrong shape (month pitch 86 px outside 95-165)
+6db81cbc2ed1493ca2efcb50c8005455,698771952,Maroantsetra,2.15.5,2026-01-14,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+469918939f844976bffd3c10155182c0,698771969,Maroantsetra,2.15.5,2026-01-19,signboard,rejected,grid found but wrong shape (month pitch 74 px outside 95-165)
+b9244178e5f74719bb0be46c961f1b4b,698771969,Maroantsetra,1.3.1.3,2026-01-26,pump,rejected,grid not locatable: no printed tint found
+b4b5298dffd942faabf0770b7e445365,698772001,Maroantsetra,2.15.5,2026-01-15,signboard,rejected,grid found but wrong shape (month pitch 75 px outside 95-165)
+b2573dbce2ce4d69854a1e08d4ec9f83,698772025,Maroantsetra,2.15.5,2026-01-26,signboard,rejected,no twelve-column grid fits the rules here (fit 0.62)
+2070633c9e8b4b359a546e4ae551878b,698772032,Maroantsetra,2.15.5,2026-01-27,signboard,rejected,grid found but wrong shape (day pitch 18 px outside 24-42)
+c680ccad00894156ac33689749ec909a,698772063,Maroantsetra,2.15.5,2026-01-27,signboard,rejected,grid found but wrong shape (day pitch 18 px outside 24-42)
+3c8c6712960a4d76be8ac99587fe7e61,698772087,Maroantsetra,2.15.5,2026-01-26,signboard,rejected,grid found but wrong shape (day pitch 9 px outside 24-42)
+1275e73ec1c04d91a917d879eb882082,698772094,Maroantsetra,2.15.5,2026-01-27,signboard,rejected,grid found but wrong shape (day pitch 16 px outside 24-42)
+0f5123ce67c0470a90f373504cc67696,698772135,Maroantsetra,2.15.6,2026-02-05,pump,rejected,grid found but wrong shape (day pitch 18 px outside 24-42)
+b85a6a7eb3934440bb7aca05f22c20bf,698772135,Maroantsetra,2.15.5,2026-02-05,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+2ef59c03d65a49e6ac586cdf5eb52c88,698772197,Maroantsetra,2.15.5,2026-02-11,signboard,rejected,grid found but wrong shape (month pitch 80 px outside 95-165)
+ffe16286df0e411399eaf7849818f189,698772197,Maroantsetra,2.15.6,2026-02-11,pump,rejected,no twelve-column grid fits the rules here (fit 0.38)
+82820348da864469ba3e99ead3889611,698772245,Maroantsetra,2.15.5,2026-02-05,signboard,rejected,grid not locatable: no printed tint found
+0ec39552caef4d779974d8d7453ea881,698772252,Maroantsetra,2.15.5,2026-02-05,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+36ed4da1e76b4b30aef1f8868cea256a,699595948,Maroantsetra,2.15.5,2026-03-12,signboard,rejected,grid found but wrong shape (month pitch 75 px outside 95-165)
+408660e59f6b4fadb548b66d3c598951,699596011,Maroantsetra,2.15.6,2025-12-14,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+fa631a4a83cb4cea88ed97241ed64f51,699596011,Maroantsetra,2.15.5,2025-12-14,signboard,rejected,grid found but wrong shape (day pitch 23 px outside 24-42)
+1dbbff4a76374f84bfd590151ce28cfa,699596107,Maroantsetra,2.15.5,2025-12-20,signboard,rejected,grid found but wrong shape (day pitch 17 px outside 24-42)
+4c768c6d9cf1412aaa76b386d852baeb,699596705,Maroantsetra,2.15.5,2025-12-23,signboard,rejected,grid not locatable: no printed tint found
+d16baf219ebc4c958d9a17d4ddf68983,699596860,Maroantsetra,2.15.5,2026-01-19,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+f9b079571b36414b8752c9d32284905b,699596918,Maroantsetra,2.15.5,2026-01-27,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+cbd1ff0db5504cd0b368b18f2a93dc48,699596932,Maroantsetra,2.15.5,2026-01-27,signboard,rejected,grid found but wrong shape (day pitch 22 px outside 24-42)
+8531f6f676e247e18c0558fa2b315d12,699596963,Maroantsetra,2.15.5,2026-01-31,signboard,rejected,no twelve-column grid fits the rules here (fit 0.62)
+de00223003564bfcb73b02bb3354231d,699597050,Maroantsetra,2.15.5,2026-02-12,signboard,rejected,no twelve-column grid fits the rules here (fit 0.62)
+09757a8db92f4f10bf4c26e7f41bf6d9,699597098,Maroantsetra,2.15.6,2026-02-01,pump,rejected,no twelve-column grid fits the rules here (fit 0.38)
+7dacd6f101544030bebc2de2b209e00f,699597098,Maroantsetra,2.15.5,2026-02-01,signboard,rejected,grid found but wrong shape (day pitch 23 px outside 24-42)
+33ceb33ba89a48db9613cfc11611d806,699597108,Maroantsetra,2.15.5,2026-09-04,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+c6f9735975764b258963aa771968555d,699597108,Maroantsetra,2.15.6,2026-09-04,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+1380a6bb168240389831e6bc08a06e83,699597335,Maroantsetra,2.15.5,2026-02-20,signboard,rejected,no twelve-column grid fits the rules here (fit 0.46)
+3abc344b98144dd3a7fc10d2f31cfc1a,699597407,Maroantsetra,2.15.6,2026-02-10,pump,rejected,no twelve-column grid fits the rules here (fit 0.69)
+8df64e3f271d4d91887fa421457671b5,699597407,Maroantsetra,2.15.5,2026-06-06,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+c10ec08025d14e00825c35385a3ea99b,699597438,Maroantsetra,2.15.5,2026-02-25,signboard,rejected,grid found but wrong shape (day pitch 20 px outside 24-42)
+bfb8d317ecf948d2812f2235f562cb68,699597500,Maroantsetra,2.15.6,2026-08-07,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+0dd4d72d408c426f81adf4828e70defa,699597610,Maroantsetra,1.3.1.3,2025-11-25,other,rejected,grid found but wrong shape (month pitch 42 px outside 95-165)
+7b439452f6e54f18b74b12935fde525f,699597988,Maroantsetra,1.3.1.3,2026-02-10,document,rejected,grid found but wrong shape (day pitch 22 px outside 24-42)
+e4dee98f1ae34eb2b4ae2d1d2abeff09,699597995,Maroantsetra,1.3.1.3,2026-05-22,document,rejected,grid found but wrong shape (month pitch 61 px outside 95-165)
+147030f077c64cf3808d97b6d8069c99,718552008,Maroantsetra,2.15.6,2025-11-06,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+5bc43025edf34409a904587fdfb15d27,718552008,Maroantsetra,2.15.5,2025-11-06,other,rejected,grid not locatable: sheet blown out
+3ad4d2839608465ea45cf3e48eb3e131,742893836,Fort-Dauphin,2.15.5,2026-02-25,other,rejected,no twelve-column grid fits the rules here (fit 0.62)
+beff9dffe68744e891d1948ab6f75eff,742893960,Fort-Dauphin,2.15.5,2026-01-23,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+0129e3b8b4b94ddeaeb7378b40032ddb,742894246,Fort-Dauphin,2.15.5,2026-03-20,other,rejected,no twelve-column grid fits the rules here (fit 0.46)
+acfeb6134a124bf1a2de719b47be5503,742894260,Fort-Dauphin,2.15.5,2025-09-05,other,rejected,no twelve-column grid fits the rules here (fit 0.62)
+f9281494ff9944e79c956e663cd18aaf,742894583,Fort-Dauphin,2.15.5,2026-01-15,other,rejected,no twelve-column grid fits the rules here (fit 0.46)
+d9fd45175fa74653a943e3480279d310,742894875,Fort-Dauphin,2.15.5,2026-03-25,other,rejected,grid found but wrong shape (day pitch 17 px outside 24-42)
+b6d17df7ad1e4719a43438d4dc557e08,742895120,Fort-Dauphin,2.15.5,,other,rejected,no twelve-column grid fits the rules here (fit 0.62)
+0960f10895544bb1ad97717853af0776,742895285,Fort-Dauphin,2.15.5,2026-01-21,other,rejected,no twelve-column grid fits the rules here (fit 0.46)
+9960a80054ba49dab3612d47570bbfa4,742895302,Fort-Dauphin,2.15.5,2026-01-21,other,rejected,no twelve-column grid fits the rules here (fit 0.38)
+fd746d4cee1844439fa8cf8127f7a863,742895405,Fort-Dauphin,2.15.5,2026-02-20,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+7ca13478673c45f28eb3226fd4ceffc9,742895412,Maroantsetra,2.15.6,2026-08-18,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+a2636d8db548439b806bf39ade760648,742895412,Maroantsetra,2.15.5,2026-08-18,other,rejected,grid not locatable: hard shadow across the sheet
+e03a2aab98744085936dcf8ac01c8953,742895412,Maroantsetra,2.15.5,2026-08-18,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+db090d7768314c2b94a2e3232fbea794,742895474,Maroantsetra,2.15.5,2025-11-17,other,rejected,no twelve-column grid fits the rules here (fit 0.69)
+c4867585a5fb4b1cbcc00d999cd5c2da,742895508,Maroantsetra,1.3.1.3,2026-08-20,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+861c0fcfad0449948e8c3473d05f11e5,742895632,Maroantsetra,2.15.6,2025-11-08,document,rejected,grid found but wrong shape (month pitch 95 px outside 95-165)
+ed4d525e66394894bce0b3beb819cf54,742895670,Fort-Dauphin,2.15.5,2025-09-21,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+678a2f0aaca149ba85acf8ff889b8017,742895704,Fort-Dauphin,2.15.5,2025-09-21,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+a9099e66e14246c58f279e8b2640d3be,742895728,Fort-Dauphin,2.15.5,2025-09-21,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+90e132b752f34d32ba50f842288316e3,742895742,Fort-Dauphin,2.15.5,2025-09-20,other,rejected,no twelve-column grid fits the rules here (fit 0.38)
+046c4dac4f7048eeb465294130d2b611,742895759,Fort-Dauphin,2.15.5,2025-09-20,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+66e106f81b954efebdc6001c1c1ceb81,742895821,Fort-Dauphin,2.15.5,2026-05-15,other,rejected,grid found but wrong shape (month pitch 42 px outside 95-165)
+9903c68ba3614cf2a942350084f7d725,742895838,Maroantsetra,2.15.5,2025-11-05,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+24ee28f104df490b9da37de670a51ec3,742895883,Maroantsetra,2.15.6,2025-11-08,document,rejected,no twelve-column grid fits the rules here (fit 0.69)
+c6842f85264440cdb73adcd2e94060e1,742895883,Maroantsetra,2.15.5,2025-11-08,document,rejected,no twelve-column grid fits the rules here (fit 0.69)
+d4b99ac816bc4bad948e43e1c5231ec5,742895924,Maroantsetra,2.15.6,2025-11-28,pump,rejected,grid not locatable: out of focus
+e3c310c0885b4749aa3fdc895e23e680,742895924,Maroantsetra,2.15.5,2025-11-28,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+fe2e21db9b8d414db407900d0a7d5f5c,742895955,Maroantsetra,2.15.5,2025-11-26,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+56d25b27c4aa4009942485c24c4aa8ba,742895979,Maroantsetra,2.15.5,2025-11-20,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+781dbfc7223a46e89378759ccfd96c2d,742895993,Maroantsetra,2.15.5,2025-11-28,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+c003293bf4394ab1ba0d5607098fb0f7,742895993,Maroantsetra,2.15.6,2025-11-28,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+56249e020f16419a8e6b44ff5f8e62f1,742896004,Maroantsetra,2.15.5,2025-11-28,signboard,rejected,grid not locatable: hard shadow across the sheet
+7dd1025abe4147989db6ce2ec188f813,742896004,Maroantsetra,2.15.6,2025-11-28,pump,rejected,no twelve-column grid fits the rules here (fit 0.46)
+e2095c16633b4887b2c1e13683c8381a,742896028,Maroantsetra,2.15.5,2025-11-28,signboard,rejected,grid found but wrong shape (day pitch 19 px outside 24-42)
+16f1f0bc7afc4bd5a62d5bc427c07ccf,742896107,Maroantsetra,2.15.5,2025-11-29,pump,rejected,grid found but wrong shape (month pitch 93 px outside 95-165)
+4dc465dbe14443a89b7164f32cec52b4,742896107,Maroantsetra,2.15.6,2025-11-29,pump,rejected,grid not locatable: no printed tint found
+4fbe6247bef54a8191848240001fdd5d,742896114,Maroantsetra,2.15.6,2025-12-01,pump,rejected,no sheet found (paper not separable from background)
+64631e54f38c4a62a6cab9ce72eccd3e,742896114,Maroantsetra,2.15.5,2025-12-01,signboard,rejected,grid not locatable: hard shadow across the sheet
+b4c5228ea41e4a8b87dfe9d4dc35d36b,742896190,Maroantsetra,2.15.6,2025-11-26,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+17beee8cb4024575b32062fe522e81d7,742896286,Maroantsetra,2.15.5,2026-03-09,other,rejected,no twelve-column grid fits the rules here (fit 0.69)
+f62edc95af114fa2ba3bc5bcb4cb839d,742896286,Maroantsetra,2.15.5,2026-03-09,other,rejected,no twelve-column grid fits the rules here (fit 0.62)
+ff7301b2e56b49139924c5a45ef6e630,742896286,Maroantsetra,2.15.6,2026-03-09,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+64d59f905a18454d8139cdb8238d05fe,742896437,Maroantsetra,2.15.5,2026-05-08,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+a05090c96ae54d1c9e6a33883d4a4858,742896475,Maroantsetra,2.15.5,2025-10-11,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+b2f3e6fc2fd043408acb2b80ad8f2899,742896475,Maroantsetra,2.15.6,2025-10-11,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+18270f43cd07447199ec52a98a054b2d,742896509,Maroantsetra,2.15.5,2025-11-24,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+62044feacde5431db44110812f9b8fb3,742896547,Maroantsetra,2.15.5,2025-10-17,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+43a4f7984385418db196f8295550c131,742896578,Maroantsetra,2.15.6,2026-02-24,other,rejected,no twelve-column grid fits the rules here (fit 0.69)
+88d3d27f65d64815b2ca33bd7ba6bae5,742896578,Maroantsetra,2.15.5,2026-02-24,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+3383acde24c74fa5bc94eacaf765c369,742896657,Fort-Dauphin,2.15.5,2026-03-16,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+2a897382ff4a4fc59d28e4a356067c90,742896860,Maroantsetra,2.15.6,2025-10-28,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+e689d0c71e814b95828b8fffa8a30e85,742896860,Maroantsetra,2.15.5,2025-10-28,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+3b898bce812c4569874fe116ccd09fc1,742896918,Maroantsetra,2.15.5,2025-10-30,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+0516817b0125422abc73726bee67a7f0,742896949,Maroantsetra,2.15.5,2025-10-31,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+e9271466140146bdbdb5c7c71b2d283f,742896949,Maroantsetra,2.15.6,2025-10-31,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+f5ca9ce9e01f4a58bf9d8f0b04a4e882,742897050,Maroantsetra,2.15.5,2025-10-29,signboard,rejected,grid found but wrong shape (month pitch 69 px outside 95-165)
+a5f89d996019426eb9ae20f5aafa7195,742897232,Maroantsetra,2.15.5,2025-10-02,pump,rejected,grid found but wrong shape (month pitch 68 px outside 95-165)
+b16b283ff26f46c79b883da8f212b3e2,742897256,Maroantsetra,2.15.6,2025-10-02,signboard,rejected,grid found but wrong shape (month pitch 90 px outside 95-165)
+daa2589e88314908b3143222bf77d496,742897256,Maroantsetra,2.15.5,2025-10-02,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+1737fdbf730f4751adaad9b0b21f1356,742897311,Maroantsetra,2.15.6,2025-10-03,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+d13f599cf2d44d5eb33fe7a7885683b4,742897311,Maroantsetra,2.15.5,2025-10-03,pump,rejected,no twelve-column grid fits the rules here (fit 0.69)
+00ca1c0bbf9646a9b86d8ee16e5a7281,742897397,Maroantsetra,2.15.6,2025-10-03,signboard,rejected,no twelve-column grid fits the rules here (fit 0.62)
+13e960d83c4b4ffb8bcc07dac2cb2cd0,742897562,Maroantsetra,2.15.5,2025-09-12,pump,rejected,no twelve-column grid fits the rules here (fit 0.46)
+3c8e6eb0b20d46718a1b4aa429183f2f,742897672,Maroantsetra,2.15.5,2026-09-10,signboard,rejected,no twelve-column grid fits the rules here (fit 0.46)
+ff21deeaa5274376808ac69f72ef02cd,742897713,Maroantsetra,1.3.1.3,2026-06-11,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+80b3a1294721413d831180da11a931d9,742897782,Maroantsetra,2.15.6,2026-03-26,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+1dd1a92ed56f4a97a5c970f5157cf038,742897885,Maroantsetra,2.15.6,2026-06-06,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+5be316803a5f404ea7162e9d7a91f2d5,742897892,Maroantsetra,2.15.5,2025-09-24,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+77cc55570133452a8dcd46236fdc2cf7,742897919,Maroantsetra,2.15.5,2026-04-21,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+684a850a638b4765a63c010e4f05b878,742897933,Maroantsetra,2.15.6,2026-06-09,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+f5bff644a2b840f98a48af0f5129dadd,742898075,Maroantsetra,2.15.5,2026-03-27,other,rejected,grid found but wrong shape (month pitch 88 px outside 95-165)
+6bbd4ce1bebe4c64a4a920bb82a28c2c,742972377,Maroantsetra,2.15.5,2026-03-11,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+0beb9d1d4e8a4fcc8018faa633b76e3e,754036911,Maroantsetra,2.15.6,2026-03-13,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+cca7c24ba86249acaa70a51ac9ba68bf,754036911,Maroantsetra,2.15.5,2026-03-13,other,rejected,no twelve-column grid fits the rules here (fit 0.46)
+1427d408764f446a9c994a17032d501d,771703469,Maroantsetra,2.15.6,2026-07-22,signboard,rejected,no twelve-column grid fits the rules here (fit 0.54)
+df28c75a23264baa94d16a0d4775cd54,771703469,Maroantsetra,2.15.5,2026-07-22,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+b136c8b891a04c409be259da1d24584c,771799255,Maroantsetra,2.15.5,2026-03-18,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+319ae421969f42eb8b68d1aa1d90058f,771799279,Maroantsetra,2.15.6,2026-03-19,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+9c4cbf422662444892a801101cdf2bc7,771799279,Maroantsetra,2.15.5,2026-03-19,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+6e861457376347e8909156d7fdd40ad9,771799286,Maroantsetra,1.3.1.3,2026-09-11,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+e3f8f70b74964ae9ab356271f634e54a,771820645,Maroantsetra,2.15.5,2025-12-09,signboard,rejected,image too small (min side < 400 px)
+fe01291538cc48c784fd63abecc7f444,771820645,Maroantsetra,2.15.6,2025-12-09,signboard,rejected,image too small (min side < 400 px)
+3914e990040c4c81b5303c070833c82b,778694357,Maroantsetra,2.15.6,2026-06-05,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+be96fa3127044d38b6f44b40b8bb93fa,778694357,Maroantsetra,2.15.6,2026-06-05,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+519ab92990ce45cbb3408fd91f897ee1,786871997,Maroantsetra,2.15.6,2026-06-03,document,rejected,no twelve-column grid fits the rules here (fit 0.69)
+54217cf0374b443cbbbdaae5ba183b4d,786871997,Maroantsetra,2.15.6,2026-06-03,document,rejected,no twelve-column grid fits the rules here (fit 0.69)
+a0a4fb3224094d3fa79cd2af335d8202,786932780,Maroantsetra,2.15.5,2026-07-03,signboard,rejected,grid found but wrong shape (month pitch 93 px outside 95-165)
+de1b31d8728a417f8aa905805796d700,786932780,Maroantsetra,2.15.6,2026-07-03,signboard,rejected,grid found but wrong shape (month pitch 93 px outside 95-165)
+73c4153f190d48dabc9798478d5f66ff,792699587,Maroantsetra,2.15.5,2026-05-30,other,rejected,no twelve-column grid fits the rules here (fit 0.62)
+3fbfcc24ce3a49088910fb2451e6fab3,794012210,Maroantsetra,2.15.5,2026-05-30,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+316d75f80230425b8bfbbb961b4a8183,797195301,Maroantsetra,2.15.5,2026-05-28,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+c83b40e262c942f081669f0fb1526a05,797195301,Maroantsetra,2.15.6,2026-05-28,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+1fd7dd387bc24150b4200bbbf4d23092,797195318,Maroantsetra,2.15.6,2026-05-29,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+2e3d63e5fcb64098a11fc50d97b155ed,797195318,Maroantsetra,2.15.5,2026-05-29,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+4d304b7ce1124067b2ce2e2c1739f76a,797885233,Maroantsetra,2.15.5,2026-05-29,other,rejected,grid found but wrong shape (day pitch 22 px outside 24-42)
+1a8bd62e0fec46b6a1378544bdf1b111,814478712,Maroantsetra,2.15.5,2026-06-24,signboard,rejected,no twelve-column grid fits the rules here (fit 0.38)
+7a77254e2213417fa8f25d998f86a733,814478712,Maroantsetra,2.15.6,2026-06-24,signboard,rejected,grid found but wrong shape (month pitch 63 px outside 95-165)
+5c514fba9e8b44a8a5e035ac109e38bb,820780971,Maroantsetra,2.15.5,2026-06-16,other,rejected,grid found but wrong shape (month pitch 85 px outside 95-165)
+47ae2825aed948e694d15b500dd1931b,823466032,Maroantsetra,2.15.6,2026-06-04,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+6a277bca57b7420a80c5eec8a720a071,823466032,Maroantsetra,2.15.5,2026-06-04,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+b602f65396814a05b1fc35a80b416ff2,825513589,Maroantsetra,2.15.6,2026-06-03,document,rejected,grid not locatable: no printed tint found
+a441407ea6b94612a72908a1c7e6fbfc,833032647,Maroantsetra,1.3.1.3,2026-03-18,document,rejected,grid found but wrong shape (month pitch 94 px outside 95-165)
+bac6ce4da1334fc4845ac22710f34c7e,833032764,Maroantsetra,2.15.6,2026-06-06,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+d4cab942981b4f1583436a537cc0448a,833032764,Maroantsetra,2.15.6,2026-06-06,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+48f993598705423eacb498736fe4681b,833032881,Maroantsetra,2.15.6,2026-06-05,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+3b6f412a32244a708d07b58c6d449f51,833032939,Maroantsetra,2.15.5,2026-07-19,signboard,rejected,grid found but wrong shape (day pitch 17 px outside 24-42)
+56ca8570c92542c99d004277a9ed5056,833032939,Maroantsetra,2.15.6,2026-07-19,document,rejected,no twelve-column grid fits the rules here (fit 0.62)
+06e8fd745557490bacd0b0967e2fe504,833033033,Maroantsetra,2.15.6,2026-06-05,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+1f87a9989cbd407392e406e09c65a530,833033033,Maroantsetra,2.15.5,2026-06-05,other,rejected,grid found but wrong shape (month pitch 75 px outside 95-165)
+bb842a7ed70844ba86ea19794401e27d,833033033,Maroantsetra,2.15.5,2026-06-05,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+c47d4b893a3b4c47afbad32fa5b8d3a7,833033033,Maroantsetra,2.15.6,2026-06-05,other,rejected,no twelve-column grid fits the rules here (fit 0.46)
+529f30655e20437ca294644770eaf04c,833033057,Maroantsetra,2.15.6,2026-07-08,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+e10958b573bb414babcdae4b86e6635c,833033181,Maroantsetra,2.15.6,2026-05-29,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+ffed4c27012e4ce2aa04ce45d80545f4,833033181,Maroantsetra,2.15.5,2026-05-29,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+14a678d545ff4f5492b2101e4f34df1c,833033253,Maroantsetra,2.15.6,2026-06-03,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+4273d1106fa9402c84bb377c07eeafcc,897922519,Maroantsetra,2.15.6,2026-06-19,signboard,rejected,no twelve-column grid fits the rules here (fit 0.69)
+887c429fb136461eba4b4ae504ca1bff,905251279,Maroantsetra,2.15.5,2026-06-16,signboard,rejected,no twelve-column grid fits the rules here (fit 0.38)
+11ab87c3d28b40fba40468fcb89df85f,905251334,Maroantsetra,2.15.6,2026-06-08,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+51ce627c743c4ebcb8675732daf96a1c,905251334,Maroantsetra,2.15.5,2026-06-08,other,rejected,no twelve-column grid fits the rules here (fit 0.54)
+afa45e2b92c1456fb2938f3b335d0817,905251334,Maroantsetra,2.15.6,2026-06-08,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+6f8af344e3a9434cbb1c47ba3ea9fd43,905251358,Maroantsetra,2.15.6,2026-06-04,document,rejected,no twelve-column grid fits the rules here (fit 0.54)
+54dfd957bef947f0a362b730e5ae493b,905251372,Maroantsetra,2.15.6,2026-06-04,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
+e660bd0a06e042f8bca94dc1fd11e96d,905251372,Maroantsetra,2.15.5,2026-06-04,document,rejected,no twelve-column grid fits the rules here (fit 0.46)
