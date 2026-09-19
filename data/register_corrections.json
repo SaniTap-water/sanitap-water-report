@@ -1,0 +1,236 @@
+{
+ "version": "2026-09-15",
+ "decided_by": "Adriaan Mol, COO SaniTap",
+ "note": "Standing record of corrections and exclusions applied to the mWater register when this report is built. Nothing is deleted in mWater. Each entry states what the record said, what it should say, and the evidence that settled it. A water point listed here as excluded can never re-enter the actively managed portfolio without an entry being removed from this file.",
+ "corrected": [
+  {
+   "wp": "670401732",
+   "was": "first rehabilitation recorded as NOT successful",
+   "now": "successful",
+   "evidence": "breakdown-repair record 13 May 2025 with status working; E. coli pass 6 May 2025",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response 29267e4e...): success No -> Yes, correction note in the response history. NOT changed: the 3-month out-of-order control answers No on this record - an eligibility question under methodology 2.2.1(d), not a data error."
+  },
+  {
+   "wp": "742895113",
+   "was": "first rehabilitation recorded as NOT successful",
+   "now": "successful",
+   "evidence": "breakdown-repair record 25 Apr 2025 with status working",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response cd388d9a...): success No -> Yes, correction note in the response history."
+  },
+  {
+   "wp": "742895711",
+   "was": "first rehabilitation recorded as NOT successful",
+   "now": "successful",
+   "evidence": "breakdown-repair record 17 Jan 2025 with status working",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response c2ea4178...): success No -> Yes, correction note in the response history. NOT changed: the 3-month out-of-order control answers No - eligibility question under 2.2.1(d)."
+  },
+  {
+   "wp": "742895144",
+   "was": "first rehabilitation recorded as NOT successful",
+   "now": "successful",
+   "evidence": "E. coli pass 11 Apr 2025 - water drawn 11 months after the failed rehabilitation",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response f35624fd...): success No -> Yes, correction note in the response history."
+  },
+  {
+   "wp": "698795345",
+   "was": "success field left blank",
+   "now": "successful",
+   "evidence": "preventive visit 21 May 2026; repair 28 Jul 2026; E. coli pass 9 Jul 2025; photograph on file",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response 56bab47a...): success blank -> Yes, correction note in the response history. The 3-month control is also blank and was deliberately left blank - it must be answered by the team that did the work, not inferred here."
+  },
+  {
+   "wp": "742895292",
+   "was": "rehabilitation record rejected in mWater",
+   "now": "successful",
+   "evidence": "preventive visit 21 Jan 2026; repair 14 May 2026; E. coli pass 6 May 2025; photograph on file",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response 16f53a26...): status rejected -> final and success No -> Yes. The rejection message itself read 'Premiere rehabilitation reussie mais formulaire non complet'."
+  },
+  {
+   "wp": "670402221",
+   "was": "rehabilitation record rejected in mWater",
+   "now": "successful",
+   "evidence": "E. coli pass 29 Apr 2025; WorldPop allocation 300",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response 75cd104d...): status rejected -> final. Success was already Yes and was not touched. Rejection reason was 'Not in charge' - a team-assignment matter, not a finding that the work failed."
+  },
+  {
+   "wp": "833033198",
+   "was": "rehabilitation record rejected in mWater",
+   "now": "successful",
+   "evidence": "call-centre status working 24 Mar 2026. NOTE: E. coli FAIL 14 Aug 2025 - remains on the failing water-quality list and is not eligible for point-of-use sampling",
+   "decided_on": "2026-09-15",
+   "written_back": "written back to mWater 15/09/2026 (response 5c0c6783...): status rejected -> final. Success was already Yes and was not touched. Rejection reason 'Not in charge'. Remains on the failing water-quality list (E. coli fail 14/08/2025)."
+  },
+  {
+   "wp": "782134540",
+   "was": "no first-rehabilitation record exists",
+   "now": "successful - record to be created",
+   "evidence": "repair 28 Jun 2025; E. coli pass 11 Jul 2025; call-centre 'partially working' 18 Mar 2026",
+   "decided_on": "2026-09-15",
+   "written_back": "NOT written back. There is no first-rehabilitation response to correct, and one has not been created: writing a rehabilitation record with no date, no technician and no photographs would be manufacturing evidence rather than correcting it. The point stays in the portfolio on the strength of its repair, water-quality and call-centre records; MadAvance to file a proper rehabilitation record if the paperwork exists."
+  }
+ ],
+ "excluded": [
+  {
+   "wp": "742895223",
+   "was": "first rehabilitation recorded as NOT successful",
+   "reason": "no evidence of function",
+   "evidence": "no visit, repair, call, water test, photograph or status since the failed rehabilitation of 30 May 2024. Nearest other water point 1,364 m - not a duplicate.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "742895364",
+   "was": "first rehabilitation recorded as NOT successful",
+   "reason": "no evidence of function",
+   "evidence": "nothing since 1 Jun 2024. Nearest other point 827 m (742895357, also dormant).",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "742895388",
+   "was": "first rehabilitation recorded as NOT successful",
+   "reason": "no evidence of function",
+   "evidence": "nothing since 1 Jun 2024. Nearest other point 446 m - not a duplicate.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "742895357",
+   "was": "success field left blank",
+   "reason": "no evidence of function",
+   "evidence": "nothing since 1 Jun 2024. Nearest other point 827 m (742895364, also dormant).",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "670401897",
+   "was": "no first-rehabilitation record exists",
+   "reason": "no evidence it exists as a distinct water point",
+   "evidence": "no record of any kind, ever. No commune. 471 m from 742894916, a working India Mark in Ranopiso. Also on the sampling-frame reconciliation as one of the three Fort-Dauphin 'no records' placeholders.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "670401921",
+   "was": "no first-rehabilitation record exists",
+   "reason": "probable duplicate",
+   "evidence": "no record of any kind, ever. Registered as an India Mark but sits 69 m from 742894600 and 114 m from 742894590, both working Canzee points in Manambaro. Also on the sampling-frame reconciliation as a Fort-Dauphin placeholder. Reinstate if a field check confirms a distinct pump at these coordinates.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623074",
+   "was": "no first-rehabilitation record exists",
+   "reason": "abandoned register entry",
+   "evidence": "no record of any kind, ever. No commune. Isolated - 3,150 m from the nearest registered point, so not a duplicate. Also on the sampling-frame reconciliation as a Fort-Dauphin placeholder.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623146",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "appears only in the old combined form under work type 'Identification des points d'eau'. No rehabilitation, no visit, no status, no population allocation. Marolinta.",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623153",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623184",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623263",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623287",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623294",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623304",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146, but carries a 2026 borehole-progress record - anomaly, check whether the pump type is wrong rather than the entry",
+   "decided_on": "2026-09-15"
+  },
+  {
+   "wp": "987623397",
+   "was": "in the register as a rope pump",
+   "reason": "survey entry, not a managed asset",
+   "evidence": "as 987623146",
+   "decided_on": "2026-09-15"
+  }
+ ],
+ "eligibility_flags": [
+  {
+   "wp": "670401732",
+   "issue": "3-month out-of-order control answered No",
+   "rule": "methodology 2.2.1(d) / SDWS 2 - rehabilitation requires evidence the technology was non-operational with no planned maintenance for at least 3 months beforehand",
+   "action": "refer to James Walker before this point is counted in a monitoring report"
+  },
+  {
+   "wp": "742895711",
+   "issue": "3-month out-of-order control answered No",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "refer to James Walker before this point is counted in a monitoring report"
+  },
+  {
+   "wp": "742895010",
+   "issue": "3-month out-of-order control answered No",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "refer to James Walker before this point is counted in a monitoring report"
+  },
+  {
+   "wp": "742894002",
+   "issue": "3-month out-of-order control left blank",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "MadAvance to complete on the original record"
+  },
+  {
+   "wp": "742894325",
+   "issue": "3-month out-of-order control left blank",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "MadAvance to complete on the original record"
+  },
+  {
+   "wp": "742893984",
+   "issue": "3-month out-of-order control left blank",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "MadAvance to complete on the original record"
+  },
+  {
+   "wp": "698795345",
+   "issue": "3-month out-of-order control left blank",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "MadAvance to complete on the original record"
+  },
+  {
+   "wp": "742895357",
+   "issue": "3-month out-of-order control left blank",
+   "rule": "methodology 2.2.1(d) / SDWS 2",
+   "action": "none - this point is excluded from the portfolio for lack of any evidence of function"
+  }
+ ]
+}

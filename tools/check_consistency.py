@@ -829,6 +829,111 @@ def main():
               "collapsed" if '<details class="expl">' in seg else "STILL OPEN",
               "what explains method collapses; what changes weekly stays open")
 
+    # ---- 7o. every figure with a named source file is checked against it ---
+    # The extraction drift was not a special case, it was the first one noticed.
+    # Any file the page names as the source of a number must be in the repo and
+    # must be read here, or the two can diverge silently.
+    cov_p = os.path.join(here, "data", "gardien_calendar_coverage.csv")
+    if not os.path.exists(cov_p):
+        check("gardien calendar coverage file present", False,
+              "data/gardien_calendar_coverage.csv", "MISSING",
+              "the page names it as the source of 674 / 62 / 385")
+    else:
+        import csv as _csv2
+        cr = list(_csv2.DictReader(open(cov_p)))
+        have = [r for r in cr if r["has_calendar_photo"] == "True"]
+        none_ever = len(cr) - len(have)
+        stale = [r for r in have if r["days_since"] and int(r["days_since"]) > 182]
+        photos_managed = sum(int(r["photos_total"] or 0) for r in cr)
+        for got, label in ((len(cr), "points"), (len(have), "with a calendar photograph"),
+                           (none_ever, "with none ever"), (len(stale), "stale beyond six months")):
+            want = f"{got:,}" if got >= 1000 else str(got)
+            check(f"calendar coverage on the page matches the file: {label} = {want}",
+                  f"<b>{want}</b>" in idx, want,
+                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+                  "from data/gardien_calendar_coverage.csv")
+        # the page states the inventory total; the coverage file counts only
+        # photographs on managed points. Both are stated, and both must be right.
+        check("the two photograph counts are distinguished on the page",
+              f"<b>{photos_managed:,}</b>" in idx and "<b>2,367</b>" in idx,
+              f"{photos_managed:,} on managed points and 2,367 on file",
+              "both stated" if f"<b>{photos_managed:,}</b>" in idx else f"{photos_managed:,} NOT STATED",
+              "2,367 is every calendar photograph; the rest sit on unregistered points")
+
+    # the corrections file the page says is versioned alongside it must exist
+    corr_p = os.path.join(here, "data", "register_corrections.json")
+    check("register_corrections.json is versioned alongside the report",
+          os.path.exists(corr_p), "present", "present" if os.path.exists(corr_p) else "MISSING",
+          "the page claims it is; it must be true")
+    if os.path.exists(corr_p):
+        cj = json.load(open(corr_p))
+        pj = js_const(idx, "CORR") or {}
+        for k in ("corrected", "excluded", "eligibility_flags"):
+            a_ = len(cj.get(k, [])) if isinstance(cj.get(k), list) else cj.get(k)
+            b_ = len(pj.get(k, [])) if isinstance(pj.get(k), list) else pj.get(k)
+            check(f"corrections file matches the page: {k}", a_ == b_, a_, b_,
+                  "the page is built from this file, so they cannot differ")
+
+    # ---- 7p. the open Gold Standard review items are tracked ---------------
+    # These are the gate to certification. The report went months without
+    # tracking any of them; the section and the actions must both stay.
+    check("the Gold Standard design review section exists",
+          'id="gsrevsec"' in idx, "present",
+          "present" if 'id="gsrevsec"' in idx else "MISSING",
+          "round 3 sits at Request Clarification with six items open")
+    for ref, why in (("&sect;4.15 CAR#1", "Section F eligibility criteria"),
+                     ("&sect;4.16 CAR#4", "baseline surveys after crediting period start"),
+                     ("&sect;4.16 CAR#5", "technical life of India Mk2/3 and Afridev"),
+                     ("&sect;4.16 CAR#7(b)", "SDWS 3 chemical tests and parallel validation"),
+                     ("&sect;4.16 CAR#8", "VVB external experts"),
+                     ("&sect;4.19 CL#2", "installation database")):
+        check(f"open review item tracked: {ref} ({why})", ref in idx, "tracked",
+              "tracked" if ref in idx else "MISSING",
+              "each open item needs a reference, an owner and a date")
+
+    # ---- 7q. the transcription page must not leak the machine output -------
+    # The whole point of the human round is that it is independent. If any
+    # extracted value reaches the page the comparison is worthless, so the
+    # shipped files are checked against the extraction figures themselves.
+    tr_dir = os.path.join(here, "transcription")
+    tr_html = os.path.join(tr_dir, "index.html")
+    tr_man = os.path.join(tr_dir, "calendars.json")
+    if not (os.path.exists(tr_html) and os.path.exists(tr_man)):
+        check("transcription page present", False, "transcription/index.html",
+              "MISSING", "the human round needs somewhere to be done")
+    else:
+        tr = open(tr_html, encoding="utf8").read()
+        man = json.load(open(tr_man))
+        allowed = {"n", "f", "wp", "site", "date", "w", "h"}
+        extra = sorted({k for r in man for k in r} - allowed)
+        check("transcription manifest carries no derived field",
+              not extra, "only identity fields",
+              f"extra: {', '.join(extra)}" if extra else "only identity fields",
+              "no stage, geometry, stratum or confidence may ship")
+        n_img = len([f for f in os.listdir(os.path.join(tr_dir, "img"))
+                     if f.endswith(".jpg")]) if os.path.isdir(os.path.join(tr_dir, "img")) else 0
+        check("every selected calendar has its image bundled",
+              n_img == len(man), len(man), n_img,
+              "the page must work without reaching mWater")
+        # no extraction figure may appear anywhere in the shipped page
+        figp2 = os.path.join(here, "data", "calendar_extraction_figures.json")
+        leaked = []
+        if os.path.exists(figp2):
+            for k, v in json.load(open(figp2)).items():
+                if isinstance(v, (int, float)) and v >= 100:
+                    for form in (f"{v:,}", str(v)):
+                        if re.search(r"(?<![\d.])" + re.escape(form) + r"(?![\d.])", tr):
+                            leaked.append(f"{k}={form}")
+                            break
+        check("no extraction figure appears in the transcription page",
+              not leaked, "none", ", ".join(leaked[:3]) if leaked else "none",
+              "the transcriber must not see what the software decided")
+        for word in ("confidence", "illegible", "impossible", "extraction", "geometry"):
+            check(f"transcription page free of machine vocabulary: {word!r}",
+                  word.lower() not in tr.lower(), "absent",
+                  "FOUND" if word.lower() in tr.lower() else "absent",
+                  "nothing may hint at an automatic result")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
