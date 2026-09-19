@@ -934,6 +934,114 @@ def main():
                   "FOUND" if word.lower() in tr.lower() else "absent",
                   "nothing may hint at an automatic result")
 
+    # ---- 7r. the non-calendar exclusions ----------------------------------
+    # 37 of the images the reader accepted turned out to be signboards, pumps,
+    # posters and portraits. They inflated every coverage figure until they
+    # were taken out, so the list, the count on the page and the count in the
+    # figures file all have to say the same thing, and the day-cell arithmetic
+    # has to close against the 12 x 31 grid that is actually printed.
+    ncp = os.path.join(here, "data", "calendar_not_calendar.csv")
+    if not os.path.exists(ncp):
+        check("non-calendar list present", False, "data/calendar_not_calendar.csv",
+              "MISSING", "every excluded image must be named, not just counted")
+    elif os.path.exists(figp):
+        import csv as _csv2
+        nc = list(_csv2.DictReader(open(ncp)))
+        fig = json.load(open(figp))
+        check("non-calendar list matches the figures file",
+              len(nc) == fig["photographs_excluded_not_calendar"],
+              fig["photographs_excluded_not_calendar"], len(nc),
+              "the count on the page is the length of the list")
+        check(f"page states the non-calendar count: {len(nc)}",
+              f"<b>{len(nc)}</b>" in idx, len(nc),
+              len(nc) if f"<b>{len(nc)}</b>" in idx else "NOT ON THE PAGE")
+        allowed_reasons = {"signboard", "pump", "document", "other", "bottle_on_pump"}
+        bad = [r for r in nc if r["reason"] not in allowed_reasons
+               or not r["water_point"] or not r["image_id"]]
+        check("every excluded image carries a water point, an id and a reason",
+              not bad, "all 37 complete", f"{len(bad)} incomplete",
+              "a bare count is not something Jan can act on")
+        check("the page points at the non-calendar list",
+              "data/calendar_not_calendar.csv" in idx, "named", 
+              "named" if "data/calendar_not_calendar.csv" in idx else "NOT NAMED")
+        # every sheet prints 12 x 31 cells, so the two cell counts must close
+        grid = fig["images_with_day_calls"] * 12 * 31
+        tot = fig["real_cells"] + fig["impossible_cells"]
+        check("day cells close against the printed 12 x 31 grid",
+              tot == grid, grid, tot,
+              "real + impossible must be the whole sheet, for every sheet")
+        # 2025 and 2026 are both common years: seven cells per sheet cannot exist
+        per_sheet = fig["impossible_cells"] / fig["images_with_day_calls"]
+        check("seven impossible cells per sheet, not six",
+              abs(per_sheet - 7) < 1e-9, 7, round(per_sheet, 4),
+              "29, 30 and 31 February plus four 31sts; neither year is a leap year")
+        check("the page says seven, not six",
+              "<b>seven</b>" in idx and "Six cells on every sheet" not in idx,
+              "seven", "seven" if "<b>seven</b>" in idx else "STILL SAYS SIX")
+        check("visits with and without a readable image sum to the total",
+              fig["visits_with_readable"] + fig["visits_without_readable"]
+              == fig["visits_total"], fig["visits_total"],
+              fig["visits_with_readable"] + fig["visits_without_readable"])
+        nup = os.path.join(here, "data", "calendar_no_usable_image.csv")
+        if os.path.exists(nup):
+            nu = list(_csv2.DictReader(open(nup)))
+            check("the reissue priority list matches the points-without count",
+                  len(nu) == fig["points_without_readable"],
+                  fig["points_without_readable"], len(nu),
+                  "data/calendar_no_usable_image.csv is that list, not a sample")
+
+    # ---- 7s. the transcription round's method is stated, not assumed -------
+    # A reference transcription made by someone who had seen the aggregate
+    # error statistics is still usable, but only if a verifier is told so
+    # before reading the agreement figure.
+    for frag, why in (
+            ("Adriaan Mol", "the reference transcriber is named"),
+            ("aggregate error statistics", "their exposure is stated"),
+            ("no per-cell output", "the limit of that exposure is stated"),
+            ("minimum of <b>30</b>", "the methodology minimum is stated"),
+            ("18,300", "the day-cell count is stated"),
+            ("the calendar", "the unit of variation is stated")):
+        check(f"transcription method note: {why}", frag in idx, "present",
+              "present" if frag in idx else "MISSING",
+              "the accuracy assessment is only as good as its declared method")
+    check("days-operational section reserves the result footnote",
+          "An accuracy assessment of the machine reading of these calendars is in progress" in idx,
+          "reserved", "reserved" if "An accuracy assessment of the machine reading"
+          " of these calendars is in progress" in idx else "MISSING",
+          "the footnote is placed before the results, and says so")
+
+    # ---- 7t. the transcription page records who did the work ---------------
+    trh = os.path.join(here, "transcription", "index.html")
+    if os.path.exists(trh):
+        tr2 = open(trh, encoding="utf8").read()
+        # the columns are asserted on the export header itself, not on the
+        # word appearing somewhere in the file: an earlier version of this
+        # check passed after the column had been deleted from the export
+        want_cols = ["calendrier", "point_eau", "date_photo", "mois", "jour",
+                     "releve", "exclu", "exclu_motif", "transcripteur",
+                     "session_id", "secondes_sur_calendrier", "notes",
+                     "exporte_le"]
+        hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
+        check("transcription export header carries every column, in order",
+              hdr in tr2.replace(" ", ""), ",".join(want_cols),
+              ",".join(want_cols) if hdr in tr2.replace(" ", "") else "CHANGED",
+              "transcripteur and session_id must reach every exported row")
+        for frag, why in (
+                ("Ce n\u2019est pas un calendrier", "the not-a-calendar control exists"),
+                ("EXCLU", "an excluded sheet exports as excluded, not as blanks"),
+                ("out.push([c.n,c.wp,c.date,'','','EXCLU'", "the excluded row has no day cells")):
+            check(f"transcription page: {why}", frag in tr2, "present",
+                  "present" if frag in tr2 else "MISSING")
+        check("transcription page refuses an unnamed export",
+              "avant d\u2019exporter" in tr2, "refused", 
+              "refused" if "avant d\u2019exporter" in tr2 else "NOT ENFORCED",
+              "an anonymous transcript cannot be compared to anything")
+        check("transcription grid uses real month lengths",
+              "const DIM=[31,28,31,30,31,30,31,31,30,31,30,31]" in tr2,
+              "February 28", 
+              "February 28" if "const DIM=[31,28,31,30,31,30,31,31,30,31,30,31]" in tr2
+              else "WRONG", "2025 and 2026 are both common years")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):

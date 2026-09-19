@@ -48,6 +48,21 @@ details.help>summary{cursor:pointer;font-weight:600;padding:10px 14px}
 details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-width:none}
 .key{display:inline-block;border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.82rem;background:#fff;color:var(--ink)}
 .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:9px 12px;margin-top:10px;font-size:.9rem;color:#78350f}
+.who{font-size:.86rem;color:var(--ink2);white-space:nowrap}
+.who b{color:var(--ink)}
+.excl{margin-top:12px;border:1px solid #fecaca;border-top:3px solid #dc2626;border-radius:8px;background:#fff5f5;padding:10px 12px}
+.excl .t{font-weight:700;color:#991b1b;margin-bottom:6px}
+.excl .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.9rem}
+.excl input[type=checkbox]{width:17px;height:17px;accent-color:#dc2626;cursor:pointer}
+.excl .hint{font-size:.83rem;color:#7f1d1d;margin-top:6px}
+.gridwrap.off{opacity:.32;pointer-events:none;filter:grayscale(1)}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:60;padding:16px}
+.modal[hidden]{display:none}
+.modal .box{background:#fff;border-radius:12px;max-width:440px;width:100%;padding:18px 20px}
+.modal h2{margin:0 0 6px;font-size:1.05rem}
+.modal p{margin:.4em 0;font-size:.9rem;color:var(--ink2)}
+.modal input[type=text]{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--rule);border-radius:7px;margin-top:8px}
+.modal .err{color:#b91c1c;font-size:.86rem;min-height:1.1em}
 </style>
 </head>
 <body>
@@ -57,6 +72,9 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   <button id="prev">◀ Précédent</button>
   <button id="next">Suivant ▶</button>
   <span class="sp"></span>
+  <span class="who" id="who"></span>
+  <button id="chgwho">Changer de nom</button>
+  <button id="newset">Nouvelle série</button>
   <span class="counts" id="counts"></span>
   <button id="exp" class="primary">Exporter mes relevés (CSV)</button>
 </header>
@@ -69,9 +87,24 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <p style="margin:.4em 0"><b>N’en discutez avec personne ayant vu un résultat automatique.</b> Ce relevé ne sert que s’il est fait indépendamment.</p>
     <p style="margin:.4em 0">Cliquez une case pour faire défiler <b>vide → X → ?</b>. Au clavier : flèches pour se déplacer, <span class="key">X</span> pour marquer, <span class="key">?</span> ou <span class="key">/</span> pour illisible, <span class="key">Espace</span> pour faire défiler, <span class="key">Retour arrière</span> pour effacer.</p>
     <p style="margin:.4em 0">Votre travail est enregistré dans ce navigateur au fur et à mesure. Vous pouvez fermer la page et reprendre plus tard. Quand vous avez terminé, cliquez sur <b>Exporter mes relevés</b> et envoyez le fichier au superviseur.</p>
-    <div class="warn">Les images sont celles enregistrées dans mWater au moment de la sélection. Elles ne sont pas retouchées. Si une photographie est inutilisable, dites-le dans les notes en bas à droite plutôt que de deviner.</div>
+    <p style="margin:.4em 0"><b>Si la photographie ne montre pas un calendrier</b> — un panneau, une pompe, un autre document, un portrait — cochez <b style="color:#b91c1c">Ce n’est pas un calendrier</b> sous la grille et indiquez le motif. La feuille est alors comptée comme <b>exclue</b>, et non comme un calendrier entièrement vide. <b>Ne cochez pas</b> pour une photographie simplement floue ou mal cadrée : dans ce cas mettez <b style="color:var(--ill)">?</b> dans les cases concernées.</p>
+    <p style="margin:.4em 0"><b>Votre nom est demandé au premier lancement.</b> Il est enregistré avec votre travail et figure dans chaque ligne du fichier exporté, avec un identifiant de série. Si plusieurs personnes utilisent le même navigateur, chacune démarre sa propre série avec <b>Nouvelle série</b>.</p>
+    <div class="warn">Les images sont celles enregistrées dans mWater au moment de la sélection. Elles ne sont pas retouchées. Une photographie floue ou coupée se relève avec des <b>?</b> ; elle ne s’exclut pas.</div>
   </div>
 </details>
+
+<div class="modal" id="whomodal" hidden>
+  <div class="box">
+    <h2>Qui fait ce relevé ?</h2>
+    <p>Votre nom est enregistré avec votre travail et inscrit dans chaque ligne du fichier exporté. Il sert à comparer les relevés de plusieurs personnes ; il n’est pas publié.</p>
+    <input type="text" id="whoname" placeholder="Nom et prénom" autocomplete="name">
+    <p class="err" id="whoerr"></p>
+    <p style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+      <button id="whocancel">Annuler</button>
+      <button id="whook" class="primary">Enregistrer</button>
+    </p>
+  </div>
+</div>
 
 <main>
   <div class="card">
@@ -89,36 +122,117 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <div class="foot">
       <label for="notes">Notes de travail (par exemple : « tiers inférieur illisible »)</label>
       <textarea id="notes" placeholder="Ce que vous voulez signaler sur cette photographie…"></textarea>
+      <div class="excl">
+        <div class="t">Ce n’est pas un calendrier</div>
+        <div class="row">
+          <label style="display:flex;gap:7px;align-items:center;margin:0;font-size:.92rem;color:var(--ink)">
+            <input type="checkbox" id="exclchk"> Cette photographie ne montre pas un calendrier
+          </label>
+          <select id="exclwhy" disabled>
+            <option value="">Motif…</option>
+            <option value="panneau">Panneau « Point d’Eau Potable et Pérenne »</option>
+            <option value="pompe">Pompe, borne-fontaine ou ouvrage</option>
+            <option value="document">Autre document imprimé</option>
+            <option value="illisible">Feuille présente mais totalement illisible</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="hint">À cocher seulement si la photographie montre autre chose qu’un calendrier. La grille est alors désactivée et la feuille est exportée comme <b>exclue</b>, jamais comme une feuille vide. Une personne qui tient un calendrier reste un calendrier, même mal cadré.</div>
+      </div>
     </div>
   </div>
 </main>
 
 <script>
 const MONTHS=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-const DIM=[31,29,31,30,31,30,31,31,30,31,30,31];
-const KEY='sanitap-transcription-v1';
-let CAL=[], cur=0, st={}, curCell={m:0,d:0};
+/* Every sheet covers 2025 or 2026. Neither is a bissextile year, so February
+   has 28 days and the rest of each column is not a date at all. */
+const DIM=[31,28,31,30,31,30,31,31,30,31,30,31];
+const KEY='sanitap-transcription-v2';
+let CAL=[], cur=0, store={sets:{},active:''}, st={}, curCell={m:0,d:0};
 const $=s=>document.querySelector(s);
 
-function load(){ try{ st=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ st={}; } }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} }
-function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0}; return st[n]; }
+function newId(){ return 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function load(){
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'null') || {sets:{},active:''}; }
+  catch(e){ store={sets:{},active:''}; }
+  if(!store.sets) store.sets={};
+  if(!store.active || !store.sets[store.active]) newSet('');
+  st=store.sets[store.active].cal;
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
+function newSet(name){
+  const id=newId();
+  store.sets[id]={session_id:id, transcripteur:name||'', cree_le:new Date().toISOString(), cal:{}};
+  store.active=id; st=store.sets[id].cal; save(); return id;
+}
+function setInfo(){ return store.sets[store.active]; }
+function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:''}; 
+                 const r=st[n]; if(r.exclu===undefined){r.exclu='';r.motif='';} return r; }
+function isExcluded(n){ return !!rec(n).exclu; }
 
 /* ---- timer: seconds actually spent on a calendar, tab visible ---- */
 let tick=null;
 function startTimer(){ stopTimer(); tick=setInterval(()=>{ if(!document.hidden){ rec(CAL[cur].n).secs++; save(); paintCounts(); } },1000); }
 function stopTimer(){ if(tick) clearInterval(tick); tick=null; }
 
+function started(){
+  let n=0;
+  for(const k of Object.keys(st)){
+    const r=st[k]||{};
+    if(r.exclu || Object.keys(r.cells||{}).length) n++;
+  }
+  return n;
+}
 function paintCounts(){
   const r=rec(CAL[cur].n); let x=0,q=0;
   for(const v of Object.values(r.cells)){ if(v==='X')x++; else if(v==='?')q++; }
   let days=0; for(let m=0;m<12;m++) days+=DIM[m];
   const blank=days-x-q;
-  $('#gcount').textContent=`${x} X · ${q} ? · ${blank} vides`;
-  let doneCal=0; for(const k of Object.keys(st)) if(Object.keys(st[k].cells||{}).length) doneCal++;
+  $('#gcount').textContent = r.exclu ? 'feuille exclue — pas un calendrier' : `${x} X · ${q} ? · ${blank} vides`;
+  const doneCal=started();
   const mm=Math.floor(r.secs/60), ss=r.secs%60;
   $('#counts').innerHTML=`Calendrier <b>${cur+1}</b>/<b>${CAL.length}</b> · commencés <b>${doneCal}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
+  const w=setInfo().transcripteur;
+  $('#who').innerHTML = w ? `Relevé par <b>${w.replace(/[<>&]/g,'')}</b>` : '<b style="color:#b91c1c">Nom non renseigné</b>';
 }
+
+/* ---- who is transcribing ---- */
+function askWho(cancellable){
+  $('#whoname').value = setInfo().transcripteur || '';
+  $('#whoerr').textContent = '';
+  $('#whocancel').style.display = cancellable ? '' : 'none';
+  $('#whomodal').hidden = false;
+  $('#whoname').focus();
+}
+$('#whook').onclick=()=>{
+  const v=$('#whoname').value.trim();
+  if(!v){ $('#whoerr').textContent='Un nom est nécessaire pour exporter.'; return; }
+  setInfo().transcripteur=v; save(); $('#whomodal').hidden=true; paintCounts();
+};
+$('#whocancel').onclick=()=>{ $('#whomodal').hidden=true; };
+$('#whoname').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#whook').click(); });
+$('#chgwho').onclick=()=>askWho(true);
+$('#newset').onclick=()=>{
+  if(started() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur, mais la grille repart à zéro. Exportez-le d’abord si ce n’est pas fait.')) return;
+  newSet(''); askWho(false); show(0);
+};
+
+/* ---- not a calendar ---- */
+function paintExcl(){
+  const r=rec(CAL[cur].n);
+  $('#exclchk').checked = !!r.exclu;
+  $('#exclwhy').value = r.motif || '';
+  $('#exclwhy').disabled = !r.exclu;
+  document.querySelector('.gridwrap').classList.toggle('off', !!r.exclu);
+}
+$('#exclchk').onchange=e=>{
+  const r=rec(CAL[cur].n);
+  r.exclu = e.target.checked ? 'oui' : '';
+  if(!r.exclu) r.motif='';
+  save(); paintExcl(); paintCounts();
+};
+$('#exclwhy').onchange=e=>{ rec(CAL[cur].n).motif=e.target.value; save(); };
 
 function buildGrid(){
   const t=$('#grid'); const r=rec(CAL[cur].n);
@@ -184,7 +298,9 @@ window.addEventListener('resize',fit);
 
 /* ---- keyboard ---- */
 document.addEventListener('keydown',e=>{
-  if(e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT') return;
+  if(e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT'||e.target.tagName==='INPUT') return;
+  if(!$('#whomodal').hidden) return;
+  if(isExcluded(CAL[cur].n)) return;
   let {m,d}=curCell, handled=true;
   if(e.key==='ArrowRight') m=Math.min(11,m+1);
   else if(e.key==='ArrowLeft') m=Math.max(0,m-1);
@@ -210,7 +326,7 @@ function show(i){
   const img=$('#ph'); img.src=c.f; img.onload=fit; img.width=c.w; img.height=c.h;
   $('#pick').value=String(cur);
   curCell={m:0,d:0};
-  buildGrid(); paintCounts(); startTimer();
+  buildGrid(); paintExcl(); paintCounts(); startTimer();
 }
 $('#prev').onclick=()=>show(cur-1);
 $('#next').onclick=()=>show(cur+1);
@@ -220,20 +336,35 @@ $('#notes').addEventListener('input',e=>{ rec(CAL[cur].n).notes=e.target.value; 
 /* ---- export ---- */
 function csvEsc(v){ v=String(v==null?'':v); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
 $('#exp').onclick=()=>{
-  const out=[['calendrier','point_eau','date_photo','mois','jour','releve','secondes_sur_calendrier','notes','exporte_le']];
+  const info=setInfo();
+  if(!(info.transcripteur||'').trim()){
+    alert('Indiquez votre nom avant d’exporter : chaque ligne du fichier doit porter le nom de la personne qui a fait le relevé.');
+    askWho(true); return;
+  }
+  const n0=started();
+  if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return;
+  const out=[['calendrier','point_eau','date_photo','mois','jour','releve','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
   const now=new Date().toISOString();
+  const who=info.transcripteur.trim(), sid=info.session_id;
   for(const c of CAL){
-    const r=st[c.n]; if(!r||(!Object.keys(r.cells||{}).length && !(r.notes||'').trim())) continue;
+    const r=st[c.n];
+    if(!r || (!r.exclu && !Object.keys(r.cells||{}).length && !(r.notes||'').trim())) continue;
+    if(r.exclu){
+      /* one row for the whole sheet: excluded is not the same as all-blank,
+         and the comparison must never read it as a sheet of zeroes */
+      out.push([c.n,c.wp,c.date,'','','EXCLU','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
+      continue;
+    }
     for(let m=0;m<12;m++) for(let d=0;d<DIM[m];d++){
       const v=(r.cells||{})[m+'-'+d]||'';
-      out.push([c.n,c.wp,c.date,m+1,d+1,v,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,m+1,d+1,v,'non','',who,sid,r.secs||0,r.notes||'',now]);
     }
   }
   if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return; }
   const blob=new Blob(['﻿'+out.map(r=>r.map(csvEsc).join(',')).join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='releves_calendriers_'+now.slice(0,10)+'.csv';
+  a.download='releves_calendriers_'+who.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'_'+now.slice(0,10)+'.csv';
   document.body.appendChild(a); a.click(); a.remove();
 };
 
@@ -241,6 +372,7 @@ fetch('calendars.json').then(r=>r.json()).then(j=>{
   CAL=j.sort((a,b)=>a.n-b.n);
   $('#pick').innerHTML=CAL.map((c,i)=>`<option value="${i}">Feuille ${c.n} — ${c.wp}</option>`).join('');
   load(); show(0);
+  if(!(setInfo().transcripteur||'').trim()) askWho(false);
 });
 </script>
 </body>
