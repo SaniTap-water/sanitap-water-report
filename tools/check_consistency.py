@@ -661,14 +661,29 @@ def main():
           "was described wrongly on this page" in idx, "recorded in the audit trail",
           "present" if "was described wrongly on this page" in idx else "MISSING",
           "corrections are stated, as the allocation error was")
-    check("the methodology-version limitation is stated",
-          "the methodology of record is not in the Central Data Hub" in idx,
-          "stated", "present" if "methodology of record is not in the Central Data Hub" in idx else "MISSING",
-          "readings were checked against v1.0, which may not be binding")
-    check("the SDWS 27 sampling question is recorded as unresolved",
-          "invokes &sect;4.2 nowhere" in idx, "recorded",
-          "present" if "invokes &sect;4.2 nowhere" in idx else "MISSING",
-          "our reading is stated as a reading, not a settled point")
+    check("the registered methodology version is stated",
+          "ERSDWS v1.0</b>, the version the VPA is registered under" in idx,
+          "stated", "present" if "the version the VPA is registered under" in idx else "MISSING",
+          "the Design Review form names v1.0 as the applied methodology")
+    check("the v2.0 entry-into-force date is stated",
+          "7 October 2026" in idx and "90 days from publication" in idx,
+          "stated", "present" if "7 October 2026" in idx else "MISSING",
+          "v2.0 s3.3.1: 90 days from publication on 9 July 2026")
+    # SDWS 27 is stated as the VPA-DD has it, not as our route to it. The
+    # sampling provision attaches to operation sensors; saying it attaches to
+    # the calendars, or that the estate must be covered, would both be wrong.
+    check("SDWS 27 states the applied value of 347 days",
+          "The value applied in the VPA-DD is 347 days" in idx, "stated",
+          "present" if "value applied in the VPA-DD is 347 days" in idx else "MISSING",
+          "347 is the default for a project without operation sensors")
+    check("the 90/10 sampling provision is attributed to sensors",
+          "(90/10) sample basis" in idx and "attaches to <b>sensors</b>" in idx,
+          "stated", "present" if "attaches to <b>sensors</b>" in idx else "MISSING",
+          "the provision is not a licence to sample calendars")
+    for bad in ("record covering the estate is required", "invokes &sect;4.2 nowhere"):
+        check(f"superseded SDWS 27 reading absent: {bad!r}", bad not in idx,
+              "absent", "FOUND" if bad in idx else "absent",
+              "state the facts, not our route to them")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
