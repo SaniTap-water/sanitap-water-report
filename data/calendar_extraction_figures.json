@@ -1,0 +1,21 @@
+{
+ "photographs_held": 2364,
+ "images_readable": 1446,
+ "images_with_day_calls": 836,
+ "visits_total": 966,
+ "visits_with_readable": 829,
+ "visits_without_readable": 137,
+ "points_without_readable": 67,
+ "pump_periods": 505,
+ "water_points": 467,
+ "days_not_operational": 6629,
+ "days_illegible": 6165,
+ "median_confidence": 0.32,
+ "impossible_cells": 5016,
+ "impossible_marked_pct": 2.75,
+ "real_cells": 305976,
+ "real_marked_pct": 3.76,
+ "implied_true_marked_pct": 1.01,
+ "implied_days_not_operational": 3.7,
+ "implied_uptime_days": 361.3
+}

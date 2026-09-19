@@ -685,6 +685,55 @@ def main():
               "absent", "FOUND" if bad in idx else "absent",
               "state the facts, not our route to them")
 
+    # ---- 7l. the extraction figures on the page match the files -----------
+    # The page once carried impossible-cell rates from a run whose output files
+    # had since been overwritten, and nothing caught it because the checker did
+    # not read the CSVs. It does now: every extraction figure on the page is
+    # asserted against data/calendar_extraction_figures.json, and that file is
+    # asserted against the summary CSV beside it.
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    figp = os.path.join(here, "data", "calendar_extraction_figures.json")
+    sump = os.path.join(here, "data", "calendar_extraction_summary.csv")
+    if not os.path.exists(figp) or not os.path.exists(sump):
+        check("extraction figures file present", False, "data/calendar_extraction_figures.json",
+              "MISSING", "the page's extraction numbers must be traceable to a file")
+    else:
+        fig = json.load(open(figp))
+        import csv as _csv
+        rows = list(_csv.DictReader(open(sump)))
+        # the JSON must describe the CSV beside it
+        check("extraction JSON matches the summary CSV: pump-periods",
+              fig["pump_periods"] == len(rows), fig["pump_periods"], len(rows))
+        check("extraction JSON matches the summary CSV: water points",
+              fig["water_points"] == len({r["water_point"] for r in rows}),
+              fig["water_points"], len({r["water_point"] for r in rows}))
+        csv_dno = sum(int(r["days_not_operational"]) for r in rows)
+        check("extraction JSON matches the summary CSV: days not operational",
+              fig["days_not_operational"] == csv_dno, fig["days_not_operational"], csv_dno)
+        # and the page must state what the JSON says
+        def fmt_n(v):
+            return f"{v:,}" if isinstance(v, int) and v >= 1000 else str(v)
+        for key, label in (("pump_periods", "pump-periods"),
+                           ("water_points", "water points"),
+                           ("days_not_operational", "days not operational"),
+                           ("days_illegible", "days illegible"),
+                           ("images_readable", "images readable"),
+                           ("images_with_day_calls", "images with day calls"),
+                           ("impossible_cells", "impossible cells"),
+                           ("real_cells", "real day cells")):
+            want = fmt_n(fig[key])
+            check(f"page states the extraction {label}: {want}",
+                  f"<b>{want}</b>" in idx, want,
+                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+                  "from data/calendar_extraction_figures.json")
+        for key, label in (("impossible_marked_pct", "impossible-cell marked rate"),
+                           ("real_marked_pct", "real-cell marked rate"),
+                           ("implied_true_marked_pct", "implied true marked rate")):
+            want = f"{fig[key]:.2f}%"
+            check(f"page states the {label}: {want}", f"<b>{want}</b>" in idx, want,
+                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+                  "from data/calendar_extraction_figures.json")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
