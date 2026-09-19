@@ -312,7 +312,8 @@ def main():
     REQUIRED_SOURCES = [
         ("INSTAT RGPH-3", "people per premises, SDWS 25"),
         ("WorldPop R2025A", "the population basis, SDWS 1"),
-        ("A6.4-AMT-009", "fNRB applied basis, SDWS 21"),
+        ("fNRB Application for GS4GG Certification", "fNRB applied basis, SDWS 21"),
+        ("MoFuSS", "the fNRB source of data as registered"),
         ("VPA-DD", "the registered design document"),
     ]
     both = idx + prt
@@ -341,18 +342,32 @@ def main():
         h = re.search(r"<h2>(.*?)</h2>", src[a:a + 900])
         return re.sub(r"<[^>]+>", "", h.group(1))[:32] if h else f"offset {a}"
 
+    # The registered fNRB authority is the Gold Standard rule update, and the
+    # source of data is MoFuSS - not A6.4-AMT-009, which the rule update does
+    # not name. An earlier edition cited the tool and applied 36% to
+    # Maroantsetra where the registered value is 34%.
+    AUTH = "fNRB Application for GS4GG Certification"
     bad = []
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for m in re.finditer(r"fNRB", src):
             a, b = enclosing_section(src, m.start())
-            if "A6.4-AMT-009" not in src[a:b]:
+            if AUTH not in src[a:b] and "MoFuSS" not in src[a:b]:
                 lab = f"{f}:{section_label(src, a)}"
                 if lab not in bad:
                     bad.append(lab)
-    check("every fNRB statement cites A6.4-AMT-009", not bad,
-          "A6.4-AMT-009 cited in each section naming fNRB",
+    check("every fNRB statement cites the rule update or MoFuSS", not bad,
+          "rule update or MoFuSS in each section naming fNRB",
           "uncited in " + ", ".join(bad[:3]) if bad else "all cited",
-          "A6.4-AMT-009 v01.0 Table 3 national / Table 4 sub-national")
+          "GS Rule Update fNRB Application for GS4GG Certification V1.0 s2.3.1")
+    amt = re.findall(r"A6\.4-AMT-009[^.<]{0,60}(?:applied basis|is the basis|basis we apply)", idx, re.I)
+    check("A6.4-AMT-009 not claimed as the fNRB applied basis", not amt,
+          "absent", f"{len(amt)} found" if amt else "absent",
+          "the rule update does not name it; the registered source is MoFuSS")
+    check("the registered Maroantsetra fNRB value is applied",
+          "MoFuSS 0.34 Maroantsetra" in idx and "0.418" not in idx,
+          "0.34 applied, 0.418 gone",
+          "0.418 still present" if "0.418" in idx else "0.34 applied, 0.418 gone",
+          "registered SDWS 21: Anosy 54%, Maroantsetra 34%")
 
     stale = []
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
@@ -733,6 +748,86 @@ def main():
             check(f"page states the {label}: {want}", f"<b>{want}</b>" in idx, want,
                   want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
                   "from data/calendar_extraction_figures.json")
+
+    # ---- 7m. the small-scale Type 3 annual ceiling ------------------------
+    # VPA-DD s.A.4 caps the VPA at 60,000 tCO2e in any year. The page recomputes
+    # the headroom every build; this recomputes it independently and fails if
+    # the computed figure has passed the cap without the attention-list entry
+    # that raises it, or if the machinery that computes it has been removed.
+    CAP_T, ER_ANOSY, ER_MARO = 60000.0, 31.3, 27.9
+    for needle, why in (("const CAP_T=60000", "the cap constant"),
+                        ('id="capnote"', "the audit-trail line"),
+                        ("capNear&&['crit'", "the conditional attention entry")):
+        check(f"ceiling machinery present: {why}", needle in idx, "present",
+              "present" if needle in idx else "MISSING",
+              "the headroom must be recomputed every build, not written in")
+    page_S = js_const(idx, "S") or {}
+    if page_S:
+        bs = page_S.get("by_site", {})
+        er = bs.get("Fort-Dauphin", 0) * ER_ANOSY + bs.get("Maroantsetra", 0) * ER_MARO
+        pts = bs.get("Fort-Dauphin", 0) + bs.get("Maroantsetra", 0)
+        pct = 100.0 * er / CAP_T
+        # the entry is gated on capNear (>=80%); if we are over the cap it must
+        # be in the attention list unconditionally, not behind that gate
+        over = er > CAP_T
+        raised = "capNear&&['crit'" in idx
+        check("emission reductions within the small-scale Type 3 annual cap",
+              not over, f"<= {CAP_T:,.0f} tCO2e/yr",
+              f"{er:,.0f} tCO2e/yr over {pts} points ({pct:.1f}%)",
+              "VPA-DD s.A.4; raise with the Head of Carbon before it is reached")
+        check("ceiling entry present if the cap is exceeded",
+              (not over) or raised, "raised in the attention list",
+              "raised" if raised else "NOT RAISED",
+              "over the cap the entry must not stay behind the 80% gate")
+
+    # ---- 7n. layout, held to the same discipline as the numbers -----------
+    # These three kept regressing across rebuilds because nothing enforced them.
+    # (a) the photograph band and the fleet summary lead the page; (b) text runs
+    # the full measure, no ch-capped blocks; (c) standing explanation is behind
+    # a <details> so the page reads short and expands on demand.
+    body_i = idx.find("<body")
+    secs = [(m.start(), m.group(0)) for m in re.finditer(r"<section[^>]*>", idx[body_i:])]
+    first_two = " ".join(t for _, t in secs[:2])
+    check("photograph band is the first section on the page",
+          'id="photosec"' in (secs[0][1] if secs else ""),
+          'id="photosec"', secs[0][1][:40] if secs else "no sections",
+          "it must sit above everything else, not below the weekly tables")
+    fleet_at = idx.find("The fleet at a glance", body_i)
+    first_other = min((idx.find(h, body_i) for h in ("<h2>This week</h2>", "<h2>Attention list</h2>")
+                       if idx.find(h, body_i) > 0), default=10 ** 9)
+    check("fleet at a glance sits above the first content section",
+          0 < fleet_at < first_other, "before This week / Attention list",
+          "before" if 0 < fleet_at < first_other else "AFTER",
+          "photograph band then fleet, then everything else")
+
+    # (b) no text block may be capped narrower than the page measure
+    narrow = re.findall(r"(\.(?:note|sub|sechead\s+p)\s*\{[^}]*max-width\s*:\s*\d+\s*ch)", idx)
+    check("no text block is capped narrower than the page measure",
+          not narrow, "no ch-capped text rules",
+          f"{len(narrow)} found: {narrow[0][:40]}" if narrow else "no ch-capped text rules",
+          "text runs the full .wrap measure")
+
+    # (c) standing explanation is collapsed
+    n_expl = len(re.findall(r'<details class="expl">', idx))
+    check("standing explanation is collapsed into <details>", n_expl >= 10,
+          ">= 10 collapsed blocks", n_expl,
+          "method notes, mapping rules and provenance prose expand on demand")
+    for sec, why in (("popsec", "the population method and ex ante footnote"),
+                     ("calsec", "the SDWS 27 method and the machine extraction"),
+                     ("strokesec", "the stroke-test method"),
+                     ("tracesec", "the provenance notes"),
+                     ("pousec", "the sampling methodology"),
+                     ("fnrbsec", "the fNRB explanation")):
+        a = idx.find(f'id="{sec}"')
+        if a < 0:
+            a = idx.find(f'id="{sec}"')
+        blk_end = idx.find("</section>", a) if a > 0 else -1
+        # fnrbsec is a panel inside overlapsec; look forward a fixed window instead
+        seg = idx[max(0, a - 400):blk_end if blk_end > 0 else a + 6000] if a > 0 else ""
+        check(f"{sec}: {why} is behind a <details>",
+              '<details class="expl">' in seg, "collapsed",
+              "collapsed" if '<details class="expl">' in seg else "STILL OPEN",
+              "what explains method collapses; what changes weekly stays open")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
