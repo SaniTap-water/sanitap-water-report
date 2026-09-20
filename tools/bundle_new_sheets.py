@@ -62,6 +62,16 @@ def main():
             csv.writer(f).writerow([nxt, iid, "drawn for the frame correction"])
         nxt += 1; added += 1
 
+    # write the assigned sheet numbers back into the selection file, or the
+    # selection and the page cannot be joined at all for the new sheets
+    if sel:
+        for r in sel:
+            if not r.get("calendrier") and r["image_id"] in have:
+                r["calendrier"] = have[r["image_id"]]
+        with open(a.selection, "w", newline="", encoding="utf8") as f:
+            w = csv.DictWriter(f, fieldnames=list(sel[0].keys()))
+            w.writeheader(); w.writerows(sel)
+
     cals.sort(key=lambda c: c["n"])
     json.dump(cals, open(os.path.join(tr, "calendars.json"), "w"),
               separators=(",", ":"))

@@ -78,6 +78,7 @@ def coverage_lines(figures_path):
 def read_human(path):
     """-> {(who, session): {sheet: {"cells": {(m,d): v}, "excluded": reason}}}"""
     out = collections.defaultdict(lambda: collections.defaultdict(
+        # "comparable" is added to a sheet when the export flags it
         lambda: {"cells": {}, "excluded": None, "wp": "", "secs": 0,
                  "unobserved": 0}))
     with open(path, encoding="utf-8-sig", newline="") as f:
@@ -92,6 +93,8 @@ def read_human(path):
                 rec["secs"] = max(rec["secs"], int(r.get("secondes_sur_calendrier") or 0))
             except ValueError:
                 pass
+            if r.get("comparable_machine"):
+                rec["comparable"] = r["comparable_machine"].strip().lower() in ("oui", "yes", "1", "true")
             if (r.get("exclu", "") or "").strip().lower() in ("oui", "yes", "true", "1"):
                 rec["excluded"] = (r.get("exclu_motif") or "autre").strip() or "autre"
                 continue
@@ -107,6 +110,8 @@ def read_human(path):
                 rec["unobserved"] = rec.get("unobserved", 0) + 1
                 continue
             rec["cells"][(int(r["mois"]), int(r["jour"]))] = (r["releve"] or "").strip()
+            if r.get("comparable_machine"):
+                rec["comparable"] = r["comparable_machine"].strip().lower() in ("oui", "yes", "1", "true")
     return {k: dict(v) for k, v in out.items()}
 
 
@@ -164,6 +169,8 @@ def main():
     # Sheets outside it answer a DIFFERENT question - whether a human can read
     # what the machine could not - which is the evidence for choosing between
     # the extraction and manual transcription.
+    # the export now carries the flag itself, so no separate frame file and no
+    # hand editing is needed; --comparable stays as an override
     frame = None
     if a.comparable:
         frame = {r["calendrier"].strip()
@@ -243,6 +250,15 @@ def main():
                        + f"; min {min(per_cal):.4f}; pooled-cell "
                        + f"{pooled_s / pooled_n:.4f}" if per_cal else "nothing compared"),
         })
+
+    if frame is None:
+        # the export flags each sheet itself, so the frame needs no second file
+        flagged = {s_ for sheets in people.values() for s_, r in sheets.items()
+                   if r.get("comparable")}
+        any_flag = any("comparable" in r for sheets in people.values()
+                       for r in sheets.values())
+        if any_flag:
+            frame = flagged
 
     names = {who: f"{who[0]} [{who[1][:6]}]" for who in people}
 

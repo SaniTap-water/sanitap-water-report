@@ -916,7 +916,11 @@ def main():
         # an identity fact about which year the sheet is for, not a reading of
         # any mark on it, and the page needs it to lock the cells that were
         # not yet observable when the photograph was taken.
-        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y"}
+        # "cmp" flags whether the extraction produced day calls for this sheet.
+        # It is written into the export so the comparison can separate the two
+        # populations without a second file; it is NOT shown on the page, so the
+        # transcriber still cannot tell what the machine made of any sheet.
+        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y", "cmp"}
         extra = sorted({k for r in man for k in r} - allowed)
         check("transcription manifest carries no derived field",
               not extra, "only identity fields",
@@ -1201,6 +1205,29 @@ def main():
         check("every selected sheet is bundled on the transcription page",
               not missing, "all bundled",
               f"{len(missing)} missing" if missing else "all bundled")
+        # the round has to be runnable: the page must load exactly the
+        # selection, in order, and flag the comparable sheets for the export
+        nosheet = [r["image_id"][:8] for r in sel if not r["calendrier"]]
+        check("every selected sheet has been assigned a sheet number",
+              not nosheet, "all numbered",
+              f"{len(nosheet)} unnumbered" if nosheet else "all numbered",
+              "without it the selection cannot be joined to the page")
+        want_n = sorted(int(r["calendrier"]) for r in sel if r["calendrier"])
+        got_n = sorted(c["n"] for c in man2)
+        check("the page loads exactly the selection, in order",
+              want_n == got_n, f"{len(want_n)} sheets",
+              f"{len(got_n)} sheets" + ("" if want_n == got_n else " MISMATCH"))
+        flagged = sorted(c["n"] for c in man2 if c.get("cmp"))
+        want_f = sorted(int(r["calendrier"]) for r in sel
+                        if r["in_frame"] == "yes" and r["calendrier"])
+        check("the machine-comparable sheets are flagged for the export",
+              flagged == want_f, f"{len(want_f)} flagged",
+              f"{len(flagged)} flagged" + ("" if flagged == want_f else " MISMATCH"))
+        check("every bundled sheet carries a photograph, a pump id and a year field",
+              all(c.get("f") and c.get("wp") for c in man2), "complete",
+              "complete" if all(c.get("f") and c.get("wp") for c in man2)
+              else "INCOMPLETE",
+              "the year may be absent on an undated sheet, and is shown as ?")
 
     # ---- 7t. the transcription page records who did the work ---------------
     trh = os.path.join(here, "transcription", "index.html")
@@ -1210,9 +1237,10 @@ def main():
         # word appearing somewhere in the file: an earlier version of this
         # check passed after the column had been deleted from the export
         want_cols = ["calendrier", "point_eau", "date_photo", "annee_feuille",
-                     "mois", "jour", "releve", "etat_cellule", "exclu",
-                     "exclu_motif", "transcripteur", "session_id",
-                     "secondes_sur_calendrier", "notes", "exporte_le"]
+                     "comparable_machine", "mois", "jour", "releve",
+                     "etat_cellule", "exclu", "exclu_motif", "transcripteur",
+                     "session_id", "secondes_sur_calendrier", "notes",
+                     "exporte_le"]
         hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
         check("transcription export header carries every column, in order",
               hdr in tr2.replace(" ", ""), ",".join(want_cols),
@@ -1221,7 +1249,8 @@ def main():
         for frag, why in (
                 ("Ce n\u2019est pas un calendrier", "the not-a-calendar control exists"),
                 ("EXCLU", "an excluded sheet exports as excluded, not as blanks"),
-                ("out.push([c.n,c.wp,c.date,c.y||'','','','EXCLU'", "the excluded row has no day cells")):
+                ("out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU'",
+                 "the excluded row has no day cells")):
             check(f"transcription page: {why}", frag in tr2, "present",
                   "present" if frag in tr2 else "MISSING")
         check("transcription page refuses an unnamed export",
@@ -1245,6 +1274,107 @@ def main():
             check(f"transcription page: {why}", frag in tr2, "present",
                   "present" if frag in tr2 else "MISSING",
                   "the human and the machine must be compared on the same cells")
+
+    # ---- 7u. the SDWS 27 basis and the six actions it generated ------------
+    # The basis was read out of the registered VPA-DD and both methodology
+    # versions and written to docs/sdws27_basis.md. The page must not drift
+    # from that file, and the six actions must each carry an owner and a date
+    # in the house format.
+    basis = os.path.join(here, "docs", "sdws27_basis.md")
+    if not os.path.exists(basis):
+        check("SDWS 27 basis document present", False, "docs/sdws27_basis.md",
+              "MISSING", "the finding has to be traceable to the quotations")
+    else:
+        bs = open(basis, encoding="utf8").read()
+        for frag, why in (
+                ("The date of entry into force is 90 days from the publication date",
+                 "v2.0 3.3.1 is quoted"),
+                ("At the renewal, the activity developer shall apply the latest version",
+                 "v2.0 17.1.1 is quoted"),
+                ("Values higher than 347 days may only be applied when option 1 is used",
+                 "the v1.0 / VPA-DD condition is quoted"),
+                ("Uncertainty is managed by this conservative cap when relying on manual logs",
+                 "the v2.0 cap wording is quoted"),
+                ("Estimate: 347 days", "the VPA-DD applied value is quoted"),
+                ("detailing uptime and downtime", "the v2.0 log wording is quoted"),
+                ("out of action or unavailable for use", "downtime is defined"),
+                ("SDWS 32", "the v2.0 parameter number is corrected"),
+                ("operation sensor", "the term actually used is named")):
+            check(f"basis document: {why}", frag in bs, "quoted",
+                  "quoted" if frag in bs else "MISSING",
+                  "verbatim from the registered documents")
+        check("basis document states which version governs",
+              "v1.0 governs the 2026 monitoring period" in bs, "stated",
+              "stated" if "v1.0 governs the 2026 monitoring period" in bs else "MISSING")
+        check("basis document does not soften the finding against us",
+              "not claimable" in bs and "cannot raise it" in bs,
+              "stated plainly",
+              "stated plainly" if "not claimable" in bs else "SOFTENED",
+              "356.2 days is above the cap and the calendars are a manual log")
+
+    # the page must carry the same construction as the basis document
+    check("page states the registered DO construction",
+          "min(347, days demonstrated by the operation-and-maintenance log)"
+          in idx.replace("<span class=\"mono\">", "").replace("</span>", "")
+          or "min(347, days demonstrated by the" in idx,
+          "stated", "stated" if "min(347, days demonstrated by the" in idx
+          else "NOT ON THE PAGE",
+          "DO = min(347, log), not a flat 347 and not 356.2")
+    check("page states that the calendars cannot raise the registered figure",
+          "They cannot raise it" in idx, "stated",
+          "stated" if "They cannot raise it" in idx else "MISSING")
+
+    # ---- 7v. the per-year quantification -----------------------------------
+    for v, why in (("20,697", "2026 ER at 347 days"),
+                   ("10,227", "2025 ER at 347 days"),
+                   ("17,681", "the 2026 evidence gap in tCO2e"),
+                   ("354,000", "the 2026 evidence gap in USD"),
+                   ("727", "carbon points active in 2026"),
+                   ("722", "carbon points active in 2025"),
+                   ("434", "2026 points with no dated sheet"),
+                   ("11 April 2025", "the earliest passing SDWS 3 test")):
+        check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
+              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
+              "Part 2, computed on the register")
+    check("the quantification is marked contingent, not a claim",
+          "Nothing in this block is presented as a claim" in idx
+          and "Contingent on the" in idx, "marked",
+          "marked" if "Nothing in this block is presented as a claim" in idx
+          else "NOT MARKED",
+          "it depends on the SDWS 27 basis being settled")
+    check("page states 2024 carries no carbon value",
+          "No point could credit in 2024" in idx, "stated",
+          "stated" if "No point could credit in 2024" in idx else "MISSING")
+
+    # ---- 7w. the six new actions -------------------------------------------
+    acts = {
+        "act-sdws27-basis": ("James Walker", "3 Oct 2026"),
+        "act-2026-recovery": ("Angelo Nahavitatsara / MadAvance", "31 Jan 2027"),
+        "act-sensor-sample": ("Adriaan Mol", "3 Oct 2026"),
+        "act-undatable": ("Angelo Nahavitatsara / MadAvance", "17 Oct 2026"),
+        "act-transcription-round": ("MadAvance", "10 Oct 2026"),
+        "act-visit-collapse": ("Jan de Graaf", "30 Sep 2026"),
+    }
+    for aid, (owner, date) in acts.items():
+        m = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', idx, re.S)
+        check(f"action present: {aid}", m is not None, "present",
+              "present" if m else "MISSING")
+        if not m:
+            continue
+        row = m.group(1)
+        check(f"{aid}: owner is {owner}", owner in row, owner,
+              owner if owner in row else "WRONG OWNER")
+        check(f"{aid}: deadline is {date}", f"<b>{date}</b>" in row, date,
+              date if f"<b>{date}</b>" in row else "WRONG DATE")
+        has_pill = 'class="pill warn">DUE' in row or 'class="pill crit">OVERDUE' in row
+        check(f"{aid}: carries a schedule pill", has_pill, "pill",
+              "pill" if has_pill else "MISSING",
+              "house format: pill, date, proposed-note, completion criterion")
+        check(f"{aid}: marked as proposed for Jan to confirm",
+              "proposed &mdash; Jan to confirm or move" in row, "proposed",
+              "proposed" if "proposed &mdash; Jan to confirm or move" in row
+              else "MISSING",
+              "deadlines are proposals until Jan confirms them")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):

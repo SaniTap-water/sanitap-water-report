@@ -431,7 +431,7 @@ $('#exp').onclick=()=>{
   }
   const n0=started();
   if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return;
-  const out=[['calendrier','point_eau','date_photo','annee_feuille','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
+  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
   const now=new Date().toISOString();
   const who=info.transcripteur.trim(), sid=info.session_id;
   for(const c of CAL){
@@ -440,7 +440,7 @@ $('#exp').onclick=()=>{
     if(r.exclu){
       /* one row for the whole sheet: excluded is not the same as all-blank,
          and the comparison must never read it as a sheet of zeroes */
-      out.push([c.n,c.wp,c.date,c.y||'','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
       continue;
     }
     const D2=dim(c.y?+c.y:2026), W2=windowFor(c);
@@ -456,7 +456,7 @@ $('#exp').onclick=()=>{
       /* an unobserved cell is exported as unobserved, with any mark made on it
          before the window was known kept and visible - never dropped, and
          never pooled with the observed cells */
-      out.push([c.n,c.wp,c.date,c.y||'',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now]);
     }
   }
   if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return; }
