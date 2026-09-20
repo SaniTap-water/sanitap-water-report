@@ -44,6 +44,12 @@ def main():
     ap.add_argument("--frame-out", default=None,
                     help="write the whole frame, so the draw can be audited")
     ap.add_argument("--seed", type=int, required=True)
+    ap.add_argument("--prior", default=None,
+                    help="an existing selection file. Every row in it is KEPT "
+                         "verbatim, with its original origin, date and seed; only "
+                         "the shortfall is drawn. This makes the draw an extension "
+                         "rather than a redraw, so the whole selection stays "
+                         "reproducible from the recorded seeds.")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
 
@@ -79,6 +85,10 @@ def main():
     if os.path.exists(a.existing):
         for r in csv.DictReader(open(a.existing)):
             existing[r["image_id"]] = r["sheet"]
+    prior = {}
+    if a.prior and os.path.exists(a.prior):
+        for r in csv.DictReader(open(a.prior)):
+            prior[r["image_id"]] = r
     kept = [i for i in frame if i in existing]
     out_of_frame = [(s, i) for i, s in existing.items() if i not in frame]
     print(f"  already drawn and inside the frame: {len(kept)}")
@@ -130,9 +140,13 @@ def main():
             "sheet_year": years[i], "photo_date": r["date"][:10],
             "quality": round(quality(i), 4), "quality_quartile": band(quality(i)),
             "in_frame": "yes",
-            "origin": "kept from the original draw" if i in existing else "drawn to make up the shortfall",
-            "drawn_on": stamp if i not in existing else "",
-            "frame": FRAME_TEXT, "seed": a.seed,
+            "origin": (prior[i]["origin"] if i in prior
+                       else ("kept from the original draw" if i in existing
+                             else "drawn to extend the round to the v2.0 minimum")),
+            "drawn_on": (prior[i]["drawn_on"] if i in prior
+                         else (stamp if i not in existing else "")),
+            "frame": FRAME_TEXT,
+            "seed": prior[i]["seed"] if i in prior else a.seed,
         })
     for s, i in sorted(out_of_frame, key=lambda t: int(t[0])):
         r = leg.get(i, {})
@@ -142,8 +156,11 @@ def main():
             "sheet_year": years.get(i, ""), "photo_date": r.get("date", "")[:10],
             "quality": round(quality(i), 4), "quality_quartile": band(quality(i)),
             "in_frame": "no",
-            "origin": "kept from the original draw, outside the frame",
-            "drawn_on": "", "frame": FRAME_TEXT, "seed": a.seed,
+            "origin": (prior[i]["origin"] if i in prior
+                       else "kept from the original draw, outside the frame"),
+            "drawn_on": prior[i]["drawn_on"] if i in prior else "",
+            "frame": FRAME_TEXT,
+            "seed": prior[i]["seed"] if i in prior else a.seed,
         })
     with open(a.out, "w", newline="", encoding="utf8") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))

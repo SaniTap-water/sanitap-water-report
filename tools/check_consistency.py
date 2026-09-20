@@ -1091,7 +1091,11 @@ def main():
             ("Adriaan Mol", "the reference transcriber is named"),
             ("aggregate error statistics", "their exposure is stated"),
             ("no per-cell output", "the limit of that exposure is stated"),
-            ("minimum of <b>30</b>", "the methodology minimum is stated"),
+            ("floor of <b>30</b>", "the v1.0 / CDM minimum is stated"),
+            ("<b>50</b> per sample group or stratum required by v2.0",
+             "the v2.0 minimum is stated"),
+            ("stands whichever version governs",
+             "the round is stated as satisfying both versions"),
             ("locks every cell the photograph could not show",
              "the comparison is on the same cells for both sides"),
             ("The validation frame was corrected on",
@@ -1172,9 +1176,23 @@ def main():
         outfr = [r for r in sel if r["in_frame"] != "yes"]
         kept = [r for r in infr if r["origin"].startswith("kept")]
         drew = [r for r in infr if r["origin"].startswith("drawn")]
-        check("the human-to-machine sample clears the methodology minimum of 30",
-              len(infr) >= 30, ">= 30", len(infr),
-              "section 4.2.2, proportion parameter")
+        # the round must stand under BOTH versions: v1.0 4.2.2 sets 30, v2.0
+        # 14.5.3 sets 50 per sample group or stratum. 50 satisfies both and
+        # means the assessment never needs repeating at renewal.
+        check("the human-to-machine sample clears the v1.0 minimum of 30",
+              len(infr) >= 30, ">= 30", len(infr), "ERSDWS v1.0 section 4.2.2")
+        check("the human-to-machine sample clears the v2.0 minimum of 50",
+              len(infr) >= 50, ">= 50", len(infr), "ERSDWS v2.0 section 14.5.3")
+        seeds = sorted({r["seed"] for r in sel if r["seed"]})
+        check("the selection records more than one draw pass, each with its seed",
+              len(seeds) >= 2, ">= 2 seeds", len(seeds),
+              "the extension must be reproducible separately from the original draw")
+        ext = [r for r in infr if "extend" in r["origin"]]
+        check("the extension rows are marked as an extension, not a redraw",
+              ext and all(r["seed"] == seeds[-1] for r in ext),
+              f"{len(ext)} extension rows", f"{len(ext)} extension rows"
+              if ext else "NONE",
+              "every prior row keeps its original origin, date and seed")
         for v, why in ((len(infr), "the comparison set"),
                        (len(kept), "the sheets kept from the original draw"),
                        (len(drew), "the sheets drawn to make up the shortfall"),
@@ -1604,6 +1622,31 @@ def main():
         check("page states the quarterly validation does not reach us",
               "does not reach us" in idx, "stated",
               "stated" if "does not reach us" in idx else "MISSING")
+
+    # ---- 7ae. the 2027 sheets: printed year verified, inference retracted --
+    # The report once argued the custody rule from a claim that 2027-dated
+    # sheets were being distributed nine months early. The printed year is
+    # real; the inference was not. These assertions keep the retraction in
+    # place and keep the custody rule standing on its actual basis.
+    check("the early-distribution claim is retracted from the page",
+          "5 February 2026" not in idx and "26 March 2026" not in idx,
+          "retracted",
+          "retracted" if "5 February 2026" not in idx else "STILL PRESENT",
+          "the claim did not survive testing")
+    check("the page states the printed year is real but the sheets are in service",
+          "A printed year later than the photograph does not mean an unused sheet" in idx
+          and "4.94%" in idx and "1.48%" in idx, "stated",
+          "stated" if "does not mean an unused sheet" in idx else "MISSING",
+          "marks concentrate in months already elapsed at the photograph")
+    check("the custody rule stands on rolling replacement, not on timing",
+          "remplac&eacute;s au fur et &agrave; mesure" in idx, "restated",
+          "restated" if "remplac&eacute;s au fur et &agrave; mesure" in idx
+          else "MISSING",
+          "the rule is justified by replacement happening at all")
+    check("the page links the SOP at v1.2",
+          "CalendrierGardien-v1.2-2026" in idx, "v1.2",
+          "v1.2" if "CalendrierGardien-v1.2-2026" in idx else "NOT UPDATED",
+          "the custody rule is written into the SOP")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
