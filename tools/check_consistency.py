@@ -1502,7 +1502,9 @@ def main():
               and "STANDING" in m_ad.group(1), "standing, James Walker",
               "ok" if "STANDING" in m_ad.group(1) else "WRONG")
     for aid, owner, date in (("act-calendar-custody", "Angelo Nahavitatsara / MadAvance", "26 Sep 2026"),
-                             ("act-sensor-definition", "James Walker", "10 Oct 2026")):
+                             ("act-sensor-definition", "James Walker", "10 Oct 2026"),
+                             ("act-printed-year-meaning",
+                              "Angelo Nahavitatsara / MadAvance", "17 Oct 2026")):
         m2 = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', idx, re.S)
         check(f"action present: {aid}", m2 is not None, "present",
               "present" if m2 else "MISSING")
@@ -1643,6 +1645,10 @@ def main():
           "restated" if "remplac&eacute;s au fur et &agrave; mesure" in idx
           else "MISSING",
           "the rule is justified by replacement happening at all")
+    check("the printed-year question is on the action list",
+          '<tr id="act-printed-year-meaning">' in idx, "present",
+          "present" if '<tr id="act-printed-year-meaning">' in idx else "MISSING",
+          "the printed year is the key the days-operational chain turns on")
     check("the page links the SOP at v1.2",
           "CalendrierGardien-v1.2-2026" in idx, "v1.2",
           "v1.2" if "CalendrierGardien-v1.2-2026" in idx else "NOT UPDATED",
