@@ -1507,6 +1507,104 @@ def main():
               v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
               "calendar custody is a headline operational metric")
 
+    # ---- 7ab. metering is fleet-wide; sampling is for calibration only -----
+    # The report previously described a 60-unit sampled sensor deployment.
+    # That is not the architecture: every pump carries a logger, and the 90/10
+    # sample establishes litres per counted event. No sensor COUNT may appear
+    # in the same sentence as "sample".
+    # a UNIT COUNT next to a device noun - "60 sensors", "~770 loggers",
+    # "60-unit deployment" - not any number that happens to share a sentence
+    # with the word sensor. 347, 90/10 and SDWS numbers are not unit counts.
+    UNITCOUNT = re.compile(r"(~?\d{1,4}[\s\u2011-]*(?:sensors?|units?|loggers?|pods?)\b"
+                           r"|\b(?:sensors?|units?|loggers?|pods?)[^.]{0,20}?\bis\s+~?\d{1,4}\b)", re.I)
+    SAMPLEWORD = re.compile(r"\bsampl(?:e|ed|es|ing)\b", re.I)
+    ALLOWED = re.compile(r"calibrat|conversion factor|litres|litre|per counted event|"
+                         r"not a sample|not which pumps|sampling-campaign|"
+                         r"minimum sample size|census|validation round|stratum|"
+                         r"previously read", re.I)
+    plain2 = re.sub(r"<[^>]+>", " ", idx).replace("&mdash;", "—").replace("&nbsp;", " ")
+    bad_pairs = []
+    for sent in re.split(r"(?<=[.!?])\s+", plain2):
+        if not (UNITCOUNT.search(sent) and SAMPLEWORD.search(sent)):
+            continue
+        if ALLOWED.search(sent):
+            continue
+        bad_pairs.append(re.sub(r"\s+", " ", sent)[:110])
+    check("no sensor count is paired with the word 'sample'",
+          not bad_pairs, "none",
+          f"{len(bad_pairs)} offending" if bad_pairs else "none",
+          "metering is fleet-wide; the 90/10 sample sets litres per counted event")
+    for frag, why in (
+            ("the logger is the SDWS 28 Option 2 operation sensor",
+             "the plan's clause mapping is quoted"),
+            ("the stroke log doubles as the SDWS 31/32 O&amp;M and days-operational evidence",
+             "the days-operational consequence is quoted"),
+            ("permanently mounted to a static part of every metered pump",
+             "the logger is on every pump"),
+            ("Meter every pump, calibrate by sampling",
+             "the guiding principle is quoted"),
+            ("~770", "the fleet-wide logger count is stated"),
+            ("<b>723</b>", "the fleet size is stated"),
+            ("<b>646</b>", "the Canzee count is stated"),
+            ("<b>77</b>", "the India Mark II count is stated")):
+        check(f"sensor section: {why}", frag in idx, "present",
+              "present" if frag in idx else "MISSING",
+              "from StrokeMeter_Technical_Development_Plan_v1.2")
+    check("the report states the calendars retire if the logger is accepted",
+          "retire as a carbon instrument" in idx
+          and "cap would cease to bind" in idx, "stated",
+          "stated" if "retire as a carbon instrument" in idx else "MISSING",
+          "fleet-wide instrument evidence displaces the manual log")
+
+    # ---- 7ac. end-user consent: what we hold, as a figure ------------------
+    cons = os.path.join(here, "docs", "enduser_consent_position.md")
+    if not os.path.exists(cons):
+        check("consent position document present", False,
+              "docs/enduser_consent_position.md", "MISSING")
+    else:
+        cs = open(cons, encoding="utf8").read()
+        for frag, why in (
+                ("Transfert de Propriété des Réductions d'Émissions de Carbone",
+                 "the transfer clause is quoted"),
+                ("Exclusivité", "the exclusivity clause is quoted"),
+                ("période initiale de 5 ans", "the term is quoted"),
+                ("preuves documentaires d'accord pour le transfert de propriété légale au niveau individuel",
+                 "the individual-evidence commitment is quoted"),
+                ("consentement libre, préalable et éclairé", "FPIC is quoted"),
+                ("transfère par la présente à SaniTap", "the transfer wording is quoted"),
+                ("SaniTap a informé et notifié aux utilisateurs finaux",
+                 "the non-claiming notice is quoted")):
+            check(f"consent document: {why}", frag in cs, "quoted",
+                  "quoted" if frag in cs else "MISSING",
+                  "verbatim French from the signed documents")
+        check("consent document reports the mWater answer as a count",
+              "0 water points, against 727 active carbon" in cs, "counted",
+              "counted" if "0 water points, against 727 active carbon" in cs
+              else "MISSING")
+    check("the page carries the consent figure",
+          "End-user consent" in idx and "individual-level consent evidence" in idx,
+          "present",
+          "present" if "individual-level consent evidence" in idx else "MISSING")
+    check("the page states the non-claiming notice already exists",
+          "already in the signed Community Agreement" in idx, "stated",
+          "stated" if "already in the signed Community Agreement" in idx else "MISSING",
+          "the action must reflect what we hold, not assume we hold nothing")
+
+    # ---- 7ad. divergence 9: the quarterly requirement does not bind us -----
+    if os.path.exists(vmap):
+        vm2 = open(vmap, encoding="utf8").read()
+        check("register records that the quarterly validation binds Option 3 only",
+              "does NOT bind our route" in vm2
+              and "expressly scoped to Option 3" in vm2, "recorded",
+              "recorded" if "does NOT bind our route" in vm2 else "MISSING",
+              "Option 2 is the reference Option 3 is validated against")
+        check("register records v2.0's own quarterly/annually contradiction",
+              "contradicts itself on Option 3" in vm2, "recorded",
+              "recorded" if "contradicts itself on Option 3" in vm2 else "MISSING")
+        check("page states the quarterly validation does not reach us",
+              "does not reach us" in idx, "stated",
+              "stated" if "does not reach us" in idx else "MISSING")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):
