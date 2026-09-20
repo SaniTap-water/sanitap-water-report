@@ -95,6 +95,6 @@ nothing else needs updating.
 ## Controlled documents outside the repo
 
 The gardien calendar SOP, its template and its generator live in SharePoint at
-`Water Documents/SOPs/`, currently **v1.3**. The generator there is the source
+`Water Documents/SOPs/`, currently **v1.4**. The generator there is the source
 of record for the template; `sdws1/calendar_extract/make_calendar.py` is a
 tombstone pointing at it.

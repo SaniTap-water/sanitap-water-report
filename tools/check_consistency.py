@@ -1734,15 +1734,26 @@ def main():
     # From the January round the period is written on the sheet by the
     # technician and captured as an mWater field, so attribution never
     # depends on reading a printed header.
-    check("the page links the SOP at v1.3",
-          "CalendrierGardien-v1.3-2026" in idx
-          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.3",
-          "v1.3" if "CalendrierGardien-v1.3-2026" in idx else "NOT UPDATED",
-          "the year box and the recovery-round step are in v1.3")
-    check("the page names the template at v1.3",
-          "Template-v1.3" in idx, "v1.3",
-          "v1.3" if "Template-v1.3" in idx else "NOT UPDATED",
-          "pre-printed year removed, written year box added")
+    check("the page links the SOP at v1.4",
+          "CalendrierGardien-v1.4-2026" in idx
+          and "CalendrierGardien-v1.3-2026.docx" not in idx
+          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.4",
+          "v1.4" if "CalendrierGardien-v1.4-2026" in idx else "NOT UPDATED",
+          "year box at v1.3, year-correct grid restored at v1.4")
+    check("the page names the template at v1.4",
+          "Template-v1.4" in idx and "Template-v1.3.svg" not in idx, "v1.4",
+          "v1.4" if "Template-v1.4" in idx else "NOT UPDATED",
+          "written year box kept, weekday and February restored")
+    check("the page records that the handwritten box governs",
+          "the box governs" in idx, "stated",
+          "stated" if "the box governs" in idx else "MISSING",
+          "the grid may be made for a year; the sheet asserts none")
+    check("the mWater year field is recorded as live and optional",
+          "3393e25651c047d0b8a29f34cdcf12d9" in idx
+          and '<tr id="act-mwater-year-required">' in idx
+          and '<tr id="act-mwater-mg-locale">' in idx, "present",
+          "present" if "3393e25651c047d0b8a29f34cdcf12d9" in idx else "MISSING",
+          "optional now, required once v1.4 stock is in the field")
     check("the page names the mWater field that carries the period",
           "2.15.7" in idx and "d5233b2b" in idx, "named",
           "named" if "2.15.7" in idx else "MISSING",
@@ -1760,6 +1771,81 @@ def main():
           '<tr id="act-calendar-v13">' in idx, "present",
           "present" if '<tr id="act-calendar-v13">' in idx else "MISSING",
           "withdraw year-printed stock as v1.3 arrives")
+
+    # ---- 7ah. the printed grid is year-correct ----------------------------
+    # A twelve-by-thirty-one grid has seven cells that cannot exist in a common
+    # year and six in a leap year. Those cells are the extraction's only
+    # false-positive probe that needs no human transcript, so the count is not
+    # cosmetic. v1.3 printed February to 29 days on every sheet and lost the
+    # seventh; v1.4 takes the year as a parameter again. This runs the real
+    # generator and counts the shaded cells it emits.
+    GEN = ("/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - "
+           "Water Documents/SOPs/SOP-MAD-SDWS27-CalendrierGardien-Generator-v1.4.py")
+
+    def build_sheet(year):
+        """Execute the controlled generator and return one sheet's SVG.
+
+        segno is not installed for every interpreter that runs this checker and
+        the QR carries nothing this check looks at, so it is stubbed rather
+        than required. Everything else is the generator's own code.
+        """
+        src = open(GEN, encoding="utf8").read()
+        try:
+            import segno  # noqa: F401
+            mod = {}
+        except ImportError:
+            class _Q:
+                matrix = [[0]]
+            class _Segno:
+                @staticmethod
+                def make(data, error=None):
+                    return _Q()
+            mod = {"segno": _Segno}
+        g = {"__name__": "_calendar_generator"}
+        src = src.replace("import segno", "pass  # segno stubbed by the checker") \
+            if mod else src
+        exec(compile(src, GEN, "exec"), g)
+        if mod:
+            g["segno"] = mod["segno"]
+        return g, g["build"]("CHK00001", year)
+
+    if os.path.isfile(GEN):
+        for year, leap in ((2026, False), (2027, False), (2028, True)):
+            want = 6 if leap else 7
+            try:
+                g, svg = build_sheet(year)
+                grey = svg.count('fill="#d9d9d9"')
+                boxes = svg.count('width="5.0" height="5.0"')
+                wd = len(re.findall(r'fill="#333">[LMJVSD]</text>', svg))
+                years_printed = sorted(set(re.findall(r">\s*(20\d\d)\s*<", svg)))
+                declared = g["impossible_cells"](year)
+            except Exception as e:      # a broken generator is a failed check
+                check(f"generator: {year} prints {want} impossible cells",
+                      False, f"{want}", f"generator error: {e}")
+                continue
+            check(f"generator: {year} prints {want} impossible cells",
+                  grey == want and declared == want, f"{want} shaded",
+                  f"{grey} shaded, declares {declared}",
+                  "leap year" if leap else "common year")
+            check(f"generator: {year} prints {372 - want} day checkboxes",
+                  boxes == 372 - want, f"{372 - want}", f"{boxes}")
+            check(f"generator: {year} prints a weekday letter on every day cell",
+                  wd == 372 - want, f"{372 - want}", f"{wd}",
+                  "dropped in v1.3, restored in v1.4")
+            check(f"generator: {year} sheet prints no year anywhere",
+                  not years_printed, "none",
+                  "none" if not years_printed else ", ".join(years_printed),
+                  "the period is the handwritten box, not the grid")
+        gsrc = read(GEN)
+        check("generator: the handwritten year box is still on the sheet",
+              "TAONA / ANN&#201;E" in gsrc, "present",
+              "present" if "TAONA / ANN&#201;E" in gsrc else "MISSING",
+              "kept exactly as built at v1.3")
+        check("generator: the header phrase carries no year",
+              "Calendrier de fonctionnement de la pompe</text>" in gsrc,
+              "no year", "no year"
+              if "Calendrier de fonctionnement de la pompe</text>" in gsrc
+              else "YEAR PRINTED")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
