@@ -1376,6 +1376,137 @@ def main():
               else "MISSING",
               "deadlines are proposals until Jan confirms them")
 
+    # ---- 7x. 356.2 is a reading, never a claim -----------------------------
+    # DO = min(347, days demonstrated by the log). The observed-window reading
+    # sits above the cap, so no published sentence may pair it with a verb that
+    # asserts we can have it. This fires on the sentence, not the paragraph.
+    CLAIMY = re.compile(r"\b(claim(?:able|ed|ing|s)?|apply|applied|applicable|"
+                        r"credit(?:able|ed|ing)?|entitled|uplift|gain(?:ed|s)?|"
+                        r"recover(?:ed|s)?|available to us|worth to us)\b", re.I)
+    NEGATED = re.compile(r"\b(not|never|cannot|can't|no part|above the cap|"
+                         r"sizing|sizes|only on measured|would|not available)\b", re.I)
+    plain = re.sub(r"<[^>]+>", " ", idx)
+    plain = plain.replace("&mdash;", "—").replace("&nbsp;", " ")
+    offenders = []
+    for sent in re.split(r"(?<=[.!?])\s+", plain):
+        if "356.2" not in sent:
+            continue
+        if CLAIMY.search(sent) and not NEGATED.search(sent):
+            offenders.append(re.sub(r"\s+", " ", sent)[:110])
+    check("no published sentence pairs 356.2 with a claiming verb",
+          not offenders, "none",
+          f"{len(offenders)} offending" if offenders else "none",
+          "DO = min(347, log); the reading is above the cap and is not ours to apply")
+    check("the page says the reading is not a figure we can apply",
+          "not a figure we can apply" in idx, "stated",
+          "stated" if "not a figure we can apply" in idx else "MISSING")
+    check("the per-year table labels the difference as sizing only",
+          "Sensor decision only" in idx and "not claimable" in idx
+          and "not available to us" in idx, "relabelled",
+          "relabelled" if "Sensor decision only" in idx else "STILL READS AS VALUE")
+    check("the page states what the calendars are for: 18 days per point-year",
+          "18</b> days per point-year" in idx, "stated",
+          "stated" if "18</b> days per point-year" in idx else "MISSING",
+          "365 less 347; the condition for retaining the registered figure")
+
+    # ---- 7y. the open exposure, and the two unsettled questions ------------
+    for v, why in (("7,440", "2025 tonnes resting on the estimate"),
+                   ("17,681", "2026 tonnes resting on the estimate"),
+                   ("148,800", "2025 gap in USD"),
+                   ("353,600", "2026 gap in USD"),
+                   ("485", "2025 points with no dated sheet"),
+                   ("25,121", "the two-year exposure")):
+        check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
+              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE")
+    check("the page says neither question is settled by the documents",
+          "Neither is settled in either methodology version" in idx
+          and "we do not know which" in idx, "stated plainly",
+          "stated plainly" if "we do not know which" in idx else "SOFTENED",
+          "the text does not settle it and the report must not pretend otherwise")
+    if os.path.exists(basis):
+        bs2 = open(basis, encoding="utf8").read()
+        for frag, why in (
+                ("Operational sensors may be applied on a (90/10) sample basis",
+                 "the VPA-DD sampling sentence is quoted"),
+                ("SDWS 27 does not appear", "the VPA-DD sampling plan omits SDWS 27"),
+                ("does **not settle the question explicitly**",
+                 "the sampling question is reported as unsettled"),
+                ("Silence, in both documents",
+                 "the lost-evidence question is reported as silence"),
+                ("minimum sample size of 30", "the v1.0 sampling floor is quoted")):
+            check(f"basis document, Part 2: {why}", frag in bs2, "present",
+                  "present" if frag in bs2 else "MISSING")
+
+    # ---- 7z. the version divergence register -------------------------------
+    vmap = os.path.join(here, "docs", "methodology_version_map.md")
+    if not os.path.exists(vmap):
+        check("version divergence register present", False,
+              "docs/methodology_version_map.md", "MISSING",
+              "v2.0 applies at renewal and the mapping has to be maintained")
+    else:
+        vm = open(vmap, encoding="utf8").read()
+        idx_rows = re.findall(r"^\|\s*(\d+)\s*\|\s*(yes|no)\s*\|\s*([a-z0-9-]*)\s*\|\s*$",
+                              vm, re.M)
+        check("the register carries a machine-readable action_now index",
+              len(idx_rows) >= 10, ">= 10 rows", len(idx_rows),
+              "so every action_now = yes can be checked against the action list")
+        yes = [(n, aid) for n, f, aid in idx_rows if f == "yes"]
+        check("every divergence needing action now names an action",
+              all(aid for _, aid in yes), f"{len(yes)} named",
+              f"{sum(1 for _, a in yes if not a)} unnamed" if yes else "none")
+        for n, aid in yes:
+            check(f"divergence {n} has its Action List item: {aid}",
+                  f'<tr id="{aid}">' in idx, aid,
+                  aid if f'<tr id="{aid}">' in idx else "NO SUCH ACTION",
+                  "a register row marked action_now = yes must have an action")
+        check("the register states v1.0 governs and v2.0 applies at renewal",
+              "v1.0 governs the current crediting period" in vm
+              and "applies at renewal" in vm, "stated",
+              "stated" if "v1.0 governs the current crediting period" in vm else "MISSING")
+        check("the page carries the version-divergence section",
+              "v1.0 governs this crediting period" in idx, "present",
+              "present" if "v1.0 governs this crediting period" in idx else "MISSING")
+        n_div = len(idx_rows); n_now = len(yes)
+        ok_counts = ("Fourteen divergences" in idx
+                     and f"<b>{n_now}</b> require action now" in idx)
+        check(f"page states the divergence counts: {n_div} found, {n_now} act now",
+              ok_counts, f"{n_div} found, {n_now} act now",
+              "stated" if ok_counts else "NOT ON THE PAGE")
+
+    # ---- 7aa. the standing adherence item and the custody metric -----------
+    check("the standing methodology-adherence item is present",
+          '<tr id="act-v2-adherence">' in idx, "present",
+          "present" if '<tr id="act-v2-adherence">' in idx else "MISSING")
+    m_ad = re.search(r'<tr id="act-v2-adherence">(.*?)</tr>', idx, re.S)
+    if m_ad:
+        check("the adherence item is owned by James Walker and stands open",
+              "James Walker" in m_ad.group(1)
+              and "STANDING" in m_ad.group(1), "standing, James Walker",
+              "ok" if "STANDING" in m_ad.group(1) else "WRONG")
+    for aid, owner, date in (("act-calendar-custody", "Angelo Nahavitatsara / MadAvance", "26 Sep 2026"),
+                             ("act-sensor-definition", "James Walker", "10 Oct 2026")):
+        m2 = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', idx, re.S)
+        check(f"action present: {aid}", m2 is not None, "present",
+              "present" if m2 else "MISSING")
+        if m2:
+            check(f"{aid}: owner is {owner}", owner in m2.group(1), owner,
+                  owner if owner in m2.group(1) else "WRONG OWNER")
+            check(f"{aid}: deadline is {date}", f"<b>{date}</b>" in m2.group(1),
+                  date, date if f"<b>{date}</b>" in m2.group(1) else "WRONG DATE")
+    check("the calendar-custody rule is stated as replace-only-after-photograph",
+          "NO CALENDAR MAY BE REPLACED UNTIL THE PREVIOUS ONE HAS BEEN PHOTOGRAPHED"
+          in idx, "stated", "stated" if "NO CALENDAR MAY BE REPLACED" in idx
+          else "MISSING", "the precondition for the recovery round")
+    check("the recovery round is whole-portfolio against the 727 denominator",
+          "whole portfolio &mdash; not a sample" in idx, "stated",
+          "stated" if "whole portfolio &mdash; not a sample" in idx else "MISSING")
+    for v, why in (("293", "points with usable dated 2026 evidence"),
+                   ("40.3%", "the 2026 custody percentage"),
+                   ("32.8%", "the 2025 custody percentage")):
+        check(f"fleet section states {why}: {v}", f"<b>{v}</b>" in idx, v,
+              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
+              "calendar custody is a headline operational metric")
+
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
         for tag in ("section", "details"):

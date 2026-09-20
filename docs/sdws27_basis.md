@@ -248,3 +248,96 @@ work protects the registered figure; it cannot raise it.
 **The only route above 347 is an operation sensor**, deployable on a (90/10)
 sample basis under the VPA-DD's own "Additional comment", with §4.2.2 of v1.0
 setting a minimum sample of 30 for a proportion parameter.
+
+---
+
+# Part 2 — may the O&M log be sampled, and what happens when evidence is lost?
+
+Added 20 September 2026. Same rule as above: everything quoted is verbatim.
+
+## Can SDWS 27 Option 2 be demonstrated on a sample?
+
+**The VPA-DD's only sampling sentence for SDWS 27 is about the sensor, not the
+log.** From the parameter box, "Additional comment", in full:
+
+> Operational sensors may be applied on a (90/10) sample basis to assess operational days in the Project scenario
+
+That permits sampling of **Option 1**. It says nothing about Option 2.
+
+**The VPA-DD's own sampling plan excludes SDWS 27.** Section B.7.2 tabulates
+every parameter to be determined by sampling (Table 12, "Mean/Proportion
+parameters"): baseline — SDWS 6, SDWS 8, SDWS 11, SDWS 12; project — SDWS 18,
+SDWS 22, SDWS 23, SDWS 25, SDWS 26. **SDWS 27 does not appear.** The section
+opens:
+
+> Data and parameters monitored in section B.7.1 above are to be determined by a sampling approach.
+
+and then lists which ones. SDWS 27 is monitored under B.7.1 and is absent from
+the list that follows.
+
+**Neither methodology version invokes its sampling section from the
+days-operational box.** Reading every parameter box in both documents for a
+cross-reference to the sampling section:
+
+| Version | Sampling section | Parameter boxes that invoke it | Days-operational box |
+|---|---|---|---|
+| v1.0 | §4.2 General requirements for sampling | SDWS 18, 20, 22, 23, 25, 26, 30, 34 | **SDWS 27 — absent** |
+| v2.0 | §14.5 Sampling requirements | SDWS 6, 11, 22, 23, 24, 26, 27, 28, 29, 30, 31, 34, 35, 40, 41 | **SDWS 32 — absent** |
+
+In both versions the days-operational box is the one monitored parameter in the
+emission-reduction set that makes **no reference to sampling at all** — the word
+"sampl" and the string "90/10" appear nowhere in either box.
+
+v1.0 §4.2.1 governs sampling only where it is already applied:
+
+> When sampling is applied to determine mean (average) parameter values or proportion (e.g. yes/no) parameter values for both ex-ante and monitored data and parameters, the guidelines provided in this section shall always be applied. Additionally, for the sampling related to some parameters, specific requirements apply, and these are described in the parameter tables.
+
+§4.2.2, the minimum that would apply if it were sampled:
+
+> A statistically valid sample can be used to determine parameter values, as per the relevant requirements for sampling in the "Methodology for Sampling and surveys for CDM project activities and programme of activities." Minimum 90% confidence interval and a 10% margin of error requirement shall be achieved for the sampled parameters. In any case, for proportion parameter values, a minimum sample size of 30, or the whole group size if this is lower than 30, must always be applied. Further, cross-VPA sampling is not accepted across groups larger than 10 VPAs.
+
+**Finding, stated as it is.** **No sentence in either methodology version, or in
+the VPA-DD, says in terms that the operation-and-maintenance log must cover
+every water point.** Nor does any sentence permit sampling it. The text does **not settle the question explicitly**.
+
+But the text is not neutral, and it leans one way. Every parameter the project
+intends to sample is named in a list that SDWS 27 is absent from; the sampling
+section is invoked from eight other boxes in v1.0 and fifteen in v2.0 and from
+neither days-operational box; and the one express permission to sample anything
+under SDWS 27 is attached to the sensor route alone. **The reading the documents
+support is that the log covers every point.** We should plan on that and put it
+to Gold Standard rather than assume the convenient alternative — and note that
+the convenient alternative would in any case only reduce the field work, never
+raise the 347 cap.
+
+## What happens to a point whose evidence is lost or illegible?
+
+**Silence, in both documents.** Searching the full text of each:
+
+| Term | v1.0 | v2.0 |
+|---|---:|---:|
+| "missing" | 0 | 0 |
+| "illegible" | 0 | 0 |
+| "lost" | 0 | 4 |
+
+All four occurrences of "lost" in v2.0 are "**lost co-benefits**" in the
+leakage sections (§9.3.1.2 and the leakage parameter box) — the space-heating
+effect of boiling, nothing to do with evidence. The two occurrences of
+"unavailable" in v2.0 are "*Any information unavailable at validation requires
+a FAR*" and a data-source fallback for technical life; both are validation-stage,
+not monitoring-stage.
+
+**Neither version states whether a point with no usable log is excluded from the
+claim, falls back to the registered estimate, or is treated some third way.**
+There is no provision to quote, because there is no provision.
+
+What fills the silence at present is **our own SOP**, not the methodology:
+SOP-MAD-SDWS27-CalendrierGardien §9 provides that where no photograph exists for
+the period the availability rate is not calculated and the point is taken to the
+conservative value. That is a house rule. It has not been put to Gold Standard
+or to a VVB, and a verifier is not bound by it.
+
+**This is the single largest unquantified exposure on SDWS 27**, because it
+decides what happens to the 434 active points that have no dated 2026 sheet. It
+is the second question for the Head of Carbon, and it is not answerable from the
+documents.
