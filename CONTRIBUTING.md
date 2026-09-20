@@ -62,6 +62,12 @@ python3 tools/render_block.py --check    # exit 1 if index.html has drifted
 ```
 
 The marker names its own generator, so the rule is readable from the page.
+
+`data/mwater_form_snapshot.json` follows the same rule without markers: it is output, written
+only by `tools/refresh_form_snapshot.py`, and never hand-edited. It is what block 7ai asserts
+the live form structure against, because the checker cannot call mWater on every build. Run the
+refresh whenever an mWater form is changed — a form edit is caught the next time it runs, and
+the failing check names what moved.
 A generator added later must support `--check` and `--write` and be named in
 its marker the same way; the checker discovers regions from the markers, so
 nothing else needs updating.
@@ -95,6 +101,8 @@ nothing else needs updating.
 ## Controlled documents outside the repo
 
 The gardien calendar SOP, its template and its generator live in SharePoint at
-`Water Documents/SOPs/`, currently **v1.4**. The generator there is the source
+`Water Documents/SOPs/`. The SOP is at **v1.5**; the template and generator are at **v1.4**
+(v1.5 changed the procedure and the mWater form, not the sheet). Superseded versions go to
+`SOPs/Archive/`. The generator there is the source
 of record for the template; `sdws1/calendar_extract/make_calendar.py` is a
 tombstone pointing at it.

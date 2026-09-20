@@ -1734,12 +1734,13 @@ def main():
     # From the January round the period is written on the sheet by the
     # technician and captured as an mWater field, so attribution never
     # depends on reading a printed header.
-    check("the page links the SOP at v1.4",
-          "CalendrierGardien-v1.4-2026" in idx
+    check("the page links the SOP at v1.5",
+          "CalendrierGardien-v1.5-2026" in idx
+          and "CalendrierGardien-v1.4-2026.docx" not in idx
           and "CalendrierGardien-v1.3-2026.docx" not in idx
-          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.4",
-          "v1.4" if "CalendrierGardien-v1.4-2026" in idx else "NOT UPDATED",
-          "year box at v1.3, year-correct grid restored at v1.4")
+          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.5",
+          "v1.5" if "CalendrierGardien-v1.5-2026" in idx else "NOT UPDATED",
+          "photograph mandatory where a calendar exists, at v1.5")
     check("the page names the template at v1.4",
           "Template-v1.4" in idx and "Template-v1.3.svg" not in idx, "v1.4",
           "v1.4" if "Template-v1.4" in idx else "NOT UPDATED",
@@ -1846,6 +1847,119 @@ def main():
               "no year", "no year"
               if "Calendrier de fonctionnement de la pompe</text>" in gsrc
               else "YEAR PRINTED")
+
+    # ---- 7ai. the live form still matches what the SOPs say it does -------
+    # SOP-MAD-SDWS27-CalendrierGardien chapter 11 stated for months that the
+    # calendar photograph field was mandatory in mWater. It was not: 2.15.6
+    # carried required:false from the day it was written. Nothing caught it,
+    # because nothing had ever compared a sentence in a procedure with the
+    # form it describes. docs/sop_form_conformance.md is that comparison; this
+    # is the part of it that runs on every build.
+    #
+    # The checker cannot call mWater - publish.sh has to work without network
+    # or credentials - so it asserts against data/mwater_form_snapshot.json,
+    # rewritten by tools/refresh_form_snapshot.py. A form edit made in the
+    # designer is caught the next time that is run, and the failing check
+    # names what moved.
+    SNAPPATH = os.path.join(repo_root, "data", "mwater_form_snapshot.json")
+    check("the mWater form snapshot is in the repository",
+          os.path.isfile(SNAPPATH), "present",
+          "present" if os.path.isfile(SNAPPATH) else "MISSING",
+          "evidence for docs/sop_form_conformance.md")
+    if os.path.isfile(SNAPPATH):
+        snap = json.load(open(SNAPPATH, encoding="utf8"))
+        pm = snap["forms"].get("preventive-maintenance", {})
+        byc = {q["code"]: q for q in pm.get("questions", []) if q.get("code")}
+        byid = {q["id"]: q for q in pm.get("questions", [])}
+        PRESENCE = "e04e8727a1264f2aa8f6628d6f014097"
+        YES = "DT5tf4B"
+        NO = "WeT1Q1t"
+
+        def cond_on(q, qid, literal):
+            for c in q.get("conditions") or []:
+                if (c.get("op") == "is" and (c.get("lhs") or {}).get("question") == qid
+                        and (c.get("rhs") or {}).get("literal") == literal):
+                    return True
+            return False
+
+        pres = byc.get("2.15.5bis")
+        check("form: a calendar-presence question exists and is required",
+              bool(pres) and pres["id"] == PRESENCE and pres["required"],
+              "2.15.5bis required",
+              "2.15.5bis required" if pres and pres["required"] else "MISSING OR OPTIONAL",
+              "is a calendar physically present at the point")
+        reason = byc.get("2.15.5ter")
+        check("form: an absence-reason question exists, shown when there is none",
+              bool(reason) and cond_on(reason, PRESENCE, NO) and not reason["required"],
+              "2.15.5ter optional, on No",
+              "2.15.5ter optional, on No" if reason and cond_on(reason, PRESENCE, NO)
+              else "MISSING OR UNCONDITIONAL",
+              "absence recorded with a reason, not inferred")
+        photo = byc.get("2.15.6")
+        check("form: the calendar photograph is REQUIRED when a calendar is present",
+              bool(photo) and photo["required"] and cond_on(photo, PRESENCE, YES),
+              "2.15.6 required on Yes",
+              "2.15.6 required on Yes" if photo and photo["required"]
+              and cond_on(photo, PRESENCE, YES) else "RELAXED",
+              "this is the assertion that was false for months")
+        # the three of them have to stay in one group, or the condition is
+        # invisible to the technician answering it
+        grps = {byid[i]["group"] for i in (PRESENCE,) if i in byid}
+        same = all(q and q.get("group") in grps for q in (pres, reason, photo))
+        check("form: presence, reason and photograph sit in one question group",
+              same and bool(grps), "one group",
+              "one group" if same and grps else "SPLIT",
+              next(iter(grps)) if grps else "")
+        # no code may be reused within a form: codes are export column headers
+        # and the evidence pack is built from exports
+        dups = {}
+        for fname, f in snap["forms"].items():
+            seen = collections.Counter(q["code"] for q in f["questions"] if q.get("code"))
+            d = {c: n for c, n in seen.items() if n > 1}
+            if d:
+                dups[fname] = d
+        pm_dups = dups.get("preventive-maintenance", {})
+        check("form: no duplicated question codes on preventive-maintenance",
+              not pm_dups, "0", "0" if not pm_dups else ", ".join(sorted(pm_dups)),
+              "export column headers would collide")
+        check("the remaining duplicated codes are the ones on the action list",
+              set(dups) <= {"repair-after-breakdown", "stroke-meter",
+                            "premiere-rehabilitation"},
+              "only the three known forms",
+              "only the three known forms" if set(dups) <= {"repair-after-breakdown",
+              "stroke-meter", "premiere-rehabilitation"} else ", ".join(sorted(dups)),
+              "act-duplicate-codes-sweep clears these")
+        check("every snapshot form is active",
+              all(f.get("state") == "active" for f in snap["forms"].values()),
+              f"{len(snap['forms'])} active",
+              f"{sum(1 for f in snap['forms'].values() if f.get('state') == 'active')} active")
+        check("preventive-maintenance is deployed to all four districts",
+              sum(1 for d in pm.get("deployments", []) if d["active"]) == 4,
+              "4 active", f"{sum(1 for d in pm.get('deployments', []) if d['active'])} active")
+
+    check("the page states the photograph is mandatory where a calendar exists",
+          "mandatory wherever a calendar is present" in idx
+          and "absence is recorded rather than inferred" in idx, "stated",
+          "stated" if "mandatory wherever a calendar is present" in idx else "MISSING",
+          "and absence is recorded, not inferred")
+    check("the page carries the conformance sweep counts",
+          all(s in idx for s in ("SOPs swept", "16 conform")) or
+          all(s in idx for s in ("</b> SOPs, <b>12</b> live mWater forms", "16 conform")),
+          "counted", "counted" if "16 conform" in idx else "MISSING",
+          "15 SOPs, 25 resolved, 16 conform, 8 discrepancies")
+    for aid in ("act-photo-conditional-on-presence", "act-decommission-inactivity-field",
+                "act-duplicate-codes-sweep"):
+        check(f"conformance discrepancy is actioned: {aid}",
+              f'<tr id="{aid}">' in idx, "present",
+              "present" if f'<tr id="{aid}">' in idx else "MISSING",
+              "touches carbon evidence")
+
+    conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
+    ctext = read(conf) if os.path.isfile(conf) else ""
+    check("the SOP/form conformance sweep is recorded",
+          "SOP documents swept" in ctext and "Discrepancies" in ctext,
+          "recorded", "recorded" if "SOP documents swept" in ctext else "MISSING",
+          "docs/sop_form_conformance.md")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
