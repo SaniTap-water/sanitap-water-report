@@ -1649,10 +1649,117 @@ def main():
           '<tr id="act-printed-year-meaning">' in idx, "present",
           "present" if '<tr id="act-printed-year-meaning">' in idx else "MISSING",
           "the printed year is the key the days-operational chain turns on")
-    check("the page links the SOP at v1.2",
-          "CalendrierGardien-v1.2-2026" in idx, "v1.2",
-          "v1.2" if "CalendrierGardien-v1.2-2026" in idx else "NOT UPDATED",
-          "the custody rule is written into the SOP")
+
+    # ---- 7af. repo hygiene: one home per script, one source per region ----
+    # Two regressions came from the same cause and nothing caught either.
+    # A stale bundle_new_sheets.py sat in sdws1/calendar_extract/ while the
+    # repo copy was the one being fixed, so the fix ran on neither; and the
+    # machine-extraction block of index.html was hand-edited twice and both
+    # times silently reverted by its generator. The rule is in CONTRIBUTING.md:
+    # every generated artefact is edited only at its generator, and no script
+    # exists at two paths. These checks enforce it rather than restate it.
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    SIBLINGS = ["/home/bushp/sdws1", "/home/bushp/sdws1/calendar_extract"]
+    SKIPDIR = ("__pycache__", ".git", "node_modules", "site-packages",
+               ".venv", "venv", ".cache", ".attic", "editions")
+
+    def is_tombstone(path):
+        """A stub that refuses to run is a signpost, not a second copy."""
+        try:
+            s = open(path, encoding="utf8", errors="replace").read()
+        except OSError:
+            return False
+        return len(s) < 2000 and "sys.exit(__doc__)" in s
+
+    def scripts_under(root):
+        out = {}
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames if d not in SKIPDIR]
+            for fn in filenames:
+                if fn.endswith((".py", ".sh")):
+                    full = os.path.join(dirpath, fn)
+                    if not is_tombstone(full):
+                        out.setdefault(fn, []).append(full)
+        return out
+
+    homes = scripts_under(repo_root)
+    for sib in SIBLINGS:
+        if not os.path.isdir(sib):
+            continue
+        for fn, paths in scripts_under(sib).items():
+            homes.setdefault(fn, []).extend(paths)
+
+    dupes = {fn: sorted(set(ps)) for fn, ps in homes.items() if len(set(ps)) > 1}
+    check("no script filename exists at two paths",
+          not dupes, "0 duplicated names",
+          "0 duplicated names" if not dupes
+          else f"{len(dupes)}: {', '.join(sorted(dupes))}",
+          "; ".join(f"{fn} -> {' AND '.join(ps)}" for fn, ps in
+                    sorted(dupes.items()))[:400])
+
+    # Every generated region of index.html must name a generator that exists,
+    # and the region must be exactly what that generator produces today.
+    marks = re.findall(r"<!-- BEGIN GENERATED ([A-Za-z0-9_\-]+) :: ([^\s:]+) ::[^>]*-->", idx)
+    check("index.html declares its generated regions",
+          len(marks) >= 1, ">= 1 region", f"{len(marks)} region(s)",
+          ", ".join(f"{n} <- {g}" for n, g in marks))
+    check("generated-region markers are balanced",
+          idx.count("<!-- BEGIN GENERATED") == idx.count("<!-- END GENERATED"),
+          f"{idx.count('<!-- BEGIN GENERATED')} begin",
+          f"{idx.count('<!-- END GENERATED')} end")
+    for name, gen in marks:
+        gpath = os.path.join(repo_root, gen)
+        check(f"generator exists: {gen}", os.path.isfile(gpath),
+              "present", "present" if os.path.isfile(gpath) else "MISSING", name)
+        if not os.path.isfile(gpath):
+            continue
+        r = subprocess.run([sys.executable, gpath, "--check"],
+                           capture_output=True, text=True, cwd=repo_root)
+        check(f"index.html region '{name}' matches its generator",
+              r.returncode == 0, "matches",
+              "matches" if r.returncode == 0 else "DRIFTED",
+              "" if r.returncode == 0
+              else "edit the generator, then run "
+                   f"python3 {gen} --write")
+
+    contrib = os.path.join(repo_root, "CONTRIBUTING.md")
+    ctxt = read(contrib) if os.path.isfile(contrib) else ""
+    check("CONTRIBUTING.md records the two-copies rule",
+          "two-copies" in ctxt.lower() and "one home" in ctxt.lower()
+          and "render_block.py" in ctxt,
+          "recorded", "recorded" if "two-copies" in ctxt.lower() else "MISSING",
+          "the rule has to survive a context reset")
+
+    # ---- 7ag. the sheet states its own period -----------------------------
+    # From the January round the period is written on the sheet by the
+    # technician and captured as an mWater field, so attribution never
+    # depends on reading a printed header.
+    check("the page links the SOP at v1.3",
+          "CalendrierGardien-v1.3-2026" in idx
+          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.3",
+          "v1.3" if "CalendrierGardien-v1.3-2026" in idx else "NOT UPDATED",
+          "the year box and the recovery-round step are in v1.3")
+    check("the page names the template at v1.3",
+          "Template-v1.3" in idx, "v1.3",
+          "v1.3" if "Template-v1.3" in idx else "NOT UPDATED",
+          "pre-printed year removed, written year box added")
+    check("the page names the mWater field that carries the period",
+          "2.15.7" in idx and "d5233b2b" in idx, "named",
+          "named" if "2.15.7" in idx else "MISSING",
+          "preventive maintenance, group d5233b2b, after 2.15.6")
+    check("the page states the period is recorded, not inferred",
+          "recorded by the technician" in idx and "not inferred" in idx,
+          "stated", "stated" if "not inferred" in idx else "MISSING",
+          "from the January round onward")
+    check("no published text calls a printed year the period covered",
+          "l&rsquo;ann&eacute;e couverte" not in idx
+          and "the year the sheet covers" not in idx, "absent",
+          "absent" if "l&rsquo;ann&eacute;e couverte" not in idx else "PRESENT",
+          "a printed year denotes the print run only")
+    check("the v1.3 distribution action is on the list",
+          '<tr id="act-calendar-v13">' in idx, "present",
+          "present" if '<tr id="act-calendar-v13">' in idx else "MISSING",
+          "withdraw year-printed stock as v1.3 arrives")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
