@@ -137,6 +137,15 @@ def main():
         log(f"{tag}REFUSED: working tree is not clean, {len(dirty)} path(s): "
             + ", ".join(l[3:] for l in dirty[:3]))
         return 1
+    # The retries exist for a machine that was off, not to publish an edition
+    # an hour after the last one. Once today's edition is out, later runs in
+    # the same day do nothing - unless --force, or a Downloads candidate turns
+    # up with newer data, which publish_waiting.py handles on its own.
+    today = datetime.date.today()
+    issued, _ = masthead_of(os.path.join(REPO, "index.html"))
+    if issued == today and "--force" not in sys.argv[1:] and not dry:
+        log(f"already built today: the published edition is issued {issued}")
+        return 0
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
 
     def rollback(why):
@@ -147,7 +156,16 @@ def main():
     try:
         archived = archive()
         failures = []
+        # The extract pull is by far the slowest step - it walks date windows
+        # per form and takes a quarter of an hour. SANITAP_SKIP_PULL lets a
+        # proof run exercise everything else against extracts already on disk.
+        # The schedule never sets it.
+        skip = os.environ.get("SANITAP_SKIP_PULL") == "1"
         for script, args, required in STEPS:
+            if skip and script.endswith("pull_extract.py"):
+                log(f"{tag}SKIPPING the extract pull (SANITAP_SKIP_PULL=1); "
+                    "using the extracts already on disk")
+                continue
             r = run([PY, script] + args)
             if r.returncode != 0:
                 msg = (r.stderr or r.stdout or "").strip().splitlines()

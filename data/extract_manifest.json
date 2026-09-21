@@ -7,7 +7,7 @@
    "newest_submitted": "2026-09-21",
    "rows": 2825,
    "unique": 2825,
-   "written": "2026-09-21T18:10:36"
+   "written": "2026-09-21T20:21:57"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -15,7 +15,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 18,
    "unique": 18,
-   "written": "2026-09-21T18:12:17"
+   "written": "2026-09-21T20:23:33"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
@@ -23,7 +23,7 @@
    "newest_submitted": "2026-09-11",
    "rows": 755,
    "unique": 755,
-   "written": "2026-09-21T18:08:11"
+   "written": "2026-09-21T20:19:32"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -31,7 +31,7 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-21T18:11:26"
+   "written": "2026-09-21T20:22:45"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
@@ -39,7 +39,7 @@
    "newest_submitted": "2026-09-14",
    "rows": 212,
    "unique": 212,
-   "written": "2026-09-21T18:09:06"
+   "written": "2026-09-21T20:20:31"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
@@ -50,5 +50,9 @@
  },
  "newest_in_files": "2026-09-21",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-09-21T18:12:17"
+ "pulled_at": "2026-09-21T20:23:33",
+ "strays": [
+  "old_combined_reparation.csv",
+  "wp_lookup.csv"
+ ]
 }
