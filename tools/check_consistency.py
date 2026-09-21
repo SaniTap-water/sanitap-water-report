@@ -2537,6 +2537,56 @@ def main():
           else "STILL UNCONDITIONAL",
           "no dangling colon after an empty list")
 
+    # ---- 7at. no container may render as an empty bordered box ----------
+    # .tablewrap carries a border and a max-height, so a <table> whose <tbody>
+    # is empty in the markup and never written by script renders as a large
+    # empty white box. Three did - corrtbl, exctbl and tracetbl - inside
+    # collapsed sections where nobody noticed, while the data sat on the page
+    # the whole time. A table left empty in the markup is fine; a table left
+    # empty with nothing to fill it is not.
+    orphan_tables = []
+    for m in re.finditer(r'<table\b([^>]*)>(.*?)</table>', idx, re.S):
+        attrs, body = m.group(1), m.group(2)
+        if not re.search(r"<tbody\b[^>]*>\s*</tbody>", body):
+            continue
+        tid = re.search(r'id="([A-Za-z0-9_-]+)"', attrs)
+        if not tid:
+            orphan_tables.append("(table with no id)")
+            continue
+        k = tid.group(1)
+        written = re.search(r"['\"]#%s(?: tbody)?['\"]" % re.escape(k), idx) is not None
+        if not written:
+            orphan_tables.append(k)
+    check("no table is left empty with nothing to fill it",
+          not orphan_tables, "none",
+          ", ".join(orphan_tables) if orphan_tables else "none",
+          ".tablewrap has a border: an unfilled table is a blank box")
+    # and a filler must cope with an empty list rather than leaving the border
+    # Rather than a guard per filler - several have none and more will be
+    # added - one sweep runs after everything is filled and hides any
+    # .tablewrap left with no body rows.
+    swept = ("function hideEmptyTableWraps()" in idx
+             and "hideEmptyTableWraps();" in idx)
+    check("an empty table cannot render as a bordered blank",
+          swept, "swept after fill", "swept after fill" if swept else "NO SWEEP",
+          "hideEmptyTableWraps hides any .tablewrap with no rows")
+
+    # ---- 7au. the growth finding, and its two owners --------------------
+    check("the page states that the fleet has not grown in nine months",
+          "has not grown in nine months" in idx
+          and "broken at the recording step" in idx, "stated",
+          "stated" if "has not grown in nine months" in idx else "MISSING",
+          "50 records created, none entering the portfolio")
+    check("the growth finding carries what the unevidenced points are worth",
+          "28.58" in idx and "200</b> tCO<sub>2</sub>e a year" in idx, "quantified",
+          "quantified" if "28.58" in idx else "MISSING",
+          "7 points at the registered per-point figure")
+    check("the form question and the programme question have separate owners",
+          '<tr id="act-rehab-recording">' in idx and '<tr id="act-fleet-growth">' in idx,
+          "two items", "two items"
+          if '<tr id="act-fleet-growth">' in idx else "MERGED",
+          "MadAvance restores recording; the Head of Carbon owns the pipeline")
+
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
     check("the SOP/form conformance sweep is recorded",
