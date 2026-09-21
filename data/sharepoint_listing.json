@@ -1,0 +1,47 @@
+{
+ "CrossProject Documents/Data": [
+  "Marie Transition Plan.docx"
+ ],
+ "Pipped Water/Backup_JL/Piped Water Systems": [
+  "SaniTap_UrbanWater_PitchDeck_v2.pptx"
+ ],
+ "Pipped Water/Backup_JL/Piped Water Systems/Pitch Decks": [
+  "SaniTap_UrbanWater_PitchDeck_v3.pptx",
+  "SaniTap_UrbanWater_PitchDeck_v5.pptx"
+ ],
+ "Shared Documents/Evidence/feedback and grevance mecanism/SOPs": [
+  "SOP 0 Full Mechanism.pdf",
+  "SOP Annexe 5  Incident Report Mechanism.pdf",
+  "SOP mecanism de feedback et plainte  AN 16 08 maj.xlsx"
+ ],
+ "Water Documents": [],
+ "Water Documents/SOPs": [
+  "Monitoring_SOPs_development.docx",
+  "SOP Compteur_Canzee_vf.docx",
+  "SOP Emergency_event_SDWS3.docx",
+  "SOP Maintenance Pr\u00e9ventive et r\u00e9paration PMH_082025 Eng.docx",
+  "SOP Maintenance Pr\u00e9ventive et r\u00e9paration PMH_112025.docx",
+  "SOP Techniciens_r\u00e9habilitation.docx",
+  "SOP for Decommissioning Water Points_.docx",
+  "SOP-MAD-SDWS27-CalendrierGardien-v1.1-2026.docx",
+  "SOP-MAD-SDWS27-CalendrierGardien-v1.2-2026.docx",
+  "SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx",
+  "SOP-Suppression_Points_d'Eau.docx",
+  "SOP_SDWS18.docx",
+  "SOP_SDWS3 updated.docx"
+ ],
+ "Water Documents/SOPs/Archive": [
+  "SOP-MAD-SDWS27-CalendrierGardien-v1.3-2026.docx",
+  "SOP-MAD-SDWS27-CalendrierGardien-v1.4-2026.docx"
+ ],
+ "Water Documents/WQTs_Madie/Certification ANDEA Labo/SOPs_Proc\u00e9dures Standards Op\u00e9rationnelles": [
+  "DRAFT_Aquagenx SOP.docx",
+  "SOP Echantillonnage PE.docx"
+ ],
+ "Water Documents/Work in Progress": [
+  "Budget_StrokeTest_W4C_2026_v2.xlsx",
+  "GS12601 water list of documents - request.docx",
+  "SOP_SDWS27_StrokeTest_v2_Revise_2026.docx"
+ ],
+ "_note": "Folders enumerated through the Microsoft 365 connector on 2026-09-21. \"Water Documents\" is listed as empty because the Central Data Hub holds no loose files at that level - the only ERSDWS and VPA-DD copies found anywhere are in personal OneDrive backups and the Carbon2 site, which is the point of the action that checks it."
+}

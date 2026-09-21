@@ -1,0 +1,16 @@
+{
+ "checked": "2026-09-21",
+ "extract_newest": "2026-09-07",
+ "lag_days": 14,
+ "latest_in_extract": {
+  "last_repair": "2026-09-07",
+  "last_visit": "2026-09-07"
+ },
+ "latest_in_mwater": {
+  "call-centre": "2026-09-21",
+  "premiere-rehabilitation": null,
+  "preventive-maintenance": "2026-09-11",
+  "repair-after-breakdown": "2026-09-14"
+ },
+ "mwater_newest": "2026-09-21"
+}

@@ -10,7 +10,6 @@
   "The fleet at a glance",
   "This week",
   "Actions — the one list",
-  "Attention list",
   "Portfolio by partner",
   "How the people-served figure is built",
   "From first rehabilitation to the pumps we maintain today",
@@ -40,8 +39,10 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 29649,
+ "height": 26634,
+ "measure": 1132,
  "missing_ids": [],
+ "off_measure": [],
  "page_errors": [],
  "scope_visible_sections": {
   "All SaniTap": null,
@@ -50,7 +51,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 34,
+ "sections": 33,
  "tables": {
   "corrtbl": {
    "hidden": false,
@@ -67,10 +68,6 @@
   "itin": {
    "hidden": false,
    "rows": 365
-  },
-  "martbl": {
-   "hidden": false,
-   "rows": 13
   },
   "opentbl": {
    "hidden": false,

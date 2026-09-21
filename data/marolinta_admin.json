@@ -1,0 +1,162 @@
+{
+ "checked": "2026-09-21",
+ "no_photograph": 0,
+ "records": [
+  {
+   "admin_region": 418299,
+   "code": "1052525198",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahatsara",
+   "name": "Noveau forrage Num\u00e9ro 04 ",
+   "photos": 2,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "1052525215",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahatsara",
+   "name": "MPOMPY FORAGE A CORDE (MANUELLE ",
+   "photos": 4,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "1052525222",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahafaly Centre",
+   "name": "Pompe a corde (MANUELLE)",
+   "photos": 1,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "1052525246",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Antsasavy Soa",
+   "name": "FORRAGE A CORDE (MANUEL )",
+   "photos": 2,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 313139,
+   "code": "1052525260",
+   "commune": null,
+   "district": null,
+   "fokontany": null,
+   "fokontany_from_description": "Mhafaly Centre",
+   "name": "NOVEAU  FORRAGE N\u00ba6 CANZEE ",
+   "photos": 1,
+   "source": "unresolved",
+   "why_empty": "the register holds region 313139 for this record and no located water point shares it, so there is nothing to read a district from"
+  },
+  {
+   "admin_region": 418299,
+   "code": "1052525284",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahafaly Centre",
+   "name": "MAHAFALY CENTRE _NOVEAU FORRAGE 09",
+   "photos": 1,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "893673000",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": null,
+   "name": "Mahatsara_FLM nouveau point d'eau 06",
+   "photos": 3,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "893673024",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahafaly Sud",
+   "name": "Point d'eau mahafaly sud 020",
+   "photos": 4,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "893673079",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Sasavisoa",
+   "name": "Point d'eau Sasavisoa centre 027",
+   "photos": 5,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "893673127",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": "Mahafaly Centre",
+   "name": "Nouveau point d'eau communal 08",
+   "photos": 4,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "893673158",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": null,
+   "fokontany_from_description": null,
+   "name": "Mahatsara terrain foot 011 nouveau forage ",
+   "photos": 3,
+   "source": "admin_region"
+  },
+  {
+   "admin_region": 418299,
+   "code": "987623304",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": "Mahafaly Centre",
+   "fokontany_from_description": null,
+   "name": "Pompe \u00e0 cordes",
+   "photos": 3,
+   "source": "register"
+  },
+  {
+   "admin_region": 418299,
+   "code": "987623555",
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "fokontany": "Mahafaly Centre",
+   "fokontany_from_description": null,
+   "name": "IndiaMark",
+   "photos": 4,
+   "source": "register"
+  }
+ ],
+ "region_map": {
+  "313139": null,
+  "418299": {
+   "commune": "Marolinta",
+   "district": "Beloha",
+   "from": 13,
+   "region": "Androy"
+  }
+ },
+ "resolved_from_region": 10,
+ "resolved_from_register": 2,
+ "still_missing": 1
+}

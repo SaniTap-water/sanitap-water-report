@@ -770,9 +770,13 @@ def main():
     # the computed figure has passed the cap without the attention-list entry
     # that raises it, or if the machinery that computes it has been removed.
     CAP_T, ER_ANOSY, ER_MARO = 60000.0, 31.3, 27.9
+    # The conditional attention entry became an action row with a stored
+    # closing condition, so the ceiling is now raised and lowered by the
+    # evaluator rather than by a branch in the page script.
     for needle, why in (("const CAP_T=60000", "the cap constant"),
                         ('id="capnote"', "the audit-trail line"),
-                        ("capNear&&['crit'", "the conditional attention entry")):
+                        ('id="act-type3-cap"', "the action row that raises it"),
+                        ("er_percent_of_type3_cap", "its closing condition")):
         check(f"ceiling machinery present: {why}", needle in idx, "present",
               "present" if needle in idx else "MISSING",
               "the headroom must be recomputed every build, not written in")
@@ -2416,10 +2420,14 @@ def main():
           f"{len(acts)} rows")
     # it must sit above the body: the whole point is that it is seen
     pos_actions = idx.find('id="actions"')
-    pos_attention = idx.find("<h2>Attention list</h2>")
+    # the Attention list used to mark the top of the body; it was a second
+    # to-do list and was merged into the one list, so anchor on the first
+    # substantive section instead
+    pos_body = idx.find("<h2>Portfolio by partner</h2>")
     check("the action list sits near the top, below the fleet summary",
-          0 < pos_actions < pos_attention, "above the body",
-          "above the body" if 0 < pos_actions < pos_attention else "TOO LOW")
+          0 < pos_actions < pos_body, "above the body",
+          "above the body" if 0 < pos_actions < pos_body else "TOO LOW",
+          "third section, after the fleet summary and the week")
     nolink = [a for a, body in acts if "act-uplink" not in body]
     check("every action row links up to the one list",
           not nolink, f"{len(acts)} linked",
@@ -2478,9 +2486,9 @@ def main():
           else "OLD NOTE BACK",
           "the page does not read district from form answers; it matches the record")
     check("the duplicate-registration item is settled, not open",
-          "Duplicate registrations &mdash; survey records, not portfolio points" in idx,
+          "are not in the managed portfolio at all" in idx,
           "settled", "settled"
-          if "survey records, not portfolio points" in idx else "STILL OPEN",
+          if "are not in the managed portfolio at all" in idx else "STILL OPEN",
           "3 of the 4 flagged codes are not portfolio points")
     check("the Marolinta section states its purpose and its scope",
           "pre-portfolio view of the Marolinta works" in idx
@@ -2537,15 +2545,43 @@ def main():
             around = txt[max(0, m.start() - 70):m.end() + 40].lower()
             if re.search(r"\b(?:in the|to|last|past)\s+\d+\s+days?\s+to\b", around) \
                or "days to" in around:
+                # the week caption is allowed to name a fixed date, because
+                # that IS the window the data covers - but only while it also
+                # says how far behind mWater it is
+                if "behind mwater" in txt.lower() or "current with mwater" in txt.lower():
+                    continue
                 bad_caps.append(re.sub(r"\s+", " ", around)[:80])
     check("no section caption labels a rolling window with a hard-coded date",
           not bad_caps, "none", f"{len(bad_caps)} found" if bad_caps else "none",
           "; ".join(bad_caps)[:150] if bad_caps
           else "the This Week caption is rendered from the data")
-    check("the This Week caption is rendered, not written",
-          'id="weekcap"' in idx and "7 days to ${w}" in idx, "rendered",
-          "rendered" if 'id="weekcap"' in idx else "STILL PROSE",
-          "reads S.as_of when the build supplies it, else the latest activity date")
+    # The caption used to be written in the browser from max(PUMPS.last_visit),
+    # a maintenance-visit date presented as "activity logged in mWater". It is
+    # now generated from data/data_freshness.json, which records the newest
+    # date in the extract AND the newest in mWater, so the page states its own
+    # age instead of implying it is current.
+    fresh_p = os.path.join(repo_root, "data", "data_freshness.json")
+    fresh = json.load(open(fresh_p)) if os.path.isfile(fresh_p) else {}
+    wk = re.search(r"BEGIN GENERATED week-caption.*?END GENERATED week-caption",
+                   idx, re.S)
+    wk = wk.group(0) if wk else ""
+    check("the This Week caption is generated from the freshness record",
+          'id="weekcap"' in wk and bool(fresh), "generated",
+          "generated" if 'id="weekcap"' in wk else "STILL WRITTEN",
+          "tools/render_freshness.py from data/data_freshness.json")
+    lag = fresh.get("lag_days")
+    check("the page states how far behind mWater its data is",
+          (lag == 0 and "current with mWater" in wk)
+          or (lag and f"{lag} days behind mWater" in wk),
+          "stated", "stated" if ("behind mWater" in wk or "current with" in wk)
+          else "MISSING",
+          f"extract to {fresh.get('extract_newest')}, "
+          f"mWater to {fresh.get('mwater_newest')}")
+    check("the leadership-team reconciliation is gone",
+          "Reconciling with the senior leadership team" not in idx, "absent",
+          "absent" if "Reconciling with the senior leadership team" not in idx
+          else "PRESENT",
+          "this report is the source of truth; it does not argue with an older one")
     check("the WorldPop coverage sentence is suppressed when nothing is uncovered",
           "Every point in this scope carries a figure" in idx
           and "carry no figure: `+" not in idx, "conditional",
@@ -2741,11 +2777,37 @@ def main():
     hdr_counts = (collections.Counter(
         {"ACT": int(hdr.group(1)), "WATCH": int(hdr.group(2)),
          "OK": int(hdr.group(3))}) if hdr else collections.Counter())
-    check("the header counts match the pills on the detail rows",
-          bool(hdr) and hdr_counts == src_pills, "they match",
-          "they match" if hdr and hdr_counts == src_pills
-          else f"header {dict(hdr_counts)} vs rows {dict(src_pills)}",
+    rendered = collections.Counter(
+        re.findall(r'<tr data-state="([A-Z]+)"', flatblk))
+    check("the header counts match the rows it renders",
+          bool(hdr) and hdr_counts == rendered, "they match",
+          "they match" if hdr and hdr_counts == rendered
+          else f"header {dict(hdr_counts)} vs rows {dict(rendered)}",
           "the status map must know ACT / WATCH / OK")
+    # Where a condition decides the state, the rendered state must follow the
+    # condition and not the pill on the detail row - that is the whole point
+    # of the evaluator. Where there is NO condition the pill still governs.
+    stp = os.path.join(repo_root, "data", "action_state.json")
+    astate = (json.load(open(stp)) if os.path.isfile(stp) else {}).get("state", {})
+    disagree = []
+    for m_ in re.finditer(r'<tr data-state="([A-Z]+)" data-own="[^"]*"[^>]*>'
+                          r'<td><a href="#(act-[a-z0-9-]+)"', flatblk):
+        shown, aid = m_.group(1), m_.group(2)
+        c_ = astate.get(aid) or {}
+        if c_.get("satisfied") is True:
+            want = c_.get("when_satisfied", "OK")
+        elif c_.get("satisfied") is False:
+            want = "ACT" if shown == "OK" else shown
+        else:
+            continue
+        if shown != want:
+            disagree.append(f"{aid}: shows {shown}, condition says {want}")
+    check("a measured condition overrides the hand-set pill",
+          not disagree, "condition wins",
+          f"{len(disagree)} disagree" if disagree else "condition wins",
+          "; ".join(disagree[:2])[:120] if disagree
+          else f"{sum(1 for v in astate.values() if v.get('satisfied') is not None)}"
+               " conditions evaluated this build")
     nod = re.search(r'id="act-nodate-tile"><b>(\d+)</b>', genblk)
     want_nod = sum(1 for m in re.finditer(r'<tr data-state="ACT"([^>]*)>', flatblk)
                    if 'data-nodate="1"' in m.group(1))
@@ -2753,6 +2815,89 @@ def main():
           bool(nod) and int(nod.group(1)) == want_nod,
           f"{want_nod}", nod.group(1) if nod else "MISSING",
           "ACT rows with no proposed date - one decision for Jan")
+
+    # ---- 7bb. owner and deadline come from the workbook, status does not --
+    # The page is static and rebuilt weekly, so the two fields a person sets
+    # live in one SharePoint workbook. The thing to guard is the boundary: if
+    # status could be set there, an item could be marked done that the data
+    # says is not.
+    own_p = os.path.join(repo_root, "data", "action_owners.json")
+    own_doc = json.load(open(own_p)) if os.path.isfile(own_p) else {}
+    check("owner and deadline are read from the SharePoint workbook",
+          bool(own_doc.get("owners")) and "action owners and deadlines" in
+          own_doc.get("source", {}).get("file", ""),
+          "read", "read" if own_doc.get("owners") else "MISSING",
+          f'{len(own_doc.get("owners", {}))} rows from '
+          f'{own_doc.get("source", {}).get("library", "?")}')
+    stray = [k for r in own_doc.get("owners", {}).values() for k in r
+             if k not in ("owner", "deadline")]
+    check("the workbook carries nothing the build can compute",
+          not stray, "owner + deadline only",
+          f"also {', '.join(sorted(set(stray))[:3])}" if stray
+          else "owner + deadline only",
+          "status and closure are computed, never taken from the workbook")
+    check("a workbook that cannot be read says so on the page",
+          "MAX_WORKBOOK_AGE_DAYS" in read(os.path.join(repo_root, "tools",
+                                                       "render_actions.py"))
+          and ("owner and deadline workbook" in idx
+               or "could not be read" in idx), "notice wired",
+          "notice wired" if "owner and deadline workbook" in idx
+          or "could not be read" in idx else "SILENT FALLBACK",
+          "stale values are never shown silently")
+    contrib = os.path.join(repo_root, "CONTRIBUTING.md")
+    ctext2 = read(contrib) if os.path.isfile(contrib) else ""
+    check("the workbook and the preserved list are documented",
+          "owner-and-deadline workbook" in ctext2
+          and "What the weekly task must preserve" in ctext2,
+          "documented",
+          "documented" if "What the weekly task must preserve" in ctext2
+          else "MISSING", "CONTRIBUTING.md")
+    check("a named owner shows a headshot or their initials, never a hot-link",
+          'class="face' in idx
+          and "assets/headshots" in read(os.path.join(repo_root, "tools",
+                                                      "render_actions.py"))
+          and not re.search(r'class="face[^"]*"[^>]*src="https?://', idx),
+          "local or initials",
+          "local or initials" if 'class="face' in idx else "MISSING",
+          "assets/ is the only source, as for the partner logos")
+
+    # ---- 7ba. one to-do list, one collapsed treatment -------------------
+    # The Attention list and the Marolinta "gaps to close" panel were both
+    # to-do lists rendered in the browser, so nothing linked them to the one
+    # list and nothing could close them. Both are now action rows.
+    rivals = [n for n in ('id="alerts"', 'id="margaps"') if n in idx]
+    check("only one to-do list exists on the page",
+          not rivals, "one list", f"{len(rivals) + 1} lists" if rivals else "one list",
+          "the Attention list and the Marolinta gaps panel are action rows now")
+    n_cond = len(json.load(open(os.path.join(repo_root, "data",
+                                             "action_conditions.json"))))
+    n_rows = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
+    check("every action row carries a closing condition or says it has none",
+          n_cond == n_rows, "all classified", f"{n_cond} of {n_rows}",
+          "data / form / artefact / decision, or an explicit none")
+
+    # One collapsed-section treatment. There were two - a bare blue summary and
+    # a white card with slate text that stayed white under the dark theme -
+    # and the second hardcoded its colours, so it ignored the palette.
+    css_m = re.search(r"<style[^>]*>(.*?)</style>", idx, re.S)
+    css_t = css_m.group(1) if css_m else ""
+    css_body = re.sub(r"@media[^{]*\{(?:[^{}]|\{[^}]*\})*\}", " ", css_t, flags=re.S)
+    css_body = re.sub(r":root[^{]*\{[^}]*\}", " ", css_body)
+    hard = [r for r in re.findall(r"[^}\n]*\{[^}]*\}", css_body)
+            if re.search(r"#[0-9a-fA-F]{3,6}\b", r)
+            and not re.search(r"border-left\s*:", r)]
+    check("no stylesheet rule hardcodes a colour outside the palette",
+          not hard, "none", f"{len(hard)} rule(s)" if hard else "none",
+          "; ".join(x.strip()[:48] for x in hard[:2]) if hard
+          else "everything reads var(--...) so the dark theme applies")
+    det = re.findall(r"[^}\n]*details[^{}]*\{[^}]*\}", css_body)
+    check("collapsed sections have one treatment, applied everywhere",
+          any("details,details.expl" in r.replace(" ", "") for r in det)
+          and all("var(--" in r for r in det if "background" in r or "color" in r),
+          "one treatment",
+          "one treatment" if any("details,details.expl" in r.replace(" ", "")
+                                 for r in det) else "TWO TREATMENTS",
+          "bare <details> and details.expl render identically")
 
     # ---- 7ax. the one list is actually the one list ---------------------
     # #actions claims "every open item in this report, in one place". That was

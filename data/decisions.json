@@ -1,0 +1,17 @@
+{
+ "decisions": {
+  "act-decommission-inactivity-field": {
+   "answer": "No. SaniTap will not decommission or retire water points for inactivity. A pump with no recent activity is a maintenance question, not a register question.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-21",
+   "source": "docs/decision_log.md"
+  },
+  "act-standardised-stroke-test-basis": {
+   "answer": "Yes. The standardised stroke test is SDWS 28 of ERSDWS V2, and the five-minute test is the accepted method pending the StrokeMeter.",
+   "decided_by": "James Walker, Head of Carbon",
+   "decided_on": "2026-09-18",
+   "source": "email \u201cRe: Water program dashboard & actions\u201d, 18 September 2026"
+  }
+ },
+ "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision."
+}

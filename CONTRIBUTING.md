@@ -191,3 +191,72 @@ The gardien calendar SOP, its template and its generator live in SharePoint at
 `SOPs/Archive/`. The generator there is the source
 of record for the template; `sdws1/calendar_extract/make_calendar.py` is a
 tombstone pointing at it.
+
+## Who owns an action, and by when — the SharePoint workbook
+
+The page is static and rebuilt every Monday, so an owner or a date typed into the
+browser would live in one person's browser and be gone by Tuesday. The two fields
+that are genuinely a person's call therefore live outside the page:
+
+**`Water report - action owners and deadlines.xlsx`** — Central Data Hub →
+`Water Documents`. One row per action: `id`, `owner` (a dropdown of known owners),
+`deadline` (a date column), and a read-only copy of the title. Adriaan and Jan edit
+it in Excel Online.
+
+The build reads it through the Microsoft 365 connector into
+`data/action_owners.json` and renders owner and deadline from there. If that cache
+is missing or older than ten days, the page falls back to the owner and deadline
+written in the body row **and prints a WATCH notice above the list saying so** — it
+never shows stale values silently.
+
+**Status, the counts and closure are never read from the workbook.** They are
+computed every build by `tools/eval_conditions.py` from the closing conditions in
+`data/action_conditions.json`. If a person could set status in the workbook, an item
+could be marked done that the data says is not — which is the failure this whole
+arrangement exists to prevent.
+
+To reseed the workbook after a large change to the action set:
+
+```
+python3 tools/make_owner_workbook.py        # writes build/action_owners.xlsx
+```
+
+then upload it over the SharePoint copy, keeping the same filename.
+
+## Self-closing actions
+
+| file | what it holds |
+|---|---|
+| `data/action_conditions.json` | one closing condition per action — `data`, `form`, `artefact`, `decision`, or an explicit `none` with the reason |
+| `data/action_metrics.json` | the recounted value of every stored query, written by `tools/action_metrics.py` |
+| `data/action_state.json` | what the build worked out this run: satisfied, evidence, `closed_since`, `reopened_on` |
+| `data/decisions.json` | the only thing that closes a `decision` item: answer, date, source |
+| `data/decision_candidates.json` | possible answers found in the mail thread — **surfaced for confirmation, never closing anything** |
+| `data/sharepoint_listing.json` | folder listings behind the `artefact` conditions |
+
+Rebuild order, every Monday:
+
+```
+python3 tools/check_freshness.py --write     # how far behind mWater the extract is
+python3 tools/marolinta_admin.py --write     # district/commune from the register
+python3 tools/action_metrics.py --write      # recount every stored query
+python3 tools/eval_conditions.py --write     # decide what is open
+python3 tools/render_freshness.py --write
+python3 tools/render_marolinta.py --write
+python3 tools/render_block.py --write
+python3 tools/render_form_freshness.py --write
+python3 tools/render_actions.py --write      # last: it reads the state the others wrote
+```
+
+## What the weekly task must preserve
+
+Carried forward every edition. `tools/check_consistency.py` asserts each of them:
+
+1. the five scope buttons
+2. the maintenance clock rule
+3. the Marolinta exclusion
+4. the collapsed "Management notes — internal, remove before sharing with a VVB" block
+5. **the owner-and-deadline workbook** — owner and deadline come from SharePoint,
+   status and closure are computed, and the fallback notice appears when the cache
+   cannot be read
+6. **one to-do list** — the consolidated action list is the only one on the page

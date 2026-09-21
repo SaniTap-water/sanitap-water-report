@@ -1,0 +1,150 @@
+{
+ "counted": "2026-09-21",
+ "metrics": {
+  "consent_question_answers": {
+   "says": "point-of-use responses that actually answer the consent question A4",
+   "source": "mWater",
+   "value": 0
+  },
+  "downs_without_repair": {
+   "says": "call-centre down reports with no repair record",
+   "source": "local",
+   "value": 30
+  },
+  "duplicate_question_codes": {
+   "says": "question codes reused inside a single mWater form",
+   "source": "local",
+   "value": 0
+  },
+  "enduro_sites_outside_mwater": {
+   "says": "Endur'O managed sites not yet represented in mWater",
+   "source": "local",
+   "value": 107
+  },
+  "er_percent_of_type3_cap": {
+   "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
+   "source": "local",
+   "value": 34.7
+  },
+  "extract_lag_days": {
+   "says": "days the extract on this page runs behind mWater",
+   "source": "local",
+   "value": 14
+  },
+  "marolinta_new_borehole_records": {
+   "says": "new-borehole records on the Marolinta progress form",
+   "source": "local",
+   "value": 6
+  },
+  "marolinta_points_no_admin": {
+   "says": "Marolinta records carrying no district or commune",
+   "source": "local",
+   "value": 1
+  },
+  "marolinta_points_no_photograph": {
+   "says": "Marolinta points with no photograph of any kind",
+   "source": "local",
+   "value": 0
+  },
+  "marolinta_points_without_wq": {
+   "says": "Marolinta records with no E. coli result on file",
+   "source": "local",
+   "value": 13
+  },
+  "marolinta_three_points_no_photograph": {
+   "says": "of the three named Marolinta points, how many still have no photograph",
+   "source": "mWater",
+   "value": 3
+  },
+  "photographs_misfiled": {
+   "says": "photographs filed on a calendar question that are not calendars",
+   "source": "local",
+   "value": 206
+  },
+  "pm_visits_last_full_month": {
+   "says": "preventive maintenance visits in the last full month",
+   "source": "local",
+   "value": 10
+  },
+  "point_742896839_in_register": {
+   "says": "is water point 742896839 absent from the maintained register (1 = still absent)",
+   "source": "local",
+   "value": 0
+  },
+  "points_no_2026_calendar": {
+   "says": "active carbon points with no readable dated 2026 calendar",
+   "source": "local",
+   "value": 434
+  },
+  "points_no_calendar_ever": {
+   "says": "managed points with no calendar photograph of any kind",
+   "source": "local",
+   "value": 62
+  },
+  "points_no_works_record": {
+   "says": "water points with no rehabilitation, construction, visit or repair",
+   "source": "local",
+   "value": 57
+  },
+  "points_over_6_months": {
+   "says": "points with no maintenance visit for more than six months",
+   "source": "local",
+   "value": 438
+  },
+  "points_without_readable_calendar": {
+   "says": "points whose calendar photographs cannot be read",
+   "source": "local",
+   "value": 84
+  },
+  "pumps_reduced_performance": {
+   "says": "pumps reported with a mechanical or yield fault, still counted working",
+   "source": "local",
+   "value": 55
+  },
+  "register_chain_unresolved": {
+   "says": "register records still unclassified against the maintained fleet",
+   "source": "local",
+   "value": 118
+  },
+  "register_dashboard_gap": {
+   "says": "points the MadAvance dashboard counts that our register does not",
+   "source": "local",
+   "value": 7
+  },
+  "sites_without_route_plan": {
+   "says": "sites with overdue pumps and no catch-up route plan",
+   "source": "local",
+   "value": 1
+  },
+  "stroke_test_responses": {
+   "says": "results recorded on the stroke-meter form",
+   "source": "mWater",
+   "value": 40
+  },
+  "transcription_sheets_done": {
+   "says": "calendars transcribed in the validation round",
+   "source": "local",
+   "value": 0
+  },
+  "unapproved_works_records": {
+   "says": "submitted works records with no approval, last 180 days",
+   "source": "mWater",
+   "value": 46
+  },
+  "usage_question_answers": {
+   "says": "point-of-use responses that actually answer the usage question A9",
+   "source": "mWater",
+   "value": 0
+  },
+  "usage_survey_responses": {
+   "says": "household responses on the point-of-use survey",
+   "source": "mWater",
+   "value": 142
+  },
+  "water_quality_failures_unretested": {
+   "says": "pumps with a failed E. coli result and no retest on file",
+   "source": "local",
+   "value": 1
+  }
+ }
+}

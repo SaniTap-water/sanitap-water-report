@@ -1,0 +1,27 @@
+{
+ "candidates": {
+  "act-confirm-maroantsetra-fnrb-value": {
+   "from": "james.walker@sanitap.org",
+   "link": "https://outlook.office365.com/owa/?ItemID=AAMkADlkM2VmZWJlLWI3NWYtNDc0Mi1iNTA4LWRjOTM0YjQxYjdhYQBGAAAAAACfAeqeD3%2FcTqO17mup0QpvBwD3M%2FMy4xKOTrI4HIxR7uSRAAAAAAEYAAD3M%2FMy4xKOTrI4HIxR7uSRAAasjiyDAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+   "on": "2026-09-18",
+   "subject": "Re: Water program dashboard & actions",
+   "summary": "James Walker, 18 Sep 2026: &ldquo;All the fNRBs are calculated using MoFuSS. The Article 6.4 tool which sets out the national and 6 subnational values&hellip;&rdquo; Names the source; does not yet state whether Maroantsetra stays at 34%."
+  },
+  "act-indiamark-premises": {
+   "from": "james.walker@sanitap.org",
+   "link": "https://outlook.office365.com/owa/?ItemID=AAMkADlkM2VmZWJlLWI3NWYtNDc0Mi1iNTA4LWRjOTM0YjQxYjdhYQBGAAAAAACfAeqeD3%2FcTqO17mup0QpvBwD3M%2FMy4xKOTrI4HIxR7uSRAAAAAAEYAAD3M%2FMy4xKOTrI4HIxR7uSRAAasjiyEAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+   "on": "2026-09-15",
+   "subject": "Re: Water program dashboard & actions",
+   "summary": "James Walker, 15 Sep 2026: &ldquo;WorldPop 100%. Rigorous and all of the claims and data is supported. There are references for higher numbers on handpumps. In Richard Carter&rsquo;s book he states 200 to&hellip;&rdquo; Bears on the premises figure but does not settle 500 against 300."
+  },
+  "act-resolve-sdws-27-sdws": {
+   "from": "james.walker@sanitap.org",
+   "link": "https://outlook.office365.com/owa/?ItemID=AAMkADlkM2VmZWJlLWI3NWYtNDc0Mi1iNTA4LWRjOTM0YjQxYjdhYQBGAAAAAACfAeqeD3%2FcTqO17mup0QpvBwD3M%2FMy4xKOTrI4HIxR7uSRAAAAAAEMAAD3M%2FMy4xKOTrI4HIxR7uSRAAa4XMcoAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+   "on": "2026-09-21",
+   "subject": "Re: Water program dashboard & actions",
+   "summary": "James Walker, 21 Sep 2026: &ldquo;Stroke test validation: I believe they are removing the validation requirement all together, but this won&rsquo;t be confirmed until later this year.&rdquo; That answers the calibration half and leaves the numbering half open."
+  }
+ },
+ "note": "Candidate answers found in the mail thread for the named owner. These are SURFACED on the row for confirmation and CLOSE NOTHING: an item of kind 'decision' closes only on an entry in data/decisions.json.",
+ "scanned": "2026-09-21"
+}

@@ -27,7 +27,7 @@ tools/check_consistency.py asserts that.
     python3 tools/render_actions.py --write
     python3 tools/render_actions.py --check
 """
-import collections, datetime, difflib, os, re, sys
+import collections, datetime, difflib, json, os, re, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED action-list :: tools/render_actions.py "
@@ -138,6 +138,37 @@ def actions(idx):
                         # to be set; a closed or standing item needs none
                         nodate=(not dl_raw) and state == "ACT",
                         criterion=crit))
+    st = load_state()
+    wb, _wb_problem = load_owners()
+    WB_PROBLEM.append(_wb_problem)
+    for a in out:
+        w = wb.get(a["id"])
+        if w:
+            if w.get("owner"):
+                a["owner"] = w["owner"]
+                a["from_workbook"] = True
+            if w.get("deadline"):
+                try:
+                    a["due"] = datetime.date.fromisoformat(w["deadline"])
+                    a["deadline"] = a["due"].strftime("%-d %b %Y")
+                except ValueError:
+                    pass
+            else:
+                a["due"], a["deadline"] = None, ""
+        s = st.get(a["id"])
+        a["cond"] = s
+        if not s or s.get("satisfied") is None:
+            continue
+        if s["satisfied"]:
+            a["state"] = s.get("when_satisfied", "OK")
+            a["label"] = "" if a["state"] != "OK" else a.get("label", "")
+        elif a["state"] == "OK":
+            # the condition says it is not done, whatever the row claims
+            a["state"] = "ACT"
+    for a in out:
+        # a date is only outstanding on something still to act on, so this is
+        # recomputed after the conditions have had their say
+        a["nodate"] = a["nodate"] and a["state"] == "ACT"
     declared = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
     if len(out) != declared:
         got = {a["id"] for a in out}
@@ -146,6 +177,82 @@ def actions(idx):
         sys.exit(f"render_actions: {declared} action rows in index.html but only "
                  f"{len(out)} parsed - dropped: {', '.join(missed)}")
     return out
+
+
+WB_PROBLEM = []
+
+
+def load_state():
+    """What the build worked out about each action this run.
+
+    data/action_state.json is written by tools/eval_conditions.py. A row with
+    a satisfied condition is CLOSED here regardless of the pill on its detail
+    row, and a row whose condition has regressed is reopened - the pill in the
+    body is the author's opinion, the condition is the measurement.
+    """
+    p = os.path.join(REPO, "data", "action_state.json")
+    return (json.load(open(p)) if os.path.isfile(p) else {}).get("state", {})
+
+
+MAX_WORKBOOK_AGE_DAYS = 10
+HEADSHOTS = os.path.join(REPO, "assets", "headshots")
+
+
+def initials(name):
+    ws = [w for w in re.split(r"[^A-Za-z]+", name) if w]
+    if not ws:
+        return "?"
+    return (ws[0][0] + (ws[-1][0] if len(ws) > 1 else "")).upper()
+
+
+def face(lead, size=20):
+    """A headshot if one has been dropped into assets/headshots, else initials.
+
+    Never hot-linked: assets/ is the only source, the same rule the partner
+    logos follow. See assets/headshots/README.md for why there are no photos
+    yet - the connector has no user-photo scope.
+    """
+    s = slug(lead)
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        if os.path.isfile(os.path.join(HEADSHOTS, f"{s}.{ext}")):
+            return (f'<img class="face" src="assets/headshots/{s}.{ext}" '
+                    f'alt="" width="{size}" height="{size}" loading="lazy">')
+    return (f'<span class="face ini" aria-hidden="true" '
+            f'style="width:{size}px;height:{size}px;line-height:{size}px">'
+            f'{initials(lead)}</span>')
+
+
+def load_owners():
+    """Owner and deadline, as people set them, from the SharePoint workbook.
+
+    The page is static and rebuilt weekly, so an owner or a date typed into
+    the browser would be one person's private copy and gone by Tuesday. Those
+    two fields therefore live in one workbook on SharePoint, read into
+    data/action_owners.json through the Microsoft 365 connector each build.
+
+    Status and closure are deliberately NOT in that workbook: if a person
+    could set status there, an item could be marked done that the data says
+    is not. Those stay computed.
+
+    Returns (rows, problem) - problem is None when the cache is fresh, and a
+    sentence to print on the page when it is not.
+    """
+    p = os.path.join(REPO, "data", "action_owners.json")
+    if not os.path.isfile(p):
+        return {}, ("The owner and deadline workbook could not be read, so the "
+                    "owners and dates below are the ones written into the page.")
+    doc = json.load(open(p))
+    read = doc.get("read_on")
+    try:
+        age = (datetime.date.today() - datetime.date.fromisoformat(read)).days
+    except (TypeError, ValueError):
+        age = None
+    if age is None or age > MAX_WORKBOOK_AGE_DAYS:
+        return doc.get("owners", {}), (
+            f"The owner and deadline workbook was last read {read or 'never'}, "
+            f"which is {'unknown' if age is None else str(age) + ' days'} ago. "
+            "Owners and dates below may be behind what is in the workbook.")
+    return doc.get("owners", {}), None
 
 
 def slug(s):
@@ -161,7 +268,26 @@ def row(a, today, owner_cell=True):
     dl = a["deadline"] or '<span class="muted">no date set</span>'
     if overdue:
         dl = f'<b style="color:var(--crit)">{dl}</b>'
-    own = f'<td>{a["owner"]}</td>' if owner_cell else ""
+    own = (f'<td><span class="ownercell">{face(a["lead"])}'
+           f'<span>{a["owner"]}</span></span></td>') if owner_cell else ""
+    c = a.get("cond") or {}
+    kind = c.get("kind", "none")
+    if not c:
+        closes = ('<span class="muted">no closing condition &mdash; a person has '
+                  'to close this one</span>')
+    elif kind == "none":
+        closes = f'<span class="muted">{c["says"]}</span>'
+    else:
+        ev = c.get("evidence", "")
+        mark = ("&#10003; " if c.get("satisfied") else
+                "&mdash; " if c.get("satisfied") is None else "")
+        closes = (f'<span class="ckind ck-{kind}">{kind}</span> {c["says"]}'
+                  f'<div class="muted" style="font-size:.82em">{mark}{ev}</div>')
+        if c.get("reopened_on"):
+            closes += ('<div class="muted" style="font-size:.82em">'
+                       f'<b>reopened {c["reopened_on"]}</b> &mdash; it had been '
+                       f'closed since {c.get("was_closed_since") or "an earlier build"}'
+                       '</div>')
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
             f'<td><a href="#{a["id"]}">{a["title"]}</a>'
@@ -170,6 +296,7 @@ def row(a, today, owner_cell=True):
             + f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
               f'{badge}{label}</td>'
               f'<td class="num">{dl}</td>'
+              f'<td class="closes">{closes}</td>'
               f'<td><a href="#{a["id"]}">the section</a></td></tr>')
 
 
@@ -203,9 +330,11 @@ def block(idx, today=None):
         by_lead.setdefault(a["lead"], []).append(a)
 
     head = ('<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
-            '<th class="num">Deadline</th><th>Explained in</th></tr></thead>')
+            '<th class="num">Deadline</th><th>What would close it</th>'
+            '<th>Explained in</th></tr></thead>')
     head_no_owner = ('<thead><tr><th>Item</th><th>Status</th>'
-                     '<th class="num">Deadline</th><th>Explained in</th></tr></thead>')
+                     '<th class="num">Deadline</th><th>What would close it</th>'
+                     '<th>Explained in</th></tr></thead>')
 
     out = [
         '<section data-scopes="all mad madx mar enduro" id="actions">',
@@ -234,11 +363,13 @@ def block(idx, today=None):
         # --- counts per owner, in the header -----------------------------
         '  <div class="eyebrow" style="margin:16px 0 6px">Per owner</div>',
         '  <div class="ownerbar">',
+        '    <button class="tg ownchip" data-own="" id="own-all" '
+        f'aria-pressed="true">All owners <b>{len(acts)}</b></button>',
     ]
     for lead, rows in by_lead.items():
         na = sum(1 for a in rows if a["state"] == "ACT")
         out.append(f'    <button class="tg ownchip" data-own="{slug(lead)}" '
-                   f'aria-pressed="false">{lead} <b>{len(rows)}</b>'
+                   f'aria-pressed="false">{face(lead, 16)}{lead} <b>{len(rows)}</b>'
                    + (f'<span class="muted" style="font-weight:400"> &middot; '
                       f'{na} ACT</span>' if na != len(rows) else "")
                    + '</button>')
@@ -257,6 +388,19 @@ def block(idx, today=None):
         'aria-pressed="false">By owner</button>',
         '  </div>',
         '  <p class="note" id="act-count" style="margin:8px 0 0"></p>',
+        ('  <p class="note" style="margin:8px 0 0"><span class="pill warn">'
+         'WATCH</span> ' + WB_PROBLEM[0] + '</p>') if WB_PROBLEM and WB_PROBLEM[0]
+        else ('  <p class="note" style="margin:8px 0 0"><span class="muted">'
+              'Owner and deadline are read from the '
+              '<a href="' + (json.load(open(os.path.join(REPO, "data",
+                                                         "action_owners.json")))
+                             ["source"]["webUrl"]
+                             if os.path.isfile(os.path.join(REPO, "data",
+                                                            "action_owners.json"))
+                             else "#") + '" target="_blank" rel="noopener">owner '
+              'and deadline workbook</a> on SharePoint, which Adriaan and Jan edit '
+              'in Excel Online. Status and closure are computed here and are not in '
+              'that workbook.</span></p>'),
         # --- the rows, once ----------------------------------------------
         '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
         '<table class="ind">' + head + '<tbody>',
@@ -271,7 +415,7 @@ def block(idx, today=None):
         bits = ", ".join(f"{n} {s}" for n, s in
                          ((na, "ACT"), (nw, "WATCH"), (no, "OK")) if n)
         out.append(f'  <details class="expl" id="own-{slug(lead)}">'
-                   f'<summary>{lead} &mdash; {len(rows)} item(s) '
+                   f'<summary>{face(lead, 22)}{lead} &mdash; {len(rows)} item(s) '
                    f'<span class="muted">({bits})</span></summary>'
                    '<div class="tablewrap" style="margin-top:8px">'
                    '<table class="ind">' + head_no_owner + '<tbody>')
@@ -281,7 +425,7 @@ def block(idx, today=None):
     return "\n".join(out)
 
 
-ACT_JS = """  <script>
+ACT_JS = r"""  <script>
   (function(){
     var sec = document.getElementById('actions');
     if (!sec) return;
@@ -295,11 +439,20 @@ ACT_JS = """  <script>
     var chips = Array.prototype.slice.call(
                   sec.querySelectorAll('.ownchip'));
     var view = 'act';
+    var owner = '';
+
+    function ownerName(o){
+      var b = chips.filter(function(c){ return c.dataset.own === o; })[0];
+      return b ? b.textContent.replace(/\s*\d+.*$/, '').trim() : o;
+    }
 
     function apply(){
       var shown = 0;
       if (view === 'owner') {
         flat.hidden = true; own.hidden = false;
+        Array.prototype.forEach.call(own.children, function(d){
+          d.hidden = !!owner && d.id !== 'own-' + owner;
+        });
         shown = rows.length;
       } else {
         own.hidden = true; flat.hidden = false;
@@ -307,6 +460,7 @@ ACT_JS = """  <script>
           var keep = view === 'all'
             || (view === 'act'    && tr.dataset.state === 'ACT')
             || (view === 'nodate' && tr.dataset.nodate === '1');
+          if (keep && owner && tr.dataset.own !== owner) keep = false;
           tr.hidden = !keep;
           if (keep) shown++;
         });
@@ -314,9 +468,14 @@ ACT_JS = """  <script>
       views.forEach(function(b){
         b.setAttribute('aria-pressed', String(b.dataset.view === view));
       });
-      note.textContent = view === 'owner'
-        ? 'Grouped by lead owner. Every row also appears in the full list.'
-        : 'Showing ' + shown + ' of ' + rows.length + ' rows.';
+      var who = owner ? ownerName(owner) : null;
+      note.textContent =
+        (view === 'owner'
+          ? 'Grouped by lead owner. Every row also appears in the full list.'
+          : 'Showing ' + shown + ' of ' + rows.length + ' rows.')
+        + (who ? '  Filtered to ' + who + ' \u2014 press "All owners" to clear.'
+               : '');
+      sec.classList.toggle('filtered', !!owner);
     }
 
     views.forEach(function(b){
@@ -324,9 +483,15 @@ ACT_JS = """  <script>
     });
     chips.forEach(function(b){
       b.addEventListener('click', function(){
-        view = 'owner'; apply();
-        var d = document.getElementById('own-' + b.dataset.own);
-        if (d) { d.open = true; d.scrollIntoView({block:'nearest'}); }
+        owner = b.dataset.own;                 // '' on the All owners chip
+        if (owner) {
+          view = 'owner';
+          apply();
+          var d = document.getElementById('own-' + owner);
+          if (d) { d.open = true; d.scrollIntoView({block:'nearest'}); }
+        } else {
+          apply();
+        }
         chips.forEach(function(c){
           c.setAttribute('aria-pressed', String(c === b));
         });

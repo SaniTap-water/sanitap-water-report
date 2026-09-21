@@ -1,0 +1,658 @@
+{
+ "act-2026-recovery": {
+  "kind": "data",
+  "metric": "points_no_2026_calendar",
+  "op": "==",
+  "says": "closes when every active carbon point has a readable dated 2026 calendar",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-742896839": {
+  "kind": "data",
+  "metric": "point_742896839_in_register",
+  "op": "==",
+  "says": "closes when water point 742896839 appears in the maintained register",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-adopt-consolidated-gardien-calendar": {
+  "folder": "Water Documents/SOPs",
+  "kind": "artefact",
+  "name_contains": "CalendrierGardien",
+  "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder, not a draft",
+  "version": "v1.5",
+  "where": "sharepoint"
+ },
+ "act-calendar-custody": {
+  "kind": "none",
+  "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which"
+ },
+ "act-calendar-v13": {
+  "kind": "none",
+  "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it"
+ },
+ "act-call-service-visit": {
+  "form": "call-centre",
+  "kind": "form",
+  "predicate": {
+   "text": "service visit"
+  },
+  "says": "closes when the call form carries a service-visit-requested question"
+ },
+ "act-chase-s4-16-car": {
+  "kind": "decision",
+  "question": "Has Earthood amended its validation report on the two external experts (CAR#8)?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-close-eight-2-2": {
+  "kind": "none",
+  "says": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads"
+ },
+ "act-close-out-6-5": {
+  "kind": "decision",
+  "question": "Are the January population figures reconciled or formally retired?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-close-s4-15-car": {
+  "kind": "decision",
+  "question": "Does Gold Standard accept our answer on Section F eligibility criteria (CAR#1)?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-close-s4-16-car": {
+  "kind": "decision",
+  "question": "Does Gold Standard accept the technical life evidence for India Mk2/3 and Afridev (CAR#5)?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-close-s4-16-car-2": {
+  "kind": "decision",
+  "question": "Does Gold Standard accept the SDWS 3 evidence as corrected (CAR#7(b))?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-complete-accuracy-assessment-calendar": {
+  "kind": "data",
+  "metric": "transcription_sheets_done",
+  "op": ">=",
+  "says": "closes when the 50-calendar transcription round is complete",
+  "target": 50,
+  "when_satisfied": "OK"
+ },
+ "act-confirm-india-mark-capacity": {
+  "kind": "decision",
+  "question": "What is the India Mark capacity cap, measured?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-confirm-maroantsetra-fnrb-value": {
+  "kind": "decision",
+  "question": "Does the Maroantsetra fNRB stay at 34%?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-confirm-whether-ersdws-v2": {
+  "kind": "decision",
+  "question": "Does ERSDWS v2.0 apply to this VPA before renewal?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-dashboard-gap": {
+  "kind": "data",
+  "metric": "register_dashboard_gap",
+  "op": "==",
+  "says": "closes when the MadAvance dashboard and our two-district count agree",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-decide-how-treat-67": {
+  "kind": "data",
+  "metric": "points_without_readable_calendar",
+  "op": "==",
+  "says": "closes when no point is left with photographs that cannot be read",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-decommission-inactivity-field": {
+  "kind": "decision",
+  "question": "Does SaniTap decommission or retire water points for inactivity?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-define-maintenance-record-becomes": {
+  "kind": "decision",
+  "question": "How does a maintenance record become a days-out-of-service count?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-down-no-repair": {
+  "kind": "data",
+  "metric": "downs_without_repair",
+  "op": "==",
+  "says": "closes when every call-centre down report has a repair record or a closure note",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-duplicate-codes-sweep": {
+  "kind": "data",
+  "metric": "duplicate_question_codes",
+  "op": "==",
+  "says": "closes when no question code is reused inside a single mWater form",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-emergency-event-form": {
+  "kind": "decision",
+  "question": "Where is SDWS 3 emergency-event evidence recorded?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-enduro-feed": {
+  "kind": "none",
+  "says": "no closing condition: a scheduled export either arrives or it does not, and this build cannot see the arrangement"
+ },
+ "act-enduro-move-register-fully": {
+  "kind": "data",
+  "metric": "enduro_sites_outside_mwater",
+  "op": "==",
+  "says": "closes when every Endur'O managed site is represented in mWater",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-establish-renewal-dates-current": {
+  "kind": "decision",
+  "question": "What are the renewal dates and current status for SDWS 6, 8, 11 and 12?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-establish-renewal-dates-four": {
+  "kind": "decision",
+  "question": "What are the renewal dates for the four baseline parameters?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-find-source-annual-independent": {
+  "kind": "decision",
+  "question": "What is the source for the annual independent cross-check of people per premises?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-fleet-growth": {
+  "kind": "decision",
+  "question": "What is the carbon fleet pipeline, and when does it grow?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-freeze-estate-map-when": {
+  "kind": "artefact",
+  "path": "tools/freeze_map.py",
+  "says": "closes when the build can freeze the estate map into an archived edition",
+  "where": "repo"
+ },
+ "act-gaps-doc": {
+  "kind": "decision",
+  "question": "Is the carbon-data-gaps source document corrected?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-identify-count-institutional-premises": {
+  "kind": "decision",
+  "question": "How many institutional premises sit inside the service areas?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-indiamark-premises": {
+  "kind": "decision",
+  "question": "Is the India Mark premises figure 500 or 300?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-make-calendar-photograph-mandatory": {
+  "all": [
+   {
+    "form": "preventive-maintenance",
+    "predicate": {
+     "code": "2.15.6",
+     "required": true
+    }
+   },
+   {
+    "form": "repair-after-breakdown",
+    "predicate": {
+     "code": "1.3.1.3",
+     "required": true
+    }
+   }
+  ],
+  "kind": "form",
+  "says": "closes when the calendar photograph question is required on BOTH visit forms"
+ },
+ "act-mar-admin-fields": {
+  "kind": "data",
+  "metric": "marolinta_points_no_admin",
+  "op": "==",
+  "says": "closes when every Marolinta record carries a district on the record itself",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-mar-functional-status": {
+  "form": "marolinta-borehole-progress",
+  "kind": "form",
+  "predicate": {
+   "required": true,
+   "text": "Statut fonctionnel"
+  },
+  "says": "closes when the functional-status question is required on the borehole-progress form"
+ },
+ "act-mar-missing-boreholes": {
+  "kind": "data",
+  "metric": "marolinta_new_borehole_records",
+  "op": ">=",
+  "says": "closes when ten new-borehole records are on the progress form",
+  "target": 10,
+  "when_satisfied": "OK"
+ },
+ "act-mar-technical-values": {
+  "kind": "decision",
+  "question": "Are the repeated Marolinta technical values real, or copied between records?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mar-water-quality": {
+  "kind": "data",
+  "metric": "marolinta_points_without_wq",
+  "op": "==",
+  "says": "closes when every Marolinta record has an E. coli result on file",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-mar-which-form": {
+  "kind": "decision",
+  "question": "Which form is the record of truth for first rehabilitations?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mor-1b-betanatanana-go-look": {
+  "kind": "none",
+  "says": "no closing condition: a site visit is not recorded anywhere this build can read"
+ },
+ "act-mor-bring-back-site-lists": {
+  "kind": "none",
+  "says": "no closing condition: the two schemes have no records to count yet"
+ },
+ "act-mor-correct-two-sampling-records": {
+  "kind": "none",
+  "says": "no closing condition: the two records are corrected in place, leaving no count to fall"
+ },
+ "act-mor-count-draw-off-point": {
+  "kind": "decision",
+  "question": "How many draw-off points are on the Moramanga system?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mor-fill-three-new-fields": {
+  "form": "water-quality-result-sdws3",
+  "kind": "form",
+  "predicate": {
+   "code": "1.2.3"
+  },
+  "says": "closes when the sampling-point GPS question is on the results form"
+ },
+ "act-mor-fix-type-sampled-point": {
+  "kind": "none",
+  "says": "no closing condition: the sampled-tap type contradiction spans rounds and has no single field to test"
+ },
+ "act-mor-have-those-five-records": {
+  "kind": "decision",
+  "question": "Are the five Moramanga borehole records shared with SaniTap?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mor-households-people-served-per": {
+  "kind": "decision",
+  "question": "How many households and people does each draw-off point serve?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mor-re-take-gps-fix": {
+  "kind": "none",
+  "says": "no closing condition: a re-taken fix replaces the old one and leaves no discrepancy to measure"
+ },
+ "act-mor-record-what-community-drank": {
+  "kind": "decision",
+  "question": "What did each Moramanga community drink before the system?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-mor-remove-reclassify-two-test": {
+  "kind": "none",
+  "says": "no closing condition: reclassification leaves the records in place, so nothing counts down"
+ },
+ "act-move-stroke-test-sop": {
+  "folder": "Water Documents/SOPs",
+  "kind": "artefact",
+  "name_contains": "StrokeTest",
+  "says": "closes when the stroke-test SOP sits in the SOPs folder, signed",
+  "version": "v2.0",
+  "where": "sharepoint"
+ },
+ "act-move-weekly-mwater-backup": {
+  "kind": "none",
+  "says": "no closing condition: where the backup runs from is not visible to this build"
+ },
+ "act-mwater-approval-policy": {
+  "kind": "data",
+  "metric": "unapproved_works_records",
+  "op": "==",
+  "says": "closes when no submitted works record is left unapproved",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-mwater-mg-locale": {
+  "form": "preventive-maintenance",
+  "kind": "form",
+  "predicate": {
+   "locale": "mg"
+  },
+  "says": "closes when the Malagasy locale is present on the preventive maintenance form"
+ },
+ "act-mwater-year-required": {
+  "form": "preventive-maintenance",
+  "kind": "form",
+  "predicate": {
+   "code": "2.15.7",
+   "required": true
+  },
+  "says": "closes when question 2.15.7 is present and required on the preventive maintenance form"
+ },
+ "act-no-works-record": {
+  "kind": "data",
+  "metric": "points_no_works_record",
+  "op": "==",
+  "says": "closes when every point in the register has a works record of some kind",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-per-diem": {
+  "kind": "decision",
+  "question": "What replaces the per-diem system so it pays for pumps completed?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-photo-conditional-on-presence": {
+  "form": "repair-after-breakdown",
+  "kind": "form",
+  "predicate": {
+   "code": "1.3.1.3",
+   "has_condition": true
+  },
+  "says": "closes when the calendar photograph on the repair form is conditional on a calendar being present"
+ },
+ "act-photo-misfiled": {
+  "kind": "data",
+  "metric": "photographs_misfiled",
+  "op": "==",
+  "says": "closes when no photograph filed on a calendar question is something else",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-point-use-round-one": {
+  "kind": "data",
+  "metric": "usage_question_answers",
+  "op": ">=",
+  "says": "closes when point-of-use round one has 100 answered usage questions",
+  "target": 100,
+  "when_satisfied": "OK"
+ },
+ "act-population-rerun": {
+  "kind": "none",
+  "says": "no closing condition: a standing item that recurs whenever the portfolio grows"
+ },
+ "act-printed-year-meaning": {
+  "kind": "decision",
+  "question": "What does the year printed on a gardien calendar denote?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-produce-s4-19-cl": {
+  "folder": "Water Documents",
+  "kind": "artefact",
+  "name_contains": "installation database",
+  "says": "closes when the installation database file exists",
+  "where": "sharepoint"
+ },
+ "act-put-current-methodology-vpa": {
+  "folder": "Water Documents",
+  "kind": "artefact",
+  "name_contains": "ERSDWS",
+  "says": "closes when the methodology and the VPA-DD are in the Central Data Hub",
+  "where": "sharepoint"
+ },
+ "act-put-usage-question-live": {
+  "kind": "data",
+  "metric": "usage_question_answers",
+  "op": ">=",
+  "says": "closes when at least 100 households have answered the usage question A9",
+  "target": 100,
+  "when_satisfied": "OK"
+ },
+ "act-re-run-improved-cookstove": {
+  "kind": "none",
+  "says": "no closing condition: an annual recurrence, not a task that finishes"
+ },
+ "act-read-district-commune-water": {
+  "kind": "data",
+  "metric": "register_chain_unresolved",
+  "op": "==",
+  "says": "closes when every register record is classified against the maintained fleet",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-reconcile-cookstove-water-programmes": {
+  "kind": "decision",
+  "question": "How are the cookstove and water programmes reconciled for double counting?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-recreate-gardien-calendar-controlled": {
+  "kind": "none",
+  "says": "no closing condition: the controlled source file has no agreed location yet, so there is nothing to check for"
+ },
+ "act-reduced-performance": {
+  "kind": "data",
+  "metric": "pumps_reduced_performance",
+  "op": "==",
+  "says": "closes when no pump is left reported faulty with no repair logged since",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-refresh-extract": {
+  "kind": "data",
+  "metric": "extract_lag_days",
+  "op": "==",
+  "says": "closes when the extract on this page is level with mWater",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-rehab-recording": {
+  "kind": "data",
+  "metric": "marolinta_new_borehole_records",
+  "op": ">=",
+  "says": "closes when the form holds the ten new boreholes the minutes report",
+  "target": 10,
+  "when_satisfied": "OK"
+ },
+ "act-reissue-calendars-new-blank": {
+  "kind": "none",
+  "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit"
+ },
+ "act-repair-time": {
+  "kind": "decision",
+  "question": "What response and report-back time is the operational target?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-repeat-breakdown": {
+  "kind": "decision",
+  "question": "Do the two repeat-breakdown villages get a second water point?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-resolve-s4-16-car": {
+  "kind": "decision",
+  "question": "How is CAR#4 resolved - baseline surveys after the crediting period start?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-resolve-sdws-27-sdws": {
+  "kind": "decision",
+  "question": "Is the standardised stroke test SDWS 27 Option 3 or SDWS 28, and does the quarterly calibration requirement stand?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-resolve-water-point-type": {
+  "kind": "none",
+  "says": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it"
+ },
+ "act-restore-preventive-maintenance-visit": {
+  "kind": "data",
+  "metric": "pm_visits_last_full_month",
+  "op": ">=",
+  "says": "closes when the last full month carries 80 or more preventive visits",
+  "target": 80,
+  "when_satisfied": "OK"
+ },
+ "act-retrain-field-teams-how": {
+  "kind": "none",
+  "says": "no closing condition: training delivery is not recorded in any system we read"
+ },
+ "act-route-plans": {
+  "kind": "data",
+  "metric": "sites_without_route_plan",
+  "op": "==",
+  "says": "closes when every site with overdue pumps has a route plan with stops",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-run-sdws-26-premises": {
+  "kind": "data",
+  "metric": "usage_question_answers",
+  "op": ">=",
+  "says": "closes when the SDWS 26 survey has 100 answered responses",
+  "target": 100,
+  "when_satisfied": "OK"
+ },
+ "act-run-stroke-test-sdws": {
+  "kind": "data",
+  "metric": "stroke_test_responses",
+  "op": ">=",
+  "says": "closes when the stroke-test form carries results for the SDWS 23 sample",
+  "target": 30,
+  "when_satisfied": "OK"
+ },
+ "act-sdws27-basis": {
+  "kind": "decision",
+  "question": "Does Gold Standard accept the SDWS 27 basis as set out in docs/sdws27_basis.md?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-sdws3-operating-status": {
+  "form": "water-quality-sampling-sdws3",
+  "kind": "form",
+  "predicate": {
+   "text": "operating"
+  },
+  "says": "closes when the SDWS 3 sampling form carries an operating-status question"
+ },
+ "act-sensor-definition": {
+  "kind": "decision",
+  "question": "Does a stroke counter constitute an operation sensor under the methodology?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-sensor-sample": {
+  "kind": "none",
+  "says": "no closing condition: a briefing is delivered or it is not, and no system records it"
+ },
+ "act-settle-baseline-boiling-device": {
+  "kind": "decision",
+  "question": "What is the baseline boiling device for stove-holding households in Anosy?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-standardised-stroke-test-basis": {
+  "kind": "decision",
+  "question": "Is the five-minute stroke test the accepted basis pending the StrokeMeter?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-transcription-round": {
+  "kind": "data",
+  "metric": "transcription_sheets_done",
+  "op": ">=",
+  "says": "closes when 50 calendars have been transcribed",
+  "target": 50,
+  "when_satisfied": "OK"
+ },
+ "act-type3-cap": {
+  "kind": "data",
+  "metric": "er_percent_of_type3_cap",
+  "op": "<",
+  "says": "stands as a watch while annual reductions are under 80% of the 60,000 tCO2e cap",
+  "target": 80,
+  "when_satisfied": "WATCH"
+ },
+ "act-undatable": {
+  "kind": "data",
+  "metric": "points_without_readable_calendar",
+  "op": "==",
+  "says": "closes when every point with calendar photographs has one that can be read",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-update-parameters-workbook-cite": {
+  "kind": "decision",
+  "question": "Does the Gold Standard parameters workbook cite the applied basis for each parameter?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-update-sops-portfolio-figures": {
+  "folder": "Water Documents/SOPs",
+  "kind": "artefact",
+  "name_contains": "StrokeTest",
+  "says": "closes when the SOP carrying the portfolio figures is issued from the SOPs folder",
+  "where": "sharepoint"
+ },
+ "act-v2-adherence": {
+  "kind": "none",
+  "says": "no closing condition: a standing item that runs until the methodology version is settled"
+ },
+ "act-v2-confidence-intervals": {
+  "kind": "decision",
+  "question": "Is a confidence interval retained on every sampled parameter from now on?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-v2-embodied": {
+  "kind": "decision",
+  "question": "Are commissioning year and technology category recorded as monitoring outputs?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-v2-nonclaiming": {
+  "kind": "data",
+  "metric": "consent_question_answers",
+  "op": ">",
+  "says": "closes when the household consent question A4 carries answers",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-v2-sample-size": {
+  "kind": "decision",
+  "question": "Is every sample re-scoped against the v2.0 minimum of 50?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-v2-stove-stacking": {
+  "form": "point-of-use-survey",
+  "kind": "form",
+  "predicate": {
+   "text": "stove"
+  },
+  "says": "closes when the survey form carries a stove-stacking question"
+ },
+ "act-v2-stroke-test": {
+  "folder": "Water Documents/SOPs",
+  "kind": "artefact",
+  "name_contains": "StrokeTest",
+  "says": "closes when the stroke-test SOP, reconciled with v2.0, is in the SOPs folder",
+  "where": "sharepoint"
+ },
+ "act-visit-collapse": {
+  "kind": "data",
+  "metric": "points_over_6_months",
+  "op": "<=",
+  "says": "closes when fewer than 50 points are more than six months without a visit",
+  "target": 50,
+  "when_satisfied": "WATCH"
+ },
+ "act-visit-three-marolinta-points": {
+  "kind": "data",
+  "metric": "marolinta_three_points_no_photograph",
+  "op": "==",
+  "says": "closes when the three named Marolinta points each carry a photograph",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-wq-retest": {
+  "kind": "data",
+  "metric": "water_quality_failures_unretested",
+  "op": "==",
+  "says": "closes when no point carries a failed E. coli result without a retest",
+  "target": 0,
+  "when_satisfied": "OK"
+ }
+}

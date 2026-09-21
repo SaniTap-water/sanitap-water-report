@@ -70,9 +70,24 @@ PROBE = r"""() => {
   // scope buttons
   const buttons = [...document.querySelectorAll('#scopebar [data-scope], #scopebar button')]
       .map(b => b.dataset.scope || b.textContent.trim());
+  // Every section must share the page measure. Six of them once rendered at
+  // the full window width because a misplaced </div> closed .wrap early: the
+  // markup token counts balanced, so only a rendered page could show it.
+  const wrap = document.querySelector('.wrap');
+  const cs = wrap ? getComputedStyle(wrap) : null;
+  const measure = wrap
+    ? Math.round(wrap.getBoundingClientRect().width
+                 - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight))
+    : 0;
+  const off = [...document.querySelectorAll('section')]
+      .map(s => ({ t: (s.querySelector('h2') || {textContent:'(none)'})
+                        .textContent.slice(0, 44),
+                   w: Math.round(s.getBoundingClientRect().width) }))
+      .filter(x => Math.abs(x.w - measure) > 2);
   return {
     headings, tables, missing_ids: missing, buttons,
     height: document.body.scrollHeight,
+    measure, off_measure: off,
     sections: document.querySelectorAll('section').length,
   };
 }"""
@@ -146,6 +161,10 @@ def main():
         if n and (m is None or m == 0):
             fails.append(f"scope '{s}' now shows {m} sections (was {n})")
 
+    if got.get("off_measure"):
+        for x in got["off_measure"]:
+            fails.append(f"section is off the page measure "
+                         f"({x['w']}px against {got['measure']}px): {x['t']}")
     if want["height"]:
         drop = (want["height"] - got["height"]) / want["height"]
         if drop > HEIGHT_TOLERANCE:
@@ -163,7 +182,8 @@ def main():
               "\n   python3 tools/render_check.py --manifest")
         return 1
     print(f"render ok: {len(got['headings'])} headings, {len(got['tables'])} tables, "
-          f"{got['sections']} sections, height {got['height']}px "
+          f"{got['sections']} sections, measure {got['measure']}px, "
+          f"height {got['height']}px "
           f"({(got['height']-want['height'])/want['height']:+.1%})")
     return 0
 
