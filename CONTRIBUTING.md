@@ -454,3 +454,69 @@ a reduced-performance report. On the 55 pumps the published table calls reduced
 performance, the selected response's issue question is empty, so that split
 comes from somewhere the extract does not reach. It is carried forward for
 pumps that already had one and left unclassified for new entries.
+
+## The weekly edition is built here now
+
+Until 21 September the edition was built in a cloud session that could not
+publish. It wrote its output into `C:\Users\bushp\Downloads` and asked for a
+manual push; when nobody pushed, the site kept last week's page and every
+check passed. Every piece the edition needs now lives in this repository, so
+the build runs here and the cloud session is a watchdog rather than the
+builder.
+
+**`SaniTapWeeklyPublish`** → `wsl.exe -d Ubuntu -- tools/weekly_build.sh`
+Mondays **07:00 local (03:00 UTC)**, repeating every 2 hours for 14 hours —
+07:00 through 21:00. It no longer waits an hour for a cloud build to finish,
+so it runs as early as the machine is likely to be on.
+
+`tools/weekly_build.py` does, in this order:
+
+1. refuse if the working tree is dirty, and remember `HEAD`
+2. do nothing if today's edition is already published (retries are for a
+   machine that was off, not for publishing twice)
+3. archive the outgoing edition into `editions/`
+4. pull the mWater extracts and refresh the form snapshot
+5. rebuild the activity fields, the call tables, the Marolinta admin data,
+   the freshness record, the metrics and the condition evaluation
+6. re-render every generated region
+7. run **both gates**
+8. publish only if both pass — otherwise `git reset --hard` to the remembered
+   `HEAD` and `git clean` the directories it writes to
+
+Nothing is committed until both gates have passed on the rebuilt page, and any
+failure after the first write rolls the tree back, so a half-built edition can
+never be left behind and never published.
+
+### The Downloads path is still live, and secondary
+
+A candidate in Downloads is still considered and gated identically. It is
+preferred over the local build **only when its data is genuinely newer** —
+compared on the newest record each carries, not on its issue date. That keeps
+a route open if this machine is unavailable for a long stretch. If the local
+build did nothing at all, `tools/publish_waiting.py` still runs on its own, so
+a waiting candidate is never stranded.
+
+### What the local build cannot do that the cloud build could
+
+- **It needs this machine.** The cloud build ran whether or not the laptop was
+  on. `StartWhenAvailable` catches up at the next boot, and the retries cover
+  a machine that was merely asleep, but a machine off all week publishes
+  nothing that week — where the cloud build would at least have produced a
+  candidate. The Downloads path is the mitigation.
+- **It cannot rebuild the page's narrative.** The cloud session could rewrite
+  prose; this build regenerates only what has a generator. Structural and
+  wording changes are still hand work.
+- **It is slow where the cloud build was not.** `tools/pull_extract.py` walks
+  date windows per form, spawning a process per window, and takes roughly a
+  quarter of an hour. That is the price of a correct pull — the server's own
+  paging silently drops rows — but it means a run is minutes, not seconds.
+  `SANITAP_SKIP_PULL=1` exercises every other step against the extracts
+  already on disk; the schedule never sets it.
+
+### The cloud build is now a watchdog
+
+Leave it scheduled. It no longer builds the edition that gets published: its
+candidate is gated like any other and is taken only if its data is genuinely
+newer than the local build's. What it still does usefully is notice — if it
+runs and this machine has not published, its output lands in Downloads and
+`tools/check_build_drop.py` turns that into a failing check.
