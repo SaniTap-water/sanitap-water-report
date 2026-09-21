@@ -18,8 +18,16 @@ So a form edit made in the mWater designer is caught the next time this is
 run, not the moment it happens. Run it whenever a form is changed, and the
 failing check names what moved.
 
-    python3 tools/refresh_form_snapshot.py            # rewrite the snapshot
-    python3 tools/refresh_form_snapshot.py --check    # exit 1 if it differs
+    python3 tools/refresh_form_snapshot.py               # rewrite the snapshot
+    python3 tools/refresh_form_snapshot.py --check       # exit 1 if it differs
+    python3 tools/refresh_form_snapshot.py --if-possible # refresh, or say why not
+
+--if-possible is what publish.sh runs. It NEVER fails the build for being
+offline - a machine with no network or no credentials still publishes, using
+the snapshot it has. What it does not do is fail quietly: it prints the reason
+and the age of the snapshot it is falling back on, and the consistency
+checker fails the build outright once that age passes MAX_AGE_DAYS. Being
+offline is allowed; publishing a week-old claim about a live form is not.
 
 It shells out to the mwater-mcp server rather than talking to the API itself,
 so there is one implementation of authentication and one of the form contract.
@@ -47,12 +55,37 @@ FORMS = {
 }
 
 
+MAX_AGE_DAYS = 7
+
+
+class Unavailable(Exception):
+    """mWater cannot be reached from here - not a build failure by itself."""
+
+
+def snapshot_age():
+    if not os.path.exists(OUT):
+        return None
+    try:
+        f = json.load(open(OUT, encoding="utf8")).get("fetched")
+        return (datetime.date.today() - datetime.date.fromisoformat(f)).days
+    except Exception:
+        return None
+
+
 def fetch(form_id):
+    if not os.path.isfile(CALLER):
+        raise Unavailable(f"{CALLER} is not present")
     r = subprocess.run(["node", CALLER, "mwater_get_form_design",
                         json.dumps({"form_id": form_id})],
                        capture_output=True, text=True, cwd=MCP)
-    if r.returncode != 0:
-        sys.exit(f"mwater call failed for {form_id}: {r.stderr.strip()[:300]}")
+    err = (r.stderr or "") + (r.stdout or "")
+    if r.returncode != 0 or "{" not in r.stdout:
+        low = err.lower()
+        if any(k in low for k in ("enotfound", "econnrefused", "etimedout", "network",
+                                  "getaddrinfo", "unauthorized", "401", "credentials",
+                                  "no such file", "cannot find module", "econnreset")):
+            raise Unavailable(err.strip()[:200] or "mWater unreachable")
+        sys.exit(f"mwater call failed for {form_id}: {err.strip()[:300]}")
     s = r.stdout[r.stdout.index("{"):]
     return json.loads(s)
 
@@ -98,6 +131,32 @@ def build():
 
 
 def main():
+    if "--if-possible" in sys.argv[1:]:
+        age = snapshot_age()
+        try:
+            snap = build()
+        except Unavailable as e:
+            have = "no snapshot at all" if age is None else f"{age} day(s) old"
+            print(f"  mWater not reachable from here: {e}")
+            print(f"  falling back on the committed snapshot ({have}).")
+            if age is not None and age > MAX_AGE_DAYS:
+                print(f"  NOTE: that is past the {MAX_AGE_DAYS}-day limit; "
+                      f"the consistency checker will fail this build.")
+            return 0
+        new = json.dumps(snap, ensure_ascii=False, indent=1, sort_keys=True)
+        old = open(OUT, encoding="utf8").read() if os.path.exists(OUT) else ""
+        open(OUT, "w", encoding="utf8").write(new)
+        a = json.loads(old or "{}"); a.pop("fetched", None)
+        b = json.loads(new); b.pop("fetched", None)
+        print(f"  mWater form snapshot refreshed ({len(snap['forms'])} forms)"
+              + ("; the designs have not changed." if a == b
+                 else "; A FORM HAS CHANGED since the last build."))
+        if a != b:
+            for f in sorted(set(a.get("forms", {})) | set(b.get("forms", {}))):
+                if a.get("forms", {}).get(f) != b.get("forms", {}).get(f):
+                    print(f"    {f}: rev {(a.get('forms', {}).get(f) or {}).get('rev')}"
+                          f" -> {(b.get('forms', {}).get(f) or {}).get('rev')}")
+        return 0
     check = "--check" in sys.argv[1:]
     snap = build()
     new = json.dumps(snap, ensure_ascii=False, indent=1, sort_keys=True)

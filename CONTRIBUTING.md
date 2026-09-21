@@ -61,13 +61,23 @@ python3 tools/render_block.py --write    # splice into index.html
 python3 tools/render_block.py --check    # exit 1 if index.html has drifted
 ```
 
+There are two generated regions today — `machine-extraction`
+(`tools/render_block.py`) and `form-freshness` (`tools/render_form_freshness.py`).
+`tools/publish.sh` runs every one of them with `--write` before it gates, so the gate sees
+current output; the checker then fails the build if any region and its generator disagree.
+Adding a third means writing a generator with `--write`/`--check`, putting its markers in
+`index.html`, and adding it to the loop in `publish.sh`. Nothing else needs changing — the
+checker discovers regions from the markers.
+
 The marker names its own generator, so the rule is readable from the page.
 
 `data/mwater_form_snapshot.json` follows the same rule without markers: it is output, written
 only by `tools/refresh_form_snapshot.py`, and never hand-edited. It is what block 7ai asserts
-the live form structure against, because the checker cannot call mWater on every build. Run the
-refresh whenever an mWater form is changed — a form edit is caught the next time it runs, and
-the failing check names what moved.
+the live form structure against, because the checker cannot call mWater on every build. `publish.sh` runs it on every build (`--if-possible`), so in practice the snapshot is refreshed
+from mWater each time the report is published. That path never fails the build for being
+offline: with no network or credentials it falls back on the committed snapshot and prints its
+age. What is not tolerated is staleness — the checker fails outright once the snapshot is more
+than seven days old, and the page states the date the forms were last read.
 A generator added later must support `--check` and `--write` and be named in
 its marker the same way; the checker discovers regions from the markers, so
 nothing else needs updating.

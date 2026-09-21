@@ -64,6 +64,16 @@ RETIRED_NAME_PREFIX = "ZZ TEST"
 # is the name prefix; this list is a belt-and-braces cross-check, not the rule.
 KNOWN_RETIRED_CODES = ("924119262", "927104201")
 
+# The full names as they stand in the register. A retired RECORD reaching a
+# published page carries its whole name; the bare prefix does not, and the
+# report legitimately discusses the convention in prose - the decommissioning
+# action explains that two records are retired this way and why the prefix is
+# the only marker mWater permissions leave writable. So the published-page
+# assertion is on these, matching the treatment already given to the codes:
+# hard on data, permissive on prose.
+KNOWN_RETIRED_NAMES = ("ZZ TEST - NOT A WATER POINT AEPG",
+                       "ZZ TEST - NOT A WATER POINT AEP")
+
 
 def is_retired(record):
     """True if this register record must be excluded from every published figure.

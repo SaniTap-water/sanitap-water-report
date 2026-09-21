@@ -50,6 +50,34 @@ if [ -n "$NEW_PORTFOLIO" ]; then
   fi
 fi
 
+# ---- 1b. refresh what is generated, before gating it -----------------------
+# The page makes claims about live mWater forms. Those are only as good as the
+# last time anyone read the forms, so the build reads them itself where it can.
+# This step NEVER fails the build for being offline - a machine with no network
+# or no credentials publishes from the committed snapshot and says so. It is
+# the consistency checker, below, that refuses a snapshot older than a week.
+say ""
+say "refreshing the mWater form snapshot ..."
+python3 tools/refresh_form_snapshot.py --if-possible
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the snapshot refresh failed for a reason other than being offline (exit $RC)."
+  exit 2
+fi
+
+# Regenerate every generated region of index.html from its own generator, so
+# the gate sees current output rather than yesterday's. Each generator is
+# named in its own marker in index.html; block 7af of the checker fails the
+# build if a region and its generator disagree.
+for gen in tools/render_block.py tools/render_form_freshness.py; do
+  python3 "$gen" --write
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: $gen failed (exit $RC). Nothing committed."
+    exit 2
+  fi
+done
+
 # ---- 2. THE GATE -----------------------------------------------------------
 # Run it, capture the status on its own line, then branch. Nothing is chained.
 say ""

@@ -11,7 +11,7 @@ changed on 20 September 2026. Nothing detected the gap, because nothing had ever
 sentence in a procedure with the form it describes. The question this file answers is whether
 that was one mistake or a pattern.
 
-**It was a pattern.** Eight discrepancies, four of them touching carbon evidence.
+**It was a pattern.** Nine discrepancies, five of them touching carbon evidence. **Five are now resolved** — D1, D2, D5, D6 and D7 — and the three that remain are decisions, not form edits.
 
 ## What was swept
 
@@ -24,8 +24,8 @@ that was one mistake or a pattern.
 | Statements making a checkable claim | **77** |
 | Statements resolvable to a specific form, field or requirement | **25** |
 | — conform | **16** |
-| — discrepancy | **8** |
-| — could not be verified | **1** |
+| — discrepancy | **9** |
+| — resolved since the sweep | **5** |
 
 The remaining 52 checkable statements name no specific field — *"compléter exhaustivement le
 questionnaire mWater"* and similar. They are instructions to staff, not claims about a design,
@@ -105,6 +105,9 @@ cannot produce consent evidence even when staff follow the protocol exactly.
 individual-level consent gap; this is the mechanism behind it.
 
 ### D5 — the calendar photograph is unconditionally mandatory on repair-after-breakdown
+**RESOLVED 21 September 2026.** `1.3.1.2bis` (presence, required) and `1.3.1.2ter` (reason,
+optional, shown on *No*) were added immediately before `1.3.1.3`, and `1.3.1.3` is now required
+conditional on presence = *Yes*. Form `_rev` 389 → 390.
 **Carbon evidence: yes.** `1.3.1.3` is `required: true` with no condition. A repair visit to a
 point that has no calendar on the wall cannot be closed without a calendar photograph, so the
 technician photographs something — and **206 of the calendar photographs on file are not
@@ -113,11 +116,19 @@ until 20 September, one form across.
 → [`act-photo-conditional-on-presence`](../index.html#act-photo-conditional-on-presence)
 
 ### D6 — `2.15.5` is unconditionally mandatory on preventive-maintenance
+**RESOLVED 21 September 2026.** `2.15.5bis` and `2.15.5ter` were moved ahead of `2.15.5` — a
+question whose answer gates another has to be asked first — and `2.15.5` is now required
+conditional on presence = *Yes*. Form `_rev` 501 → 502.
 **Carbon evidence: yes.** Same shape, one field earlier: the supplementary calendar-photograph
 field is `required: true` with no condition, so a visit to a point with no calendar still demands
 *"photos illustrating the calendar"*. Folded into the same action as D5.
 
 ### D7 — six more duplicated codes, on three other forms
+**RESOLVED 21 September 2026.** All six reassigned, codes only: `1.6.3.1`→`1.6.3.5`,
+`1.6.3.2`→`1.6.3.6`, `2.2.3`→`2.3.2` on premiere-rehabilitation (`_rev` 298 → 299);
+`2.1.11.2`→`2.1.11.3`, `2.4.2.2`→`2.4.1.2` on repair-after-breakdown (`_rev` 390 → 391);
+`5.4`→`5.5` on stroke-meter (`_rev` 191 → 192). No question code is now reused within any of the
+twelve forms, and `tools/check_consistency.py` asserts that on every build.
 **Carbon evidence: yes, on one.** Export column headers collide wherever a code is reused. Six
 codes are duplicated across three forms, twelve questions in all:
 
@@ -140,18 +151,49 @@ feed the evidence pack. None of the six is cleared.
 `required: true` with no condition — mandatory on every response. The form is stricter than the
 procedure, which costs technician time but loses no evidence. Recorded, no action.
 
-## Could not be verified
+### D9 — the emergency-event SOP names a form that does not exist
+**Carbon evidence: no, but SDWS 3 evidence: yes.** `SOP Emergency_event_SDWS3` states that a
+questionnaire *« Emergency event SDWS3 »* is available in mWater and that the team leader records
+all cleaning and bacteriological-analysis information in it.
 
-`SOP Emergency_event_SDWS3` states that a questionnaire *« Emergency event SDWS3 »* is available
-in mWater. No form of that name appears in the form listing this account can enumerate — but that
-listing is demonstrably partial (it returns 200 forms and does not include the
-preventive-maintenance form, which is certainly there), so its absence proves nothing. The form
-id would settle it in one call.
+This was the one row the first sweep could not verify, because the form listing appeared to
+return only 200 forms. **It does not.** The listing returns **741** forms; the 200 was a display
+cap inside the reporting tool, not a limit on the fetch, and the note saying so was being
+discarded. Paged to exhaustion and searched:
+
+| search | forms found |
+|---|---|
+| `emergency` | **0** |
+| `nettoyage` | **0** |
+| `chloration` | **0** |
+| `sdws` | 5 — two *Piped Water* SDWS 3 forms, two *Clean Water* SDWS 3 forms, one *Clean Water* SDWS 18 form. None is an emergency-event form. |
+| `urgence` | 1 — *"Urgence: Evaluation et Suivi des reparations des infrastructures - SAEP"*, a piped-scheme repair assessment, unrelated |
+
+**The form does not exist.** An SOP that routes emergency cleaning and bacteriological results
+into a form nobody can open means those results are either recorded somewhere unmanaged or not
+recorded at all, and SDWS 3 emergency events are exactly the situation where evidence is most
+likely to be needed later.
+→ [`act-emergency-event-form`](../index.html#act-emergency-event-form)
+
+<span id="paging-note"></span>**A note on the earlier claim.** The first version of this file
+said the listing was "demonstrably partial" and that its silence proved nothing. That was wrong,
+and it was wrong in the direction that let a gap stay open: the tool was reporting the truncation
+plainly in a line that was being stripped before it was read.
 
 ## How to re-run this
 
 The sweep is not yet automated end to end; the extraction is, the judgement is not. What **is**
-enforced on every build, in `tools/check_consistency.py` block 7ai, is the narrower thing that
-caused the original defect: that the calendar presence question, the absence-reason question and
-the required-when-present condition are all still on the live form as described here. A future
-form edit that quietly relaxes any of them fails the build.
+enforced on every build, in `tools/check_consistency.py` block 7ai:
+
+* the calendar presence question, the absence-reason question and the required-when-present
+  condition are still on **both** forms as described here;
+* no question code is reused within any of the twelve forms;
+* every snapshot form is still active and preventive-maintenance is still deployed to all four
+  districts;
+* **the snapshot is no more than seven days old**, and the page says the date it was read.
+
+`tools/publish.sh` refreshes the snapshot from mWater before it gates, wherever the network and
+credentials are available, and says so in its output. Where they are not, it falls back on the
+committed snapshot and prints its age rather than skipping the check — and once that age passes
+seven days the checker fails the build outright. Being offline is allowed; publishing a week-old
+claim about a live form is not.

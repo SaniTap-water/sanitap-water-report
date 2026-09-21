@@ -27,10 +27,11 @@ register count. A sentence that used 908 as a management figure while happening
 to contain the word "register" would pass. Treat a 908 PASS as "nothing obviously
 wrong", not as proof.
 """
-import argparse, collections, json, os, re, subprocess, sys, tempfile
+import argparse, collections, datetime, json, os, re, subprocess, sys, tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from exclude_retired import RETIRED_NAME_PREFIX, KNOWN_RETIRED_CODES  # noqa: E402
+from exclude_retired import (RETIRED_NAME_PREFIX, KNOWN_RETIRED_CODES,  # noqa: E402
+                             KNOWN_RETIRED_NAMES)
 
 FULL_SCALE = 4000          # water points at full programme scale
 CARBON_EXCLUDES = "Marolinta"
@@ -265,9 +266,9 @@ def main():
     # backstop: if the build's filter is missing or was applied too late, a
     # retired record's code or name shows up here.
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
-        hit = RETIRED_NAME_PREFIX in src
-        check(f"{f}: no {RETIRED_NAME_PREFIX!r} record present", not hit,
-              "absent", "FOUND" if hit else "absent",
+        found = [n for n in KNOWN_RETIRED_NAMES if n.upper() in src.upper()]
+        check(f"{f}: no {RETIRED_NAME_PREFIX!r} record present", not found,
+              "absent", "FOUND: " + ", ".join(found) if found else "absent",
               "retired records must be filtered out in the build")
     # A retired code must not appear in any DATA structure - that is what
     # "included in a published figure" means. It MAY appear in prose: the report
@@ -1868,6 +1869,28 @@ def main():
           "evidence for docs/sop_form_conformance.md")
     if os.path.isfile(SNAPPATH):
         snap = json.load(open(SNAPPATH, encoding="utf8"))
+        # Freshness. The conformance claims on the page are worth exactly as
+        # much as the last time someone read the forms, so this is a gate and
+        # not a warning: publish.sh refreshes the snapshot where it can, and
+        # where it cannot, a stale claim stops the build instead of going out
+        # quietly. MAX_AGE_DAYS is the same constant the page cites.
+        MAX_AGE_DAYS = 7
+        fetched = snap.get("fetched", "")
+        try:
+            age = (datetime.date.today() - datetime.date.fromisoformat(fetched)).days
+        except Exception:
+            age = None
+        check("the form snapshot records when it was read",
+              age is not None, "an ISO date", fetched or "MISSING")
+        if age is not None:
+            check(f"the form snapshot is at most {MAX_AGE_DAYS} days old",
+                  age <= MAX_AGE_DAYS, f"<= {MAX_AGE_DAYS} days",
+                  f"{age} day(s) old", "" if age <= MAX_AGE_DAYS else
+                  "run: python3 tools/refresh_form_snapshot.py")
+            nice = datetime.date.fromisoformat(fetched).strftime("%-d %B %Y")
+            check("the page states when the forms were last read",
+                  nice in idx, nice, nice if nice in idx else "NOT ON THE PAGE",
+                  "a reader can see how fresh the conformance claim is")
         pm = snap["forms"].get("preventive-maintenance", {})
         byc = {q["code"]: q for q in pm.get("questions", []) if q.get("code")}
         byid = {q["id"]: q for q in pm.get("questions", [])}
@@ -1918,17 +1941,36 @@ def main():
             d = {c: n for c, n in seen.items() if n > 1}
             if d:
                 dups[fname] = d
-        pm_dups = dups.get("preventive-maintenance", {})
-        check("form: no duplicated question codes on preventive-maintenance",
-              not pm_dups, "0", "0" if not pm_dups else ", ".join(sorted(pm_dups)),
-              "export column headers would collide")
-        check("the remaining duplicated codes are the ones on the action list",
-              set(dups) <= {"repair-after-breakdown", "stroke-meter",
-                            "premiere-rehabilitation"},
-              "only the three known forms",
-              "only the three known forms" if set(dups) <= {"repair-after-breakdown",
-              "stroke-meter", "premiere-rehabilitation"} else ", ".join(sorted(dups)),
-              "act-duplicate-codes-sweep clears these")
+        # No code may be reused within a form, on ANY of them. Nine collisions
+        # across four forms were cleared on 20-21 September; this keeps them
+        # cleared rather than trusting that they stay that way.
+        check("form: no question code is reused within any form",
+              not dups, "0 across 12 forms",
+              "0 across 12 forms" if not dups else
+              "; ".join(f"{f}: {', '.join(sorted(c))}" for f, c in sorted(dups.items())),
+              "a reused code collides as an export column header")
+
+        # Every unconditionally-required evidence photograph was the same
+        # trap: a technician who cannot proceed photographs something, and 206
+        # of the photographs on file are not calendars. Both forms now ask
+        # whether there is a calendar before demanding a picture of one.
+        for fname, pcode, prescode, presid, yes in (
+                ("preventive-maintenance", "2.15.5", "2.15.5bis",
+                 "e04e8727a1264f2aa8f6628d6f014097", "DT5tf4B"),
+                ("repair-after-breakdown", "1.3.1.3", "1.3.1.2bis",
+                 "1dfdba4b4d2a4178ae3bf5d779fecde2", "Nvwlvgw")):
+            fq = {q["code"]: q for q in snap["forms"].get(fname, {}).get("questions", [])
+                  if q.get("code")}
+            ph, pr = fq.get(pcode), fq.get(prescode)
+            ok = (ph and pr and pr["required"] and ph["required"]
+                  and any(c.get("op") == "is"
+                          and (c.get("lhs") or {}).get("question") == presid
+                          and (c.get("rhs") or {}).get("literal") == yes
+                          for c in ph["conditions"]))
+            check(f"form: {fname} {pcode} is required only where a calendar is present",
+                  bool(ok), f"{pcode} on {prescode}",
+                  f"{pcode} on {prescode}" if ok else "UNCONDITIONAL OR MISSING",
+                  "asking for a photograph of a sheet that is not there produces a photograph of something else")
         check("every snapshot form is active",
               all(f.get("state") == "active" for f in snap["forms"].values()),
               f"{len(snap['forms'])} active",
@@ -1948,11 +1990,35 @@ def main():
           "counted", "counted" if "16 conform" in idx else "MISSING",
           "15 SOPs, 25 resolved, 16 conform, 8 discrepancies")
     for aid in ("act-photo-conditional-on-presence", "act-decommission-inactivity-field",
-                "act-duplicate-codes-sweep"):
+                "act-duplicate-codes-sweep", "act-emergency-event-form"):
         check(f"conformance discrepancy is actioned: {aid}",
               f'<tr id="{aid}">' in idx, "present",
               "present" if f'<tr id="{aid}">' in idx else "MISSING",
               "touches carbon evidence")
+
+    # The decommissioning rule is a programme decision, not a form edit: it sets
+    # the register and the register is the denominator of every carbon figure
+    # here. The paper must exist, say what it is for, and be owned by the person
+    # who makes the call.
+    dec = os.path.join(repo_root, "docs", "decommissioning_rule_question.md")
+    dtext = read(dec) if os.path.isfile(dec) else ""
+    check("the decommissioning decision paper exists",
+          "The decision" in dtext and "95" in dtext and "908" in dtext,
+          "present", "present" if dtext else "MISSING",
+          "docs/decommissioning_rule_question.md")
+    m = re.search(r'<tr id="act-decommission-inactivity-field">.*?</tr>', idx, re.S)
+    row = m.group(0) if m else ""
+    check("the decommissioning action is owned by the Head of Carbon",
+          "Jan de Graaf" in row, "Jan de Graaf",
+          "Jan de Graaf" if "Jan de Graaf" in row else "NOT REASSIGNED",
+          "the retirement rule sets the carbon denominator")
+    check("the decommissioning action links the decision paper",
+          "decommissioning_rule_question.md" in row, "linked",
+          "linked" if "decommissioning_rule_question.md" in row else "MISSING")
+    check("the emergency-event form is settled either way",
+          "741" in idx and "does not exist" in idx, "settled",
+          "settled" if "741" in idx else "STILL UNVERIFIED",
+          "the form listing was paged to exhaustion")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""

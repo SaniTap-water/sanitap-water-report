@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-20",
+ "fetched": "2026-09-21",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -6110,7 +6110,7 @@
      "type": "RadioQuestion"
     },
     {
-     "code": "1.6.3.1",
+     "code": "1.6.3.5",
      "conditions": [],
      "en": "Are the fasteners in good condition?",
      "fr": "Les fixations sont-elles en bon état ?",
@@ -6120,7 +6120,7 @@
      "type": "RadioQuestion"
     },
     {
-     "code": "1.6.3.2",
+     "code": "1.6.3.6",
      "conditions": [],
      "en": "Does the footvalve appear in good condition?",
      "fr": "Le clapet de pied semble-t-il en bon état ?",
@@ -6230,7 +6230,7 @@
      "type": "MulticheckQuestion"
     },
     {
-     "code": "2.2.3",
+     "code": "2.3.2",
      "conditions": [],
      "en": "Photos of repair activities (India-Mark)",
      "fr": "Photos des activités de réparation (India-Mark)",
@@ -6790,7 +6790,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 298,
+   "rev": 299,
    "state": "active"
   },
   "preventive-maintenance": {
@@ -7719,16 +7719,6 @@
      "type": "DropdownColumnQuestion"
     },
     {
-     "code": "2.15.5",
-     "conditions": [],
-     "en": "Photos illustrating the WP wardens calendar",
-     "fr": "Photos illustrants le calendrier des gardiens de l'eau",
-     "group": "Water point managers/WP warden",
-     "id": "1f8f66868c384a20b8b1ebae329fc7b0",
-     "required": true,
-     "type": "ImagesQuestion"
-    },
-    {
      "code": "2.15.5bis",
      "conditions": [],
      "en": "Is a water wardens' calendar physically present at the water point?",
@@ -7757,6 +7747,26 @@
      "id": "27d22a1d355d4707aae8bb00b5da477f",
      "required": false,
      "type": "DropdownQuestion"
+    },
+    {
+     "code": "2.15.5",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "e04e8727a1264f2aa8f6628d6f014097"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "DT5tf4B"
+       }
+      }
+     ],
+     "en": "Photos illustrating the WP wardens calendar",
+     "fr": "Photos illustrants le calendrier des gardiens de l'eau",
+     "group": "Water point managers/WP warden",
+     "id": "1f8f66868c384a20b8b1ebae329fc7b0",
+     "required": true,
+     "type": "ImagesQuestion"
     },
     {
      "code": "2.15.6",
@@ -7839,7 +7849,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 501,
+   "rev": 502,
    "state": "active"
   },
   "repair-after-breakdown": {
@@ -8098,7 +8108,7 @@
      "type": "ImagesQuestion"
     },
     {
-     "code": "2.1.11.2",
+     "code": "2.1.11.3",
      "conditions": [],
      "en": "Photo of the overview of the pump",
      "fr": "Photo de la vue d'ensemble de la pompe",
@@ -8348,7 +8358,7 @@
      "type": "DropdownQuestion"
     },
     {
-     "code": "2.4.2.2",
+     "code": "2.4.1.2",
      "conditions": [
       {
        "lhs": {
@@ -8748,8 +8758,48 @@
      "type": "DropdownQuestion"
     },
     {
-     "code": "1.3.1.3",
+     "code": "1.3.1.2bis",
      "conditions": [],
+     "en": "Is a water wardens' calendar physically present at the water point?",
+     "fr": "Misy teti-andron'ny gardien ve eo amin'ny tobin-drano? / Un calendrier des gardiens de l'eau est-il physiquement présent au point d'eau ?",
+     "group": "Satisfaction",
+     "id": "1dfdba4b4d2a4178ae3bf5d779fecde2",
+     "required": true,
+     "type": "DropdownQuestion"
+    },
+    {
+     "code": "1.3.1.2ter",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "1dfdba4b4d2a4178ae3bf5d779fecde2"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "G6fWzTj"
+       }
+      }
+     ],
+     "en": "Why is the calendar absent?",
+     "fr": "Fa maninona no tsy misy ny teti-andro? / Pourquoi le calendrier est-il absent ?",
+     "group": "Satisfaction",
+     "id": "5604223339ff4962a9be206772b1b3bc",
+     "required": false,
+     "type": "DropdownQuestion"
+    },
+    {
+     "code": "1.3.1.3",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "1dfdba4b4d2a4178ae3bf5d779fecde2"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "Nvwlvgw"
+       }
+      }
+     ],
      "en": "Photo of the calendar",
      "fr": "Photo du calendrier",
      "group": "Satisfaction",
@@ -8778,7 +8828,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 389,
+   "rev": 391,
    "state": "active"
   },
   "stroke-meter": {
@@ -9172,7 +9222,7 @@
      "type": "DateQuestion"
     },
     {
-     "code": "5.4",
+     "code": "5.5",
      "conditions": [],
      "en": "Index",
      "fr": "",
@@ -9232,7 +9282,7 @@
      "type": "TextQuestion"
     }
    ],
-   "rev": 191,
+   "rev": 192,
    "state": "active"
   },
   "water-quality-result-sdws3": {
