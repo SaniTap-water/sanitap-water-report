@@ -480,13 +480,15 @@ def main():
         # every point drawn is one the report counts
         # 742896839 exists in mWater WITH a GPS fix (ac01735a-c76c-4beb-aed6-
         # 70c88879bd48) but its _managed_by is "all", not the MadAvance group, so
-        # every group-filtered export skips it and the map can draw only 735.
-        # Open action "Bring water point 742896839 into the MadAvance register"
-        # in index.html tracks the fix. When that lands this assertion SHOULD
-        # start failing: change the -1 to 0 at the same time.
+        # every group-filtered export skips it. Its coordinates were read from
+        # the register record directly on 21 September 2026 and the point is now
+        # drawn from those, so the map shows the whole estate. The group
+        # membership is still wrong at source - act-742896839 tracks that - and
+        # until it is fixed a rebuilt portfolio.html will drop the point again.
+        # This assertion is what catches that: it stays at the full count.
         check("map point count agrees with the report's managed set",
-              n_map == S["points"] - 1, f"{S['points']} - 1 not in the MadAvance group", n_map,
-              "742896839: record and GPS exist, group membership does not")
+              n_map == S["points"], S["points"], n_map,
+              "every managed point is drawn")
         # photographs come from the completed-works questions only
         nph = sum(1 for w in WPm if w.get("p"))
         check("every drawn photo is a completed-works image",
@@ -2272,6 +2274,40 @@ def main():
           "297" in _dltext and "3.5" in _dltext and "withdrawn" in _dltext,
           "recorded", "recorded" if "297" in _dltext else "LOST",
           "the audit trail keeps them; the page does not")
+
+    # ---- 7an. state what the estate is, not what is missing from it -----
+    # "This map draws 735 of the 736 hand pumps" reads to a donor as a hole in
+    # the register. It was not one: the point had a record and a GPS fix, and
+    # only its group membership was wrong. Say what we have; put the defect in
+    # the provenance note and on the action list, where it belongs.
+    #
+    # This fires on "N of (the) M" where the two are close and the sentence is
+    # about our own estate. It deliberately does NOT fire on a sample result -
+    # "21 of 24 sampled sheets" is a finding, not a gap.
+    NOFM = re.compile(r"\b(\d[\d,]*)\s+of\s+(?:the\s+)?(\d[\d,]*)\b")
+    ESTATE = re.compile(r"\b(hand ?pumps?|water ?points?|mapped points?|points|pumps|"
+                        r"register|estate|under active management|portfolio)\b", re.I)
+    SAMPLEY = re.compile(r"\bsampl(?:e|ed|es|ing)\b|\bdrawn\b|\bsheets?\b|"
+                         r"\bresponses?\b|\brecords? in\b|\bquartile\b", re.I)
+    offenders = []
+    for f, src in (("index.html", idx), ("portfolio.html", prt)):
+        pr_ = re.sub(r"<script[^>]*>.*?</script>", " ", src, flags=re.S)
+        pl = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", pr_))
+        for sent in re.split(r"(?<=[.!?])\s+", pl):
+            if SAMPLEY.search(sent):
+                continue
+            if not ESTATE.search(sent):
+                continue
+            for m in NOFM.finditer(sent):
+                a = int(m.group(1).replace(",", ""))
+                b = int(m.group(2).replace(",", ""))
+                if b > a and (b - a) <= 3 and b >= 20:
+                    offenders.append(f"{f}: '{m.group(0)}' in \"{sent.strip()[:80]}\"")
+    check("no sentence describes the estate as all-but-a-few",
+          not offenders, "none",
+          f"{len(offenders)} offending" if offenders else "none",
+          "; ".join(offenders)[:170] if offenders
+          else "state the estate, not the shortfall")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
