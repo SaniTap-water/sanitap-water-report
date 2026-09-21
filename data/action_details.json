@@ -29,11 +29,6 @@
   "owner": "Angelo Nahavitatsara / MadAvance",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\" style=\"font-size:.85em\">proposed &mdash; Jan to confirm or move</span><br><span class=\"muted\">option live on the call form; call team retrained</span>"
  },
- "act-call-tables-builder": {
-  "detail": "<b>Write the builder for the call-centre-derived tables, and put it in the repository.</b> Pump status, the down list, the partially-working list and the time-out-of-service table are produced from the call-centre form by a builder that <b>exists nowhere in this repository</b>. When the extract stopped being pulled, those tables simply kept their old values and no check could tell. <b>The rule is not recorded either:</b> reconstructing it from the data and the page&rsquo;s own description &mdash; <i>&ldquo;the last thing anyone recorded about each pump in 2026&rdquo;</i> &mdash; agreed on <b>463</b> of <b>640</b> pumps and would have restated <b>177</b>, <b>168</b> of them from <span class=\"mono\">partial</span> to <span class=\"mono\">ok</span>. So it was not applied. Until the builder is written, the call-centre half of the page cannot be refreshed by any code we hold, and the freshness record carries it as a named gap rather than pretending it is current. <span class=\"muted\">Visits and repairs are already rebuilt each edition by <span class=\"mono\">tools/rebuild_activity.py</span>; this is the remaining half.</span>",
-  "owner": "Adriaan Mol",
-  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
- },
  "act-chase-s4-16-car": {
   "detail": "<b>Chase &sect;4.16 CAR#8 &mdash; the VVB&rsquo;s external experts.</b> Earthood has not updated its validation report on how the two external appointments met s.7.5.2.2&ndash;7.5.2.4. Nothing for us to produce; it needs chasing so it does not sit as an open item against our file.",
   "owner": "James Walker",

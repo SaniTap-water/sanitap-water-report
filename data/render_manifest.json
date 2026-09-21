@@ -37,7 +37,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 22852,
+ "height": 22962,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
@@ -57,7 +57,7 @@
   },
   "downtbl": {
    "hidden": false,
-   "rows": 19
+   "rows": 20
   },
   "exctbl": {
    "hidden": false,
@@ -77,7 +77,7 @@
   },
   "parttbl": {
    "hidden": false,
-   "rows": 55
+   "rows": 53
   },
   "poptbl": {
    "hidden": false,

@@ -238,7 +238,8 @@ Rebuild order, every Monday:
 
 ```
 python3 tools/pull_extract.py --write        # FIRST: pull, or everything below is stale
-python3 tools/rebuild_activity.py --write    # write the fresh activity into the page
+python3 tools/rebuild_activity.py --write    # visits and repairs into the page
+python3 tools/build_call_tables.py --write   # status, down, partially working
 python3 tools/check_freshness.py --write     # how far behind mWater the extract is
 python3 tools/marolinta_admin.py --write     # district/commune from the register
 python3 tools/action_metrics.py --write      # recount every stored query
@@ -264,9 +265,14 @@ Carried forward every edition. `tools/check_consistency.py` asserts each of them
    cannot be read
 6. **one to-do list** — the consolidated action list is the only one on the page
 7. **the extract is pulled and the page rebuilt from it, every edition** — run
-   `tools/pull_extract.py --write` then `tools/rebuild_activity.py --write`
-   before anything else. The build FAILS if the data on the page is more than
-   three days old, so an edition cannot go out on a stale extract.
+   `tools/pull_extract.py --write`, then `tools/rebuild_activity.py --write`
+   and `tools/build_call_tables.py --write`, before anything else. The build
+   FAILS if any rebuildable source is more than two days behind mWater, so an
+   edition cannot go out on a stale extract.
+8. **the call-centre status rule** — stated in `tools/build_call_tables.py`,
+   printed on the page, and asserted identical by the checker. It was
+   recovered once by comparison; it must never again be something only one
+   process knows.
 
 ## The extract, and why it went stale for a fortnight
 
@@ -411,3 +417,40 @@ tools/publish_waiting.sh              # what the task runs
 tools/publish_waiting.sh --dry-run    # verify and report, never write
 SANITAP_DROP=/some/fixture tools/publish_waiting.sh   # proof runs
 ```
+
+## The call-centre tables, and the rule behind them
+
+`tools/build_call_tables.py` builds the status split, the down list and the
+partially-working list. Until 21 September these were the only part of the page
+nothing here could rebuild: the builder was not in the repository and the rule
+was written down nowhere, so when the extract went stale they quietly kept
+10 September values while everything around them moved on.
+
+The rule was recovered by comparing candidate rules against the published
+tables pump by pump. It is stated in full at the top of that file, printed on
+the page, and the checker asserts the two are identical.
+
+**Reproduction is the test.** `--reproduce <date>` rebuilds from the extract
+truncated to that date and compares against the published tables:
+
+```
+python3 tools/build_call_tables.py --reproduce 2026-09-07   # 736/736, exact
+```
+
+A change to the rule that breaks reproduction is a wrong change.
+
+**Holds.** 39 pumps cannot be reproduced and are listed in
+`data/call_status_holds.json` with the reason on each, left on their published
+value rather than restated on a guess. Most are days on which a call and a
+visit share the last date: across the 193 pumps in that position the original
+build followed the call on 168 and the works record on 25, and the submitted-on
+timestamps do not separate them — in 171 of the 193 the published value
+contradicts timestamp order. A hold applies only while the rule still
+disagrees; the next answered record on that pump settles it and the hold falls
+away. Two fell away on the first run against current data.
+
+**Not recovered:** the split of "partially working" into a service request and
+a reduced-performance report. On the 55 pumps the published table calls reduced
+performance, the selected response's issue question is empty, so that split
+comes from somewhere the extract does not reach. It is carried forward for
+pumps that already had one and left unclassified for new entries.

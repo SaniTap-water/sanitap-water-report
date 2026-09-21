@@ -1,7 +1,7 @@
 {
  "evaluated": "2026-09-21",
  "kinds": {
-  "artefact": 8,
+  "artefact": 7,
   "data": 31,
   "decision": 39,
   "form": 9,
@@ -56,14 +56,6 @@
    "kind": "form",
    "satisfied": false,
    "says": "closes when the call form carries a service-visit-requested question",
-   "when_satisfied": "OK"
-  },
-  "act-call-tables-builder": {
-   "evaluated": "2026-09-21",
-   "evidence": "tools/rebuild_call_tables.py does not exist in the repository",
-   "kind": "artefact",
-   "satisfied": false,
-   "says": "closes when a builder for the call-centre-derived tables exists in the repository",
    "when_satisfied": "OK"
   },
   "act-chase-s4-16-car": {

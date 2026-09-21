@@ -1,0 +1,5246 @@
+{
+ "branches": {
+  "call and works on the same day -> the call wins": 190,
+  "held on the published value (unsettled)": 37,
+  "latest record is a call": 333,
+  "latest record is a maintenance": 119,
+  "latest record is a repair": 77,
+  "no answered record at all -> unknown": 17
+ },
+ "built": "2026-09-21",
+ "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
+ "split": {
+  "down": 20,
+  "ok": 515,
+  "partial": 180,
+  "unknown": 21
+ },
+ "status": {
+  "670401615": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "3039d8de0b17435aac51e88e21de3307",
+   "src": "call",
+   "status": "ok"
+  },
+  "670401639": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "1864429878db4fe18adeb1648762dea9",
+   "src": "call",
+   "status": "down"
+  },
+  "670401684": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "9333bbd8420f4fd6a9fd0b92dbfa9687",
+   "src": "call",
+   "status": "ok"
+  },
+  "670401691": {
+   "date": "2026-05-17",
+   "issue": null,
+   "rid": "a1e9bd6d672246c39bf241d6ae6caeaa",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "670401732": {
+   "date": null,
+   "held": true,
+   "hold_reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "ok"
+  },
+  "670401749": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "e0cc3d22322246878138d339b7d5764a",
+   "src": "call",
+   "status": "ok"
+  },
+  "670401763": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "b6e148df30c5485fa59687dd56f95333",
+   "src": "call",
+   "status": "ok"
+  },
+  "670401770": {
+   "date": "2026-09-18",
+   "issue": null,
+   "rid": "f7009970d0b54a17a1ceed76addea2c9",
+   "src": "call",
+   "status": "down"
+  },
+  "670401990": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "97efb74829964e6e8ac0b979bce05f92",
+   "src": "repair",
+   "status": "ok"
+  },
+  "670402056": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "ae6575404c5145dda2df90633f16fefc",
+   "src": "call",
+   "status": "ok"
+  },
+  "670402094": {
+   "date": "2026-01-28",
+   "issue": null,
+   "rid": "b98de5a90bf744938654bd18e7042693",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "670402214": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "25227df98f464192b45cd3e4c66ae9d5",
+   "src": "repair",
+   "status": "ok"
+  },
+  "670402221": {
+   "date": "2026-02-03",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "a6bba77d6c3d4cdb81c567e060149f35",
+   "src": "call",
+   "status": "unknown"
+  },
+  "698770982": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "1068e2282bc9459587d562dd1eb7ded2",
+   "src": "call",
+   "status": "ok"
+  },
+  "698770999": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "5d66fbef5e314ba0ac31ba4bef1c1cac",
+   "src": "call",
+   "status": "partial"
+  },
+  "698771000": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "a3eee39f8c7b4bcd8586cee0c9cd2047",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771031": {
+   "date": "2026-02-03",
+   "issue": null,
+   "rid": "13691510b8194971af0800f19a75bb3c",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771048": {
+   "date": "2025-12-14",
+   "issue": null,
+   "rid": "e0d6c6fbe2834fc8a6b47f1092241c6b",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698771062": {
+   "date": "2025-12-11",
+   "issue": null,
+   "rid": "057124ce1e0c4e90a3cd5d8631a2ca13",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698771103": {
+   "date": "2025-12-05",
+   "issue": null,
+   "rid": "523c2fa5939c4e4487e1a20e59671be3",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771110": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "990b6e5eeafa40b2b960af402caf0744",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771141": {
+   "date": "2026-05-25",
+   "issue": null,
+   "rid": "6e45e1b13c854af7bc186a8d96b4cf7d",
+   "src": "repair",
+   "status": "ok"
+  },
+  "698771172": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "3bacfe418f0040d08e9e3a9dc6ba7a4b",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771196": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "be6af101e132496fb0a04ffc3a92d940",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771206": {
+   "date": "2026-03-20",
+   "issue": null,
+   "rid": "edd0ec322ed74f76a81a4ca8a8623fd8",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698771213": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "b014ba07838b41d0a7da34d48d58b681",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771220": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "b57930d110f84b2dad3d40f8684eac27",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771237": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "bbcbb95963124e8eb6b2b16be7bf1eac",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771244": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "041460baf6d5467a8e0c38d200215327",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771251": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "258a6c15e1f94b27825a0c2285feb8de",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771268": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "27f0e814a8954432b6c162c26f96ccad",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771275": {
+   "date": "2026-02-17",
+   "issue": null,
+   "rid": "f7b38afe85ce45b693aad70f17adb947",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771859": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "3298c7c6d0ff4f869af434c5bde9cb98",
+   "src": "repair",
+   "status": "ok"
+  },
+  "698771873": {
+   "date": "2026-08-06",
+   "issue": null,
+   "rid": "270884f93eca420fb9e8aba97246ad75",
+   "src": "repair",
+   "status": "ok"
+  },
+  "698771880": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "ed40d043daf6454ea54504c33c1691f6",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771897": {
+   "date": "2026-02-17",
+   "issue": null,
+   "rid": "a61d70709d394216a030a687ce472959",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771907": {
+   "date": "2026-01-11",
+   "issue": null,
+   "rid": "97e30b4c2a2344dcbd482af72afc43f9",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698771914": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "b269b2b393ce4478bb7382febba1acd2",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771921": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "5c1e293239b04e34bc8d08944c8c3855",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771938": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "78ab342b7a2c48b79d127f30bf99337a",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771945": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "0c8a08dfad114fbda89e8e0113e64bd8",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771952": {
+   "date": "2026-02-17",
+   "issue": null,
+   "rid": "760fe412c3b8484f81308041a19cee07",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771969": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "5ccb488f0d9648f5a14b63aa7ecbdd03",
+   "src": "call",
+   "status": "ok"
+  },
+  "698771976": {
+   "date": "2026-05-19",
+   "issue": null,
+   "rid": "785353b6932d429db2f62731526933de",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698771983": {
+   "date": "2026-09-14",
+   "issue": null,
+   "rid": "98571a184fcc4656bf41acc88a8d8778",
+   "src": "call",
+   "status": "partial"
+  },
+  "698772001": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "4fcac2b35a044f96a467a4d3b8fb624b",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772018": {
+   "date": "2026-02-25",
+   "issue": null,
+   "rid": "02a22d02afc94f92b2916a7c7d860b7f",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772025": {
+   "date": "2026-01-26",
+   "issue": null,
+   "rid": "9fd1800d097f46f789cd8cbb5577b352",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772032": {
+   "date": "2026-01-27",
+   "issue": null,
+   "rid": "b7cef6eec10f43fb82c01f6ec56440ef",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772056": {
+   "date": "2026-01-31",
+   "issue": null,
+   "rid": "cfd5e2dfac494285b163c1c6c370eacf",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772063": {
+   "date": "2026-01-27",
+   "issue": null,
+   "rid": "f505eb8ab017459db70abbdab0d37ac7",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772087": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "dc39206c4962459bb27fec540466c858",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772094": {
+   "date": "2026-02-25",
+   "issue": null,
+   "rid": "aa865518f96344bca5eed89a67110532",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772104": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "482ead6c8060416da9b720ddb97332ed",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772111": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "ef8512e52a614ba0bb133d3a5173f17c",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772135": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "8c48d8feac934f3db50bc416512e48e0",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772142": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "eab70da488ea41f89de1ab8cd7fc82f8",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772166": {
+   "date": "2026-02-06",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "ce486c8e5bbe4213a1d79425ca4b10ff",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772173": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "049fa21fc92a44a5986ed281beebcc37",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772180": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "b69d75fa66674c6e9152e1dea570fabf",
+   "src": "call",
+   "status": "partial"
+  },
+  "698772197": {
+   "date": "2026-02-11",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "5d9af4d28a9f40d395aebe8a177ee775",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772214": {
+   "date": "2026-02-06",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "8918c189ef604e84a9d430cf814a032e",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772221": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "a171898000234f608fe20a5f3c504f9f",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772238": {
+   "date": "2026-02-25",
+   "issue": null,
+   "rid": "20fb0065f57a4af28687dc52c4fa2c58",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772245": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "0bf21569b2624e6b86b6e6a674cdc626",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "698772252": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "531ec6ac9b1c45648518cae6f3396dd4",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772283": {
+   "date": "2026-02-04",
+   "issue": null,
+   "rid": "218308cece57439794e00b0b06c901c4",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772317": {
+   "date": "2026-02-25",
+   "issue": null,
+   "rid": "18fdc5ecb60b44cea62bfd4a7715998f",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772331": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "1ddf1919f7624236b0d63eaefc6574ef",
+   "src": "call",
+   "status": "ok"
+  },
+  "698772348": {
+   "date": "2026-02-13",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "ca92cf50e00643fbab8b246779b79add",
+   "src": "call",
+   "status": "ok"
+  },
+  "698773617": {
+   "date": "2026-02-13",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "f0b457e6d25e42ccbf6bd5c051cc402e",
+   "src": "call",
+   "status": "ok"
+  },
+  "698773624": {
+   "date": "2026-02-17",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "81c6f022b87a46788f2c12fef331fb87",
+   "src": "call",
+   "status": "unknown"
+  },
+  "698773631": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "aaedd402cce14964aa9b16741e12780c",
+   "src": "repair",
+   "status": "ok"
+  },
+  "698773648": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "52746198bda449ed95bb8159cdecbbd2",
+   "src": "call",
+   "status": "ok"
+  },
+  "698774003": {
+   "date": "2026-03-03",
+   "issue": null,
+   "rid": "aeb17f59d6c24990a5fa5d55dad14748",
+   "src": "call",
+   "status": "partial"
+  },
+  "698795345": {
+   "date": "2026-09-11",
+   "issue": null,
+   "rid": "51e2d0b9dd284ee895d22c9894ab7d4b",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699595632": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "90cea7ecd8a746fd8bef3dbc01bbb08b",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595649": {
+   "date": "2026-05-19",
+   "issue": null,
+   "rid": "c567096040314e3a94d1e68ce1fc145e",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699595711": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "39ef93614e0d46049959628211203e36",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595728": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "564a56a086e944f1b8b45b3966918024",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595759": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "48b0181ba80b455e91c89525f03d996f",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595845": {
+   "date": "2026-07-01",
+   "issue": null,
+   "rid": "82c7e954171d4f90a5df5d19ca10a8d2",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699595869": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "0ef7061d144f4786855d0e4f470eac0d",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595876": {
+   "date": "2026-04-21",
+   "issue": null,
+   "rid": "07efc3f782c2482d9a14133a78c4fe0e",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699595883": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "0934f70957bc47a3981afd2b11cf0d7f",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595900": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "e3844892ef6e453abfc3cd2ba9eaf560",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595917": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "bf3424d5e7e04a9d8f5946cc59a8aa1a",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595931": {
+   "date": "2025-12-03",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "6f4cd7bd809c42ae9d45212f06bc6345",
+   "src": "call",
+   "status": "unknown"
+  },
+  "699595948": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "bce598cabb82417a9129672a5754836e",
+   "src": "call",
+   "status": "partial"
+  },
+  "699595955": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "b4b7f8558a7f420d8ebe7ad5367d16c9",
+   "src": "call",
+   "status": "ok"
+  },
+  "699595962": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "3974ce55a1ab4013b878dbfdf95d4162",
+   "src": "call",
+   "status": "ok"
+  },
+  "699595979": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "4ab005902b33463194897fa0130cac10",
+   "src": "call",
+   "status": "ok"
+  },
+  "699595986": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "e8f72f7b7e814c61ab53559e3561bf29",
+   "src": "call",
+   "status": "ok"
+  },
+  "699595993": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "e225eb2462744846bdff89f4240e76bf",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596004": {
+   "date": "2025-12-12",
+   "issue": null,
+   "rid": "fc2f948f4b1d41059285f03aa6ccaa9d",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596011": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "63bc4de33b8b4ffd9921e5e8aed16a3b",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596028": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "ef67fbc921a34238a8afcca5f21636fe",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596035": {
+   "date": "2025-12-17",
+   "issue": null,
+   "rid": "5c47ec4caa7e4aa4bd988e03338e5742",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596059": {
+   "date": "2025-12-17",
+   "issue": null,
+   "rid": "68c646a5fa8d451ca9f1122dba2b339a",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596066": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "72732f1c074e4ac3a2cea80cea99ca13",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596073": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "0d80e0e9e3f248b2a307950d62a72542",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596107": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "25abfa597c274fd19b0dcb5edd47d99d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596114": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "1b969ef32f3844f4b90e8c91055ea0c6",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596121": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "5304e02064a64d3ebb4bf53d7ca020e4",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596664": {
+   "date": "2025-12-23",
+   "issue": null,
+   "rid": "a7b2b4995ce44fe4983e35b4195cf6a4",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596671": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "d816cbf74b1e422d89c926c521c7c1c0",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699596688": {
+   "date": "2026-02-26",
+   "issue": null,
+   "rid": "71def61791a24cb18923917d739c92bf",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596695": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "6e7a318818c84a86ba694e54f569ff59",
+   "src": "call",
+   "status": "partial"
+  },
+  "699596705": {
+   "date": "2025-12-23",
+   "issue": null,
+   "rid": "a86f4448ead64a76ad9d8e2cf06282ed",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596712": {
+   "date": "2026-01-11",
+   "issue": null,
+   "rid": "fff90a7cacdf42568ef3ef547fc429b4",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596729": {
+   "date": "2026-01-11",
+   "issue": null,
+   "rid": "2fe980f162f24788b9678a54817c4236",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596736": {
+   "date": "2026-01-11",
+   "issue": null,
+   "rid": "5b8e34778e2e44df99fb62c7ab3b3556",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596743": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "d20c3218bdbc44d29fe76aede724c25d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596750": {
+   "date": "2026-08-20",
+   "issue": null,
+   "rid": "6e165e765ecb43408600614af8b89511",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699596767": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "d7ba52f8ed764241ab108e74d32b217f",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596774": {
+   "date": "2026-01-15",
+   "issue": null,
+   "rid": "589a10d7b037427e8277fc0c9b0cf187",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596781": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "165d4cbfc8284d49945eaadc8214f71b",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596808": {
+   "date": "2026-01-12",
+   "issue": null,
+   "rid": "e38bc1ab50f14b3386801b3003bcf2ce",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596815": {
+   "date": "2026-01-15",
+   "issue": null,
+   "rid": "c17bea5d3af04315afd3619b9efb0b21",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596853": {
+   "date": "2026-01-15",
+   "issue": null,
+   "rid": "9dd5a5c62d674309a59a1dc96fca32c7",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596860": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "66a802f667264e2eb723d066e7a54b25",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596877": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "b8c89dc11acb4f2babdc4f7e2572024d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596891": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "9f40556d9fc347d6a7068a871cff104d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596901": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "70f75e42f92e4402bb4f395742079ff7",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596918": {
+   "date": "2026-01-27",
+   "issue": null,
+   "rid": "14b8440b7c5e4c8c98b8920fa9ff9498",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596925": {
+   "date": "2026-05-19",
+   "issue": null,
+   "rid": "62329b0b44fd4668ac2b54c2897b9154",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596932": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "ab74d0300f3240ee82b59af1a6cb4a0c",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596956": {
+   "date": "2026-01-31",
+   "issue": null,
+   "rid": "f8c3d5cb06144b43a39aaa6f7ff57c2c",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596963": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "4d927be86a2344f78c85dc3f12c991c3",
+   "src": "call",
+   "status": "ok"
+  },
+  "699596970": {
+   "date": "2026-02-01",
+   "issue": null,
+   "rid": "9e8521ee4bbd46c081e765fda9d7763b",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699596994": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "1c1a6a5b17dc4f30b1b732b9207837ea",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597005": {
+   "date": "2026-02-05",
+   "issue": null,
+   "rid": "e7571505624d40f789105794a0f5e1a8",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597012": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "6b34033397e14d00ad429172657ba02c",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597029": {
+   "date": "2026-02-10",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "92f9f262594d426cb97b23402f43aa91",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597036": {
+   "date": "2026-02-11",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "163fc87af317408896daa19d9c0a5e48",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597043": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "04c57a1b1d7141f5aefec27c956d145f",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597050": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "06b49b01491f485cb9c30d97775b730b",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597067": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "fc1035388b194717850b39d8f8f477c5",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597081": {
+   "date": "2026-07-14",
+   "issue": null,
+   "rid": "85d176ea038142368fd6670944cd9e36",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699597098": {
+   "date": "2026-02-01",
+   "issue": null,
+   "rid": "3f71e5a97e984f2d8ae54d7fcde95ef2",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597108": {
+   "date": "2026-09-04",
+   "issue": null,
+   "rid": "07d0644d73bd4b92862b665b2f691fad",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597115": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "6ed6d22df6004c1ca1dff4aaf6300dd7",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597122": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "89bb7fb51eeb4fbc9213b9bdf004ff9c",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597328": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "b9abae0b25524fd18e5a0ed09ac7a923",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597335": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "1b090633a1fe419a9aed36fbc4511c1e",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597342": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "43f2284e2c0f4c7197ee072475c06bc5",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597359": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "56d52e32d07b42a99ef360537a240fa8",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597366": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "008721aae22d43e78574a82c8a86f74b",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597373": {
+   "date": "2026-06-28",
+   "issue": null,
+   "rid": "076c51b2c15641beb2920e1961d375e4",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699597397": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "ea7ae963e8bb4cb5a7887a6fc5fc43be",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597407": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "cc854034b0aa436eaaf570eb1ae22e59",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597414": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "fd71896a146b44eaaae75fe862d78d4e",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597421": {
+   "date": "2026-07-14",
+   "issue": null,
+   "rid": "127ce412dbda4332aa47a2bc7d3133fe",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597438": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "7ea5d6a190474dbf804c056a0cbcf1bd",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597452": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "cf4484ef71b44f658e52bc3855ca9040",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597469": {
+   "date": "2026-03-07",
+   "issue": null,
+   "rid": "c231e393b4854be19e1367e7e566aa63",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699597476": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "55654f730a254986bf20709500289ece",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597483": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "e006ad1dd7fc4d30a60b9cafbb5c9880",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597490": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "4db1bcae1dd846fe93ade06dd3ad34b8",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597500": {
+   "date": "2026-08-07",
+   "issue": null,
+   "rid": "4299bbfc93af41469255642dbf8dccf8",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597517": {
+   "date": "2026-02-10",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "5849e38c79b54143a3551efce6975e76",
+   "src": "call",
+   "status": "unknown"
+  },
+  "699597531": {
+   "date": "2026-08-10",
+   "issue": null,
+   "rid": "966922434ce14ee2aca669e01b4a77c4",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597548": {
+   "date": "2026-09-04",
+   "issue": null,
+   "rid": "8816a2aca3514e15baec50d1d9c6eb04",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699597555": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "5c2976b0381f40a5b3296f61ac85511d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597562": {
+   "date": "2026-06-12",
+   "issue": null,
+   "rid": "a039e21f915042bdb7485cc1af959d8f",
+   "src": "repair",
+   "status": "ok"
+  },
+  "699597579": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "3308af296ecc40e9b5e54ff34481a925",
+   "src": "call",
+   "status": "partial"
+  },
+  "699597593": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "695bd5c51edc47d787c2a0075e5eded1",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "699597603": {
+   "date": "2026-07-31",
+   "issue": null,
+   "rid": "e3028f7ae69f4e3793b024a0f77521de",
+   "src": "call",
+   "status": "partial"
+  },
+  "699597610": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "f2f4ffe3586441c89046bc3fd6276b33",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597641": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "fcbb5fce55a04de7b66fbbe50494b33a",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597658": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "62b58f2a791247b1bdffa6c522cff7ed",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597665": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "05e9007afc2e4076ae8be8c3df86ca08",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597696": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "c514287b40774721b3a9045e197322fa",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597720": {
+   "date": null,
+   "held": true,
+   "hold_reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "ok"
+  },
+  "699597737": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "ef327f4b9e654ea087e5729b2c333e4e",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597768": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "002ccde53c3245178fca369a8c256cca",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597775": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "f08d8e3868714bedb902abc5e4a21714",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597799": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "5305877e064e4968a08097425a7d09ed",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597809": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "7995e56721d74810873cc0e7d0e844ec",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597823": {
+   "date": "2025-11-28",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "84f5460ea7a3419eb932896e87343a79",
+   "src": "call",
+   "status": "unknown"
+  },
+  "699597854": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "1cfdb85064774ff88064d547db1a0cf6",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597861": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "f2e4aea284fb4cf5ae6eaa65fef1364a",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597885": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "69c3698b13e643518aef17d93f134613",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597892": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "7035768f7c22411e92fdd6ad1d8b553d",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597919": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "75d232ee17514df2b90b88a57f8975a2",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597933": {
+   "date": "2025-11-28",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "41408cb1e9304acdadacae4cc057f470",
+   "src": "call",
+   "status": "unknown"
+  },
+  "699597940": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "adbd458220f849fc8a5a95e8b1b8f119",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597957": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "1d57b81438c44ae09fc9a76ad590b6d2",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597964": {
+   "date": "2026-02-10",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "4cacb69e5f3b47c99af9f0075b0d7bb3",
+   "src": "call",
+   "status": "unknown"
+  },
+  "699597971": {
+   "date": "2026-05-22",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "issue": null,
+   "rid": "662da99ecdf14e0196d090461855b965",
+   "src": "maintenance",
+   "status": "down"
+  },
+  "699597988": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "e0769d341ceb479ab14fc13006da2b78",
+   "src": "call",
+   "status": "ok"
+  },
+  "699597995": {
+   "date": "2026-05-22",
+   "issue": null,
+   "rid": "1a080c288d4d423493a7fcbabab5e4c7",
+   "src": "call",
+   "status": "partial"
+  },
+  "699598013": {
+   "date": "2026-03-03",
+   "issue": null,
+   "rid": "99603d58b44042609ee4f5ae47396236",
+   "src": "call",
+   "status": "ok"
+  },
+  "699598044": {
+   "date": "2026-05-21",
+   "issue": null,
+   "rid": "5a71787dd5a546739512ddda09d1b56d",
+   "src": "repair",
+   "status": "ok"
+  },
+  "718551997": {
+   "date": "2026-03-03",
+   "issue": null,
+   "rid": "ba50aa2d9e4048fa95df03d16dc1ba12",
+   "src": "call",
+   "status": "ok"
+  },
+  "718552008": {
+   "date": "2026-03-03",
+   "issue": null,
+   "rid": "ef54095e7db943909e5415aa371f261e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893805": {
+   "date": "2026-04-30",
+   "issue": null,
+   "rid": "fd332664294c4c09bddcbf97aa0fe8ca",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893829": {
+   "date": "2026-03-03",
+   "issue": null,
+   "rid": "aa6912b3887d4fcf95980b16b5d9b33c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893836": {
+   "date": "2026-05-21",
+   "issue": null,
+   "rid": "44c4b11babca4c3d9b638b53a92d3a9d",
+   "src": "call",
+   "status": "partial"
+  },
+  "742893843": {
+   "date": "2026-05-16",
+   "issue": null,
+   "rid": "22cc5ca30c434edfbdd7875f8eb776f7",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893850": {
+   "date": "2026-07-22",
+   "issue": null,
+   "rid": "013aee47571b431f9bd6553d1877c5cc",
+   "src": "call",
+   "status": "partial"
+  },
+  "742893867": {
+   "date": "2026-09-07",
+   "issue": null,
+   "rid": "cd305fbfa3804de0813a55aca5f7f266",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893874": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "117d47cc469f48dcae75a9b698c6035b",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893881": {
+   "date": "2026-02-11",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says partial",
+   "issue": null,
+   "rid": "0c0e0fae332c40d0b379784f2c498bef",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893898": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "01194938dfef4b42b8e856e6725c1f57",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893915": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "037625545b31477eaf41aa8d361829fb",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893922": {
+   "date": "2026-05-21",
+   "issue": null,
+   "rid": "c5ca15cb28574ea6aa328a35c0a4bd5e",
+   "src": "call",
+   "status": "partial"
+  },
+  "742893939": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "742893946": {
+   "date": "2026-08-31",
+   "issue": null,
+   "rid": "125d7f89fdc044c398a4534117c9ee16",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893953": {
+   "date": "2026-09-07",
+   "issue": null,
+   "rid": "3d16d40d016c407599688805686f6e47",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893960": {
+   "date": "2026-08-31",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "64ca2e723db9419087349f52af8505de",
+   "src": "call",
+   "status": "ok"
+  },
+  "742893977": {
+   "date": "2026-08-31",
+   "issue": null,
+   "rid": "25f446cad08843058f8ba56390a2fd3c",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742893991": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "a8879cbfa5824d0bb531599433ecfc4a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894026": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "6193bd9470b6465397903feb1b6ba803",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894033": {
+   "date": "2026-09-08",
+   "issue": null,
+   "rid": "5dfb7a192f164c97ba95208ff874a90c",
+   "src": "call",
+   "status": "down"
+  },
+  "742894040": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "52848663a1ac4edb8904bc46d45fefd9",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894064": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "3836da372bd44e0e8990617c1964b7f1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894071": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "f99f9b35de00404084cb76f0d3182f9a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894088": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "21ac99ce261343d3b7ac1d38ccda472d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894095": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "5d4d17cf37c6466299eeb0ab80455ada",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894105": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "469b0c1271c04110b4fa7a9493de2387",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894150": {
+   "date": "2026-05-16",
+   "issue": null,
+   "rid": "8b83721de0144384986e2727f646c75f",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894181": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "99f5e48c809e4b0d8ced2910278a7e52",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894198": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "ea6a27fda8664747a425c6a2392f4e92",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894208": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "e7c81cbc22c44bfebf8fd651991ef222",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894222": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "fff06f8675114f358e996d4eaaa9c939",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894239": {
+   "date": "2026-04-28",
+   "issue": null,
+   "rid": "ed2f464e9e29413f970aee779035e7c8",
+   "src": "call",
+   "status": "down"
+  },
+  "742894246": {
+   "date": "2026-03-20",
+   "issue": null,
+   "rid": "7754432b7b7d41b1b9912ab103cee6e8",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894253": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "194abddd0d624b31855d2f8d2dae626e",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894260": {
+   "date": "2026-05-18",
+   "issue": null,
+   "rid": "eea4273d9e694674b3a2f32c3972bc6c",
+   "src": "call",
+   "status": "down"
+  },
+  "742894284": {
+   "date": "2026-09-07",
+   "issue": null,
+   "rid": "ad6fb74349da444b9d8150734dab6a9a",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894291": {
+   "date": "2026-05-12",
+   "issue": null,
+   "rid": "f51c9642ada54b92b5351c350c2457a6",
+   "src": "call",
+   "status": "down"
+  },
+  "742894301": {
+   "date": "2026-03-04",
+   "issue": null,
+   "rid": "62f227a7ce0b4704aa815124f3bec763",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894318": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "00b2fc13a8fe49a6a7f162c1ef426c0c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894356": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "16deaf1f4f2c4425a7c8c52cabdcde01",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894363": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "f9739f9299774ca1a9bb47a5d8897c07",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894370": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "a2368e23e41f476382a2faed99471d22",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894387": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "68e4663ecf1e4ee58c6d809ee207f5f3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894411": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "14cdf0aac0334c44801adc8e230db2ea",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894428": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "402bffc74bab45d998090e01df7dcf27",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894435": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "09b7f7f6703e45f799e849ce2a29a854",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894442": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "00422256350c43448782dc4ae7ec9933",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894459": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "2f10807ed8634d1f8cc3fbd18d3afa6f",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894466": {
+   "date": "2026-09-07",
+   "issue": null,
+   "rid": "5cbb5c810986433981bae66c9acde966",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894473": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "5b89af38669e4f78a3ace12d620490f9",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894480": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "d456527b6e944fac897b0b77423bf957",
+   "src": "call",
+   "status": "down"
+  },
+  "742894497": {
+   "date": "2026-09-07",
+   "issue": null,
+   "rid": "0e22a07e37734a1dbc16dce2d9490d2c",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894514": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "9a73bdf50269493698b31524556f16a2",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894521": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "f06452b8652f433cb7f7b614a3877f23",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894538": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "fee7db6046814ec8aae8bf5114304103",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894552": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "04408264154f4f8dbed7328a3dcb1fce",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894569": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "67d9d7d1551a41ae9118f151baf09950",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894583": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "e9193f28b1124a0a86f15c05ad5c69fc",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894590": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "bcf95f76c2964a39aab45b28b6782a77",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894600": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "8c1d72a96b9d42f591e60fecc18e4da8",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894648": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "abde5633ec9c4f998f19770c0cafa1d8",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894655": {
+   "date": "2026-09-14",
+   "issue": null,
+   "rid": "b5c5e1789db140c19418974de0eec174",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894662": {
+   "date": "2026-05-22",
+   "issue": null,
+   "rid": "a7e1830261704103af8490f60a25d36e",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894686": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "87d00d0bbc57456f8892b9e31d2e368b",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894693": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "9ae2ef074fb04c729b853c07a9b9d9da",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894703": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "64c5897f44f44f3d8fcb60ab8aac849c",
+   "src": "call",
+   "status": "down"
+  },
+  "742894734": {
+   "date": "2026-03-05",
+   "issue": null,
+   "rid": "2deb37d7554a4e88aeb991fca0b3efb3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894758": {
+   "date": "2026-06-01",
+   "issue": null,
+   "rid": "588594d8403847dfaf7f263140d576cd",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894772": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "acdc9a120cd742ef8579761eac6c4c0d",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894789": {
+   "date": "2026-05-22",
+   "issue": null,
+   "rid": "57fde09d661546f2969ea7823213db72",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894796": {
+   "date": "2026-07-03",
+   "issue": null,
+   "rid": "9fdc9691099e485b9d47b26c0a364cac",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894806": {
+   "date": "2026-03-06",
+   "issue": null,
+   "rid": "29e7fe4868ee4be6902703cb6ff2cdf0",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894813": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "0b44e55ac32c499ea60eaf660121310b",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894820": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "7d0c22278b0e4a51a9646f8197361c02",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894837": {
+   "date": "2026-03-31",
+   "issue": null,
+   "rid": "755ccdcf1fda4ad881e31998003fcc83",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894844": {
+   "date": "2026-05-15",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "1ee5132e25c94bfca4c542f68a6df984",
+   "src": "call",
+   "status": "ok"
+  },
+  "742894851": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "47302fdb48904fc584714906d99f62ee",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894868": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "371be9b778ef44a4989e73858a4d1539",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894875": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "6e5eceda04cd4da2a4414e780b13d211",
+   "src": "call",
+   "status": "partial"
+  },
+  "742894909": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "4d2e699c895841f6b43e065497e063ba",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894916": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "861c4e7d0e4045c390f023446d8bdbbc",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894923": {
+   "date": "2026-05-16",
+   "issue": null,
+   "rid": "67e45e0966c246d28b0747003e0bba99",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742894930": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "207fe87adf1646ba95d8ffe08c8c62a1",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894978": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "292d3403c0b64446b2e3992a0126c2a0",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742894985": {
+   "date": "2026-06-01",
+   "issue": null,
+   "rid": "69e40501659b46639586d703963345f6",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895034": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "d8513aa344d14998bb63a7903340fcb9",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895113": {
+   "date": null,
+   "held": true,
+   "hold_reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "ok"
+  },
+  "742895120": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "d796f2419eb54870bd37856a7eea1224",
+   "src": "call",
+   "status": "down"
+  },
+  "742895137": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "fef084fc31c74e69957a02ad12500de5",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895144": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "742895151": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "58c2a0626d894282b913c93dfc12993c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895168": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "7319a5df3d5d401a8083a3ef8a9e8b88",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895182": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "15c5e388a3ec490f8d2bcf5ae9f58707",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895199": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "06181f2599f043d69b3440097bd870ea",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895209": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "3d105d2da7dd42e3ae3d94cb708d0d41",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895216": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "91996894a31d4f47937df66bea679650",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895230": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "1735007378bd4046ac0fab2aff1af957",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895247": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "89963ab73bdd4bf597703ed282bd4e90",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895254": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "db9444b890d4486b9c56c151040cd25e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895278": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "cd6885a4db9e44fe9b882b2a62c97797",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895285": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "ebb624c7af324fb093ec55877279958c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895292": {
+   "date": "2026-05-14",
+   "issue": null,
+   "rid": "da56094f1fa842a3906571d6b97b5e82",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895302": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "15586922e9b545209b9a6869bbdb1256",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895326": {
+   "date": "2025-11-14",
+   "issue": null,
+   "rid": "aaaf07098d724dbf858c91040f2a6dd7",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895333": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "bd7d8aa7565e43baa7afd2a41f13d779",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895340": {
+   "date": "2026-06-12",
+   "issue": null,
+   "rid": "eeec3bf5d7a248bc98e5cfb78f85a64e",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895371": {
+   "date": "2025-11-15",
+   "issue": null,
+   "rid": "402aaf32290b43109a6102b0e1020e78",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895395": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "bd3ed522483940f99d38c0d479aa3646",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895405": {
+   "date": "2026-04-21",
+   "issue": null,
+   "rid": "a2cd10d84ab849078e0e02afdd707569",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895412": {
+   "date": "2026-08-18",
+   "issue": null,
+   "rid": "fe0eb0c154504ac49fe4e803597c52cb",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895429": {
+   "date": "2025-12-18",
+   "issue": null,
+   "rid": "8467b84ac1854db994a0f4f449e22a39",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895436": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "f0a67de5a2654c238bbbeae4c3ccc070",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895443": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "14dc2b1124994dcbafd5fc3cc2d55da1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895450": {
+   "date": "2025-11-17",
+   "issue": null,
+   "rid": "cd3d733e0a3a42c5a6f64fdfd1681027",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895467": {
+   "date": "2026-02-16",
+   "issue": null,
+   "rid": "641d86ffbe7f49b1b917f848f3e29928",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895474": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "580d64e1418e414cb1940181e5ae081a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895481": {
+   "date": "2026-02-16",
+   "issue": null,
+   "rid": "57e10a88a5924ba19f8a423453a298e2",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895498": {
+   "date": "2026-08-20",
+   "issue": null,
+   "rid": "db78e97ff6b4495d9bcb87ff7d03c4c6",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895508": {
+   "date": "2026-08-20",
+   "issue": null,
+   "rid": "38020064e8d74e48b906cd4bb207075c",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895515": {
+   "date": "2025-12-03",
+   "issue": null,
+   "rid": "1d6b0e90bf7e4489a56674ee8fd52fa8",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895522": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "f1230973838e4eecab7fad05551a3fa2",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895539": {
+   "date": "2025-11-13",
+   "issue": null,
+   "rid": "ffd8777157c0492db8623809b8b01007",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895546": {
+   "date": "2025-12-03",
+   "issue": null,
+   "rid": "eabab6d9390b4cdabf735307407eb7c6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895553": {
+   "date": "2025-11-13",
+   "issue": null,
+   "rid": "97d49148505f4ddd823d19ff89413042",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895560": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "2aceecd6717b452285b29442863f0e23",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895577": {
+   "date": "2026-05-20",
+   "issue": null,
+   "rid": "6d4816f16b72413c957e6cbf6a2ec093",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895584": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "11193cde953f4e9684793d4ee2c9d384",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895591": {
+   "date": "2026-05-20",
+   "issue": null,
+   "rid": "988c4bde19444a0a875978b30ee56249",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895601": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "e477ea7cbb1049c398b98c490e99b667",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895618": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "a439c6d117c1463eac64f3c5832019ad",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895625": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "a1fc2695b20e4c4aafcf0e954ea3bbd0",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895632": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "06c2e05ae1cb48368ebaa58ab6b7b6bd",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895649": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "16c8208d0d264927bcbef98dec6055fd",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895656": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "b8215670a923469bbdf63541e8c35ac1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895663": {
+   "date": "2026-02-10",
+   "issue": null,
+   "rid": "4e736ac0680a4e398e98f57a6e65999c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895670": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "d28f874f7c0f4aafad0d5300c6e12240",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895687": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "03099c91b08649deb56d9066d7d41a56",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895704": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "bd0367adcf5e4e49b6b1f3cd72f2c31d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895711": {
+   "date": null,
+   "held": true,
+   "hold_reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "ok"
+  },
+  "742895728": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "4f97d6e4939248f59499c50da60d7206",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895735": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "c6aec3f9d2344f2d9469728eb95989de",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895742": {
+   "date": "2026-09-08",
+   "issue": null,
+   "rid": "26c26064633b4033bb302ec2de6cfce2",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895759": {
+   "date": "2026-05-13",
+   "issue": null,
+   "rid": "fa7fa161afe74cd8abc9a032c6bd6bbf",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895766": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "dbd437f388b742919ea97bec32f4d307",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895780": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "a9ce85b334c34f7eba4724182910e68d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895797": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "fca4a715dca14e9ebaffd8d9b2408e00",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895814": {
+   "date": "2026-05-13",
+   "issue": null,
+   "rid": "d547ca8adc91418c98fcd2db20c7fcf7",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895821": {
+   "date": "2026-05-15",
+   "issue": null,
+   "rid": "f1a6c629e0a44965b44e8a42c1c215f5",
+   "src": "call",
+   "status": "partial"
+  },
+  "742895838": {
+   "date": "2026-07-07",
+   "issue": null,
+   "rid": "d883d3ac0ded4855b0c6d2cf0f13036d",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895845": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "48336c29003e43fab648b4341ffc9743",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895852": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "fc796df02820471a8d2398d41373dad8",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895869": {
+   "date": "2026-09-21",
+   "issue": null,
+   "rid": "117a30c7d1f744efb6574b608cd21d7f",
+   "src": "call",
+   "status": "down"
+  },
+  "742895876": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "3176d93c79df4be682eb96044704705b",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895883": {
+   "date": "2026-02-09",
+   "issue": null,
+   "rid": "f14d770c84874252af311051dd24cdf1",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895890": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "e1e8c35393274e50b932ab569ea220e5",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895900": {
+   "date": "2026-09-11",
+   "issue": null,
+   "rid": "a1aaed17ac9e4cfe9c36c37f6b6bd6d7",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895917": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "c8c9ba2b51c84474bc5b0db4069ce447",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895924": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "1814cbd715a14dda874f79c8cc67baa7",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895931": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "6a745068748f4f048a164d5fbc6ccb3b",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895948": {
+   "date": "2026-09-11",
+   "issue": null,
+   "rid": "9cd3347cb46d4ad4972d47b91f329a63",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895955": {
+   "date": "2025-11-26",
+   "issue": null,
+   "rid": "526beb4766a44ca694ce376a33b61f20",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742895962": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "c5af4dfff4334f839e1b3bca3452398a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895979": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "b52264e70b6e496d9f89828c6a8fbd1a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742895986": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "811c637bb6454718b8768c398e07b40d",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742895993": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "fa82ce01f752461b940d622411c3819e",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742896004": {
+   "date": "2026-05-21",
+   "issue": null,
+   "rid": "492ff16376f24a0c8b5a36cee7a0c135",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896011": {
+   "date": "2026-09-14",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "1f93ffacb1b24e74953a61a1c17b0944",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896028": {
+   "date": "2026-09-14",
+   "issue": null,
+   "rid": "e013d8bbbe914517b223fa39f8539304",
+   "src": "call",
+   "status": "partial"
+  },
+  "742896035": {
+   "date": "2025-11-28",
+   "issue": null,
+   "rid": "c9b428bc39ae4dcf84215282abb7b857",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896042": {
+   "date": "2026-02-16",
+   "issue": null,
+   "rid": "83266e40be7e4fafbd1e76bab51d900d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896059": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "088ede399ce240abbe0331f1b1703f09",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896066": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "450af73cb292488ebdff07f67248554a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896073": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "4cf79e140e1f4c52aaa257bbcb1f7653",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896080": {
+   "date": "2026-01-28",
+   "issue": null,
+   "rid": "c5a66b69387644348263727285ba30c6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896097": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "40cc52390aea4039ab3012f5fa817320",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896107": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "bcfe97f72d5e496488b3f315b2535f79",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896114": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "d076c9d343c64f0a997085a03361993b",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896121": {
+   "date": "2025-11-20",
+   "issue": null,
+   "rid": "d25a5029bc9a4310b3c2851dae56f0f5",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896138": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "29ab0d5b414c4c2aa9172b8e0262e9e8",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896145": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "e7202e35e151437bac0dd39130618024",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896152": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "7538d57a36694ad7bee02ce938f70bc6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896169": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "526e2cca01184d62a7705b64c5a9492c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896176": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "3e4ae731b68f4ad68993e3a028dac2e6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896183": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "d6ae9eba8c8e404daf0285685ec62b0d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896190": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "8dde48ce896d4afe8a97433bfde01059",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896200": {
+   "date": "2026-02-06",
+   "issue": null,
+   "rid": "54dae45714e944658431fd5c3d5301a6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896217": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "9509069a10b946d3be123eddbe67cdbe",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896224": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "abde38aec27443d4a7a604f228cf8cba",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896231": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "9db99a43cb064b28ae45c6d1e0e45062",
+   "src": "call",
+   "status": "partial"
+  },
+  "742896255": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "ef4aa5ac07fd4c7db46f80e4811a7290",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896262": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "c9bf3f99291d461b8fa57043910a140c",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896279": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "97d3b26f679d4a15962f71da9b1ba06e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896286": {
+   "date": "2026-03-09",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "6efecf5760424883a86fd1a7de3c1182",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896293": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "acba7bc92b234a878c01947745c7dba3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896303": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "ce2ec3b778e04c98a6027b2813e5eb7a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896310": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "9a56a18cea524fb69de9ae5bf740e196",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896327": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "e36a5a1fa2df49529f82106386112b04",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896334": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "b0aff884aa034e9c84b7c50547b057e7",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896341": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "670b6f0d0bf5481b8e1b547418fcea67",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896365": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "585650ec47d248b68adfd662c8ec1354",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896372": {
+   "date": "2025-10-08",
+   "issue": null,
+   "rid": "14ce6e3789d14b0ab694bc27573c96f6",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896389": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "3fc9566d809c4a6fa34a60385c9c3da0",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896396": {
+   "date": "2026-02-18",
+   "issue": null,
+   "rid": "c1afbc01f801449d8146d07f66064bc8",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896406": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "1749168db5fe4fe4acc07f00e991b2d7",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896413": {
+   "date": "2026-05-19",
+   "issue": null,
+   "rid": "9d2693466ff942399056626ae46b76d9",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742896420": {
+   "date": "2026-02-13",
+   "issue": null,
+   "rid": "f0c3b3d4de9e4211af77f6b664b7a82a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896437": {
+   "date": "2026-05-08",
+   "issue": null,
+   "rid": "25ef96273c0148ac9fcc492dc39319a8",
+   "src": "call",
+   "status": "partial"
+  },
+  "742896444": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "ba9812ceef7a42a0baf54a17098f1d3f",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896451": {
+   "date": "2026-02-13",
+   "issue": null,
+   "rid": "caaf96f2f61545dbb5799ee404c0fea5",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896468": {
+   "date": "2025-11-25",
+   "issue": null,
+   "rid": "bf6f7b485e4a475b92bbba75f80bff97",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896475": {
+   "date": "2025-10-11",
+   "issue": null,
+   "rid": "82dcab8340fd4717b4c2edecb25b62cb",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896482": {
+   "date": "2025-10-10",
+   "issue": null,
+   "rid": "20936787e2614b7b8bc30c7d64425a67",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896499": {
+   "date": "2026-02-13",
+   "issue": null,
+   "rid": "2f8957807e9b4414b678e27600f422c3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896509": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "112a0da7a0644e1ba1029990699f2ee5",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896516": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "d037dd0c2e7c40d4ae69d5cf3b9016ff",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896523": {
+   "date": "2026-02-13",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "91a09c021f1047d4805118ca2d33d232",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896530": {
+   "date": "2026-02-13",
+   "issue": null,
+   "rid": "8a629ef4565a4d73ae252a66234f2bce",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896547": {
+   "date": "2026-07-21",
+   "issue": null,
+   "rid": "0fc514fed30d4eb9a1f4175b0fad7781",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742896554": {
+   "date": "2025-10-23",
+   "issue": null,
+   "rid": "44b78f4fd9e045c894fc0fef2b92af7a",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896561": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "405b83cfdd7b452aaa7baf28cac990d9",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896578": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "e981cc4bcb944ac1a33cc73af86842eb",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896585": {
+   "date": "2026-03-31",
+   "issue": null,
+   "rid": "7fdec61863684c908fefc4adca85d8f7",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896592": {
+   "date": "2026-08-18",
+   "issue": null,
+   "rid": "102ef0a286da48a99b037d7246525112",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896602": {
+   "date": "2026-02-24",
+   "issue": null,
+   "rid": "2a9328364db0481bb837fe9af8b2afce",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896619": {
+   "date": "2026-05-19",
+   "issue": null,
+   "rid": "44d534b5dfe84089b75cde084b01149f",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896626": {
+   "date": "2026-02-13",
+   "issue": null,
+   "rid": "6587a6bac4f246048f5c0077ca59d9f3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896633": {
+   "date": "2026-08-18",
+   "issue": null,
+   "rid": "72df7dd291a845f8afdc290cda3d2f0a",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896640": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "04f8898d9f1d422996b1f7570db13bf7",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896657": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "db9c48eb32964f84870cb24b80c61105",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896664": {
+   "date": "2025-10-14",
+   "issue": null,
+   "rid": "c32d950c0830458c9b73904cc7985117",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896671": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "950b3dae3e1148759e25347c239db6ba",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896688": {
+   "date": "2026-02-27",
+   "issue": null,
+   "rid": "b4a732a7502442f8ba291958f4f84257",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896695": {
+   "date": "2026-02-27",
+   "issue": null,
+   "rid": "af826a8045aa45f781ae5f868361cece",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896705": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "4f29243fb5bf48e391114556f4183c85",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896712": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "777d3717089247288682f3f22fb1a6c1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896729": {
+   "date": "2025-11-25",
+   "issue": null,
+   "rid": "22dd9db6b1e84d5c9a112480d8e67e67",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896736": {
+   "date": "2026-03-31",
+   "issue": null,
+   "rid": "4a81613884ff4280ab1115fa1ef57eeb",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896743": {
+   "date": "2026-09-15",
+   "issue": null,
+   "rid": "37b6ea41fe2c495ba36f746ff6b947e2",
+   "src": "call",
+   "status": "partial"
+  },
+  "742896750": {
+   "date": "2026-02-27",
+   "issue": null,
+   "rid": "b9841d575fc8417b934a6cca19e56ea0",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896767": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "a87aff3fc21440139600add9a85ca1f6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896774": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "5a7b7eec680e442d905b62100e771596",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896781": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "b6bc74fa0261475ab02d482c73842001",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896798": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "9b158fed36dc4c1abd1e6bb7b80fec34",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896808": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "eeb000b154dc449ba3ca66422f51c60f",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896815": {
+   "date": "2025-12-03",
+   "issue": null,
+   "rid": "80d6ded00426450ebb3d003ae6eab05a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896822": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "807602e2c28f4860a37a8606d5c247c1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896839": {
+   "date": "2025-12-03",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "issue": null,
+   "rid": "da0b2de9c8ea4352899c684ec84a6fdd",
+   "src": "call",
+   "status": "down"
+  },
+  "742896846": {
+   "date": "2025-10-25",
+   "issue": null,
+   "rid": "45a3c9f7196643feb14f2562facf81fd",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896853": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "842fae4674d345acb72487901c35d577",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896860": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "9e00774aed814cf790f8a9c62247d974",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896877": {
+   "date": null,
+   "held": true,
+   "hold_reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "ok"
+  },
+  "742896884": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "1fce9e699eae4ee0926ceeea10300a1a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896891": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "4dea8239b22743679385b830bee2517b",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896901": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "6652a0c6ed86454bbb6821f9774bdb7a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896918": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "b0643dbb2d6a4fbf99e40324ca9a5ae6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896925": {
+   "date": "2026-03-23",
+   "issue": null,
+   "rid": "5a5435ad6f41437f9024ff8b79378a9a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896949": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "9d2c57ef5e694ce59d51f7f6f45e9a45",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896956": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "65494942545647c5a13f970889e6f846",
+   "src": "call",
+   "status": "ok"
+  },
+  "742896963": {
+   "date": "2025-10-31",
+   "issue": null,
+   "rid": "1eca02cc2b7947799bc86122d7e32cc3",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742896987": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "6a18ebd393334f1cb406970e1c2f8760",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897029": {
+   "date": "2025-10-29",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "issue": null,
+   "rid": "a4c8abd7e93f42afb1f065deb71aa1af",
+   "src": "maintenance",
+   "status": "down"
+  },
+  "742897036": {
+   "date": "2025-12-03",
+   "issue": null,
+   "rid": "a76cd3bbe1464b89a74046c915a61100",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897043": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "96768a6f10914fe0871cc3666e9c6b2f",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897050": {
+   "date": "2025-10-29",
+   "issue": null,
+   "rid": "c41c869cbd534bce9adcac48bb282730",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897067": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "7c8f8eb61d224028b3c8f097663518bc",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897074": {
+   "date": "2025-10-03",
+   "issue": null,
+   "rid": "eef3a2c5c16a4e378b3943133095d557",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897081": {
+   "date": "2026-01-15",
+   "issue": null,
+   "rid": "b1cfdac9c67a4a27bd03106d4a35ef43",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897098": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "247fc27084b342b7a4f0d61cde107f2a",
+   "src": "call",
+   "status": "down"
+  },
+  "742897108": {
+   "date": "2025-12-17",
+   "issue": null,
+   "rid": "36aac3cafbc446d9bfc7023ae59ee3f9",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897115": {
+   "date": "2025-10-02",
+   "issue": null,
+   "rid": "c153307e3b9843e0bb75b6795a4cff75",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897122": {
+   "date": "2025-10-03",
+   "issue": null,
+   "rid": "b525d8fcb56f4a1cb6a61a6d2510dc04",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897146": {
+   "date": "2025-09-26",
+   "issue": null,
+   "rid": "bb49c4ff634445959f5823956d059531",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897153": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "79a7cafc89b44cf69278b4d258eeee37",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897160": {
+   "date": "2026-03-31",
+   "issue": null,
+   "rid": "ffa235229e144c5294386f34c20992a5",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897177": {
+   "date": "2025-09-25",
+   "issue": null,
+   "rid": "e65b8c4f35ac4796bdd4647f5636a56c",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897184": {
+   "date": "2025-09-27",
+   "issue": null,
+   "rid": "20f2941458254932a2172c800ce2dd17",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897191": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "9b8552fd40a345d0ae141d3b80aa3d85",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897201": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "f99432ac0a014e89abb7d140eeb46aa9",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897218": {
+   "date": "2026-01-15",
+   "issue": null,
+   "rid": "dfd179af380341e49082b2c1e9bf040c",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897225": {
+   "date": "2025-09-27",
+   "issue": null,
+   "rid": "ce85a7f7a1d24d9ba61b41e409ea68ad",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897232": {
+   "date": "2025-10-02",
+   "issue": null,
+   "rid": "7587d5b41315451ebad5d108cbb96ff6",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897249": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "e141b378e1a8497b837ceae4362dac72",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897256": {
+   "date": "2025-10-02",
+   "issue": null,
+   "rid": "46ad7676b18b48038ce00a062ee924a2",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897263": {
+   "date": "2026-03-02",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "81e72e9d57aa4e3faaee807e456d9673",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897270": {
+   "date": "2026-06-20",
+   "issue": null,
+   "rid": "e0234e950fc34b5db632926950045e48",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897287": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "024abd5828404f23a1f212546e7c412f",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897294": {
+   "date": "2025-10-02",
+   "issue": null,
+   "rid": "d78691952554429e888c6b7f43bcc767",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897304": {
+   "date": "2025-12-17",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "issue": null,
+   "rid": "28918f94679548bcafc7ead517f7ad8c",
+   "src": "call",
+   "status": "down"
+  },
+  "742897311": {
+   "date": "2025-10-03",
+   "issue": null,
+   "rid": "3f188faadc794bc69661df41fef5a35d",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897328": {
+   "date": "2025-10-02",
+   "issue": null,
+   "rid": "62ca9f7da7e14a42bc28cad4ba3219e7",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897335": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "beb168c8a4584daead6348196f4fa9b6",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897342": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "22a6e390938a4817a28a02695da9ddee",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897359": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "da6c3ac45bc340048300b775ca39d134",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897366": {
+   "date": "2026-03-10",
+   "issue": null,
+   "rid": "f8edd3531f5a484bad84f9b185a3350e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897373": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "1c8924d137374a7d8d20397d0fc3eb27",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897380": {
+   "date": "2025-12-17",
+   "issue": null,
+   "rid": "dd159a7979b9459b9d4ba339964a7bdd",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897397": {
+   "date": "2026-01-11",
+   "issue": null,
+   "rid": "5dae6903c50f4effad557dbe987d93f3",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897407": {
+   "date": "2025-09-20",
+   "issue": null,
+   "rid": "67f0344087ce4515828c98a81f53361c",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897414": {
+   "date": "2025-12-17",
+   "issue": null,
+   "rid": "21ba562970d14734895eebe81b9a3b4a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897421": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "2239fe6c961b4def9c87b67b1ce92070",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897438": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "e575552ab40b47b79a016540646ed5ab",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897445": {
+   "date": "2026-09-02",
+   "issue": null,
+   "rid": "4848fa6dd429483c9f8428f209d926d5",
+   "src": "call",
+   "status": "down"
+  },
+  "742897452": {
+   "date": "2025-12-06",
+   "issue": null,
+   "rid": "d658587e4d914275b58a9301ae2948a2",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897469": {
+   "date": "2025-09-10",
+   "issue": null,
+   "rid": "3424eec6362f4e618c5ef6f4569e703c",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897476": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "8167505d371f45e9aa90654494a1c19c",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897483": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "0c79c1cdff874de180d368c29e3bbc0f",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897490": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "38402f49800e4cac964262b657eacf93",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897500": {
+   "date": "2025-09-10",
+   "issue": null,
+   "rid": "eca1bf2ce6e54f909bb8b6af93c02203",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897517": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "eb42279c2ed24b68b99a94b94df1153e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897524": {
+   "date": "2025-09-28",
+   "issue": null,
+   "rid": "4f0c49592984412887874cc2250108df",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897531": {
+   "date": "2025-12-23",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says partial",
+   "issue": null,
+   "rid": "f886c6a21f7040e1878341731e628876",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897548": {
+   "date": "2025-09-25",
+   "issue": null,
+   "rid": "0936f97e35e04407afb8e2a713e7ff5f",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897555": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "f7ccb9cd0cca49cbaca53621619184a9",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897562": {
+   "date": "2026-01-06",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says down",
+   "issue": null,
+   "rid": "aea9ab09b5c44466a34aa6ea65e23e16",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897579": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "56d2f80cf1ef469180f03feb08b9f256",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897586": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "4e6bea55f49f42feb66e275da6a3e28a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897593": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "872a07a950af4cc793b41d193c0b870e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897603": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "d1fdcbb5239e4b00aab4e8d03685dd10",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897610": {
+   "date": "2025-09-11",
+   "issue": null,
+   "rid": "2f6904da09164287b0ef383eae1ced91",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897627": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "aa4517dc02fc479eb27b1dd606cf7362",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897634": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "a6680fe3998a4318bcfb84427a9e9556",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897641": {
+   "date": "2026-07-07",
+   "held": true,
+   "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "issue": null,
+   "rid": "704c74af8ae9424486ac409ca5452539",
+   "src": "maintenance",
+   "status": "down"
+  },
+  "742897658": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "5912e7a6a73e408cb25c60183a430969",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897665": {
+   "date": "2026-03-31",
+   "issue": null,
+   "rid": "9615749ff3b54980a92b179f10364b9e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897672": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "a1b77a918e1948bbabb2594e4e1ad3ef",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897689": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "0f870cdd5d7246a7a53f9c4c8a5da22d",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897696": {
+   "date": "2025-09-19",
+   "issue": null,
+   "rid": "185f7c4b482a4802a157a05d062c3967",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897706": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "f663e5b71326449792f9ee0098f9c9a9",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897713": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "66f5dbfbacc544debf06746383d54cb6",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897720": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "bd3b1c6b6c6540dea5fd94096027763e",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897737": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "715fba312c68412ba50e23dc1c088ab2",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897744": {
+   "date": "2026-09-10",
+   "issue": null,
+   "rid": "8b116d3c235b4c038349f6333e663537",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897751": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "106ca03a5020439291a96e3cdc93f301",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897768": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "0ff7fd230bf64f4cbf91f9b9be7d5147",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897775": {
+   "date": "2025-10-12",
+   "issue": null,
+   "rid": "1facb212b86843e781f380ffdbb79e6c",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897782": {
+   "date": "2026-03-26",
+   "issue": null,
+   "rid": "22167a351bc44278914b77454cfe83f7",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897799": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "742897809": {
+   "date": "2026-04-23",
+   "issue": null,
+   "rid": "41cda53eb96a46e78bce1cded0fb878e",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897816": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "f73fe8b054ad4f2282a5a25bd79e48f3",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897823": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "cedd9770b95c4f7f8c784c40addbc9a2",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897830": {
+   "date": "2025-09-24",
+   "issue": null,
+   "rid": "7b2f8a55ebac480c8a0cb39fe737b0b6",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897847": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "14b9665273b4474c938dfd6141b77e35",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897854": {
+   "date": "2026-02-11",
+   "issue": null,
+   "rid": "335f88f5907e434a9af3cb6b79a027b3",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897861": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "ef160a1d174c460e86fce7361ec301a9",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897878": {
+   "date": "2026-06-20",
+   "issue": null,
+   "rid": "3e686e1888da4c14a250f2d67124b3bf",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897885": {
+   "date": "2026-07-14",
+   "issue": null,
+   "rid": "4bc8903916554a169394bcc51bf2b1e2",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742897892": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "1d476794d284454fbc4403fe28cbf6bc",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897902": {
+   "date": "2025-09-25",
+   "issue": null,
+   "rid": "454c2051b84d423bbb01528e2e1f7b6f",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897919": {
+   "date": "2026-04-21",
+   "issue": null,
+   "rid": "9145e1bf5ea248dd847404e64f2693c0",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897926": {
+   "date": "2026-08-26",
+   "issue": null,
+   "rid": "a2cf7d2e3dbb460690f34ab0168e1d21",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742897933": {
+   "date": "2026-06-09",
+   "issue": null,
+   "rid": "65c82cd7b2b54747a52fa132067eb079",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897957": {
+   "date": "2026-05-20",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "1419b51bd95347718f5f847a914b1592",
+   "src": "call",
+   "status": "ok"
+  },
+  "742897964": {
+   "date": "2026-09-15",
+   "issue": null,
+   "rid": "9e8d55abd56a457688e7ca10f6cd37c8",
+   "src": "call",
+   "status": "down"
+  },
+  "742897971": {
+   "date": "2026-07-27",
+   "issue": null,
+   "rid": "b90bb69bac7547f98423a394e52ac185",
+   "src": "call",
+   "status": "down"
+  },
+  "742897988": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "03e0d7c45eb4414e83290139e2f83b1e",
+   "src": "call",
+   "status": "partial"
+  },
+  "742897995": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "ccb65ec3be7f4de9982794f563094581",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742898006": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "742898013": {
+   "date": "2026-03-25",
+   "issue": null,
+   "rid": "24123b8cba604d29bc23d96d0021c713",
+   "src": "call",
+   "status": "partial"
+  },
+  "742898020": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "85bf877b6b8e4f45aab75e75f3dc0893",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898037": {
+   "date": "2026-04-21",
+   "issue": null,
+   "rid": "b9bbf3f2b70a43fe862564b95794fb46",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "742898044": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "8a81f5f7b90944719e44e029e21a8ac1",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898051": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "2cb6303d43174eb1b5917f35f6a99785",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898068": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "ccb5d855a7b7470b980e027198d2b85e",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898075": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "48cd30231230452aa2d3cf8fb4703782",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898082": {
+   "date": "2026-05-21",
+   "issue": null,
+   "rid": "527fee992e0e4765a558cd08c9359370",
+   "src": "repair",
+   "status": "ok"
+  },
+  "742898099": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "1099c7feaba24ae381052ecb0fa28253",
+   "src": "call",
+   "status": "ok"
+  },
+  "742898109": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "c7606d4c4d53412484cad308c132766a",
+   "src": "call",
+   "status": "ok"
+  },
+  "742972377": {
+   "date": "2026-03-11",
+   "issue": null,
+   "rid": "9a3feb17687f4079a9b09e66ad6192eb",
+   "src": "call",
+   "status": "partial"
+  },
+  "743091752": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "c9c57782e76d4d179ef3172d67a64cd8",
+   "src": "call",
+   "status": "ok"
+  },
+  "743345808": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "743644978": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "744500936": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "754036911": {
+   "date": "2026-03-13",
+   "issue": null,
+   "rid": "9a9445db475644cb83a8847d5e1b62c1",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "754036928": {
+   "date": "2025-12-17",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "1c92a84f04d84fb088ad42150c50df32",
+   "src": "call",
+   "status": "unknown"
+  },
+  "763107680": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "dccaf402776140c5bf89ba232e234b05",
+   "src": "call",
+   "status": "ok"
+  },
+  "763895314": {
+   "date": "2026-06-12",
+   "issue": null,
+   "rid": "c5098683cad442f18466418aa3a804a9",
+   "src": "call",
+   "status": "partial"
+  },
+  "763895321": {
+   "date": "2026-06-12",
+   "issue": null,
+   "rid": "a14cc34091d744ab846f8dc3895c03b1",
+   "src": "call",
+   "status": "partial"
+  },
+  "764113653": {
+   "date": "2026-03-13",
+   "issue": null,
+   "rid": "de1c03999ce14c899897773a30b8d1da",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "764166242": {
+   "date": "2026-06-12",
+   "issue": null,
+   "rid": "97d562eee794451ca811aa194e6c46a5",
+   "src": "call",
+   "status": "partial"
+  },
+  "765258739": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "01f7e1434a0e4e8e962efbcbbd8581c4",
+   "src": "call",
+   "status": "ok"
+  },
+  "765258746": {
+   "date": "2026-03-30",
+   "issue": null,
+   "rid": "5117db882ce24eb59f3217d26849eb0c",
+   "src": "call",
+   "status": "ok"
+  },
+  "765855507": {
+   "date": "2026-07-28",
+   "issue": null,
+   "rid": "ccf1330be523452fac7acf2483c3ded9",
+   "src": "call",
+   "status": "partial"
+  },
+  "766720695": {
+   "date": "2025-12-16",
+   "issue": null,
+   "rid": "b3b0ec62fbdf43e0b1ad94afe344ddad",
+   "src": "call",
+   "status": "ok"
+  },
+  "767290205": {
+   "date": "2026-07-25",
+   "issue": null,
+   "rid": "ee6ca65f5397435f9fd86efdf7838065",
+   "src": "call",
+   "status": "partial"
+  },
+  "767290212": {
+   "date": "2026-07-25",
+   "issue": null,
+   "rid": "6c17658d62734269b9038a6ea14134cc",
+   "src": "call",
+   "status": "partial"
+  },
+  "768979123": {
+   "date": "2026-07-30",
+   "issue": null,
+   "rid": "876fd753d7e9426abdbc9aac7250f26b",
+   "src": "call",
+   "status": "partial"
+  },
+  "768991507": {
+   "date": "2026-07-29",
+   "issue": null,
+   "rid": "de3bd054705343e8828f9da62a6a1220",
+   "src": "call",
+   "status": "partial"
+  },
+  "769020855": {
+   "date": "2026-07-30",
+   "issue": null,
+   "rid": "839848aa794d4261ac4c599bed0db2e4",
+   "src": "call",
+   "status": "partial"
+  },
+  "770197467": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "1222afce68a04a0389bb52c5d2629fe3",
+   "src": "call",
+   "status": "partial"
+  },
+  "771021680": {
+   "date": "2026-07-22",
+   "issue": null,
+   "rid": "3139d733487d46528d8d201f075d70f0",
+   "src": "call",
+   "status": "partial"
+  },
+  "771580686": {
+   "date": "2026-08-07",
+   "issue": null,
+   "rid": "c65b0bf35499437a908bd1bf7db61f55",
+   "src": "repair",
+   "status": "ok"
+  },
+  "771580693": {
+   "date": "2026-04-21",
+   "issue": null,
+   "rid": "4fcf858e90f948f98c344dbc8559b7e4",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "771580703": {
+   "date": "2026-03-19",
+   "issue": null,
+   "rid": "bbe69d53dedb47e4bc706a4bb05d5bec",
+   "src": "call",
+   "status": "partial"
+  },
+  "771580710": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "8bc000430cf641f091bf19357950eab0",
+   "src": "call",
+   "status": "ok"
+  },
+  "771580727": {
+   "date": "2026-03-17",
+   "issue": null,
+   "rid": "e2e2c436222047e0ba1f8a776602bc0e",
+   "src": "call",
+   "status": "partial"
+  },
+  "771580734": {
+   "date": "2026-03-13",
+   "issue": null,
+   "rid": "56a4374f049c4955b7e6f8e570389e1e",
+   "src": "call",
+   "status": "partial"
+  },
+  "771580741": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "f6718ec41429442cb0916e295236f2cf",
+   "src": "call",
+   "status": "ok"
+  },
+  "771703469": {
+   "date": "2026-07-22",
+   "issue": null,
+   "rid": "0bf0272a28d34917b45fed626462cfb1",
+   "src": "call",
+   "status": "partial"
+  },
+  "771783434": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "9b8d3d1fbcc84fe898e4b49859bdb59c",
+   "src": "call",
+   "status": "ok"
+  },
+  "771799231": {
+   "date": "2026-08-12",
+   "issue": null,
+   "rid": "87d93f3540c5413592637e35a544a93d",
+   "src": "repair",
+   "status": "ok"
+  },
+  "771799248": {
+   "date": "2026-03-20",
+   "issue": null,
+   "rid": "2283811509fb412092d07befe932656e",
+   "src": "call",
+   "status": "partial"
+  },
+  "771799255": {
+   "date": "2026-08-12",
+   "issue": null,
+   "rid": "f32eacf3f26a435380920f641e0dbad2",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "771799262": {
+   "date": "2026-08-07",
+   "issue": null,
+   "rid": "488ce330cd6745bdafd29e8e17b09c76",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "771799279": {
+   "date": "2026-05-20",
+   "issue": null,
+   "rid": "69256fdbd6b545d693db81a5b3400cb9",
+   "src": "repair",
+   "status": "ok"
+  },
+  "771799286": {
+   "date": "2026-09-11",
+   "issue": null,
+   "rid": "68b80fd0ceed4140acd6ca9a4f5cb7e6",
+   "src": "repair",
+   "status": "ok"
+  },
+  "771799293": {
+   "date": "2026-08-19",
+   "issue": null,
+   "rid": "9818903def9d458da7a346f9dd3c555e",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "771799303": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "57b746a18d8a48c2a811b0163d7015f2",
+   "src": "call",
+   "status": "ok"
+  },
+  "771799310": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "d1bc7ca4862f47fdad1f58bcf9db9afa",
+   "src": "call",
+   "status": "ok"
+  },
+  "771820645": {
+   "date": "2026-03-27",
+   "issue": null,
+   "rid": "ca5c26c1000c43ecb30075eb6e47883a",
+   "src": "call",
+   "status": "ok"
+  },
+  "771825925": {
+   "date": "2025-12-10",
+   "issue": null,
+   "rid": "6a3f915c86ab449ba66bb49c594fd1a3",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "772300771": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "4e63143ae052414a9d8e4791f9c1a5df",
+   "src": "call",
+   "status": "partial"
+  },
+  "772365307": {
+   "date": "2026-07-24",
+   "issue": null,
+   "rid": "e86e42ffbefb474da32c2858358cb47c",
+   "src": "call",
+   "status": "partial"
+  },
+  "772383873": {
+   "date": "2026-07-23",
+   "issue": null,
+   "rid": "11a129537c1c4ea0af0071560b7074e5",
+   "src": "call",
+   "status": "partial"
+  },
+  "772741428": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "68204f60c5064a14beef43fc8de3ecff",
+   "src": "call",
+   "status": "partial"
+  },
+  "773024427": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "8167df6ff7694ef0b4cd381f91e4f1a7",
+   "src": "call",
+   "status": "partial"
+  },
+  "773028603": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "667de52c300c4dcbaf68f1eb81b2d61a",
+   "src": "call",
+   "status": "partial"
+  },
+  "773042759": {
+   "date": "2026-07-20",
+   "held": true,
+   "hold_reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "issue": null,
+   "rid": "2bb79c8e80ee42e48c1995dd3960e3ab",
+   "src": "call",
+   "status": "ok"
+  },
+  "773044940": {
+   "date": "2026-06-09",
+   "issue": null,
+   "rid": "6ec2ff7fe6b94e479c17ffcb8936b6b1",
+   "src": "call",
+   "status": "partial"
+  },
+  "773597170": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "f0d793ed24ba423aac62cea5a3aefd8c",
+   "src": "call",
+   "status": "partial"
+  },
+  "773614497": {
+   "date": "2026-06-09",
+   "issue": null,
+   "rid": "8a978e0975eb407f9c1dd8a04089fcea",
+   "src": "call",
+   "status": "partial"
+  },
+  "774001555": {
+   "date": "2026-07-20",
+   "issue": null,
+   "rid": "9bdc5197eb6f46848a80bad29350b470",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "774009687": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "a1a7d1d76c1d41488775e14d1ae3a17d",
+   "src": "call",
+   "status": "partial"
+  },
+  "775756210": {
+   "date": "2026-07-20",
+   "issue": null,
+   "rid": "74af3bde7e84448dbc083e2762e25adb",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "775759299": {
+   "date": "2026-07-29",
+   "issue": null,
+   "rid": "99812fdf7772472288bab793f7c2ae62",
+   "src": "repair",
+   "status": "ok"
+  },
+  "776596880": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "4d155b069e3a4794876597a77b503f75",
+   "src": "call",
+   "status": "partial"
+  },
+  "776609443": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "854855d646f24bb6a675647089b384d9",
+   "src": "call",
+   "status": "partial"
+  },
+  "777126165": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "e8bb8f5d552049ccaf49aa1dc0537164",
+   "src": "call",
+   "status": "partial"
+  },
+  "778246888": {
+   "date": "2026-07-20",
+   "issue": null,
+   "rid": "3321a923345543bd90224020e683b603",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "778694357": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "57ab5d6894b743baa9a6add98f32ef6b",
+   "src": "call",
+   "status": "partial"
+  },
+  "778747750": {
+   "date": "2026-07-20",
+   "issue": null,
+   "rid": "6e112662e66c4aba9812ae64f6c4d733",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "779461066": {
+   "date": "2026-07-20",
+   "issue": null,
+   "rid": "a9556d1b53e24c609166c8189a5ced35",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "779461073": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "71a6887974ac41f4b4d595113e11fa9b",
+   "src": "call",
+   "status": "partial"
+  },
+  "779506385": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "09b39f3efeec45cba7027815c28c2c9e",
+   "src": "call",
+   "status": "partial"
+  },
+  "780230042": {
+   "date": "2026-07-04",
+   "issue": null,
+   "rid": "f6dcfb8e505b4393b71943b16b1698df",
+   "src": "call",
+   "status": "partial"
+  },
+  "781059150": {
+   "date": "2026-07-04",
+   "issue": null,
+   "rid": "52d0fc683bba4e018e7419f4606ab318",
+   "src": "call",
+   "status": "partial"
+  },
+  "781126427": {
+   "date": "2026-07-03",
+   "issue": null,
+   "rid": "e040e230204a460fbc2d0d9d85dc25bc",
+   "src": "call",
+   "status": "partial"
+  },
+  "781940247": {
+   "date": "2026-07-10",
+   "issue": null,
+   "rid": "cce82824e19a46bbbc15f25ad7b7cda2",
+   "src": "call",
+   "status": "partial"
+  },
+  "782134533": {
+   "date": "2026-03-12",
+   "issue": null,
+   "rid": "cc7b8476c69c49abb7db73b95e6b60c4",
+   "src": "call",
+   "status": "partial"
+  },
+  "782134540": {
+   "date": "2026-03-18",
+   "issue": null,
+   "rid": "30ff01a2e32e4e518d4c5ef8b414946a",
+   "src": "call",
+   "status": "partial"
+  },
+  "783484655": {
+   "date": "2026-07-09",
+   "issue": null,
+   "rid": "bfd5e2b647e74055b512f08512e9517c",
+   "src": "call",
+   "status": "partial"
+  },
+  "783761183": {
+   "date": "2026-07-10",
+   "issue": null,
+   "rid": "8fb97f90dcc54961bf632ba8846a07c1",
+   "src": "call",
+   "status": "partial"
+  },
+  "784302954": {
+   "date": "2026-07-09",
+   "issue": null,
+   "rid": "ce928f480a4040dca3822395e10a4d72",
+   "src": "call",
+   "status": "partial"
+  },
+  "786865303": {
+   "date": "2026-09-08",
+   "issue": null,
+   "rid": "f9897219a387465691015daff6069d8a",
+   "src": "call",
+   "status": "partial"
+  },
+  "786871997": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "fd50e3397ac84ec2a5427df585a9c9c7",
+   "src": "call",
+   "status": "partial"
+  },
+  "786872060": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "296cc69c773b443f9b85cd9be7a37bbe",
+   "src": "call",
+   "status": "partial"
+  },
+  "786932780": {
+   "date": "2026-07-03",
+   "issue": null,
+   "rid": "51969d059bb04c16b209fa42fc25c0b3",
+   "src": "call",
+   "status": "partial"
+  },
+  "791122592": {
+   "date": "2026-07-03",
+   "issue": null,
+   "rid": "0dcb21c33c9b4fed9d6c2b3d9f0464c1",
+   "src": "call",
+   "status": "partial"
+  },
+  "791617832": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "2f8c215a2c1a465e8b1b4b35e1d7a7ab",
+   "src": "call",
+   "status": "partial"
+  },
+  "792022655": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "a9bbc838e88f4fee9f0a436669eea79a",
+   "src": "call",
+   "status": "partial"
+  },
+  "792494830": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "8922f18700654044abf65101286e81ec",
+   "src": "call",
+   "status": "partial"
+  },
+  "792699587": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "33cf8e1b99df486faf51e3d8f79d02c9",
+   "src": "call",
+   "status": "partial"
+  },
+  "794012203": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "860d755efac24e4f909e76e4e568d5cf",
+   "src": "call",
+   "status": "partial"
+  },
+  "794012210": {
+   "date": "2026-05-30",
+   "issue": null,
+   "rid": "0d615c18ed2242569b7e4506e9ada43f",
+   "src": "call",
+   "status": "partial"
+  },
+  "794587460": {
+   "date": "2026-09-16",
+   "issue": null,
+   "rid": "b3b15c0202b04330ba65b4a56471a621",
+   "src": "call",
+   "status": "down"
+  },
+  "795836457": {
+   "date": "2026-05-28",
+   "issue": null,
+   "rid": "17b5beea32534cb1959bd6d8cf85e901",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "797195301": {
+   "date": "2026-05-28",
+   "issue": null,
+   "rid": "54051a5c5b2d446e938a337a9c0fef34",
+   "src": "call",
+   "status": "partial"
+  },
+  "797195318": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "6813cc93f81249728748d6b2c386d5dd",
+   "src": "call",
+   "status": "partial"
+  },
+  "797885233": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "4a710c459af9470dbb96e9631db1213a",
+   "src": "repair",
+   "status": "ok"
+  },
+  "799521955": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "4124d7bbc6c64b12bb4be1cdbc86188b",
+   "src": "call",
+   "status": "partial"
+  },
+  "800634100": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "690009e55c4942358985ba5a57b8fd45",
+   "src": "call",
+   "status": "partial"
+  },
+  "803229680": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "3db330a92d3b421eb8e25c154bcf9678",
+   "src": "call",
+   "status": "partial"
+  },
+  "805544226": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "9fbbd6dde3c74102a6b832270d205cc1",
+   "src": "call",
+   "status": "partial"
+  },
+  "810377501": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "2b7fa168b6c24a569f6ce27a2ef539f3",
+   "src": "call",
+   "status": "partial"
+  },
+  "810943803": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "2aadb2a8ee4a40c097ce599fbe32bf75",
+   "src": "call",
+   "status": "partial"
+  },
+  "812862094": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "dd8e7e1f416940069e78e5fcf47ae13c",
+   "src": "call",
+   "status": "partial"
+  },
+  "813642325": {
+   "date": "2026-06-18",
+   "issue": null,
+   "rid": "ff3c3e7200a34cbaab4538a1f3504b3f",
+   "src": "call",
+   "status": "partial"
+  },
+  "813933184": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "af7d69b484fb4ac49b85f4a8c70a7ad2",
+   "src": "call",
+   "status": "partial"
+  },
+  "814009107": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "7dbdf904ae4a40449c7bc42256c02ce5",
+   "src": "call",
+   "status": "partial"
+  },
+  "814478712": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "67b61307ca434e55826b8a65c91b1e59",
+   "src": "call",
+   "status": "partial"
+  },
+  "814646306": {
+   "date": "2025-10-30",
+   "issue": null,
+   "rid": "45283791a5ec4eb591e4d47953f8c7b3",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "815132789": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "464cf15cde1c4269a6bf19941b874cdc",
+   "src": "call",
+   "status": "partial"
+  },
+  "815285539": {
+   "date": "2026-02-27",
+   "issue": null,
+   "rid": "5e1b9f8d4da748a2a147236813a8b7dc",
+   "src": "call",
+   "status": "ok"
+  },
+  "816234895": {
+   "date": "2026-06-18",
+   "issue": null,
+   "rid": "1b7a84424ebc48e7b481f47ad573c6f4",
+   "src": "call",
+   "status": "partial"
+  },
+  "817548803": {
+   "date": "2026-06-16",
+   "issue": null,
+   "rid": "699b394817fc4005bea6785af33a9e22",
+   "src": "call",
+   "status": "partial"
+  },
+  "819378051": {
+   "date": "2026-06-17",
+   "issue": null,
+   "rid": "208f608113024e789712ef299a1cb462",
+   "src": "call",
+   "status": "partial"
+  },
+  "820198370": {
+   "date": "2026-06-16",
+   "issue": null,
+   "rid": "74704dea22874506927137416e1eba5c",
+   "src": "call",
+   "status": "partial"
+  },
+  "820780971": {
+   "date": "2026-06-16",
+   "issue": null,
+   "rid": "26eebd68d3c7440bab0d66f1c727fd38",
+   "src": "repair",
+   "status": "ok"
+  },
+  "822906175": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "bf7e7a2714f440b0b4324179ef4b390a",
+   "src": "call",
+   "status": "partial"
+  },
+  "823466032": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "917ad4ffcc434b8d99430860eb617bd5",
+   "src": "call",
+   "status": "partial"
+  },
+  "823946480": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "0f53409663404b31a2cbba1aed575420",
+   "src": "call",
+   "status": "partial"
+  },
+  "824580917": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "945a1389e973427791f43c498b5871e6",
+   "src": "call",
+   "status": "partial"
+  },
+  "825367379": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "9db152729ee44e2f9b8ac25e9dfcca47",
+   "src": "call",
+   "status": "partial"
+  },
+  "825513589": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "2f8e54338ac8472eba82f13bf293e9ce",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032506": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "8884d7511bbc42da803cb18b5c04082a",
+   "src": "call",
+   "status": "ok"
+  },
+  "833032513": {
+   "date": "2025-12-15",
+   "held": true,
+   "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "issue": null,
+   "rid": "7c6ccb8026074110ba417d632144d240",
+   "src": "call",
+   "status": "unknown"
+  },
+  "833032630": {
+   "date": "2026-07-30",
+   "issue": null,
+   "rid": "a1426f56e40349c3b2a93ede24f285ab",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032647": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "6a1d0332d6194051a9e369ad2a6054bd",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032654": {
+   "date": "2026-07-22",
+   "issue": null,
+   "rid": "25cce0321691453fb8f5fc50283f9157",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032661": {
+   "date": "2026-06-11",
+   "issue": null,
+   "rid": "23dcf72fbd1d428e83e5d0c3de64f6ff",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032678": {
+   "date": "2026-07-24",
+   "issue": null,
+   "rid": "9dfde8d4fc764430b52e2ab6399b8390",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032692": {
+   "date": "2026-07-23",
+   "issue": null,
+   "rid": "4f865c4a714446e6ac06c26fe26fef76",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032702": {
+   "date": "2026-09-21",
+   "issue": null,
+   "rid": "b9b90ad8263f42e49321aec0b8e641a4",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032764": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "76e7aa0e92c849259ed8c8e17487239f",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032771": {
+   "date": "2026-06-06",
+   "issue": null,
+   "rid": "0d4976ad7ab047a4bb3ce0d33120311f",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032812": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "34da570474ee4483a2f8add253d5b366",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032836": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "51e8c7cc96124b6cb46391cb4dab7087",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032867": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "abdbd8cf9122483988f690b9e2fa2314",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032881": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "ac6166ad69534cdb8e2d82b1eee97541",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032939": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "58b7c50d3b2d4baf8469c89b6b487b65",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032946": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "84dfdb8c3f76416499838628d9a222d3",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032953": {
+   "date": "2026-06-10",
+   "issue": null,
+   "rid": "dc4540046c9c430d86b99f46032a6b78",
+   "src": "call",
+   "status": "partial"
+  },
+  "833032984": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "0a401938ff5d49eaa46e559e49516b91",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033002": {
+   "date": "2026-07-19",
+   "issue": null,
+   "rid": "7231dd3b02a24d4d8e00335d83f86b77",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033019": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "464f3e39ab67447fafecb5253bb51f81",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033033": {
+   "date": "2026-06-05",
+   "issue": null,
+   "rid": "303b9432178b4b6683de9ec5a456463d",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033040": {
+   "date": "2026-07-03",
+   "issue": null,
+   "rid": "32f5d01098474166b731b9f9edad3cf0",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033057": {
+   "date": "2026-07-08",
+   "issue": null,
+   "rid": "9c7e7ca3c154472b87c2d8883b119ec1",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033064": {
+   "date": "2026-07-10",
+   "issue": null,
+   "rid": "5b3227c5671e4706a1dfbaba387b6f2a",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033095": {
+   "date": "2026-07-09",
+   "issue": null,
+   "rid": "322ca38f54614e73b466d73e28eb8830",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033105": {
+   "date": "2026-07-10",
+   "issue": null,
+   "rid": "e5651fb12fcf4ae38a1b67e6bb5e95f5",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "833033181": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "6bd71cbf3a2c427786dd6a9f1e150a57",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033198": {
+   "date": "2026-03-24",
+   "issue": null,
+   "rid": "e0764205968f4d5e9f3ca5ca8f2741da",
+   "src": "call",
+   "status": "ok"
+  },
+  "833033208": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "eb50d574e45f4f6096451d485f841238",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033246": {
+   "date": "2026-05-29",
+   "issue": null,
+   "rid": "6e7da251471e4196b87ba8c124f4f6df",
+   "src": "call",
+   "status": "partial"
+  },
+  "833033253": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "2f05418164cb4ee38b9d8e3cb30ec44a",
+   "src": "call",
+   "status": "partial"
+  },
+  "897922492": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "167b8dd5ad2e4554b5dadad42ad2474d",
+   "src": "call",
+   "status": "partial"
+  },
+  "897922519": {
+   "date": "2026-06-19",
+   "issue": null,
+   "rid": "be9b3fbe8a2549c68b74c41c85d01894",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "897922595": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "ed9ea140f2844bfcb17f7e1f0ef4f3d2",
+   "src": "call",
+   "status": "partial"
+  },
+  "897923486": {
+   "date": "2025-09-25",
+   "issue": null,
+   "rid": "f10f7b12d4664a6faf9a9b2e2a0c60e8",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "905251190": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "26d280ff35ae4ea8b7b81c30000ce03c",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251200": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "bf02d4f4771d4192a053ebdccf10b8bb",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251217": {
+   "date": "2026-06-24",
+   "issue": null,
+   "rid": "0af1396ef2da4c6fb9954365dced98fd",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251224": {
+   "date": "2026-06-25",
+   "issue": null,
+   "rid": "6f89e7daa19d485fae2ff88fec3150aa",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251248": {
+   "date": "2026-06-18",
+   "issue": null,
+   "rid": "0963ba3da61d44e19ced7afdc38d9a39",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251255": {
+   "date": "2026-06-16",
+   "issue": null,
+   "rid": "352236e669014d36ae472fe4df1371d3",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251262": {
+   "date": "2026-09-03",
+   "issue": null,
+   "rid": "883ace0053504bb196683df74ca8a114",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "905251279": {
+   "date": "2026-06-16",
+   "issue": null,
+   "rid": "ba8057c95a1940f1b3bc439f73c5a751",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251286": {
+   "date": "2026-06-18",
+   "issue": null,
+   "rid": "d27bc6df91ff4630adadbdbd9737d841",
+   "src": "repair",
+   "status": "ok"
+  },
+  "905251293": {
+   "date": "2026-06-17",
+   "issue": null,
+   "rid": "6b544feb55b745a68d059906856ef40a",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251327": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "276e252945f14b8184cb52962e52040c",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251334": {
+   "date": "2026-06-08",
+   "issue": null,
+   "rid": "4b5aa41f96734e0d831a270e79f2b0b4",
+   "src": "maintenance",
+   "status": "ok"
+  },
+  "905251341": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "dea048d33beb432a87c189d1a1aea3ba",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251358": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "33b469a02916469a9ab6b256ab739828",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251372": {
+   "date": "2026-06-04",
+   "issue": null,
+   "rid": "266727b7318b446696b75eb02beda40c",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251389": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "3b8bab0d6b934cf2ae03232852795fd5",
+   "src": "call",
+   "status": "partial"
+  },
+  "905251396": {
+   "date": "2026-06-03",
+   "issue": null,
+   "rid": "0a68345963d24efa8cfaa6340f907afd",
+   "src": "call",
+   "status": "partial"
+  },
+  "987623115": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "987623256": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "987623270": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "987623517": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  },
+  "987623555": {
+   "date": null,
+   "issue": null,
+   "rid": null,
+   "src": null,
+   "status": "unknown"
+  }
+ }
+}

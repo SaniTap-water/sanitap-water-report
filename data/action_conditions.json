@@ -39,12 +39,6 @@
   },
   "says": "closes when the call form carries a service-visit-requested question"
  },
- "act-call-tables-builder": {
-  "kind": "artefact",
-  "path": "tools/rebuild_call_tables.py",
-  "says": "closes when a builder for the call-centre-derived tables exists in the repository",
-  "where": "repo"
- },
  "act-chase-s4-16-car": {
   "kind": "decision",
   "question": "Has Earthood amended its validation report on the two external experts (CAR#8)?",

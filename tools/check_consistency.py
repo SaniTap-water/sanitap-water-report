@@ -2572,7 +2572,9 @@ def main():
                 # the week caption is allowed to name a fixed date, because
                 # that IS the window the data covers - but only while it also
                 # says how far behind mWater it is
-                if "behind mwater" in txt.lower() or "current with mwater" in txt.lower():
+                low = txt.lower()
+                if ("behind mwater" in low or "current with mwater" in low
+                        or "level with mwater" in low):
                     continue
                 bad_caps.append(re.sub(r"\s+", " ", around)[:80])
     check("no section caption labels a rolling window with a hard-coded date",
@@ -2602,6 +2604,70 @@ def main():
           else "MISSING",
           "; ".join(f"{k} {v.get('behind_days')}d"
                     for k, v in sorted((fresh.get("per_source") or {}).items())))
+
+    # ---- 7be. the call-centre tables are built, not carried -------------
+    # Status, the down list and the partially-working list were the last part
+    # of the page nothing here could rebuild: their builder was missing and
+    # their rule was written down nowhere, so when the extract went stale they
+    # kept 10 September values while everything around them moved. The rule
+    # was recovered by comparison against the published tables and now lives
+    # in tools/build_call_tables.py, which reproduces them exactly.
+    ct_p = os.path.join(repo_root, "data", "call_tables.json")
+    ct = json.load(open(ct_p)) if os.path.isfile(ct_p) else {}
+    page_S = js_const(idx, "S") or {}
+    check("the call-centre tables are generated, not carried forward",
+          bool(ct.get("status")) and ct.get("split") == page_S.get("status"),
+          "generated",
+          "generated" if ct.get("split") == page_S.get("status")
+          else f"page {page_S.get('status')} vs built {ct.get('split')}",
+          f"built {ct.get('built')} by tools/build_call_tables.py")
+    for name, want in (("DOWN", "down"), ("PARTIAL", "partial")):
+        rows_ = js_const(idx, name) or []
+        check(f"{name} matches the built status split",
+              len(rows_) == (ct.get("split") or {}).get(want),
+              str((ct.get("split") or {}).get(want)), str(len(rows_)),
+              "the table is the status, not a separate list")
+    # the rule a reader sees must be the rule the builder applies
+    bsrc = read(os.path.join(repo_root, "tools", "build_call_tables.py"))
+    m_rule = re.search(r'RULE_ON_PAGE = \((.*?)\)\n\n', bsrc, re.S)
+    rule_txt = ""
+    if m_rule:
+        rule_txt = " ".join(re.findall(r'"([^"]*)"', m_rule.group(1)))
+    plain_idx = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", idx))
+    check("the rule on the page is the rule in the builder",
+          bool(rule_txt) and re.sub(r"\s+", " ", rule_txt).strip() in plain_idx,
+          "identical", "identical" if rule_txt and
+          re.sub(r"\s+", " ", rule_txt).strip() in plain_idx else "DIVERGED",
+          "a rule only one process knows is how this went wrong")
+    holds_p = os.path.join(repo_root, "data", "call_status_holds.json")
+    holds = (json.load(open(holds_p)).get("holds", {})
+             if os.path.isfile(holds_p) else {})
+    unreasoned = [k for k, v in holds.items() if not v.get("reason")]
+    # the reproduction test is the regression test for the recovered rule,
+    # and it must run against the frozen baseline, not against a page the
+    # builder has already rewritten
+    base_p = os.path.join(repo_root, "data", "call_status_baseline.json")
+    base = json.load(open(base_p)) if os.path.isfile(base_p) else {}
+    rc = subprocess.run([sys.executable, os.path.join(repo_root, "tools",
+                                                      "build_call_tables.py"),
+                         "--reproduce", base.get("cut", "2026-09-07")],
+                        capture_output=True, text=True, cwd=repo_root)
+    check("the builder still reproduces the frozen baseline exactly",
+          rc.returncode == 0 and "exact match" in rc.stdout,
+          "736/736 exact",
+          "exact" if rc.returncode == 0
+          else next((l.strip() for l in rc.stdout.splitlines()
+                     if "DISAGREE" in l or "reproduce" in l), "FAILED"),
+          f"{len(base.get('status', {}))} pumps as the 10 September build left them")
+    check("every held pump says why it is held",
+          bool(holds) and not unreasoned, "all reasoned",
+          f"{len(unreasoned)} without a reason" if unreasoned
+          else f"{len(holds)} held, all reasoned",
+          "held on the published value rather than restated on a guess")
+    check("the page says how many pumps are held",
+          str(len(holds)) in plain_idx and "held on their" in plain_idx,
+          "stated", "stated" if "held on their" in plain_idx else "MISSING",
+          f"{len(holds)} pumps the rule cannot reproduce")
 
     # ---- 7bd. a build that ran and published nothing ---------------------
     # The weekly build runs in a CLOUD session, not on this computer - which

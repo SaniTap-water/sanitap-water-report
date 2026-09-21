@@ -150,17 +150,11 @@ def main():
     # source that IS rebuildable still fails the build when it falls behind.
     # Leaving an unfixable source in the blocking set would make the gate
     # permanently red, which is the same as having no gate.
-    doc["known_gaps"] = {
-        "call-centre": {
-            "reason": ("the call-centre-derived tables - pump status, the down "
-                       "list, the partially-working list - are produced by a "
-                       "builder that does not exist in this repository. The "
-                       "status rule could not be reproduced from the data: a "
-                       "reconstruction agreed on 463 of 640 pumps and would "
-                       "have restated 177, so it was not applied."),
-            "action": "act-call-tables-builder",
-            "since": "2026-09-21"},
-    }
+    # The call-centre gap is closed: tools/build_call_tables.py rebuilds
+    # those tables from the extract and reproduces the published ones exactly,
+    # so call-centre is a rebuildable source like the other two and belongs in
+    # the blocking set.
+    doc["known_gaps"] = {}
     doc["blocking_lag_days"] = max(
         [v["behind_days"] for k, v in per.items()
          if v["behind_days"] is not None and k not in doc["known_gaps"]] or [0])

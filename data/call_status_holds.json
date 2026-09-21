@@ -1,0 +1,240 @@
+{
+ "cut_used": "2026-09-07",
+ "holds": {
+  "670401732": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "670402221": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "down",
+   "status": "unknown"
+  },
+  "698772166": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "698772197": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "698772214": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "698772348": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "698773617": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "698773624": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "partial",
+   "status": "unknown"
+  },
+  "699595931": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  },
+  "699597029": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "699597036": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "699597517": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  },
+  "699597720": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "699597823": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  },
+  "699597933": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  },
+  "699597964": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  },
+  "699597971": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "rule_says": "ok",
+   "status": "down"
+  },
+  "742893881": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says partial",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "742893960": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742894655": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "742894844": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742895113": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "742895711": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "742895742": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says down",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742896011": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742896286": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742896523": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "742896839": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "rule_says": "ok",
+   "status": "down"
+  },
+  "742896877": {
+   "held_since": "2026-09-21",
+   "reason": "no answered record of any kind in the extract, yet the published tables carry a status",
+   "rule_says": "unknown",
+   "status": "ok"
+  },
+  "742897029": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "rule_says": "ok",
+   "status": "down"
+  },
+  "742897263": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742897304": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "rule_says": "ok",
+   "status": "down"
+  },
+  "742897531": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says partial",
+   "rule_says": "partial",
+   "status": "ok"
+  },
+  "742897562": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says down",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "742897641": {
+   "held_since": "2026-09-21",
+   "reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
+   "rule_says": "ok",
+   "status": "down"
+  },
+  "742897957": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "754036928": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "partial",
+   "status": "unknown"
+  },
+  "773042759": {
+   "held_since": "2026-09-21",
+   "reason": "same-day tie: a call and a works record share the last day and the published tables followed the works record, which the extract gives no way to predict",
+   "rule_says": "down",
+   "status": "ok"
+  },
+  "833032513": {
+   "held_since": "2026-09-21",
+   "reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
+   "rule_says": "ok",
+   "status": "unknown"
+  }
+ },
+ "note": "Pumps whose published status the recovered rule cannot reproduce. Each is LEFT ON its published value rather than restated on a guess. A hold applies only while the rule still disagrees - the next answered record on that pump settles it and the hold falls away."
+}
