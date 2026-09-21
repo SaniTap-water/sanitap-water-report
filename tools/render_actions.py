@@ -83,6 +83,13 @@ def parse_deadline(text):
         return None
 
 
+def _rows_from(det):
+    """(id, a synthetic row body) so the parser below is unchanged."""
+    for aid, d in sorted(det.items()):
+        yield aid, (f'<td>{d["detail"]}</td><td>{d["schedule"]}</td>'
+                    f'<td>{d["owner"]}</td>')
+
+
 def row_bodies(idx):
     """(id, inner html) for each action row, nesting-aware.
 
@@ -101,9 +108,23 @@ def row_bodies(idx):
                 break
 
 
+def details():
+    """Every action's explanatory detail, from data/action_details.json.
+
+    It used to live in two tables in the body - "Open actions" and the
+    Moramanga field-visit list - each row carrying a link back up to the
+    consolidated list. That was the same content twice: a summary row here
+    and a detail row there. The detail is now data, rendered once, collapsed
+    inside the row it belongs to, and there is one list on the page.
+    """
+    p = os.path.join(REPO, "data", "action_details.json")
+    return json.load(open(p)) if os.path.isfile(p) else {}
+
+
 def actions(idx):
     out = []
-    for aid, body in row_bodies(idx):
+    det = details()
+    for aid, body in _rows_from(det):
         # top-level cells only: a nested table's <td>s must not be mistaken
         # for this row's own
         cells, depth, start = [], 0, None
@@ -132,6 +153,7 @@ def actions(idx):
         crit = strip(crit[-1]) if crit else ""
         owner = strip(cells[2]) or "—"
         out.append(dict(id=aid, title=title, owner=owner,
+                        detail=det.get(aid, {}).get("detail", ""),
                         lead=lead_owner(owner),
                         state=state, label=label, deadline=dl_raw, due=due,
                         # an item to act on with no date is a date still
@@ -169,13 +191,12 @@ def actions(idx):
         # a date is only outstanding on something still to act on, so this is
         # recomputed after the conditions have had their say
         a["nodate"] = a["nodate"] and a["state"] == "ACT"
-    declared = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
+    declared = len(det)
     if len(out) != declared:
         got = {a["id"] for a in out}
-        missed = [m.group(1) for m in re.finditer(r'<tr id="(act-[a-z0-9-]+)">', idx)
-                  if m.group(1) not in got]
-        sys.exit(f"render_actions: {declared} action rows in index.html but only "
-                 f"{len(out)} parsed - dropped: {', '.join(missed)}")
+        missed = [k for k in det if k not in got]
+        sys.exit(f"render_actions: {declared} actions in data/action_details.json "
+                 f"but only {len(out)} parsed - dropped: {', '.join(missed)}")
     return out
 
 
@@ -288,16 +309,19 @@ def row(a, today, owner_cell=True):
                        f'<b>reopened {c["reopened_on"]}</b> &mdash; it had been '
                        f'closed since {c.get("was_closed_since") or "an earlier build"}'
                        '</div>')
+    det = a.get("detail") or ""
+    body = (f'<details class="act-detail" id="{a["id"]}">'
+            f'<summary>{a["title"]}</summary>{det}</details>'
+            if det else f'<b>{a["title"]}</b>')
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
-            f'<td><a href="#{a["id"]}">{a["title"]}</a>'
+            f'<td>{body}'
             f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div></td>'
             + own
             + f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
               f'{badge}{label}</td>'
               f'<td class="num">{dl}</td>'
-              f'<td class="closes">{closes}</td>'
-              f'<td><a href="#{a["id"]}">the section</a></td></tr>')
+              f'<td class="closes">{closes}</td></tr>')
 
 
 def block(idx, today=None):
@@ -331,16 +355,16 @@ def block(idx, today=None):
 
     head = ('<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
             '<th class="num">Deadline</th><th>What would close it</th>'
-            '<th>Explained in</th></tr></thead>')
+            '</tr></thead>')
     head_no_owner = ('<thead><tr><th>Item</th><th>Status</th>'
                      '<th class="num">Deadline</th><th>What would close it</th>'
-                     '<th>Explained in</th></tr></thead>')
+                     '</tr></thead>')
 
     out = [
         '<section data-scopes="all mad madx mar enduro" id="actions">',
         '  <div class="sechead"><div><h2>Actions &mdash; the one list</h2>'
-        '<p>Every open item in this report, in one place. Each row links to the '
-        'section that explains it, and every section links back here. '
+        '<p>Every open item in this report, in one place. Open a row for the '
+        'detail; there is no second list to keep in step with this one. '
         f'<b>{n_act + n_watch}</b> open &mdash; <b>{n_act}</b> to act on, '
         f'<b>{n_watch}</b> to watch'
         + (f', <b>{n_over}</b> past their proposed date' if n_over else "")
@@ -432,8 +456,10 @@ ACT_JS = r"""  <script>
     var flat = document.getElementById('act-flat');
     var own  = document.getElementById('act-owner');
     var note = document.getElementById('act-count');
+    // only the generated rows carry data-state; a row inside a collapsed
+    // detail's own table must never be caught by the filters
     var rows = Array.prototype.slice.call(
-                 flat.querySelectorAll('tbody tr'));
+                 flat.querySelectorAll('tr[data-state]'));
     var views = Array.prototype.slice.call(
                   sec.querySelectorAll('.actviews button'));
     var chips = Array.prototype.slice.call(

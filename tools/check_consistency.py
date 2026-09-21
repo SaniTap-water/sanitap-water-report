@@ -141,6 +141,20 @@ def main():
     a = ap.parse_args()
 
     idx = read(a.index)
+
+    # The action detail used to live in two tables in the body, one <tr> per
+    # action. It is now data/action_details.json, rendered collapsed inside the
+    # single consolidated list. These checks address an action by its id, so the
+    # old shape is reconstructed here and they read that instead of the page -
+    # the content is identical, only its home moved.
+    _here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    _det_p = os.path.join(_here, "data", "action_details.json")
+    _det = json.load(open(_det_p)) if os.path.isfile(_det_p) else {}
+    ACTSRC = "".join(
+        f'<tr id="{k}">{v["detail"]}</td><td>{v["schedule"]}</td>'
+        f'<td>{v["owner"]}</td></tr>'
+        for k, v in sorted(_det.items()))
+
     prt = read(a.portfolio)
 
     WPOP = js_const(idx, "WPOP")
@@ -1387,7 +1401,7 @@ def main():
         "act-visit-collapse": ("Jan de Graaf", "30 Sep 2026"),
     }
     for aid, (owner, date) in acts.items():
-        m = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', idx, re.S)
+        m = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', ACTSRC, re.S)
         check(f"action present: {aid}", m is not None, "present",
               "present" if m else "MISSING")
         if not m:
@@ -1493,8 +1507,8 @@ def main():
               f"{sum(1 for _, a in yes if not a)} unnamed" if yes else "none")
         for n, aid in yes:
             check(f"divergence {n} has its Action List item: {aid}",
-                  f'<tr id="{aid}">' in idx, aid,
-                  aid if f'<tr id="{aid}">' in idx else "NO SUCH ACTION",
+                  f'<tr id="{aid}">' in ACTSRC, aid,
+                  aid if f'<tr id="{aid}">' in ACTSRC else "NO SUCH ACTION",
                   "a register row marked action_now = yes must have an action")
         check("the register states v1.0 governs and v2.0 applies at renewal",
               "v1.0 governs the current crediting period" in vm
@@ -1512,9 +1526,9 @@ def main():
 
     # ---- 7aa. the standing adherence item and the custody metric -----------
     check("the standing methodology-adherence item is present",
-          '<tr id="act-v2-adherence">' in idx, "present",
-          "present" if '<tr id="act-v2-adherence">' in idx else "MISSING")
-    m_ad = re.search(r'<tr id="act-v2-adherence">(.*?)</tr>', idx, re.S)
+          '<tr id="act-v2-adherence">' in ACTSRC, "present",
+          "present" if '<tr id="act-v2-adherence">' in ACTSRC else "MISSING")
+    m_ad = re.search(r'<tr id="act-v2-adherence">(.*?)</tr>', ACTSRC, re.S)
     if m_ad:
         # STANDING became WATCH when the vocabulary went to three states
         check("the adherence item is owned by James Walker and stands open",
@@ -1525,7 +1539,7 @@ def main():
                              ("act-sensor-definition", "James Walker", "10 Oct 2026"),
                              ("act-printed-year-meaning",
                               "Angelo Nahavitatsara / MadAvance", "17 Oct 2026")):
-        m2 = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', idx, re.S)
+        m2 = re.search(r'<tr id="' + aid + r'">(.*?)</tr>', ACTSRC, re.S)
         check(f"action present: {aid}", m2 is not None, "present",
               "present" if m2 else "MISSING")
         if m2:
@@ -1671,8 +1685,8 @@ def main():
           else "MISSING",
           "the rule is justified by replacement happening at all")
     check("the printed-year question is on the action list",
-          '<tr id="act-printed-year-meaning">' in idx, "present",
-          "present" if '<tr id="act-printed-year-meaning">' in idx else "MISSING",
+          '<tr id="act-printed-year-meaning">' in ACTSRC, "present",
+          "present" if '<tr id="act-printed-year-meaning">' in ACTSRC else "MISSING",
           "the printed year is the key the days-operational chain turns on")
 
     # ---- 7af. repo hygiene: one home per script, one source per region ----
@@ -1776,8 +1790,8 @@ def main():
           "the grid may be made for a year; the sheet asserts none")
     check("the mWater year field is recorded as live and optional",
           "3393e25651c047d0b8a29f34cdcf12d9" in idx
-          and '<tr id="act-mwater-year-required">' in idx
-          and '<tr id="act-mwater-mg-locale">' in idx, "present",
+          and '<tr id="act-mwater-year-required">' in ACTSRC
+          and '<tr id="act-mwater-mg-locale">' in ACTSRC, "present",
           "present" if "3393e25651c047d0b8a29f34cdcf12d9" in idx else "MISSING",
           "optional now, required once v1.4 stock is in the field")
     check("the page names the mWater field that carries the period",
@@ -1794,8 +1808,8 @@ def main():
           "absent" if "l&rsquo;ann&eacute;e couverte" not in idx else "PRESENT",
           "a printed year denotes the print run only")
     check("the v1.3 distribution action is on the list",
-          '<tr id="act-calendar-v13">' in idx, "present",
-          "present" if '<tr id="act-calendar-v13">' in idx else "MISSING",
+          '<tr id="act-calendar-v13">' in ACTSRC, "present",
+          "present" if '<tr id="act-calendar-v13">' in ACTSRC else "MISSING",
           "withdraw year-printed stock as v1.3 arrives")
 
     # ---- 7ah. the printed grid is year-correct ----------------------------
@@ -2036,8 +2050,8 @@ def main():
     for aid in ("act-photo-conditional-on-presence", "act-decommission-inactivity-field",
                 "act-duplicate-codes-sweep", "act-emergency-event-form"):
         check(f"conformance discrepancy is actioned: {aid}",
-              f'<tr id="{aid}">' in idx, "present",
-              "present" if f'<tr id="{aid}">' in idx else "MISSING",
+              f'<tr id="{aid}">' in ACTSRC, "present",
+              "present" if f'<tr id="{aid}">' in ACTSRC else "MISSING",
               "touches carbon evidence")
 
     # The decommissioning rule is a programme decision, not a form edit: it sets
@@ -2052,7 +2066,7 @@ def main():
           and "908" in dtext,
           "recorded", "recorded" if "will not decommission" in dtext else "STILL A QUESTION",
           "docs/decommissioning_rule_question.md")
-    m = re.search(r'<tr id="act-decommission-inactivity-field">.*?</tr>', idx, re.S)
+    m = re.search(r'<tr id="act-decommission-inactivity-field">.*?</tr>', ACTSRC, re.S)
     row = m.group(0) if m else ""
     check("the page states the decision and why it is the conservative one",
           "not decommission or retire water points for inactivity" in idx
@@ -2162,8 +2176,8 @@ def main():
           "stated" if "cannot show a backlog" in idx else "MISSING",
           "the form is created when the repair is finished")
     check("the repair-time action exists with the baseline on it",
-          '<tr id="act-repair-time">' in idx, "present",
-          "present" if '<tr id="act-repair-time">' in idx else "MISSING")
+          '<tr id="act-repair-time">' in ACTSRC, "present",
+          "present" if '<tr id="act-repair-time">' in ACTSRC else "MISSING")
     check("the emergency-event form is settled either way",
           "741" in idx and "does not exist" in idx, "settled",
           "settled" if "741" in idx else "STILL UNVERIFIED",
@@ -2413,7 +2427,7 @@ def main():
     # collapsed blocks where nobody saw them. There is now one list, generated
     # from the detailed rows so the two cannot disagree, and every detailed
     # row links back up to it.
-    acts = re.findall(r'<tr id="(act-[a-z0-9-]+)">(.*?)</tr>', idx, re.S)
+    acts = re.findall(r'<tr id="(act-[a-z0-9-]+)">(.*?)</tr>', ACTSRC, re.S)
     check("the consolidated action list is generated and present",
           '<!-- BEGIN GENERATED action-list' in idx and 'id="actions"' in idx,
           "present", "present" if 'id="actions"' in idx else "MISSING",
@@ -2428,11 +2442,21 @@ def main():
           0 < pos_actions < pos_body, "above the body",
           "above the body" if 0 < pos_actions < pos_body else "TOO LOW",
           "third section, after the fleet summary and the week")
-    nolink = [a for a, body in acts if "act-uplink" not in body]
-    check("every action row links up to the one list",
-          not nolink, f"{len(acts)} linked",
-          f"{len(acts) - len(nolink)} linked" if nolink else f"{len(acts)} linked",
-          ", ".join(nolink[:4]))
+    # The uplink existed because the detail lived in a second table and needed
+    # a way back. There is no second table now: every action is rendered once,
+    # in the list, with its detail collapsed inside its own row. What has to
+    # hold instead is that each action is addressable from the list.
+    unanchored = [k for k in _det if f'id="{k}"' not in idx]
+    check("every action is addressable in the one list",
+          not unanchored, f"{len(_det)} anchored",
+          f"{len(_det) - len(unanchored)} anchored" if unanchored
+          else f"{len(_det)} anchored",
+          ", ".join(unanchored[:4]))
+    stale_uplinks = idx.count("act-uplink")
+    check("no row still carries a link back to a list it now sits in",
+          stale_uplinks == 0, "none",
+          f"{stale_uplinks} uplink(s)" if stale_uplinks else "none",
+          "the uplink was the cost of having two presentations")
     # three states, no more
     labels = set(re.findall(r'<span class="pill (?:ok|warn|crit)">([A-Z]{2,})</span>', idx))
     check("the status vocabulary is exactly ACT / WATCH / OK",
@@ -2449,7 +2473,7 @@ def main():
           else f"{outside.count('>OVERDUE<')} static",
           "it is computed from the deadline at build time")
     # nothing action-shaped may hide inside a collapsed block without a row
-    ids = {a for a, _ in acts}
+    ids = set(_det)
     ACTIONISH = re.compile(r"\bFix:|\bAction:|for the MadAvance team|"
                            r"to be confirmed with James|to be built in a separate session",
                            re.I)
@@ -2507,11 +2531,11 @@ def main():
     # approval by someone who has not read the records manufactures assurance.
     # The action asks for criteria and a checked sample, not a number cleared.
     check("the approvals action asks for a quality check, not bulk approval",
-          '<tr id="act-mwater-approval-policy">' in idx
+          '<tr id="act-mwater-approval-policy">' in ACTSRC
           and "Explicitly out of scope" in idx
           and "a bulk approval by someone who has not read the records is worse than none" in idx,
           "scoped to a sample", "scoped to a sample"
-          if '<tr id="act-mwater-approval-policy">' in idx else "STILL BULK",
+          if '<tr id="act-mwater-approval-policy">' in ACTSRC else "STILL BULK",
           "1,464 old-combined-works records, sampled against written criteria")
     check("approval status is not presented as a caveat on any figure",
           "awaiting approval in mWater" not in idx
@@ -2522,7 +2546,7 @@ def main():
     # minutes (10 and 10) versus the form (7 and 7), and it is Deichmann
     # reporting rather than carbon evidence
     check("the Marolinta count reconciliation is on the list",
-          '<tr id="act-rehab-recording">' in idx
+          '<tr id="act-rehab-recording">' in ACTSRC
           and "the minutes say 10 and 10, the form holds 7 and 7" in idx, "raised",
           "raised" if "the minutes say 10 and 10" in idx else "MISSING",
           "Deichmann reporting, not carbon")
@@ -2578,6 +2602,47 @@ def main():
           else "MISSING",
           "; ".join(f"{k} {v.get('behind_days')}d"
                     for k, v in sorted((fresh.get("per_source") or {}).items())))
+
+    # ---- 7bd. a build that ran and published nothing ---------------------
+    # The weekly build runs in a CLOUD session, not on this computer - which
+    # is why no local scheduler exists and why looking for one proved nothing.
+    # When its push is refused it writes the built pages into the Windows
+    # Downloads folder and asks for a manual push. On 21 September it did
+    # exactly that: ran 05:09-06:01 UTC, pulled mWater, built a complete
+    # week 39 edition, wrote it at 05:59 UTC - and nobody pushed it. Every
+    # staleness check passed, because the published page was internally
+    # consistent with its own fortnight-old extract.
+    #
+    # "Succeeded" from the scheduled task does not mean "published".
+    drop_p = os.path.join(repo_root, "data", "build_drop.json")
+    drop = json.load(open(drop_p)) if os.path.isfile(drop_p) else {}
+    pub_issue = None
+    mh = re.search(r"BEGIN GENERATED masthead.*?END GENERATED masthead", idx, re.S)
+    if mh:
+        m_ = re.search(r"issued\s+\w{3}\s+(\d{1,2})\s+(\w+)\s+(\d{4})", mh.group(0))
+        if m_:
+            for fmt in ("%d %b %Y", "%d %B %Y"):
+                try:
+                    pub_issue = datetime.datetime.strptime(
+                        f"{m_.group(1)} {m_.group(2)} {m_.group(3)}", fmt).date()
+                    break
+                except ValueError:
+                    pass
+    built_issue = drop.get("built_issue_date")
+    built_issue = datetime.date.fromisoformat(built_issue) if built_issue else None
+    check("no completed build is newer than the published page",
+          not (pub_issue and built_issue and built_issue > pub_issue),
+          "nothing unpublished",
+          f"build of {built_issue} not published (page is {pub_issue})"
+          if (pub_issue and built_issue and built_issue > pub_issue)
+          else "nothing unpublished",
+          f"edition {drop.get('built_edition')} built "
+          f"{drop.get('built_at_utc')} in {drop.get('drop_dir')}"
+          if drop.get("files") else "no build output waiting")
+    check("the build drop is inspected, not assumed empty",
+          bool(drop) and "checked" in drop, "inspected",
+          "inspected" if drop.get("checked") else "NEVER LOOKED",
+          "tools/check_build_drop.py reads the Downloads fallback")
 
     # ---- 7bc. a stale extract FAILS the build, it does not warn -----------
     # This is the check that was missing. The extract sat at 7 September for
@@ -2733,9 +2798,9 @@ def main():
           "recorded" if "would not exist retrospectively" in idx else "MISSING",
           "if Marolinta were ever brought into the carbon programme")
     check("the form question and the programme question have separate owners",
-          '<tr id="act-rehab-recording">' in idx and '<tr id="act-fleet-growth">' in idx,
+          '<tr id="act-rehab-recording">' in ACTSRC and '<tr id="act-fleet-growth">' in ACTSRC,
           "two items", "two items"
-          if '<tr id="act-fleet-growth">' in idx else "MERGED",
+          if '<tr id="act-fleet-growth">' in ACTSRC else "MERGED",
           "MadAvance restores recording; the Head of Carbon owns the pipeline")
 
     # ---- 7av. every table a script fills must actually exist ------------
@@ -2836,7 +2901,9 @@ def main():
     genblk = idx[gb_:ge_] if 0 <= gb_ < ge_ else ""
     # rows are rendered twice - once flat, once grouped by owner - so count
     # them in the flat table only, which is the one the filters act on
-    _ft = re.search(r'id="act-flat".*?</table>', genblk, re.S)
+    # nested tables live inside the collapsed detail of some rows, so bound
+    # the flat table by the block that follows it rather than by </table>
+    _ft = re.search(r'id="act-flat".*?(?=<div id="act-owner")', genblk, re.S)
     flatblk = _ft.group(0) if _ft else ""
     outside_ = idx[:gb_] + idx[ge_:] if 0 <= gb_ < ge_ else ""
     want_views = ['data-view="act"', 'data-view="nodate"',
@@ -2961,7 +3028,7 @@ def main():
           "the Attention list and the Marolinta gaps panel are action rows now")
     n_cond = len(json.load(open(os.path.join(repo_root, "data",
                                              "action_conditions.json"))))
-    n_rows = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
+    n_rows = len(_det)
     check("every action row carries a closing condition or says it has none",
           n_cond == n_rows, "all classified", f"{n_cond} of {n_rows}",
           "data / form / artefact / decision, or an explicit none")
@@ -3030,10 +3097,19 @@ def main():
     check("no action row sits outside the one list",
           not orphans, "none", f"{len(orphans)} orphaned" if orphans else "none",
           f"{n_tables} action tables, every row addressable")
-    check("the Open actions section defers to the one list",
-          "Every row here also appears in" in idx, "defers",
-          "defers" if "Every row here also appears in" in idx else "RIVAL LIST",
-          "it holds the explanations, not a second list")
+    # The Open actions section and the Moramanga field-visit table were both
+    # second presentations of rows the consolidated list already carried. The
+    # detail moved into data/action_details.json and is rendered collapsed
+    # inside the one list; neither section exists any more.
+    rival_heads = [h for h in ("<h2>Open actions</h2>",
+                               "Moramanga field visit") if h in idx]
+    check("no section re-lists the action rows",
+          not rival_heads and not re.search(r'<tr id="act-', idx),
+          "one list only",
+          ", ".join(rival_heads) or ("stray <tr id=act-> in the body"
+                                     if re.search(r'<tr id="act-', idx)
+                                     else "one list only"),
+          f"{len(_det)} actions, rendered once, detail collapsed in the row")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):

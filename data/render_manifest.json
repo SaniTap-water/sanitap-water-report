@@ -30,16 +30,14 @@
   "The stroke test — how monitored volume gets measured",
   "Register corrections and exclusions",
   "Carbon file — Gold Standard programme of activities (PoA) GS12600 / voluntary project activity (VPA) GS12601",
-  "Impact",
   "Cookstoves and water: the overlap, measured",
   "Carbon data gaps — the list Jan drives",
-  "Moramanga field visit — actions for Jan and the Endur’O team",
+  "Impact",
   "Gold Standard design review — what is still open",
-  "Open actions",
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 26637,
+ "height": 22852,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
@@ -51,7 +49,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 33,
+ "sections": 31,
  "tables": {
   "corrtbl": {
    "hidden": false,

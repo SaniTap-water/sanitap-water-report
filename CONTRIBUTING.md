@@ -273,13 +273,27 @@ Carried forward every edition. `tools/check_consistency.py` asserts each of them
 On 21 September the page reported the week to 7 September. Three separate
 faults had to line up, and each of them passed every check:
 
-1. **There was no scheduled build.** No cron entry, no systemd timer, no
-   Windows task, nothing in Claude's job list. Nothing ran at 05:09 that
-   morning — no process, no file written between 04:30 and 07:00, no commit
-   before 07:52 — and the machine was up throughout.
-2. **The pull was not code.** Nothing in this repository read or wrote the
-   extracts, so when the manual step stopped happening there was nothing to
-   fail. `tools/pull_extract.py` is that step, now written down.
+1. **The build ran, and published nothing.** ~~There was no scheduled build.~~
+   *Corrected 21 September:* the weekly build runs in a **cloud session**, not
+   on this computer, which is why no cron entry, systemd timer or Windows task
+   exists here — looking for one locally proved nothing. It fired at 05:09 UTC
+   and finished at 06:01. Its push was refused, so it did what its instructions
+   say: wrote `index.html` and `routes.html` into `C:\Users\bushp\Downloads`
+   at 05:59 UTC, archived week 38 into `Downloads\sanitap-wk39\editions\`,
+   and asked for a manual push. **Nobody pushed it.** The built edition — week
+   39, edition 11, 735 points, records to 14 September — sat in Downloads while
+   the published page kept its 7 September data, and every staleness check
+   passed because the published page was internally consistent with its own
+   stale extract.
+2. **The pull ran, onto a filename nothing reads.** The cloud build reaches
+   mWater through this computer, and it did: `repairs.csv` was written here at
+   04:54 UTC, fifteen minutes before the build started, holding records to
+   14 September — and the built page carries exactly that date, so only that
+   pull can have supplied it. But `repairs.csv` is not a canonical name. The
+   canonical `reparation_apres_panne.csv` stayed at 7 September, which is what
+   any later investigation finds. The pull was also not code in this
+   repository; `tools/pull_extract.py` is that step, now written down, and it
+   writes canonical names only.
 3. **The exporter silently lost the newest rows.** `mwater_export_csv` pages
    with `skip`/`limit` and no sort order. mWater's row order shifts between
    requests, so a long export duplicates some rows and drops others, then
@@ -332,3 +346,22 @@ ever loses its action row.
 `S.never` is left alone for the same reason: it counts points with no works
 record of any kind, including rehabilitation and construction, and this pull
 covers neither.
+
+### "Succeeded" is not "published"
+
+The scheduled task reporting success means **the build completed**, not that
+anything reached the site. When its push is refused it writes the built pages
+into `C:\Users\bushp\Downloads` and asks for a manual push — and if nobody
+acts, the site keeps last week's page while the task's own log says success.
+
+`tools/check_build_drop.py` reads that folder and records what is waiting.
+`check_consistency.py` then **fails** when a completed build carries a later
+issue date than the published page, so an edition cannot be built, dropped and
+forgotten. Run it before every publish:
+
+```
+python3 tools/check_build_drop.py --write
+```
+
+Check the Downloads folder whenever the task reports success and the site has
+not moved.
