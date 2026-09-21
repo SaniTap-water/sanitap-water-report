@@ -365,3 +365,49 @@ python3 tools/check_build_drop.py --write
 
 Check the Downloads folder whenever the task reports success and the site has
 not moved.
+
+## The scheduled publisher
+
+The cloud build pushes if it can. When it cannot it writes the edition into
+`C:\Users\bushp\Downloads` and asks for a manual push — and on 21 September
+nobody pushed, so a complete edition sat there all day. `SaniTapWeeklyPublish`
+removes the person from that loop.
+
+**Mechanism: Windows Task Scheduler invoking WSL.** Not a systemd timer inside
+WSL: WSL is not a persistent machine, it shuts down when its last process
+exits, so a timer inside it only fires when something else has already started
+it. Task Scheduler runs whenever Windows is on and *starts* WSL itself.
+
+```
+wsl.exe -d Ubuntu -- /home/bushp/sanitap-water-report/tools/publish_waiting.sh
+```
+
+**Schedule:** Mondays 11:00 local (07:00 UTC), one hour after the cloud build's
+06:01 UTC finish, then every 2 hours for 12 hours — 11:00, 13:00, 15:00, 17:00,
+19:00, 21:00, 23:00 — in case the build ran late or the machine was asleep. A
+run with nothing waiting costs a few seconds and logs one line, so retrying is
+cheap.
+
+**If the machine is off at the scheduled time:** `StartWhenAvailable` is set,
+so Windows runs the task as soon as it next boots. If the machine stays off all
+week the edition simply waits in Downloads; the next Monday's run publishes
+whichever candidate is there, provided it is newer than the published page and
+passes both gates.
+
+**What it will not do.** It refuses, publishes nothing and logs the reason
+when: the working tree is dirty (someone's uncommitted work would be swept
+into the edition); the candidate has no readable issue date; the candidate is
+not newer than the published page; or either gate fails. It verifies the
+candidate **where it lies** before copying — copying first and checking after
+leaves the repository half-written — re-verifies in the repository after
+copying, and `git reset --hard` + `git clean` the working tree if anything
+after the first copied byte fails.
+
+Every run appends one line to `logs/publisher.log`, success or not, so a later
+run and a later reader can both see what happened.
+
+```
+tools/publish_waiting.sh              # what the task runs
+tools/publish_waiting.sh --dry-run    # verify and report, never write
+SANITAP_DROP=/some/fixture tools/publish_waiting.sh   # proof runs
+```

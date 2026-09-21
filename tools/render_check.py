@@ -123,9 +123,28 @@ def probe(page_path):
     return out
 
 
+def page_arg(argv):
+    """--page PATH gates a candidate where it lies, before anything is copied.
+
+    A candidate must be verified in place: copying first and checking after
+    leaves the repository half-written if the check fails.
+    """
+    if "--page" in argv:
+        i = argv.index("--page")
+        if i + 1 >= len(argv):
+            sys.exit("render_check: --page needs a path")
+        p = os.path.abspath(argv[i + 1])
+        if not os.path.isfile(p):
+            sys.exit(f"render_check: no such page {p}")
+        return p
+    return PAGE
+
+
 def main():
-    if "--manifest" in sys.argv[1:]:
-        out = probe(PAGE)
+    argv = sys.argv[1:]
+    page = page_arg(argv)
+    if "--manifest" in argv:
+        out = probe(page)
         json.dump(out, open(MANIFEST, "w", encoding="utf8"),
                   indent=1, sort_keys=True, ensure_ascii=False)
         print(f"render manifest written: {len(out['headings'])} headings, "
@@ -135,7 +154,7 @@ def main():
     if not os.path.exists(MANIFEST):
         sys.exit("render_check: no manifest; run --manifest first")
     want = json.load(open(MANIFEST, encoding="utf8"))
-    got = probe(PAGE)
+    got = probe(page)
     fails = []
 
     gone = [h for h in want["headings"] if h not in got["headings"]]
