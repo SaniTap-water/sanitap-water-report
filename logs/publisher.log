@@ -1,3 +1,5 @@
 2026-09-21T15:39:27+00:00  [dry-run] nothing newer: candidate 2026-09-21 (ed 11) is not after published 2026-09-21 (ed 1)
 2026-09-21T15:40:20+00:00  nothing waiting: no index.html+routes.html in /tmp/claude-1000/-home-bushp/953fd242-f630-4b45-8b8a-fcc6b84ec79e/scratchpad/drop-empty
 2026-09-21T15:40:32+00:00  REFUSED: working tree is not clean, 4 path(s) modified - publishing would mix someone's work into the edition
+2026-09-21T15:42:07+00:00  nothing waiting: no index.html+routes.html in /tmp/claude-1000/-home-bushp/953fd242-f630-4b45-8b8a-fcc6b84ec79e/scratchpad/drop-empty
+2026-09-21T15:42:07+00:00  REFUSED: working tree is not clean, 1 path(s) modified - publishing would mix someone's work into the edition

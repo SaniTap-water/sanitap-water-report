@@ -96,11 +96,15 @@ def main():
             f"published {p_date} (ed {p_ed})")
         return 0
 
-    dirty = run(["git", "status", "--porcelain"]).stdout.strip()
+    # logs/ is this tool's own bookkeeping - it writes a line every run, so
+    # counting it as "someone's uncommitted work" would make the second run
+    # of the day refuse because the first one logged.
+    dirty = [l for l in run(["git", "status", "--porcelain"]).stdout.splitlines()
+             if l.strip() and not l[3:].startswith("logs/")]
     if dirty:
-        log(f"{tag}REFUSED: working tree is not clean, "
-            f"{len(dirty.splitlines())} path(s) modified - publishing would "
-            "mix someone's work into the edition")
+        log(f"{tag}REFUSED: working tree is not clean, {len(dirty)} path(s) "
+            "modified - publishing would mix someone's work into the edition: "
+            + ", ".join(l[3:] for l in dirty[:3]))
         return 1
 
     ok, why = gates(cand)
