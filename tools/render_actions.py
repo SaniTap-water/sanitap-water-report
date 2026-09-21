@@ -64,11 +64,41 @@ def parse_deadline(text):
         return None
 
 
+def row_bodies(idx):
+    """(id, inner html) for each action row, nesting-aware.
+
+    A detail cell may itself contain a table - the approvals row carries a
+    per-form breakdown - so a non-greedy match to the first </tr> silently
+    truncates the row and drops it from the list. That happened once; the
+    count assertion at the end of actions() is what stops it happening again.
+    """
+    for m in re.finditer(r'<tr id="(act-[a-z0-9-]+)">', idx):
+        i = m.end()
+        depth = 1
+        for tok in re.finditer(r"<tr\b|</tr>", idx[i:]):
+            depth += 1 if tok.group(0).startswith("<tr") else -1
+            if depth == 0:
+                yield m.group(1), idx[i:i + tok.start()]
+                break
+
+
 def actions(idx):
     out = []
-    for m in re.finditer(r'<tr id="(act-[a-z0-9-]+)">(.*?)</tr>', idx, re.S):
-        aid, body = m.group(1), m.group(2)
-        cells = re.findall(r"<td[^>]*>(.*?)</td>", body, re.S)
+    for aid, body in row_bodies(idx):
+        # top-level cells only: a nested table's <td>s must not be mistaken
+        # for this row's own
+        cells, depth, start = [], 0, None
+        for tok in re.finditer(r"<table\b|</table>|<td\b[^>]*>|</td>", body):
+            s = tok.group(0)
+            if s.startswith("<table"):
+                depth += 1
+            elif s == "</table>":
+                depth -= 1
+            elif depth == 0 and s.startswith("<td"):
+                start = tok.end()
+            elif depth == 0 and s == "</td>" and start is not None:
+                cells.append(body[start:tok.start()])
+                start = None
         if len(cells) < 3:
             continue
         title = re.search(r"<b>(.*?)</b>", cells[0], re.S)
@@ -84,6 +114,13 @@ def actions(idx):
         out.append(dict(id=aid, title=title, owner=strip(cells[2]) or "—",
                         state=state, label=label, deadline=dl_raw, due=due,
                         criterion=crit))
+    declared = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
+    if len(out) != declared:
+        got = {a["id"] for a in out}
+        missed = [m.group(1) for m in re.finditer(r'<tr id="(act-[a-z0-9-]+)">', idx)
+                  if m.group(1) not in got]
+        sys.exit(f"render_actions: {declared} action rows in index.html but only "
+                 f"{len(out)} parsed - dropped: {', '.join(missed)}")
     return out
 
 

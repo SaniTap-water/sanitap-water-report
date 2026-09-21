@@ -2455,6 +2455,38 @@ def main():
           not stale, "none", ", ".join(stale) if stale else "none",
           f"{len(closed_ids)} closed this period")
 
+    # ---- 7ar. what the source checks established, 21 September 2026 -----
+    # Each of these replaced a note that was wrong about its own cause. They
+    # are asserted so the corrected statement cannot quietly revert.
+    check("the register note says what the non-portfolio records are",
+          "What the register holds beyond the portfolio" in idx
+          and "One known defect, not yet fixed" not in idx, "corrected",
+          "corrected" if "What the register holds beyond the portfolio" in idx
+          else "OLD NOTE BACK",
+          "the page does not read district from form answers; it matches the record")
+    check("the duplicate-registration item is settled, not open",
+          "Duplicate registrations &mdash; survey records, not portfolio points" in idx,
+          "settled", "settled"
+          if "survey records, not portfolio points" in idx else "STILL OPEN",
+          "3 of the 4 flagged codes are not portfolio points")
+    check("the Marolinta section states its purpose and its scope",
+          "pre-portfolio view of the Marolinta works" in idx
+          and "not part of the portfolio" in idx, "stated",
+          "stated" if "pre-portfolio view" in idx else "MISSING",
+          "1 of 13 rows is a managed point")
+    check("both rehabilitation forms are described with their real usage",
+          "never received a single response" in idx, "stated",
+          "stated" if "never received a single response" in idx else "MISSING",
+          "no rehabilitation logged on either form this year")
+    check("the decommissioning SOPs are not called obsolete",
+          "Neither SOP is obsolete" in idx, "stated",
+          "stated" if "Neither SOP is obsolete" in idx else "MISSING",
+          "only the 95% pause clause is superseded")
+    check("the approvals action is scoped to carbon evidence",
+          "2,334" in idx and "Deliberately out of scope" in idx, "scoped",
+          "scoped" if "Deliberately out of scope" in idx else "STILL RAW TOTAL",
+          "5,573 raw overstated the job by more than double")
+
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
     check("the SOP/form conformance sweep is recorded",
