@@ -2497,11 +2497,14 @@ def main():
           and "still awaiting approval" not in idx, "absent",
           "absent" if "awaiting approval in mWater" not in idx else "PRESENT",
           "approval is not a data-quality signal")
-    check("the rehabilitation recording gap is raised as an evidence hole",
+    # narrowed 22 September: this is a count reconciliation against the SLT
+    # minutes (10 and 10) versus the form (7 and 7), and it is Deichmann
+    # reporting rather than carbon evidence
+    check("the Marolinta count reconciliation is on the list",
           '<tr id="act-rehab-recording">' in idx
-          and "recording, not activity" in idx, "raised",
-          "raised" if '<tr id="act-rehab-recording">' in idx else "MISSING",
-          "7 rehabilitations in 2026, none on a rehabilitation form")
+          and "the minutes say 10 and 10, the form holds 7 and 7" in idx, "raised",
+          "raised" if "the minutes say 10 and 10" in idx else "MISSING",
+          "Deichmann reporting, not carbon")
 
     # ---- 7as. a caption may not name a date in prose --------------------
     # "Activity logged in mWater in the 7 days to 7 September" sat above
@@ -2572,20 +2575,58 @@ def main():
           "hideEmptyTableWraps hides any .tablewrap with no rows")
 
     # ---- 7au. the growth finding, and its two owners --------------------
-    check("the page states that the fleet has not grown in nine months",
-          "has not grown in nine months" in idx
-          and "broken at the recording step" in idx, "stated",
-          "stated" if "has not grown in nine months" in idx else "MISSING",
-          "50 records created, none entering the portfolio")
-    check("the growth finding carries what the unevidenced points are worth",
-          "28.58" in idx and "200</b> tCO<sub>2</sub>e a year" in idx, "quantified",
-          "quantified" if "28.58" in idx else "MISSING",
-          "7 points at the registered per-point figure")
+    # Corrected 22 September: the 2026 works are Marolinta, Deichmann-funded
+    # and outside the carbon programme, so the lighter progress form is the
+    # right record and not a failure. The earlier note framed it as lost
+    # carbon, which it is not.
+    check("the page states the carbon fleet has not grown, without alarm",
+          "carbon fleet has not grown since 1 January 2026" in idx
+          and "that is the right form for uncredited work" in idx, "stated",
+          "stated" if "carbon fleet has not grown since 1 January 2026" in idx
+          else "MISSING",
+          "Marolinta is outside the carbon programme")
+    check("the Marolinta work is not presented as lost carbon",
+          "28.58" not in idx and "200</b> tCO<sub>2</sub>e a year" not in idx,
+          "absent", "absent" if "28.58" not in idx else "STILL QUANTIFIED",
+          "uncredited work carries no forgone tonnage")
+    check("the retrospective-evidence consequence is recorded",
+          "would not exist retrospectively" in idx, "recorded",
+          "recorded" if "would not exist retrospectively" in idx else "MISSING",
+          "if Marolinta were ever brought into the carbon programme")
     check("the form question and the programme question have separate owners",
           '<tr id="act-rehab-recording">' in idx and '<tr id="act-fleet-growth">' in idx,
           "two items", "two items"
           if '<tr id="act-fleet-growth">' in idx else "MERGED",
           "MadAvance restores recording; the Head of Carbon owns the pipeline")
+
+    # ---- 7av. every table a script fills must actually exist ------------
+    # A careless wrap once ate the opening <table id="downtbl"> tag and left a
+    # stray ">" behind. The page still parsed, the section balance still
+    # matched, and the table simply vanished. This is the cheap guard: if a
+    # script writes to "#x tbody", there must be a <table id="x"> in the
+    # markup to write into.
+    missing_tables = []
+    for m in re.finditer(r"""\$\('#([A-Za-z0-9_-]+) tbody'\)""", idx):
+        k = m.group(1)
+        if re.search(r'<table[^>]*id="%s"' % re.escape(k), idx):
+            continue
+        # a write guarded anywhere by `if($('#x tbody'))` is defensive, not a
+        # fault: the table was removed and the writer copes. The guard sits on
+        # the first reference; the write itself is the second.
+        if re.search(r"""if\s*\(\s*\$\('#%s tbody'\)\s*\)""" % re.escape(k), idx):
+            continue
+        missing_tables.append(k)
+    check("every table a script fills exists in the markup",
+          not missing_tables, "all present",
+          ", ".join(sorted(set(missing_tables))) if missing_tables else "all present",
+          "a mangled opening tag makes a table vanish silently")
+    # Tag balance, on the MARKUP only: a template literal inside <script> emits
+    # tags as text and counting those makes every total meaningless.
+    markup = re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S)
+    for tag in ("table", "thead", "tbody"):
+        o = len(re.findall(r"<" + tag + r"[\s>]", markup))
+        c = markup.count("</%s>" % tag)
+        check(f"index.html: <{tag}> balanced", o == c, f"{o} open", f"{c} close")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
