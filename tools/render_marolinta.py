@@ -28,6 +28,70 @@ def wp_link(code, ids):
             f'<span class="mono">{code}</span></a>')
 
 
+def headline():
+    """What the Marolinta works actually are, before the record detail.
+
+    The scope counter reports 5 points and 1,441 people. Both measure the
+    intersection of Marolinta with the managed register, not the work: only
+    ONE of those five appears on the borehole-progress form at all.
+    """
+    w = json.load(open(os.path.join(REPO, "data", "marolinta_works.json")))
+    m, mo = w["marolinta"], w["moramanga"]
+    reh = m["by_type_final"].get("Réhabilitation", 0)
+    new = m["by_type_final"].get("Nouvelle construction", 0)
+    sh = m["shortfall"]
+    ben = json.load(open(os.path.join(REPO, "data", "marolinta_benef.json")))
+    return (
+      '<div class="actstats" style="margin-bottom:14px">\n'
+      f'  <div class="stat"><b>{m["points_final"]}</b><span>water points touched by '
+      'the borehole-progress form, <b>all records final</b> &mdash; no drafts'
+      '</span></div>\n'
+      f'  <div class="stat"><b>{new} + {reh}</b><span>new constructions and '
+      'rehabilitations recorded</span></div>\n'
+      f'  <div class="stat"><b>{sh["Nouvelle construction"] + sh["Réhabilitation"]}</b>'
+      '<span>works reported to date with <b>no record at all</b> &mdash; '
+      f'{sh["Nouvelle construction"]} new, {sh["Réhabilitation"]} rehabilitations'
+      '</span></div>\n'
+      f'  <div class="stat"><b>{ben["total"]:,}</b><span>people served, as the field '
+      'team recorded it on each record</span></div>\n'
+      '</div>\n'
+      '<p class="note"><b>These count the work, not the register.</b> The scope '
+      'button above reports <b>5</b> water points and <b>1,441</b> people for '
+      'Marolinta. That is the intersection of Marolinta with the actively managed '
+      'register &mdash; the five boreholes that appear in the 736 reconciliation as '
+      '<i>actively managed but never first-rehabilitated</i> &mdash; and <b>only one '
+      f'of those five</b> appears on this form at all. The work is <b>{m["points_final"]}</b> '
+      'points.</p>\n'
+      '<p class="note"><b>Against what Jan reported: 10 new boreholes and 10 '
+      f'rehabilitations to date.</b> The form holds <b>{new}</b> new constructions and '
+      f'<b>{reh}</b> rehabilitations, all final. So <b>{sh["Nouvelle construction"]} new '
+      f'boreholes and {sh["Réhabilitation"]} rehabilitations have no record at all</b> '
+      '&mdash; not a draft, not an incomplete form, nothing. '
+      '<span class="muted">An earlier note here assumed all 18 responses on this form '
+      'were Marolinta. They are not: the form is deployed twice, and <b>5 responses '
+      f'&mdash; {mo["final"]} final and {mo["draft"]} drafts &mdash; belong to the '
+      '<b>Moramanga</b> deployment and are owned by the Moramanga section. Marolinta '
+      'has no drafts.</span></p>\n'
+      '<p class="note"><b>People served is the field team&rsquo;s own count, not a '
+      f'WorldPop allocation.</b> The <b>{ben["total"]:,}</b> above is the sum of the '
+      f'beneficiaries recorded on each of the <b>{ben["n"]}</b> records, '
+      f'{ben["lo"]}&ndash;{ben["hi"]} per point. <b>A WorldPop figure cannot be given '
+      'for these points yet:</b> the population model has only ever been run over the '
+      f'{ben["managed"]} managed points, so <b>{ben["with_wpop"]} of {ben["n"]}</b> '
+      'carries an allocation. <b>None was excluded for want of a coordinate</b> &mdash; '
+      f'all {ben["n"]} carry one. The points also sit within about a kilometre of each '
+      'other, so per-point service areas overlap almost completely and summing them '
+      'without the model&rsquo;s overlap split would double-count badly. '
+      '<a href="#act-population-rerun">Re-running the population model</a> over this '
+      'set is what produces a comparable figure.</p>\n'
+      '<p class="note"><b>No Marolinta point carries a preventive visit, a repair or a '
+      'water-quality result.</b> Not one of the ' + str(m["points_final"]) + ' has any '
+      'maintenance or testing record of any kind, so none can enter the carbon file '
+      'however the works are recorded. <b>Marolinta is Deichmann-funded and outside the '
+      'carbon programme</b>: it appears in no emission-reduction figure on this page, '
+      'and the scope button exists to show the work, not to credit it.</p>\n')
+
+
 def table():
     idx = open(os.path.join(REPO, "index.html"), encoding="utf8").read()
     m = re.search(r"\bconst REG\s*=\s*", idx)
@@ -36,7 +100,7 @@ def table():
     by = {r["code"]: r for r in adm["records"]}
     ids_p = os.path.join(REPO, "data", "mwater_point_ids.json")
     ids = json.load(open(ids_p)) if os.path.isfile(ids_p) else {}
-    out = ['<div class="tablewrap"><table class="ind"><thead><tr>'
+    out = [headline(), '<div class="tablewrap"><table class="ind"><thead><tr>'
            '<th>Pump</th><th class="num">Date</th><th>Intervention</th>'
            '<th>Status</th><th class="num">Beneficiaries</th>'
            '<th>District / commune</th><th>Fokontany</th></tr></thead><tbody>']

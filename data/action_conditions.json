@@ -220,19 +220,34 @@
   "when_satisfied": "OK"
  },
  "act-mar-functional-status": {
-  "form": "marolinta-borehole-progress",
-  "kind": "form",
-  "predicate": {
-   "required": true,
-   "text": "Statut fonctionnel"
-  },
-  "says": "closes when the functional-status question is required on the borehole-progress form"
+  "kind": "data",
+  "metric": "marolinta_blank_status",
+  "op": "==",
+  "says": "closes when no Marolinta record leaves the functional status blank",
+  "target": 0,
+  "when_satisfied": "OK"
  },
  "act-mar-missing-boreholes": {
   "kind": "data",
   "metric": "marolinta_new_borehole_records",
   "op": ">=",
   "says": "closes when ten new-borehole records are on the progress form",
+  "target": 10,
+  "when_satisfied": "OK"
+ },
+ "act-mar-missing-rehabs": {
+  "kind": "data",
+  "metric": "marolinta_rehabs_final",
+  "op": ">=",
+  "says": "closes when final R\u00e9habilitation records on the borehole form reach 10",
+  "target": 10,
+  "when_satisfied": "OK"
+ },
+ "act-mar-new-construction-gap": {
+  "kind": "data",
+  "metric": "marolinta_new_final",
+  "op": ">=",
+  "says": "closes when final Nouvelle construction records on the Marolinta deployment reach 10",
   "target": 10,
   "when_satisfied": "OK"
  },
@@ -305,6 +320,14 @@
  "act-mor-remove-reclassify-two-test": {
   "kind": "none",
   "says": "no closing condition: reclassification leaves the records in place, so nothing counts down"
+ },
+ "act-mor-submit-drafts": {
+  "kind": "data",
+  "metric": "moramanga_draft_records",
+  "op": "==",
+  "says": "closes when all four Moramanga draft records reach status final",
+  "target": 0,
+  "when_satisfied": "OK"
  },
  "act-move-stroke-test-sop": {
   "folder": "Water Documents/SOPs",

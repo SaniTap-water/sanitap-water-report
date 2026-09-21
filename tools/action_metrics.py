@@ -179,6 +179,34 @@ def _m24():
     return max(0, tot - inm)
 
 
+@metric("marolinta_rehabs_final",
+        "final Réhabilitation records on the Marolinta deployment")
+def _mw1():
+    w = json.load(open(d("data", "marolinta_works.json")))
+    return w["marolinta"]["by_type_final"].get("Réhabilitation", 0)
+
+
+@metric("marolinta_new_final",
+        "final Nouvelle construction records on the Marolinta deployment")
+def _mw2():
+    w = json.load(open(d("data", "marolinta_works.json")))
+    return w["marolinta"]["by_type_final"].get("Nouvelle construction", 0)
+
+
+@metric("marolinta_blank_status",
+        "Marolinta records leaving the functional status blank")
+def _mw3():
+    return json.load(open(d("data", "marolinta_works.json"))
+                     )["marolinta"]["blank_functional_status"]
+
+
+@metric("moramanga_draft_records",
+        "borehole-progress records on the Moramanga deployment never submitted")
+def _mw4():
+    return json.load(open(d("data", "marolinta_works.json"))
+                     )["moramanga"]["draft"]
+
+
 @metric("transcription_sheets_done",
         "calendars transcribed in the validation round")
 def _m15():

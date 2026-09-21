@@ -29,10 +29,20 @@
   "extract_lag_days": {
    "says": "days the extract on this page runs behind mWater",
    "source": "local",
-   "value": 7
+   "value": 0
+  },
+  "marolinta_blank_status": {
+   "says": "Marolinta records leaving the functional status blank",
+   "source": "local",
+   "value": 6
   },
   "marolinta_new_borehole_records": {
    "says": "new-borehole records on the Marolinta progress form",
+   "source": "local",
+   "value": 6
+  },
+  "marolinta_new_final": {
+   "says": "final Nouvelle construction records on the Marolinta deployment",
    "source": "local",
    "value": 6
   },
@@ -51,10 +61,20 @@
    "source": "local",
    "value": 13
   },
+  "marolinta_rehabs_final": {
+   "says": "final R\u00e9habilitation records on the Marolinta deployment",
+   "source": "local",
+   "value": 7
+  },
   "marolinta_three_points_no_photograph": {
    "says": "of the three named Marolinta points, how many still have no photograph",
    "source": "mWater",
    "value": 3
+  },
+  "moramanga_draft_records": {
+   "says": "borehole-progress records on the Moramanga deployment never submitted",
+   "source": "local",
+   "value": 4
   },
   "photographs_misfiled": {
    "says": "photographs filed on a calendar question that are not calendars",
@@ -99,7 +119,7 @@
   "pumps_reduced_performance": {
    "says": "pumps reported with a mechanical or yield fault, still counted working",
    "source": "local",
-   "value": 55
+   "value": 53
   },
   "register_chain_unresolved": {
    "says": "register records still unclassified against the maintained fleet",

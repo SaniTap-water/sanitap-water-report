@@ -106,6 +106,25 @@ def probe(page_path):
         pg.goto("file://" + page_path, wait_until="load")
         pg.wait_for_timeout(1200)
         out = pg.evaluate(PROBE)
+        # Portfolio by partner, per scope. "not in scope" was ambiguous: it
+        # read as a gap in the data rather than as a filter, and nobody could
+        # say from the page whether Endur'O was being excluded or was simply
+        # missing. Each button now pins what the Endur'O column must render.
+        out["partner"] = {}
+        for s in ("all", "mad", "madx", "mar", "enduro"):
+            try:
+                pg.click(f'#scopebar button[data-s="{s}"]')
+                pg.wait_for_timeout(250)
+                out["partner"][s] = pg.evaluate(
+                    """() => {const r=document.querySelectorAll('#ptable tbody tr');
+                       if(!r.length) return null;
+                       const c=r[0].querySelectorAll('td');
+                       return {end:c[2].textContent.trim().replace(/\\s+/g,' '),
+                               tot:c[3].textContent.trim()};}""")
+            except Exception:                                  # noqa: BLE001
+                out["partner"][s] = None
+        pg.click('#scopebar button[data-s="all"]')
+        pg.wait_for_timeout(250)
         # scope behaviour: each button must change what is visible
         scopes = {}
         for s in out["buttons"]:
@@ -180,6 +199,28 @@ def main():
         if n and (m is None or m == 0):
             fails.append(f"scope '{s}' now shows {m} sections (was {n})")
 
+    # Endur'O must carry its systems under the two scopes that cover it, and
+    # must say plainly that it is filtered - not absent - under the three that
+    # do not.
+    COVERS = {"all": True, "enduro": True, "mad": False, "madx": False,
+              "mar": False}
+    for s, covered in COVERS.items():
+        cell = (got.get("partner") or {}).get(s)
+        if cell is None:
+            fails.append(f"scope {s}: the partner table rendered no rows")
+            continue
+        end = cell.get("end", "")
+        if covered:
+            if "piped systems" not in end or "not in this scope" in end:
+                fails.append(f"scope {s}: Endur'O must show its piped systems, "
+                             f"got {end[:60]!r}")
+        else:
+            if "not in this scope" not in end:
+                fails.append(f"scope {s}: Endur'O must say it is filtered out, "
+                             f"got {end[:60]!r}")
+            elif "does not cover it" not in end:
+                fails.append(f"scope {s}: the exclusion must name the scope, "
+                             f"got {end[:60]!r}")
     if got.get("off_measure"):
         for x in got["off_measure"]:
             fails.append(f"section is off the page measure "

@@ -37,11 +37,33 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 22962,
+ "height": 23654,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
  "page_errors": [],
+ "partner": {
+  "all": {
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributes",
+   "tot": "867"
+  },
+  "enduro": {
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributes",
+   "tot": "131"
+  },
+  "mad": {
+   "end": "not in this scope — “MadAvance — all” does not cover it",
+   "tot": "736"
+  },
+  "madx": {
+   "end": "not in this scope — “MadAvance excl. Marolinta” does not cover it",
+   "tot": "731"
+  },
+  "mar": {
+   "end": "not in this scope — “Marolinta only” does not cover it",
+   "tot": "5"
+  }
+ },
  "scope_visible_sections": {
   "All SaniTap": null,
   "Endur'O": null,

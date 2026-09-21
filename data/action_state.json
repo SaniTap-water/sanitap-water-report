@@ -2,9 +2,9 @@
  "evaluated": "2026-09-21",
  "kinds": {
   "artefact": 7,
-  "data": 31,
+  "data": 35,
   "decision": 39,
-  "form": 9,
+  "form": 8,
   "none": 19
  },
  "state": {
@@ -294,12 +294,13 @@
    "when_satisfied": "OK"
   },
   "act-mar-functional-status": {
-   "closed_since": "2026-09-21",
    "evaluated": "2026-09-21",
-   "evidence": "a question mentioning \"Statut fonctionnel\" is on the form and required",
-   "kind": "form",
-   "satisfied": true,
-   "says": "closes when the functional-status question is required on the borehole-progress form",
+   "evidence": "marolinta_blank_status = 6 (Marolinta records leaving the functional status blank); target == 0",
+   "kind": "data",
+   "reopened_on": "2026-09-21",
+   "satisfied": false,
+   "says": "closes when no Marolinta record leaves the functional status blank",
+   "was_closed_since": "2026-09-21",
    "when_satisfied": "OK"
   },
   "act-mar-missing-boreholes": {
@@ -308,6 +309,22 @@
    "kind": "data",
    "satisfied": false,
    "says": "closes when ten new-borehole records are on the progress form",
+   "when_satisfied": "OK"
+  },
+  "act-mar-missing-rehabs": {
+   "evaluated": "2026-09-21",
+   "evidence": "marolinta_rehabs_final = 7 (final R\u00e9habilitation records on the Marolinta deployment); target >= 10",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when final R\u00e9habilitation records on the borehole form reach 10",
+   "when_satisfied": "OK"
+  },
+  "act-mar-new-construction-gap": {
+   "evaluated": "2026-09-21",
+   "evidence": "marolinta_new_final = 6 (final Nouvelle construction records on the Marolinta deployment); target >= 10",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when final Nouvelle construction records on the Marolinta deployment reach 10",
    "when_satisfied": "OK"
   },
   "act-mar-technical-values": {
@@ -420,6 +437,14 @@
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition: reclassification leaves the records in place, so nothing counts down",
+   "when_satisfied": "OK"
+  },
+  "act-mor-submit-drafts": {
+   "evaluated": "2026-09-21",
+   "evidence": "moramanga_draft_records = 4 (borehole-progress records on the Moramanga deployment never submitted); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when all four Moramanga draft records reach status final",
    "when_satisfied": "OK"
   },
   "act-move-stroke-test-sop": {
@@ -577,17 +602,18 @@
   },
   "act-reduced-performance": {
    "evaluated": "2026-09-21",
-   "evidence": "pumps_reduced_performance = 55 (pumps reported with a mechanical or yield fault, still counted working); target == 0",
+   "evidence": "pumps_reduced_performance = 53 (pumps reported with a mechanical or yield fault, still counted working); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no pump is left reported faulty with no repair logged since",
    "when_satisfied": "OK"
   },
   "act-refresh-extract": {
+   "closed_since": "2026-09-21",
    "evaluated": "2026-09-21",
-   "evidence": "extract_lag_days = 7 (days the extract on this page runs behind mWater); target == 0",
+   "evidence": "extract_lag_days = 0 (days the extract on this page runs behind mWater); target == 0",
    "kind": "data",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the extract on this page is level with mWater",
    "when_satisfied": "OK"
   },

@@ -175,12 +175,22 @@
   "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
  },
  "act-mar-functional-status": {
-  "detail": "<b>Make &ldquo;Statut fonctionnel actuel&rdquo; required on the borehole-progress form.</b> Every &ldquo;Nouvelle construction&rdquo; record leaves the functional status blank while every rehabilitation records &ldquo;Fonctionnel&rdquo;. A new borehole with no recorded status cannot be distinguished from one that was never commissioned.",
-  "owner": "Adriaan Mol",
+  "detail": "<b>Fill &ldquo;Statut fonctionnel actuel&rdquo; on the new-construction records.</b> Every Marolinta <i>Nouvelle construction</i> record leaves it blank &mdash; <b>6</b> of them &mdash; while every rehabilitation records &ldquo;Fonctionnel&rdquo;. A new borehole with no recorded status cannot be distinguished from one that was never commissioned, and none of these points can enter any file without it. <span class=\"muted\">The four Moramanga drafts are a separate matter and are owned by the Moramanga section.</span>",
+  "owner": "Angelo Nahavitatsara / MadAvance",
   "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
  },
  "act-mar-missing-boreholes": {
   "detail": "<b>Enter the Marolinta new-borehole records that are missing.</b> The borehole-progress form holds fewer &ldquo;Nouvelle construction&rdquo; records than the number of boreholes reported built. If ten new boreholes have been constructed, the difference has no record at all. <span class=\"muted\">The count is recomputed each build from the form.</span>",
+  "owner": "Angelo Nahavitatsara / MadAvance",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
+ },
+ "act-mar-missing-rehabs": {
+  "detail": "<b>Record the 3 rehabilitations that have no record at all.</b> Jan reports <b>10</b> rehabilitations done to date; the borehole-progress form holds <b>7</b>, all final and all &ldquo;Fonctionnel&rdquo;. The missing three are not drafts and not incomplete forms &mdash; there is nothing on the form for them. Until they are entered the works cannot be evidenced, and a rehabilitation with no record cannot later be brought into any file. <span class=\"muted\">Counted each build from the Marolinta deployment of the form by <span class=\"mono\">tools/marolinta_works.py</span>.</span>",
+  "owner": "Angelo Nahavitatsara / MadAvance",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
+ },
+ "act-mar-new-construction-gap": {
+  "detail": "<b>Record the 4 new boreholes that have no record at all.</b> Jan reports <b>10</b> new boreholes to date; the Marolinta deployment of the borehole-progress form holds <b>6</b>, all final. <b>An earlier reading of this form put new construction at effectively complete.</b> That reading counted all 18 responses as Marolinta; five of them are the <b>Moramanga</b> deployment, including one new construction and four drafts. On the Marolinta deployment alone the gap is four. <span class=\"muted\">Recounted each build by <span class=\"mono\">tools/marolinta_works.py</span>.</span>",
   "owner": "Angelo Nahavitatsara / MadAvance",
   "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
  },
@@ -253,6 +263,11 @@
   "detail": "<b>7. Remove or reclassify two test records in the hand-pump register</b> Both are <span class=\"mono\">type: kiosk</span> sitting inside the MadAvance hand-pump register, and neither photograph shows a water point &mdash; one is a potted plant, the other a village street. They are excluded from this report and from the map, but they are still in mWater. <b>SaniTap is making this correction</b> &mdash; reclassified, not deleted, so the record of the mistake survives.<br><span class=\"muted\">Records: <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/fe55b483-dd7e-4c29-a3ac-0bba19197ec0\" target=\"_blank\" rel=\"noopener\" title=\"open 924119262 in mWater\"><span class=\"mono\">924119262</span></a> AEPG, Moramanga<br><a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/9ec3f4be-dfb5-4a74-9413-de96403273b0\" target=\"_blank\" rel=\"noopener\" title=\"open 927104201 in mWater\"><span class=\"mono\">927104201</span></a> AEP, Antananarivo</span>",
   "owner": "Jan / Endur&rsquo;O team",
   "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\">no date proposed &mdash; Jan to set</span>"
+ },
+ "act-mor-submit-drafts": {
+  "detail": "<b>Submit the 4 draft new-construction records on the Moramanga deployment.</b> Four borehole-progress records &mdash; <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/a50091e2-f35e-4801-8e98-75f711e0e194\" target=\"_blank\" rel=\"noopener\" title=\"open 928346466 in mWater\"><span class=\"mono\">928346466</span></a>, <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/ea79387d-1fde-4824-b494-9fa1f6cc8934\" target=\"_blank\" rel=\"noopener\" title=\"open 929469230 in mWater\"><span class=\"mono\">929469230</span></a>, <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/81d1c9dd-7be8-49f3-be22-3d4e1b4f72eb\" target=\"_blank\" rel=\"noopener\" title=\"open 929469254 in mWater\"><span class=\"mono\">929469254</span></a> and <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/848798b0-08bd-48fd-9bef-e7444f73c8ba\" target=\"_blank\" rel=\"noopener\" title=\"open 929469261 in mWater\"><span class=\"mono\">929469261</span></a> &mdash; were started by AMEDE MADAVANCE and never submitted. <b>A draft is not a delivered borehole:</b> it is invisible to every count and carries no functional status. <span class=\"muted\">These sit on the <b>Moramanga</b> deployment, not Marolinta &mdash; an earlier note attributed them to Marolinta. <a class=\"wp\" href=\"https://portal.mwater.co/#/water_point/848798b0-08bd-48fd-9bef-e7444f73c8ba\" target=\"_blank\" rel=\"noopener\" title=\"open 929469261 in mWater\"><span class=\"mono\">929469261</span></a> is Betanatanana, the open shaft already raised from the field visit.</span>",
+  "owner": "Jan / Endur’O team",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
  },
  "act-move-stroke-test-sop": {
   "detail": "<b>Move the stroke-test SOP into the SOPs folder and get it signed off.</b> It sits in <span class=\"mono\">Work in Progress</span> while every other procedure lives in <span class=\"mono\">SOPs</span>, and its approval block still reads <span class=\"mono\">Valid&eacute; par [Direction technique &mdash; &agrave; compl&eacute;ter]</span>. An unsigned procedure in a drafts folder is not evidence a verifier can rely on, however good the content.",

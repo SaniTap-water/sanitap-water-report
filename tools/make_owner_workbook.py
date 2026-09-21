@@ -32,6 +32,43 @@ OWNERS = ["Adriaan Mol", "James Walker", "Jan de Graaf",
           "Earthood", "Unassigned"]
 
 
+def verify(path):
+    """Assert the file is well formed, mechanically. Do not eyeball a workbook.
+
+    Both faults that made this file open read-only are checked here: parts
+    Excel never declared, and cells carrying a type with no value.
+    """
+    import re
+    import zipfile
+    z = zipfile.ZipFile(path)
+    names = z.namelist()
+    trash = [n for n in names if n.startswith("[trash]")]
+    if trash:
+        raise SystemExit(f"{path}: {len(trash)} [trash] part(s): {trash[:3]} - "
+                         "the workbook was loaded and re-saved instead of built")
+    ct = z.read("[Content_Types].xml").decode("utf8")
+    declared = set(re.findall(r'PartName="/([^"]+)"', ct))
+    exts = set(re.findall(r'Extension="([^"]+)"', ct))
+    undeclared = [n for n in names
+                  if n != "[Content_Types].xml"
+                  and n not in declared
+                  and n.rsplit(".", 1)[-1] not in exts]
+    if undeclared:
+        raise SystemExit(f"{path}: part(s) not declared in [Content_Types].xml: "
+                         f"{undeclared[:3]}")
+    bad = []
+    for n in names:
+        if not n.startswith("xl/worksheets/"):
+            continue
+        xml = z.read(n).decode("utf8")
+        bad += re.findall(r'<c [^>]*\bt="[^"]*"[^>]*/>', xml)
+        bad += re.findall(r'<c [^>]*\bt="[^"]*"[^>]*></c>', xml)
+    if bad:
+        raise SystemExit(f"{path}: {len(bad)} cell(s) carry a type with no value, "
+                         f"e.g. {bad[0]}")
+    print(f"  verified: {len(names)} parts, none stray, no typed-empty cells")
+
+
 def main():
     idx = open(os.path.join(REPO, "index.html"), encoding="utf8").read()
     acts = sorted(RA.actions(idx), key=lambda a: a["id"])
@@ -44,9 +81,23 @@ def main():
         c = ws.cell(row=1, column=i)
         c.font = Font(bold=True)
         c.fill = PatternFill("solid", fgColor="E8EDF1")
-    for a in acts:
-        due = a["due"].isoformat() if a["due"] else None
-        ws.append([a["id"], a["owner"], due, a["title"][:120]])
+    # Cells are written explicitly, not by append(), and a blank deadline is
+    # left genuinely EMPTY. append() with None produced <c r="C106" s="3"
+    # t="n"></c> - an explicit numeric type with no value - on every row with
+    # no date, which is malformed enough for Excel Online to "repair" the
+    # workbook, and a repaired workbook always opens read-only.
+    #
+    # Real deadlines are written as datetime.date with a yyyy-mm-dd number
+    # format, so they are dates rather than text and the date validation on
+    # column C actually guards something.
+    for i, a in enumerate(acts, start=2):
+        ws.cell(row=i, column=1, value=a["id"])
+        ws.cell(row=i, column=2, value=a["owner"])
+        c = ws.cell(row=i, column=3)
+        if a["due"]:
+            c.value = a["due"]
+            c.number_format = "yyyy-mm-dd"
+        ws.cell(row=i, column=4, value=a["title"][:120])
     for col, w in zip("ABCD", (44, 34, 14, 90)):
         ws.column_dimensions[col].width = w
     last = ws.max_row
@@ -61,7 +112,6 @@ def main():
     ws.add_data_validation(dd)
     dd.add(f"C2:C{last}")
     for r in range(2, last + 1):
-        ws.cell(row=r, column=3).number_format = "yyyy-mm-dd"
         ws.cell(row=r, column=1).font = Font(color="7B858D")
         ws.cell(row=r, column=4).font = Font(color="7B858D")
         ws.cell(row=r, column=4).alignment = Alignment(wrap_text=False)
@@ -90,11 +140,17 @@ def main():
         f"Seeded {datetime.date.today().isoformat()} from "
         f"{len(acts)} actions by tools/make_owner_workbook.py",
     ]:
-        note.append([line])
+        # a blank line must be a blank ROW, not a cell holding "" - an empty
+        # inlineStr body is the same malformation as the typed-empty deadline
+        if line:
+            note.append([line])
+        else:
+            note.append([])
     note.column_dimensions["A"].width = 78
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     wb.save(OUT)
+    verify(OUT)
     print(f"{OUT}: {len(acts)} rows, {len(OWNERS)} owners in the dropdown")
     return 0
 

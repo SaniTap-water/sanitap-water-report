@@ -1,0 +1,230 @@
+{
+ "checked": "2026-09-21",
+ "deployments": {
+  "2b408dd532e944ad91c0bb77cd6ad576": "Marolinta",
+  "e8bbe3b104bb4b599132c435013ab219": "Moramanga"
+ },
+ "form": "8764843c94484f5b984078c68f13b2ca",
+ "marolinta": {
+  "blank_functional_status": 6,
+  "by_type_final": {
+   "Nouvelle construction": 6,
+   "Réhabilitation": 7
+  },
+  "codes_draft": [],
+  "codes_final": [
+   "1052525198",
+   "1052525215",
+   "1052525222",
+   "1052525246",
+   "1052525260",
+   "1052525284",
+   "893673000",
+   "893673024",
+   "893673079",
+   "893673127",
+   "893673158",
+   "987623304",
+   "987623555"
+  ],
+  "draft": 0,
+  "final": 13,
+  "points_draft": 0,
+  "points_final": 13,
+  "responses": 13,
+  "shortfall": {
+   "Nouvelle construction": 4,
+   "Réhabilitation": 3
+  }
+ },
+ "moramanga": {
+  "blank_functional_status": 5,
+  "by_type_final": {
+   "Nouvelle construction": 1
+  },
+  "codes_draft": [
+   "928346466",
+   "929469230",
+   "929469254",
+   "929469261"
+  ],
+  "codes_final": [
+   "928155136"
+  ],
+  "draft": 4,
+  "final": 1,
+  "points_draft": 4,
+  "points_final": 1,
+  "responses": 5,
+  "shortfall": {}
+ },
+ "records": [
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525198",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-29",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525260",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-26",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525284",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-26",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "893673000",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "893673127",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "893673158",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525215",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525222",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525246",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "893673024",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-26",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "893673079",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-25",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "987623304",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-29",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "987623555",
+   "deployment": "Marolinta",
+   "functional_status": "Fonctionnel",
+   "record_status": "final",
+   "submitted": "2026-08-26",
+   "type": "Réhabilitation"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "928155136",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "final",
+   "submitted": "2026-06-23",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "928346466",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "929469230",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "929469254",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "929469261",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  }
+ ],
+ "reported_to_date": {
+  "Nouvelle construction": 10,
+  "Réhabilitation": 10
+ },
+ "responses": 18
+}
