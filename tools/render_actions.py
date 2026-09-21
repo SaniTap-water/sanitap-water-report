@@ -27,17 +27,36 @@ tools/check_consistency.py asserts that.
     python3 tools/render_actions.py --write
     python3 tools/render_actions.py --check
 """
-import datetime, difflib, os, re, sys
+import collections, datetime, difflib, os, re, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED action-list :: tools/render_actions.py "
          ":: do not edit between these markers -->")
 END = "<!-- END GENERATED action-list -->"
 
-# old state -> (new state, label kept inside it)
+# old state -> (new state, label kept inside it). The three new names map to
+# themselves: the detailed rows were converted to ACT/WATCH/OK but this table
+# was not extended, so every row fell through to the ACT default and the list
+# reported 93 to act on, 0 to watch and 0 closed when 8 of them were not ACT.
 MAP = {"DUE": ("ACT", ""), "OVERDUE": ("ACT", ""), "STANDING": ("WATCH", ""),
-       "DONE": ("OK", ""), "DECIDED": ("OK", "DECIDED")}
+       "DONE": ("OK", ""), "DECIDED": ("OK", "DECIDED"),
+       "ACT": ("ACT", ""), "WATCH": ("WATCH", ""), "OK": ("OK", "")}
 CLASS = {"ACT": "crit", "WATCH": "warn", "OK": "ok"}
+
+# Owners are written as they are spoken in the rows - "Jan", "Jan de Graaf",
+# "Jan / Endur'O team", "Jan, with Coddy" - so grouping on the raw string
+# scatters one person across four headings. The group is the LEAD owner,
+# matched on the first word; the row still shows the owner exactly as written,
+# so nothing is lost and no row is reassigned.
+LEADS = {"adriaan": "Adriaan Mol", "james": "James Walker",
+         "jan": "Jan de Graaf", "angelo": "Angelo Nahavitatsara",
+         "lanja": "Lanja Randriamanantena", "madavance": "MadAvance",
+         "coddy": "Coddy", "cathy": "Cathy"}
+
+
+def lead_owner(owner):
+    w = re.sub(r"[^A-Za-z]", "", owner.split()[0].lower()) if owner.split() else ""
+    return LEADS.get(w) or (owner if owner not in ("—", "&mdash;", "") else "Unassigned")
 MONTHS = {m: i + 1 for i, m in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])}
@@ -111,8 +130,13 @@ def actions(idx):
         due = parse_deadline(dl_raw)
         crit = re.findall(r'<span class="muted"[^>]*>(.*?)</span>', cells[1], re.S)
         crit = strip(crit[-1]) if crit else ""
-        out.append(dict(id=aid, title=title, owner=strip(cells[2]) or "—",
+        owner = strip(cells[2]) or "—"
+        out.append(dict(id=aid, title=title, owner=owner,
+                        lead=lead_owner(owner),
                         state=state, label=label, deadline=dl_raw, due=due,
+                        # an item to act on with no date is a date still
+                        # to be set; a closed or standing item needs none
+                        nodate=(not dl_raw) and state == "ACT",
                         criterion=crit))
     declared = len(re.findall(r'<tr id="act-[a-z0-9-]+">', idx))
     if len(out) != declared:
@@ -124,60 +148,193 @@ def actions(idx):
     return out
 
 
-def row(a, today):
+def slug(s):
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", s.lower())).strip("-")
+
+
+def row(a, today, owner_cell=True):
     overdue = (a["state"] == "ACT" and a["due"] is not None and a["due"] < today)
     badge = ('<span class="pill crit" style="margin-left:6px">OVERDUE</span>'
              if overdue else "")
     label = (f'<span class="muted" style="font-size:.82em;margin-left:6px">'
              f'{a["label"]}</span>' if a["label"] else "")
-    dl = a["deadline"] or "&mdash;"
+    dl = a["deadline"] or '<span class="muted">no date set</span>'
     if overdue:
         dl = f'<b style="color:var(--crit)">{dl}</b>'
-    return (f'<tr><td><a href="#{a["id"]}">{a["title"]}</a>'
+    own = f'<td>{a["owner"]}</td>' if owner_cell else ""
+    return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
+            f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
+            f'<td><a href="#{a["id"]}">{a["title"]}</a>'
             f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div></td>'
-            f'<td>{a["owner"]}</td>'
-            f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
-            f'{badge}{label}</td>'
-            f'<td class="num">{dl}</td>'
-            f'<td><a href="#{a["id"]}">the section</a></td></tr>')
+            + own
+            + f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
+              f'{badge}{label}</td>'
+              f'<td class="num">{dl}</td>'
+              f'<td><a href="#{a["id"]}">the section</a></td></tr>')
 
 
 def block(idx, today=None):
+    """The list, grouped and filtered.
+
+    93 rows in one flat table is a wall, and a wall is not a list. So the
+    rows are rendered once, carrying data-state / data-own / data-nodate,
+    and three controls decide what is on screen: ACT only (the default),
+    everything, or the same rows grouped under their lead owner. The header
+    carries the counts, so the shape of the work is legible without opening
+    anything - including the count of rows with no proposed date, which is
+    one decision for Jan rather than twenty-five separate ones.
+    """
     today = today or datetime.date.today()
     acts = actions(idx)
-    live = [a for a in acts if a["state"] != "OK"]
-    closed = [a for a in acts if a["state"] == "OK"]
-    order = {"ACT": 0, "WATCH": 1}
-    live.sort(key=lambda a: (order[a["state"]],
+    order = {"ACT": 0, "WATCH": 1, "OK": 2}
+    acts.sort(key=lambda a: (order[a["state"]],
                              a["due"] or datetime.date(2099, 1, 1), a["title"]))
-    n_over = sum(1 for a in live
+    n_act = sum(1 for a in acts if a["state"] == "ACT")
+    n_watch = sum(1 for a in acts if a["state"] == "WATCH")
+    n_ok = sum(1 for a in acts if a["state"] == "OK")
+    n_over = sum(1 for a in acts
                  if a["state"] == "ACT" and a["due"] and a["due"] < today)
+    n_nodate = sum(1 for a in acts if a["nodate"])
+    by_lead = collections.OrderedDict()
+    for a in sorted(acts, key=lambda a: (-sum(1 for x in acts
+                                              if x["lead"] == a["lead"]),
+                                         a["lead"], order[a["state"]],
+                                         a["due"] or datetime.date(2099, 1, 1))):
+        by_lead.setdefault(a["lead"], []).append(a)
+
     head = ('<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
             '<th class="num">Deadline</th><th>Explained in</th></tr></thead>')
+    head_no_owner = ('<thead><tr><th>Item</th><th>Status</th>'
+                     '<th class="num">Deadline</th><th>Explained in</th></tr></thead>')
+
     out = [
         '<section data-scopes="all mad madx mar enduro" id="actions">',
         '  <div class="sechead"><div><h2>Actions &mdash; the one list</h2>'
         '<p>Every open item in this report, in one place. Each row links to the '
         'section that explains it, and every section links back here. '
-        f'<b>{len(live)}</b> open &mdash; '
-        f'<b>{sum(1 for a in live if a["state"] == "ACT")}</b> to act on, '
-        f'<b>{sum(1 for a in live if a["state"] == "WATCH")}</b> to watch'
+        f'<b>{n_act + n_watch}</b> open &mdash; <b>{n_act}</b> to act on, '
+        f'<b>{n_watch}</b> to watch'
         + (f', <b>{n_over}</b> past their proposed date' if n_over else "")
-        + f'. <b>{len(closed)}</b> closed this period.</p></div></div>',
-        '  <div class="tablewrap"><table class="ind">' + head + '<tbody>',
+        + f'. <b>{n_ok}</b> closed this period.</p></div>'
+        f'<span class="count">{len(acts)} rows</span></div>',
+        # --- the shape of the work, before anything is opened ------------
+        '  <div class="actstats">',
+        f'    <div class="stat"><b>{n_act}</b><span>'
+        f'<span class="pill crit">ACT</span> to act on'
+        + (f' &middot; {n_over} past their date' if n_over else "")
+        + '</span></div>',
+        f'    <div class="stat"><b>{n_watch}</b><span>'
+        f'<span class="pill warn">WATCH</span> standing items</span></div>',
+        f'    <div class="stat"><b>{n_ok}</b><span>'
+        f'<span class="pill ok">OK</span> closed this period</span></div>',
+        f'    <div class="stat" id="act-nodate-tile"><b>{n_nodate}</b><span>'
+        f'<b>of the {n_act} carry no proposed date.</b> Setting them is one '
+        f'decision for Jan, not {n_nodate}</span></div>',
+        '  </div>',
+        # --- counts per owner, in the header -----------------------------
+        '  <div class="eyebrow" style="margin:16px 0 6px">Per owner</div>',
+        '  <div class="ownerbar">',
     ]
-    out += ["    " + row(a, today) for a in live]
-    out.append("  </tbody></table></div>")
-    if closed:
-        out.append('  <details style="margin-top:14px"><summary style="cursor:pointer;'
-                   'font-weight:600">Closed this period &mdash; '
-                   f'{len(closed)} item(s)</summary>')
-        out.append('  <div class="tablewrap" style="margin-top:10px">'
-                   '<table class="ind">' + head + "<tbody>")
-        out += ["    " + row(a, today) for a in closed]
+    for lead, rows in by_lead.items():
+        na = sum(1 for a in rows if a["state"] == "ACT")
+        out.append(f'    <button class="tg ownchip" data-own="{slug(lead)}" '
+                   f'aria-pressed="false">{lead} <b>{len(rows)}</b>'
+                   + (f'<span class="muted" style="font-weight:400"> &middot; '
+                      f'{na} ACT</span>' if na != len(rows) else "")
+                   + '</button>')
+    out += [
+        '  </div>',
+        # --- what is on screen -------------------------------------------
+        '  <div class="eyebrow" style="margin:16px 0 6px">Show</div>',
+        '  <div class="actviews">',
+        '    <button class="tg" id="av-act" data-view="act" aria-pressed="true">'
+        f'To act on &mdash; {n_act}</button>',
+        '    <button class="tg" id="av-nodate" data-view="nodate" '
+        f'aria-pressed="false">No date set &mdash; {n_nodate}</button>',
+        '    <button class="tg" id="av-all" data-view="all" aria-pressed="false">'
+        f'Full list &mdash; {len(acts)}</button>',
+        '    <button class="tg" id="av-owner" data-view="owner" '
+        'aria-pressed="false">By owner</button>',
+        '  </div>',
+        '  <p class="note" id="act-count" style="margin:8px 0 0"></p>',
+        # --- the rows, once ----------------------------------------------
+        '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
+        '<table class="ind">' + head + '<tbody>',
+    ]
+    out += ["    " + row(a, today) for a in acts]
+    out += ['  </tbody></table></div>',
+            '  <div id="act-owner" hidden style="margin-top:10px">']
+    for lead, rows in by_lead.items():
+        na = sum(1 for a in rows if a["state"] == "ACT")
+        nw = sum(1 for a in rows if a["state"] == "WATCH")
+        no = sum(1 for a in rows if a["state"] == "OK")
+        bits = ", ".join(f"{n} {s}" for n, s in
+                         ((na, "ACT"), (nw, "WATCH"), (no, "OK")) if n)
+        out.append(f'  <details class="expl" id="own-{slug(lead)}">'
+                   f'<summary>{lead} &mdash; {len(rows)} item(s) '
+                   f'<span class="muted">({bits})</span></summary>'
+                   '<div class="tablewrap" style="margin-top:8px">'
+                   '<table class="ind">' + head_no_owner + '<tbody>')
+        out += ["    " + row(a, today, owner_cell=False) for a in rows]
         out.append("  </tbody></table></div></details>")
-    out.append("</section>")
+    out += ['  </div>', ACT_JS, "</section>"]
     return "\n".join(out)
+
+
+ACT_JS = """  <script>
+  (function(){
+    var sec = document.getElementById('actions');
+    if (!sec) return;
+    var flat = document.getElementById('act-flat');
+    var own  = document.getElementById('act-owner');
+    var note = document.getElementById('act-count');
+    var rows = Array.prototype.slice.call(
+                 flat.querySelectorAll('tbody tr'));
+    var views = Array.prototype.slice.call(
+                  sec.querySelectorAll('.actviews button'));
+    var chips = Array.prototype.slice.call(
+                  sec.querySelectorAll('.ownchip'));
+    var view = 'act';
+
+    function apply(){
+      var shown = 0;
+      if (view === 'owner') {
+        flat.hidden = true; own.hidden = false;
+        shown = rows.length;
+      } else {
+        own.hidden = true; flat.hidden = false;
+        rows.forEach(function(tr){
+          var keep = view === 'all'
+            || (view === 'act'    && tr.dataset.state === 'ACT')
+            || (view === 'nodate' && tr.dataset.nodate === '1');
+          tr.hidden = !keep;
+          if (keep) shown++;
+        });
+      }
+      views.forEach(function(b){
+        b.setAttribute('aria-pressed', String(b.dataset.view === view));
+      });
+      note.textContent = view === 'owner'
+        ? 'Grouped by lead owner. Every row also appears in the full list.'
+        : 'Showing ' + shown + ' of ' + rows.length + ' rows.';
+    }
+
+    views.forEach(function(b){
+      b.addEventListener('click', function(){ view = b.dataset.view; apply(); });
+    });
+    chips.forEach(function(b){
+      b.addEventListener('click', function(){
+        view = 'owner'; apply();
+        var d = document.getElementById('own-' + b.dataset.own);
+        if (d) { d.open = true; d.scrollIntoView({block:'nearest'}); }
+        chips.forEach(function(c){
+          c.setAttribute('aria-pressed', String(c === b));
+        });
+      });
+    });
+    apply();
+  })();
+  </script>"""
 
 
 def splice(b):

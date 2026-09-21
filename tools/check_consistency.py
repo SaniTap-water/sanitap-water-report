@@ -2698,6 +2698,62 @@ def main():
           not unlinked, "none", f"{len(unlinked)} unlinked" if unlinked else "none",
           ", ".join(sorted(set(unlinked))[:6]))
 
+    # ---- 7az. the list is grouped, filtered, and counts what it holds ---
+    # 93 rows in one flat table is a wall. The generated list must carry the
+    # controls that make it usable, and - the defect this check exists for -
+    # its header counts must match the pills on the detail rows. The status
+    # map did not know the ACT/WATCH/OK vocabulary, so every row fell through
+    # to ACT and the header read "93 to act on, 0 to watch, 0 closed" while
+    # 8 rows said otherwise.
+    gb_ = idx.find("<!-- BEGIN GENERATED action-list")
+    ge_ = idx.find("<!-- END GENERATED action-list -->")
+    genblk = idx[gb_:ge_] if 0 <= gb_ < ge_ else ""
+    # rows are rendered twice - once flat, once grouped by owner - so count
+    # them in the flat table only, which is the one the filters act on
+    _ft = re.search(r'id="act-flat".*?</table>', genblk, re.S)
+    flatblk = _ft.group(0) if _ft else ""
+    outside_ = idx[:gb_] + idx[ge_:] if 0 <= gb_ < ge_ else ""
+    want_views = ['data-view="act"', 'data-view="nodate"',
+                  'data-view="all"', 'data-view="owner"']
+    check("the action list is grouped and filtered, not one flat wall",
+          all(v in genblk for v in want_views) and 'class="ownerbar"' in genblk,
+          "4 views + owners",
+          "4 views + owners" if all(v in genblk for v in want_views)
+          else "MISSING", "ACT by default, WATCH/OK and by-owner behind a control")
+    check("every row in the list carries the state it is filtered on",
+          flatblk.count("<tr data-state=") == len(acts),
+          f"{len(acts)} tagged", f"{flatblk.count('<tr data-state=')} tagged",
+          "data-state / data-own / data-nodate")
+    # nesting-aware: a detail cell may hold its own table, and a non-greedy
+    # match to the first </tr> truncates that row and loses its pill
+    src_pills = collections.Counter()
+    for m_ in re.finditer(r'<tr id="act-[a-z0-9-]+">', outside_):
+        i_, depth_ = m_.end(), 1
+        for tok_ in re.finditer(r"<tr\b|</tr>", outside_[i_:]):
+            depth_ += 1 if tok_.group(0).startswith("<tr") else -1
+            if depth_ == 0:
+                b_ = outside_[i_:i_ + tok_.start()]
+                pm_ = re.search(r'pill\s+[a-z]+">([A-Z]{2,})<', b_)
+                src_pills[pm_.group(1) if pm_ else "NO PILL"] += 1
+                break
+    hdr = re.search(r"<b>(\d+)</b> to act on, <b>(\d+)</b> to watch"
+                    r".*?<b>(\d+)</b> closed this period", genblk, re.S)
+    hdr_counts = (collections.Counter(
+        {"ACT": int(hdr.group(1)), "WATCH": int(hdr.group(2)),
+         "OK": int(hdr.group(3))}) if hdr else collections.Counter())
+    check("the header counts match the pills on the detail rows",
+          bool(hdr) and hdr_counts == src_pills, "they match",
+          "they match" if hdr and hdr_counts == src_pills
+          else f"header {dict(hdr_counts)} vs rows {dict(src_pills)}",
+          "the status map must know ACT / WATCH / OK")
+    nod = re.search(r'id="act-nodate-tile"><b>(\d+)</b>', genblk)
+    want_nod = sum(1 for m in re.finditer(r'<tr data-state="ACT"([^>]*)>', flatblk)
+                   if 'data-nodate="1"' in m.group(1))
+    check("the no-date figure counts the rows it says it counts",
+          bool(nod) and int(nod.group(1)) == want_nod,
+          f"{want_nod}", nod.group(1) if nod else "MISSING",
+          "ACT rows with no proposed date - one decision for Jan")
+
     # ---- 7ax. the one list is actually the one list ---------------------
     # #actions claims "every open item in this report, in one place". That was
     # false: the Open actions section carried 31 table rows and 12 bullets,
