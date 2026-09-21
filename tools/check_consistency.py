@@ -2482,10 +2482,60 @@ def main():
           "Neither SOP is obsolete" in idx, "stated",
           "stated" if "Neither SOP is obsolete" in idx else "MISSING",
           "only the 95% pause clause is superseded")
-    check("the approvals action is scoped to carbon evidence",
-          "2,334" in idx and "Deliberately out of scope" in idx, "scoped",
-          "scoped" if "Deliberately out of scope" in idx else "STILL RAW TOTAL",
-          "5,573 raw overstated the job by more than double")
+    # Approval is our own workflow, not a methodology requirement, and a bulk
+    # approval by someone who has not read the records manufactures assurance.
+    # The action asks for criteria and a checked sample, not a number cleared.
+    check("the approvals action asks for a quality check, not bulk approval",
+          '<tr id="act-mwater-approval-policy">' in idx
+          and "Explicitly out of scope" in idx
+          and "a bulk approval by someone who has not read the records is worse than none" in idx,
+          "scoped to a sample", "scoped to a sample"
+          if '<tr id="act-mwater-approval-policy">' in idx else "STILL BULK",
+          "1,464 old-combined-works records, sampled against written criteria")
+    check("approval status is not presented as a caveat on any figure",
+          "awaiting approval in mWater" not in idx
+          and "still awaiting approval" not in idx, "absent",
+          "absent" if "awaiting approval in mWater" not in idx else "PRESENT",
+          "approval is not a data-quality signal")
+    check("the rehabilitation recording gap is raised as an evidence hole",
+          '<tr id="act-rehab-recording">' in idx
+          and "recording, not activity" in idx, "raised",
+          "raised" if '<tr id="act-rehab-recording">' in idx else "MISSING",
+          "7 rehabilitations in 2026, none on a rehabilitation form")
+
+    # ---- 7as. a caption may not name a date in prose --------------------
+    # "Activity logged in mWater in the 7 days to 7 September" sat above
+    # counts that the build regenerates every week. The numbers moved and the
+    # label did not, which is worse than either being wrong on its own. The
+    # caption is now rendered from the data; this stops a literal creeping
+    # back into a section heading or sub-heading.
+    caps = re.findall(r'<div class="sechead">.*?</div></div>', idx, re.S)
+    MONTH = (r"\b\d{1,2}\s+(?:January|February|March|April|May|June|July|August|"
+             r"September|October|November|December)\b")
+    bad_caps = []
+    for c in caps:
+        txt = re.sub(r"<[^>]+>", " ", c)
+        for m in re.finditer(MONTH, txt):
+            # a date that names an event in the past is fine; one that labels a
+            # rolling window is not
+            around = txt[max(0, m.start() - 70):m.end() + 40].lower()
+            if re.search(r"\b(?:in the|to|last|past)\s+\d+\s+days?\s+to\b", around) \
+               or "days to" in around:
+                bad_caps.append(re.sub(r"\s+", " ", around)[:80])
+    check("no section caption labels a rolling window with a hard-coded date",
+          not bad_caps, "none", f"{len(bad_caps)} found" if bad_caps else "none",
+          "; ".join(bad_caps)[:150] if bad_caps
+          else "the This Week caption is rendered from the data")
+    check("the This Week caption is rendered, not written",
+          'id="weekcap"' in idx and "7 days to ${w}" in idx, "rendered",
+          "rendered" if 'id="weekcap"' in idx else "STILL PROSE",
+          "reads S.as_of when the build supplies it, else the latest activity date")
+    check("the WorldPop coverage sentence is suppressed when nothing is uncovered",
+          "Every point in this scope carries a figure" in idx
+          and "carry no figure: `+" not in idx, "conditional",
+          "conditional" if "Every point in this scope carries a figure" in idx
+          else "STILL UNCONDITIONAL",
+          "no dangling colon after an empty list")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
