@@ -30,7 +30,6 @@
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
   "Register corrections and exclusions",
-  "The eight 2.2.1(d) records — for the MadAvance team",
   "Carbon file — Gold Standard programme of activities (PoA) GS12600 / voluntary project activity (VPA) GS12601",
   "Impact",
   "Cookstoves and water: the overlap, measured",
@@ -41,7 +40,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 30943,
+ "height": 29649,
  "missing_ids": [],
  "page_errors": [],
  "scope_visible_sections": {
@@ -51,7 +50,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 35,
+ "sections": 34,
  "tables": {
   "corrtbl": {
    "hidden": false,

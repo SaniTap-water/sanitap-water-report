@@ -622,14 +622,18 @@ def main():
     # The headline count was published as 2,348 while the three per-question
     # figures beneath it summed to 2,367. A total that disagrees with its own
     # breakdown is exactly what this file exists to catch.
+    # Match on the numbers, not on three fixed sentences: the prose around
+    # them has been rewritten twice and each time this check broke on the
+    # wording rather than on the arithmetic it exists to guard.
     m_tot = re.search(r"<b>([\d,]+)</b><span>calendar photographs on file", idx)
-    parts = [re.search(p_, idx) for p_ in (
-        r"carries\s*<b>([\d,]+)</b>\s*of them",
-        r"carries\s*<b>([\d,]+)</b>;",
-        r"carries\s*<b>([\d,]+)</b>\.")]
-    if m_tot and all(parts):
+    seg = None
+    i_ = idx.find("Where the photographs live")
+    if i_ >= 0:
+        seg = idx[i_:i_ + 1400]
+    parts = re.findall(r"carries\s*<b>([\d,]+)</b>", seg or "")
+    if m_tot and len(parts) == 3:
         tot = int(m_tot.group(1).replace(",", ""))
-        got = sum(int(x.group(1).replace(",", "")) for x in parts)
+        got = sum(int(x.replace(",", "")) for x in parts)
         check("calendar photograph total equals its per-question parts",
               tot == got, tot, got, "headline must equal 2.15.6 + 2.15.5 + 1.3.1.3")
     else:
@@ -1613,13 +1617,18 @@ def main():
               "0 water points, against 727 active carbon" in cs, "counted",
               "counted" if "0 water points, against 727 active carbon" in cs
               else "MISSING")
+    # The standalone consent block was folded into its action row, so these
+    # match on the two claims rather than on the removed markup: the
+    # individual-level count is zero across the active points, and the
+    # community-level notice is already signed.
+    _cons_zero = re.search(r"no individual record exists for any of the\s*"
+                           r"(?:<[^>]+>\s*)*727 active points", idx)
     check("the page carries the consent figure",
-          "End-user consent" in idx and "individual-level consent evidence" in idx,
-          "present",
-          "present" if "individual-level consent evidence" in idx else "MISSING")
+          bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
+          "present", "present" if _cons_zero else "MISSING")
     check("the page states the non-claiming notice already exists",
-          "already in the signed Community Agreement" in idx, "stated",
-          "stated" if "already in the signed Community Agreement" in idx else "MISSING",
+          "signed Community Agreement already carries the" in idx, "stated",
+          "stated" if "signed Community Agreement already carries the" in idx else "MISSING",
           "the action must reflect what we hold, not assume we hold nothing")
 
     # ---- 7ad. divergence 9: the quarterly requirement does not bind us -----
@@ -2103,10 +2112,14 @@ def main():
           "the tickets are stale" in idx and "not marking outage days" in idx,
           "both stated", "both stated" if "not marking outage days" in idx else "MISSING",
           "the hierarchy decides which instrument governs, not whether it is filled in")
+    # Match on the claim, not on one sentence: what this guards is that the
+    # transcription round is named as the thing that tells the two
+    # explanations apart, and that the reader can reach the action row.
+    _sep = re.search(r"transcription round\s+(?:is what\s+)?"
+                     r"(?:separates|distinguishes)\s+them", idx)
     check("the transcription round is named as what separates them, both ways",
-          "transcription round is what distinguishes them" in idx
-          and "act-transcription-round" in idx, "linked",
-          "linked" if "transcription round is what distinguishes them" in idx else "MISSING")
+          bool(_sep) and "act-transcription-round" in idx, "linked",
+          "linked" if _sep else "MISSING")
     check("the decision log records both decisions",
           all(s in read(os.path.join(repo_root, "docs", "decision_log.md"))
               for s in ("official record of days operational",
@@ -2660,6 +2673,76 @@ def main():
           "SOP documents swept" in ctext and "Discrepancies" in ctext,
           "recorded", "recorded" if "SOP documents swept" in ctext else "MISSING",
           "docs/sop_form_conformance.md")
+
+    # ---- 7ay. a named water point opens its own mWater record -----------
+    # Codes are what the field teams act on, so every point this report names
+    # in prose links straight to the record. The href must be the id the
+    # entity API returned for that code - a link to the wrong record is worse
+    # than no link - and a code we hold an id for must not be left unlinked.
+    ids_p = os.path.join(repo_root, "data", "mwater_point_ids.json")
+    wp_ids = json.load(open(ids_p)) if os.path.isfile(ids_p) else {}
+    prose_wp = re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S)
+    bad = [c for u, c in re.findall(
+        r'<a class="wp" href="https://portal\.mwater\.co/#/water_point/'
+        r'([0-9a-f-]{36})"[^>]*>\s*<span class="mono">(\d{9})</span>', prose_wp)
+        if wp_ids.get(c) != u]
+    unlinked = [m.group(1) for m in
+                re.finditer(r'(?<!>)<span class="mono">(\d{9})</span>', prose_wp)
+                if m.group(1) in wp_ids
+                and prose_wp[max(0, m.start() - 200):m.start()].rfind('<a class="wp"')
+                <= prose_wp[max(0, m.start() - 200):m.start()].rfind("</a>")]
+    check("every linked water point points at its own mWater record",
+          not bad, "all correct", f"{len(bad)} wrong" if bad else "all correct",
+          f"{len(wp_ids)} ids in data/mwater_point_ids.json")
+    check("no named water point is left unlinked",
+          not unlinked, "none", f"{len(unlinked)} unlinked" if unlinked else "none",
+          ", ".join(sorted(set(unlinked))[:6]))
+
+    # ---- 7ax. the one list is actually the one list ---------------------
+    # #actions claims "every open item in this report, in one place". That was
+    # false: the Open actions section carried 31 table rows and 12 bullets,
+    # and the Moramanga field-visit table 11 more, none of them anchored, so
+    # render_actions.py never saw them and the summary silently omitted them.
+    # Any table that declares itself an action table - Action / Schedule /
+    # Owner - must have an addressable id on every row, or its rows cannot
+    # reach the list and the claim above it stops being true.
+    body_x = re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S)
+    gen_a = body_x.find("BEGIN GENERATED action-list")
+    gen_b = body_x.find("END GENERATED action-list")
+    if 0 <= gen_a < gen_b:
+        body_x = body_x[:gen_a] + body_x[gen_b:]
+    # A detail cell may itself hold a table - the eight 2.2.1(d) records and
+    # the approvals breakdown both do - so walk with a depth counter and only
+    # judge rows that belong to the action table itself.
+    orphans, n_tables = [], 0
+    for tm in re.finditer(r"<table[^>]*>", body_x):
+        head = re.match(r"\s*<thead>(.*?)</thead>", body_x[tm.end():], re.S)
+        if not head:
+            continue
+        cols = [re.sub(r"<[^>]+>", "", c).strip()
+                for c in re.findall(r"<th[^>]*>(.*?)</th>", head.group(1), re.S)]
+        if cols[:3] != ["Action", "Schedule", "Owner"]:
+            continue
+        n_tables += 1
+        depth, i0 = 1, tm.end() + head.end()
+        for tok in re.finditer(r"<table\b|</table>|<tr(?: [^>]*)?>",
+                               body_x[i0:]):
+            s_ = tok.group(0)
+            if s_.startswith("<table"):
+                depth += 1
+            elif s_ == "</table>":
+                depth -= 1
+                if depth == 0:
+                    break
+            elif depth == 1 and 'id="act-' not in s_:
+                orphans.append(cols[0])
+    check("no action row sits outside the one list",
+          not orphans, "none", f"{len(orphans)} orphaned" if orphans else "none",
+          f"{n_tables} action tables, every row addressable")
+    check("the Open actions section defers to the one list",
+          "Every row here also appears in" in idx, "defers",
+          "defers" if "Every row here also appears in" in idx else "RIVAL LIST",
+          "it holds the explanations, not a second list")
 
     # ---- 8. structural ----------------------------------------------------
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
