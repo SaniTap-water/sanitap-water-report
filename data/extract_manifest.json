@@ -1,0 +1,54 @@
+{
+ "failed": [],
+ "files": {
+  "appel_signalement_pannes.csv": {
+   "form": "call-centre",
+   "form_id": "c08b3fe26d0f42c084074701f29eb75e",
+   "newest_submitted": "2026-09-21",
+   "rows": 2825,
+   "unique": 2825,
+   "written": "2026-09-21T18:10:36"
+  },
+  "forage_moramanga.csv": {
+   "form": "marolinta-borehole-progress",
+   "form_id": "8764843c94484f5b984078c68f13b2ca",
+   "newest_submitted": "2026-08-29",
+   "rows": 18,
+   "unique": 18,
+   "written": "2026-09-21T18:12:17"
+  },
+  "pm.csv": {
+   "form": "preventive-maintenance",
+   "form_id": "de26d89a5c8a4452b42158c622be20d0",
+   "newest_submitted": "2026-09-11",
+   "rows": 755,
+   "unique": 755,
+   "written": "2026-09-21T18:08:11"
+  },
+  "premiere_rehabilitation.csv": {
+   "form": "premiere-rehabilitation",
+   "form_id": "63747997e70e478fbb2ebf71581ceeb0",
+   "newest_submitted": null,
+   "rows": 0,
+   "unique": 0,
+   "written": "2026-09-21T18:11:26"
+  },
+  "reparation_apres_panne.csv": {
+   "form": "repair-after-breakdown",
+   "form_id": "958b4763788348d699e7d8c5821f92ee",
+   "newest_submitted": "2026-09-14",
+   "rows": 212,
+   "unique": 212,
+   "written": "2026-09-21T18:09:06"
+  },
+  "wp_madavance.csv": {
+   "entity_type": "water_point",
+   "pulled_by": "separate filtered export, not by this tool",
+   "rows": 908,
+   "written": "2026-09-11T10:16:59"
+  }
+ },
+ "newest_in_files": "2026-09-21",
+ "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
+ "pulled_at": "2026-09-21T18:12:17"
+}

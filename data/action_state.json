@@ -1,7 +1,7 @@
 {
  "evaluated": "2026-09-21",
  "kinds": {
-  "artefact": 7,
+  "artefact": 8,
   "data": 31,
   "decision": 39,
   "form": 9,
@@ -56,6 +56,14 @@
    "kind": "form",
    "satisfied": false,
    "says": "closes when the call form carries a service-visit-requested question",
+   "when_satisfied": "OK"
+  },
+  "act-call-tables-builder": {
+   "evaluated": "2026-09-21",
+   "evidence": "tools/rebuild_call_tables.py does not exist in the repository",
+   "kind": "artefact",
+   "satisfied": false,
+   "says": "closes when a builder for the call-centre-derived tables exists in the repository",
    "when_satisfied": "OK"
   },
   "act-chase-s4-16-car": {
@@ -585,7 +593,7 @@
   },
   "act-refresh-extract": {
    "evaluated": "2026-09-21",
-   "evidence": "extract_lag_days = 14 (days the extract on this page runs behind mWater); target == 0",
+   "evidence": "extract_lag_days = 7 (days the extract on this page runs behind mWater); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when the extract on this page is level with mWater",
@@ -836,7 +844,7 @@
   },
   "act-visit-collapse": {
    "evaluated": "2026-09-21",
-   "evidence": "points_over_6_months = 438 (points with no maintenance visit for more than six months); target <= 50",
+   "evidence": "points_over_6_months = 452 (points with no maintenance visit for more than six months); target <= 50",
    "kind": "data",
    "satisfied": false,
    "says": "closes when fewer than 50 points are more than six months without a visit",

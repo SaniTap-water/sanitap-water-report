@@ -39,7 +39,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 26634,
+ "height": 26637,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
@@ -75,7 +75,7 @@
   },
   "over6": {
    "hidden": false,
-   "rows": 428
+   "rows": 452
   },
   "parttbl": {
    "hidden": false,

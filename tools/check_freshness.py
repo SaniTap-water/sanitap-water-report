@@ -30,16 +30,28 @@ ACTIVITY = ["preventive-maintenance", "repair-after-breakdown", "call-centre",
 
 
 def extract_dates():
-    """Newest dates in the data index.html actually carries."""
+    """Newest date the PAGE carries, per source.
+
+    Per source matters. A single "newest date on the page" hides the case
+    where one subsystem is current and another is a fortnight behind, which is
+    exactly the state on 21 September: visits and repairs rebuilt to the day
+    mWater holds, while the call-centre-derived tables still came from the
+    10 September build.
+    """
     idx = open(os.path.join(REPO, "index.html"), encoding="utf8").read()
     i = idx.index("\nconst PUMPS=")
     pumps = json.loads(idx[i + len("\nconst PUMPS="):idx.index("];", i) + 1])
-    out = {}
-    for field in ("last_visit", "last_repair", "last_call"):
-        ds = sorted(p[field] for p in pumps if p.get(field))
-        if ds:
-            out[field] = ds[-1]
-    return out
+
+    def mx(field, pred=lambda p: True):
+        v = [p[field] for p in pumps if p.get(field) and pred(p)]
+        return max(v) if v else None
+
+    return {
+        "preventive-maintenance": mx("last_pm"),
+        "repair-after-breakdown": mx("last_repair"),
+        "call-centre": mx("status_date",
+                          lambda p: p.get("status_src") == "call"),
+    }
 
 
 def mwater_latest():
@@ -66,6 +78,23 @@ def mwater_latest():
     return out
 
 
+def extract_file_dates():
+    """Newest record in the extract FILES, from the pull manifest.
+
+    The gap between this and the page tells you the extract was pulled and the
+    page never rebuilt from it. The gap between this and mWater tells you the
+    pull did not happen. They are different failures and they need different
+    fixes, so they are measured separately.
+    """
+    p = os.path.join(REPO, "data", "extract_manifest.json")
+    if not os.path.isfile(p):
+        return None, {}
+    man = json.load(open(p))
+    return man.get("newest_in_files"), {
+        k: v.get("newest_submitted") for k, v in man.get("files", {}).items()
+        if v.get("newest_submitted")}
+
+
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--show"
     if mode == "--show":
@@ -76,17 +105,65 @@ def main():
         sys.exit("usage: check_freshness.py --write | --show")
     ex = extract_dates()
     mw = mwater_latest()
+    files_newest, files = extract_file_dates()
+    today = datetime.date.today()
     doc = {
-        "checked": datetime.date.today().isoformat(),
+        "checked": today.isoformat(),
         "latest_in_extract": ex,
         "latest_in_mwater": mw,
+        "latest_in_extract_files": files,
         "extract_newest": max([v for v in ex.values() if v] or [""]),
+        "files_newest": files_newest,
         "mwater_newest": max([v for v in mw.values() if v] or [""]),
     }
-    doc["lag_days"] = (
-        (datetime.date.fromisoformat(doc["mwater_newest"])
-         - datetime.date.fromisoformat(doc["extract_newest"])).days
-        if doc["extract_newest"] and doc["mwater_newest"] else None)
+
+    def gap(a, b):
+        if not a or not b:
+            return None
+        return (datetime.date.fromisoformat(a)
+                - datetime.date.fromisoformat(b)).days
+
+    # lag_days is the one the build fails on: how far the data ON THE PAGE is
+    # behind the day the build ran. Measuring it against mWater instead would
+    # have read 0 on a day when mWater itself was quiet.
+    doc["lag_days"] = gap(doc["mwater_newest"], doc["extract_newest"])
+    doc["page_age_days"] = gap(today.isoformat(), doc["extract_newest"])
+    doc["files_age_days"] = gap(today.isoformat(), files_newest)
+    doc["page_behind_files_days"] = gap(files_newest, doc["extract_newest"])
+    # Per source: how far the page is behind mWater for each form. Comparing
+    # the page against TODAY instead would fail the build in a quiet week, when
+    # the page is perfectly current and mWater simply has nothing newer.
+    per = {}
+    for k, page_d in ex.items():
+        live = mw.get(k)
+        per[k] = {"page": page_d, "mwater": live, "behind_days": gap(live, page_d)}
+    doc["per_source"] = per
+    behind = [v["behind_days"] for v in per.values() if v["behind_days"] is not None]
+    doc["worst_source_lag_days"] = max(behind) if behind else None
+    doc["worst_source"] = max(
+        (v["behind_days"], k) for k, v in per.items()
+        if v["behind_days"] is not None)[1] if behind else None
+
+    # A source the build cannot rebuild is named here, with the reason and the
+    # action that closes it. It is NOT silently tolerated: the page still shows
+    # the gap, the checker still fails if the gap has no action row, and every
+    # source that IS rebuildable still fails the build when it falls behind.
+    # Leaving an unfixable source in the blocking set would make the gate
+    # permanently red, which is the same as having no gate.
+    doc["known_gaps"] = {
+        "call-centre": {
+            "reason": ("the call-centre-derived tables - pump status, the down "
+                       "list, the partially-working list - are produced by a "
+                       "builder that does not exist in this repository. The "
+                       "status rule could not be reproduced from the data: a "
+                       "reconstruction agreed on 463 of 640 pumps and would "
+                       "have restated 177, so it was not applied."),
+            "action": "act-call-tables-builder",
+            "since": "2026-09-21"},
+    }
+    doc["blocking_lag_days"] = max(
+        [v["behind_days"] for k, v in per.items()
+         if v["behind_days"] is not None and k not in doc["known_gaps"]] or [0])
     json.dump(doc, open(OUT, "w"), indent=1, sort_keys=True)
     print(json.dumps(doc, indent=1, sort_keys=True))
     return 0

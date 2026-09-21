@@ -26,24 +26,35 @@ def nice(d):
 
 def caption():
     f = json.load(open(os.path.join(REPO, "data", "data_freshness.json")))
-    ex, mw, lag = f["extract_newest"], f["mwater_newest"], f["lag_days"]
-    per = ", ".join(f"{NAMES.get(k, k)} to {nice(v)}"
-                    for k, v in sorted(f["latest_in_mwater"].items()) if v)
-    if not lag:
-        return ('<p id="weekcap">Activity logged in mWater in the <b>7 days to '
-                f'{nice(ex)}</b>, against the previous 7 days and the last 28. '
-                '<span class="muted">The extract is current with mWater as of '
-                f'{nice(f["checked"])}.</span></p>')
-    return (
-        '<p id="weekcap">Activity in the <b>7 days to ' + nice(ex) + '</b>, '
-        'against the previous 7 days and the last 28. '
-        '<b>That is not the current week.</b> The newest record in the extract '
-        'this page is built from is ' + nice(ex) + '; mWater itself holds '
-        'records to ' + nice(mw) + ' &mdash; ' + per + '. '
-        f'<b>The counts below run {lag} days behind mWater</b> and describe the '
-        'week to ' + nice(ex) + '. '
-        '<span class="muted">Checked against mWater on ' + nice(f["checked"])
-        + '; <a href="#act-refresh-extract">refresh the extract</a>.</span></p>')
+    per = f.get("per_source") or {}
+    gaps = f.get("known_gaps") or {}
+    ex = f["extract_newest"]
+    fresh = [k for k, v in per.items() if v.get("behind_days") == 0]
+    late = sorted(((v.get("behind_days") or 0), k) for k, v in per.items()
+                  if v.get("behind_days"))
+    bits = []
+    for k, v in sorted(per.items()):
+        if not v.get("page"):
+            continue
+        tag = (f' &mdash; <b>{v["behind_days"]} days behind</b>'
+               if v.get("behind_days") else " &mdash; current")
+        bits.append(f'{NAMES.get(k, k)} to {nice(v["page"])}{tag}')
+    body = "; ".join(bits)
+    head = ('<p id="weekcap">Activity in the <b>7 days to ' + nice(ex) + '</b>, '
+            'against the previous 7 days and the last 28. ')
+    if not late:
+        return (head + '<span class="muted">Every source is level with mWater as '
+                'of ' + nice(f["checked"]) + ': ' + body + '.</span></p>')
+    worst, wname = late[-1]
+    known = wname in gaps
+    return (head + f'<b>{NAMES.get(wname, wname)} is {worst} days behind mWater</b> '
+            + ('and cannot be rebuilt by any code in this repository yet &mdash; '
+               f'<a href="#{gaps[wname]["action"]}">write the builder</a>. '
+               if known else
+               'and should have been rebuilt &mdash; run the pull and rebuild. ')
+            + '<span class="muted">By source: ' + body
+            + f'. Checked against mWater on {nice(f["checked"])}; '
+            f'{len(fresh)} of {len(per)} sources level.</span></p>')
 
 
 def splice(b):

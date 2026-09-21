@@ -29,7 +29,7 @@
   "extract_lag_days": {
    "says": "days the extract on this page runs behind mWater",
    "source": "local",
-   "value": 14
+   "value": 7
   },
   "marolinta_new_borehole_records": {
    "says": "new-borehole records on the Marolinta progress form",
@@ -89,7 +89,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 438
+   "value": 452
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",

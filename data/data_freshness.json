@@ -1,10 +1,27 @@
 {
+ "blocking_lag_days": 0,
  "checked": "2026-09-21",
- "extract_newest": "2026-09-07",
- "lag_days": 14,
+ "extract_newest": "2026-09-14",
+ "files_age_days": 0,
+ "files_newest": "2026-09-21",
+ "known_gaps": {
+  "call-centre": {
+   "action": "act-call-tables-builder",
+   "reason": "the call-centre-derived tables - pump status, the down list, the partially-working list - are produced by a builder that does not exist in this repository. The status rule could not be reproduced from the data: a reconstruction agreed on 463 of 640 pumps and would have restated 177, so it was not applied.",
+   "since": "2026-09-21"
+  }
+ },
+ "lag_days": 7,
  "latest_in_extract": {
-  "last_repair": "2026-09-07",
-  "last_visit": "2026-09-07"
+  "call-centre": "2026-09-07",
+  "preventive-maintenance": "2026-09-11",
+  "repair-after-breakdown": "2026-09-14"
+ },
+ "latest_in_extract_files": {
+  "appel_signalement_pannes.csv": "2026-09-21",
+  "forage_moramanga.csv": "2026-08-29",
+  "pm.csv": "2026-09-11",
+  "reparation_apres_panne.csv": "2026-09-14"
  },
  "latest_in_mwater": {
   "call-centre": "2026-09-21",
@@ -12,5 +29,26 @@
   "preventive-maintenance": "2026-09-11",
   "repair-after-breakdown": "2026-09-14"
  },
- "mwater_newest": "2026-09-21"
+ "mwater_newest": "2026-09-21",
+ "page_age_days": 7,
+ "page_behind_files_days": 7,
+ "per_source": {
+  "call-centre": {
+   "behind_days": 14,
+   "mwater": "2026-09-21",
+   "page": "2026-09-07"
+  },
+  "preventive-maintenance": {
+   "behind_days": 0,
+   "mwater": "2026-09-11",
+   "page": "2026-09-11"
+  },
+  "repair-after-breakdown": {
+   "behind_days": 0,
+   "mwater": "2026-09-14",
+   "page": "2026-09-14"
+  }
+ },
+ "worst_source": "call-centre",
+ "worst_source_lag_days": 14
 }

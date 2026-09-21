@@ -237,10 +237,13 @@ then upload it over the SharePoint copy, keeping the same filename.
 Rebuild order, every Monday:
 
 ```
+python3 tools/pull_extract.py --write        # FIRST: pull, or everything below is stale
+python3 tools/rebuild_activity.py --write    # write the fresh activity into the page
 python3 tools/check_freshness.py --write     # how far behind mWater the extract is
 python3 tools/marolinta_admin.py --write     # district/commune from the register
 python3 tools/action_metrics.py --write      # recount every stored query
 python3 tools/eval_conditions.py --write     # decide what is open
+python3 tools/render_masthead.py --write
 python3 tools/render_freshness.py --write
 python3 tools/render_marolinta.py --write
 python3 tools/render_block.py --write
@@ -260,3 +263,72 @@ Carried forward every edition. `tools/check_consistency.py` asserts each of them
    status and closure are computed, and the fallback notice appears when the cache
    cannot be read
 6. **one to-do list** — the consolidated action list is the only one on the page
+7. **the extract is pulled and the page rebuilt from it, every edition** — run
+   `tools/pull_extract.py --write` then `tools/rebuild_activity.py --write`
+   before anything else. The build FAILS if the data on the page is more than
+   three days old, so an edition cannot go out on a stale extract.
+
+## The extract, and why it went stale for a fortnight
+
+On 21 September the page reported the week to 7 September. Three separate
+faults had to line up, and each of them passed every check:
+
+1. **There was no scheduled build.** No cron entry, no systemd timer, no
+   Windows task, nothing in Claude's job list. Nothing ran at 05:09 that
+   morning — no process, no file written between 04:30 and 07:00, no commit
+   before 07:52 — and the machine was up throughout.
+2. **The pull was not code.** Nothing in this repository read or wrote the
+   extracts, so when the manual step stopped happening there was nothing to
+   fail. `tools/pull_extract.py` is that step, now written down.
+3. **The exporter silently lost the newest rows.** `mwater_export_csv` pages
+   with `skip`/`limit` and no sort order. mWater's row order shifts between
+   requests, so a long export duplicates some rows and drops others, then
+   stops on a short page and reports success. The 21 September export of the
+   preventive-maintenance form wrote 755 rows of which only **547 were
+   distinct**, and the four most recent responses — 3, 4, 10 and 11
+   September — were not among them.
+
+`tools/pull_extract.py` does not page. It walks fixed date windows, splits a
+window that comes back full, and de-duplicates on `_id`. The same form now
+pulls 755 rows, all distinct, newest 11 September.
+
+### What fails the build now
+
+| check | fails when |
+|---|---|
+| the extract behind the page is not stale | the newest record on the page is more than **3 days** older than the build date |
+| the page was rebuilt from the extract that was pulled | the files are newer than the page — pulled, never rebuilt from |
+| the extract carries no duplicated records | any response file has fewer distinct `_id`s than rows, or no distinct count at all |
+| no extract sits under a filename the build never reads | anything but the canonical names is in `~/mwater-exports` |
+
+The masthead carries the extract date beside the issue date, and turns the gap
+into a red badge past the same three days, so a reader sees it without opening
+anything.
+
+### Canonical extract filenames
+
+`pm.csv`, `reparation_apres_panne.csv`, `appel_signalement_pannes.csv`,
+`premiere_rehabilitation.csv`, `forage_moramanga.csv`, `wp_madavance.csv`.
+Nothing else is read. A pull that writes `repairs.csv` is a pull that did
+nothing.
+
+### What the refresh moved, and what it deliberately did not
+
+The 21 September refresh rebuilt the visit- and repair-derived fields:
+`last_pm`, `last_repair`, `last_visit`, `days` on every pump, `S.over6` and
+the week counters. Preventive maintenance and repairs are now level with
+mWater (lag 0).
+
+It did **not** rebuild the call-centre-derived tables — pump status, the down
+list, the partially-working list, time out of service. That builder is not in
+this repository, and the rule it applies is not written down anywhere. A
+reconstruction from the page's own description of the rule agreed on 463 of
+640 pumps and would have restated 177 — 168 of them from `partial` to `ok` —
+so it was not applied. `data/data_freshness.json` carries `call-centre` as a
+named gap with a reason, a date and the action that closes it
+(`act-call-tables-builder`), and `check_consistency.py` fails if a named gap
+ever loses its action row.
+
+`S.never` is left alone for the same reason: it counts points with no works
+record of any kind, including rehabilitation and construction, and this pull
+covers neither.

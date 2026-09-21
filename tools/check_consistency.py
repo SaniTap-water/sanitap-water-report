@@ -2569,14 +2569,104 @@ def main():
           'id="weekcap"' in wk and bool(fresh), "generated",
           "generated" if 'id="weekcap"' in wk else "STILL WRITTEN",
           "tools/render_freshness.py from data/data_freshness.json")
-    lag = fresh.get("lag_days")
+    worst = fresh.get("worst_source_lag_days")
     check("the page states how far behind mWater its data is",
-          (lag == 0 and "current with mWater" in wk)
-          or (lag and f"{lag} days behind mWater" in wk),
-          "stated", "stated" if ("behind mWater" in wk or "current with" in wk)
+          ("level with mWater" in wk) if not worst
+          else (f"{worst} days behind mWater" in wk and "By source:" in wk),
+          "stated per source",
+          "stated per source" if ("behind mWater" in wk or "level with" in wk)
           else "MISSING",
-          f"extract to {fresh.get('extract_newest')}, "
-          f"mWater to {fresh.get('mwater_newest')}")
+          "; ".join(f"{k} {v.get('behind_days')}d"
+                    for k, v in sorted((fresh.get("per_source") or {}).items())))
+
+    # ---- 7bc. a stale extract FAILS the build, it does not warn -----------
+    # This is the check that was missing. The extract sat at 7 September for
+    # fourteen days and eight editions went out on it, every one of them
+    # passing every check, because nothing compared the data's own date with
+    # the date the build ran. Three days is the allowance: a weekly build
+    # pulling on the day it runs is 0-1 days behind, and three leaves room
+    # for a pull late on the Friday before.
+    # Staleness is measured PER SOURCE against mWater, not against the
+    # calendar: comparing the page to today would fail the build in a quiet
+    # week, when the page is current and mWater simply holds nothing newer.
+    MAX_SOURCE_LAG_DAYS = 2
+    blocking = fresh.get("blocking_lag_days")
+    per = fresh.get("per_source") or {}
+    gaps = fresh.get("known_gaps") or {}
+    late = [f"{k} {v['behind_days']}d" for k, v in per.items()
+            if v.get("behind_days") and k not in gaps
+            and v["behind_days"] > MAX_SOURCE_LAG_DAYS]
+    check("no rebuildable source is behind mWater",
+          blocking is not None and blocking <= MAX_SOURCE_LAG_DAYS,
+          f"<= {MAX_SOURCE_LAG_DAYS} days behind",
+          ", ".join(late) if late else f"{blocking} days behind",
+          "run tools/pull_extract.py --write then tools/rebuild_activity.py --write")
+    # a source the build cannot rebuild must be named, dated and actioned -
+    # never just quietly excluded
+    bad_gap = [k for k, v in gaps.items()
+               if not v.get("reason") or not v.get("action")
+               or f'id="{v["action"]}"' not in idx]
+    check("every source the build cannot rebuild carries an action",
+          not bad_gap, "all actioned",
+          ", ".join(bad_gap) if bad_gap else "all actioned",
+          "; ".join(f"{k} {per.get(k, {}).get('behind_days')}d behind"
+                    for k in gaps) or "none")
+    # and an absolute backstop, generous enough that a quiet week is fine
+    MAX_ABSOLUTE_AGE_DAYS = 21
+    age = fresh.get("page_age_days")
+    check("the page is not running on an abandoned extract",
+          age is not None and age <= MAX_ABSOLUTE_AGE_DAYS,
+          f"<= {MAX_ABSOLUTE_AGE_DAYS} days old",
+          "no extract date" if age is None else f"{age} days old",
+          f"newest record on the page is {fresh.get('extract_newest')}")
+    # pulled but never rebuilt from is a different failure with a different fix
+    # per source, and excluding the source the build cannot rebuild at all -
+    # that one is a named gap with an action, checked separately above
+    gaps_ = fresh.get("known_gaps") or {}
+    not_rebuilt = [k for k, v in (fresh.get("per_source") or {}).items()
+                   if k not in gaps_ and (v.get("behind_days") or 0) > 0]
+    check("the page was rebuilt from the extract that was pulled",
+          not not_rebuilt, "rebuilt",
+          ", ".join(not_rebuilt) if not_rebuilt else "rebuilt",
+          "a pull that is never rebuilt from is the same as no pull")
+    check("the masthead carries the extract date beside the issue date",
+          "BEGIN GENERATED masthead" in idx
+          and ("data to" in idx or "DATA" in idx and "DAYS OLD" in idx),
+          "both dates", "both dates" if "BEGIN GENERATED masthead" in idx
+          else "MISSING",
+          "a reader sees the gap without opening anything")
+    man_p = os.path.join(repo_root, "data", "extract_manifest.json")
+    man = json.load(open(man_p)) if os.path.isfile(man_p) else {}
+    # a manifest with no unique count was written by the old exporter, which
+    # is exactly the thing that duplicated rows - so absence is a failure too
+    resp = {k: v for k, v in man.get("files", {}).items() if v.get("form")}
+    dups = [k for k, v in resp.items()
+            if v.get("rows") and v.get("unique") is None] + \
+           [k for k, v in resp.items()
+            if v.get("rows") and v.get("unique") and v["rows"] != v["unique"]]
+    # Computed here, not read from the manifest: a manifest written by the old
+    # exporter has no stray list, and "the key is absent" must not read as "no
+    # strays". repairs.csv - a correct export of the repair form under a name
+    # no build opens - is exactly what this catches.
+    CANONICAL = {"pm.csv", "reparation_apres_panne.csv",
+                 "appel_signalement_pannes.csv", "premiere_rehabilitation.csv",
+                 "forage_moramanga.csv", "wp_madavance.csv"}
+    HISTORICAL = {"old_combined_reparation.csv", "wp_lookup.csv",
+                  "suivi_gestion_pannes.csv"}
+    exp_dir = os.path.expanduser("~/mwater-exports")
+    strays = sorted(f for f in os.listdir(exp_dir)
+                    if f.endswith(".csv")
+                    and f not in CANONICAL | HISTORICAL) if os.path.isdir(exp_dir) else []
+    check("no extract sits under a filename the build never reads",
+          not strays, "none",
+          f"{len(strays)} stray file(s)" if strays else "none",
+          ", ".join(strays[:3]) if strays
+          else "a correct pull under the wrong name changes nothing")
+    check("the extract carries no duplicated records",
+          bool(resp) and not dups, "none",
+          f"{len(dups)} file(s)" if dups else ("none" if resp else "NO MANIFEST"),
+          "the exporter's skip/limit paging duplicated 208 rows and lost the "
+          "four newest; tools/pull_extract.py walks date windows instead")
     check("the leadership-team reconciliation is gone",
           "Reconciling with the senior leadership team" not in idx, "absent",
           "absent" if "Reconciling with the senior leadership team" not in idx
