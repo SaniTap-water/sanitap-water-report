@@ -49,6 +49,77 @@ same section. This is an error in the registered VPA-DD, not in this note.
 
 ---
 
+---
+
+## (a bis) What the index *p* is — verified in all three documents
+
+This decides how the figure is reported, so it is quoted rather than asserted.
+
+**The registered VPA-DD, page 58**, setting out Equation 5 of ERSDWS in full:
+
+> 𝑄𝑝𝑜𝑝,𝑦 = Σ 𝐻𝐻𝑝,𝑦 × 𝐻𝑁𝑝,𝑦 × 𝑄𝑃𝑊𝑝 × 𝐷𝑂𝑝,𝑦
+>
+> Where:
+> 𝐻𝐻𝑝,𝑦 = Number of **premises type p** served by the project in year y
+> 𝐻𝑁𝑝,𝑦 = Number of individuals per **premises type p** (e.g. household, school) in year y
+> 𝑄𝑃𝑊𝑝 = Volume of drinking water per person per day for **premises type p** (L). Apply the
+> default value or monitored value through water consumption field tests in the project
+> scenario, capped at 5.5 L per person per day.
+> 𝐷𝑂𝑝,𝑦 = Days the project technology is operational for end users in **premises p** in year y
+
+**ERSDWS v1.0, section 3.6.6, Eq. 5** — identical wording, and the parameter boxes agree:
+
+> **SDWS 25** 𝐻𝑁𝑝,𝑦 **Description:** Number of individuals per **premises type p** in the
+> project boundary in year y
+>
+> **SDWS 26** 𝐻𝐻𝑝,𝑦 **Description:** Number of **premises type p** served by the project in
+> year y
+
+**ERSDWS v2.0, Eq. 5** — the same equation, with the parameter numbers renumbered:
+
+> 𝐻𝐻𝑝,𝑦 = Number of **premises type p** served by the activity (SDWS 31)
+> 𝐻𝑁𝑝,𝑦 = Number of individuals per **premises type p** (SDWS 30)
+> 𝑄𝑃𝑊𝑝 = Volume of drinking water per person per day (SDWS 29)
+> 𝐷𝑂𝑝,𝑦 = Days the activity technology is operational (SDWS 32)
+
+### What that establishes, and the one wrinkle
+
+**`DO` is indexed by premises type, not by water point.** Three of the four terms multiplied
+together inside the summation say "premises type p" in so many words, in all three documents.
+A product Σ_p HH_p × HN_p × QPW_p × DO_p is only coherent if all four are indexed on the same
+domain, so `DO_p,y` is a days-operational figure per premises type — a **stratum average** — and
+not a per-pump value.
+
+**The wrinkle, stated because a verifier will see it too.** The `DO` box itself, in all three
+documents, says "premises p" and drops the word *type* that the other three terms carry. Read on
+its own, that sentence could be taken to mean an individual premises. It cannot be read that way
+in context: it is the fourth factor in a product whose other three factors are per premises type,
+and it is summed over the same index.
+
+Three further things in the registered documents point the same way, and none points the other:
+
+* **The VPA-DD applies one value.** The SDWS 27 box gives **Value(s) applied: "Estimate: 347
+  days"** — a single figure for the whole VPA. If `DO` were per water point the registered
+  document would carry 727 of them.
+* **v1.0's own QA/QC note treats p as a type:** *"For schools and other institutions, as
+  applicable, the days must also be limited by the number of school days in the period"* — a
+  qualification that only makes sense applied to a category of premises, not to one pump.
+* **The VPA-DD, page 31**, ties the parameter to the maintenance programme as a whole:
+  *"Repairs and maintenance are logged as part of the project monitoring to demonstrate SDWS 27
+  - Days the project technology is operational for end-users."*
+
+### The consequence for what has to be demonstrated
+
+What must be shown is that the evidence base is **representative of the stratum**, not that it is
+**complete for every point**. Those are different obligations and the second is much harder than
+the methodology asks for. A calendar record covering part of the fleet can support a stratum
+average provided the covered part is not systematically different from the rest — which is a
+testable claim, and is tested in the report rather than assumed.
+
+This does not loosen anything else. The 347-day cap still binds, because it is a condition on the
+*method* — manual logs rather than an operation sensor — and not on the indexing. A stratum
+average above 347 days is still not claimable.
+
 ## (b) ERSDWS v1.0 — the registered methodology
 
 Parameter box SDWS 27, page 36, verbatim in full:

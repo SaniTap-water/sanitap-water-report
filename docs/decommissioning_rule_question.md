@@ -1,11 +1,38 @@
-# The decommissioning rule: what Jan has to decide
+# The decommissioning rule: decision record
 
-**Prepared 21 September 2026.** This sets out a question, not an answer. The retirement rule
-sets the register, and the register is the denominator of every carbon figure this project
-publishes, so the choice belongs to the Head of Carbon and not to whoever is editing a form.
+## Decision, 21 September 2026
 
-Everything below is from the two SOPs, the registered methodologies, and the register and
-calendar data as they stand. Where the evidence does not settle something, it says so.
+**SaniTap will not decommission or retire water points for inactivity.**
+
+A pump that stays broken is a repair problem, not a register problem. It remains in the
+portfolio and is reported at its honest days operational.
+
+The reasoning is conservatism. Removing under-performing points takes them out of the
+denominator and flatters the fleet average: the worst points would leave the register and the
+reported availability of what remained would rise, without a single pump working better. That is
+the less conservative treatment and the one a verifier would question. Keeping a broken pump in
+the portfolio at its real `DO` is the harder number to report and the easier one to defend.
+
+It is also what the methodology already assumes. Neither version has any provision for a retired
+supply, because none is needed — `DO_p,y` is days operational, and a pump that stops working
+simply contributes fewer of them.
+
+**What follows from the decision**
+
+* The 95% pause rule in `SOP-Suppression_Points d'Eau` is not applied, and the SOP should be
+  amended to say so. The English SOP, which never carried a pause section, is already correct.
+* The permanent-deletion criteria are unaffected: duplicate records, confirmed persistent
+  contamination, irreparable or abandoned infrastructure, serious persistent health or safety
+  risk, points taken over by another funder, no access. None of those is an availability
+  judgement and all of them stand.
+* **No writable status property is needed in the register.** The only thing it was wanted for
+  was a "paused" state, and there is no longer a paused state. Excluding a record that is not a
+  water point at all is a separate and much smaller job, and the `ZZ TEST` name-prefix
+  convention in `tools/exclude_retired.py` already does it for the two such records that exist.
+* **Repair speed becomes the only lever on days operational.** That is why time to repair is now
+  a headline metric on the report rather than an operational detail.
+
+The analysis that led here is kept below, unchanged, as the reasoning.
 
 ---
 
@@ -158,10 +185,11 @@ Two provisions cut the other way and should be in front of Jan:
   units commissioned inside the crediting period; the default factor is per Table 9 §9.2 and the
   per-unit figure has not been applied here.
 
-## 6. The decision
+## 6. The options as they stood
 
-**Jan has to decide what the retirement rule actually is, and he is choosing between three
-positions that differ by roughly 3,000 tCO₂e a year and by how much a verifier can challenge.**
+**The choice was between three positions differing by roughly 3,000 tCO₂e a year and by how
+much a verifier could challenge. Option B was taken, for the reason at the top of this file: it
+is the conservative one.**
 *Option A — apply the French SOP as written*: pause every point below 95% availability over
 twelve months, which on present uncalibrated readings is something like 95 to 140 points and
 forgoes on the order of 2,600 to 3,900 tCO₂e a year, needs a status the register cannot
@@ -186,6 +214,8 @@ mechanism; and a point that is retired mid-period still needs a defensible `DO` 
 did operate, because the methodology asks for days and not for membership.
 
 ## 7. What this document does not settle
+
+The decision above settles whether to retire for inactivity. It does not settle these:
 
 * Whether the 95%/347-day alignment was deliberate. Nothing on file says.
 * The minimum flow threshold the productivity criterion depends on — the English SOP carries an

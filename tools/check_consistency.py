@@ -1404,15 +1404,18 @@ def main():
                         r"recover(?:ed|s)?|available to us|worth to us)\b", re.I)
     NEGATED = re.compile(r"\b(not|never|cannot|can't|no part|above the cap|"
                          r"sizing|sizes|only on measured|would|not available)\b", re.I)
+    # Every published reading that sits above the 347-day cap, not just the
+    # first one. A stratum average is no more claimable than a per-point one.
+    ABOVE_CAP = ("356.2", "353.6", "353.3", "356.7", "357.8", "358.6", "357.3")
     plain = re.sub(r"<[^>]+>", " ", idx)
     plain = plain.replace("&mdash;", "—").replace("&nbsp;", " ")
     offenders = []
     for sent in re.split(r"(?<=[.!?])\s+", plain):
-        if "356.2" not in sent:
+        if not any(n in sent for n in ABOVE_CAP):
             continue
         if CLAIMY.search(sent) and not NEGATED.search(sent):
             offenders.append(re.sub(r"\s+", " ", sent)[:110])
-    check("no published sentence pairs 356.2 with a claiming verb",
+    check("no published sentence pairs an above-cap reading with a claiming verb",
           not offenders, "none",
           f"{len(offenders)} offending" if offenders else "none",
           "DO = min(347, log); the reading is above the cap and is not ours to apply")
@@ -2002,19 +2005,59 @@ def main():
     # who makes the call.
     dec = os.path.join(repo_root, "docs", "decommissioning_rule_question.md")
     dtext = read(dec) if os.path.isfile(dec) else ""
-    check("the decommissioning decision paper exists",
-          "The decision" in dtext and "95" in dtext and "908" in dtext,
-          "present", "present" if dtext else "MISSING",
+    check("the decommissioning decision is recorded",
+          "decision record" in dtext.lower()
+          and "will not decommission or retire water points for inactivity" in dtext
+          and "908" in dtext,
+          "recorded", "recorded" if "will not decommission" in dtext else "STILL A QUESTION",
           "docs/decommissioning_rule_question.md")
     m = re.search(r'<tr id="act-decommission-inactivity-field">.*?</tr>', idx, re.S)
     row = m.group(0) if m else ""
-    check("the decommissioning action is owned by the Head of Carbon",
-          "Jan de Graaf" in row, "Jan de Graaf",
-          "Jan de Graaf" if "Jan de Graaf" in row else "NOT REASSIGNED",
-          "the retirement rule sets the carbon denominator")
-    check("the decommissioning action links the decision paper",
+    check("the page states the decision and why it is the conservative one",
+          "not decommission or retire water points for inactivity" in idx
+          and "flatters the fleet average" in idx, "stated",
+          "stated" if "flatters the fleet average" in idx else "MISSING",
+          "removing weak points would raise availability with no pump working better")
+    check("the decommissioning action links the decision record",
           "decommissioning_rule_question.md" in row, "linked",
           "linked" if "decommissioning_rule_question.md" in row else "MISSING")
+    check("the decision leaves no owner, because there is no question left",
+          "Jan de Graaf" not in row, "no owner",
+          "no owner" if "Jan de Graaf" not in row else "STILL ASSIGNED")
+
+    # ---- days operational is a stratum figure, and says so -------------
+    check("the page quotes the premises-TYPE wording from the registered text",
+          "premises <i>type</i> p" in idx and "page 58" in idx, "quoted",
+          "quoted" if "premises <i>type</i> p" in idx else "ASSERTED ONLY",
+          "three of Equation 5's four terms carry it")
+    check("the page states what must be shown is representativeness, not completeness",
+          "representative of the stratum, not complete for every point" in idx,
+          "stated", "stated" if "representative of the stratum" in idx else "MISSING")
+    check("the stratum figures carry their point-year counts",
+          "415" in idx and "353.6" in idx and "353.3" in idx, "present",
+          "present" if "353.6" in idx else "MISSING",
+          "portfolio and both districts")
+    check("the page reports the representativeness test and its answer",
+          "Yes, it is biased" in idx and "64.8%" in idx and "19.8%" in idx,
+          "reported", "reported" if "Yes, it is biased" in idx else "MISSING",
+          "visit frequency, threefold")
+    check("the page records that the calendars do not corroborate the backlog",
+          "should not look like every other pump" in idx, "recorded",
+          "recorded" if "should not look like every other pump" in idx else "MISSING",
+          "a finding against the evidence base, not for it")
+
+    # ---- repair time is a headline metric ------------------------------
+    check("time to repair is on the page with its baseline",
+          "Time to repair" in idx and "187" in idx and "84</b> days open" in idx,
+          "present", "present" if "Time to repair" in idx else "MISSING",
+          "median 1 day recorded; 44 points open at a median 84 days")
+    check("the page says the repair median cannot show a backlog",
+          "cannot show a backlog" in idx, "stated",
+          "stated" if "cannot show a backlog" in idx else "MISSING",
+          "the form is created when the repair is finished")
+    check("the repair-time action exists with the baseline on it",
+          '<tr id="act-repair-time">' in idx, "present",
+          "present" if '<tr id="act-repair-time">' in idx else "MISSING")
     check("the emergency-event form is settled either way",
           "741" in idx and "does not exist" in idx, "settled",
           "settled" if "741" in idx else "STILL UNVERIFIED",
