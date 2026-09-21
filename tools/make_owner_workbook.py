@@ -13,7 +13,7 @@ done that the data says is not.
 
     python3 tools/make_owner_workbook.py         # write build/action_owners.xlsx
 """
-import datetime, os, sys
+import datetime, os, re, sys, zipfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import render_actions as RA                                    # noqa: E402
@@ -32,41 +32,7 @@ OWNERS = ["Adriaan Mol", "James Walker", "Jan de Graaf",
           "Earthood", "Unassigned"]
 
 
-def verify(path):
-    """Assert the file is well formed, mechanically. Do not eyeball a workbook.
-
-    Both faults that made this file open read-only are checked here: parts
-    Excel never declared, and cells carrying a type with no value.
-    """
-    import re
-    import zipfile
-    z = zipfile.ZipFile(path)
-    names = z.namelist()
-    trash = [n for n in names if n.startswith("[trash]")]
-    if trash:
-        raise SystemExit(f"{path}: {len(trash)} [trash] part(s): {trash[:3]} - "
-                         "the workbook was loaded and re-saved instead of built")
-    ct = z.read("[Content_Types].xml").decode("utf8")
-    declared = set(re.findall(r'PartName="/([^"]+)"', ct))
-    exts = set(re.findall(r'Extension="([^"]+)"', ct))
-    undeclared = [n for n in names
-                  if n != "[Content_Types].xml"
-                  and n not in declared
-                  and n.rsplit(".", 1)[-1] not in exts]
-    if undeclared:
-        raise SystemExit(f"{path}: part(s) not declared in [Content_Types].xml: "
-                         f"{undeclared[:3]}")
-    bad = []
-    for n in names:
-        if not n.startswith("xl/worksheets/"):
-            continue
-        xml = z.read(n).decode("utf8")
-        bad += re.findall(r'<c [^>]*\bt="[^"]*"[^>]*/>', xml)
-        bad += re.findall(r'<c [^>]*\bt="[^"]*"[^>]*></c>', xml)
-    if bad:
-        raise SystemExit(f"{path}: {len(bad)} cell(s) carry a type with no value, "
-                         f"e.g. {bad[0]}")
-    print(f"  verified: {len(names)} parts, none stray, no typed-empty cells")
+from xlsx_invariants import is_opc_part, verify      # noqa: E402,F401
 
 
 def main():
@@ -150,7 +116,7 @@ def main():
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     wb.save(OUT)
-    verify(OUT)
+    verify(OUT, expect_ids=[a["id"] for a in acts], expect_owners=set(OWNERS))
     print(f"{OUT}: {len(acts)} rows, {len(OWNERS)} owners in the dropdown")
     return 0
 

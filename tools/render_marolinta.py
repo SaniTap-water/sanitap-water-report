@@ -28,6 +28,11 @@ def wp_link(code, ids):
             f'<span class="mono">{code}</span></a>')
 
 
+def _ids():
+    p = os.path.join(REPO, "data", "mwater_point_ids.json")
+    return json.load(open(p)) if os.path.isfile(p) else {}
+
+
 def headline():
     """What the Marolinta works actually are, before the record detail.
 
@@ -52,8 +57,10 @@ def headline():
       '<span>works reported to date with <b>no record at all</b> &mdash; '
       f'{sh["Nouvelle construction"]} new, {sh["Réhabilitation"]} rehabilitations'
       '</span></div>\n'
-      f'  <div class="stat"><b>{ben["total"]:,}</b><span>people served, as the field '
-      'team recorded it on each record</span></div>\n'
+      f'  <div class="stat"><b>{ben["total"]:,}</b><span><b>people served &mdash; a '
+      'field count.</b> Recorded by the team on each record. <b>Not a WorldPop '
+      'allocation</b>, and not comparable with the WorldPop figures elsewhere on '
+      'this page</span></div>\n'
       '</div>\n'
       '<p class="note"><b>These count the work, not the register.</b> The scope '
       'button above reports <b>5</b> water points and <b>1,441</b> people for '
@@ -68,22 +75,32 @@ def headline():
       f'boreholes and {sh["Réhabilitation"]} rehabilitations have no record at all</b> '
       '&mdash; not a draft, not an incomplete form, nothing. '
       '<span class="muted">An earlier note here assumed all 18 responses on this form '
-      'were Marolinta. They are not: the form is deployed twice, and <b>5 responses '
-      f'&mdash; {mo["final"]} final and {mo["draft"]} drafts &mdash; belong to the '
-      '<b>Moramanga</b> deployment and are owned by the Moramanga section. Marolinta '
-      'has no drafts.</span></p>\n'
-      '<p class="note"><b>People served is the field team&rsquo;s own count, not a '
-      f'WorldPop allocation.</b> The <b>{ben["total"]:,}</b> above is the sum of the '
-      f'beneficiaries recorded on each of the <b>{ben["n"]}</b> records, '
-      f'{ben["lo"]}&ndash;{ben["hi"]} per point. <b>A WorldPop figure cannot be given '
-      'for these points yet:</b> the population model has only ever been run over the '
-      f'{ben["managed"]} managed points, so <b>{ben["with_wpop"]} of {ben["n"]}</b> '
-      'carries an allocation. <b>None was excluded for want of a coordinate</b> &mdash; '
-      f'all {ben["n"]} carry one. The points also sit within about a kilometre of each '
-      'other, so per-point service areas overlap almost completely and summing them '
-      'without the model&rsquo;s overlap split would double-count badly. '
-      '<a href="#act-population-rerun">Re-running the population model</a> over this '
-      'set is what produces a comparable figure.</p>\n'
+      'were Marolinta. They are not: the form is deployed twice, and Marolinta has no '
+      'drafts at all.</span></p>\n'
+      '<p class="note"><b>The other deployment is Moramanga, and it is a different '
+      f'picture.</b> It carries <b>{mo["responses"]}</b> records, every one a '
+      '<i>Nouvelle construction</i> and <b>not one a rehabilitation</b>: '
+      f'<b>{mo["final"]}</b> final &mdash; ' + wp_link("928155136", _ids()) + ', '
+      f'submitted 23 June 2026 &mdash; and <b>{mo["draft"]} still drafts</b>, never '
+      'submitted. All five were entered by AMEDE MADAVANCE and all five leave the '
+      'functional status blank. <b>A draft is not a delivered borehole:</b> it is '
+      'invisible to every count and carries no status. '
+      '<span class="muted">These belong to the Moramanga work, owned by Jan and the '
+      'Endur&rsquo;O team rather than by Angelo &mdash; '
+      '<a href="#act-mor-submit-drafts">submit the four drafts</a>.</span></p>\n'
+      '<p class="note"><b>Two different bases, which must not be added or compared.'
+      f'</b> The <b>{ben["total"]:,}</b> above is a <b>field count</b>: the sum of the '
+      f'beneficiaries the team recorded on each of the <b>{ben["n"]}</b> records, '
+      f'{ben["lo"]}&ndash;{ben["hi"]} per point. Every other people-served figure on '
+      'this page &mdash; the <b>126,780</b> for MadAvance among them &mdash; is a '
+      '<b>WorldPop allocation</b> over 1&nbsp;km service areas, overlaps split, '
+      'capacity ceiling applied. <b>The model is deliberately not run over these '
+      'points.</b> Marolinta sits outside the carbon programme, the field count is the '
+      f'honest number for it, and the {ben["n"]} points lie within about a kilometre of '
+      'each other &mdash; so summing per-point service areas without the model&rsquo;s '
+      'overlap split would double-count badly. <span class="muted">All '
+      f'{ben["n"]} carry a usable coordinate; none was excluded for want of one.</span>'
+      '</p>\n'
       '<p class="note"><b>No Marolinta point carries a preventive visit, a repair or a '
       'water-quality result.</b> Not one of the ' + str(m["points_final"]) + ' has any '
       'maintenance or testing record of any kind, so none can enter the carbon file '

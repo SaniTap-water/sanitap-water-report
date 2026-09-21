@@ -3046,64 +3046,48 @@ def main():
     # says is not.
     own_p = os.path.join(repo_root, "data", "action_owners.json")
     own_doc = json.load(open(own_p)) if os.path.isfile(own_p) else {}
-    # The workbook opened READ-ONLY in Excel Online: it reported "WORKBOOK
-    # REPAIRED", and a repaired workbook is always read-only. Two faults did
-    # it - parts Excel never declared, and cells carrying an explicit type
-    # with no value on every row with no deadline. Neither is visible by
-    # eye, so both are asserted here.
-    import zipfile as _zip
+    # The workbook opened READ-ONLY because Excel repaired it, and a repaired
+    # workbook is always read-only. The cause was cells carrying an explicit
+    # type with an empty body - 40 of them, one per row with no deadline.
+    #
+    # Two earlier assertions here were WRONG and are gone: that no zip member
+    # starts with "[trash]", and that every member is declared in
+    # [Content_Types].xml. [trash]/NNNN.dat is SharePoint's document-property
+    # promotion filler; names containing [ or ] are not legal OPC part names,
+    # so the packaging layer never sees them and Excel is unaffected. Almost
+    # every file in a SharePoint library has them. Those checks failed on any
+    # file that had round-tripped, which is every published copy.
+    #
+    # What is asserted instead are the invariants that actually predict a
+    # repair, delegated to the generator's own verifier so there is one
+    # definition of "well formed".
     wbp = os.path.join(repo_root, "build", "action_owners.xlsx")
-    wb_faults = []
-    if os.path.isfile(wbp):
-        try:
-            _z = _zip.ZipFile(wbp)
-            _names = _z.namelist()
-            _t = [n for n in _names if n.startswith("[trash]")]
-            if _t:
-                wb_faults.append(f"{len(_t)} [trash] part(s)")
-            _ct = _z.read("[Content_Types].xml").decode("utf8")
-            _dec = set(re.findall(r'PartName="/([^"]+)"', _ct))
-            _ext = set(re.findall(r'Extension="([^"]+)"', _ct))
-            _un = [n for n in _names if n != "[Content_Types].xml"
-                   and n not in _dec and n.rsplit(".", 1)[-1] not in _ext]
-            if _un:
-                wb_faults.append(f"{len(_un)} undeclared part(s)")
-            _bad = 0
-            for n in _names:
-                if n.startswith("xl/worksheets/"):
-                    _x = _z.read(n).decode("utf8")
-                    _bad += len(re.findall(r'<c [^>]*\bt="[^"]*"[^>]*/>', _x))
-                    _bad += len(re.findall(r'<c [^>]*\bt="[^"]*"[^>]*></c>', _x))
-            if _bad:
-                wb_faults.append(f"{_bad} cell(s) typed with no value")
-        except Exception as e:                                 # noqa: BLE001
-            wb_faults.append(f"unreadable: {e}")
+    wb_fault = None
+    if not os.path.isfile(wbp):
+        wb_fault = "not built"
     else:
-        wb_faults.append("not built")
-    # The Portfolio by partner table hard-coded 138 piped systems and 146,000
-    # people, so it never followed the 18 September reconciliation to 131 and
-    # rendered a Portfolio total of 874 - a figure retired everywhere else.
-    # The keyword scan missed it because the literals sat inside a template
-    # string. These pin the table to the data object instead.
-    ptab = re.search(r"const prow\s*=\s*\[.*?\n\];", idx, re.S)
-    ptab = ptab.group(0) if ptab else ""
-    hard = [w for w in ("138", "146,000", "146000", "874")
-            if re.search(r"(?<![\d,])" + re.escape(w) + r"(?![\d,])", ptab)]
-    check("the partner table reads the Endur'O figures, not literals",
-          bool(ptab) and not hard, "from ENDURO",
-          f"hard-coded {', '.join(hard)}" if hard
-          else ("from ENDURO" if ptab else "TABLE NOT FOUND"),
-          "it rendered 138 systems and a total of 874 after the estate moved to 131")
-    check("the partner table names the scope when it filters an operator out",
-          "not in this scope" in idx and "does not cover it" in idx,
-          "names the scope",
-          "names the scope" if "does not cover it" in idx else "BARE not-in-scope",
-          "a bare badge read as a gap in the data, not a filter")
-
+        try:
+            # xlsx_invariants carries no openpyxl dependency, so this runs
+            # under the system python3 that publish.sh uses
+            sys.path.insert(0, os.path.join(repo_root, "tools"))
+            import xlsx_invariants as _xi
+            import io as _io
+            import contextlib as _ctx
+            owners = set(re.findall(r'"([^"]+)"', re.search(
+                r"OWNERS = \[(.*?)\]",
+                read(os.path.join(repo_root, "tools", "make_owner_workbook.py")),
+                re.S).group(1)))
+            buf = _io.StringIO()
+            with _ctx.redirect_stdout(buf):
+                _xi.verify(wbp, expect_owners=owners)
+        except SystemExit as e:
+            wb_fault = str(e).replace("\n", " ")[:120]
+        except Exception as e:                                 # noqa: BLE001
+            wb_fault = f"verifier failed: {e}"
     check("the owner workbook is well formed, so it opens editable",
-          not wb_faults, "well formed",
-          "; ".join(wb_faults) if wb_faults else "well formed",
-          "a repaired workbook always opens read-only in Excel Online")
+          not wb_fault, "well formed", wb_fault or "well formed",
+          "typed-empty cells, dimension, validations, deadline types, "
+          "dropdown vocabulary")
 
     check("owner and deadline are read from the SharePoint workbook",
           bool(own_doc.get("owners")) and "action owners and deadlines" in

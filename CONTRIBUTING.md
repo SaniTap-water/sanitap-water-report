@@ -215,13 +215,22 @@ computed every build by `tools/eval_conditions.py` from the closing conditions i
 could be marked done that the data says is not — which is the failure this whole
 arrangement exists to prevent.
 
-To reseed the workbook after a large change to the action set:
+To rebuild and republish the workbook:
 
 ```
-python3 tools/make_owner_workbook.py        # writes build/action_owners.xlsx
+python3 tools/make_owner_workbook.py        # builds and self-verifies
+cp build/action_owners.xlsx "/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documents/Water report - action owners and deadlines.xlsx"
+python3 tools/verify_published_workbook.py  # reads the published copy back
 ```
 
-then upload it over the SharePoint copy, keeping the same filename.
+**Copy into the synced OneDrive folder — that is the supported path.** Do not
+upload this file through Microsoft Graph or the Microsoft 365 connector.
+
+It once opened read-only because Excel repaired it, and the cause was 40 cells
+carrying a type with no value. `[trash]/NNNN.dat` members are SharePoint's
+property-promotion filler with illegal OPC part names, invisible to Excel and
+harmless. See `docs/owner_workbook_diagnosis.md` — including two theories that
+were wrong and should not be revisited.
 
 ## Self-closing actions
 
