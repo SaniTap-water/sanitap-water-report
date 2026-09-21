@@ -36,9 +36,10 @@ def _ids():
 def headline():
     """What the Marolinta works actually are, before the record detail.
 
-    The scope counter reports 5 points and 1,441 people. Both measure the
-    intersection of Marolinta with the managed register, not the work: only
-    ONE of those five appears on the borehole-progress form at all.
+    The scope button is now on the same basis as this section - the work -
+    so this text no longer contrasts the two counts. It states the register
+    relationship, which is the thing worth knowing: the register holds five
+    Marolinta points and shares exactly one of them with the work.
     """
     w = json.load(open(os.path.join(REPO, "data", "marolinta_works.json")))
     m, mo = w["marolinta"], w["moramanga"]
@@ -62,13 +63,12 @@ def headline():
       'allocation</b>, and not comparable with the WorldPop figures elsewhere on '
       'this page</span></div>\n'
       '</div>\n'
-      '<p class="note"><b>These count the work, not the register.</b> The scope '
-      'button above reports <b>5</b> water points and <b>1,441</b> people for '
-      'Marolinta. That is the intersection of Marolinta with the actively managed '
-      'register &mdash; the five boreholes that appear in the 736 reconciliation as '
-      '<i>actively managed but never first-rehabilitated</i> &mdash; and <b>only one '
-      f'of those five</b> appears on this form at all. The work is <b>{m["points_final"]}</b> '
-      'points.</p>\n'
+      '<p class="note"><b>These count the work, not the register.</b> The '
+      'maintained register holds <b>5</b> Marolinta points &mdash; the five '
+      'boreholes that appear in the 736 reconciliation as <i>actively managed but '
+      'never first-rehabilitated</i> &mdash; and <b>only one of those five</b> '
+      f'appears on this form at all. The work is <b>{m["points_final"]}</b> points, '
+      'and the Marolinta scope button reports it on that basis.</p>\n'
       '<p class="note"><b>Against what Jan reported: 10 new boreholes and 10 '
       f'rehabilitations to date.</b> The form holds <b>{new}</b> new constructions and '
       f'<b>{reh}</b> rehabilitations, all final. So <b>{sh["Nouvelle construction"]} new '

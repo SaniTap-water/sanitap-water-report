@@ -109,6 +109,15 @@ def archive():
         name = f"{d.isoformat()}-wk{wk}-ed{ed}{suffix}.html"
         shutil.copy2(p, os.path.join(REPO, "editions", name))
         out.append(f"editions/{name}")
+    # Record it outside the tree as well. editions/ is a working-tree
+    # artefact: a rollback removes it and the edition number goes backwards
+    # with nothing left to say it ever went forwards.
+    try:
+        sys.path.insert(0, os.path.join(REPO, "tools"))
+        import render_masthead as _rm
+        out.append(_rm.record_issued(d.isoformat(), wk, ed))
+    except Exception as e:                                     # noqa: BLE001
+        out.append(f"edition ledger NOT written: {e}")
     return out
 
 

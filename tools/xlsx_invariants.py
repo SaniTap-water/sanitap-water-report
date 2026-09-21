@@ -30,6 +30,30 @@ def col_letter_row(ref):
     return (m.group(1), int(m.group(2))) if m else (None, None)
 
 
+INVARIANTS = [
+    ("content_types", "every legal OPC part is declared in [Content_Types].xml"),
+    ("typed_empty",   "no cell carries a type with an empty body"),
+    ("dimension",     "the dimension ref matches the real used range"),
+    ("validations",   "both data validations cover the real row range"),
+    ("deadlines",     "deadlines are absent or numeric with a date format"),
+    ("dropdown",      "the dropdown offers only owners the report can render"),
+    ("id_column",     "the id column is exactly what the generator wrote"),
+]
+
+
+def verify_detail(path, expect_ids=None, expect_owners=None):
+    """The same invariants, reported one by one.
+
+    verify() below raises on the first batch of faults, which is what a
+    generator wants. A gate wants to COUNT what it asserted, so this returns
+    [(key, name, faults)] - one entry per invariant, whether or not it was
+    exercised. An invariant that cannot be checked (no id list given, no
+    actions sheet) reports None for its faults rather than passing silently.
+    """
+    res = _run(path, expect_ids, expect_owners)
+    return [(k, n, res.get(k)) for k, n in INVARIANTS]
+
+
 def verify(path, expect_ids=None, expect_owners=None):
     """Assert the invariants that actually predict an Excel repair.
 
@@ -38,11 +62,33 @@ def verify(path, expect_ids=None, expect_owners=None):
     of the CONTENT, so it survives a round-trip through SharePoint - which
     adds parts but changes no cell.
     """
+    res = _run(path, expect_ids, expect_owners)
+    faults = [m for v in res.values() if v for m in v]
     z = zipfile.ZipFile(path)
     names = [n for n in z.namelist() if is_opc_part(n)]
-    faults = []
+    sheets = [n for n in names if n.startswith("xl/worksheets/sheet")]
+    if faults:
+        raise SystemExit(f"{path}:\n  " + "\n  ".join(faults[:8]))
+    print(f"  verified: {len(names)} OPC part(s), {len(sheets)} sheet(s), "
+          "no typed-empty cells, dimension and validations correct, "
+          "deadlines numeric, dropdown renderable")
+    return True
+
+
+def _run(path, expect_ids=None, expect_owners=None):
+    """Every invariant, faults keyed by invariant. None = not exercised."""
+    z = zipfile.ZipFile(path)
+    names = [n for n in z.namelist() if is_opc_part(n)]
+    F = {}
+    def add(key, msg):
+        F.setdefault(key, []).append(msg)
+
+    def exercised(*keys):
+        for k in keys:
+            F.setdefault(k, [])
 
     # 1. content types: every legal part is typed, by Default or Override
+    exercised("content_types")
     ct = z.read("[Content_Types].xml").decode("utf8")
     overrides = set(re.findall(r'PartName="/([^"]+)"', ct))
     defaults = {e.lower() for e in re.findall(r'Extension="([^"]+)"', ct)}
@@ -51,9 +97,11 @@ def verify(path, expect_ids=None, expect_owners=None):
             continue
         ext = n.rsplit(".", 1)[-1].lower() if "." in n else ""
         if n not in overrides and ext not in defaults:
-            faults.append(f"part has no content type: {n}")
+            add("content_types", f"part has no content type: {n}")
 
     sheets = [n for n in names if n.startswith("xl/worksheets/sheet")]
+    if sheets:
+        exercised("typed_empty", "dimension")
     for n in sorted(sheets):
         xml = z.read(n).decode("utf8")
         cells = re.findall(r"<c\b[^>]*/>|<c\b[^>]*>.*?</c>", xml, re.S)
@@ -66,8 +114,9 @@ def verify(path, expect_ids=None, expect_owners=None):
             has_value = ("<v>" in c) or ("<is>" in c) or ("<f>" in c)
             if not has_value:
                 ref = re.search(r'r="([A-Z]+\d+)"', c)
-                faults.append(f"{n}: cell {ref.group(1) if ref else '?'} has "
-                              f't="{m.group(1)}" with no value')
+                add("typed_empty",
+                    f"{n}: cell {ref.group(1) if ref else '?'} has "
+                    f't="{m.group(1)}" with no value')
 
         # 3. the dimension ref matches the real used range
         dim = re.search(r'<dimension ref="([^"]+)"', xml)
@@ -78,13 +127,14 @@ def verify(path, expect_ids=None, expect_owners=None):
             want = (f"{min(cols, key=lambda c: (len(c), c))}{min(rows)}:"
                     f"{max(cols, key=lambda c: (len(c), c))}{max(rows)}")
             if dim.group(1) != want:
-                faults.append(f"{n}: dimension ref is {dim.group(1)}, "
-                              f"used range is {want}")
+                add("dimension", f"{n}: dimension ref is {dim.group(1)}, "
+                    f"used range is {want}")
 
     # the actions sheet carries the validations and the deadline column
     sheet1 = "xl/worksheets/sheet1.xml"
     if sheet1 in names:
         xml = z.read(sheet1).decode("utf8")
+        exercised("validations", "deadlines", "dropdown")
         refs = re.findall(r'<c\b[^>]*\br="([A-Z]+\d+)"', xml)
         last = max((col_letter_row(r)[1] for r in refs), default=1)
 
@@ -94,12 +144,13 @@ def verify(path, expect_ids=None, expect_owners=None):
         for typ, sqref in want_dv.items():
             hit = [d for d in dvs if f'type="{typ}"' in d]
             if not hit:
-                faults.append(f"no {typ} data validation on the actions sheet")
+                add("validations",
+                    f"no {typ} data validation on the actions sheet")
                 continue
             got = re.search(r'sqref="([^"]+)"', hit[0])
             if not got or got.group(1) != sqref:
-                faults.append(f"{typ} validation covers "
-                              f"{got.group(1) if got else '?'}, expected {sqref}")
+                add("validations", f"{typ} validation covers "
+                    f"{got.group(1) if got else '?'}, expected {sqref}")
 
         # 5. deadlines are absent or numeric with a date format - never text
         styles = z.read("xl/styles.xml").decode("utf8")
@@ -112,7 +163,7 @@ def verify(path, expect_ids=None, expect_owners=None):
             if ref == "C1":
                 continue
             if re.search(r'\bt="(s|str|inlineStr)"', c):
-                faults.append(f"deadline {ref} is a string, not a date")
+                add("deadlines", f"deadline {ref} is a string, not a date")
                 continue
             if "<v>" not in c:
                 continue                      # genuinely absent: correct
@@ -123,8 +174,8 @@ def verify(path, expect_ids=None, expect_owners=None):
                 if nid:
                     fmt = numfmts.get(nid.group(1), "")
             if "yy" not in fmt.lower():
-                faults.append(f"deadline {ref} carries no date number format "
-                              f"(got {fmt!r})")
+                add("deadlines", f"deadline {ref} carries no date number "
+                    f"format (got {fmt!r})")
 
         # 6. the dropdown vocabulary must be renderable by the action renderer
         lst = [d for d in dvs if 'type="list"' in d]
@@ -135,11 +186,12 @@ def verify(path, expect_ids=None, expect_owners=None):
             if expect_owners is not None:
                 stray = [o for o in listed if o not in expect_owners]
                 if stray:
-                    faults.append("dropdown offers owner(s) the report cannot "
-                                  f"render: {stray[:3]}")
+                    add("dropdown", "dropdown offers owner(s) the report "
+                        f"cannot render: {stray[:3]}")
 
         # the id column must be exactly what the generator wrote
         if expect_ids is not None:
+            exercised("id_column")
             shared = []
             if "xl/sharedStrings.xml" in names:
                 shared = re.findall(r"<t[^>]*>(.*?)</t>",
@@ -162,16 +214,10 @@ def verify(path, expect_ids=None, expect_owners=None):
                     got_ids.append(v.group(1))
             if got_ids != list(expect_ids):
                 a_, b_ = set(expect_ids), set(x for x in got_ids if x)
-                faults.append(f"id column differs: {len(got_ids)} row(s) vs "
-                              f"{len(expect_ids)} expected; "
-                              f"missing {sorted(a_ - b_)[:3]}, "
-                              f"extra {sorted(b_ - a_)[:3]}")
+                add("id_column",
+                    f"id column differs: {len(got_ids)} row(s) vs "
+                    f"{len(expect_ids)} expected; "
+                    f"missing {sorted(a_ - b_)[:3]}, "
+                    f"extra {sorted(b_ - a_)[:3]}")
 
-    if faults:
-        raise SystemExit(f"{path}:\n  " + "\n  ".join(faults[:8]))
-    print(f"  verified: {len(names)} OPC part(s), {len(sheets)} sheet(s), "
-          "no typed-empty cells, dimension and validations correct, "
-          "deadlines numeric, dropdown renderable")
-    return True
-
-
+    return F

@@ -93,6 +93,35 @@ PROBE = r"""() => {
 }"""
 
 
+BASIS_PROBE = r"""() => {
+  const vis = el => {
+    const r = el.getBoundingClientRect();
+    const st = getComputedStyle(el);
+    return !el.closest('[hidden]') && st.display !== 'none'
+           && st.visibility !== 'hidden' && (r.width > 0 || r.height > 0);
+  };
+  // Figures the page itself declares as measuring the same quantity.
+  const q = {};
+  document.querySelectorAll('[data-q]').forEach(el => {
+    if (!vis(el)) return;
+    const v = el.querySelector('.v');
+    const val = (v ? v.textContent : el.textContent).trim();
+    const lab = el.querySelector('.l');
+    (q[el.dataset.q] = q[el.dataset.q] || []).push({
+      v: val, l: lab ? lab.textContent.trim().replace(/\s+/g, ' ').slice(0, 70)
+                     : (el.closest('tr') ? el.closest('tr').children[0].textContent.trim() : '')
+    });
+  });
+  const note = document.getElementById('scopenote');
+  return {
+    q,
+    headline: (document.querySelector('#tiles [data-q="points"] .v') || {}).textContent || null,
+    note_bold: note ? [...note.querySelectorAll('b')].map(b => b.textContent.trim()) : [],
+    note: note ? note.textContent.replace(/\s+/g, ' ').trim().slice(0, 160) : null,
+  };
+}"""
+
+
 def probe(page_path):
     from playwright.sync_api import sync_playwright
     exe = chromium_path()
@@ -123,6 +152,23 @@ def probe(page_path):
                                tot:c[3].textContent.trim()};}""")
             except Exception:                                  # noqa: BLE001
                 out["partner"][s] = None
+        # ONE BASIS PER SCOPE.
+        # Three times now the page has carried two numbers for the same thing
+        # in one view: 867 against 908, Marolinta 5 against 13, 3,130 against
+        # 126,780. Every time the markup was fine and every time a reader
+        # found it before a check did. So the page declares, with data-q,
+        # which figures measure the same quantity, and this asserts two
+        # things per scope button: the headline count is the count the
+        # caption states, and no quantity is reported twice with different
+        # values.
+        out["basis"] = {}
+        for s in ("all", "mad", "madx", "mar", "enduro"):
+            try:
+                pg.click(f'#scopebar button[data-s="{s}"]')
+                pg.wait_for_timeout(300)
+                out["basis"][s] = pg.evaluate(BASIS_PROBE)
+            except Exception as e:                             # noqa: BLE001
+                out["basis"][s] = {"error": str(e)}
         pg.click('#scopebar button[data-s="all"]')
         pg.wait_for_timeout(250)
         # scope behaviour: each button must change what is visible
@@ -221,6 +267,25 @@ def main():
             elif "does not cover it" not in end:
                 fails.append(f"scope {s}: the exclusion must name the scope, "
                              f"got {end[:60]!r}")
+    # one basis per scope - see BASIS_PROBE
+    for s, b in (got.get("basis") or {}).items():
+        if not b or b.get("error"):
+            fails.append(f"scope {s}: basis probe failed ({(b or {}).get('error')})")
+            continue
+        head = (b.get("headline") or "").strip()
+        if not head:
+            fails.append(f"scope {s}: no headline 'water points in scope' figure")
+        elif head not in b.get("note_bold", []):
+            fails.append(
+                f"scope {s}: the headline reads {head} but the caption does not "
+                f"state it; the caption's own figures are "
+                f"{[x for x in b.get('note_bold', []) if any(c.isdigit() for c in x)]}")
+        for qty, items in (b.get("q") or {}).items():
+            vals = sorted({i["v"] for i in items})
+            if len(vals) > 1:
+                where = "; ".join(f"{i['v']} ({i['l']})" for i in items)
+                fails.append(f"scope {s}: two bases for '{qty}' in one view - {where}")
+
     if got.get("off_measure"):
         for x in got["off_measure"]:
             fails.append(f"section is off the page measure "

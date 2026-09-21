@@ -3061,8 +3061,13 @@ def main():
     # What is asserted instead are the invariants that actually predict a
     # repair, delegated to the generator's own verifier so there is one
     # definition of "well formed".
+    def _XI_NAMES():
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        import xlsx_invariants as _x
+        return _x.INVARIANTS
+
     wbp = os.path.join(repo_root, "build", "action_owners.xlsx")
-    wb_fault = None
+    wb_fault, wb_detail = None, []
     if not os.path.isfile(wbp):
         wb_fault = "not built"
     else:
@@ -3079,15 +3084,27 @@ def main():
                 re.S).group(1)))
             buf = _io.StringIO()
             with _ctx.redirect_stdout(buf):
-                _xi.verify(wbp, expect_owners=owners)
-        except SystemExit as e:
-            wb_fault = str(e).replace("\n", " ")[:120]
+                _ad = json.loads(read(os.path.join(
+                    repo_root, "data", "action_details.json")))
+                wb_detail = _xi.verify_detail(
+                    wbp, expect_ids=list(_ad.keys()), expect_owners=owners)
         except Exception as e:                                 # noqa: BLE001
             wb_fault = f"verifier failed: {e}"
-    check("the owner workbook is well formed, so it opens editable",
-          not wb_fault, "well formed", wb_fault or "well formed",
-          "typed-empty cells, dimension, validations, deadline types, "
-          "dropdown vocabulary")
+
+    # One check per invariant. The tally is the number of things asserted, so
+    # six invariants behind one check() made the gate read 530 where it had
+    # read 532 - two assertions deleted, six added, and the six invisible.
+    # A tally that undercounts is worse than a big one.
+    if wb_fault:
+        for _k, _name in _XI_NAMES():
+            check(f"owner workbook: {_name}", False, "ok", wb_fault[:60],
+                  "the workbook could not be verified at all")
+    else:
+        for _k, _name, _f in wb_detail:
+            check(f"owner workbook: {_name}",
+                  _f == [], "ok",
+                  "NOT EXERCISED" if _f is None else ("ok" if not _f else _f[0][:80]),
+                  "an invariant that predicts an Excel repair")
 
     check("owner and deadline are read from the SharePoint workbook",
           bool(own_doc.get("owners")) and "action owners and deadlines" in
@@ -3265,6 +3282,15 @@ def main():
               f"{exp[:26].ljust(26)} {act[:26].ljust(26)} {note}")
     print()
     print(f"  {len(RESULTS)} checks, {len(RESULTS) - nfail} passed, {nfail} failed")
+    # Say what is NOT in that number. The tally went 532 -> 530 when two
+    # assertions were deleted and six added, because the six sat behind a
+    # single check() and never appeared. They are counted individually now;
+    # the render gate still is not, and this says so rather than letting the
+    # number look like the whole of it.
+    print("  assertions outside this tally: tools/render_check.py, which runs "
+          "against the rendered page\n  in a browser (headings, tables, ids, "
+          "page measure, per-scope Endur'O wording, one\n  basis per scope) "
+          "and reports its own result. Nothing else.")
     if nfail:
         print("\n  FAILED — the published figures are not consistent. Do not publish.")
         return 1

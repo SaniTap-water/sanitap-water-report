@@ -25,15 +25,53 @@ def nice(d):
     return f"{x.strftime('%a')} {x.day} {x.strftime('%B')} {x.year}"
 
 
+LEDGER = "logs/editions_issued.tsv"
+
+
 def edition():
-    """Editions this week, counted from the archive, not from memory."""
+    """Editions this week - from the archive AND from the issue ledger.
+
+    The archive alone is not a counter, it is a headcount of files on disk.
+    On 21 September the proof run archived week 39 edition 1, so the next
+    build correctly read edition 2; the run was then rolled back with
+    git reset --hard and git clean -fd editions, the archived file went with
+    it, and the number silently returned to 1. Nothing recorded that an
+    edition 2 had ever been built, because nothing outside the working tree
+    recorded anything at all.
+
+    The ledger is append-only and untracked, so rolling the tree back cannot
+    lower it. Whichever source is higher wins: a fresh clone still counts the
+    archive, a rolled-back tree still counts what was issued.
+    """
+    today = datetime.date.today()
+    wk = today.isocalendar()[1]
     d = os.path.join(REPO, "editions")
-    if not os.path.isdir(d):
-        return 1
-    wk = datetime.date.today().isocalendar()[1]
-    return 1 + len({f.split("-ed")[0] for f in os.listdir(d)
-                    if f.startswith(datetime.date.today().strftime("%Y-"))
-                    and f"wk{wk}" in f and f.endswith(".html")})
+    from_archive = 0
+    if os.path.isdir(d):
+        from_archive = len({f.split("-ed")[0] for f in os.listdir(d)
+                            if f.startswith(today.strftime("%Y-"))
+                            and f"wk{wk}" in f and f.endswith(".html")})
+    from_ledger = 0
+    lp = os.path.join(REPO, LEDGER)
+    if os.path.isfile(lp):
+        seen = set()
+        for line in open(lp, encoding="utf8"):
+            f = line.rstrip("\n").split("\t")
+            if (len(f) >= 3 and f[0].startswith(today.strftime("%Y-"))
+                    and f[1] == f"wk{wk}"):
+                seen.add(f[2])
+        from_ledger = len(seen)
+    return 1 + max(from_archive, from_ledger)
+
+
+def record_issued(date, wk, ed):
+    """Append one line to the ledger, when an edition is archived."""
+    lp = os.path.join(REPO, LEDGER)
+    os.makedirs(os.path.dirname(lp), exist_ok=True)
+    stamp = datetime.datetime.now().isoformat(timespec="seconds")
+    with open(lp, "a", encoding="utf8") as fh:
+        fh.write(f"{date}\twk{wk}\ted{ed}\t{stamp}\n")
+    return f"{LEDGER}: {date} wk{wk} ed{ed}"
 
 
 def masthead():

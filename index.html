@@ -656,7 +656,7 @@ details>summary:hover,details.expl>summary:hover{color:var(--accent)}
 </section>
 
 
-<section data-scopes="all mad madx mar" id="popsec">
+<section data-scopes="all mad madx" id="popsec">
   <div class="sechead"><div><h2>How the people-served figure is built</h2><p><b>MadAvance hand pumps only.</b> Endur&rsquo;O piped systems carry their own beneficiary figures and are not in this calculation. <span class="mono">SDWS 1</span> needs a defensible number, and this is the method of record: WorldPop, not the roof-count census.</p></div></div>
   <details class="expl"><summary>What the registered VPA-DD says about SDWS 1</summary>
 <div class="panel" style="margin-top:14px">
@@ -718,7 +718,7 @@ details>summary:hover,details.expl>summary:hover{color:var(--accent)}
   <div class="stat"><b>7</b><span>works reported to date with <b>no record at all</b> &mdash; 4 new, 3 rehabilitations</span></div>
   <div class="stat"><b>3,130</b><span><b>people served &mdash; a field count.</b> Recorded by the team on each record. <b>Not a WorldPop allocation</b>, and not comparable with the WorldPop figures elsewhere on this page</span></div>
 </div>
-<p class="note"><b>These count the work, not the register.</b> The scope button above reports <b>5</b> water points and <b>1,441</b> people for Marolinta. That is the intersection of Marolinta with the actively managed register &mdash; the five boreholes that appear in the 736 reconciliation as <i>actively managed but never first-rehabilitated</i> &mdash; and <b>only one of those five</b> appears on this form at all. The work is <b>13</b> points.</p>
+<p class="note"><b>These count the work, not the register.</b> The maintained register holds <b>5</b> Marolinta points &mdash; the five boreholes that appear in the 736 reconciliation as <i>actively managed but never first-rehabilitated</i> &mdash; and <b>only one of those five</b> appears on this form at all. The work is <b>13</b> points, and the Marolinta scope button reports it on that basis.</p>
 <p class="note"><b>Against what Jan reported: 10 new boreholes and 10 rehabilitations to date.</b> The form holds <b>6</b> new constructions and <b>7</b> rehabilitations, all final. So <b>4 new boreholes and 3 rehabilitations have no record at all</b> &mdash; not a draft, not an incomplete form, nothing. <span class="muted">An earlier note here assumed all 18 responses on this form were Marolinta. They are not: the form is deployed twice, and Marolinta has no drafts at all.</span></p>
 <p class="note"><b>The other deployment is Moramanga, and it is a different picture.</b> It carries <b>5</b> records, every one a <i>Nouvelle construction</i> and <b>not one a rehabilitation</b>: <b>1</b> final &mdash; <a class="wp" href="https://portal.mwater.co/#/water_point/1c33ad92-80ba-4842-b127-7fc8a69cde01" target="_blank" rel="noopener" title="open 928155136 in mWater"><span class="mono">928155136</span></a>, submitted 23 June 2026 &mdash; and <b>4 still drafts</b>, never submitted. All five were entered by AMEDE MADAVANCE and all five leave the functional status blank. <b>A draft is not a delivered borehole:</b> it is invisible to every count and carries no status. <span class="muted">These belong to the Moramanga work, owned by Jan and the Endur&rsquo;O team rather than by Angelo &mdash; <a href="#act-mor-submit-drafts">submit the four drafts</a>.</span></p>
 <p class="note"><b>Two different bases, which must not be added or compared.</b> The <b>3,130</b> above is a <b>field count</b>: the sum of the beneficiaries the team recorded on each of the <b>13</b> records, 150&ndash;300 per point. Every other people-served figure on this page &mdash; the <b>126,780</b> for MadAvance among them &mdash; is a <b>WorldPop allocation</b> over 1&nbsp;km service areas, overlaps split, capacity ceiling applied. <b>The model is deliberately not run over these points.</b> Marolinta sits outside the carbon programme, the field count is the honest number for it, and the 13 points lie within about a kilometre of each other &mdash; so summing per-point service areas without the model&rsquo;s overlap split would double-count badly. <span class="muted">All 13 carry a usable coordinate; none was excluded for want of one.</span></p>
@@ -1360,12 +1360,25 @@ const SC={ok:'var(--good)',partial:'var(--warn)',down:'var(--crit)',unknown:'var
 
 // ---- scope ----
 const RECONSET=new Set(REG.recon.map(r=>r.wp));
+// ONE definition of the Marolinta basis. The caption, the tiles and the
+// partner table all call it, so a figure in one cannot disagree with a figure
+// in another - which is precisely how "5 water points" came to sit under a
+// caption that said 13.
+function marBasis(){
+  const recs = REG.marolinta||[];
+  const pts = new Set(recs.map(r=>r.wp));
+  const reg = new Set(PUMPS.filter(p=>p.site==='Marolinta').map(p=>p.wp));
+  const both = [...pts].filter(c=>reg.has(c)).length;
+  return {points:pts.size, inReg:both, notReg:pts.size-both,
+          regTotal:reg.size, regNoWork:[...reg].filter(c=>!pts.has(c)).length,
+          people:recs.reduce((s,r)=>s+(r.benef||0),0)};
+}
 const SCOPES={
- all:{lab:'All SaniTap',f:()=>PUMPS,enduro:true,note:`All ${fmt(S.n)} MadAvance hand pumps in the maintained register plus Endur'O's ${ENDURO.systems} piped systems (manual figures until Endur'O is on mWater).`},
- mad:{lab:'MadAvance — all',f:()=>PUMPS,enduro:false,note:`All ${fmt(S.n)} MadAvance hand pumps, Marolinta included.`},
- madx:{lab:'MadAvance excl. Marolinta',f:()=>PUMPS.filter(p=>p.site!=='Marolinta'),enduro:false,note:'Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbon file is built on.'},
- mar:{lab:'Marolinta only',f:()=>PUMPS.filter(p=>p.site==='Marolinta'),enduro:false,note:'The 13 Marolinta pumps carried in the maintained register. The current 2026 works are logged in a separate borehole-progress form — see the Marolinta section below; 11 of those 13 progress records point at water points that carry no district, so they are invisible to this filter.'},
- enduro:{lab:"Endur'O",f:()=>[],enduro:true,note:`Endur'O piped systems and kiosks. Headline figures on this page remain the agreed programme numbers (${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people, Sep 2026). Their mWater register has been readable since 16 September and carries ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems; it has not been reconciled to the programme figures and is not a restatement of them.`}
+ all:{lab:'All SaniTap',f:()=>PUMPS,enduro:true,note:`<b>${fmt(S.n+ENDURO.systems)}</b> water points in scope: all ${fmt(S.n)} MadAvance hand pumps in the maintained register plus Endur'O's ${ENDURO.systems} piped systems (manual figures until Endur'O is on mWater). The mWater register holds ${fmt(REG.register_total)} MadAvance points in total; ${fmt(S.n)} of them are the maintained fleet, and that is the basis here.`},
+ mad:{lab:'MadAvance — all',f:()=>PUMPS,enduro:false,note:`<b>${fmt(S.n)}</b> water points in scope: all ${fmt(S.n)} MadAvance hand pumps in the maintained register, Marolinta included.`},
+ madx:{lab:'MadAvance excl. Marolinta',f:()=>PUMPS.filter(p=>p.site!=='Marolinta'),enduro:false,note:`<b>${fmt(PUMPS.filter(p=>p.site!=='Marolinta').length)}</b> water points in scope: Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbon file is built on.`},
+ mar:{lab:'Marolinta only',f:()=>PUMPS.filter(p=>p.site==='Marolinta'),enduro:false,note:(()=>{const B=marBasis();return `<b>The basis of this scope is the work, not the register.</b> <b>${B.points}</b> water points carry a 2026 works record on the borehole-progress form; <b>${B.inReg}</b> of them is in the maintained register and <b>${B.notReg}</b> are not. <b>The register is a different population:</b> it carries <b>${B.regTotal}</b> Marolinta points, of which <b>${B.regNoWork}</b> have no 2026 works record at all, and it shares just <b>${B.inReg}</b> point with the ${B.points}. Every register-derived figure below is on that ${B.regTotal}-point basis and says so in its own heading. Marolinta is Deichmann-funded and enters no carbon figure.`})()},
+ enduro:{lab:"Endur'O",f:()=>[],enduro:true,note:`<b>${ENDURO.systems}</b> water points in scope — Endur'O piped systems and kiosks. Headline figures on this page remain the agreed programme numbers (${ENDURO.systems} systems, ~${fmt(ENDURO.people)} people, Sep 2026). Their mWater register has been readable since 16 September and carries ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems; it has not been reconciled to the programme figures and is not a restatement of them.`}
 };
 let SCOPE='all';
 const SITEMAP={all:['Maroantsetra','Fort-Dauphin','Marolinta'],mad:['Maroantsetra','Fort-Dauphin','Marolinta'],madx:['Maroantsetra','Fort-Dauphin'],mar:['Marolinta'],enduro:[]};
@@ -1588,17 +1601,27 @@ function render(){
  renderPhotos();
  const list=HP, A=agg(list);
  const np=A.n+(sc.enduro?ENDURO.systems:0), people=A.wpop+(sc.enduro?ENDURO.people:0);
+ // A scope presents ONE basis and names it. Marolinta's basis is the WORK -
+ // the water points with a 2026 borehole-progress record - because register
+ // membership is the artefact this scope exists to expose, not a fact about
+ // the programme. Every number here is derived from data already on the page,
+ // so the headline and the caption cannot drift apart.
+ const MB = SCOPE==='mar' ? marBasis() : null;
+ const ofReg = MB ? ` <span class="muted">— covers the ${MB.regTotal} Marolinta points in the maintained register, which share only ${MB.inReg} point with these ${MB.points}</span>` : '';
  const work=A.st.ok+A.st.partial;
  $('#scopenote').innerHTML=sc.note;
  const pct=(a,b)=>b?Math.round(a/b*100)+'%':'—';
  $('#tiles').innerHTML=[
-  [fmt(np),'water points in scope',''],
-  [(A.wpop_n||sc.enduro)?fmt(people):'—','people with safe water',A.wpop_n?'':'warn'],
-  [A.n?pct(A.n-A.st.down,A.n):'—',A.n?'hand pumps not reported down':'water points not reported down',''],
-  [A.n?fmt(A.st.down):'—',A.n?'hand pumps reported down':'water points reported down',A.st.down?'crit':''],
-  [A.n?fmt(A.over6):'—',A.n?'hand pumps with no visit in 6+ months':'water points with no visit in 6+ months',A.over6?'warn':''],
-  [A.n?pct(A.wqp,A.n):'—',A.n?'hand pumps with a passed E. coli test on file':'water points with a passed E. coli test on file','']
- ].map(([v,l,c])=>`<div class="tile"><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`).join('');
+  [MB?fmt(MB.points):fmt(np),
+   MB?`water points with a 2026 works record <span class="muted">— ${MB.inReg} in the maintained register, ${MB.notReg} not</span>`:'water points in scope','','points'],
+  [MB?fmt(MB.people):((A.wpop_n||sc.enduro)?fmt(people):'—'),
+   MB?'people served <span class="muted">— a field count from the works records, not a WorldPop allocation</span>':'people with safe water',
+   MB?'':(A.wpop_n?'':'warn'),'people'],
+  [A.n?pct(A.n-A.st.down,A.n):'—',(A.n?'hand pumps not reported down':'water points not reported down')+ofReg,''],
+  [A.n?fmt(A.st.down):'—',(A.n?'hand pumps reported down':'water points reported down')+ofReg,A.st.down?'crit':''],
+  [A.n?fmt(A.over6):'—',(A.n?'hand pumps with no visit in 6+ months':'water points with no visit in 6+ months')+ofReg,A.over6?'warn':''],
+  [A.n?pct(A.wqp,A.n):'—',(A.n?'hand pumps with a passed E. coli test on file':'water points with a passed E. coli test on file')+ofReg,'']
+ ].map(([v,l,c,q])=>`<div class="tile"${q?` data-q="${q}"`:''}><div class="v ${c}">${v}</div><div class="l">${l}</div></div>`).join('');
  renderPop(A);
  renderTrace();
  renderCorr();
@@ -1607,12 +1630,12 @@ function render(){
  if(!A.n){$('#donuts').innerHTML='<p class="note">No live hand-pump data in this scope. Endur\'O figures are shown in the partner table below; everything else on this page is hand-pump data and is hidden.</p>';return}
  const G2=A.gap;
  $('#donuts').innerHTML=[
-  donut('Last recorded status',[{l:'Working',v:work,c:SC.ok},{l:'Down',v:A.st.down,c:SC.down},{l:'No status record',v:A.st.unknown,c:SC.unknown}]),
-  donut('Time since last visit',[{l:'< 3 months',v:G2['<3 months'],c:'var(--mar)'},{l:'3–6 months',v:G2['3–6 months'],c:'#86b6ef'},{l:'6–12 months',v:G2['6–12 months'],c:'var(--warn)'},{l:'> 12 months',v:G2['>12 months'],c:'var(--ftu)'},{l:'No works record',v:G2['never'],c:'var(--crit)'}]),
-  donut('Pumps by site',[{l:'Maroantsetra',v:A.site.Maroantsetra||0,c:'var(--mar)'},{l:'Fort-Dauphin',v:A.site['Fort-Dauphin']||0,c:'var(--ftu)'},{l:'Marolinta',v:A.site.Marolinta||0,c:'#1baf7a'}]),
-  donut('Pump technology',[{l:'Canzee',v:A.pump.Canzee||0,c:'var(--mar)'},{l:'India Mark',v:A.pump.IndiaMark||0,c:'var(--ftu)'}]),
-  donut('E. coli test on file',[{l:'Passed',v:A.wqp,c:SC.ok},{l:'Failed',v:A.wqf,c:SC.down},{l:'Not tested',v:A.n-A.wqp-A.wqf,c:SC.unknown}]),
-  donut('People served — hand pumps vs piped',[{l:'Hand pumps',v:A.wpop,c:'var(--mar)'},{l:'Piped (manual)',v:sc.enduro?ENDURO.people:0,c:'var(--ftu)'}])
+  donut('Last recorded status'+(MB?` (${MB.inReg} of ${MB.points})`:''),[{l:'Working',v:work,c:SC.ok},{l:'Down',v:A.st.down,c:SC.down},{l:'No status record',v:A.st.unknown,c:SC.unknown}]),
+  donut('Time since last visit'+(MB?` (${MB.inReg} of ${MB.points})`:''),[{l:'< 3 months',v:G2['<3 months'],c:'var(--mar)'},{l:'3–6 months',v:G2['3–6 months'],c:'#86b6ef'},{l:'6–12 months',v:G2['6–12 months'],c:'var(--warn)'},{l:'> 12 months',v:G2['>12 months'],c:'var(--ftu)'},{l:'No works record',v:G2['never'],c:'var(--crit)'}]),
+  donut('Pumps by site'+(MB?` (${MB.inReg} of ${MB.points})`:''),[{l:'Maroantsetra',v:A.site.Maroantsetra||0,c:'var(--mar)'},{l:'Fort-Dauphin',v:A.site['Fort-Dauphin']||0,c:'var(--ftu)'},{l:'Marolinta',v:A.site.Marolinta||0,c:'#1baf7a'}]),
+  donut('Pump technology'+(MB?` (${MB.inReg} of ${MB.points})`:''),[{l:'Canzee',v:A.pump.Canzee||0,c:'var(--mar)'},{l:'India Mark',v:A.pump.IndiaMark||0,c:'var(--ftu)'}]),
+  donut('E. coli test on file'+(MB?` (${MB.inReg} of ${MB.points})`:''),[{l:'Passed',v:A.wqp,c:SC.ok},{l:'Failed',v:A.wqf,c:SC.down},{l:'Not tested',v:A.n-A.wqp-A.wqf,c:SC.unknown}]),
+  MB?'':donut('People served — hand pumps vs piped',[{l:'Hand pumps',v:A.wpop,c:'var(--mar)'},{l:'Piped (manual)',v:sc.enduro?ENDURO.people:0,c:'var(--ftu)'}])
  ].join('');
  (function(){const sn=$('#statusnote'); if(!sn) return;
   const u=HP.filter(p=>p.status==='unknown');
@@ -1641,6 +1664,9 @@ function donut(title,items){ // items [{l,v,c}]
 
 function renderAll(A){
 // partner table
+// Marolinta's basis is the work, so the WorldPop allocation over the
+// arbitrary five register members must not appear in this scope at all.
+const MB = SCOPE==='mar' ? marBasis() : null;
 // "not in scope" read as a gap in the data rather than as a filter, so it
 // names the scope that excluded it. The figures are not missing - this view
 // simply does not cover that operator.
@@ -1649,17 +1675,17 @@ const NA=()=>`<span class="pill na">not in this scope</span> <span class="muted"
 const hasMad=SITES.length>0, hasEnd=SCOPES[SCOPE].enduro;
 const m=v=>hasMad?v:NA(), e=v=>hasEnd?v:NA();
 const prow=[
- ['Water points under maintenance',m(FULLMAD()?`<b>${fmt(A.n)}</b> hand pumps in this report's maintained register<br><span class="muted">of which ${fmt(REG.succ)} carry a successful rehabilitation record — see the register chain below</span>`:`${fmt(A.n)} hand pumps in the register for this scope`),e(`<b>${fmt(ENDURO.systems)}</b> piped systems <span class="muted">— reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv</span><br><span class="muted">register reads ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems, of which ${ENDURO.reg.sys_attr} carry attributes</span>`),fmt(A.n*(hasMad?1:0)+(hasEnd?ENDURO.systems:0))],
+ ['Water points under maintenance',m(FULLMAD()?`<b>${fmt(A.n)}</b> hand pumps in this report's maintained register<br><span class="muted">of which ${fmt(REG.succ)} carry a successful rehabilitation record — see the register chain below</span>`:(MB?`<b>${fmt(MB.points)}</b> water points with a 2026 works record <span class="muted">— ${MB.inReg} in the maintained register, ${MB.notReg} not; the register separately carries ${MB.regTotal} Marolinta points, ${MB.regNoWork} of them with no works record</span>`:`${fmt(A.n)} hand pumps in the register for this scope`)),e(`<b>${fmt(ENDURO.systems)}</b> piped systems <span class="muted">— reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv</span><br><span class="muted">register reads ${ENDURO.reg.points} water points and ${ENDURO.reg.systems} water systems, of which ${ENDURO.reg.sys_attr} carry attributes</span>`),(MB?fmt(MB.points):fmt(A.n*(hasMad?1:0)+(hasEnd?ENDURO.systems:0))),'points'],
  ['By technology',m(`Canzee ${A.pump.Canzee||0} · India Mark ${A.pump.IndiaMark||0}`),e(`gravity and pumped schemes, boreholes, kiosks <span class="muted">— only ${ENDURO.reg.sys_attr} of ${ENDURO.reg.systems} systems in the register carry technical attributes</span>`),'—'],
  ['Regions',m(SITES.map(x=>`${x} ${A.site[x]||0}`).join(' · ')),e(`register water points: South ${ENDURO.reg.south} · Antananarivo ${ENDURO.reg.tana} <span class="muted">(pipeline, not under management)</span> · other Analamanga ${ENDURO.reg.analamanga_other} · Moramanga axis ${ENDURO.reg.moramanga}`),'—'],
- ['People served',m(fmt(A.wpop)+' (WorldPop)'),e(`<b>~${fmt(ENDURO.people)}</b> <span class="muted">— agreed programme figure, Sep 2026</span><br><span class="muted">the register carries no population field; the four systems with attributes give household counts only</span>`),fmt(A.wpop*(hasMad?1:0)+(hasEnd?ENDURO.people:0))],
+ ['People served',m(MB?`<b>${fmt(MB.people)}</b> <span class="muted">— field count from the works records, across all ${MB.points} points; no WorldPop allocation is shown for Marolinta</span>`:fmt(A.wpop)+' (WorldPop)'),e(`<b>~${fmt(ENDURO.people)}</b> <span class="muted">— agreed programme figure, Sep 2026</span><br><span class="muted">the register carries no population field; the four systems with attributes give household counts only</span>`),(MB?fmt(MB.people):fmt(A.wpop*(hasMad?1:0)+(hasEnd?ENDURO.people:0))),'people'],
  ['Last recorded status: working / down / unknown',m(`${A.st.ok+A.st.partial} / ${A.st.down} / ${A.st.unknown}`),e('<span class="pill na">no data yet</span>'),'—'],
  ['No maintenance visit in 6+ months',m(A.n?`${A.over6} (${Math.round(A.over6/A.n*100)}%)`:'—'),e('<span class="pill na">no data yet</span>'),'—'],
  ['Water quality: passed E. coli test on file',m(`${A.wqp} of ${A.n}`),e('<span class="pill na">no data yet</span>'),'—'],
  ['Volume monitoring',m('10 sensor pumps (pilot); stroke test to standardise'),e('meters on systems (to confirm)'),'—'],
  ['Data in mWater',m('<span class="pill ok">live</span>'),e('<span class="pill ok">readable since 16 Sep</span> <span class="muted">register only — no maintenance, status or quality records yet</span>'),'']
 ];
-$('#ptable').innerHTML=`<thead><tr><th></th><th>MadAvance — rural hand pumps</th><th>Endur'O — piped systems &amp; kiosks</th><th class="num">Portfolio</th></tr></thead><tbody>${prow.map(r=>`<tr><td style="color:var(--ink2)">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="num">${r[3]}</td></tr>`).join('')}</tbody>`;
+$('#ptable').innerHTML=`<thead><tr><th></th><th>MadAvance — rural hand pumps</th><th>Endur'O — piped systems &amp; kiosks</th><th class="num">Portfolio</th></tr></thead><tbody>${prow.map(r=>`<tr><td style="color:var(--ink2)">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="num"${r[4]?` data-q="${r[4]}"`:''}>${r[3]}</td></tr>`).join('')}</tbody>`;
 
 // ---- register chain: 908 / 773 / 751 / 738 / 723 ----
 $('#chain').innerHTML=[
@@ -1824,8 +1850,9 @@ const carbon=[
 $('#carbon').innerHTML=(SCOPE==='mar'?carbonMar:carbon).map(([c,t,d])=>`<div><span class="pill ${c}">${c==='ok'?'on file':c==='warn'?'due':'no data'}</span></div><div><div class="t">${t}</div><div class="d">${d}</div></div><div></div>`).join('');
 
 // impact
-$('#impact').innerHTML=[[fmt(A.wpop+(hasEnd?ENDURO.people:0)),'people with safe water today'],[fmt(A.n+(hasEnd?ENDURO.systems:0)),'water points under professional maintenance'],['97–100%','uptime, 2025 independent evaluation (MANISA)'],['~60','FTE jobs across MadAvance, Endur\'O, SaniTap'],['—','DALYs averted (method to agree)'],['—','carbon revenue / O&M cost (no source yet)']]
- .map(([v,l])=>`<div class="tile"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
+const IMB = SCOPE==='mar' ? marBasis() : null;
+$('#impact').innerHTML=[[IMB?fmt(IMB.people):fmt(A.wpop+(hasEnd?ENDURO.people:0)),IMB?'people served — a field count from the 2026 works records':'people with safe water today','people'],[IMB?fmt(IMB.points):fmt(A.n+(hasEnd?ENDURO.systems:0)),IMB?`water points with a 2026 works record — ${IMB.inReg} of them in the maintained register`:'water points under professional maintenance','points'],['97–100%','uptime, 2025 independent evaluation (MANISA)'],['~60','FTE jobs across MadAvance, Endur\'O, SaniTap'],['—','DALYs averted (method to agree)'],['—','carbon revenue / O&M cost (no source yet)']]
+ .map(([v,l,q])=>`<div class="tile"${q?` data-q="${q}"`:''}><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
 
 // indicators
 const IND=[
