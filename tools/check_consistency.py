@@ -1784,6 +1784,23 @@ def main():
     # cosmetic. v1.3 printed February to 29 days on every sheet and lost the
     # seventh; v1.4 takes the year as a parameter again. This runs the real
     # generator and counts the shaded cells it emits.
+    # Before reading anything out of OneDrive, establish that it is actually
+    # on this machine. Storage Sense dehydrates synced files when C: fills,
+    # and a cloud-only file has a normal size in a listing but fails or stalls
+    # on open - a long way from the reason. require_local names the file.
+    try:
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        from require_local import audit as _audit, message as _msg  # noqa: E402
+        _cloud, _missing = _audit()
+        check("required OneDrive documents are present locally, not cloud-only",
+              not _cloud, "all local",
+              "all local" if not _cloud else f"{len(_cloud)} cloud-only",
+              _msg(_cloud, _missing).splitlines()[0] if _cloud else
+              "Storage Sense has not dehydrated them")
+    except Exception as _e:
+        check("required OneDrive documents are present locally, not cloud-only",
+              False, "checked", f"check could not run: {_e}")
+
     GEN = ("/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - "
            "Water Documents/SOPs/SOP-MAD-SDWS27-CalendrierGardien-Generator-v1.4.py")
 

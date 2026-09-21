@@ -108,6 +108,46 @@ nothing else needs updating.
 * Nothing is described as closed — that is the Head of Carbon's call.
 * Archive an edition into `editions/` only when locking one for a VVB.
 
+## Disk, and the documents that live on OneDrive
+
+**C: is the drive under pressure, not the Linux disk.** Measured 21 September 2026: the WSL
+filesystem was 15% full with 810 GB free, while C: was 98% full with 22 GB free. Deleting files
+inside WSL does not give C: a byte back on its own — the WSL disk is one 161.8 GB file on C:
+(`ext4.vhdx`) that grows and never shrinks by itself. It takes a compaction, and a compaction
+needs `wsl --shutdown`.
+
+Two tools exist for this and neither deletes anything in a sync folder, ever — deleting from
+OneDrive, Dropbox or Proton Drive deletes from the cloud, which is the opposite of freeing a
+cache:
+
+* `tools/require_local.py` — fails the build when a document it reads from OneDrive is
+  **cloud-only** rather than present. Storage Sense dehydrates synced files when C: fills; a
+  dehydrated file shows a normal size in a listing and then stalls or throws an unexplained I/O
+  error on open. Detection is `st_size > 0 and st_blocks == 0`, verified by dehydrating a
+  disposable file and watching blocks go 360 → 0 → 360. Wired into `check_consistency.py` so it
+  fails first, names the file, and says how to restore it.
+* `tools/disk_retention.py` — reports both disks and the VHDX slack, and enforces retention on
+  the three stores this project owns. **Report-only by default**; `--apply` enforces,
+  `--caches` also clears package caches.
+
+**The retention rule.**
+
+| Store | Rule |
+|---|---|
+| `~/mwater-mcp/backups` | keep **30 days**. Older files are deleted only if a byte-identical copy exists in SharePoint, or if they are `*_proposed.json` plan artefacts. Anything else is kept and reported — a file whose only copy is local is never deleted. |
+| `~/mwater-exports` | keep **14 days**; regenerable by re-exporting. |
+| `~/.cache/pip`, `~/.cache/uv`, `~/.cache/go-build` | pure download caches, clearable on request. |
+| `ext4.vhdx` | compaction is flagged once the allocated-minus-used gap passes **20 GB**. The script prints the command and never runs it. |
+
+Virtual environments are **not** in scope: none of them has a requirements file, so none can be
+demonstrably rebuilt, so none may be deleted.
+
+To schedule the report weekly:
+
+```
+0 8 * * 1  cd ~/sanitap-water-report && python3 tools/disk_retention.py >> ~/disk_retention.log 2>&1
+```
+
 ## Controlled documents outside the repo
 
 The gardien calendar SOP, its template and its generator live in SharePoint at
