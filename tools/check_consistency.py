@@ -1189,11 +1189,13 @@ def main():
               len(seeds) >= 2, ">= 2 seeds", len(seeds),
               "the extension must be reproducible separately from the original draw")
         ext = [r for r in infr if "extend" in r["origin"]]
+        extseeds = {r["seed"] for r in ext}
         check("the extension rows are marked as an extension, not a redraw",
-              ext and all(r["seed"] == seeds[-1] for r in ext),
+              ext and len(extseeds) == 1 and extseeds.isdisjoint({seeds[0]}),
               f"{len(ext)} extension rows", f"{len(ext)} extension rows"
               if ext else "NONE",
-              "every prior row keeps its original origin, date and seed")
+              "one seed of its own, not the original draw's; later passes add "
+              "further seeds and must not disturb this one")
         for v, why in ((len(infr), "the comparison set"),
                        (len(kept), "the sheets kept from the original draw"),
                        (len(drew), "the sheets drawn to make up the shortfall"),
@@ -2080,11 +2082,14 @@ def main():
           and "the report-back did not arrive" in idx, "stated",
           "stated" if "official record of days operational" in idx else "MISSING",
           "calendar governs; the call centre dispatches")
-    check("the withdrawal of the 297 tCO2e backlog figure is visible",
-          "297</b> tCO<sub>2</sub>e" in idx and "withdrawn and not replaced" in idx,
-          "withdrawn in public", "withdrawn in public"
-          if "withdrawn and not replaced" in idx else "MISSING",
-          "corrected visibly, not silently")
+    check("the page carries the correct position, not the correction",
+          "No carbon quantity is attached to any of this" in idx
+          and "297" not in re.sub(r"<[^>]+>", " ",
+                                  re.sub(r"<script[^>]*>.*?</script>", " ",
+                                         idx, flags=re.S)),
+          "position only", "position only"
+          if "No carbon quantity is attached to any of this" in idx else "MISSING",
+          "the withdrawal is recorded in docs/decision_log.md")
     check("both explanations for the 44 stay on the page",
           "the tickets are stale" in idx and "not marking outage days" in idx,
           "both stated", "both stated" if "not marking outage days" in idx else "MISSING",
@@ -2169,6 +2174,104 @@ def main():
     check("no evidenced-point count appears without its basis named",
           not naked, "none", f"{len(naked)} naked" if naked else "none",
           "; ".join(naked)[:150] if naked else "308/310 and 295/309 are different questions")
+
+    # ---- 7al. the transcription round loads calendars, and only calendars --
+    # Sheet 8 of the live page was a photograph of an information signboard.
+    # The corpus scan had already flagged it - the exclusion was applied to
+    # the machine-comparable arm and never to the 33 sheets kept outside the
+    # frame, which were drawn from the reader's REJECTED pool where 18.4% are
+    # not calendars. The rule now is positive classification on both arms.
+    SELP = os.path.join(repo_root, "transcription", "validation_selection.csv")
+    CALP = os.path.join(repo_root, "transcription", "calendars.json")
+    NCP = os.path.join(repo_root, "data", "calendar_not_calendar.csv")
+    FRP = os.path.join(repo_root, "data", "calendar_validation_frame.csv")
+    SYP = os.path.join(repo_root, "data", "calendar_sheet_year.csv")
+    if all(os.path.isfile(x) for x in (SELP, CALP, NCP, FRP, SYP)):
+        import csv as _csv
+        _sel = list(_csv.DictReader(open(SELP, encoding="utf8")))
+        _cal = json.load(open(CALP, encoding="utf8"))
+        _nc = {r["image_id"] for r in _csv.DictReader(open(NCP, encoding="utf8"))}
+        _fr = {r["image_id"] for r in _csv.DictReader(open(FRP, encoding="utf8"))}
+        _sy = {r["image_id"] for r in _csv.DictReader(open(SYP, encoding="utf8"))}
+
+        _bad = [r for r in _sel if r["image_id"] in _nc]
+        check("no selected sheet is on the non-calendar list",
+              not _bad, "0 of %d" % len(_sel),
+              "0 of %d" % len(_sel) if not _bad
+              else "%d: %s" % (len(_bad), ", ".join(r["water_point"] for r in _bad)),
+              "a signboard reached the live page as sheet 8")
+
+        # Positive classification, arm by arm. In-frame: the extraction fitted
+        # a twelve-month grid AND registered day rows AND read the year - no
+        # known non-calendar survives that. Out-of-frame: by construction the
+        # machine produced nothing, so the strongest positive signal available
+        # is that the reader accepted the image as a calendar.
+        _inf = [r for r in _sel if r["in_frame"] == "yes"]
+        _out = [r for r in _sel if r["in_frame"] != "yes"]
+        _nf = [r for r in _inf if r["image_id"] not in _fr]
+        check("every machine-comparable sheet is positively classified (in the frame)",
+              not _nf, "%d in frame" % len(_inf),
+              "%d in frame" % len(_inf) if not _nf else "%d outside" % len(_nf),
+              "twelve-month grid fitted, day rows registered, year read")
+        _na = [r for r in _out if r["image_id"] not in _sy]
+        check("every out-of-frame sheet was positively accepted by the reader",
+              not _na, "%d accepted" % len(_out),
+              "%d accepted" % len(_out) if not _na else "%d from the rejected pool" % len(_na),
+              "the rejected pool is 18.4% non-calendars; the accepted pool 2.6%")
+        check("the round still holds 50 machine-comparable calendars",
+              len(_inf) == 50, "50", str(len(_inf)))
+        check("calendars.json and the selection agree",
+              len(_cal) == len(_sel), "%d" % len(_sel), "%d" % len(_cal))
+        _cmp = sum(1 for c in _cal if c.get("cmp"))
+        check("calendars.json marks 50 sheets machine-comparable",
+              _cmp == 50, "50", str(_cmp))
+        # A withdrawn sheet's number is retired: storage on the page is keyed
+        # by sheet number, so reusing one would attach an existing transcript
+        # to a different photograph.
+        # Sixteen sheet numbers were withdrawn: four photographs that were not
+        # calendars, and twelve drawn from the reader's rejected pool. Their
+        # numbers are retired for good - the page keys stored transcriptions by
+        # sheet number, so reusing one would silently attach somebody's work to
+        # a different photograph.
+        RETIRED = (1, 8, 9, 13, 15, 17, 20, 21, 24, 25, 29, 37, 41, 45, 47, 49)
+        _ns = {c["n"] for c in _cal}
+        _reused = sorted(_ns & set(RETIRED))
+        check("no withdrawn sheet number has been reused",
+              not _reused, "%d retired" % len(RETIRED),
+              "%d retired" % len(RETIRED) if not _reused
+              else "REUSED: %s" % _reused,
+              "page storage is keyed by sheet number")
+        MAP = "/home/bushp/sdws1/calendar_extract/transcription_sheet_map.csv"
+        if os.path.isfile(MAP):
+            _m = list(_csv.DictReader(open(MAP, encoding="utf8")))
+            _dupe = collections.Counter(int(r["sheet"]) for r in _m)
+            _dd = {k: v for k, v in _dupe.items() if v > 1}
+            check("no sheet number has ever been given to two images",
+                  not _dd, "0", "0" if not _dd else str(_dd),
+                  "the assignment log is append-only")
+        _imgdir = os.path.join(repo_root, "transcription", "img")
+        _files = len([f for f in os.listdir(_imgdir)]) if os.path.isdir(_imgdir) else -1
+        check("every loaded sheet has its image and no orphan remains",
+              _files == len(_cal), "%d files" % len(_cal), "%d files" % _files)
+
+    # ---- 7am. the withdrawn figures stay withdrawn ----------------------
+    # A reader needs the correct position, not a narration of our corrections.
+    # The withdrawal itself belongs in the decision log, where a verifier looks.
+    _plainw = re.sub(r"<[^>]+>", " ",
+                     re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S))
+    _re297 = re.findall(r"\b297\b", _plainw)
+    _re35 = re.findall(r"3\.5\s*tCO", _plainw)
+    check("the withdrawn call-centre tonnages do not appear on the page",
+          not _re297 and not _re35, "absent",
+          "absent" if not _re297 and not _re35
+          else "297 x%d, 3.5 tCO x%d" % (len(_re297), len(_re35)),
+          "the correct position, not our corrections")
+    _dl = os.path.join(repo_root, "docs", "decision_log.md")
+    _dltext = read(_dl) if os.path.isfile(_dl) else ""
+    check("the decision log still records what was withdrawn",
+          "297" in _dltext and "3.5" in _dltext and "withdrawn" in _dltext,
+          "recorded", "recorded" if "297" in _dltext else "LOST",
+          "the audit trail keeps them; the page does not")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
