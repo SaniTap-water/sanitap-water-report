@@ -2628,6 +2628,32 @@ def main():
         c = markup.count("</%s>" % tag)
         check(f"index.html: <{tag}> balanced", o == c, f"{o} open", f"{c} close")
 
+    # ---- 7aw. partner blocks and their logos ----------------------------
+    # The logos are held in the repo under assets/ rather than hot-linked, so
+    # the page does not depend on three other people's servers staying up.
+    for who in ("sanitap", "madavance", "enduro"):
+        f = os.path.join(repo_root, "assets", f"{who}.png")
+        ok = os.path.isfile(f) and os.path.getsize(f) < 120_000
+        check(f"logo present and small: assets/{who}.png", ok,
+              "< 120 kB", f"{os.path.getsize(f):,} B" if os.path.isfile(f) else "MISSING")
+    check("no partner logo is hot-linked",
+          not re.search(r'<img[^>]+src="https?://[^"]*logo', idx, re.I), "none",
+          "none" if not re.search(r'<img[^>]+src="https?://[^"]*logo', idx, re.I)
+          else "HOT-LINKED", "assets/ is the source")
+    check("each partner has its own block",
+          idx.count('<div class="partner">') == 3, "3 blocks",
+          f"{idx.count(chr(60) + 'div class=' + chr(34) + 'partner' + chr(34) + '>')} blocks",
+          "SaniTap, MadAvance, Endur'O")
+    check("the Endur'O reconciliation is folded in, not a section of its own",
+          "The Endur&rsquo;O estate, reconciled &mdash; three lists" in idx
+          and "<h2>The Endur&rsquo;O estate, reconciled</h2>" not in idx,
+          "folded", "folded"
+          if "<h2>The Endur&rsquo;O estate, reconciled</h2>" not in idx else "STILL A SECTION")
+    check("the MadAvance line no longer says 'tonight'",
+          "computed from mWater tonight" not in idx, "absent",
+          "absent" if "computed from mWater tonight" not in idx else "PRESENT",
+          "the build is not always at night")
+
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
     check("the SOP/form conformance sweep is recorded",

@@ -12,7 +12,6 @@
   "Actions — the one list",
   "Attention list",
   "Portfolio by partner",
-  "The Endur’O estate, reconciled",
   "How the people-served figure is built",
   "From first rehabilitation to the pumps we maintain today",
   "Retired and non-functional water points",
@@ -42,7 +41,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 31768,
+ "height": 31616,
  "missing_ids": [],
  "page_errors": [],
  "scope_visible_sections": {
@@ -52,7 +51,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 36,
+ "sections": 35,
  "tables": {
   "corrtbl": {
    "hidden": false,

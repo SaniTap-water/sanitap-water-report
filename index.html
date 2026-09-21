@@ -40,6 +40,14 @@ section{margin-top:44px}
 .tile .v{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
 .tile .l{color:var(--ink2);font-size:.85rem;margin-top:4px}
 .stat{padding:14px 16px;background:var(--bg)}
+.partner{border:1px solid var(--line);border-radius:8px;padding:0;margin-top:16px;overflow:hidden}
+.partner>.phead{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);background:#fbfcfd}
+.partner>.phead img{height:34px;width:auto;display:block}
+.partner>.phead .pname{font-weight:700;font-size:1.02rem;letter-spacing:.01em}
+.partner>.phead .prole{color:var(--ink2);font-size:.85rem;margin-left:auto;text-align:right}
+.partner>.pbody{padding:14px 16px}
+.logostrip{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:10px}
+.logostrip img{height:26px;width:auto;opacity:.9}
 .stat>b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
 .stat>span{display:block;color:var(--ink2);font-size:.85rem;margin-top:4px}
 .panel{background:var(--surface);border:1px solid var(--line);padding:18px 20px}
@@ -161,7 +169,7 @@ details.expl>summary:hover{color:#0f172a}
 <body>
 <div class="wrap">
 <div class="eyebrow">SaniTap · weekly water programme report · week 38 · issued Fri 18 Sep 2026 · edition 10</div>
-<h1 style="margin-top:8px">SaniTap Water Portfolio</h1>
+<div style="display:flex;align-items:center;gap:14px;margin-top:8px"><img src="assets/sanitap.png" alt="SaniTap" style="height:40px;width:auto;display:block"><h1 style="margin:0">SaniTap Water Portfolio</h1></div>
 <p class="sub">One page for the whole safe-water portfolio: MadAvance hand pumps (live from mWater) and Endur'O piped systems (manual figures until Endur'O is on mWater). Built for programme managers: running the work, keeping the Gold Standard file clean, and reporting to donors.</p>
 
 <div class="filters" style="margin-top:22px" id="scopebar">
@@ -255,17 +263,19 @@ details.expl>summary:hover{color:#0f172a}
 
 
 <section data-scopes="all mad madx mar enduro">
-  <div class="sechead"><div><h2>Portfolio by partner</h2><p>MadAvance figures are computed from mWater tonight. Endur'O's mWater group was opened to us on 16 September, so their register is now readable and is reported here beside the agreed programme numbers. The two have <b>not</b> been reconciled and are not the same objects — read the Endur'O column as two separate bases, each with its source.</p></div></div>
+  <div class="sechead"><div><h2>Portfolio by partner</h2><p>Who operates what, and where each figure comes from. The three bases are <b>not</b> reconciled to each other and are not the same objects.</p><div class="logostrip"><img src="assets/sanitap.png" alt="SaniTap"><img src="assets/madavance.png" alt="MadAvance"><img src="assets/enduro.png" alt="Endur&rsquo;O"></div></div></div>
   <div class="panel" style="padding:0;overflow-x:auto"><table class="ptable" id="ptable"></table></div>
+<div class="partner"><div class="phead"><img src="assets/sanitap.png" alt="SaniTap"><span class="pname">SaniTap</span><span class="prole">Carbon programme owner &middot; VPA GS12601</span></div><div class="pbody"><p class="note" style="margin-top:0">SaniTap holds the Gold Standard project and the carbon file. Every figure on this page is reported against the SaniTap carbon portfolio; the operators below deliver the work.</p></div></div>
+<div class="partner"><div class="phead"><img src="assets/madavance.png" alt="MadAvance"><span class="pname">MadAvance</span><span class="prole">Hand pumps &middot; Maroantsetra, Fort-Dauphin, Marolinta</span></div><div class="pbody"><p class="note" style="margin-top:0"><b>MadAvance figures are computed from mWater at each build.</b> The <b>736</b> actively managed hand pumps, their maintenance record and their calendars are all MadAvance operations, and everything in the days-operational chain below rests on them.</p></div></div>
+<div class="partner"><div class="phead"><img src="assets/enduro.png" alt="Endur&rsquo;O"><span class="pname">Endur&rsquo;O</span><span class="prole">Piped systems &middot; register readable since 16 Sep 2026</span></div><div class="pbody"><p class="note" style="margin-top:0">Endur&rsquo;O&rsquo;s mWater group was opened to us on <b>16 September 2026</b>, so their register is now readable and is reported here beside the agreed programme numbers. <b>Read the Endur&rsquo;O column as two separate bases, each with its source.</b></p>
 <div class="panel" style="margin-top:14px" id="smartmeter">
 <div class="eyebrow">First monitored volume &mdash; Endur&rsquo;O smart meter</div>
 <p style="margin:8px 0 0"><b>The first smart meter is installed and reporting</b>, on an urban Endur&rsquo;O system in Antananarivo. This is the <b>first monitored-volume data the programme has produced</b>: until now every volume figure in this report has been modelled or asserted, not measured.</p>
 <p style="margin:10px 0 0">It matters beyond the one site. Metered volume is <b>parameter SDWS 23</b> &mdash; the measurement that lets <b>Method 1 close</b> rather than rest on defaults, and the basis for <b>SDWS 27, days operational</b>, which until now has had no measured input at all. One meter does not close either parameter; it establishes that the measurement exists and can be read.</p>
 <p class="note" style="margin:10px 0 0"><b>Whose dashboard this is.</b> The readings are published by <b>Endur&rsquo;O</b> on <b>an Endur&rsquo;O dashboard</b> &mdash; <a href="https://analytics.zoho.eu/open-view/103831000000644029/583decb28f1d10ba4c6e97302cb7b8cbbe67cdc19df23f28dace3b4735521954" target="_blank" rel="noopener">open the live meter dashboard</a>. <b>Direct data access has been requested</b> so the readings can enter our own evidence chain and be carried in the monitoring file, rather than being viewed through a third-party link. Until that access is granted, treat the dashboard as a sighting of the data, not as evidence on file.</p>
 </div>
-</section>
-<section data-scopes="all mad madx mar enduro" id="endurosec">
-<div class="sechead"><div><h2>The Endur&rsquo;O estate, reconciled</h2><p>Three lists claimed to describe one estate and disagreed. This is the single disposition per site, and where the Endur&rsquo;O count on this page comes from.</p></div><span class="count">131 sites</span></div>
+<details class="expl" style="margin-top:12px"><summary>The Endur&rsquo;O estate, reconciled &mdash; three lists, one disposition per site</summary>
+<p class="note" style="margin-top:0">Three lists claimed to describe one estate and disagreed. This is the single disposition per site, and where the Endur&rsquo;O count on this page comes from. <span class="muted">131 sites.</span></p>
 <div class="panel">
 <p style="margin-top:0"><b>The three lists.</b> Coddy&rsquo;s <i>128 Sites</i> KML &mdash; which actually holds <b>131</b> points &mdash; is an <b>exact subset</b> of the earlier 157-point <i>13 Ao&ucirc;t</i> file: every one of the 131 matches a 13 Ao&ucirc;t row on both name and coordinates. The 26 points dropped between them are <b>all FAHASOAVANA</b>. Against those sit the <b>111</b>-point UNICEF list and the Endur&rsquo;O mWater group. Sites were matched on <b>proximity within 250&nbsp;m</b>, never on name: the lists spell the same places differently (<span class="mono">MALEBITSY</span> / <span class="mono">MALEBITSY CENTRE</span>), so a name join both misses real matches and invents false ones.</p>
 <div class="tablewrap"><table class="ind"><thead><tr><th>Disposition</th><th class="num">Sites</th><th>What it means</th></tr></thead><tbody>
@@ -287,7 +297,11 @@ details.expl>summary:hover{color:#0f172a}
 </details>
 </div>
 </div>
+
+</details></div></div>
+
 </section>
+
 
 <section data-scopes="all mad madx mar" id="popsec">
   <div class="sechead"><div><h2>How the people-served figure is built</h2><p>SDWS 1 needs a defensible number. This is the method of record — WorldPop, not the roof-count census the earlier editions of this page were showing.</p></div></div>
