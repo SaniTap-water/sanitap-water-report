@@ -2309,6 +2309,81 @@ def main():
           "; ".join(offenders)[:170] if offenders
           else "state the estate, not the shortfall")
 
+    # ---- 7ao. what the weekly build requires to survive -----------------
+    # The Monday task ("SaniTap weekly water report - build, archive, publish",
+    # 05:00) does not rewrite this page. It takes the live index.html as its
+    # template and regenerates the embedded data inside it, so structure,
+    # prose, collapse states and styling persist from edition to edition.
+    # Four things are named in its instructions as must-preserve. A future
+    # restructuring could drop one silently; these four checks are what stop
+    # that reaching a published edition.
+    SCOPES = ("all", "mad", "madx", "mar", "enduro")
+    declared = set()
+    for v in re.findall(r'data-scopes="([^"]+)"', idx):
+        declared |= set(v.split())
+    check("weekly build invariant: the five scope buttons survive",
+          'id="scopebar"' in idx and set(SCOPES) <= declared,
+          "scopebar + 5 scopes",
+          "scopebar + %d scopes" % len(declared & set(SCOPES))
+          if 'id="scopebar"' in idx else "SCOPEBAR MISSING",
+          ", ".join(sorted(declared & set(SCOPES))))
+    # the phrase carries inline markup, so match on the two halves that
+    # straddle it rather than on a contiguous string
+    CLOCK = "counts from the most recent preventive visit or repair"
+    CLOCK2 = "excluded from the overdue count until they are commissioned in mWater"
+    check("weekly build invariant: the maintenance clock rule survives",
+          CLOCK in idx and CLOCK2 in idx, "stated",
+          "stated" if CLOCK in idx else "MISSING",
+          "counts from the last works record, not from registration")
+    check("weekly build invariant: the Marolinta exclusion survives",
+          "Marolinta is excluded" in idx, "stated",
+          "stated" if "Marolinta is excluded" in idx else "MISSING")
+    MGMT = ("Management notes &mdash; internal, remove before sharing with a "
+            "validation and verification body (VVB)")
+    mgmt_ok = MGMT in idx or "Management notes" in idx
+    # it must also still be collapsed: it is explicitly not for a VVB
+    m = re.search(r"<details[^>]*>\s*<summary[^>]*>[^<]*Management notes", idx)
+    check("weekly build invariant: the internal management notes survive, collapsed",
+          mgmt_ok and m is not None, "present and collapsed",
+          "present and collapsed" if (mgmt_ok and m) else
+          ("present, NOT collapsed" if mgmt_ok else "MISSING"),
+          "remove before sharing with a VVB")
+
+    # ---- 7ap. a number must not run into its label ----------------------
+    # 16 stat tiles are marked up <div class="stat"><b>674</b><span>of 736
+    # points...</span></div>. Both b and span are inline, and .stat had no CSS
+    # rule at all, so the browser rendered "674of 736 points" - fifteen of
+    # them, right across the gardien-calendar section. The fix is the missing
+    # rule, not spaces in the text; this check is what keeps it fixed, and
+    # catches the same class of fault in any tile added later.
+    check("the .stat tiles have a style rule, so the number is not inline with its label",
+          re.search(r"\.stat\s*\{", idx) is not None
+          and re.search(r"\.stat\s*>\s*b\s*\{[^}]*display:\s*block", idx) is not None,
+          "rule present", "rule present"
+          if re.search(r"\.stat\s*>\s*b\s*\{[^}]*display:\s*block", idx) else "MISSING",
+          f"{idx.count('class=\"stat\"')} tiles use it")
+
+    def rendered_text(src):
+        """Approximate what a reader sees: inline tags close up, block tags break."""
+        s = re.sub(r"<script[^>]*>.*?</script>", " ", src, flags=re.S)
+        s = re.sub(r"<style[^>]*>.*?</style>", " ", s, flags=re.S)
+        # the .stat tiles are block-displayed by the rule asserted above
+        s = re.sub(r'(<div class="stat">)<b>(.*?)</b><span>', r"\1 \2 ", s)
+        s = re.sub(r"</?(?:b|i|em|strong|span|sup|sub|a|code|small|u)\b[^>]*>", "", s)
+        s = re.sub(r"<[^>]+>", " ", s)
+        return s.replace("&mdash;", "—").replace("&nbsp;", " ")
+
+    ALLOWED = re.compile(r"^\d(?:st|nd|rd|th|km|kg|mm|ml|GG|bis|ter|der)$|^[0-9a-f]{4,}$")
+    collisions = sorted({m.group(0) for m in
+                         re.finditer(r"\d[A-Za-z]{2,}", rendered_text(idx))
+                         if not ALLOWED.match(m.group(0))})
+    # an mWater choice id can legitimately sit against a digit in prose
+    collisions = [c for c in collisions if not re.match(r"^\d[A-Za-z]\w*$", c) or len(c) > 6]
+    check("no published number runs into the word after it",
+          not collisions, "none",
+          f"{len(collisions)}: {', '.join(collisions[:4])}" if collisions else "none",
+          "a stat tile whose value and label render as one word")
+
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
     check("the SOP/form conformance sweep is recorded",

@@ -39,6 +39,9 @@ section{margin-top:44px}
 .tile{background:var(--surface);padding:16px 18px}
 .tile .v{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
 .tile .l{color:var(--ink2);font-size:.85rem;margin-top:4px}
+.stat{padding:14px 16px;background:var(--bg)}
+.stat>b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat>span{display:block;color:var(--ink2);font-size:.85rem;margin-top:4px}
 .panel{background:var(--surface);border:1px solid var(--line);padding:18px 20px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:820px){.grid2{grid-template-columns:1fr}}
@@ -267,7 +270,7 @@ details.expl>summary:hover{color:#0f172a}
 
 </details></section>
 <section data-scopes="all mad madx">
-  <div class="sechead"><div><h2>From 773 rehabilitations to the pumps we maintain today</h2><p>Where each figure comes from, so that "how many water points do we have?" has one answer. Everything below is computed from mWater on the night of issue.</p></div></div>
+  <div class="sechead"><div><h2>From first rehabilitation to the pumps we maintain today</h2><p>Where each figure comes from, so that "how many water points do we have?" has one answer. Everything below is computed from mWater on the night of issue.</p></div></div>
   <div class="tiles" style="margin-top:0" id="chain"></div>
   <p class="note" id="chainnote"></p>
   <details style="margin-top:18px">
@@ -1270,12 +1273,12 @@ $('#ptable').innerHTML=`<thead><tr><th></th><th>MadAvance — rural hand pumps</
 $('#chain').innerHTML=[
  [fmt(REG.register_total),'water points MadAvance manages in mWater',''],
  [fmt(REG.total_first_rehab),'first rehabilitations recorded',''],
- [fmt(REG.succ),'recorded as successfully rehabilitated','' ],
- [fmt(S.n),'codes in this report\'s maintained register',''],
- [fmt(REG.dashboard_fdmar),'of those in Maroantsetra + Fort-Dauphin',''],
+ [fmt(REG.succ),'first rehabilitations recorded successful','' ],
+ [fmt(S.n),'actively managed &mdash; the maintained fleet',''],
+ [fmt(REG.dashboard_fdmar),'on the MadAvance dashboard in Maroantsetra + Fort-Dauphin','warn'],
  [fmt(REG.recon.length),'pumps between 738 and 723','warn']
 ].map(([v,l,c])=>`<div class="tile"><div class="v ${c}" style="font-size:1.7rem">${v}</div><div class="l">${l}</div></div>`).join('');
-$('#chainnote').innerHTML=`<p>The register holds <b>${REG.register_total}</b> water points managed by MadAvance. Of the ${REG.total_first_rehab} first-rehabilitation records in the old combined form, ${REG.final_records} are final: <b>${REG.succ} recorded as successful</b> when this reconciliation was first run, ${REG.fail} not successful and ${REG.blank} with the field left blank.</p>`+
+$('#chainnote').innerHTML=`<p><b>How these fit together.</b> They count different things, and only one of them is the fleet we maintain. <b>${REG.register_total}</b> is every water point MadAvance holds in mWater, most of which we do not maintain. <b>${REG.total_first_rehab}</b> is first-rehabilitation <i>works records</i> &mdash; one per point ever rehabilitated, including points since handed on or excluded. <b>${REG.succ}</b> of those record the work as successful; that is a statistic about works, not a fleet, and it is neither a subset nor a superset of what we maintain. <b>${S.n}</b> is the fleet: every point actively managed today, which is <b>730</b> successfully rehabilitated points plus <b>6</b> that were never first-rehabilitated at all &mdash; five new Marolinta boreholes and one Maroantsetra Canzee (<span class="mono">782134540</span>). <b>${REG.dashboard_fdmar}</b> is the odd one out and the reason this paragraph exists: it is the <i>MadAvance dashboard's</i> count for Maroantsetra and Fort-Dauphin, a different population from ours. Our own two-district figure is <b>731</b> (604 + 127), and with Marolinta's 5 that is the ${S.n}. So <b>${REG.dashboard_fdmar} does not exceed ${S.n}</b> &mdash; it is simply not counting the same set, and the ${REG.dashboard_fdmar - 731} point gap between the dashboard and our register in those districts is the thing worth chasing, not an arithmetic error.</p>`+`<p>The register holds <b>${REG.register_total}</b> water points managed by MadAvance. Of the ${REG.total_first_rehab} first-rehabilitation records in the old combined form, ${REG.final_records} are final: <b>${REG.succ} recorded as successful</b> when this reconciliation was first run, ${REG.fail} not successful and ${REG.blank} with the field left blank.</p>`+
 `<p><b>Where that stands now.</b> Sixteen water points sat between the ${REG.dashboard_fdmar} carried in the register and the ${REG.succ} with a successful rehabilitation on file. All sixteen have been worked through against the evidence and none is still open. <b>Nine were corrections</b> \u2014 the pump exists and works, the record was wrong \u2014 taking the successful count to <b>${fmt(SUCC_CORRECTED)}</b>. Eight of those nine have been written back into mWater itself with a dated correction note in the response history; the ninth has no rehabilitation record to correct and one has not been invented. <b>Seven had no evidence of function of any kind</b> since the rehabilitation attempt and have been excluded from the portfolio. Eight rope pumps were also excluded: they are survey entries, never maintained assets. Every one of those decisions, and the evidence behind it, is listed under <a href="#corrsec">Register corrections and exclusions</a> below.</p>`+
 `<p><b>The portfolio today is ${fmt(S.n)} hand pumps</b> \u2014 ${SITES.map(x=>x+' '+(S.by_site[x]||0)).join(', ')} \u2014 down from the 751 this report carried before the corrections.</p>`+
 `<p><b>One known defect, not yet fixed.</b> ${REG.register_unclassified} water points fall outside every district filter on this page. That is a defect here, not in mWater: checked against the register directly, all ${REG.register_total} points have coordinates and <b>899</b> carry an administrative reference resolved to fokontany level, with the full chain \u2014 fokontany, commune, district, region \u2014 on the record. Only <b>9</b> have no administrative reference at all, and all nine are working Maroantsetra pumps with a rehabilitation record and a passed water test. The gap exists because this page still reads district and commune from the form answers rather than from the water point record. Reading it from the register closes 109 of the ${REG.register_unclassified} with nobody entering anything; the remaining 9 need their field set from their own coordinates. <b>This is queued, not done</b> \u2014 it reallocates points between districts, so it gets its own verification pass rather than being slipped in alongside other changes. It is on the open-actions list above.</p>`;
