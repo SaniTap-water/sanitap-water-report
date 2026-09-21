@@ -2048,9 +2048,67 @@ def main():
 
     # ---- repair time is a headline metric ------------------------------
     check("time to repair is on the page with its baseline",
-          "Time to repair" in idx and "187" in idx and "84</b> days open" in idx,
-          "present", "present" if "Time to repair" in idx else "MISSING",
-          "median 1 day recorded; 44 points open at a median 84 days")
+          "Time to repair" in idx and "187" in idx and "Median 84 days open" in idx,
+          "present", "present" if "Median 84 days open" in idx else "MISSING",
+          "median 1 day recorded; 44 tickets open at a median 84 days")
+
+    # ---- 7aj. the calendar is the record; the call centre is not -------
+    # Decided 21 September 2026. A call-centre ticket is a dispatch artefact:
+    # opened when somebody telephones, closed when somebody reports back, and
+    # neither event is an observation of the pump. Treating ticket age as
+    # downtime measures the reporting process, not the asset - which is how a
+    # 297 tCO2e figure came to be published and then withdrawn.
+    check("the page states which instrument is the official record",
+          "official record of days operational" in idx
+          and "the report-back did not arrive" in idx, "stated",
+          "stated" if "official record of days operational" in idx else "MISSING",
+          "calendar governs; the call centre dispatches")
+    check("the withdrawal of the 297 tCO2e backlog figure is visible",
+          "297</b> tCO<sub>2</sub>e" in idx and "withdrawn and not replaced" in idx,
+          "withdrawn in public", "withdrawn in public"
+          if "withdrawn and not replaced" in idx else "MISSING",
+          "corrected visibly, not silently")
+    check("both explanations for the 44 stay on the page",
+          "the tickets are stale" in idx and "not marking outage days" in idx,
+          "both stated", "both stated" if "not marking outage days" in idx else "MISSING",
+          "the hierarchy decides which instrument governs, not whether it is filled in")
+    check("the transcription round is named as what separates them, both ways",
+          "transcription round is what distinguishes them" in idx
+          and "act-transcription-round" in idx, "linked",
+          "linked" if "transcription round is what distinguishes them" in idx else "MISSING")
+    check("the decision log records both decisions",
+          all(s in read(os.path.join(repo_root, "docs", "decision_log.md"))
+              for s in ("official record of days operational",
+                        "No decommissioning or retirement for inactivity", "297"))
+          if os.path.isfile(os.path.join(repo_root, "docs", "decision_log.md")) else False,
+          "recorded", "recorded"
+          if os.path.isfile(os.path.join(repo_root, "docs", "decision_log.md")) else "MISSING",
+          "docs/decision_log.md")
+
+    # No call-centre-derived quantity may appear in tonnes. The call centre
+    # counts tickets; it does not measure days, and a tonnage computed from a
+    # ticket count is a category error however it is hedged.
+    CALLCENTRE = re.compile(r"\b(call[-\s]centre|call[-\s]center|tickets?|backlog)\b", re.I)
+    TONNES = re.compile(r"tCO\s?2\s?e|\btonnes?\b", re.I)
+    WITHDRAWN = re.compile(r"withdraw|withdrawn|no longer|not replaced|was computed|"
+                           r"category error|no carbon quantity", re.I)
+    # Prose only: an inline <script> is data, not a published sentence, and
+    # its array literals are not English however they are split.
+    prose_only = re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S)
+    # Normalise the unit BEFORE stripping tags: tCO<sub>2</sub>e becomes
+    # "tCO 2 e" once the tags go, which matches nothing.
+    prose_only = prose_only.replace("tCO<sub>2</sub>e", "tCO2e")
+    plain3 = re.sub(r"<[^>]+>", " ", prose_only)
+    plain3 = (plain3.replace("&mdash;", "—").replace("&nbsp;", " ")
+              .replace("tCO", "tCO").replace("&ldquo;", '"').replace("&rdquo;", '"'))
+    plain3 = re.sub(r"\s+", " ", plain3)
+    bad = []
+    for sent in re.split(r"(?<=[.!?])\s+", plain3):
+        if CALLCENTRE.search(sent) and TONNES.search(sent) and not WITHDRAWN.search(sent):
+            bad.append(sent[:110])
+    check("no call-centre-derived quantity appears in tonnes",
+          not bad, "none", f"{len(bad)} offending" if bad else "none",
+          "; ".join(bad)[:160] if bad else "an open ticket is not a day not operational")
     check("the page says the repair median cannot show a backlog",
           "cannot show a backlog" in idx, "stated",
           "stated" if "cannot show a backlog" in idx else "MISSING",
@@ -2062,6 +2120,38 @@ def main():
           "741" in idx and "does not exist" in idx, "settled",
           "settled" if "741" in idx else "STILL UNVERIFIED",
           "the form listing was paged to exhaustion")
+
+    # ---- 7ak. every evidenced-point count names its basis ---------------
+    # Two counts of "points with evidence" are in use and both are correct
+    # under their own definition: the day-call basis (points the extraction
+    # produces day calls for, >=30-day observed window, any sheet year) and
+    # the 2026-dated-sheet basis (points with a readable dated sheet covering
+    # part of 2026). Having two live invites the reader to compare them, so
+    # neither may appear naked.
+    BASES = ("day-call basis", "2026-dated-sheet basis")
+    check("both evidenced-point bases are defined on the page",
+          all(b in idx for b in BASES)
+          and "not interchangeable and neither is wrong" in idx,
+          "both defined",
+          "both defined" if all(b in idx for b in BASES) else "MISSING",
+          "308/310 day-call; 295/309 2026-dated-sheet")
+    prose_b = re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S)
+    plain_b = re.sub(r"<[^>]+>", " ", prose_b)
+    plain_b = re.sub(r"\s+", " ", plain_b.replace("&mdash;", "—"))
+    naked = []
+    for sent in re.split(r"(?<=[.!?])\s+", plain_b):
+        if not re.search(r"\b(308|295|309)\b", sent):
+            continue
+        if any(b in sent for b in BASES):
+            continue
+        # a sentence that only carries the number as part of the definition
+        # itself is fine, and so is one that spells the basis out in words
+        if re.search(r"day call|dated sheet|covers part of|observed window", sent, re.I):
+            continue
+        naked.append(sent.strip()[:110])
+    check("no evidenced-point count appears without its basis named",
+          not naked, "none", f"{len(naked)} naked" if naked else "none",
+          "; ".join(naked)[:150] if naked else "308/310 and 295/309 are different questions")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""
