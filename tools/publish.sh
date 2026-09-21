@@ -78,6 +78,28 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_act
   fi
 done
 
+# ---- 1c. the render gate ---------------------------------------------------
+# Markup checks cannot see a page that parses but no longer shows what it
+# should. This loads the page in headless Chromium and asserts against the
+# rendered DOM. It is skipped, loudly, where Chromium is not available - a
+# machine without it can still publish, but it publishes without this cover.
+say ""
+say "running the render check ..."
+PW="${PLAYWRIGHT_BROWSERS_PATH:-$HOME/.cache/ms-playwright}"
+PYBIN="$HOME/sdws1/venv/bin/python"
+if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwright" 2>/dev/null; then
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/render_check.py
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the rendered page does not match the manifest (exit $RC)."
+    say "Nothing committed. Inspect, fix, or re-record with --manifest if intended."
+    exit 1
+  fi
+else
+  say "  SKIPPED: playwright/chromium not available here."
+  say "  The markup checks below still run, but nothing is verifying what renders."
+fi
+
 # ---- 2. THE GATE -----------------------------------------------------------
 # Run it, capture the status on its own line, then branch. Nothing is chained.
 say ""

@@ -1,0 +1,111 @@
+{
+ "buttons": [
+  "All SaniTap",
+  "MadAvance — all",
+  "MadAvance excl. Marolinta",
+  "Marolinta only",
+  "Endur'O"
+ ],
+ "headings": [
+  "The fleet at a glance",
+  "This week",
+  "Actions — the one list",
+  "Attention list",
+  "Portfolio by partner",
+  "The Endur’O estate, reconciled",
+  "The estate we maintain",
+  "How the people-served figure is built",
+  "From first rehabilitation to the pumps we maintain today",
+  "Retired and non-functional water points",
+  "Marolinta — what has been logged so far",
+  "Pumps reported down",
+  "Pumps reported \"partially working\" — for management to check",
+  "Time out of service",
+  "Preventive-maintenance schedule (6-monthly)",
+  "Maintenance coverage",
+  "Catch-up routes for overdue pumps",
+  "All pumps without a visit for more than 6 months",
+  "Mapping rules: how the 1 km service area is drawn",
+  "Who is counted as served: the annual usage survey",
+  "Point-of-use water quality (SDWS 22 / 24)",
+  "Gardien calendars — the days-not-operational record",
+  "Emission reductions — what the programme is for",
+  "The stroke test — how monitored volume gets measured",
+  "Register corrections and exclusions",
+  "The eight 2.2.1(d) records — for the MadAvance team",
+  "Carbon file — Gold Standard programme of activities (PoA) GS12600 / voluntary project activity (VPA) GS12601",
+  "Impact",
+  "Cookstoves and water: the overlap, measured",
+  "Carbon data gaps — the list Jan drives",
+  "Moramanga field visit — actions for Jan and the Endur’O team",
+  "Gold Standard design review — what is still open",
+  "Open actions",
+  "Where every figure on this page comes from",
+  "Data quality notes"
+ ],
+ "height": 31226,
+ "missing_ids": [],
+ "page_errors": [],
+ "scope_visible_sections": {
+  "All SaniTap": null,
+  "Endur'O": null,
+  "MadAvance excl. Marolinta": null,
+  "MadAvance — all": null,
+  "Marolinta only": null
+ },
+ "sections": 36,
+ "tables": {
+  "corrtbl": {
+   "hidden": false,
+   "rows": 9
+  },
+  "downtbl": {
+   "hidden": false,
+   "rows": 19
+  },
+  "exctbl": {
+   "hidden": false,
+   "rows": 15
+  },
+  "itin": {
+   "hidden": false,
+   "rows": 365
+  },
+  "martbl": {
+   "hidden": false,
+   "rows": 13
+  },
+  "opentbl": {
+   "hidden": false,
+   "rows": 30
+  },
+  "over6": {
+   "hidden": false,
+   "rows": 428
+  },
+  "parttbl": {
+   "hidden": false,
+   "rows": 55
+  },
+  "poptbl": {
+   "hidden": false,
+   "rows": 4
+  },
+  "ptable": {
+   "hidden": false,
+   "rows": 9
+  },
+  "recontbl": {
+   "hidden": false,
+   "rows": 16
+  },
+  "rettbl": {
+   "hidden": false,
+   "rows": 5
+  },
+  "tracetbl": {
+   "hidden": false,
+   "rows": 16
+  }
+ }
+}

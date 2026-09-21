@@ -68,8 +68,8 @@ function popupHtml(p){
  PUMPS.filter(p=>p.site===s).forEach(p=>L.circleMarker([p.lat,p.lon],{radius:p.days==null||p.days>183?6:3,color:'#fff',weight:1,fillColor:col(p),fillOpacity:.95}).bindPopup(()=>popupHtml(p),{maxWidth:280,minWidth:240}).addTo(layer));
  L.marker([R.base[0],R.base[1]]).bindPopup('MadAvance base').addTo(layer);
  const b=L.latLngBounds(PUMPS.filter(p=>p.site===s).map(p=>[p.lat,p.lon]));map.fitBounds(b.pad(.1));
- const ds=document.getElementById('day');ds.innerHTML=R.days.map(d=>`<option value="${d.day}">Day ${d.day} — ${d.stops.length} pumps, ${d.km} km, ${d.hours} h</option>`).join('');}
-async function drawDay(s,dayIdx,c){const R=ROUTES[s];const d=R.days[dayIdx];const pts=[[R.base[1],R.base[0]],...d.stops.map(x=>[x.lon,x.lat]),[R.base[1],R.base[0]]];
+ const ds=document.getElementById('day');if(!R||!R.days){ds.innerHTML='';return}ds.innerHTML=R.days.map(d=>`<option value="${d.day}">Day ${d.day} — ${d.stops.length} pumps, ${d.km} km, ${d.hours} h</option>`).join('');}
+async function drawDay(s,dayIdx,c){const R=ROUTES[s];if(!R||!R.days)return;const d=R.days[dayIdx];if(!d)return;const pts=[[R.base[1],R.base[0]],...d.stops.map(x=>[x.lon,x.lat]),[R.base[1],R.base[0]]];
  d.stops.forEach((x,i)=>L.marker([x.lat,x.lon],{icon:L.divIcon({className:'',html:`<div style="background:${c};color:#fff;border-radius:10px;padding:1px 5px;font-size:11px;font-weight:600">${d.day}.${i+1}</div>`,iconAnchor:[0,0]})}).addTo(routeLayer));
  try{const j=await fetch('https://router.project-osrm.org/route/v1/driving/'+pts.map(p=>p.join(',')).join(';')+'?overview=full&geometries=geojson').then(r=>r.json());
   if(j.code==='Ok'){L.geoJSON(j.routes[0].geometry,{style:{color:c,weight:4,opacity:.8}}).addTo(routeLayer);

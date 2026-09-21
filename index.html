@@ -1486,7 +1486,7 @@ $('#gapnote').textContent=`${A.over6} of ${A.n} pumps (${Math.round(A.over6/A.n*
   function applyScope(){
  document.querySelectorAll('section[data-scopes]').forEach(sec=>{sec.hidden=!sec.dataset.scopes.split(' ').includes(SCOPE)});
 }
-function render(){const R=ROUTES[cur];$('#itin tbody').innerHTML=R.days.map(d=>d.stops.map((st,j)=>`<tr><td class="num">${j===0?`<b>Day ${d.day}</b><br><span class="muted" style="font-size:.75rem">${d.km} km · ${d.hours} h</span>`:''}</td><td class="num">${j+1}</td><td class="mono">${rlink(st.wp,'v',st.wp,'Open the mWater record for the last visit to this pump')}</td><td>${esc(st.commune)}</td><td>${esc(st.fkt)}</td><td>${st.pump}</td><td class="num">${st.days==null?'<span class="pill crit">never</span>':st.days}</td><td>${st.status}</td><td class="num">${fmt(st.benef)}</td></tr>`).join('')).join('')}
+function render(){const R=ROUTES[cur];if(!R){$('#itin tbody').innerHTML='';return}$('#itin tbody').innerHTML=R.days.map(d=>d.stops.map((st,j)=>`<tr><td class="num">${j===0?`<b>Day ${d.day}</b><br><span class="muted" style="font-size:.75rem">${d.km} km · ${d.hours} h</span>`:''}</td><td class="num">${j+1}</td><td class="mono">${rlink(st.wp,'v',st.wp,'Open the mWater record for the last visit to this pump')}</td><td>${esc(st.commune)}</td><td>${esc(st.fkt)}</td><td>${st.pump}</td><td class="num">${st.days==null?'<span class="pill crit">never</span>':st.days}</td><td>${st.status}</td><td class="num">${fmt(st.benef)}</td></tr>`).join('')).join('')}
   document.querySelectorAll('#itinsel button').forEach(b=>b.addEventListener('click',()=>{cur=b.dataset.s;document.querySelectorAll('#itinsel button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.s===cur));render()}));render();
 })();
 
