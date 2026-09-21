@@ -56,9 +56,21 @@ REQUIRED_FILES = [
     f"{ONEDRIVE}/Methodology of record/"
     f"429_V2.0_PAA-M400-12_Emission-reductions-from-Safe-Drinking-Water-Supply.pdf",
 ]
-SAMPLED_DIRS = [
-    (f"{ONEDRIVE}/Evidence/mWater backup/images", 24),
-    (f"{ONEDRIVE}/Evidence/mWater backup/data", 8),
+# Two tiers, and the distinction matters.
+#
+# REQUIRED_FILES are read by the build itself. They are small, they must be on
+# the disk, and a stall or an I/O error there stops a publish - so cloud-only
+# is a hard failure.
+#
+# ADVISORY_DIRS are large stores that only the offline tools read: the OCR
+# pass and the sheet bundler. The build never opens them. They hydrate on
+# demand when something does read them, so the failure mode is a slow read
+# rather than an error - and pinning them costs 45.9 GB on a drive that is
+# already at 97%. Reporting they are cloud-only is useful; failing the build
+# over it is not, and the first version of this file got that wrong.
+ADVISORY_DIRS = [
+    (f"{ONEDRIVE}/Evidence/mWater backup/images", 8),
+    (f"{ONEDRIVE}/Evidence/mWater backup/data", 4),
 ]
 
 
@@ -94,15 +106,20 @@ def audit():
             cloud.append(p)
         elif s == "missing":
             missing.append(p)
-    for d, n in SAMPLED_DIRS:
+    return cloud, missing
+
+
+def advisory():
+    """Large tool-only stores that are cloud-only. Reported, never fatal."""
+    out = []
+    for d, n in ADVISORY_DIRS:
         if not os.path.isdir(d):
-            missing.append(d)
             continue
         files = sample(d, n)
         bad = [p for p in files if state(p) == "cloudonly"]
         if bad:
-            cloud.append(f"{d}  ({len(bad)} of {len(files)} sampled are cloud-only)")
-    return cloud, missing
+            out.append(f"{os.path.basename(d)} ({len(bad)}/{len(files)} sampled cloud-only)")
+    return out
 
 
 def message(cloud, missing):
@@ -132,10 +149,13 @@ def message(cloud, missing):
 
 def main():
     cloud, missing = audit()
+    adv = advisory()
     if not cloud and not missing:
-        n = len(REQUIRED_FILES) + sum(k for _, k in SAMPLED_DIRS)
-        print(f"all required OneDrive documents are present locally "
-              f"({len(REQUIRED_FILES)} files + {len(SAMPLED_DIRS)} sampled folders)")
+        print(f"all {len(REQUIRED_FILES)} documents the build reads are present locally")
+        if adv:
+            print("  advisory, not a failure - tool-only stores are cloud-only: "
+                  + "; ".join(adv))
+            print("  they hydrate on read; pinning the image store costs ~46 GB on C:")
         return 0
     print(message(cloud, missing), file=sys.stderr)
     return 1

@@ -1389,7 +1389,10 @@ def main():
               owner if owner in row else "WRONG OWNER")
         check(f"{aid}: deadline is {date}", f"<b>{date}</b>" in row, date,
               date if f"<b>{date}</b>" in row else "WRONG DATE")
-        has_pill = 'class="pill warn">DUE' in row or 'class="pill crit">OVERDUE' in row
+        # the vocabulary is now three states: ACT / WATCH / OK. OVERDUE is
+        # not stored - it is a badge computed in the generated action list.
+        has_pill = ('class="pill crit">ACT' in row or 'class="pill warn">WATCH' in row
+                    or 'class="pill ok">OK' in row)
         check(f"{aid}: carries a schedule pill", has_pill, "pill",
               "pill" if has_pill else "MISSING",
               "house format: pill, date, proposed-note, completion criterion")
@@ -1505,10 +1508,11 @@ def main():
           "present" if '<tr id="act-v2-adherence">' in idx else "MISSING")
     m_ad = re.search(r'<tr id="act-v2-adherence">(.*?)</tr>', idx, re.S)
     if m_ad:
+        # STANDING became WATCH when the vocabulary went to three states
         check("the adherence item is owned by James Walker and stands open",
               "James Walker" in m_ad.group(1)
-              and "STANDING" in m_ad.group(1), "standing, James Walker",
-              "ok" if "STANDING" in m_ad.group(1) else "WRONG")
+              and 'pill warn">WATCH' in m_ad.group(1), "WATCH, James Walker",
+              "ok" if 'pill warn">WATCH' in m_ad.group(1) else "WRONG")
     for aid, owner, date in (("act-calendar-custody", "Angelo Nahavitatsara / MadAvance", "26 Sep 2026"),
                              ("act-sensor-definition", "James Walker", "10 Oct 2026"),
                              ("act-printed-year-meaning",
@@ -1794,13 +1798,16 @@ def main():
     # on open - a long way from the reason. require_local names the file.
     try:
         sys.path.insert(0, os.path.join(repo_root, "tools"))
-        from require_local import audit as _audit, message as _msg  # noqa: E402
+        from require_local import (audit as _audit, message as _msg,  # noqa: E402
+                                   advisory as _adv)
         _cloud, _missing = _audit()
-        check("required OneDrive documents are present locally, not cloud-only",
-              not _cloud, "all local",
+        _advisory = _adv()
+        check("documents the build reads are present locally, not cloud-only",
+              not _cloud and not _missing, "all local",
               "all local" if not _cloud else f"{len(_cloud)} cloud-only",
               _msg(_cloud, _missing).splitlines()[0] if _cloud else
-              "Storage Sense has not dehydrated them")
+              ("advisory: " + "; ".join(_advisory) if _advisory
+               else "Storage Sense has not dehydrated them"))
     except Exception as _e:
         check("required OneDrive documents are present locally, not cloud-only",
               False, "checked", f"check could not run: {_e}")
@@ -2383,6 +2390,70 @@ def main():
           not collisions, "none",
           f"{len(collisions)}: {', '.join(collisions[:4])}" if collisions else "none",
           "a stat tile whose value and label render as one word")
+
+    # ---- 7aq. one action list, and everything in it ---------------------
+    # Actions used to be scattered through the page, several of them inside
+    # collapsed blocks where nobody saw them. There is now one list, generated
+    # from the detailed rows so the two cannot disagree, and every detailed
+    # row links back up to it.
+    acts = re.findall(r'<tr id="(act-[a-z0-9-]+)">(.*?)</tr>', idx, re.S)
+    check("the consolidated action list is generated and present",
+          '<!-- BEGIN GENERATED action-list' in idx and 'id="actions"' in idx,
+          "present", "present" if 'id="actions"' in idx else "MISSING",
+          f"{len(acts)} rows")
+    # it must sit above the body: the whole point is that it is seen
+    pos_actions = idx.find('id="actions"')
+    pos_attention = idx.find("<h2>Attention list</h2>")
+    check("the action list sits near the top, below the fleet summary",
+          0 < pos_actions < pos_attention, "above the body",
+          "above the body" if 0 < pos_actions < pos_attention else "TOO LOW")
+    nolink = [a for a, body in acts if "act-uplink" not in body]
+    check("every action row links up to the one list",
+          not nolink, f"{len(acts)} linked",
+          f"{len(acts) - len(nolink)} linked" if nolink else f"{len(acts)} linked",
+          ", ".join(nolink[:4]))
+    # three states, no more
+    labels = set(re.findall(r'<span class="pill (?:ok|warn|crit)">([A-Z]{2,})</span>', idx))
+    check("the status vocabulary is exactly ACT / WATCH / OK",
+          labels <= {"ACT", "WATCH", "OK", "OVERDUE"}, "ACT/WATCH/OK",
+          ", ".join(sorted(labels)) or "none",
+          "OVERDUE is a computed badge, not a stored state")
+    # a hand-typed OVERDUE goes stale; only the generator may write one
+    gb = idx.find("<!-- BEGIN GENERATED action-list")
+    ge = idx.find("<!-- END GENERATED action-list -->")
+    outside = idx[:gb] + idx[ge:] if gb >= 0 and ge > gb else idx
+    check("no OVERDUE label is hand-written outside the generated list",
+          ">OVERDUE<" not in outside, "none",
+          "none" if ">OVERDUE<" not in outside
+          else f"{outside.count('>OVERDUE<')} static",
+          "it is computed from the deadline at build time")
+    # nothing action-shaped may hide inside a collapsed block without a row
+    ids = {a for a, _ in acts}
+    ACTIONISH = re.compile(r"\bFix:|\bAction:|for the MadAvance team|"
+                           r"to be confirmed with James|to be built in a separate session",
+                           re.I)
+    orphans = []
+    for dm in re.finditer(r"<details\b.*?</details>", idx, re.S):
+        blk = dm.group(0)
+        if not ACTIONISH.search(re.sub(r"<[^>]+>", " ", blk)):
+            continue
+        if not any(i in blk for i in ids) and "act-uplink" not in blk:
+            orphans.append(re.sub(r"\s+", " ",
+                                  re.sub(r"<[^>]+>", " ", blk))[:80])
+    check("no action-shaped text hides in a collapsed block without a row",
+          not orphans, "none", f"{len(orphans)} orphan(s)" if orphans else "none",
+          "; ".join(orphans)[:150])
+    # closed means closed everywhere
+    closed_ids = [a for a, body in acts if 'pill ok">OK' in body]
+    stale = []
+    for a in closed_ids:
+        m = re.search(r'<tr id="%s">(.*?)</tr>' % a, idx, re.S)
+        body = re.sub(r"<[^>]+>", " ", m.group(1)) if m else ""
+        if re.search(r"\bstill (?:open|outstanding|to do|needs)\b", body, re.I):
+            stale.append(a)
+    check("nothing marked OK is still described as open",
+          not stale, "none", ", ".join(stale) if stale else "none",
+          f"{len(closed_ids)} closed this period")
 
     conf = os.path.join(repo_root, "docs", "sop_form_conformance.md")
     ctext = read(conf) if os.path.isfile(conf) else ""

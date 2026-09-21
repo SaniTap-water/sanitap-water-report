@@ -95,6 +95,41 @@ nothing else needs updating.
   `--check` and fails with a diff if the published region has drifted;
 * **this file records the rule**.
 
+## Actions: one list, three states, and how an item closes
+
+**Every action in the report has exactly one detailed row**, in the section that explains it,
+and appears once more in the consolidated list at the top of the page. The list is *generated*
+from those rows by `tools/render_actions.py`, so the two cannot drift: the detailed row is the
+source, the summary table is output.
+
+**Three states and no more.**
+
+| | | was |
+|---|---|---|
+| **ACT** | bright red — work outstanding | DUE, OVERDUE |
+| **WATCH** | orange — standing, monitored, no end date | STANDING |
+| **OK** | green — done, or decided | DONE, DECIDED |
+
+`DECIDED` survives as a small label inside OK, because a decision taken is not the same as work
+completed and a reader should be able to tell them apart.
+
+**OVERDUE is not a stored state.** It is a badge rendered beside ACT in the generated list,
+computed from the deadline against the build date. It was previously typed by hand, and eleven
+rows carried an OVERDUE label against a date that had not yet arrived. `check_consistency.py`
+fails the build if an OVERDUE label appears anywhere outside the generated region.
+
+**Closing discipline.** When an item is resolved:
+
+1. set its detailed row to **OK**;
+2. **update the text that raised it in the same pass** — the prose that described the problem
+   must stop describing it as open;
+3. the generated list moves it out of the live table into the collapsed *closed this period*
+   block on its own.
+
+The checker enforces the parts it can see: that nothing marked OK is still described as open,
+that every detailed row carries an up-link to the list, that no action-shaped text hides inside
+a collapsed block without a row, and that the status vocabulary is exactly these three.
+
 ## Other standing rules
 
 * Clone and patch the live files. Never rebuild a page from sources elsewhere.

@@ -69,7 +69,7 @@ fi
 # the gate sees current output rather than yesterday's. Each generator is
 # named in its own marker in index.html; block 7af of the checker fails the
 # build if a region and its generator disagree.
-for gen in tools/render_block.py tools/render_form_freshness.py; do
+for gen in tools/render_block.py tools/render_form_freshness.py tools/render_actions.py; do
   python3 "$gen" --write
   RC=$?
   if [ "$RC" -ne 0 ]; then
