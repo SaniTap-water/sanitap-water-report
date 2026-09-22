@@ -2,18 +2,6 @@
  "note": "Figures rendered on the page that are neither live, nor declared in PARAMS, nor from the dated manual Endur'O file. This list may only shrink. A figure not on it fails the gate.",
  "recorded": "2026-09-22",
  "values": {
-  "0.08": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Point-of-use water quality (SDWS 22 / 24)",
-   "sentence": "nitrate ≤ 50 mg/L and manganese ≤ 0.08 mg/L where measured), is not abandoned, and is not in Beloha district (Marolinta, which sits outside the carbon"
-  },
   "0.1": {
    "n": 4,
    "scopes": [
@@ -49,29 +37,6 @@
    "section": "Gold Standard design review — what is still open",
    "sentence": "0.0001 – 0.19 mg/L"
   },
-  "0.34": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Emission reductions — what the programme is for",
-   "sentence": "portfolio-weighted (Toliary 0.54 Fort-Dauphin, MoFuSS 0.34 Maroantsetra)"
-  },
-  "0.36": {
-   "n": 10,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Cookstoves and water: the overlap, measured",
-   "sentence": "0.54 against the national 0.36"
-  },
   "0.405": {
    "n": 19,
    "scopes": [
@@ -83,18 +48,6 @@
    ],
    "section": "Actions — the one list",
    "sentence": "0.405"
-  },
-  "0.54": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Emission reductions — what the programme is for",
-   "sentence": "portfolio-weighted (Toliary 0.54 Fort-Dauphin, MoFuSS 0.34 Maroantsetra)"
   },
   "0.80": {
    "n": 13,
@@ -218,30 +171,7 @@
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "+1.45 tCO"
   },
-  "1.5": {
-   "n": 14,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Point-of-use water quality (SDWS 22 / 24)",
-   "sentence": "fluoride ≤ 1.5 mg/L; nitrate ≤ 50 mg/L and manganese ≤ 0.08 mg/L where measured), is not abandoned, and is not in Beloha district (Marolinta, which si"
-  },
   "10,227": {
-   "n": 8,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "10,227 t"
-  },
-  "10,499": {
    "n": 4,
    "scopes": [
     "all",
@@ -250,10 +180,10 @@
     "mar"
    ],
    "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "10,499 t"
+   "sentence": "10,227"
   },
   "10,975": {
-   "n": 8,
+   "n": 4,
    "scopes": [
     "all",
     "mad",
@@ -319,30 +249,6 @@
    "section": "Marolinta — what has been logged so far",
    "sentence": "126,780"
   },
-  "12600": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Carbon file — Gold Standard programme of activities ",
-   "sentence": "Gold Standard programme of activities (PoA) GS12600 / voluntary project activity (VPA) GS12601"
-  },
-  "12601": {
-   "n": 10,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Portfolio by partner",
-   "sentence": "Carbon programme owner · VPA GS12601"
-  },
   "13,715,217": {
    "n": 9,
    "scopes": [
@@ -374,16 +280,6 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "139.5"
-  },
-  "139.6": {
-   "n": 12,
-   "scopes": [
-    "all",
-    "mad",
-    "madx"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "139.6 people per CWS"
   },
   "148,800": {
    "n": 4,
@@ -488,7 +384,7 @@
    "sentence": ", and 20,647 households over the same 636 ="
   },
   "20,697": {
-   "n": 13,
+   "n": 9,
    "scopes": [
     "all",
     "enduro",
@@ -521,17 +417,6 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "USD 21,200 a year across the 731 carbon points"
-  },
-  "21,246": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "21,246 t"
   },
   "24.25": {
    "n": 5,
@@ -634,18 +519,6 @@
    "section": "Who is counted as served: the annual usage survey",
    "sentence": "3.3"
   },
-  "3.7": {
-   "n": 11,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "139.6 ÷ 4.5 = 31.0 for Anosy, 139.6 ÷ 3.7 = 37.7 for Maroantsetra, entered as 37."
-  },
   "3.9": {
    "n": 16,
    "scopes": [
@@ -676,16 +549,6 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "32,378"
-  },
-  "32.5": {
-   "n": 15,
-   "scopes": [
-    "all",
-    "mad",
-    "madx"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "Ex-ante average of 32.5 households per CWS is based on initial assessment of 4,310 water sources using satellite imagery"
   },
   "347.1": {
    "n": 4,
@@ -743,14 +606,16 @@
    "sentence": "349.9"
   },
   "35.8": {
-   "n": 6,
+   "n": 11,
    "scopes": [
     "all",
+    "enduro",
     "mad",
-    "madx"
+    "madx",
+    "mar"
    ],
-   "section": "How the people-served figure is built",
-   "sentence": "35.8"
+   "section": "What every figure is over",
+   "sentence": "The 32.5 and 35.8 household figures are this same number divided by different household sizes."
   },
   "352.3": {
    "n": 4,
@@ -820,7 +685,7 @@
    "sentence": "354,000"
   },
   "356.7": {
-   "n": 17,
+   "n": 13,
    "scopes": [
     "all",
     "enduro",
@@ -930,16 +795,6 @@
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "391."
   },
-  "4,310": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "mad",
-    "madx"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "Ex-ante average of 32.5 households per CWS is based on initial assessment of 4,310 water sources using satellite imagery"
-  },
   "4,500": {
    "n": 5,
    "scopes": [
@@ -973,18 +828,6 @@
    ],
    "section": "Who is counted as served: the annual usage survey",
    "sentence": "4.2"
-  },
-  "4.5": {
-   "n": 35,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "The roof count (roofs ÷ 2.5 × 4.5, derived from automated rooftop detection on satellite imagery) is a different method and is"
   },
   "4.8": {
    "n": 4,
@@ -1078,7 +921,7 @@
    "sentence": "Another, dated 11 September, sits at −18.1610, 49.4071, which is 125 km away in the Maroantsetra area."
   },
   "5,423": {
-   "n": 8,
+   "n": 4,
    "scopes": [
     "all",
     "mad",
@@ -1098,17 +941,6 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "502,000"
-  },
-  "549": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "549 t"
   },
   "6.2": {
    "n": 2,
@@ -1222,7 +1054,7 @@
    "sentence": "7,440"
   },
   "722": {
-   "n": 21,
+   "n": 17,
    "scopes": [
     "all",
     "enduro",
@@ -1234,7 +1066,7 @@
    "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "726.6": {
-   "n": 9,
+   "n": 5,
    "scopes": [
     "all",
     "enduro",
@@ -1246,7 +1078,7 @@
    "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "727": {
-   "n": 18,
+   "n": 10,
    "scopes": [
     "all",
     "enduro",
@@ -1256,6 +1088,18 @@
    ],
    "section": "Actions — the one list",
    "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
+  },
+  "732": {
+   "n": 30,
+   "scopes": [
+    "all",
+    "enduro",
+    "mad",
+    "madx",
+    "mar"
+   ],
+   "section": "Actions — the one list",
+   "sentence": "732"
   },
   "741": {
    "n": 9,

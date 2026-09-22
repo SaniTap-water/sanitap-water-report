@@ -232,7 +232,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 25738,
+ "height": 27893,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
@@ -270,7 +270,7 @@
  "tables": {
   "chaintbl": {
    "hidden": false,
-   "rows": 6
+   "rows": 9
   },
   "corrtbl": {
    "hidden": false,
@@ -298,7 +298,7 @@
   },
   "paramstbl": {
    "hidden": false,
-   "rows": 12
+   "rows": 24
   },
   "parttbl": {
    "hidden": false,
@@ -306,7 +306,7 @@
   },
   "popstbl": {
    "hidden": false,
-   "rows": 8
+   "rows": 11
   },
   "poptbl": {
    "hidden": false,

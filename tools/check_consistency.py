@@ -415,6 +415,53 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7b-7. a record count is not a point count -------------------------
+    # This confusion produced 727, the 723/731 gap, and a "46 unexplained
+    # points" finding that was really unstable paging. Every population
+    # declares its unit, and no chain step may relate two populations of
+    # different units.
+    pop_pp = os.path.join(repo_root, "data", "populations.json")
+    _pops = json.loads(read(pop_pp)) if os.path.exists(pop_pp) else {}
+    _P = _pops.get("populations") or {}
+    nounit = [k for k, v in _P.items() if v.get("unit") not in ("records", "points")]
+    check("every population declares whether it counts records or points",
+          not nounit, "all declared",
+          f"missing on {', '.join(nounit[:3])}" if nounit else "all declared",
+          "a record count and a point count are different quantities")
+    mixed = [c["step"] for c in _pops.get("chain", [])
+             if not (c["step"].startswith("RECORDS:") or c["step"].startswith("POINTS:"))]
+    check("every chain step names the unit it relates",
+          not mixed, "all named",
+          f"unnamed: {'; '.join(mixed[:2])}" if mixed else "all named",
+          "a step relating records to points is not a reconciliation")
+    # 723 is withdrawn as a LIVE figure. Quoting it to say it is withdrawn,
+    # or quoting a document that carries it, is allowed and is not the fault.
+    _regm = re.search(r"\bconst REG\s*=\s*(\{.*?\});", idx, re.S)
+    _reg = json.loads(_regm.group(1)) if _regm else {}
+    check("723 is withdrawn as a live figure",
+          _reg.get("succ") != 723 and _reg.get("succ_withdrawn") == 723,
+          "withdrawn, recorded",
+          f"REG.succ={_reg.get('succ')}, withdrawn={_reg.get('succ_withdrawn')}",
+          "it could not be reproduced from any data held; superseded by the "
+          "derived point count. See docs/decision_log.md")
+    check("the successful-rehabilitation figure is the derived point count",
+          _reg.get("succ") == (_P.get("rehabilitated_successfully") or {}).get("size"),
+          (_P.get("rehabilitated_successfully") or {}).get("size"),
+          _reg.get("succ"),
+          "REG.succ must equal the population tools/populations.py computes")
+    _succ_pts = (_P.get("rehabilitated_successfully") or {}).get("size")
+    _carbon = (_P.get("carbon_fleet") or {}).get("size")
+    _succ_rec = (_P.get("successful_first_rehabilitation_records") or {}).get("size")
+    check("the successful-record count is not treated as the carbon fleet",
+          _succ_rec != _carbon or (
+              _P.get("successful_first_rehabilitation_records", {}).get("unit")
+              != _P.get("carbon_fleet", {}).get("unit")),
+          "different units",
+          f"both {_succ_rec} but units differ"
+          if _succ_rec == _carbon else "different values",
+          "731 successful RECORDS equals 731 carbon POINTS by coincidence; "
+          "they are unrelated quantities")
+
     # ---- 7b-8. every figure shows its working ------------------------------
     # A figure that cannot be expanded into its derivation is a figure the
     # reader has to take on trust. Every data-fig expression must be in

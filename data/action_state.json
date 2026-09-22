@@ -3,9 +3,9 @@
  "kinds": {
   "artefact": 7,
   "data": 38,
-  "decision": 39,
+  "decision": 40,
   "form": 7,
-  "none": 20
+  "none": 21
  },
  "state": {
   "act-2026-recovery": {
@@ -269,6 +269,14 @@
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
+  "act-form-consolidation": {
+   "evaluated": "2026-09-22",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes on a logged decision in data/decisions.json choosing option A or B",
+   "when_satisfied": "OK"
+  },
   "act-freeze-estate-map-when": {
    "evaluated": "2026-09-22",
    "evidence": "tools/freeze_map.py does not exist in the repository",
@@ -372,6 +380,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-marolita-spelling": {
+   "evaluated": "2026-09-22",
+   "evidence": "no data predicate: closes when MadAvance corrects the nineteen records in mWater",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: closes when MadAvance corrects the nineteen records in mWater",
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
@@ -488,7 +504,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-09-22",
-   "evidence": "unapproved_works_records = 43 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 44 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",

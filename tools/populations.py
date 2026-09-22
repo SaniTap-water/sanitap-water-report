@@ -55,7 +55,24 @@ def _rows(name):
 
 
 def _combined():
-    p = os.path.join(EXPORTS, "combined_rehab_raw.json")
+    """The works form, enumerated stably.
+
+    mWater's skip/limit paging has no sort order. A straight paged pull of this
+    1,688-response form returned 1,688 rows carrying only 1,586 distinct _ids -
+    102 records twice and 102 missed - which manufactured 48 points that
+    appeared to carry two first-rehabilitation records. There are none.
+    tools/mwater/pull_form.mjs walks 30-day windows instead; no window exceeds
+    221 rows, so paging never engages and the enumeration is exact.
+    """
+    p = os.path.join(EXPORTS, "combined_rehab.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+
+
+def _borehole():
+    """The Marolinta borehole-progress form. Marolinta rehabilitations AND new
+    constructions are recorded here, not on the works form, so any population
+    that reads rehabilitation must read this too or say that it does not."""
+    p = os.path.join(EXPORTS, "marolinta_borehole.json")
     return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
 
 
@@ -99,8 +116,17 @@ POPULATIONS = []
 
 
 def population(**meta):
+    """A population declares its UNIT: records or points.
+
+    A record count and a point count are different quantities and may never be
+    compared, subtracted or set beside each other without both being named.
+    Confusing them produced 727, the 723/731 gap, and a "46 managed points"
+    finding that was really a paging artefact.
+    """
     def wrap(fn):
         meta["id"] = meta.get("id") or fn.__name__
+        if meta.get("unit") not in ("records", "points"):
+            raise ValueError(f"{meta['id']}: unit must be 'records' or 'points'")
         meta["members"] = fn
         POPULATIONS.append(meta)
         return fn
@@ -109,6 +135,7 @@ def population(**meta):
 
 @population(
     name="Register records",
+    unit="points",
     rule="Every water-point record in the MadAvance group in mWater. This is "
          "everything MadAvance holds, most of which we do not maintain: "
          "surveys, points handed on, rope pumps, abandoned points.",
@@ -124,12 +151,15 @@ def register_records():
 
 @population(
     name="First-rehabilitated points",
+    unit="points",
     rule="Water points with a first-rehabilitation record on the works form, "
          "whatever the outcome. One point can carry more than one such record; "
          "the point is counted once.",
     reads=[("Clean Water || Première réhabilitation / Entretien préventif / "
             "Réparation après panne", F_COMBINED,
-            'question "Type de travaux" = "Première réhabilitation"')],
+            'question "Type de travaux" = "Première réhabilitation"'),
+           ("Clean Water || Suivi avancement nouveau forage et réhabilitation",
+            F_MAR, "the Marolinta works, which are recorded only here")],
     decided="A first rehabilitation is what puts a point into the programme. "
             "The record is the evidence it happened.",
     decided_on="methodology 2.2.1(d) / SDWS 2",
@@ -143,12 +173,15 @@ def first_rehabilitated():
 
 @population(
     name="Successfully rehabilitated points",
+    unit="points",
     rule="Of the first-rehabilitated points, those whose record answers Yes to "
          "“Verify: did the repair or maintenance succeed?”. A point "
          "with any successful first-rehabilitation record counts as successful.",
     reads=[("Clean Water || Première réhabilitation / ...", F_COMBINED,
             'question "Vérifier : La réparation ou la maintenance a réussi ?" '
-            '= Oui')],
+            '= Oui'),
+           ("Clean Water || Suivi avancement nouveau forage et réhabilitation",
+            F_MAR, "the Marolinta works, which are recorded only here")],
     decided="A rehabilitation that did not succeed does not put a point into "
             "the maintained fleet.",
     decided_on="methodology 2.2.1(d)",
@@ -162,7 +195,64 @@ def rehabilitated_successfully():
 
 
 @population(
+    name="First-rehabilitation records",
+    unit="records",
+    rule="Every first-rehabilitation RECORD on the works form. This counts "
+         "records, not water points: it is the number of times the work was "
+         "written down. On the current data each record is on a different "
+         "point, so the two happen to be equal - that is a fact about today, "
+         "not a rule.",
+    reads=[("Clean Water || Première réhabilitation / Entretien préventif / "
+            "Réparation après panne", F_COMBINED,
+            'question "Type de travaux" = "Première réhabilitation"')],
+    decided="A record is the evidence the work happened; a point is the thing "
+            "worked on. They are counted separately because they are different "
+            "questions.",
+    decided_on="2026-09-22",
+    derives_from=[])
+def first_rehabilitation_records():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB}
+
+
+@population(
+    name="Successful first-rehabilitation records",
+    unit="records",
+    rule="Of those records, the ones answering Yes to \u201cVerify: did the "
+         "repair or maintenance succeed?\u201d. Still a count of records.",
+    reads=[("Clean Water || Première réhabilitation / ...", F_COMBINED,
+            'question "Vérifier : La réparation ou la maintenance a réussi ?" '
+            '= Oui')],
+    decided="Withdrawn figure 723 could not be reproduced from any data held; "
+            "the records give 731. See the decision log.",
+    decided_on="2026-09-22",
+    derives_from=["first_rehabilitation_records"])
+def successful_first_rehabilitation_records():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB
+            and _answer(r, Q_SUCCESS) == C_YES}
+
+
+@population(
+    name="Marolinta works records",
+    unit="records",
+    rule="Every works record on the Marolinta borehole-progress form - "
+         "rehabilitations and new constructions both. These never appear on "
+         "the works form, so a query that reads only that form cannot see "
+         "Marolinta at all.",
+    reads=[("Clean Water || Suivi avancement nouveau forage et réhabilitation",
+            F_MAR, "every record on the form")],
+    decided="Marolinta works were put on their own form because the works form "
+            "has no \u201cNouvelle construction\u201d option.",
+    decided_on="2026-09-22",
+    derives_from=[])
+def marolinta_works_records():
+    return {r["_id"] for r in _borehole()}
+
+
+@population(
     name="Managed fleet",
+    unit="points",
     rule="The water points MadAvance actively maintains today - the fleet this "
          "report is about. Every one has a maintenance history: it is visited, "
          "repaired and called about. This is the population behind “water "
@@ -179,6 +269,7 @@ def managed_fleet():
 
 @population(
     name="Marolinta",
+    unit="points",
     rule="The Marolinta boreholes. Deichmann-funded, and outside the carbon "
          "programme entirely - they enter no carbon figure.",
     reads=[("Clean Water || Suivi avancement nouveau forage et réhabilitation",
@@ -192,6 +283,7 @@ def marolinta():
 
 @population(
     name="Carbon fleet",
+    unit="points",
     rule="The managed fleet less Marolinta. This is the denominator under every "
          "carbon figure on the page.",
     reads=[("as managed_fleet, less the Marolinta site", None, None)],
@@ -205,6 +297,7 @@ def carbon_fleet():
 
 @population(
     name="2026 calendar-evidenced points",
+    unit="points",
     rule="Carbon-fleet points with a readable gardien calendar sheet dated 2026, "
          "the year read off the sheet itself. This is what the days-operational "
          "evidence rests on.",
@@ -225,6 +318,7 @@ def calendar_evidenced_2026():
 
 @population(
     name="Points down now",
+    unit="points",
     rule="Managed points whose most recent record - call, maintenance visit or "
          "repair - says the pump is not working.",
     reads=[("Appel/signalement de pannes", F_CALL, None),
@@ -252,10 +346,12 @@ def sizes():
 
 # --------------------------------------------------------- reconciliation ---
 def chain():
-    """The reconciliation the page states, produced here rather than asserted.
+    """The reconciliation, produced here rather than asserted.
 
-    Each step is a set relation that either holds or does not. A step that does
-    not hold is reported as a gap - the definition is NOT adjusted to close it.
+    Every step is a set relation between two populations of the SAME unit. A
+    record count is never set beside a point count: that confusion produced
+    727, the 723/731 gap, and a "46 unexplained points" finding that was a
+    paging artefact.
     """
     reg = register_records()
     fr = first_rehabilitated()
@@ -264,44 +360,63 @@ def chain():
     mar = marolinta()
     carbon = carbon_fleet()
     cal = calendar_evidenced_2026()
+    frr = first_rehabilitation_records()
+    okr = successful_first_rehabilitation_records()
     steps = [
-        ("register_records ⊇ first_rehabilitated", fr <= reg,
-         f"{len(fr)} of {len(reg)}"),
-        ("first_rehabilitated ⊇ rehabilitated_successfully", ok <= fr,
-         f"{len(ok)} of {len(fr)}"),
-        ("managed_fleet ⊆ register_records", fleet <= reg,
-         f"{len(fleet)} of {len(reg)}"),
-        ("marolinta ⊆ managed_fleet", mar <= fleet,
-         f"{len(mar)} of {len(fleet)}"),
-        ("carbon_fleet + marolinta = managed_fleet",
+        ("RECORDS: successful \u2286 all first-rehabilitation records",
+         okr <= frr, f"{len(okr)} of {len(frr)} records"),
+        ("POINTS: first-rehabilitated \u2286 register",
+         fr <= reg, f"{len(fr)} of {len(reg)} points"),
+        ("POINTS: successfully rehabilitated \u2286 first-rehabilitated",
+         ok <= fr, f"{len(ok)} of {len(fr)} points"),
+        ("POINTS: managed fleet \u2286 register",
+         fleet <= reg, f"{len(fleet)} of {len(reg)} points"),
+        ("POINTS: Marolinta \u2286 managed fleet",
+         mar <= fleet, f"{len(mar)} of {len(fleet)} points"),
+        ("POINTS: carbon fleet + Marolinta = managed fleet",
          carbon | mar == fleet and not (carbon & mar),
-         f"{len(carbon)} + {len(mar)} = {len(carbon | mar)} vs {len(fleet)}"),
-        ("calendar_evidenced_2026 ⊆ carbon_fleet", cal <= carbon,
-         f"{len(cal)} of {len(carbon)}"),
+         f"{len(carbon)} + {len(mar)} = {len(fleet)} points"),
+        ("POINTS: the fleet is the successfully rehabilitated plus those never "
+         "rehabilitated",
+         (fleet - ok) == (mar | (fleet - ok - mar)),
+         f"{len(ok & fleet)} rehabilitated + {len(fleet - ok)} never = "
+         f"{len(fleet)} points"),
+        ("POINTS: calendar-evidenced \u2286 carbon fleet",
+         cal <= carbon, f"{len(cal)} of {len(carbon)} points"),
     ]
-    # the step the page asserts but the records do not support
     gaps = []
     orphan = fleet - reg
     if orphan:
         gaps.append({
-            "step": "managed_fleet is a subset of register_records",
+            "step": "managed fleet is a subset of the register",
             "n": len(orphan),
             "what": (f"{len(orphan)} managed point(s) are not in the register "
                      f"export: {', '.join(sorted(orphan))}"),
             "known": ("already tracked as act-742896839"
                       if orphan == {"742896839"} else None)})
-    unsupported = (fleet - ok) - mar
-    if unsupported:
+    # a point already reported as missing from the register would otherwise be
+    # counted twice - once as an orphan and again as never rehabilitated
+    # Points in the fleet with no successful first-rehabilitation record.
+    # Marolinta's works are on the borehole-progress form, so they are
+    # expected here; 782134540 is the Maroantsetra Canzee that was never
+    # first-rehabilitated and is recorded as such. Anything else is a finding.
+    never = (fleet - ok) - orphan
+    KNOWN_NEVER = {"782134540"}
+    unexplained = never - mar - KNOWN_NEVER
+    steps.append((
+        "POINTS: every fleet point with no successful rehabilitation is "
+        "accounted for",
+        not unexplained,
+        f"{len(never)} never rehabilitated = {len(never & mar)} Marolinta "
+        f"(works on the borehole form) + {len(never & KNOWN_NEVER)} recorded "
+        f"+ {len(unexplained)} unexplained"))
+    if unexplained:
         gaps.append({
-            "step": "managed_fleet against rehabilitated_successfully",
-            "n": len(unsupported),
-            "what": (f"the register-chain note on this page says the fleet is "
-                     f"the successfully rehabilitated points plus a handful "
-                     f"never rehabilitated. The works form supports "
-                     f"{len(ok)} successful, which leaves "
-                     f"{len(unsupported)} managed non-Marolinta points with no "
-                     f"successful first-rehabilitation record - far more than "
-                     f"the note allows for."),
+            "step": "points in the fleet with no successful rehabilitation",
+            "n": len(unexplained),
+            "what": (f"{len(unexplained)} managed point(s) have no successful "
+                     f"first-rehabilitation record on either form and no "
+                     f"recorded reason: {', '.join(sorted(unexplained)[:8])}"),
             "known": None})
     return steps, gaps
 

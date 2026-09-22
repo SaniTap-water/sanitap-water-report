@@ -48,7 +48,7 @@ EXCLUDE = [
 REFERENCE = re.compile(
     r"(SDWS|VPA-DD|AMS|TOOL|Annex|section|clause|paragraph|table|figure|step|"
     r"rev(ision)?|v(ersion)?|R\d{4}[A-Z]|item|para|Article|GS4GG|ACM|meth|"
-    r"WS|CAR|\u00a7|\bs\.|#|\b[A-Za-z]\.)\s*[\u2011-]?\s*$", re.I)
+    r"WS|CAR|GS|VPA|PoA|R\u00b2|\u00a7|\bs\.|#|\b[A-Za-z]\.)\s*[\u2011-]?\s*$", re.I)
 # 2.2.1, 4.2.2, A.1.1 - two dots or more is never a quantity on this page
 SECTIONISH = re.compile(r"^\d+(\.\d+){2,}$")
 UNIT_AFTER = re.compile(
@@ -176,6 +176,9 @@ TEXT = r"""() => {
     const el = n.parentElement;
     if (!el || !vis(el)) continue;
     if (el.closest('script,style')) continue;
+    // a figure inside a withdrawn block is not a figure the page asserts:
+    // the block says in terms that it cannot be reproduced
+    if (el.closest('.unsourced') || el.closest('details.withdrawn')) continue;
     const t = n.nodeValue;
     if (!/\d/.test(t)) continue;
     // where it is, and whether the page has already declared a source for it

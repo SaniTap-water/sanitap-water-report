@@ -119,7 +119,7 @@ def main():
     print()
     print("  FIXTURE 3 - twelve managed points removed from the register export")
     bad = [n for n, ok in broken["steps"].items() if not ok]
-    named = [n for n in bad if "register_records" in n]
+    named = [n for n in bad if "register" in n.lower()]
     if named:
         for n in bad:
             print(f"    chain step reported BROKEN: {n}")

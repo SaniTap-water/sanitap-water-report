@@ -1,34 +1,49 @@
 {
  "chain": [
   {
-   "detail": "725 of 908",
+   "detail": "731 of 773 records",
    "holds": true,
-   "step": "register_records ⊇ first_rehabilitated"
+   "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "686 of 725",
+   "detail": "772 of 908 points",
    "holds": true,
-   "step": "first_rehabilitated ⊇ rehabilitated_successfully"
+   "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "736 of 908",
+   "detail": "730 of 772 points",
+   "holds": true,
+   "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
+  },
+  {
+   "detail": "736 of 908 points",
    "holds": false,
-   "step": "managed_fleet ⊆ register_records"
+   "step": "POINTS: managed fleet ⊆ register"
   },
   {
-   "detail": "5 of 736",
+   "detail": "5 of 736 points",
    "holds": true,
-   "step": "marolinta ⊆ managed_fleet"
+   "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
-   "detail": "731 + 5 = 736 vs 736",
+   "detail": "731 + 5 = 736 points",
    "holds": true,
-   "step": "carbon_fleet + marolinta = managed_fleet"
+   "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
-   "detail": "297 of 731",
+   "detail": "729 rehabilitated + 7 never = 736 points",
    "holds": true,
-   "step": "calendar_evidenced_2026 ⊆ carbon_fleet"
+   "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
+  },
+  {
+   "detail": "297 of 731 points",
+   "holds": true,
+   "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
+  },
+  {
+   "detail": "6 never rehabilitated = 5 Marolinta (works on the borehole form) + 1 recorded + 0 unexplained",
+   "holds": true,
+   "step": "POINTS: every fleet point with no successful rehabilitation is accounted for"
   }
  ],
  "form_base": "https://portal.mwater.co/#/forms/",
@@ -36,14 +51,8 @@
   {
    "known": "already tracked as act-742896839",
    "n": 1,
-   "step": "managed_fleet is a subset of register_records",
+   "step": "managed fleet is a subset of the register",
    "what": "1 managed point(s) are not in the register export: 742896839"
-  },
-  {
-   "known": null,
-   "n": 46,
-   "step": "managed_fleet against rehabilitated_successfully",
-   "what": "the register-chain note on this page says the fleet is the successfully rehabilitated points plus a handful never rehabilitated. The works form supports 686 successful, which leaves 46 managed non-Marolinta points with no successful first-rehabilitation record - far more than the note allows for."
   }
  ],
  "populations": {
@@ -63,7 +72,8 @@
     ]
    ],
    "rule": "Carbon-fleet points with a readable gardien calendar sheet dated 2026, the year read off the sheet itself. This is what the days-operational evidence rests on.",
-   "size": 297
+   "size": 297,
+   "unit": "points"
   },
   "carbon_fleet": {
    "decided": "Marolinta is Deichmann-funded and enters no carbon figure, so it cannot be in a carbon denominator.",
@@ -82,7 +92,8 @@
     ]
    ],
    "rule": "The managed fleet less Marolinta. This is the denominator under every carbon figure on the page.",
-   "size": 731
+   "size": 731,
+   "unit": "points"
   },
   "down_now": {
    "decided": "Status is the last thing anyone recorded about a pump.",
@@ -105,7 +116,8 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 20
+   "size": 20,
+   "unit": "points"
   },
   "first_rehabilitated": {
    "decided": "A first rehabilitation is what puts a point into the programme. The record is the evidence it happened.",
@@ -120,10 +132,33 @@
      "Clean Water || Première réhabilitation / Entretien préventif / Réparation après panne",
      "86cf66efdd3749dd8a121314bab3675a",
      "question \"Type de travaux\" = \"Première réhabilitation\""
+    ],
+    [
+     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
+     "8764843c94484f5b984078c68f13b2ca",
+     "the Marolinta works, which are recorded only here"
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on the works form, whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 725
+   "size": 772,
+   "unit": "points"
+  },
+  "first_rehabilitation_records": {
+   "decided": "A record is the evidence the work happened; a point is the thing worked on. They are counted separately because they are different questions.",
+   "decided_on": "2026-09-22",
+   "derives_from": [],
+   "id": "first_rehabilitation_records",
+   "name": "First-rehabilitation records",
+   "reads": [
+    [
+     "Clean Water || Première réhabilitation / Entretien préventif / Réparation après panne",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question \"Type de travaux\" = \"Première réhabilitation\""
+    ]
+   ],
+   "rule": "Every first-rehabilitation RECORD on the works form. This counts records, not water points: it is the number of times the work was written down. On the current data each record is on a different point, so the two happen to be equal - that is a fact about today, not a rule.",
+   "size": 773,
+   "unit": "records"
   },
   "managed_fleet": {
    "decided": "Adriaan Mol, COO SaniTap - the standing reconciliation recorded in data/register_corrections.json",
@@ -141,7 +176,8 @@
     ]
    ],
    "rule": "The water points MadAvance actively maintains today - the fleet this report is about. Every one has a maintenance history: it is visited, repaired and called about. This is the population behind “water points in scope”.",
-   "size": 736
+   "size": 736,
+   "unit": "points"
   },
   "marolinta": {
    "decided": "Marolinta is funded separately and is not in the VPA.",
@@ -159,7 +195,25 @@
     ]
    ],
    "rule": "The Marolinta boreholes. Deichmann-funded, and outside the carbon programme entirely - they enter no carbon figure.",
-   "size": 5
+   "size": 5,
+   "unit": "points"
+  },
+  "marolinta_works_records": {
+   "decided": "Marolinta works were put on their own form because the works form has no “Nouvelle construction” option.",
+   "decided_on": "2026-09-22",
+   "derives_from": [],
+   "id": "marolinta_works_records",
+   "name": "Marolinta works records",
+   "reads": [
+    [
+     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
+     "8764843c94484f5b984078c68f13b2ca",
+     "every record on the form"
+    ]
+   ],
+   "rule": "Every works record on the Marolinta borehole-progress form - rehabilitations and new constructions both. These never appear on the works form, so a query that reads only that form cannot see Marolinta at all.",
+   "size": 18,
+   "unit": "records"
   },
   "register_records": {
    "decided": "The group is the boundary of what MadAvance holds. Not a decision so much as a fact about the account.",
@@ -175,7 +229,8 @@
     ]
    ],
    "rule": "Every water-point record in the MadAvance group in mWater. This is everything MadAvance holds, most of which we do not maintain: surveys, points handed on, rope pumps, abandoned points.",
-   "size": 908
+   "size": 908,
+   "unit": "points"
   },
   "rehabilitated_successfully": {
    "decided": "A rehabilitation that did not succeed does not put a point into the maintained fleet.",
@@ -190,10 +245,35 @@
      "Clean Water || Première réhabilitation / ...",
      "86cf66efdd3749dd8a121314bab3675a",
      "question \"Vérifier : La réparation ou la maintenance a réussi ?\" = Oui"
+    ],
+    [
+     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
+     "8764843c94484f5b984078c68f13b2ca",
+     "the Marolinta works, which are recorded only here"
     ]
    ],
    "rule": "Of the first-rehabilitated points, those whose record answers Yes to “Verify: did the repair or maintenance succeed?”. A point with any successful first-rehabilitation record counts as successful.",
-   "size": 686
+   "size": 730,
+   "unit": "points"
+  },
+  "successful_first_rehabilitation_records": {
+   "decided": "Withdrawn figure 723 could not be reproduced from any data held; the records give 731. See the decision log.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "first_rehabilitation_records"
+   ],
+   "id": "successful_first_rehabilitation_records",
+   "name": "Successful first-rehabilitation records",
+   "reads": [
+    [
+     "Clean Water || Première réhabilitation / ...",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question \"Vérifier : La réparation ou la maintenance a réussi ?\" = Oui"
+    ]
+   ],
+   "rule": "Of those records, the ones answering Yes to “Verify: did the repair or maintenance succeed?”. Still a count of records.",
+   "size": 731,
+   "unit": "records"
   }
  }
 }

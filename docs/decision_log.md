@@ -9,6 +9,37 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — 723 withdrawn; the chain reconciles; the 48 repeated points never existed
+
+**Decision.** `723` is **withdrawn** as a live figure, as `727` was, rather than carried with a
+caveat. It cannot be reproduced from anything held. `REG.succ` is now the derived point count
+**730**; `REG.succ_withdrawn` keeps 723 so the change is auditable.
+
+**The counts, from a stable enumeration.** 773 first-rehabilitation **records** on 773 distinct
+**points** — one record each. 731 successful **records**. 730 successful **points** in the
+register. 730 is exactly what the page's own register-chain note has always claimed, so that note
+was right and is now derived rather than asserted.
+
+**The 48 points with two records do not exist.** They were mWater's paging. A paged pull of the
+1,688-response works form returned 1,688 rows carrying only **1,586 distinct `_id`s** — 102
+records twice, 102 missed. De-duplicated it gives zero repeats.
+`tools/mwater/pull_form.mjs` walks 30-day windows; no window exceeds 221 rows, so paging never
+engages. Nothing to classify, and no form guard proposed: the fault a guard would prevent is not
+happening. Recorded in `docs/first_rehabilitation_records.md`.
+
+**The chain now reconciles except at one step.** `742896839` is in mWater but its `_managed_by`
+is `all`, not the MadAvance group, so the register export excludes it correctly by its own
+definition. That is a decision for a person — belongs in the group or leaves the fleet — not an
+investigation. The six fleet points with no successful rehabilitation are the five Marolinta
+boreholes, whose works are on a different form, plus `782134540`, which is recorded.
+
+**Records are not points.** 731 successful **records** equals 731 carbon-fleet **points** by
+coincidence this week. Every population now declares its unit, every chain step names which unit
+it relates, and the checker refuses to let the two be set beside each other. That confusion
+produced 727, the 723/731 gap and a "46 unexplained points" finding that was the paging fault.
+
+---
+
 ## 2026-09-22 — The register chain does not reconcile, and the definitions now say so
 
 **Decision.** `tools/populations.py` is the single definition of every population the report

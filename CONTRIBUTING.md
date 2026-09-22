@@ -225,6 +225,32 @@ The checker enforces the parts it can see: that nothing marked OK is still descr
 that every detailed row carries an up-link to the list, that no action-shaped text hides inside
 a collapsed block without a row, and that the status vocabulary is exactly these three.
 
+## Generated regions are siblings, never nested
+
+A generated region is delimited by its BEGIN/END markers and is rewritten wholesale by its
+generator. **Never place one region, or any hand-written content you intend to keep, inside
+another region's markers.** The outer generator will delete it on its next `--write`, silently,
+and the only evidence will be that something stopped appearing.
+
+This has now cost three separate faults:
+
+* the `downtbl` opening tag eaten while wrapping a table, leaving a stray `>` — markup still
+  parsed, table simply gone;
+* a `</table>` match that truncated at the wrong closing tag;
+* the definitions section, anchored on `<section id="actions">` which sits *inside* the
+  action-list region — written successfully, then deleted by the next `render_actions --write`
+  with no error anywhere.
+
+Anchor on the region's BEGIN marker, not on markup inside it:
+
+```python
+anchor = "<!-- BEGIN GENERATED action-list"      # correct: a sibling boundary
+anchor = '<section id="actions">'                # wrong: that tag is inside the region
+```
+
+`tools/check_consistency.py` asserts the definitions region sits before the action-list region.
+Extend that assertion when you add a region; the check is cheap and the fault is invisible.
+
 ## A figure's source is never a working document, plan or deck
 
 A figure's source is **a form response, a registered methodology parameter, or a named

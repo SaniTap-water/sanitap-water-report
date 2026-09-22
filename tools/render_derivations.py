@@ -64,15 +64,25 @@ D = {
    arith="`first-rehabilitation records on the works form: ${fmt(REG.total_first_rehab)}`",
    forms=[("Clean Water || Premi\\u00e8re r\\u00e9habilitation / Entretien pr\\u00e9ventif / R\\u00e9paration apr\\u00e8s panne",
            F_COMBINED, 'question "Type de travaux" = "Premi\\u00e8re r\\u00e9habilitation"')],
-   caveat="This figure does not reconcile with the form it cites. The form "
-          "yields 725 points today, not 773. See the chain."),
+   caveat="A RECORD count: 773 records on 773 distinct points. It reconciles "
+          "exactly with the form once the form is enumerated stably - a paged "
+          "pull of it duplicates and drops rows."),
  "REG.succ": dict(pop="rehabilitated_successfully",
-   arith="`first rehabilitations recorded successful: ${fmt(REG.succ)}`",
-   forms=[("Clean Water || Premi\\u00e8re r\\u00e9habilitation / ...", F_COMBINED,
-           'question "V\\u00e9rifier : La r\\u00e9paration ou la maintenance a r\\u00e9ussi ?" = Oui')],
-   caveat="This figure does not reconcile with the form it cites. The form "
-          "yields 686 points today, not 723. See the chain."),
- "REG.dashboard_fdmar": dict(pop="register_records",
+   arith="`water POINTS whose first rehabilitation is recorded successful: ${fmt(REG.succ)}`",
+   forms=[("Clean Water || Premi\u00e8re r\u00e9habilitation / ...", F_COMBINED,
+           'question "V\u00e9rifier : La r\u00e9paration ou la maintenance a r\u00e9ussi ?" = Oui'),
+          ("Clean Water || Suivi avancement nouveau forage et r\u00e9habilitation", F_MAR,
+           "the Marolinta works, recorded only here")],
+   caveat="Supersedes 723, which was withdrawn on 22 September 2026 because it "
+          "could not be reproduced from any data held. This is a POINT count; "
+          "the RECORD count is 731 and is a different quantity."),
+ "REG.succ_records": dict(pop="successful_first_rehabilitation_records",
+   arith="`successful first-rehabilitation RECORDS: ${fmt(REG.succ_records)}`",
+   forms=[("Clean Water || Premi\u00e8re r\u00e9habilitation / ...", F_COMBINED,
+           'question "V\u00e9rifier : ... a r\u00e9ussi ?" = Oui')],
+   caveat="A RECORD count. It equals 731, the same number as the carbon fleet, "
+          "by coincidence: those are unrelated quantities and must never be "
+          "set beside each other as a reconciliation."), "REG.dashboard_fdmar": dict(pop="register_records",
    arith="`points on the MadAvance dashboard in Maroantsetra and Fort-Dauphin: ${fmt(REG.dashboard_fdmar)}`",
    forms=[("the register", None, REGQ)]),
  "SUCC_CORRECTED": dict(pop="rehabilitated_successfully",
@@ -98,7 +108,7 @@ D = {
    forms=[]),
 }
 # the chain table's own cells: each is the reconciliation step it reports
-for _k in range(8):
+for _k in range(12):
     D[f"POPS.chain[{_k}].detail"] = dict(pop=None, chain=True,
         arith=f'`the counts on both sides of the relation: ${{POPS.chain[{_k}] ? POPS.chain[{_k}].detail : "-"}}`',
         forms=[])
@@ -107,9 +117,9 @@ for _k in range(8):
         forms=[])
 
 # the definitions table's own size cells: each is the population it names
-for _pid in ("register_records", "first_rehabilitated", "rehabilitated_successfully",
-             "managed_fleet", "carbon_fleet", "marolinta",
-             "calendar_evidenced_2026", "down_now"):
+import json as _json, os as _os
+_popfile = _os.path.join(REPO, "data", "populations.json")
+for _pid in _json.load(open(_popfile, encoding="utf8"))["populations"]:
     D[f"POPS.populations['{_pid}'].size"] = dict(
         pop=_pid,
         arith=f'`the number of records the rule selects: ${{fmt(POPS.populations[\'{_pid}\'].size)}}`',

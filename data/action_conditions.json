@@ -190,6 +190,10 @@
   "question": "What is the carbon fleet pipeline, and when does it grow?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
  },
+ "act-form-consolidation": {
+  "kind": "decision",
+  "says": "closes on a logged decision in data/decisions.json choosing option A or B"
+ },
  "act-freeze-estate-map-when": {
   "kind": "artefact",
   "path": "tools/freeze_map.py",
@@ -288,6 +292,10 @@
   "kind": "decision",
   "question": "Which form is the record of truth for first rehabilitations?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
+ },
+ "act-marolita-spelling": {
+  "kind": "none",
+  "says": "no data predicate: closes when MadAvance corrects the nineteen records in mWater"
  },
  "act-mor-1b-betanatanana-go-look": {
   "kind": "none",
