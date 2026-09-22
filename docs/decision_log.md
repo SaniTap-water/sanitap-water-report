@@ -9,6 +9,45 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — A published sensitivity figure was wrong by 8,478 people for six days
+
+**What was wrong.** The people-served sensitivity note read: *"On the earlier basis of Canzee 250
+and India Mark 500 it gives **115,074**."* The correct figure for that basis is **123,552**.
+115,074 understated it by **8,478 people**.
+
+**What 115,074 actually was.** It is exactly the total computed with **India Mark capped at 300**
+— the *applied* ceiling — and Canzee at 250. The second scenario was computed with the India Mark
+cap left at its applied value instead of the alternative the sentence named. The figure was
+right for a basis nobody stated and wrong for the basis printed beside it.
+
+**When it went wrong, and when it did not.** The figure was introduced on 12 September
+(`cbce482`) as **126,058**, and on the data of that day 126,058 is exactly Canzee 250 / India
+Mark 500 — correct for its caption. The fault was introduced at the **WorldPop R2025A rebase on
+16 September** (`01eb3bf`), which recomputed it to 115,074 on the wrong cap while leaving the
+caption alone. So this was not drift and not staleness: it was recomputed, and recomputed wrong.
+
+**Where it was published.** Six days, 16–22 September 2026. Four archived editions carry it —
+`wk38-ed5`, `wk38-ed6`, `wk38-ed7`, `wk38-ed9` — and the live page did until 22 September.
+
+**Why nothing caught it.** It was a stored constant, `WPOP_C250`, sitting beside the data it
+duplicated, with no assertion anywhere and no computation to check it against. A wrong figure of
+the right order of magnitude is invisible to a checker that was never told what the figure means.
+
+**What was done.** `WPOP_C250` and `WPOP_IM500` are deleted. Both figures are now computed at
+render time by `wpopAt(imCap, czCap)`, from `WPOP` and the pump type, so the caption and the
+computation take their caps from the same place and cannot disagree again. `wpopAt` reproduces
+the published applied total (128,221) exactly, which is the test that it is reconstructing the
+same quantity.
+
+**One detail worth recording.** `WPOP[wp]` is `[raw, capped, cap]`, and raw and capped were each
+rounded from the same float, so on 32 points they differ by 1. A naive `min(raw, newCap)` misses
+the published total by 8. `wpopAt` uses the published `capped` for any point below its ceiling
+and the raw only for a point at its ceiling, which is the only reconstruction that reproduces
+128,221. The old stored constants used the naive form, so they were a further 8 out on top of
+the cap error.
+
+---
+
 ## 2026-09-22 — The carbon denominator changed from 727 to 731, because 727 could not be derived
 
 **Decision.** The denominator for "active carbon points" on the report is now **731** — the
