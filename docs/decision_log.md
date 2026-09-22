@@ -9,6 +9,51 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — The rehabilitation source was a retired form, and nothing would have noticed
+
+**What was wrong.** `tools/populations.py` read `86cf66ef…` as the single rehabilitation source
+and called it “the works form”. That form has been **retired branch by branch**. Every branch
+now has a live dedicated successor, and the first-rehabilitation successor `63747997…` **has
+never received a response**.
+
+Because zero is a plausible weekly count, the first rehabilitation anyone submitted on the
+successor would not have entered the fleet and nothing would have failed.
+
+**Fixed.** Both rehabilitation populations now read three sources, unioned and de-duplicated on
+water point: the retired combined form (historical), `63747997…` (current) and the Marolinta
+borehole form. `F_COMBINED` is renamed `F_RETIRED_COMBINED` and its rule says what it is.
+
+**The audit found a second one.** The live water-quality forms — sampling `43c96af4…` (735
+responses) and results `7b33c5d7…` (736) — were **read by no population, tool or builder**.
+`S.wq_tested` was a stored 729 with no generator; the retired form's water-analysis branch
+stopped taking records in July 2025. A `water_quality_tested` population now reads the live
+results form and reproduces 729 exactly.
+
+Two more successors, identification `198b016d…` and hygiene `283c5670…`, were read by nothing.
+Both now have a population, so a migration onto either cannot pass unnoticed.
+
+**The gate.** `tools/populations.py --migration` fails the build if a response arrives on a
+successor form that no population reads, or if a successor is declared by no population. It is in
+`publish.sh` and negative-tested: injecting one response on `63747997…` fails the build by name.
+The provenance table now labels the retired form **RETIRED, superseded by the dedicated
+per-branch forms** so a verifier following the link is not left guessing.
+
+**The watch item was wrong about why.** “No first rehabilitation recorded since 1 January
+2026” was written up as recording discipline. It is not: the branch was retired, the successor
+was deployed to three districts, and it is empty. The instruction to the field teams is **use the
+new form**, not *remember to record rehabilitations*. `act-mar-which-form` says that now.
+
+**628 is not reproducible, and 643 was itself a paging artefact.** The retired form holds 431
+repair records and the live repair form 214 — 645 naively, 642 with a linked point, 623 since
+August 2024, 620 de-duplicated on point and date. None is 628. The 643 in the brief came from a
+paged pull that reported 416 where a stable enumeration gives 431. The figure is shown as it
+stands with that stated beside it, not forced into a derivation.
+
+**One record appears on both forms** with the same point and the same date — a genuine
+double-entry at the migration boundary, and the only one.
+
+---
+
 ## 2026-09-22 — The figure gate is live, and honest artefact-checking raised the residue
 
 **The gate is on.** Any rendered figure that is not derivable from a population, declared in

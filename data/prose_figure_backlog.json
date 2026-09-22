@@ -118,9 +118,9 @@
    "n": 10
   },
   "09": {
-   "ctx": "avaux\" = \"Première réhabilitation\"A record is the evidence the work happened; a point is the thing worked on. They are counted separately because they are different questions.2026-09-22—First-rehabilitated pointsfirst_re",
+   "ctx": "avaux\" = \"Première réhabilitation\"A record is the evidence the work happened; a point is the thing worked on. They are counted separately because they are different questions.2026-09-22—Managed fleetmanaged_fleet<span da",
    "line": 296,
-   "n": 15
+   "n": 18
   },
   "1": {
    "ctx": "in mWater. Management notes — internal, remove before sharing with a validation and verification body (VVB) 1. Call-centre wording. The call form offers guardians a small option list plus a free-text box. Most of them lo",
@@ -323,8 +323,8 @@
    "n": 2
   },
   "13": {
-   "ctx": ">no date setdata closes when every Marolinta record has an E. coli result on filemarolinta_points_without_wq = 13 (Marolinta records with no E. coli result on file); target == 0 <details class=\"act-detail\" id=\"act-identi",
-   "line": 437,
+   "ctx": ">no date setdata closes when every Marolinta record has an E. coli result on filemarolinta_points_without_wq = 13 (Marolinta records with no E. coli result on file); target == 0 <summary",
+   "line": 436,
    "n": 16
   },
   "13,715,217": {
@@ -490,7 +490,7 @@
   "18": {
    "ctx": "the same figure and neither has replaced the other. What did move is Endur&rsquo;O, from 138 sites to 131, and it was a deliberate reconciliation rather than an artefact of the refresh. On 18 September 2026 the Endur&rsq",
    "line": 252,
-   "n": 32
+   "n": 34
   },
   "18.1610": {
    "ctx": "sampling records One sample is bound to water system 517790364, which is a water point in Ghana &mdash; the wrong site was picked from the list. Another, dated 11 September, sits at &minus;18.1610, 49.4071, which is 125&",
@@ -523,9 +523,9 @@
    "n": 8
   },
   "19": {
-   "ctx": "ata-own=\"adriaan-mol\" aria-pressed=\"false\">Adriaan Mol 24 &middot; 19 ACT ANAngelo Nahavit",
-   "line": 331,
-   "n": 10
+   "ctx": "ed\" style=\"font-size:.82em\">no answer logged Correct the village spelling on 19 works-form records.Correct the village spelling on 19 works-form records. Nineteen records submitted 22&ndash;23 August 2025 spell the villa",
+   "line": 454,
+   "n": 6
   },
   "191": {
    "ctx": "ss=\"mono\">2.4.2.2&rarr;2.4.1.2 (_rev 390&nbsp;&rarr;&nbsp;391); 5.4&rarr;5.5 (_rev 191&nbsp;&rarr;&nbsp;192). No code is now reused within any of the twelve forms, and the checker asserts it every build. A question code ",
@@ -590,7 +590,7 @@
   "20": {
    "ctx": "he estate we maintain\" loading=\"lazy\"> What is on it, and what is not. Every MadAvance hand pump in the maintained register, with its field photographs, 20 sampled taps on the Moramanga axis, and the 131 southern Endur'O",
    "line": 279,
-   "n": 26
+   "n": 28
   },
   "20,647": {
    "ctx": "Both reduce to one number. The ex ante ER calculator derives people per source directly: 88,783 users recorded on mWater over 636 water points = 139.6 people per CWS, and 20,647 households over the same 636 = 32.5. The d",
@@ -623,7 +623,7 @@
    "n": 3
   },
   "21": {
-   "ctx": "ekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 5 data to Mon 21 September 2026, current <img src=\"assets/sanitap.png\" alt=\"SaniTap\" style=\"height:40px;width:auto;displ",
+   "ctx": "ekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 September 2026, current <img src=\"assets/sanitap.png\" alt=\"SaniTap\" style=\"height:40px;width:auto;displ",
    "line": 236,
    "n": 45
   },
@@ -637,15 +637,20 @@
    "line": 1035,
    "n": 1
   },
+  "214": {
+   "ctx": "l 628 repairs since Aug 2024. That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 naively and 642 with a linked point. It is s",
+   "line": 837,
+   "n": 1
+  },
   "217": {
    "ctx": "t matters &mdash; visits left with no usable image &mdash; of 966 visits that produced a calendar photograph, 804 (83.2%) carry at least one readable image and 162 (16.8%) carry none, against 217 on the first reader. At ",
    "line": 1173,
    "n": 1
   },
   "22": {
-   "ctx": "v class=\"wrap\"> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 5 data to Mon 21 September 2026, current <!-- END GENERATED masthead",
+   "ctx": "v class=\"wrap\"> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 September 2026, current <!-- END GENERATED masthead",
    "line": 235,
-   "n": 14
+   "n": 17
   },
   "224": {
    "ctx": "2025239100%1750202629939%022420271330%0133 What that means for <spa",
@@ -663,7 +668,7 @@
    "n": 1
   },
   "23": {
-   "ctx": "an> ANAngelo Nahavitatsara 23 &middot; 19 ACT <span class=\"face ini\" aria-hidden=\"true\" style=\"wi",
+   "ctx": "dot; 20 ACT Adriaan Mol 23 &middot; 18 ACT <span class=\"face ini\" aria-hidden=\"true\" style=\"wi",
    "line": 332,
    "n": 8
   },
@@ -688,7 +693,7 @@
    "n": 1
   },
   "24": {
-   "ctx": "-own=\"jan-de-graaf\" aria-pressed=\"false\">Jan de Graaf 27 &middot; 24 ACT Adriaan Mol 24</b",
+   "ctx": "-own=\"jan-de-graaf\" aria-pressed=\"false\">Jan de Graaf 27 &middot; 24 ACT ANAngelo Nahavit",
    "line": 330,
    "n": 10
   },
@@ -1128,7 +1133,7 @@
    "n": 2
   },
   "39": {
-   "ctx": "yle> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 5 data to Mon 21 September 2026, current <!--",
+   "ctx": "yle> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 September 2026, current <!--",
    "line": 235,
    "n": 10
   },
@@ -1257,6 +1262,11 @@
    "line": 961,
    "n": 1
   },
+  "431": {
+   "ctx": "m reported breakdown to completed repair, all 628 repairs since Aug 2024. That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 ",
+   "line": 837,
+   "n": 1
+  },
   "434": {
    "ctx": "registered estimate, or something else &mdash; there is no provision to quote. Our own SOP fills the gap with a conservative fallback, but that is a house rule no verifier is bound by, and it decides the treatment of 434",
    "line": 355,
@@ -1313,9 +1323,9 @@
    "n": 1
   },
   "5": {
-   "ctx": "D masthead :: tools/render_masthead.py :: do not edit between these markers --> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 5 data to Mon 21 Sept",
-   "line": 235,
-   "n": 37
+   "ctx": "wnchip\" data-own=\"madavance\" aria-pressed=\"false\">MMadAvance 6 &middot; 5 ACT UUnassigned 1<span c",
+   "line": 334,
+   "n": 36
   },
   "5,423": {
    "ctx": "year-basis.\">271 tUSD 5,42330.7%",
@@ -1389,7 +1399,7 @@
   },
   "57": {
    "ctx": "o date setdata closes when every point in the register has a works record of some kindpoints_no_works_record = 57 (water points with no rehabilitation, construction, visit or repair); target == 0 <details class=\"act-deta",
-   "line": 431,
+   "line": 430,
    "n": 2
   },
   "58": {
@@ -1408,9 +1418,9 @@
    "n": 4
   },
   "6": {
-   "ctx": "/button> LRLanja Randriamanantena 6 &middot; 4 ACT <span class=\"face ini\" aria-hidden=\"true\" style=\"width:16px;height",
-   "line": 333,
-   "n": 45
+   "ctx": "D masthead :: tools/render_masthead.py :: do not edit between these markers --> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 Sept",
+   "line": 235,
+   "n": 46
   },
   "6.4": {
    "ctx": "derived values&hellip;&rdquo; The values are taken under option (a); the rule update is held in Water Documents/Methodology of record/ with its checksum. A6.4-AMT-009 is not the basis and is no longer cited as one. The r",
@@ -1448,7 +1458,7 @@
    "n": 11
   },
   "628": {
-   "ctx": "d> Time out of serviceDays from reported breakdown to completed repair, all 628 repairs since Aug 2024. <div class=\"eyebrow\" style=\"margin-",
+   "ctx": "ection> Time out of serviceDays from reported breakdown to completed repair, all 628 repairs since Aug 2024. That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the ",
    "line": 837,
    "n": 1
   },
@@ -1456,6 +1466,16 @@
    "ctx": "200/800 those give 35.8 households, not 32.5. Both reduce to one number. The ex ante ER calculator derives people per source directly: 88,783 users recorded on mWater over 636 water points = 139.6 people per CWS, and 20,",
    "line": 756,
    "n": 3
+  },
+  "642": {
+   "ctx": "s_628\">628 repairs since Aug 2024. That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 naively and 642 with a linked point. It",
+   "line": 837,
+   "n": 1
+  },
+  "645": {
+   "ctx": "ithdrawn=\"repairs_628\">628 repairs since Aug 2024. That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 naively and 642 with a ",
+   "line": 837,
+   "n": 1
   },
   "646": {
    "ctx": "e SOP’s portfolio figures.Update the SOP&rsquo;s portfolio figures. It states its scope, in the SOP&rsquo;s own words, as &ldquo;646 Canzee + 77 India Mark III = 723 pumps&rdquo;. That is a quotation of the document bein",

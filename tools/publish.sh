@@ -124,6 +124,18 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   # table. 56 anchors once matched their regex perfectly and every one of them
   # landed on "Page not found"; a shape check cannot catch that.
   say ""
+  # A response arriving on a successor form that no population reads is a
+  # migration completing silently. The first-rehabilitation successor has zero
+  # responses, and zero is a plausible weekly count.
+  say ""
+  say "checking for a silent form migration ..."
+  "$PYBIN" tools/populations.py --migration | tail -8
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a successor form carries a response no population reads."
+    exit 1
+  fi
+
   say "checking the mWater links ..."
   python3 tools/check_links.py | tail -8
   RC=${PIPESTATUS[0]}

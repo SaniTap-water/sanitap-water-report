@@ -719,6 +719,15 @@
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "415"
   },
+  "431": {
+   "n": 2,
+   "scopes": [
+    "all",
+    "mad"
+   ],
+   "section": "Time out of service",
+   "sentence": "That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 naiv"
+  },
   "446": {
    "n": 4,
    "scopes": [
@@ -784,15 +793,15 @@
    "sentence": "615"
   },
   "628": {
-   "n": 6,
+   "n": 4,
    "scopes": [
     "all",
     "enduro",
     "mad",
     "madx"
    ],
-   "section": "Time out of service",
-   "sentence": "Days from reported breakdown to completed repair, all 628 repairs since Aug 2024."
+   "section": "Carbon file — Gold Standard programme of activities ",
+   "sentence": "Breakdown log: 628 repairs since Aug 2024, median 2 days down; 21 events >30 days."
   },
   "654": {
    "n": 5,

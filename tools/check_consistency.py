@@ -415,6 +415,35 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7b-5. a migration must not complete silently ----------------------
+    # The combined form was retired branch by branch. Its first-rehabilitation
+    # successor has zero responses, and zero is a plausible weekly count - so
+    # nothing would fail on the day the first one arrives unless something
+    # watches for exactly that.
+    try:
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        import populations as _pops_mod
+        _mig = _pops_mod.migration_watch()
+    except Exception as e:                                     # noqa: BLE001
+        _mig = None
+        check("the migration watch runs", False, "runs", f"failed: {e}",
+              "a response nothing reads is a silent migration")
+    if _mig is not None:
+        _bad = [(f, lab) for f, lab, n, unread in _mig if unread]
+        check("no successor form carries a response nothing reads",
+              not _bad, "none",
+              "; ".join(lab[:44] for _, lab in _bad[:2]) if _bad else "none",
+              "the retired combined form was replaced branch by branch; every "
+              "successor must be read by a population")
+        check("the retired combined form is named as retired on the page",
+              "RETIRED, superseded" in idx, "named",
+              "named" if "RETIRED, superseded" in idx else "MISSING",
+              "a verifier following that link lands on a dead form")
+        check("the live first-rehabilitation form is read by a population",
+              "63747997e70e478fbb2ebf71581ceeb0" in read(
+                  os.path.join(repo_root, "tools", "populations.py")),
+              "read", "read", "zero responses today; read so the first is seen")
+
     # ---- 7b-6. no link to a route that does not exist ----------------------
     rt = os.path.join(repo_root, "data", "mwater_routes.json")
     if os.path.exists(rt):
@@ -1109,11 +1138,17 @@ def main():
                 ("impossible_cells", "impossible cells")]
         keys += ([("real_cells", "real day cells")] if "real_cells" in fig
                  else [("observed_cells", "observed day cells")])
+        # Every number the calendar generator emits is now wrapped in its own
+        # data-artefact span, so the literal no longer sits directly inside
+        # <b>. Match against a span-stripped copy: the assertion is that the
+        # value is on the page, not how it is marked up.
+        _idx_nospan = re.sub(r"<span data-artefact=\"[^\"]*\">(.*?)</span>",
+                             r"\1", idx, flags=re.S)
         for key, label in keys:
             want = fmt_n(fig[key])
+            there = f"<b>{want}</b>" in _idx_nospan
             check(f"page states the extraction {label}: {want}",
-                  f"<b>{want}</b>" in idx, want,
-                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+                  there, want, want if there else "NOT ON THE PAGE",
                   "from data/calendar_extraction_figures.json")
         pct_keys = ([("impossible_marked_pct", "impossible-cell marked rate"),
                      ("real_marked_pct", "real-cell marked rate")]

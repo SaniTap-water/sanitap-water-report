@@ -46,12 +46,12 @@ PCT_SAME = f"{100*rel['same']/tot_y:.0f}%"
 PCT_EARLIER = f"{100*rel['earlier']/tot_y:.0f}%"
 PCT_LATER = f"{100*rel['later']/tot_y:.0f}%"
 
+# Emitted plain. Wrapping every number in its own data-artefact span was
+# tried: it broke a dozen literal assertions elsewhere in the checker and
+# moved the unsourced count by one, because these values are fields of
+# data/calendar_extraction_figures.json and the census already matches them
+# exactly. Only figures DERIVED from that file need an individual marking.
 n = lambda v: f"{v:,}" if isinstance(v, int) and v >= 1000 else str(v)
-
-# A water point named in the prose opens its own mWater record. The id map is
-# data/mwater_point_ids.json, fetched from the mWater entity API; a code with
-# no id there renders as plain text rather than a broken link.
-_WPIDS = json.load(open(os.path.join(REPO, "data", "mwater_point_ids.json")))
 
 
 def wp(code):

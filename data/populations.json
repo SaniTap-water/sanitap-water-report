@@ -6,12 +6,12 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "772 of 908 points",
+   "detail": "785 of 908 points",
    "holds": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "730 of 772 points",
+   "detail": "730 of 785 points",
    "holds": true,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
@@ -105,7 +105,7 @@
    "name": "Points down now",
    "reads": [
     [
-     "Appel/signalement de pannes",
+     "Appel / signalement de pannes",
      "c08b3fe26d0f42c084074701f29eb75e",
      null
     ],
@@ -113,6 +113,11 @@
      "Entretien préventif",
      "de26d89a5c8a4452b42158c622be20d0",
      null
+    ],
+    [
+     "Réparation après panne",
+     "958b4763788348d699e7d8c5821f92ee",
+     "the live repair form"
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
@@ -134,13 +139,18 @@
      "question \"Type de travaux\" = \"Première réhabilitation\""
     ],
     [
+     "Clean Water || Première réhabilitation (current form)",
+     "63747997e70e478fbb2ebf71581ceeb0",
+     "the live successor - zero responses today, read so the first one does not arrive unnoticed"
+    ],
+    [
      "Clean Water || Suivi avancement nouveau forage et réhabilitation",
      "8764843c94484f5b984078c68f13b2ca",
      "the Marolinta works, which are recorded only here"
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on the works form, whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 772,
+   "size": 785,
    "unit": "points"
   },
   "first_rehabilitation_records": {
@@ -159,6 +169,44 @@
    "rule": "Every first-rehabilitation RECORD on the works form. This counts records, not water points: it is the number of times the work was written down. On the current data each record is on a different point, so the two happen to be equal - that is a fact about today, not a rule.",
    "size": 773,
    "unit": "records"
+  },
+  "hygiene_session_points": {
+   "decided": "Kept as a population so the training form is read by something and a migration onto it cannot pass unnoticed.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "register_records"
+   ],
+   "id": "hygiene_session_points",
+   "name": "Hygiene-session points",
+   "reads": [
+    [
+     "Clean Water || Formation et Suivi promotion de l'hygiène",
+     "283c5670de82489d833e986cb76a67d8",
+     "every response with a linked water point"
+    ]
+   ],
+   "rule": "Water points with a hygiene-promotion session recorded on the live training form. Not a carbon figure; it is where the field photographs on this page come from.",
+   "size": 106,
+   "unit": "points"
+  },
+  "identified_points": {
+   "decided": "The identification survey is what puts a point on the map at all.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "register_records"
+   ],
+   "id": "identified_points",
+   "name": "Identified points",
+   "reads": [
+    [
+     "Clean Water || Identification des points d'eau",
+     "198b016d72af41baa2608a8c9c35f8cb",
+     "every response with a linked water point"
+    ]
+   ],
+   "rule": "Water points with an identification survey on the live identification form - the first visit, before any works.",
+   "size": 45,
+   "unit": "points"
   },
   "managed_fleet": {
    "decided": "Adriaan Mol, COO SaniTap - the standing reconciliation recorded in data/register_corrections.json",
@@ -247,6 +295,11 @@
      "question \"Vérifier : La réparation ou la maintenance a réussi ?\" = Oui"
     ],
     [
+     "Clean Water || Première réhabilitation (current form)",
+     "63747997e70e478fbb2ebf71581ceeb0",
+     "the live successor"
+    ],
+    [
      "Clean Water || Suivi avancement nouveau forage et réhabilitation",
      "8764843c94484f5b984078c68f13b2ca",
      "the Marolinta works, which are recorded only here"
@@ -274,6 +327,30 @@
    "rule": "Of those records, the ones answering Yes to “Verify: did the repair or maintenance succeed?”. Still a count of records.",
    "size": 731,
    "unit": "records"
+  },
+  "water_quality_tested": {
+   "decided": "SDWS 3 needs a result per point; the result form is the record.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "managed_fleet"
+   ],
+   "id": "water_quality_tested",
+   "name": "Water-quality tested points",
+   "reads": [
+    [
+     "Clean Water || Water Quality Testing SDWS 3 Result",
+     "7b33c5d7e5074808a94915939a5a0783",
+     "every response with a linked water point"
+    ],
+    [
+     "Clean Water || Water Quality Sampling SDWS 3",
+     "43c96af4bc4240c0b5c4402383b9c539",
+     "the sampling half of the same process"
+    ]
+   ],
+   "rule": "Water points with a result on the SDWS 3 water-quality results form. Read from the LIVE results form, not from the retired combined form's water-analysis branch - that branch stopped taking records in July 2025 and a population reading it would have frozen there.",
+   "size": 729,
+   "unit": "points"
   }
  }
 }

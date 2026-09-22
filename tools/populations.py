@@ -35,10 +35,34 @@ MW_FORM = "https://portal.mwater.co/#/forms/"
 MW_GROUP = "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56"
 
 # ---------------------------------------------------------------- sources ---
-F_COMBINED = "86cf66efdd3749dd8a121314bab3675a"   # Première réhab / PM / réparation
-F_PM = "de26d89a5c8a4452b42158c622be20d0"
+# The combined form was retired BRANCH BY BRANCH. Every branch now has a live
+# dedicated successor. The retired form is kept because it holds the
+# historical records - 1,688 of them - and for no other reason. A population
+# that reads only the retired form sees the past and will never see the
+# present, and because a successor with no responses yet is indistinguishable
+# from a quiet week, nothing fails when that happens.
+F_RETIRED_COMBINED = "86cf66efdd3749dd8a121314bab3675a"  # RETIRED, historical only
+F_FIRST_REHAB = "63747997e70e478fbb2ebf71581ceeb0"       # successor, live
+F_REPAIR = "958b4763788348d699e7d8c5821f92ee"            # successor, live
+F_PM = "de26d89a5c8a4452b42158c622be20d0"                # successor, live
+F_IDENT = "198b016d72af41baa2608a8c9c35f8cb"             # successor, live
+F_WQ_SAMPLING = "43c96af4bc4240c0b5c4402383b9c539"       # successor, live
+F_WQ_RESULTS = "7b33c5d7e5074808a94915939a5a0783"        # successor, live
+F_HYGIENE = "283c5670de82489d833e986cb76a67d8"           # successor, live
 F_CALL = "c08b3fe26d0f42c084074701f29eb75e"
 F_MAR = "8764843c94484f5b984078c68f13b2ca"
+
+# branch of the retired form -> the form that replaced it. Used by the gate:
+# a response arriving on a successor that no population reads is a migration
+# completing silently, which is the failure mode this whole file exists to stop.
+SUCCESSORS = {
+    "Première réhabilitation": F_FIRST_REHAB,
+    "Réparation après panne": F_REPAIR,
+    "Entretien préventif": F_PM,
+    "Identification des points d'eau": F_IDENT,
+    "Analyse de l'eau": F_WQ_RESULTS,
+    "Formation / hygiène": F_HYGIENE,
+}
 
 Q_TYPE = "7f78d719b9f242d8886df7bb88640a80"       # "Type de travaux"
 C_FIRST_REHAB = "DQcV1NT"                          # "Première réhabilitation"
@@ -52,6 +76,21 @@ def _rows(name):
         return []
     with open(p, encoding="utf8") as fh:
         return list(csv.DictReader(fh))
+
+
+def _first_rehab_current():
+    """The LIVE first-rehabilitation form. Zero responses today, which is
+    exactly why it must be read: a successor with no responses is
+    indistinguishable from a quiet week, so nothing would fail on the day the
+    first one arrives."""
+    p = os.path.join(EXPORTS, "first_rehab_current.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+
+
+def _wq_results():
+    """The LIVE water-quality results form (SDWS 3)."""
+    p = os.path.join(EXPORTS, "wq_results.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
 
 
 def _combined():
@@ -156,8 +195,11 @@ def register_records():
          "whatever the outcome. One point can carry more than one such record; "
          "the point is counted once.",
     reads=[("Clean Water || Première réhabilitation / Entretien préventif / "
-            "Réparation après panne", F_COMBINED,
+            "Réparation après panne", F_RETIRED_COMBINED,
             'question "Type de travaux" = "Première réhabilitation"'),
+           ("Clean Water || Première réhabilitation (current form)",
+            F_FIRST_REHAB, "the live successor - zero responses today, read so "
+            "the first one does not arrive unnoticed"),
            ("Clean Water || Suivi avancement nouveau forage et réhabilitation",
             F_MAR, "the Marolinta works, which are recorded only here")],
     decided="A first rehabilitation is what puts a point into the programme. "
@@ -165,10 +207,15 @@ def register_records():
     decided_on="methodology 2.2.1(d) / SDWS 2",
     derives_from=["register_records"])
 def first_rehabilitated():
+    """Union of three sources, de-duplicated on water point:
+    the retired combined form (historical), the live successor (current, zero
+    responses today) and the Marolinta borehole form."""
     reg = register_records()
-    return {_point_of(r) for r in _combined()
-            if _answer(r, Q_TYPE) == C_FIRST_REHAB
-            and _point_of(r) in reg}
+    pts = {_point_of(r) for r in _combined()
+           if _answer(r, Q_TYPE) == C_FIRST_REHAB}
+    pts |= {_point_of(r) for r in _first_rehab_current()}
+    pts |= {_point_of(r) for r in _borehole()}
+    return {p for p in pts if p in reg}
 
 
 @population(
@@ -177,9 +224,11 @@ def first_rehabilitated():
     rule="Of the first-rehabilitated points, those whose record answers Yes to "
          "“Verify: did the repair or maintenance succeed?”. A point "
          "with any successful first-rehabilitation record counts as successful.",
-    reads=[("Clean Water || Première réhabilitation / ...", F_COMBINED,
+    reads=[("Clean Water || Première réhabilitation / ...", F_RETIRED_COMBINED,
             'question "Vérifier : La réparation ou la maintenance a réussi ?" '
             '= Oui'),
+           ("Clean Water || Première réhabilitation (current form)",
+            F_FIRST_REHAB, "the live successor"),
            ("Clean Water || Suivi avancement nouveau forage et réhabilitation",
             F_MAR, "the Marolinta works, which are recorded only here")],
     decided="A rehabilitation that did not succeed does not put a point into "
@@ -187,11 +236,16 @@ def first_rehabilitated():
     decided_on="methodology 2.2.1(d)",
     derives_from=["first_rehabilitated"])
 def rehabilitated_successfully():
+    """Same three sources. The successor form carries the same success
+    question; the Marolinta borehole form records completion differently and
+    is unioned on the point, not on that answer."""
     reg = register_records()
-    return {_point_of(r) for r in _combined()
-            if _answer(r, Q_TYPE) == C_FIRST_REHAB
-            and _answer(r, Q_SUCCESS) == C_YES
-            and _point_of(r) in reg}
+    pts = {_point_of(r) for r in _combined()
+           if _answer(r, Q_TYPE) == C_FIRST_REHAB
+           and _answer(r, Q_SUCCESS) == C_YES}
+    pts |= {_point_of(r) for r in _first_rehab_current()
+            if _answer(r, Q_SUCCESS) == C_YES}
+    return {p for p in pts if p in reg}
 
 
 @population(
@@ -203,7 +257,7 @@ def rehabilitated_successfully():
          "point, so the two happen to be equal - that is a fact about today, "
          "not a rule.",
     reads=[("Clean Water || Première réhabilitation / Entretien préventif / "
-            "Réparation après panne", F_COMBINED,
+            "Réparation après panne", F_RETIRED_COMBINED,
             'question "Type de travaux" = "Première réhabilitation"')],
     decided="A record is the evidence the work happened; a point is the thing "
             "worked on. They are counted separately because they are different "
@@ -220,7 +274,7 @@ def first_rehabilitation_records():
     unit="records",
     rule="Of those records, the ones answering Yes to \u201cVerify: did the "
          "repair or maintenance succeed?\u201d. Still a count of records.",
-    reads=[("Clean Water || Première réhabilitation / ...", F_COMBINED,
+    reads=[("Clean Water || Première réhabilitation / ...", F_RETIRED_COMBINED,
             'question "Vérifier : La réparation ou la maintenance a réussi ?" '
             '= Oui')],
     decided="Withdrawn figure 723 could not be reproduced from any data held; "
@@ -317,12 +371,69 @@ def calendar_evidenced_2026():
 
 
 @population(
+    name="Identified points",
+    unit="points",
+    rule="Water points with an identification survey on the live "
+         "identification form - the first visit, before any works.",
+    reads=[("Clean Water || Identification des points d'eau", F_IDENT,
+            "every response with a linked water point")],
+    decided="The identification survey is what puts a point on the map at all.",
+    decided_on="2026-09-22",
+    derives_from=["register_records"])
+def identified_points():
+    p = os.path.join(EXPORTS, "identification.json")
+    rows = json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+    reg = register_records()
+    return {_point_of(r) for r in rows if _point_of(r) in reg}
+
+
+@population(
+    name="Hygiene-session points",
+    unit="points",
+    rule="Water points with a hygiene-promotion session recorded on the live "
+         "training form. Not a carbon figure; it is where the field "
+         "photographs on this page come from.",
+    reads=[("Clean Water || Formation et Suivi promotion de l'hygiène",
+            F_HYGIENE, "every response with a linked water point")],
+    decided="Kept as a population so the training form is read by something "
+            "and a migration onto it cannot pass unnoticed.",
+    decided_on="2026-09-22",
+    derives_from=["register_records"])
+def hygiene_session_points():
+    p = os.path.join(EXPORTS, "hygiene.json")
+    rows = json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+    reg = register_records()
+    return {_point_of(r) for r in rows if _point_of(r) in reg}
+
+
+@population(
+    name="Water-quality tested points",
+    unit="points",
+    rule="Water points with a result on the SDWS 3 water-quality results form. "
+         "Read from the LIVE results form, not from the retired combined "
+         "form's water-analysis branch - that branch stopped taking records in "
+         "July 2025 and a population reading it would have frozen there.",
+    reads=[("Clean Water || Water Quality Testing SDWS 3 Result",
+            F_WQ_RESULTS, "every response with a linked water point"),
+           ("Clean Water || Water Quality Sampling SDWS 3",
+            F_WQ_SAMPLING, "the sampling half of the same process")],
+    decided="SDWS 3 needs a result per point; the result form is the record.",
+    decided_on="2026-09-22",
+    derives_from=["managed_fleet"])
+def water_quality_tested():
+    fleet = managed_fleet()
+    return {_point_of(r) for r in _wq_results()
+            if _point_of(r) in fleet}
+
+
+@population(
     name="Points down now",
     unit="points",
     rule="Managed points whose most recent record - call, maintenance visit or "
          "repair - says the pump is not working.",
-    reads=[("Appel/signalement de pannes", F_CALL, None),
-           ("Entretien préventif", F_PM, None)],
+    reads=[("Appel / signalement de pannes", F_CALL, None),
+           ("Entretien préventif", F_PM, None),
+           ("Réparation après panne", F_REPAIR, "the live repair form")],
     decided="Status is the last thing anyone recorded about a pump.",
     decided_on="2026-09-21",
     derives_from=["managed_fleet"])
@@ -421,9 +532,45 @@ def chain():
     return steps, gaps
 
 
+def migration_watch():
+    """A response on a successor form that no population reads is a migration
+    completing silently.
+
+    The first-rehabilitation successor has zero responses today. Zero is a
+    plausible weekly count, so nothing would fail on the day the first one
+    arrives unless something is watching for exactly that. This is that
+    something.
+
+    Returns [(form, label, n_responses, n_unread)] - anything with n_unread
+    above zero is a failure.
+    """
+    out = []
+    declared = set()
+    for pop in POPULATIONS:
+        for r in (pop.get("reads") or []):
+            if len(r) > 1 and r[1]:
+                declared.add(r[1])
+
+    cur = _first_rehab_current()
+    if cur:
+        seen = first_rehabilitated() | rehabilitated_successfully()
+        unread = [r for r in cur if _point_of(r) not in seen]
+        out.append((F_FIRST_REHAB, "Première réhabilitation (successor)",
+                    len(cur), len(unread)))
+    else:
+        out.append((F_FIRST_REHAB, "Première réhabilitation (successor)", 0, 0))
+
+    # every successor named in SUCCESSORS must be declared by some population
+    for branch, fid in SUCCESSORS.items():
+        if fid not in declared:
+            out.append((fid, f"{branch} - NOT READ BY ANY POPULATION", None, 1))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--chain", action="store_true")
+    ap.add_argument("--migration", action="store_true")
     ap.add_argument("--json")
     a = ap.parse_args()
     if a.json:
@@ -448,6 +595,20 @@ def main():
         n = len(p["members"]())
         print(f"  {p['id']:28} {n:>6}   {p['name']}")
         print(f"  {'':28}          {p['rule'][:78]}")
+    if a.migration:
+        rows = migration_watch()
+        print()
+        print("  MIGRATION WATCH - a response nothing reads is a silent migration")
+        print("  " + "-" * 92)
+        bad = 0
+        for fid, label, n, unread in rows:
+            note = (f"{n} response(s), {unread} unread" if n is not None
+                    else "declared by no population")
+            flag = "FAIL" if unread else "ok  "
+            if unread:
+                bad += 1
+            print(f"  {flag}  {label[:56]:58} {note}")
+        return 1 if bad else 0
     if a.chain:
         steps, gaps = chain()
         print()

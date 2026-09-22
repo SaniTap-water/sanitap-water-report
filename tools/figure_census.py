@@ -103,6 +103,20 @@ REACH = r"""() => {
                    'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
+  // A computed artefact's own field values, and nothing derived from them.
+  //
+  // A bounded closure was tried - ratios, sums and differences over the ~34
+  // fields of the calendar extraction - so that percentages and sums in the
+  // prose would be covered. It was abandoned: an invented figure, 4,417,
+  // injected into that section was computable from the closure and passed.
+  // Restricting it to ratios alone did not fix that. With that many fields
+  // any closure is large enough to accept a typo, which is the fault this
+  // gate exists to catch. Exact field values only; anything derived must be
+  // marked on the figure itself.
+  const CX = g('CALX');
+  if (CX) for (const [k, v] of Object.entries(CX))
+    if (typeof v === 'number') note(v, 'CALX.' + k);
+
   // Figures the page COMPUTES at top level. SUCC_CORRECTED is
   // REG.succ + CORR.corrected.length and renders 42 times; without this it
   // was reported as unsourced, which is the census being wrong about a
