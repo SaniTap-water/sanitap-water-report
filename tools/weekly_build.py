@@ -58,6 +58,9 @@ STEPS = [
     ("tools/render_definitions.py",  ["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
+    ("tools/check_distances.py",     [],               True),
+    ("tools/check_extracts.py",      [],               True),
+    ("tools/check_generators.py",    [],               True),
 ]
 
 

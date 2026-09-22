@@ -154,6 +154,79 @@ def _page_pumps():
 POPULATIONS = []
 
 
+def _repair_records():
+    """(source, response) for every repair record on either repair source."""
+    C_REPAIR = "7abnNjk"                      # "Réparation après panne"
+    out = [("retired", r) for r in _combined()
+           if _answer(r, Q_TYPE) == C_REPAIR]
+    out += [("live", r) for r in _repair_live()]
+    return out
+
+
+def _repair_live():
+    p = os.path.join(EXPORTS, "repair.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+
+
+# The two date pairs that bound a time out of service, per source.
+_Q_NOTIF = {"retired": "8b91fde61f6c41c3a63fa2439c9e279b",
+            "live": "d7b85b380435431ebc76aa0cadcb443d"}
+_Q_DONE = {"retired": "29280fbb5f2b4da6a4feecadc1d6d4d4",
+           "live": "ca46a9fca12242038490b69caf934215"}
+
+
+def _repair_interval(src, r):
+    """Days from breakdown notification to completion, or None if unmeasurable."""
+    import datetime
+    def d(x):
+        x = str(x or "")[:10]
+        try:
+            return datetime.date.fromisoformat(x)
+        except ValueError:
+            return None
+    a, b = d(_answer(r, _Q_NOTIF[src])), d(_answer(r, _Q_DONE[src]))
+    if not a or not b:
+        return None
+    n = (b - a).days
+    return None if n < 0 else n
+
+
+def _register_coords():
+    """code -> (lat, lon) for every register record carrying a coordinate."""
+    out = {}
+    for r in _rows("wp_madavance.csv"):
+        code = r.get("code")
+        if not code:
+            continue
+        try:
+            c = json.loads(r["location"])["coordinates"]
+        except Exception:
+            continue
+        out[str(code)] = (c[1], c[0])
+    return out
+
+
+def nearest_other(code):
+    """(metres, other code) to the nearest OTHER located register point."""
+    import math
+    pts = _register_coords()
+    if code not in pts:
+        return None, None
+    la1, lo1 = pts[code]
+    best = (None, None)
+    for k, (la2, lo2) in pts.items():
+        if k == code:
+            continue
+        p1, p2 = math.radians(la1), math.radians(la2)
+        x = (math.sin((p2 - p1) / 2) ** 2
+             + math.cos(p1) * math.cos(p2)
+             * math.sin(math.radians(lo2 - lo1) / 2) ** 2)
+        m = 2 * 6371000.0 * math.asin(math.sqrt(x))
+        if best[0] is None or m < best[0]:
+            best = (m, k)
+    return best
+
+
 def population(**meta):
     """A population declares its UNIT: records or points.
 
@@ -424,6 +497,79 @@ def water_quality_tested():
     fleet = managed_fleet()
     return {_point_of(r) for r in _wq_results()
             if _point_of(r) in fleet}
+
+
+@population(
+    name="Repairs since 1 August 2024",
+    unit="records",
+    rule="Every repair-after-breakdown record on either repair source - the "
+         "retired combined form and its live successor - that is linked to a "
+         "water point and was submitted on or after 1 August 2024, counted "
+         "once per point and date. The de-duplication is not cosmetic: three "
+         "(point, date) pairs carry two records each, one of which spans the "
+         "migration boundary and is a genuine double entry.",
+    reads=[("Clean Water || Réparation après panne", F_REPAIR,
+            "the live repair form"),
+           ("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            'question "Type de travaux" = "Réparation après panne"')],
+    decided="628 could not be reproduced from anything held, so the rule was "
+            "written down and the number allowed to follow it. Withdrawal "
+            "logged as repairs_628.",
+    decided_on="2026-09-22",
+    derives_from=[])
+def repairs_since_aug_2024():
+    out, seen = set(), set()
+    for src, r in _repair_records():
+        pt, d = _point_of(r), str(r.get("submittedOn") or "")[:10]
+        if not pt or d < "2024-08-01":
+            continue
+        if (pt, d) in seen:
+            continue
+        seen.add((pt, d))
+        out.add(r["_id"])
+    return out
+
+
+@population(
+    name="Repairs with a measured time out of service",
+    unit="records",
+    rule="Repairs since 1 August 2024 that carry BOTH a breakdown "
+         "notification date and a works completion date, and whose completion "
+         "is not before its notification. Only these can be timed, so only "
+         "these are in the median and the mean.",
+    reads=[("Clean Water || Réparation après panne", F_REPAIR,
+            'dates "Date de notification de la panne" and '
+            '"Date d\u2019achèvement des travaux"'),
+           ("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            'dates "Date de notification de la panne" and "Date fin des travaux"')],
+    decided="The stored ttr_n of 606 reproduces from no rule; the measurable "
+            "set is 617. The median of 1.0 days and mean of 3.6 days are "
+            "unchanged by the correction.",
+    decided_on="2026-09-22",
+    derives_from=["repairs_since_aug_2024"])
+def repairs_time_measured():
+    keep = repairs_since_aug_2024()
+    return {r["_id"] for src, r in _repair_records()
+            if r["_id"] in keep and _repair_interval(src, r) is not None}
+
+
+@population(
+    name="Located register points",
+    unit="points",
+    rule="Register records carrying a coordinate in mWater. This is the set "
+         "every \u201cnearest other point\u201d distance is measured against: "
+         "the whole register, not the managed fleet, because the nearest "
+         "point to a dormant one is often a working point and sometimes "
+         "another dormant one.",
+    reads=[("mWater register", "entities/water_point where _managed_by = "
+            "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+            "records whose location carries coordinates")],
+    decided="The distances in the corrections log were hand-measured with no "
+            "stated set. Declaring the set makes them derivable.",
+    decided_on="2026-09-22",
+    derives_from=["register_records"])
+def located_register_points():
+    return set(_register_coords())
 
 
 @population(

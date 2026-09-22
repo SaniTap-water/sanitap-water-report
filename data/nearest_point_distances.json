@@ -1,0 +1,31 @@
+{
+ "note": "Nearest other located register point, per water point cited in the corrections log. Derived from the population located_register_points on every build.",
+ "population": "located_register_points",
+ "computed": "2026-09-22",
+ "distances": {
+  "670401897": {
+   "metres": 471,
+   "nearest": "742894916"
+  },
+  "670401921": {
+   "metres": 69,
+   "nearest": "742894600"
+  },
+  "742895223": {
+   "metres": 1364,
+   "nearest": "742895230"
+  },
+  "742895357": {
+   "metres": 827,
+   "nearest": "742895364"
+  },
+  "742895364": {
+   "metres": 827,
+   "nearest": "742895357"
+  },
+  "742895388": {
+   "metres": 446,
+   "nearest": "742895395"
+  }
+ }
+}

@@ -432,3 +432,45 @@ property is needed in the register. Repair speed becomes the only lever on days 
 which is why time to repair became a headline metric.
 
 Full analysis and the options as they stood: [`decommissioning_rule_question.md`](decommissioning_rule_question.md).
+
+---
+
+## 2026-09-22 — S.wq_tested was stored, not computed, for fourteen months
+
+**What was found.** `S.wq_tested` — the count of managed points with a water-quality result —
+was a literal `729` embedded in the page. No generator wrote it, nothing asserted it, and the
+branch it came from stopped taking records in **July 2025**. Both live water-quality forms,
+*Water Quality Sampling SDWS 3* (`43c96af4…`) and *Water Quality Testing SDWS 3 Result*
+(`7b33c5d7…`), were read by **no population at all**.
+
+**The number was right.** The population `water_quality_tested`, built from the live results form
+against the managed fleet, reproduces **729** exactly. No published figure was wrong and no
+external correction is needed.
+
+**The risk was that it could never have become wrong-looking.** Had a single water-quality result
+arrived — or had one point left the fleet — the page would have gone on reporting 729 and nothing
+in the build could have noticed. A figure that cannot move is a figure nobody is checking. It sat
+that way from **July 2025 to 22 September 2026**.
+
+**Editions affected.** Every edition in the archive carries the stored value: `2026-09-07-wk36`,
+`2026-09-10-wk37`, `2026-09-15-wk38`, `2026-09-16-wk38-ed5`, `-ed6`, `-ed7`, `-ed9`, and
+`2026-09-22-wk39-ed1` through `-ed6` — thirteen editions, all reporting 729, all correct.
+The archives are not rewritten.
+
+**What followed.** This is the fifth figure of this shape, after `WPOP_C250`, `727`, `723` and
+`628`, and all five were found by a person noticing rather than by a check. So the class is now
+swept and gated rather than fixed case by case:
+
+* `tools/embedded_fields.py` enumerates every field of every embedded data object — 235 of them.
+* Ownership was established **by experiment, not by reading code**: every numeric and free-text
+  leaf was perturbed, the whole generator chain run, and a field that came back has a generator.
+  115 fields are demonstrably owned, **71 are demonstrably ungenerated**, 49 cannot be decided by
+  that method (dates, ids, hashes) and are listed as untestable rather than excused.
+* `data/ungenerated_fields.json` records the 69 remaining ungenerated fields, dated and
+  **shrink-only**.
+* `tools/check_generators.py` fails the build if any embedded field has no generator and is not on
+  that list, if the list grows, or if a field declared to come from a population stops equalling it.
+  `S.n` and `S.wq_tested` are the first two so declared.
+
+The sweep's own finding is that `S` and `TTR` are the worst of it: 20 of `S`'s fields and **all 13
+of `TTR`'s** are computed by nothing.

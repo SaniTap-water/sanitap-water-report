@@ -1,0 +1,559 @@
+{
+ "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
+ "recorded": "2026-09-22",
+ "count": 69,
+ "fields": [
+  {
+   "field": "CORR.corrected",
+   "value": "list[9]",
+   "object": "CORR",
+   "why": "the standing corrections log, maintained by hand by the COO",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "CORR.decided_by",
+   "value": "Adriaan Mol, COO SaniTap",
+   "object": "CORR",
+   "why": "the standing corrections log, maintained by hand by the COO",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "CORR.eligibility_flags",
+   "value": "list[8]",
+   "object": "CORR",
+   "why": "the standing corrections log, maintained by hand by the COO",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "CORR.excluded",
+   "value": "list[15]",
+   "object": "CORR",
+   "why": "the standing corrections log, maintained by hand by the COO",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "CORR.note",
+   "value": "Standing record of corrections and exclu",
+   "object": "CORR",
+   "why": "the standing corrections log, maintained by hand by the COO",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].benef",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].commune",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].days",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].fkt",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].lat",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].lon",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].pump",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].site",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "DOWN.[].wq",
+   "value": "20 rows",
+   "object": "DOWN",
+   "why": "register attributes copied into the down-points table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "METRICS.pm_visits_last_full_month",
+   "value": "10",
+   "object": "METRICS",
+   "why": "headline metrics duplicated from figures computed elsewhere",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "METRICS.points_no_works_record",
+   "value": "57",
+   "object": "METRICS",
+   "why": "headline metrics duplicated from figures computed elsewhere",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "METRICS.points_over_6_months",
+   "value": "452",
+   "object": "METRICS",
+   "why": "headline metrics duplicated from figures computed elsewhere",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "OPENREP.[].age",
+   "value": "30 rows",
+   "object": "OPENREP",
+   "why": "open-repair table attributes",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "OPENREP.[].commune",
+   "value": "30 rows",
+   "object": "OPENREP",
+   "why": "open-repair table attributes",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "OPENREP.[].site",
+   "value": "30 rows",
+   "object": "OPENREP",
+   "why": "open-repair table attributes",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "OPENREP.[].status",
+   "value": "30 rows",
+   "object": "OPENREP",
+   "why": "open-repair table attributes",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].benef",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].commune",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].fkt",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].lat",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].lon",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].pump",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].site",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "PUMPS.[].wq",
+   "value": "736 rows",
+   "object": "PUMPS",
+   "why": "register attributes copied into the fleet table",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.abandoned",
+   "value": "38",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.benef_cov",
+   "value": "724",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.benef_total",
+   "value": "135238",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.by_pump",
+   "value": "{Canzee, IndiaMark}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.by_site",
+   "value": "{Fort-Dauphin, Maroantsetra, Marolinta}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.down_list",
+   "value": "list[19]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.gap",
+   "value": "{6–12 months, never, 3–6 months, >12 months…}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.mdue",
+   "value": "list[7]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.never",
+   "value": "57",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.oos",
+   "value": "list[7]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.oos_site",
+   "value": "{Maroantsetra, Fort-Dauphin}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.over6_commune",
+   "value": "list[15]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.partial",
+   "value": "179",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.pm_month",
+   "value": "list[13]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.rep_month",
+   "value": "list[13]",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.sched",
+   "value": "{overdue, never, due_4w, due_3m…}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.visits_per_day",
+   "value": "{all, Maroantsetra, Fort-Dauphin}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "S.wq_untested",
+   "value": "{Fort-Dauphin, Marolinta}",
+   "object": "S",
+   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.call_lag_mean",
+   "value": "13.7",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.call_lag_median",
+   "value": "2.0",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.call_n",
+   "value": "90",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.call_total",
+   "value": "122",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.call_unres",
+   "value": "32",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_2026",
+   "value": "list[3]",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_3d",
+   "value": "84",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_7d",
+   "value": "91",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_Fort-Dauphin",
+   "value": "list[3]",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_Maroantsetra",
+   "value": "list[3]",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_mean",
+   "value": "3.6",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_median",
+   "value": "1.0",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "TTR.ttr_n",
+   "value": "606",
+   "object": "TTR",
+   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOP.{*}",
+   "value": "736 keys",
+   "object": "WPOP",
+   "why": "the per-point population lookup from the WorldPop raster",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.caps",
+   "value": "{Canzee, IndiaMark}",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.points_at_the_cap",
+   "value": "84",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.points_cut_over_10pct",
+   "value": "122",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.points_with_a_barrier",
+   "value": "627",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.raster",
+   "value": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.raster_national_sum",
+   "value": "32351522",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.rows",
+   "value": "736",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  },
+  {
+   "field": "WPOPMETA.source",
+   "value": "WorldPop R2025A v1 2025 constrained 100 ",
+   "object": "WPOPMETA",
+   "why": "the WorldPop run's own metadata, written by hand after each run",
+   "found": "2026-09-22",
+   "action": null
+  }
+ ]
+}

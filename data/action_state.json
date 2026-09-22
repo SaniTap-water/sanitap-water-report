@@ -5,7 +5,7 @@
   "data": 39,
   "decision": 40,
   "form": 7,
-  "none": 21
+  "none": 22
  },
  "state": {
   "act-2026-recovery": {
@@ -678,6 +678,14 @@
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
+   "when_satisfied": "OK"
+  },
+  "act-repair-double-entry": {
+   "evaluated": "2026-09-22",
+   "evidence": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two",
    "when_satisfied": "OK"
   },
   "act-repair-time": {

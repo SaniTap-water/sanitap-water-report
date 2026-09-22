@@ -208,6 +208,25 @@
    "size": 45,
    "unit": "points"
   },
+  "located_register_points": {
+   "decided": "The distances in the corrections log were hand-measured with no stated set. Declaring the set makes them derivable.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "register_records"
+   ],
+   "id": "located_register_points",
+   "name": "Located register points",
+   "reads": [
+    [
+     "mWater register",
+     "entities/water_point where _managed_by = group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+     "records whose location carries coordinates"
+    ]
+   ],
+   "rule": "Register records carrying a coordinate in mWater. This is the set every “nearest other point” distance is measured against: the whole register, not the managed fleet, because the nearest point to a dormant one is often a working point and sometimes another dormant one.",
+   "size": 908,
+   "unit": "points"
+  },
   "managed_fleet": {
    "decided": "Adriaan Mol, COO SaniTap - the standing reconciliation recorded in data/register_corrections.json",
    "decided_on": "2026-09-15",
@@ -308,6 +327,52 @@
    "rule": "Of the first-rehabilitated points, those whose record answers Yes to “Verify: did the repair or maintenance succeed?”. A point with any successful first-rehabilitation record counts as successful.",
    "size": 730,
    "unit": "points"
+  },
+  "repairs_since_aug_2024": {
+   "decided": "628 could not be reproduced from anything held, so the rule was written down and the number allowed to follow it. Withdrawal logged as repairs_628.",
+   "decided_on": "2026-09-22",
+   "derives_from": [],
+   "id": "repairs_since_aug_2024",
+   "name": "Repairs since 1 August 2024",
+   "reads": [
+    [
+     "Clean Water || Réparation après panne",
+     "958b4763788348d699e7d8c5821f92ee",
+     "the live repair form"
+    ],
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question \"Type de travaux\" = \"Réparation après panne\""
+    ]
+   ],
+   "rule": "Every repair-after-breakdown record on either repair source - the retired combined form and its live successor - that is linked to a water point and was submitted on or after 1 August 2024, counted once per point and date. The de-duplication is not cosmetic: three (point, date) pairs carry two records each, one of which spans the migration boundary and is a genuine double entry.",
+   "size": 620,
+   "unit": "records"
+  },
+  "repairs_time_measured": {
+   "decided": "The stored ttr_n of 606 reproduces from no rule; the measurable set is 617. The median of 1.0 days and mean of 3.6 days are unchanged by the correction.",
+   "decided_on": "2026-09-22",
+   "derives_from": [
+    "repairs_since_aug_2024"
+   ],
+   "id": "repairs_time_measured",
+   "name": "Repairs with a measured time out of service",
+   "reads": [
+    [
+     "Clean Water || Réparation après panne",
+     "958b4763788348d699e7d8c5821f92ee",
+     "dates \"Date de notification de la panne\" and \"Date d’achèvement des travaux\""
+    ],
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "dates \"Date de notification de la panne\" and \"Date fin des travaux\""
+    ]
+   ],
+   "rule": "Repairs since 1 August 2024 that carry BOTH a breakdown notification date and a works completion date, and whose completion is not before its notification. Only these can be timed, so only these are in the median and the mean.",
+   "size": 617,
+   "unit": "records"
   },
   "successful_first_rehabilitation_records": {
    "decided": "Withdrawn figure 723 could not be reproduced from any data held; the records give 731. See the decision log.",

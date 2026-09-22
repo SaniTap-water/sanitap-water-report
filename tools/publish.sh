@@ -169,6 +169,34 @@ fi
 # ---- 2. THE GATE -----------------------------------------------------------
 # Run it, capture the status on its own line, then branch. Nothing is chained.
 say ""
+say "checking that every embedded figure has a generator ..."
+python3 tools/check_generators.py
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: an embedded field has no generator, or a generator disagrees with what is stored."
+  say "A field nothing can move is a field nobody is checking. Nothing committed."
+  exit 1
+fi
+
+say ""
+say "checking the extracts for the paging fault ..."
+python3 tools/check_extracts.py | tail -12
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: an extract the build reads carries a repeated _id."
+  exit 1
+fi
+
+say ""
+say "recomputing the corrections-log distances ..."
+python3 tools/check_distances.py | tail -4
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: a stated distance no longer reproduces from located_register_points."
+  exit 1
+fi
+
+say ""
 say "running consistency checker ..."
 python3 tools/check_consistency.py index.html portfolio.html
 GATE=$?

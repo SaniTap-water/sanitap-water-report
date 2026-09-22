@@ -93,8 +93,14 @@ D = {
    forms=[("the register", None, REGQ)],
    caveat="The Endur'O half is hand-entered and not in mWater; it carries its "
           "own as-at date and supplier."),
- "TTR.ttr_n": dict(pop="managed_fleet",
-   arith="`repairs with both a notification and a completion date: ${fmt(TTR.ttr_n)}`",
+ "POPS.populations['repairs_since_aug_2024'].size": dict(pop="repairs_since_aug_2024",
+   arith="`${fmt(POPS.populations['repairs_since_aug_2024'].size)} repair records, "
+         "linked to a point, since 1 Aug 2024, one per point and date`",
+   forms=[("R\\u00e9paration apr\\u00e8s panne", F_REP, None)]),
+ "POPS.populations['repairs_time_measured'].size": dict(pop="repairs_time_measured",
+   arith="`of ${fmt(POPS.populations['repairs_since_aug_2024'].size)} repairs, "
+         "${fmt(POPS.populations['repairs_time_measured'].size)} carry both a "
+         "notification and a completion date and can be timed`",
    forms=[("R\\u00e9paration apr\\u00e8s panne", F_REP, None),
           ("Appel / signalement de pannes", F_CALL, None)]),
  "WPOPMETA.points_with_a_barrier": dict(pop="managed_fleet",

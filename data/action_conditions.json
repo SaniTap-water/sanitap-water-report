@@ -520,6 +520,10 @@
   "kind": "none",
   "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit"
  },
+ "act-repair-double-entry": {
+  "kind": "none",
+  "says": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two"
+ },
  "act-repair-time": {
   "kind": "decision",
   "question": "What response and report-back time is the operational target?",
