@@ -123,6 +123,17 @@ def _m9():
     return abs(reg["dashboard_fdmar"] - ours)
 
 
+@metric("unsourced_figures",
+        "rendered figures with no source of any kind")
+def _m_unsourced():
+    """The residue the figure gate allows through on a dated list. It may only
+    shrink; the gate fails on anything not on it."""
+    p = d("data", "figure_backlog.json")
+    if not os.path.isfile(p):
+        return 0
+    return len(json.load(open(p, encoding="utf8")).get("values", {}))
+
+
 @metric("calls_using_service_visit_choice",
         "calls recorded with the routine-service-visit choice")
 def _m_service_choice():

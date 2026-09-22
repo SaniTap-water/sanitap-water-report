@@ -2,7 +2,7 @@
  "evaluated": "2026-09-22",
  "kinds": {
   "artefact": 7,
-  "data": 38,
+  "data": 39,
   "decision": 40,
   "form": 7,
   "none": 21
@@ -251,6 +251,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-figure-residue": {
+   "evaluated": "2026-09-22",
+   "evidence": "unsourced_figures = 93 (rendered figures with no source of any kind); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when no rendered figure is without a source",
    "when_satisfied": "OK"
   },
   "act-find-source-annual-independent": {

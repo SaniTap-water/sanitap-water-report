@@ -180,6 +180,14 @@
   "question": "What are the renewal dates for the four baseline parameters?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
  },
+ "act-figure-residue": {
+  "kind": "data",
+  "metric": "unsourced_figures",
+  "op": "==",
+  "says": "closes when no rendered figure is without a source",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
  "act-find-source-annual-independent": {
   "kind": "decision",
   "question": "What is the source for the annual independent cross-check of people per premises?",

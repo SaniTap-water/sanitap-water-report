@@ -9,6 +9,39 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — The figure gate is live, and honest artefact-checking raised the residue
+
+**The gate is on.** Any rendered figure that is not derivable from a population, declared in
+PARAMS with a citation, carried in the dated manual file, quoted from a named document, or the
+output of a named script now fails the build unless it is on the dated residue list. That list
+may only shrink; the gate fails if an entry on it acquires a source and is not removed.
+
+**Two source classes were missing from the taxonomy and are now in it.**
+
+*Quotation.* A figure inside quoted material takes its source from the document quoted. The SOP
+says “646 Canzee + 77 India Mark III = 723 pumps”; that is what the SOP says, not what we
+measure, and correcting it silently would destroy the point of quoting it. It expands to the
+document, its version and its date.
+
+*Computed artefact.* Output from our own scripts, with better provenance than most form answers:
+a named output file, the generator, the input extract and the run date. The gardien-calendar
+figures come from `data/calendar_extraction_figures.json` via `tools/read_year_ocr.py`; the
+people-served allocations from the pinned WorldPop raster, with the weighting stated.
+
+**A section-level marking is not a source, and finding that out put the number up.** Marking a
+whole section as a computed artefact was too permissive: an invented figure injected into such a
+section inherited the marking and the gate passed it. The rule is now that an artefact-marked
+figure must either carry a value the artefact actually produced, or be marked individually.
+Applying it took the residue from 34 back to 93 — the honest number, and the most useful thing
+this pass established.
+
+**The census was also counting things that are not figures.** Numbers welded into identifiers
+(`M400-12`, `A6.4-AMT-009`, `EPSG:3857`, `CW-project survey_112025`), coordinate pairs and hub
+dataset ids are excluded, and the exclusions are counted in the census output so the list cannot
+grow quietly.
+
+---
+
 ## 2026-09-22 — Every water-point deep link was broken; there is no such route
 
 **The defect.** 62 anchors on the report pointed at

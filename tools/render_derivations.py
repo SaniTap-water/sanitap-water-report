@@ -107,6 +107,29 @@ D = {
    arith="`hand-entered: ${ENDURO.systems} piped systems`",
    forms=[]),
 }
+D["((PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_toliary.v+PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_mofuss_maroantsetra.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)"] = dict(pop="carbon_fleet",
+    arith="`Fort-Dauphin ${fmt(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0))} people at fNRB ${PARAMS.fnrb_toliary.v} + Maroantsetra ${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0))} at ${PARAMS.fnrb_mofuss_maroantsetra.v}, over ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} people served`",
+    forms=[("the registered fNRB values, weighted by people served",
+            None, "PARAMS.fnrb_toliary and PARAMS.fnrb_mofuss_maroantsetra")])
+
+# people-served allocations by site: a sum over the WorldPop run
+for _site, _lab in (("Fort-Dauphin", "Fort-Dauphin"),
+                    ("Maroantsetra", "Maroantsetra")):
+    D[f"PUMPS.filter(p=>p.site==='{_site}').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(
+        pop="managed_fleet",
+        arith=f'`the capped WorldPop allocation summed over the {_lab} points: '
+              f'${{fmt(PUMPS.filter(p=>p.site===\'{_site}\').reduce((a,p)=>a+(p.wpop||0),0))}} '
+              f'over ${{PUMPS.filter(p=>p.site===\'{_site}\').length}} points`',
+        forms=[("WorldPop R2025A run, capped per pump type", None,
+                "SDWS 1 barrier clip applied; caps from PARAMS")])
+D["PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(
+    pop="carbon_fleet",
+    arith='`the capped WorldPop allocation summed over the carbon fleet: '
+          '${fmt(PUMPS.filter(p=>p.site!==\'Marolinta\').reduce((a,p)=>a+(p.wpop||0),0))} '
+          'over ${PUMPS.filter(p=>p.site!==\'Marolinta\').length} points`',
+    forms=[("WorldPop R2025A run, capped per pump type", None,
+            "SDWS 1 barrier clip applied; Marolinta excluded")])
+
 # the chain table's own cells: each is the reconciliation step it reports
 for _k in range(12):
     D[f"POPS.chain[{_k}].detail"] = dict(pop=None, chain=True,

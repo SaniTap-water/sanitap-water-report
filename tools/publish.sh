@@ -133,7 +133,9 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   fi
 
   say ""
-  say "running the figure gates ..."
+  say "running the figure gates (LIVE: nothing unsourced may be added) ..."
+  # THE FIGURE GATE IS LIVE. Anything not on the dated residue list fails
+  # the build. The list may only shrink - see act-figure-residue.
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/figure_census.py --gate | tail -22
   RC=${PIPESTATUS[0]}
   if [ "$RC" -ne 0 ]; then

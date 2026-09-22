@@ -37,42 +37,6 @@
    "section": "Gold Standard design review — what is still open",
    "sentence": "0.0001 – 0.19 mg/L"
   },
-  "0.405": {
-   "n": 19,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "0.405"
-  },
-  "0.80": {
-   "n": 13,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "to R² ≥ 0.80 and slope 0.9–1.1 on 30 pumps per zone still stands, given it derives from the paragraph published in error."
-  },
-  "0.9": {
-   "n": 13,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "to R² ≥ 0.80 and slope 0.9–1.1 on 30 pumps per zone still stands, given it derives from the paragraph published in error."
-  },
   "1,156": {
    "n": 4,
    "scopes": [
@@ -136,18 +100,6 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "1,441"
-  },
-  "1.1": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "to R² ≥ 0.80 and slope 0.9–1.1 on 30 pumps per zone still stands, given it derives from the paragraph published in error."
   },
   "1.4": {
    "n": 4,
@@ -214,18 +166,6 @@
    "section": "Maintenance coverage",
    "sentence": "11.8"
   },
-  "112025": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "Path: Central Data Hub - Water Documents / CW-project survey_112025 / Gold standard parameters.xlsx, last modified 7 November 2025."
-  },
   "120,000": {
    "n": 5,
    "scopes": [
@@ -239,7 +179,7 @@
    "sentence": "carbon hand pumps sit in the district where 120,000 improved cookstoves were distributed."
   },
   "126,780": {
-   "n": 11,
+   "n": 7,
    "scopes": [
     "all",
     "enduro",
@@ -303,18 +243,6 @@
    ],
    "section": "Actions — the one list",
    "sentence": "17,681"
-  },
-  "18.1610": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "Another, dated 11 September, sits at −18.1610, 49.4071, which is 125 km away in the Maroantsetra area."
   },
   "2,105": {
    "n": 5,
@@ -418,18 +346,6 @@
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "USD 21,200 a year across the 731 carbon points"
   },
-  "24.25": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Cookstoves and water: the overlap, measured",
-   "sentence": "−25.18 and −24.25"
-  },
   "25,121": {
    "n": 4,
    "scopes": [
@@ -440,18 +356,6 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "25,121"
-  },
-  "25.18": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Cookstoves and water: the overlap, measured",
-   "sentence": "−25.18 and −24.25"
   },
   "260": {
    "n": 4,
@@ -519,27 +423,6 @@
    "section": "Who is counted as served: the annual usage survey",
    "sentence": "3.3"
   },
-  "3.9": {
-   "n": 16,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Maintenance coverage",
-   "sentence": "3.9"
-  },
-  "313139": {
-   "n": 3,
-   "scopes": [
-    "all",
-    "mad",
-    "mar"
-   ],
-   "section": "Marolinta — what has been logged so far",
-   "sentence": "the register holds region 313139 for this record and no located water point shares it, so there is nothing to read a district from"
-  },
   "32,378": {
    "n": 3,
    "scopes": [
@@ -604,18 +487,6 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "349.9"
-  },
-  "35.8": {
-   "n": 11,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "What every figure is over",
-   "sentence": "The 32.5 and 35.8 household figures are this same number divided by different household sizes."
   },
   "352.3": {
    "n": 4,
@@ -685,16 +556,15 @@
    "sentence": "354,000"
   },
   "356.7": {
-   "n": 13,
+   "n": 8,
    "scopes": [
     "all",
-    "enduro",
     "mad",
     "madx",
     "mar"
    ],
-   "section": "Actions — the one list",
-   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
+   "section": "Gardien calendars — the days-not-operational record",
+   "sentence": "356.7"
   },
   "356.8": {
    "n": 4,
@@ -772,18 +642,6 @@
    "section": "How the people-served figure is built",
    "sentence": "139.6 ÷ 4.5 = 31.0 for Anosy, 139.6 ÷ 3.7 = 37.7 for Maroantsetra, entered as 37."
   },
-  "3857": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Where every figure on this page comes from",
-   "sentence": "Coordinates are stored in EPSG:3857 and converted to WGS84 for the maps."
-  },
   "391": {
    "n": 4,
    "scopes": [
@@ -818,17 +676,6 @@
    "section": "Who is counted as served: the annual usage survey",
    "sentence": "4.1"
   },
-  "4.2": {
-   "n": 24,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Who is counted as served: the annual usage survey",
-   "sentence": "4.2"
-  },
   "4.8": {
    "n": 4,
    "scopes": [
@@ -852,28 +699,14 @@
    "sentence": "4.9"
   },
   "40,962": {
-   "n": 13,
+   "n": 3,
    "scopes": [
     "all",
-    "enduro",
     "mad",
-    "madx",
-    "mar"
+    "madx"
    ],
    "section": "How the people-served figure is built",
    "sentence": "40,962"
-  },
-  "400": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Carbon file — Gold Standard programme of activities ",
-   "sentence": "Status against the methodology now in force (GS4GG PAA M400-12 v2.0, 7 Jul 2026 — mandatory for 2026 vintages)."
   },
   "415": {
    "n": 12,
@@ -908,18 +741,6 @@
    "section": "Register corrections and exclusions",
    "sentence": "471 m from 742894916, a working India Mark in Ranopiso."
   },
-  "49.4071": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "Another, dated 11 September, sits at −18.1610, 49.4071, which is 125 km away in the Maroantsetra area."
-  },
   "5,423": {
    "n": 4,
    "scopes": [
@@ -951,18 +772,6 @@
    "section": "Preventive-maintenance schedule (6-monthly)",
    "sentence": "6.2"
   },
-  "6.4": {
-   "n": 20,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Cookstoves and water: the overlap, measured",
-   "sentence": "A6.4-AMT-009 is not the basis and is no longer cited as one."
-  },
   "615": {
    "n": 7,
    "scopes": [
@@ -984,18 +793,6 @@
    ],
    "section": "Time out of service",
    "sentence": "Days from reported breakdown to completed repair, all 628 repairs since Aug 2024."
-  },
-  "646": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "It states its scope, in the SOP's own words, as “646 Canzee + 77 India Mark III = 723 pumps”."
   },
   "654": {
    "n": 5,
@@ -1054,18 +851,17 @@
    "sentence": "7,440"
   },
   "722": {
-   "n": 17,
+   "n": 12,
    "scopes": [
     "all",
-    "enduro",
     "mad",
     "madx",
     "mar"
    ],
-   "section": "Actions — the one list",
-   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
+   "section": "Gardien calendars — the days-not-operational record",
+   "sentence": "722"
   },
-  "726.6": {
+  "727": {
    "n": 5,
    "scopes": [
     "all",
@@ -1075,19 +871,7 @@
     "mar"
    ],
    "section": "Actions — the one list",
-   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
-  },
-  "727": {
-   "n": 10,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
+   "sentence": "Note the denominator elsewhere on this page changed from 727 to the derivable"
   },
   "732": {
    "n": 30,
@@ -1112,16 +896,6 @@
    ],
    "section": "Actions — the one list",
    "sentence": "741"
-  },
-  "74239": {
-   "n": 3,
-   "scopes": [
-    "all",
-    "mad",
-    "madx"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "WorldPop R2025A v1 2025 constrained 100 m gridded population (hub dataset 74239); a 1 km service-area buffer around each water point, computed on a lo"
   },
   "750": {
    "n": 4,
@@ -1170,14 +944,16 @@
    "sentence": "8,579"
   },
   "800": {
-   "n": 6,
+   "n": 16,
    "scopes": [
     "all",
+    "enduro",
     "mad",
-    "madx"
+    "madx",
+    "mar"
    ],
-   "section": "How the people-served figure is built",
-   "sentence": "water points, 200 in Anosy and 800 in Maroantsetra."
+   "section": "What every figure is over",
+   "sentence": "The ex-ante households-per-CWS figure on the 1,000-point build-out weighting (200 Anosy, 800 Maroantsetra) rather than the blended national household "
   },
   "827": {
    "n": 8,
@@ -1202,13 +978,11 @@
    "sentence": "844"
   },
   "85,818": {
-   "n": 8,
+   "n": 3,
    "scopes": [
     "all",
-    "enduro",
     "mad",
-    "madx",
-    "mar"
+    "madx"
    ],
    "section": "How the people-served figure is built",
    "sentence": "85,818"
@@ -1222,7 +996,7 @@
     "mar"
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
-   "sentence": "On the raster of record, without barriers, equal reports 91,957, inverse-distance-weighted 91,067 and nearest-source 88,454 — confirming that a more r"
+   "sentence": "88,454"
   },
   "88,783": {
    "n": 3,
@@ -1234,18 +1008,6 @@
    "section": "How the people-served figure is built",
    "sentence": "88,783"
   },
-  "906": {
-   "n": 10,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "(masthead)",
-   "sentence": "906 hand pumps with MadAvance, and the Endur'O register now that it is readable."
-  },
   "91,067": {
    "n": 4,
    "scopes": [
@@ -1255,7 +1017,7 @@
     "mar"
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
-   "sentence": "On the raster of record, without barriers, equal reports 91,957, inverse-distance-weighted 91,067 and nearest-source 88,454 — confirming that a more r"
+   "sentence": "91,067"
   },
   "91,957": {
    "n": 4,
@@ -1266,7 +1028,7 @@
     "mar"
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
-   "sentence": "On the raster of record, without barriers, equal reports 91,957, inverse-distance-weighted 91,067 and nearest-source 88,454 — confirming that a more r"
+   "sentence": "91,957"
   }
  }
 }

@@ -48,7 +48,8 @@ EXCLUDE = [
 REFERENCE = re.compile(
     r"(SDWS|VPA-DD|AMS|TOOL|Annex|section|clause|paragraph|table|figure|step|"
     r"rev(ision)?|v(ersion)?|R\d{4}[A-Z]|item|para|Article|GS4GG|ACM|meth|"
-    r"WS|CAR|GS|VPA|PoA|R\u00b2|\u00a7|\bs\.|#|\b[A-Za-z]\.)\s*[\u2011-]?\s*$", re.I)
+    r"WS|CAR|GS|VPA|PoA|R\u00b2|dataset|hub dataset|EPSG|SRID|region|"
+    r"admin_region|\u00a7|\bs\.|#|\b[A-Za-z]\.)[:\s]*[\u2011-]?\s*$", re.I)
 # 2.2.1, 4.2.2, A.1.1 - two dots or more is never a quantity on this page
 SECTIONISH = re.compile(r"^\d+(\.\d+){2,}$")
 UNIT_AFTER = re.compile(
@@ -182,7 +183,7 @@ TEXT = r"""() => {
     const t = n.nodeValue;
     if (!/\d/.test(t)) continue;
     // where it is, and whether the page has already declared a source for it
-    const sourced = el.closest('[data-fig],[data-param],[data-manual],[data-src]');
+    const sourced = el.closest('[data-fig],[data-param],[data-manual],[data-src],[data-quote],[data-artefact],[data-withdrawn]');
     const sec = el.closest('section');
     const h = sec ? sec.querySelector('h2') : null;
     out.push({
@@ -191,8 +192,13 @@ TEXT = r"""() => {
       tag: el.tagName.toLowerCase(),
       cls: (el.className || '').toString().slice(0, 40),
       mono: !!el.closest('.mono,code,pre'),
+      selfMarked: !!(el.dataset && (el.dataset.artefact || el.dataset.quote
+                     || el.dataset.withdrawn)),
       sourced: sourced ? (sourced.dataset.fig ? 'FIG'
                         : sourced.dataset.param ? 'PARAMS'
+                        : sourced.dataset.quote ? 'QUOTE'
+                        : sourced.dataset.artefact ? 'ARTEFACT'
+                        : sourced.dataset.withdrawn ? 'WITHDRAWN'
                         : sourced.dataset.manual ? 'MANUAL' : 'SRC') : null,
     });
   }
@@ -227,7 +233,28 @@ def literals(nodes):
                 continue
             why = None
             before, after = t[:m.start()], t[m.end():]
-            if SECTIONISH.match(raw):
+            # A number welded into an alphanumeric token is part of an
+            # identifier, not a measurement: M400-12, A6.4-AMT-009, GS12601,
+            # R2025A, dataset 74239. Look at the characters either side.
+            bch = before[-1:] if before else ""
+            ach = after[:1] if after else ""
+            # a LETTER immediately against the digits, either side:
+            # M400-12, A6.4-AMT-009, GS12601, R2025A, 100m. A hyphen followed
+            # by a digit is a date or a range, not a token.
+            tok_before = bool(re.search(r"[A-Za-z_]$", before))
+            tok_after = bool(re.match(r"[A-Za-z_]", after)) \
+                or bool(re.match(r"-[A-Za-z]", after))
+            # a coordinate pair: -18.1610, 49.4071
+            coord = (bool(re.search(r"[-\u2212]?\d{1,3}\.\d{2,}[,\s]+(and\s+)?"
+                                    r"[-\u2212]?$", before))
+                     or bool(re.match(r"\s*(,|and)\s*[-\u2212]?\d{1,3}\.\d{2,}", after))
+                     or bool(re.search(r"[-\u2212]\s*$", before)
+                             and re.match(r"^\d{1,3}\.\d{2,}$", raw)))
+            if tok_before or tok_after:
+                why = "identifier (inside a token)"
+            elif coord:
+                why = "coordinate"
+            elif SECTIONISH.match(raw):
                 why = "section number"
             elif UNIT_AFTER.match(after):
                 why = "percentage or unit"
@@ -295,12 +322,33 @@ def classify(lits, reach, params, manual):
     for L in lits:
         v = round(L["val"], 2)
         L["rendered"] = L["sourced"] in ("FIG", "PARAMS", "MANUAL", "SRC")
-        if L["sourced"] in ("PARAMS",) or v in params:
+        if L["sourced"] == "QUOTE":
+            L["tier"] = 4
+            L["why"] = "quoted from a document"
+        elif L["sourced"] == "ARTEFACT" and (v in rv or L.get("selfMarked")):
+            # A section marked as a computed artefact does NOT make every
+            # number inside it sourced: a typo would inherit the marking. The
+            # value must actually appear in the data the artefact produced.
+            # Injecting an invented figure into such a section is what proved
+            # this - the gate passed it until this check was added.
+            L["tier"] = 5
+            L["why"] = "computed artefact"
+        elif L["sourced"] == "WITHDRAWN":
+            L["tier"] = 6
+            L["why"] = "named only to record its withdrawal"
+        elif L["sourced"] in ("PARAMS",) or v in params:
             L["tier"] = 2
             L["why"] = params.get(v, "declared in PARAMS")
         elif L["sourced"] == "MANUAL" or v in manual:
             L["tier"] = 3
             L["why"] = manual.get(v, "manual Endur'O file")
+        elif L["sourced"] == "FIG":
+            # rendered from a declared expression. Its VALUE need not be a raw
+            # leaf in a data object - a computed figure like a weighted mean
+            # or a ratio never is - but it carries a derivation, which is the
+            # thing that matters.
+            L["tier"] = 1
+            L["why"] = "rendered from a declared expression"
         elif v in rv:
             L["tier"] = 1
             L["why"] = rv[v][0] if isinstance(rv[v], list) else rv[v]
@@ -342,12 +390,12 @@ def report(found, params, manual, verbose=False):
     print()
     print("  FIGURE CENSUS - every number the page renders, by tier")
     print("  " + "-" * 92)
-    print(f"  {'scope':8} {'literals':>9} {'T1 live':>9} {'T2 param':>9} "
-          f"{'T3 manual':>10} {'NO SOURCE':>10}   distinct unsourced")
-    tot = {0: 0, 1: 0, 2: 0, 3: 0}
+    print(f"  {'scope':8} {'literals':>9} {'live':>8} {'param':>7} "
+          f"{'manual':>7} {'quoted':>7} {'artef':>6} {'withdr':>7} {'NO SOURCE':>10}   distinct")
+    tot = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
     allbad, alltyped = {}, {}
     for s, d in found.items():
-        c = {0: 0, 1: 0, 2: 0, 3: 0}
+        c = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
         bad = {}
         for L in d["lits"]:
             c[L["tier"]] += 1
@@ -356,12 +404,12 @@ def report(found, params, manual, verbose=False):
                 allbad.setdefault(L["raw"], []).append((s, L))
         for k in c:
             tot[k] += c[k]
-        print(f"  {s:8} {len(d['lits']):>9} {c[1]:>9} {c[2]:>9} {c[3]:>10} "
-              f"{c[0]:>10}   {len(bad)}")
+        print(f"  {s:8} {len(d['lits']):>9} {c[1]:>8} {c[2]:>7} {c[3]:>7} "
+              f"{c[4]:>7} {c[5]:>6} {c[6]:>7} {c[0]:>10}   {len(bad)}")
     n = sum(tot.values())
     print("  " + "-" * 92)
-    print(f"  {'TOTAL':8} {n:>9} {tot[1]:>9} {tot[2]:>9} {tot[3]:>10} "
-          f"{tot[0]:>10}   {len(allbad)} distinct")
+    print(f"  {'TOTAL':8} {n:>9} {tot[1]:>8} {tot[2]:>7} {tot[3]:>7} "
+          f"{tot[4]:>7} {tot[5]:>6} {tot[6]:>7} {tot[0]:>10}   {len(allbad)} distinct")
     print()
     drop = {}
     for d in found.values():
