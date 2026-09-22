@@ -9,6 +9,63 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — Every water-point deep link was broken; there is no such route
+
+**The defect.** 62 anchors on the report pointed at
+`https://portal.mwater.co/#/water_point/<uuid>`. That route does not exist, and neither does
+`#/entities/<type>/<uuid>`, `#/entity/...` or `#/sites/<uuid>`. Every one landed on *Page not
+found*. It was not an authentication problem: `#/forms/<id>` and `#/responses/<id>` resolve from
+the same session.
+
+**There is no deep link to an entity to be had.** This was settled from the portal's own route
+table, read out of its JavaScript bundle rather than guessed at. The complete set of entity-ish
+routes is:
+
+| route | what `:id` is |
+|---|---|
+| `/entities(/:id)` | redirects to `/entity_views/:id` |
+| `/entity_views(/:id)` | a saved **view** document, not a water point |
+| `/water_systems/:id`, `/sanitation_systems/:id` | an **asset**, not a site |
+| `/admin/archives/:table/:id` | admin only |
+
+And the application never builds one: every `href:"#/..."` in the bundle is to a section, never
+to a record. The Sites page is a browser, not an addressable record view.
+
+**What the links point at now.** The response that references the point —
+`#/responses/<id>`, which resolves, and is the better target anyway: it opens the document that
+says something about the point rather than a bare record card.
+`data/mwater_point_responses.json` maps 863 point codes to response ids across the works,
+borehole, repair, maintenance and call forms, preferring the first-rehabilitation record.
+84 anchors rewritten across `index.html`, `data/action_details.json`,
+`tools/render_marolinta.py` and `tools/render_block.py`. **Zero broken routes remain**, including
+in the provenance table.
+
+A point with no record on any form gets no link — the code as plain text — rather than a link
+that lands nowhere. One point qualifies: `670401842`, which has no record on any form, consistent
+with everything else known about it.
+
+**The gate.** `tools/check_links.py` extracts the portal's route table and asserts that every
+mWater route the page links to exists in it. It is in `publish.sh` and negative-tested: restoring
+one `#/water_point/` link fails it by name.
+
+Pattern-matching the URL is what let this through — the 62 matched their regex perfectly and none
+worked. A hash fragment never reaches the server, so fetching the URL proves nothing; rendering
+it unauthenticated proves nothing either, because valid and invalid routes both bounce to login.
+The route table is the thing that can actually be tested.
+
+**Archived editions are NOT corrected.** Three carry the defect and keep it:
+
+| edition | issued | broken links |
+|---|---|---|
+| `2026-09-22-wk39-ed1.html` | Tue 22 September 2026 | 62 |
+| `2026-09-22-wk39-ed2.html` | Tue 22 September 2026 | 62 |
+| `2026-09-22-wk39-ed3.html` | Tue 22 September 2026 | 62 |
+
+Earlier editions carry none: the links were introduced with the water-point detail tables on
+22 September and the defect lasted one day.
+
+---
+
 ## 2026-09-22 — 723 withdrawn; the chain reconciles; the 48 repeated points never existed
 
 **Decision.** `723` is **withdrawn** as a live figure, as `727` was, rather than carried with a

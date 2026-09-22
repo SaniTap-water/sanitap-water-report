@@ -20,12 +20,30 @@ END = "<!-- END GENERATED marolinta-table -->"
 
 
 def wp_link(code, ids):
-    u = ids.get(code)
-    if not u:
-        return f'<span class="mono">{code}</span>'
-    return (f'<a class="wp" href="https://portal.mwater.co/#/water_point/{u}" '
-            f'target="_blank" rel="noopener" title="open {code} in mWater">'
-            f'<span class="mono">{code}</span></a>')
+    """Link a water point to a RECORD that references it.
+
+    The portal has no route to an individual entity: #/water_point/<uuid> and
+    every variant of it land on "Page not found", and the app's own route
+    table has no entity route at all. A response does resolve, and is the
+    better target anyway - it opens the document that says something about the
+    point. data/mwater_point_responses.json maps codes to response ids.
+    """
+    import json as _json
+    p = os.path.join(REPO, "data", "mwater_point_responses.json")
+    m = _json.load(open(p, encoding="utf8")) if os.path.isfile(p) else {}
+    d = m.get(code) or {}
+    for kind, what in (("works", "first-rehabilitation record"),
+                       ("borehole", "borehole-progress record"),
+                       ("repair", "repair record"),
+                       ("pm", "maintenance visit"),
+                       ("call", "call-centre record")):
+        rid = d.get(kind)
+        if rid:
+            return (f'<a class="wp" href="https://portal.mwater.co/#/responses/'
+                    f'{rid}" target="_blank" rel="noopener" title="Open the '
+                    f'{what} for water point {code} in mWater">'
+                    f'<span class="mono">{code}</span></a>')
+    return f'<span class="mono">{code}</span>'
 
 
 def _ids():

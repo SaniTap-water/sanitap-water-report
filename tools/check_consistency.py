@@ -415,6 +415,21 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7b-6. no link to a route that does not exist ----------------------
+    rt = os.path.join(repo_root, "data", "mwater_routes.json")
+    if os.path.exists(rt):
+        _routes = json.loads(read(rt))
+        check("the portal route table is on file",
+              _routes.get("count", 0) >= 50, ">=50 routes",
+              _routes.get("count"),
+              "read from the portal bundle; tools/check_links.py checks "
+              "every emitted link against it")
+    _wp_links = sum(f.count("#/water_point/") for f in (idx, prt))
+    check("no link points at the non-existent water_point route",
+          _wp_links == 0, "none", f"{_wp_links} link(s)",
+          "the portal has no route to an individual entity; link to the "
+          "RESPONSE that references the point")
+
     # ---- 7b-7. a record count is not a point count -------------------------
     # This confusion produced 727, the 723/731 gap, and a "46 unexplained
     # points" finding that was really unstable paging. Every population

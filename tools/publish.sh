@@ -120,6 +120,18 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   # was typed. Each holds a dated backlog of what is not yet converted, and
   # that backlog may only shrink - so neither can quietly become an
   # exemption list.
+  # Every mWater route the page links to must exist in the portal's own route
+  # table. 56 anchors once matched their regex perfectly and every one of them
+  # landed on "Page not found"; a shape check cannot catch that.
+  say ""
+  say "checking the mWater links ..."
+  python3 tools/check_links.py | tail -8
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the page links to an mWater route that does not exist."
+    exit 1
+  fi
+
   say ""
   say "running the figure gates ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/figure_census.py --gate | tail -22
