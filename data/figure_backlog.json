@@ -850,15 +850,16 @@
    "sentence": "354,000"
   },
   "356.7": {
-   "n": 12,
+   "n": 17,
    "scopes": [
     "all",
+    "enduro",
     "mad",
     "madx",
     "mar"
    ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "356.7"
+   "section": "Actions — the one list",
+   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "356.8": {
    "n": 4,
@@ -1274,29 +1275,31 @@
    "sentence": "7,440"
   },
   "722": {
-   "n": 16,
+   "n": 21,
    "scopes": [
     "all",
+    "enduro",
     "mad",
     "madx",
     "mar"
    ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "722"
+   "section": "Actions — the one list",
+   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "726.6": {
-   "n": 4,
+   "n": 9,
    "scopes": [
     "all",
+    "enduro",
     "mad",
     "madx",
     "mar"
    ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "726.6"
+   "section": "Actions — the one list",
+   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "727": {
-   "n": 48,
+   "n": 18,
    "scopes": [
     "all",
     "enduro",
@@ -1305,18 +1308,7 @@
     "mar"
    ],
    "section": "Actions — the one list",
-   "sentence": "That is one variant per year, not 727, and it is what keeps the seventh impossible cell and the gardien’s weekday letter."
-  },
-  "731": {
-   "n": 17,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "731"
+   "sentence": "The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and compute"
   },
   "732": {
    "n": 42,

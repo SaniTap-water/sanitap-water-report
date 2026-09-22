@@ -28,6 +28,8 @@ END = "/* END GENERATED datasets */"
 SETS = {
     "CALX": ("data", "calendar_extraction_figures.json"),
     "METRICS": ("data", "action_metrics.json"),
+    "CARBON": ("data", "carbon_denominator.json"),
+    "ACTN": ("data", "action_counts.json"),
 }
 
 

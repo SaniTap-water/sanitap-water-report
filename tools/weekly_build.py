@@ -49,6 +49,9 @@ STEPS = [
     ("tools/render_actions.py",      ["--write"],      True),
     # the Endur'O block and the inlined datasets, so every figure the prose
     # quotes is reachable from the page's own data
+    # the carbon denominator is derived from the register, so it must be
+    # recomputed before the datasets are inlined
+    ("tools/carbon_denominator.py",  ["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
 ]

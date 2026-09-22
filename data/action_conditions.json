@@ -39,6 +39,10 @@
   },
   "says": "closes when the call form carries a service-visit-requested question"
  },
+ "act-carbon-year-basis": {
+  "kind": "none",
+  "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked"
+ },
  "act-chase-s4-16-car": {
   "kind": "decision",
   "question": "Has Earthood amended its validation report on the two external experts (CAR#8)?",

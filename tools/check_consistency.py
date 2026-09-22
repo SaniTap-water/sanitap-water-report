@@ -1434,13 +1434,40 @@ def main():
                    ("10,227", "2025 ER at 347 days"),
                    ("17,681", "the 2026 evidence gap in tCO2e"),
                    ("354,000", "the 2026 evidence gap in USD"),
-                   ("727", "carbon points active in 2026"),
                    ("722", "carbon points active in 2025"),
                    ("434", "2026 points with no dated sheet"),
                    ("11 April 2025", "the earliest passing SDWS 3 test")):
         check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
               v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
               "Part 2, computed on the register")
+    # The carbon denominator is derived, and the check asserts the derivation.
+    # 727 was pinned here as a literal for two days; pinning 731 in its place
+    # would be the same mistake one number later.
+    cd = os.path.join(repo_root, "data", "carbon_denominator.json")
+    if os.path.exists(cd):
+        cdoc = json.loads(read(cd))
+        pumps_ = js_const(idx, "PUMPS") or []
+        want = len([p for p in pumps_ if p.get("site") != "Marolinta"])
+        check("the carbon denominator is the register less Marolinta",
+              cdoc.get("carbon_points") == want, want,
+              cdoc.get("carbon_points"),
+              "actively managed register less Marolinta, which enters no carbon figure")
+        check("the carbon denominator is rendered, never typed",
+              'data-fig="CARBON.carbon_points"' in idx
+              and idx.count('data-fig="CARBON.carbon_points"') >= 8,
+              "rendered",
+              f'{idx.count(chr(34)+"CARBON.carbon_points"+chr(34))} spans',
+              "it was typed in eleven places and could not be derived at all")
+        check("727 no longer appears as a denominator in the prose",
+              "of <b>727</b>" not in idx and "727 active points" not in idx
+              and "727 carbon points" not in idx, "gone",
+              "gone" if "of <b>727</b>" not in idx else "STILL PRESENT",
+              "superseded 2026-09-22; see docs/decision_log.md")
+        check("the per-year carbon table is marked unsourced",
+              idx.count('class="unsourced"') >= 13
+              and "not reproducible from this repository" in idx, "marked",
+              f'{idx.count(chr(34)+"unsourced"+chr(34))} cells marked',
+              "no per-year activity basis exists in this repository")
     check("the quantification is marked contingent, not a claim",
           "Nothing in this block is presented as a claim" in idx
           and "Contingent on the" in idx, "marked",
@@ -1620,9 +1647,15 @@ def main():
     check("the recovery round is whole-portfolio against the 727 denominator",
           "whole portfolio &mdash; not a sample" in idx, "stated",
           "stated" if "whole portfolio &mdash; not a sample" in idx else "MISSING")
-    for v, why in (("293", "points with usable dated 2026 evidence"),
-                   ("40.3%", "the 2026 custody percentage"),
-                   ("32.8%", "the 2025 custody percentage")):
+    # The 2026 custody figures are derived now, so they are not literals in
+    # the source; assert the spans that produce them instead.
+    check("fleet section renders the 2026 custody figures from the data",
+          'data-fig="CARBON.carbon_points_with_2026_sheet"' in idx
+          and 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx, "rendered",
+          "rendered" if 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx
+          else "MISSING",
+          "calendar custody is a headline operational metric")
+    for v, why in (("32.8%", "the 2025 custody percentage"),):
         check(f"fleet section states {why}: {v}", f"<b>{v}</b>" in idx, v,
               v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
               "calendar custody is a headline operational metric")
@@ -1700,13 +1733,16 @@ def main():
         check("consent document reports the mWater answer as a count",
               "0 water points, against 727 active carbon" in cs, "counted",
               "counted" if "0 water points, against 727 active carbon" in cs
-              else "MISSING")
+              else "MISSING",
+              "the analysis doc is left as written and carries a dated "
+              "correction note; the report carries the derived denominator")
     # The standalone consent block was folded into its action row, so these
     # match on the two claims rather than on the removed markup: the
     # individual-level count is zero across the active points, and the
     # community-level notice is already signed.
     _cons_zero = re.search(r"no individual record exists for any of the\s*"
-                           r"(?:<[^>]+>\s*)*727 active points", idx)
+                           r'(?:<[^>]+>\s*)*(?:<span data-fig="CARBON\.'
+                           r'carbon_points"></span>)\s*active carbon points', idx)
     check("the page carries the consent figure",
           bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
           "present", "present" if _cons_zero else "MISSING")
@@ -3061,11 +3097,16 @@ def main():
                 pm_ = re.search(r'pill\s+[a-z]+">([A-Z]{2,})<', b_)
                 src_pills[pm_.group(1) if pm_ else "NO PILL"] += 1
                 break
-    hdr = re.search(r"<b>(\d+)</b> to act on, <b>(\d+)</b> to watch"
-                    r".*?<b>(\d+)</b> closed this period", genblk, re.S)
+    # The header counts are rendered from data/action_counts.json now, not
+    # typed into the markup, so they are read from there. That is the stronger
+    # test anyway: it compares the numbers the page will actually show against
+    # the rows it actually renders, rather than against a regex on prose.
+    acn_p = os.path.join(repo_root, "data", "action_counts.json")
+    acn = json.loads(read(acn_p)) if os.path.exists(acn_p) else None
+    hdr = acn is not None
     hdr_counts = (collections.Counter(
-        {"ACT": int(hdr.group(1)), "WATCH": int(hdr.group(2)),
-         "OK": int(hdr.group(3))}) if hdr else collections.Counter())
+        {"ACT": acn["act"], "WATCH": acn["watch"], "OK": acn["closed"]})
+        if acn else collections.Counter())
     rendered = collections.Counter(
         re.findall(r'<tr data-state="([A-Z]+)"', flatblk))
     check("the header counts match the rows it renders",
@@ -3097,12 +3138,12 @@ def main():
           "; ".join(disagree[:2])[:120] if disagree
           else f"{sum(1 for v in astate.values() if v.get('satisfied') is not None)}"
                " conditions evaluated this build")
-    nod = re.search(r'id="act-nodate-tile"><b>(\d+)</b>', genblk)
+    nod = acn and acn.get("nodate")
     want_nod = sum(1 for m in re.finditer(r'<tr data-state="ACT"([^>]*)>', flatblk)
                    if 'data-nodate="1"' in m.group(1))
     check("the no-date figure counts the rows it says it counts",
-          bool(nod) and int(nod.group(1)) == want_nod,
-          f"{want_nod}", nod.group(1) if nod else "MISSING",
+          nod is not None and int(nod) == want_nod,
+          f"{want_nod}", str(nod) if nod is not None else "MISSING",
           "ACT rows with no proposed date - one decision for Jan")
 
     # ---- 7bb. owner and deadline come from the workbook, status does not --

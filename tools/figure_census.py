@@ -99,7 +99,7 @@ REACH = r"""() => {
   };
   for (const n of ['S', 'REG', 'TTR', 'WPOPMETA', 'CORR', 'ROUTES', 'ENDURO',
                    'TRACE', 'SCOPES', 'DOWN', 'OPENREP', 'PARTIAL', 'PUMPS',
-                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS'])
+                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
   // the aggregate the page computes for the scope now showing, and the

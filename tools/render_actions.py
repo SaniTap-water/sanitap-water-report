@@ -360,29 +360,40 @@ def block(idx, today=None):
                      '<th class="num">Deadline</th><th>What would close it</th>'
                      '</tr></thead>')
 
+    # The counts are live: they move whenever an item opens or closes. Write
+    # them to data/ so they are inlined as ACTN and rendered through data-fig
+    # spans, instead of being typed into the generated markup - which is what
+    # the prose figure gate objects to, correctly.
+    json.dump({"act": n_act, "watch": n_watch, "open": n_act + n_watch,
+               "overdue": n_over, "closed": n_ok, "rows": len(acts),
+               "nodate": n_nodate},
+              open(os.path.join(REPO, "data", "action_counts.json"), "w",
+                   encoding="utf8"), indent=1, sort_keys=True)
+    F = lambda k: f'<span data-fig="ACTN.{k}"></span>'   # noqa: E731
+
     out = [
         '<section data-scopes="all mad madx mar enduro" id="actions">',
         '  <div class="sechead"><div><h2>Actions &mdash; the one list</h2>'
         '<p>Every open item in this report, in one place. Open a row for the '
         'detail; there is no second list to keep in step with this one. '
-        f'<b>{n_act + n_watch}</b> open &mdash; <b>{n_act}</b> to act on, '
-        f'<b>{n_watch}</b> to watch'
-        + (f', <b>{n_over}</b> past their proposed date' if n_over else "")
-        + f'. <b>{n_ok}</b> closed this period.</p></div>'
-        f'<span class="count">{len(acts)} rows</span></div>',
+        f'<b>{F("open")}</b> open &mdash; <b>{F("act")}</b> to act on, '
+        f'<b>{F("watch")}</b> to watch'
+        + (f', <b>{F("overdue")}</b> past their proposed date' if n_over else "")
+        + f'. <b>{F("closed")}</b> closed this period.</p></div>'
+        f'<span class="count">{F("rows")} rows</span></div>',
         # --- the shape of the work, before anything is opened ------------
         '  <div class="actstats">',
-        f'    <div class="stat"><b>{n_act}</b><span>'
+        f'    <div class="stat"><b>{F("act")}</b><span>'
         f'<span class="pill crit">ACT</span> to act on'
-        + (f' &middot; {n_over} past their date' if n_over else "")
+        + (f' &middot; {F("overdue")} past their date' if n_over else "")
         + '</span></div>',
-        f'    <div class="stat"><b>{n_watch}</b><span>'
+        f'    <div class="stat"><b>{F("watch")}</b><span>'
         f'<span class="pill warn">WATCH</span> standing items</span></div>',
-        f'    <div class="stat"><b>{n_ok}</b><span>'
+        f'    <div class="stat"><b>{F("closed")}</b><span>'
         f'<span class="pill ok">OK</span> closed this period</span></div>',
-        f'    <div class="stat" id="act-nodate-tile"><b>{n_nodate}</b><span>'
-        f'<b>of the {n_act} carry no proposed date.</b> Setting them is one '
-        f'decision for Jan, not {n_nodate}</span></div>',
+        f'    <div class="stat" id="act-nodate-tile"><b>{F("nodate")}</b><span>'
+        f'<b>of the {F("act")} carry no proposed date.</b> Setting them is one '
+        f'decision for Jan, not {F("nodate")}</span></div>',
         '  </div>',
         # --- counts per owner, in the header -----------------------------
         '  <div class="eyebrow" style="margin:16px 0 6px">Per owner</div>',
@@ -403,11 +414,11 @@ def block(idx, today=None):
         '  <div class="eyebrow" style="margin:16px 0 6px">Show</div>',
         '  <div class="actviews">',
         '    <button class="tg" id="av-act" data-view="act" aria-pressed="true">'
-        f'To act on &mdash; {n_act}</button>',
+        f'To act on &mdash; {F("act")}</button>',
         '    <button class="tg" id="av-nodate" data-view="nodate" '
-        f'aria-pressed="false">No date set &mdash; {n_nodate}</button>',
+        f'aria-pressed="false">No date set &mdash; {F("nodate")}</button>',
         '    <button class="tg" id="av-all" data-view="all" aria-pressed="false">'
-        f'Full list &mdash; {len(acts)}</button>',
+        f'Full list &mdash; {F("rows")}</button>',
         '    <button class="tg" id="av-owner" data-view="owner" '
         'aria-pressed="false">By owner</button>',
         '  </div>',

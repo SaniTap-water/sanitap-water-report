@@ -9,6 +9,60 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — The carbon denominator changed from 727 to 731, because 727 could not be derived
+
+**Decision.** The denominator for "active carbon points" on the report is now **731** — the
+actively managed register less Marolinta — computed from the register every build by
+`tools/carbon_denominator.py`. It replaces **727**, which was carried in eleven places including
+under carbon claims, and which nothing in this repository can reproduce.
+
+**From 727 to 731. The figures that changed with it:**
+
+| figure | was | is | basis |
+|---|---|---|---|
+| active carbon points | 727 | **731** | `PUMPS` less Marolinta, computed |
+| carbon points with a dated 2026 calendar sheet | 293 | **297** | `data/calendar_year_coverage.csv` ∩ the carbon fleet |
+| carbon points with none | 434 | **434** | 731 − 297, unchanged |
+| 2026 calendar coverage | 40.3% | **40.6%** | 297 ÷ 731 |
+
+**434 was right all along, and that is what settles it.** The count of carbon points with no dated
+2026 sheet reproduces *exactly* on the 731 basis. The page's own arithmetic was internally
+consistent — 727 − 434 = 293 — but the denominator was wrong by four, so the covered count was
+wrong by four in the other direction.
+
+**Why 727 could not be kept.** Four candidate derivations were tested against the data. All four
+reach 727 arithmetically and none is a set operation:
+
+* **732 corrected successful first rehabilitations − 5 Marolinta.** `SUCC_CORRECTED` counts
+  corrected *records*, two of which are not in the maintained fleet, so subtracting Marolinta from
+  it is not an operation over the fleet.
+* **731 − 4**, **736 − 9**, **751 − 24**, **738 − 11.** None of the subtrahends corresponds to any
+  identified set in `CORR`, `REG` or the extracts.
+* The nearest principled reading — successfully rehabilitated, not Marolinta, less the points
+  flagged *"refer to James Walker before this point is counted in a monitoring report"* — gives
+  **728**, not 727, because one of those three (`742895010`) is not in the fleet to begin with.
+
+And it cannot be checked here at all: `premiere_rehabilitation.csv` is header-only and
+`wp_madavance.csv` carries no rehabilitation, eligibility or commissioning column, so no per-point
+successful-rehabilitation set and no per-year activity set exists locally.
+
+**Where it came from.** 727 arrived already formed in commit `8b33228` (20 September 2026, the
+SDWS 27 basis work), with no computation beside it. It was never derived in this repository.
+
+**What is NOT changed, and is now marked unsourced on the page.** The SDWS 27 per-year
+quantification table reports carbon points active and point-years per year — 0 / 722 / 727 and
+0 / 356.7 / 726.6 — and computes every tonnage and USD figure from them. Those are *per-year*
+counts: a point counts in a year from the date it entered the programme. That basis does not
+exist in this repository, so the tonnages cannot be recomputed on 731 either. Changing one cell
+and leaving its row would have been worse than saying so. All thirteen cells carry a visible
+mark and the table carries a stated caveat naming what is missing. `act-carbon-year-basis` is
+open against it.
+
+**Consequence.** No figure on the page divides by 727 any more. The per-year table is the only
+place it still appears, shown as entered and marked as such.
+
+---
+
 ## 2026-09-21 — The gardien calendar is the official record of days operational
 
 **Decision.** The gardien calendar is the official record of days operational for `SDWS 27`. The

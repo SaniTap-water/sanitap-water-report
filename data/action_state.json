@@ -5,7 +5,7 @@
   "data": 37,
   "decision": 39,
   "form": 8,
-  "none": 19
+  "none": 20
  },
  "state": {
   "act-2026-recovery": {
@@ -56,6 +56,14 @@
    "kind": "form",
    "satisfied": false,
    "says": "closes when the call form carries a service-visit-requested question",
+   "when_satisfied": "OK"
+  },
+  "act-carbon-year-basis": {
+   "evaluated": "2026-09-22",
+   "evidence": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked",
    "when_satisfied": "OK"
   },
   "act-chase-s4-16-car": {

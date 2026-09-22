@@ -1,5 +1,8 @@
 # The decommissioning rule: decision record
 
+> **Denominator corrected 2026-09-22.** The active carbon point count used here was **727**, which is not derivable from any data in this repository. It is now **731** — the actively managed register less Marolinta, computed every build. See the decision log entry of 22 September 2026. The figures below are left as written on the date stated; the report itself carries the corrected denominator.
+
+
 ## Decision, 21 September 2026
 
 **SaniTap will not decommission or retire water points for inactivity.**
