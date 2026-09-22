@@ -26,8 +26,19 @@ Mark 500 — correct for its caption. The fault was introduced at the **WorldPop
 16 September** (`01eb3bf`), which recomputed it to 115,074 on the wrong cap while leaving the
 caption alone. So this was not drift and not staleness: it was recomputed, and recomputed wrong.
 
-**Where it was published.** Six days, 16–22 September 2026. Four archived editions carry it —
-`wk38-ed5`, `wk38-ed6`, `wk38-ed7`, `wk38-ed9` — and the live page did until 22 September.
+**Where it was published — the exposure.** It was never emailed to anyone; it stayed inside the
+report. The exposure is four archived editions and six days live:
+
+| edition | issued | live until |
+|---|---|---|
+| `2026-09-16-wk38-ed5.html` | Wed 16 Sep 2026 | superseded same day |
+| `2026-09-16-wk38-ed6.html` | Wed 16 Sep 2026 | superseded same day |
+| `2026-09-16-wk38-ed7.html` | Wed 16 Sep 2026 | superseded 18 Sep |
+| `2026-09-16-wk38-ed9.html` | Wed 16 Sep 2026, archived 18 Sep | on the live site until 22 Sep 07:28 |
+
+**The archives are not corrected.** They are the record. A corrected archive is a worse artefact
+than a wrong one with a correction attached, so all four keep the figure they were issued with
+and this entry is the correction attached to them.
 
 **Why nothing caught it.** It was a stored constant, `WPOP_C250`, sitting beside the data it
 duplicated, with no assertion anywhere and no computation to check it against. A wrong figure of
@@ -45,6 +56,60 @@ the published total by 8. `wpopAt` uses the published `capped` for any point bel
 and the raw only for a point at its ceiling, which is the only reconstruction that reproduces
 128,221. The old stored constants used the naive form, so they were a further 8 out on top of
 the cap error.
+
+---
+
+## 2026-09-22 — Exposure trace for 727, which did leave the building
+
+**Why this is separate.** 115,074 stayed inside the report. 727 did not: it was sent to James
+Walker on Monday 21 September, four times — as the 2026 active carbon count, as the denominator
+of "293 of those 727", as "roughly 127,000 people at 727 points", and as "zero of 727 points" in
+the Annexe B individual-consent argument. The correction to him is drafted separately. This is
+the trace of everywhere else it reached.
+
+**When it existed at all.** 727 was created on **Sunday 20 September 2026 at 07:09** in commit
+`8b33228`, the SDWS 27 basis work. It did not exist before that date. That one fact clears most
+of the field.
+
+**The live report.** Present from 20 Sep 07:09 until 22 Sep 07:46 (`70447c7`) — two days:
+
+| commit | time | 727 rendered |
+|---|---|---|
+| `8b33228` | Sun 20 Sep 07:09 | 3 |
+| `e9bd885` | Sun 20 Sep 14:28 | 8 |
+| `8a606a8` | Mon 21 Sep 18:53 | 13 |
+| `d513e1a` | Mon 21 Sep 22:00 | 13 |
+| `41e7e0c` | Tue 22 Sep 07:28 | 13 |
+| `70447c7` | Tue 22 Sep 07:46 | 0 as a denominator |
+
+**Archived editions: none.** No archived edition carries 727 as a figure. The last archive is
+`wk38-ed9` of 18 September, two days before 727 was created, and week 39 was never archived. The
+`routes.html` and `portfolio.html` companions carry none either.
+
+**The UNICEF deck of 17 September: clear.** `SaniTap UNICEF 2026-09-17 v_02.pptx` was last
+written on **15 September**, five days before 727 existed, and contains no 727, 731, 293, 434,
+736 or 723 on any of its twenty slides. It cannot have carried the figure.
+
+**Two SOPs in SharePoint do carry it,** both written 20 September, and both in the rhetorical
+sense rather than as a carbon claim — *"727 variantes propres à chaque point"*, the argument for
+why a per-year calendar grid beats a per-pump one:
+
+* `SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx` (current), 20 Sep 22:43
+* `SOPs/Archive/SOP-MAD-SDWS27-CalendrierGardien-v1.4-2026.docx` (archived), 20 Sep 21:48
+
+They are SOPs a VVB may be shown. The number is wrong there for the same reason it was wrong on
+the page — it should be the derivable 731 — though nothing in either document divides by it.
+
+**No monitoring report or VPA-DD extract carries it.** Nothing under
+`Central Data Hub - Water Documents` or `MadAvance` modified since 19 September contains 727
+apart from those two SOPs; the Marolinta interim report of 20 September does not.
+
+**Analysis documents.** `docs/sdws27_basis.md`, `docs/enduser_consent_position.md` and
+`docs/decommissioning_rule_question.md` each carry it and each now carries a dated correction
+note at the top. Their bodies are left as written, for the same reason the archives are.
+
+**Still on the page, deliberately.** Six occurrences remain: the SDWS 27 per-year table cell,
+which is shown as entered and visibly marked unsourced, and the text explaining the change.
 
 ---
 

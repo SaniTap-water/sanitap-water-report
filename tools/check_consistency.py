@@ -415,6 +415,111 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7c-0. an aggregate and its row set are ONE quantity --------------
+    # S.n and len(PUMPS) are two sources for the same number. That is the
+    # two-bases fault one layer down: the prose reads S.n, agg() reads PUMPS,
+    # and a test that moves one and not the other cannot be clean. Every
+    # aggregate that has a row set behind it is checked against that set.
+    _P = js_const(idx, "PUMPS") or []
+    _S = js_const(idx, "S") or {}
+    _REG = js_const(idx, "REG") or {}
+    if _P and _S:
+        check("S.n equals the number of rows in PUMPS",
+              _S.get("n") == len(_P), len(_P), _S.get("n"),
+              "one quantity, one source - the prose reads S.n, agg() reads PUMPS")
+        want_site = collections.Counter(p.get("site") for p in _P)
+        got_site = _S.get("by_site") or {}
+        bad = [k for k in set(want_site) | set(got_site)
+               if want_site.get(k, 0) != got_site.get(k, 0)]
+        check("S.by_site equals the site counts in PUMPS",
+              not bad, dict(want_site),
+              f"differs on {', '.join(sorted(bad)[:3])}" if bad else dict(got_site),
+              "the scope buttons filter PUMPS; the prose quotes S.by_site")
+        want_pump = collections.Counter(p.get("pump") for p in _P)
+        got_pump = _S.get("by_pump") or {}
+        badp = [k for k in set(want_pump) | set(got_pump)
+                if want_pump.get(k, 0) != got_pump.get(k, 0)]
+        check("S.by_pump equals the pump-type counts in PUMPS",
+              not badp, dict(want_pump),
+              f"differs on {', '.join(sorted(badp)[:3])}" if badp else dict(got_pump),
+              "the India Mark cap applies by pump type")
+        want_st = collections.Counter(p.get("status") for p in _P)
+        got_st = _S.get("status") or {}
+        bads = [k for k in set(want_st) | set(got_st)
+                if want_st.get(k, 0) != got_st.get(k, 0)]
+        check("S.status equals the status counts in PUMPS",
+              not bads, dict(want_st),
+              f"differs on {', '.join(sorted(bads)[:3])}" if bads else dict(got_st),
+              "the donuts read agg(PUMPS); the prose quotes S.status")
+        want_o6 = sum(1 for p in _P if (p.get("days") or -1) > 182)
+        check("S.over6 equals the rows in PUMPS over six months",
+              _S.get("over6") == want_o6, want_o6, _S.get("over6"),
+              "days > 182, the same test agg() applies")
+        # S.never is NOT the visit figure, and this check found that out:
+        # it counts points with no works record of ANY kind - rehabilitation
+        # and construction included - which is 57, while agg().never counts
+        # points with no visit date, which is 6. Two quantities under one
+        # name, which is the fault pattern this page has been bitten by three
+        # times. Both are asserted against their own source, and the page is
+        # checked for conflating them.
+        want_nv = sum(1 for p in _P if p.get("days") is None)
+        _M = js_const(idx, "METRICS") or {}
+        check("agg().never - points with no visit - matches PUMPS",
+              want_nv == len([p for p in _P if not p.get("last_visit")]),
+              want_nv, len([p for p in _P if not p.get("last_visit")]),
+              "days is null exactly when last_visit is null")
+        check("S.never is the works-record count, and matches its metric",
+              _S.get("never") == _M.get("points_no_works_record"),
+              _M.get("points_no_works_record"), _S.get("never"),
+              "no rehabilitation, construction, visit or repair - NOT the "
+              "visit figure, which is agg().never")
+        check("S.never and agg().never are not conflated in the prose",
+              str(_S.get("never")) not in re.findall(
+                  r"<b>(\d+)</b>\s*(?:water points|points|pumps)?\s*"
+                  r"(?:with )?no visit", idx),
+              "not conflated", "not conflated",
+              f"S.never={_S.get('never')} counts works records; "
+              f"agg().never={want_nv} counts visits")
+    if _REG:
+        _recon = _REG.get("recon")
+        if isinstance(_recon, list):
+            check("REG.recon carries the rows its count implies",
+                  len(_recon) == len({r.get("wp") for r in _recon}),
+                  f"{len(_recon)} distinct",
+                  f"{len({r.get('wp') for r in _recon})} distinct",
+                  "a reconciliation list with a duplicate counts a point twice")
+    _CORR = js_const(idx, "CORR") or {}
+    if _CORR:
+        check("SUCC_CORRECTED equals REG.succ plus the corrections CORR lists",
+              f"const SUCC_CORRECTED=REG.succ+CORR.corrected.length" in idx,
+              "computed",
+              "computed" if "SUCC_CORRECTED=REG.succ+CORR.corrected.length" in idx
+              else "STORED",
+              "it was a stored 732 sitting beside the data it duplicated")
+
+    # ---- 7c-1. sensitivity figures are computed, never stored -------------
+    # WPOP_C250 was a stored constant captioned "Canzee 250 and India Mark
+    # 500" and computed with India Mark at 300. It was published wrong by
+    # 8,478 people for six days and nothing caught it, because a stored
+    # constant has nothing to disagree with. Every cap-sensitivity figure is
+    # computed at render time now, from WPOP and the caps in PARAMS.
+    stored = re.findall(r"const (WPOP_[A-Z0-9_]+)\s*=\s*\d", idx)
+    check("no sensitivity figure is stored as a constant",
+          not stored, "none stored",
+          f"stored: {', '.join(stored[:3])}" if stored else "none stored",
+          "a stored figure and its caption can disagree, and did")
+    check("the sensitivity figures are computed from WPOP and the caps",
+          "function wpopAt(" in idx and idx.count("wpopAt(") >= 3,
+          "computed", "computed" if "function wpopAt(" in idx else "MISSING",
+          "wpopAt(imCap, czCap) reads WPOP and the pump type")
+    check("every wpopAt call takes its caps from PARAMS, not a literal",
+          not re.findall(r"wpopAt\(\s*\d+\s*,\s*\d+\s*\)", idx),
+          "no literal caps",
+          "; ".join(re.findall(r"wpopAt\([^)]*\)", idx)[:2])
+          if re.findall(r"wpopAt\(\s*\d+\s*,\s*\d+\s*\)", idx)
+          else "no literal caps",
+          "the caption and the computation must read the same declared cap")
+
     # ---- 7c-bis. every declared constant carries its citation -------------
     # A constant with a citation is correct; a constant without one is
     # indistinguishable from a typo. PARAMS is the only place a non-live

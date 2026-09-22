@@ -102,6 +102,23 @@ REACH = r"""() => {
                    'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
+  // Figures the page COMPUTES at top level. SUCC_CORRECTED is
+  // REG.succ + CORR.corrected.length and renders 42 times; without this it
+  // was reported as unsourced, which is the census being wrong about a
+  // figure that is derived.
+  for (const n of ['SUCC_CORRECTED', 'IM_CAP', 'IM_CAP_ALT', 'CZ_CAP',
+                   'CAP_T', 'ER_ANOSY', 'ER_MARO', 'DO_CAP'])
+    { const v = g(n); if (typeof v === 'number') note(v, n); }
+  // and the cap-sensitivity totals, which are computed from WPOP
+  const wa = g('wpopAt'), P_ = g('PARAMS');
+  if (typeof wa === 'function' && P_) {
+    const caps = [P_.im_cap, P_.im_cap_alt, P_.cz_cap, P_.cz_cap_old]
+                   .filter(Boolean).map(x => x.v);
+    for (const a of caps) for (const b of caps) {
+      try { note(wa(a, b), `wpopAt(${a},${b})`); } catch (e) {}
+    }
+  }
+
   // the aggregate the page computes for the scope now showing, and the
   // Marolinta basis, which is a scope figure like any other
   const A = g('agg') && g('HP') ? g('agg')(g('HP')) : null;

@@ -225,6 +225,32 @@ The checker enforces the parts it can see: that nothing marked OK is still descr
 that every detailed row carries an up-link to the list, that no action-shaped text hides inside
 a collapsed block without a row, and that the status vocabulary is exactly these three.
 
+## Waiting for a background job: never `pgrep -f` on its own pattern
+
+On 22 September a session was ending every report with "18 shells still running". Nothing in
+this repository was leaking them. `publish.sh`, `weekly_build.sh` and `weekly_build.py` have no
+backgrounded step, and the render gate closes its browser on every path — there were zero stray
+Chromium processes. The orphans were wait loops of this shape:
+
+```bash
+until ! pgrep -f "weekly_build.py" >/dev/null; do sleep 60; done   # never exits
+```
+
+`pgrep -f` matches against the full command line, and the waiting shell's own command line
+contains the pattern it is searching for. So the loop matches itself, `pgrep` never returns
+empty, and the shell waits for ever. Twenty-two of them had accumulated, the oldest three days
+old, several polling for a script that had finished days earlier.
+
+Wait on something that cannot match the waiter:
+
+```bash
+until ! pgrep -f "[w]eekly_build.py" >/dev/null; do sleep 60; done   # bracket breaks self-match
+until ! pgrep -x python3 >/dev/null; do sleep 60; done               # match the process, not the line
+wait "$PID"                                                          # best: wait on the job itself
+```
+
+Check before reporting a run finished: `pgrep -f "[u]ntil ! pgrep"` should return nothing.
+
 ## Other standing rules
 
 * Clone and patch the live files. Never rebuild a page from sources elsewhere.
