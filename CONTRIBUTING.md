@@ -703,3 +703,31 @@ candidate is gated like any other and is taken only if its data is genuinely
 newer than the local build's. What it still does usefully is notice — if it
 runs and this machine has not published, its output lands in Downloads and
 `tools/check_build_drop.py` turns that into a failing check.
+
+## Extracts: one puller, one manifest, one vintage
+
+Every extract the build reads is pulled by `tools/pull_extract.py --write` and recorded in
+`data/extract_manifest.json`. There are twelve: five response CSVs, the seven JSON extracts the
+populations read, and the register, which is pulled separately.
+
+**Never add an extract without adding it to the puller.** Seven JSON extracts spent months
+outside the build because `tools/mwater/pull_form.mjs` was correct and invoked by nothing. Six
+populations read them; nothing refreshed them; every gate passed, because the figures agreed with
+the populations and the populations agreed with the files. An input that has stopped moving is
+invisible to any check that only compares the build to itself.
+
+Three rules follow:
+
+1. **Enumerate in bounded windows, never by paging.** mWater's `skip`/`limit` has no sort order,
+   so a paged pull duplicates some rows and drops others, and stops on a short page either way.
+   Both pullers walk date windows and de-duplicate on `_id`. `tools/check_extracts.py` reads the
+   files themselves and fails on any repeated `_id`.
+2. **Every extract carries its pull date, and no extract may predate the build it feeds.**
+   `tools/check_vintage.py` enforces it. A file left over from a previous week fails the build and
+   is named.
+3. **The page states the OLDEST pull, never the newest.** One extract pulled today beside one left
+   over from last week must not read as "data to today". A form's own last record is a different
+   quantity — a quiet form has an old last record and is perfectly current — so the two are
+   reported separately and neither is passed off as the other.
+
+`tools/test_vintage.py` is the negative test. Run it after touching any of this.

@@ -474,3 +474,39 @@ swept and gated rather than fixed case by case:
 
 The sweep's own finding is that `S` and `TTR` are the worst of it: 20 of `S`'s fields and **all 13
 of `TTR`'s** are computed by nothing.
+
+---
+
+## 2026-09-22 — Seven extracts were outside the build, and the page stated the newest vintage
+
+**What was found.** Seven JSON extracts — `combined_rehab`, `repair`, `wq_results`, `hygiene`,
+`identification`, `marolinta_borehole`, `first_rehab_current` — were refreshed by no build step.
+`tools/mwater/pull_form.mjs` was invoked by nothing: it existed, it was correct, and no script
+called it. **Six of the fourteen populations are built from those files**, so they held whatever
+date someone last ran that script by hand.
+
+**Why no gate caught it.** This is the frozen-value fault one level up. The figure gates compare
+figures to populations and populations to files, and all three agreed — because they were all
+reading the same frozen inputs. Everything passed green while the inputs aged. A gate that checks
+internal consistency cannot see an input that has stopped moving.
+
+**What followed.**
+
+* `tools/pull_extract.py` now pulls all seven through `pull_form.mjs`, in 30-day windows,
+  de-duplicated on `_id`, and records each in `data/extract_manifest.json` beside the five CSVs.
+  Twelve extracts, one manifest, one pull step.
+* `tools/check_vintage.py` fails the build if any extract was pulled before the build it is
+  feeding. `wp_madavance.csv` is pulled by a separate filtered export — an unfiltered
+  `water_point` export walks the whole global mWater entity table — so it carries its own
+  14-day limit rather than a silent exemption.
+* **The page now states the vintage floor.** The caption led with `extract_newest`, the newest
+  source, which claims a currency no single source has. It now leads with the OLDEST pull across
+  every extract and names the file that sets it. A form's own last record is a different quantity
+  and is reported separately: a quiet form has an old last record and is perfectly current.
+* `tools/test_vintage.py` is the negative test — it holds one extract back a week against a copy
+  of the manifest and asserts the build fails, names the file, and moves the stated vintage.
+
+**Correction made during the work.** The first version of the check took the vintage floor from
+the oldest *last record*, which reported "data to 29 August" because the Marolinta borehole form
+had simply been quiet since then. That is the error in the other direction, and it was fixed
+before the check was wired in: the floor is the oldest **pull**.

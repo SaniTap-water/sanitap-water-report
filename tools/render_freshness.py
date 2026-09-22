@@ -24,8 +24,21 @@ def nice(d):
     return f"{x.day} {x.strftime('%B')} {x.year}"
 
 
+def vintage():
+    """The vintage floor: the OLDEST pull across every extract the build reads.
+
+    The caption used to lead with extract_newest, which is the newest source.
+    That states a currency no single source has - one extract pulled today and
+    another left over from last week read as "data to today". The floor is the
+    only date true of all of them.
+    """
+    p = os.path.join(REPO, "data", "extract_vintage.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else None
+
+
 def caption():
     f = json.load(open(os.path.join(REPO, "data", "data_freshness.json")))
+    vin = vintage()
     per = f.get("per_source") or {}
     gaps = f.get("known_gaps") or {}
     ex = f["extract_newest"]
@@ -42,6 +55,18 @@ def caption():
     body = "; ".join(bits)
     head = ('<p id="weekcap">Activity in the <b>7 days to ' + nice(ex) + '</b>, '
             'against the previous 7 days and the last 28. ')
+    if vin and vin.get("data_to"):
+        n_ex = len(vin.get("per_extract") or {})
+        spread = vin.get("spread_days")
+        head += ('<b>Data to ' + nice(vin["data_to"]) + '.</b> '
+                 + (f'That is the oldest of the {n_ex} extracts this edition is '
+                    f'built from, not the newest: '
+                    + ", ".join(vin.get("oldest_sources") or [])
+                    + f' was pulled {spread} day(s) before the most recent one, '
+                      'so nothing here is claimed to be more current than that. '
+                    if spread else
+                    f'All {n_ex} extracts were pulled the same day, so every '
+                    'source is of one vintage. '))
     if not late:
         return (head + '<span class="muted">Every source is level with mWater as '
                 'of ' + nice(f["checked"]) + ': ' + body + '.</span></p>')

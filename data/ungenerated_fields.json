@@ -9,7 +9,9 @@
    "object": "CORR",
    "why": "the standing corrections log, maintained by hand by the COO",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the standing corrections log: a human decision per record"
   },
   {
    "field": "CORR.decided_by",
@@ -17,7 +19,9 @@
    "object": "CORR",
    "why": "the standing corrections log, maintained by hand by the COO",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "who decided"
   },
   {
    "field": "CORR.eligibility_flags",
@@ -25,7 +29,9 @@
    "object": "CORR",
    "why": "the standing corrections log, maintained by hand by the COO",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "eligibility decisions, same"
   },
   {
    "field": "CORR.excluded",
@@ -33,7 +39,9 @@
    "object": "CORR",
    "why": "the standing corrections log, maintained by hand by the COO",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the exclusion list, same"
   },
   {
    "field": "CORR.note",
@@ -41,7 +49,9 @@
    "object": "CORR",
    "why": "the standing corrections log, maintained by hand by the COO",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the log's own preamble"
   },
   {
    "field": "DOWN.[].benef",
@@ -49,7 +59,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].commune",
@@ -57,7 +69,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].days",
@@ -65,7 +79,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now, days since last visit - the same rule S.over6 uses"
   },
   {
    "field": "DOWN.[].fkt",
@@ -73,7 +89,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].lat",
@@ -81,7 +99,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].lon",
@@ -89,7 +109,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].pump",
@@ -97,7 +119,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].site",
@@ -105,7 +129,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].wq",
@@ -113,7 +139,9 @@
    "object": "DOWN",
    "why": "register attributes copied into the down-points table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "METRICS.pm_visits_last_full_month",
@@ -121,7 +149,9 @@
    "object": "METRICS",
    "why": "headline metrics duplicated from figures computed elsewhere",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "preventive-maintenance records in the last full month"
   },
   {
    "field": "METRICS.points_no_works_record",
@@ -129,7 +159,9 @@
    "object": "METRICS",
    "why": "headline metrics duplicated from figures computed elsewhere",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "duplicate of S.never"
   },
   {
    "field": "METRICS.points_over_6_months",
@@ -137,7 +169,9 @@
    "object": "METRICS",
    "why": "headline metrics duplicated from figures computed elsewhere",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "duplicate of S.over6, which rebuild_activity already computes"
   },
   {
    "field": "OPENREP.[].age",
@@ -145,7 +179,9 @@
    "object": "OPENREP",
    "why": "open-repair table attributes",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "open repairs: days since the breakdown was reported"
   },
   {
    "field": "OPENREP.[].commune",
@@ -153,7 +189,9 @@
    "object": "OPENREP",
    "why": "open-repair table attributes",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "open repairs joined to the register"
   },
   {
    "field": "OPENREP.[].site",
@@ -161,7 +199,9 @@
    "object": "OPENREP",
    "why": "open-repair table attributes",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "open repairs joined to the register"
   },
   {
    "field": "OPENREP.[].status",
@@ -169,7 +209,9 @@
    "object": "OPENREP",
    "why": "open-repair table attributes",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "open repairs, current status"
   },
   {
    "field": "PUMPS.[].benef",
@@ -177,7 +219,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].commune",
@@ -185,7 +229,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].fkt",
@@ -193,7 +239,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].lat",
@@ -201,7 +249,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].lon",
@@ -209,7 +259,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].pump",
@@ -217,7 +269,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].site",
@@ -225,7 +279,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "PUMPS.[].wq",
@@ -233,7 +289,9 @@
    "object": "PUMPS",
    "why": "register attributes copied into the fleet table",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "S.abandoned",
@@ -241,7 +299,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "points recorded as abandoned"
   },
   {
    "field": "S.benef_cov",
@@ -249,7 +309,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "managed_fleet points carrying a beneficiary count"
   },
   {
    "field": "S.benef_total",
@@ -257,7 +319,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "beneficiaries summed over managed_fleet"
   },
   {
    "field": "S.by_pump",
@@ -265,7 +329,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet, grouped by the register's pump attribute"
   },
   {
    "field": "S.by_site",
@@ -273,7 +339,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet, grouped by the register's site attribute"
   },
   {
    "field": "S.down_list",
@@ -281,7 +349,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "down_now (20 members) - the list IS the population"
   },
   {
    "field": "S.gap",
@@ -289,7 +359,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "managed_fleet bucketed by days since last visit"
   },
   {
    "field": "S.mdue",
@@ -297,7 +369,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "points due for maintenance, by month"
   },
   {
    "field": "S.never",
@@ -305,7 +379,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "points with no works record of any kind - construction and rehabilitation included"
   },
   {
    "field": "S.oos",
@@ -313,7 +389,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "points out of service, as a list"
   },
   {
    "field": "S.oos_site",
@@ -321,7 +399,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "the same, by site"
   },
   {
    "field": "S.over6_commune",
@@ -329,7 +409,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "S.over6 broken down by commune"
   },
   {
    "field": "S.partial",
@@ -337,7 +419,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "points partially functional at their last record"
   },
   {
    "field": "S.pm_month",
@@ -345,7 +429,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "preventive-maintenance records by month"
   },
   {
    "field": "S.rep_month",
@@ -353,7 +439,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "repair records by month"
   },
   {
    "field": "S.sched",
@@ -361,7 +449,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "managed_fleet bucketed by maintenance due date"
   },
   {
    "field": "S.visits_per_day",
@@ -369,7 +459,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "visit records per working day, by site"
   },
   {
    "field": "S.wq_untested",
@@ -377,7 +469,9 @@
    "object": "S",
    "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "managed_fleet minus water_quality_tested, by site"
   },
   {
    "field": "TTR.call_lag_mean",
@@ -385,7 +479,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "mean of the same"
   },
   {
    "field": "TTR.call_lag_median",
@@ -393,7 +489,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "median call-to-repair lag"
   },
   {
    "field": "TTR.call_n",
@@ -401,7 +499,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "breakdown calls resolved, needs a call population"
   },
   {
    "field": "TTR.call_total",
@@ -409,7 +509,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "breakdown calls in the window"
   },
   {
    "field": "TTR.call_unres",
@@ -417,7 +519,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "calls with no linked repair"
   },
   {
    "field": "TTR.ttr_2026",
@@ -425,7 +529,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "the same three statistics restricted to 2026"
   },
   {
    "field": "TTR.ttr_3d",
@@ -433,7 +539,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "share of that set repaired within 3 days"
   },
   {
    "field": "TTR.ttr_7d",
@@ -441,7 +549,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "share within 7 days"
   },
   {
    "field": "TTR.ttr_Fort-Dauphin",
@@ -449,7 +559,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "the same three, Fort-Dauphin only"
   },
   {
    "field": "TTR.ttr_Maroantsetra",
@@ -457,7 +569,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "the same three, Maroantsetra only"
   },
   {
    "field": "TTR.ttr_mean",
@@ -465,7 +579,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "mean of the same"
   },
   {
    "field": "TTR.ttr_median",
@@ -473,7 +589,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "median of the interval over repairs_time_measured"
   },
   {
    "field": "TTR.ttr_n",
@@ -481,7 +599,9 @@
    "object": "TTR",
    "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "A-have-population",
+   "how": "repairs_time_measured (617), defined 2026-09-22"
   },
   {
    "field": "WPOP.{*}",
@@ -489,7 +609,9 @@
    "object": "WPOP",
    "why": "the per-point population lookup from the WorldPop raster",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "B-need-population",
+   "how": "per-point WorldPop allocation - a population would name the points, but the values come from an external raster run"
   },
   {
    "field": "WPOPMETA.caps",
@@ -497,7 +619,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the per-pump-type service ceilings, a chosen parameter"
   },
   {
    "field": "WPOPMETA.points_at_the_cap",
@@ -505,7 +629,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the same"
   },
   {
    "field": "WPOPMETA.points_cut_over_10pct",
@@ -513,7 +639,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the same"
   },
   {
    "field": "WPOPMETA.points_with_a_barrier",
@@ -521,7 +649,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "a result of the external allocation run"
   },
   {
    "field": "WPOPMETA.raster",
@@ -529,7 +659,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the pinned raster filename for an external run"
   },
   {
    "field": "WPOPMETA.raster_national_sum",
@@ -537,7 +669,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "that raster's national total, a property of the file"
   },
   {
    "field": "WPOPMETA.rows",
@@ -545,7 +679,9 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "points in the run"
   },
   {
    "field": "WPOPMETA.source",
@@ -553,7 +689,14 @@
    "object": "WPOPMETA",
    "why": "the WorldPop run's own metadata, written by hand after each run",
    "found": "2026-09-22",
-   "action": null
+   "action": null,
+   "group": "C-hand-maintained",
+   "how": "the WorldPop release the run used"
   }
- ]
+ ],
+ "groups": {
+  "A-have-population": "a population already defined would produce it",
+  "B-need-population": "reproducible, but a population must be defined first",
+  "C-hand-maintained": "hand-maintained by design; a generator would be wrong"
+ }
 }

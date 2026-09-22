@@ -1,0 +1,89 @@
+{
+ "checked": "2026-09-22",
+ "data_to": "2026-09-11",
+ "last_record_by_source": {
+  "appel_signalement_pannes.csv": "2026-09-22",
+  "combined_rehab.json": "2026-01-16",
+  "forage_moramanga.csv": "2026-08-29",
+  "hygiene.json": "2026-03-16",
+  "identification.json": "2026-06-16",
+  "marolinta_borehole.json": "2026-08-29",
+  "pm.csv": "2026-09-22",
+  "repair.json": "2026-09-14",
+  "reparation_apres_panne.csv": "2026-09-14",
+  "wq_results.json": "2026-02-02"
+ },
+ "newest_pull": "2026-09-22",
+ "note": "data_to is the OLDEST pull across every extract - the vintage floor. Stating the newest would claim a currency no single source has. last_record_by_source is a different quantity: a quiet form has an old last record and is still perfectly current.",
+ "oldest_sources": [
+  "wp_madavance.csv"
+ ],
+ "per_extract": {
+  "appel_signalement_pannes.csv": {
+   "age_days": 0,
+   "data_to": "2026-09-22",
+   "pulled": "2026-09-22"
+  },
+  "combined_rehab.json": {
+   "age_days": 0,
+   "data_to": "2026-01-16",
+   "pulled": "2026-09-22"
+  },
+  "first_rehab_current.json": {
+   "age_days": 0,
+   "data_to": null,
+   "pulled": "2026-09-22"
+  },
+  "forage_moramanga.csv": {
+   "age_days": 0,
+   "data_to": "2026-08-29",
+   "pulled": "2026-09-22"
+  },
+  "hygiene.json": {
+   "age_days": 0,
+   "data_to": "2026-03-16",
+   "pulled": "2026-09-22"
+  },
+  "identification.json": {
+   "age_days": 0,
+   "data_to": "2026-06-16",
+   "pulled": "2026-09-22"
+  },
+  "marolinta_borehole.json": {
+   "age_days": 0,
+   "data_to": "2026-08-29",
+   "pulled": "2026-09-22"
+  },
+  "pm.csv": {
+   "age_days": 0,
+   "data_to": "2026-09-22",
+   "pulled": "2026-09-22"
+  },
+  "premiere_rehabilitation.csv": {
+   "age_days": 0,
+   "data_to": null,
+   "pulled": "2026-09-22"
+  },
+  "repair.json": {
+   "age_days": 0,
+   "data_to": "2026-09-14",
+   "pulled": "2026-09-22"
+  },
+  "reparation_apres_panne.csv": {
+   "age_days": 0,
+   "data_to": "2026-09-14",
+   "pulled": "2026-09-22"
+  },
+  "wp_madavance.csv": {
+   "age_days": 11,
+   "data_to": null,
+   "pulled": "2026-09-11"
+  },
+  "wq_results.json": {
+   "age_days": 0,
+   "data_to": "2026-02-02",
+   "pulled": "2026-09-22"
+  }
+ },
+ "spread_days": 11
+}

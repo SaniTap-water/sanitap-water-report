@@ -169,6 +169,16 @@ fi
 # ---- 2. THE GATE -----------------------------------------------------------
 # Run it, capture the status on its own line, then branch. Nothing is chained.
 say ""
+say "checking extract vintages ..."
+python3 tools/check_vintage.py | tail -8
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: an extract is older than the build it is feeding."
+  say "A stale edition that looks current is worse than no edition. Nothing committed."
+  exit 1
+fi
+
+say ""
 say "checking that every embedded figure has a generator ..."
 python3 tools/check_generators.py
 RC=$?
