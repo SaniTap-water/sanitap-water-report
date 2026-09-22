@@ -1,0 +1,42 @@
+{
+  "_id": "48dbd8d4-9bc3-49b3-8406-80519fe2eddd",
+  "_rev": 10,
+  "_created_on": "2024-09-04T05:27:50.550Z",
+  "_created_by": "39a0cefd530749ffb012524f3e93c92d",
+  "_managed_by": "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+  "_modified_on": "2026-09-22T05:29:27.888Z",
+  "_modified_by": "a77264134a1d4e7486a04e8c8e07228e",
+  "_roles": [
+    {
+      "to": "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+      "role": "admin"
+    }
+  ],
+  "_private": true,
+  "name": "Canzee",
+  "desc": "Pompe à main",
+  "type": "other",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      49.665198,
+      -15.483088,
+      0
+    ]
+  },
+  "code": "698771103",
+  "alt_id": "15",
+  "alt_id_org": "MadAvance",
+  "photos": [
+    {
+      "id": "07be85213fc04eaf92eb4221351687a1",
+      "cover": false,
+      "rotation": 0
+    }
+  ],
+  "admin_div1": "Ambatosoa",
+  "admin_div2": "Maroantsetra",
+  "admin_div3": "Ankofabe",
+  "admin_div4": "Antoraka",
+  "admin_div5": "Antoraka"
+}

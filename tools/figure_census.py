@@ -99,7 +99,7 @@ REACH = r"""() => {
   };
   for (const n of ['S', 'REG', 'TTR', 'WPOPMETA', 'CORR', 'ROUTES', 'ENDURO',
                    'TRACE', 'SCOPES', 'DOWN', 'OPENREP', 'PARTIAL', 'PUMPS',
-                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN'])
+                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
   // Figures the page COMPUTES at top level. SUCC_CORRECTED is

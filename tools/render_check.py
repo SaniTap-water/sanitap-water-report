@@ -132,7 +132,10 @@ def probe(page_path):
         b = pw.chromium.launch(executable_path=exe)
         pg = b.new_page(viewport={"width": 1280, "height": 900})
         pg.on("pageerror", lambda e: errors.append(str(e)))
-        pg.goto("file://" + page_path, wait_until="load")
+        # 60s, not the 30s default: the page is 1.4 MB and grows every
+        # week, and a gate that flakes on a slow load teaches people to
+        # re-run it until it passes.
+        pg.goto("file://" + page_path, wait_until="load", timeout=60000)
         pg.wait_for_timeout(1200)
         out = pg.evaluate(PROBE)
         # Portfolio by partner, per scope. "not in scope" was ambiguous: it

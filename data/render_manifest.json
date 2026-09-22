@@ -1,4 +1,198 @@
 {
+ "basis": {
+  "all": {
+   "headline": "867",
+   "note": "867 water points in scope: all 736 MadAvance hand pumps in the maintained register plus Endur'O's 131 piped systems (manual figures until Endur'O is on mWater, ",
+   "note_bold": [
+    "867"
+   ],
+   "q": {
+    "people": [
+     {
+      "l": "people with safe water",
+      "v": "274,221"
+     },
+     {
+      "l": "People served",
+      "v": "274,221"
+     },
+     {
+      "l": "people with safe water today",
+      "v": "274,221"
+     }
+    ],
+    "points": [
+     {
+      "l": "water points in scope",
+      "v": "867"
+     },
+     {
+      "l": "Water points under maintenance",
+      "v": "867"
+     },
+     {
+      "l": "water points under professional maintenance",
+      "v": "867"
+     }
+    ]
+   }
+  },
+  "enduro": {
+   "headline": "131",
+   "note": "131 water points in scope — Endur'O piped systems and kiosks. Headline figures on this page remain the agreed programme numbers (131 systems, ~146,000 people, S",
+   "note_bold": [
+    "131"
+   ],
+   "q": {
+    "people": [
+     {
+      "l": "people with safe water",
+      "v": "146,000"
+     },
+     {
+      "l": "People served",
+      "v": "146,000"
+     },
+     {
+      "l": "people with safe water today",
+      "v": "146,000"
+     }
+    ],
+    "points": [
+     {
+      "l": "water points in scope",
+      "v": "131"
+     },
+     {
+      "l": "Water points under maintenance",
+      "v": "131"
+     },
+     {
+      "l": "water points under professional maintenance",
+      "v": "131"
+     }
+    ]
+   }
+  },
+  "mad": {
+   "headline": "736",
+   "note": "736 water points in scope: all 736 MadAvance hand pumps in the maintained register, Marolinta included.",
+   "note_bold": [
+    "736"
+   ],
+   "q": {
+    "people": [
+     {
+      "l": "people with safe water",
+      "v": "128,221"
+     },
+     {
+      "l": "People served",
+      "v": "128,221"
+     },
+     {
+      "l": "people with safe water today",
+      "v": "128,221"
+     }
+    ],
+    "points": [
+     {
+      "l": "water points in scope",
+      "v": "736"
+     },
+     {
+      "l": "Water points under maintenance",
+      "v": "736"
+     },
+     {
+      "l": "water points under professional maintenance",
+      "v": "736"
+     }
+    ]
+   }
+  },
+  "madx": {
+   "headline": "731",
+   "note": "731 water points in scope: Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbo",
+   "note_bold": [
+    "731"
+   ],
+   "q": {
+    "people": [
+     {
+      "l": "people with safe water",
+      "v": "126,780"
+     },
+     {
+      "l": "People served",
+      "v": "126,780"
+     },
+     {
+      "l": "people with safe water today",
+      "v": "126,780"
+     }
+    ],
+    "points": [
+     {
+      "l": "water points in scope",
+      "v": "731"
+     },
+     {
+      "l": "Water points under maintenance",
+      "v": "731"
+     },
+     {
+      "l": "water points under professional maintenance",
+      "v": "731"
+     }
+    ]
+   }
+  },
+  "mar": {
+   "headline": "13",
+   "note": "The basis of this scope is the work, not the register. 13 water points carry a 2026 works record on the borehole-progress form; 1 of them is in the maintained r",
+   "note_bold": [
+    "The basis of this scope is the work, not the register.",
+    "13",
+    "1",
+    "12",
+    "The register is a different population:",
+    "5",
+    "4",
+    "1"
+   ],
+   "q": {
+    "people": [
+     {
+      "l": "people served — a field count from the works records, not a WorldPop a",
+      "v": "3,130"
+     },
+     {
+      "l": "People served",
+      "v": "3,130"
+     },
+     {
+      "l": "people served — a field count from the 2026 works records",
+      "v": "3,130"
+     }
+    ],
+    "points": [
+     {
+      "l": "water points with a 2026 works record — 1 in the maintained register, ",
+      "v": "13"
+     },
+     {
+      "l": "Water points under maintenance",
+      "v": "13"
+     },
+     {
+      "l": "water points with a 2026 works record — 1 of them in the maintained re",
+      "v": "13"
+     }
+    ]
+   }
+  }
+ },
  "buttons": [
   "All SaniTap",
   "MadAvance — all",
@@ -9,6 +203,7 @@
  "headings": [
   "The fleet at a glance",
   "This week",
+  "What every figure is over",
   "Actions — the one list",
   "Portfolio by partner",
   "How the people-served figure is built",
@@ -37,18 +232,18 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 23851,
+ "height": 25738,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
  "page_errors": [],
  "partner": {
   "all": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributes",
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
    "tot": "867"
   },
   "enduro": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributes",
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
    "tot": "131"
   },
   "mad": {
@@ -61,7 +256,7 @@
   },
   "mar": {
    "end": "not in this scope — “Marolinta only” does not cover it",
-   "tot": "5"
+   "tot": "13"
   }
  },
  "scope_visible_sections": {
@@ -71,8 +266,12 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 31,
+ "sections": 32,
  "tables": {
+  "chaintbl": {
+   "hidden": false,
+   "rows": 6
+  },
   "corrtbl": {
    "hidden": false,
    "rows": 9
@@ -97,9 +296,17 @@
    "hidden": false,
    "rows": 452
   },
+  "paramstbl": {
+   "hidden": false,
+   "rows": 12
+  },
   "parttbl": {
    "hidden": false,
    "rows": 53
+  },
+  "popstbl": {
+   "hidden": false,
+   "rows": 8
   },
   "poptbl": {
    "hidden": false,

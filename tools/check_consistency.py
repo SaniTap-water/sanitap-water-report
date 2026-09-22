@@ -415,6 +415,63 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7b-8. every figure shows its working ------------------------------
+    # A figure that cannot be expanded into its derivation is a figure the
+    # reader has to take on trust. Every data-fig expression must be in
+    # DERIV, and every population it names must exist.
+    pop_p = os.path.join(repo_root, "data", "populations.json")
+    der_p = os.path.join(repo_root, "data", "derivations.json")
+    pops = json.loads(read(pop_p)) if os.path.exists(pop_p) else {}
+    check("the semantic layer exists and defines the chain",
+          len(pops.get("populations", {})) >= 7, ">=7 populations",
+          len(pops.get("populations", {})),
+          "tools/populations.py - every one a set of records, none a stored count")
+    for pid, pop in (pops.get("populations") or {}).items():
+        missing = [k for k in ("name", "rule", "reads", "decided", "size")
+                   if not pop.get(k) and pop.get(k) != 0]
+        check(f"population {pid} is fully declared", not missing,
+              "complete", f"missing {', '.join(missing)}" if missing else "complete",
+              "id, name, plain-English rule, what it reads, the decision, the size")
+    exprs = set(re.findall(r'data-fig="([^"]+)"', idx))
+    m_der = re.search(r"const DERIV=(\{.*?\});", idx, re.S)
+    der = json.loads(m_der.group(1)) if m_der else {}
+    undeclared = sorted(e for e in exprs if e not in der)
+    check("every rendered figure has a recorded derivation",
+          not undeclared, f"{len(exprs)} expressions",
+          f"no derivation for: {', '.join(undeclared[:4])}" if undeclared
+          else f"all {len(exprs)} declared",
+          "a figure the reader cannot expand is one they must take on trust")
+    badpop = sorted({d["pop"] for d in der.values()
+                     if d.get("pop") and d["pop"] not in (pops.get("populations") or {})})
+    check("every derivation names a population that exists",
+          not badpop, "all resolve",
+          f"unknown: {', '.join(badpop[:3])}" if badpop else "all resolve",
+          "the population is the link between a figure and its rule")
+    # The definitions section was once inserted INSIDE the action-list
+    # generated region and the next render_actions --write deleted it
+    # silently. A generated region swallowing another one leaves no trace, so
+    # this asserts the section survived.
+    check("the definitions section is on the page",
+          'id="definitions"' in idx and 'id="popstbl"' in idx
+          and 'id="chaintbl"' in idx and 'id="paramstbl"' in idx,
+          "present",
+          "present" if 'id="definitions"' in idx else "MISSING",
+          "a verifier who cannot read Python still sees every definition")
+    _defs_i = idx.find("<!-- BEGIN GENERATED definitions")
+    _acts_i = idx.find("<!-- BEGIN GENERATED action-list")
+    check("the definitions region is outside the action-list region",
+          _defs_i >= 0 and _acts_i >= 0 and _defs_i < _acts_i, "outside",
+          "outside" if _defs_i < _acts_i else "NESTED - it will be deleted",
+          "one generated region inside another is deleted without a word")
+    check("the derivation panel is wired on the page",
+          "function derivPanel(" in idx and "DERIV_SEL" in idx, "wired",
+          "wired" if "function derivPanel(" in idx else "MISSING",
+          "one click from any number to its full derivation")
+    check("the chain result is carried with the definitions",
+          isinstance(pops.get("chain"), list) and len(pops["chain"]) >= 5,
+          "carried", f"{len(pops.get('chain', []))} steps",
+          "the reconciliation is produced by populations.py, not asserted beside it")
+
     # ---- 7b-9. register integrity -----------------------------------------
     # No managed point may have a missing or unresolvable admin_region, and no
     # point may enter or leave the fleet without something that explains it.
@@ -1636,9 +1693,13 @@ def main():
               and "727 carbon points" not in idx, "gone",
               "gone" if "of <b>727</b>" not in idx else "STILL PRESENT",
               "superseded 2026-09-22; see docs/decision_log.md")
-        check("the per-year carbon table is marked unsourced",
+        # It is no longer only marked cell-by-cell: the whole table sits behind
+        # a labelled withdrawn block, so a reader learns it cannot be
+        # reproduced before reading a single cell.
+        check("the per-year carbon table is withdrawn behind a labelled block",
               idx.count('class="unsourced"') >= 13
-              and "not reproducible from this repository" in idx, "marked",
+              and "Withdrawn: the per-year carbon quantification" in idx
+              and "Its basis is being rebuilt" in idx, "marked",
               f'{idx.count(chr(34)+"unsourced"+chr(34))} cells marked',
               "no per-year activity basis exists in this repository")
     check("the quantification is marked contingent, not a claim",
@@ -2403,9 +2464,9 @@ def main():
           "calendar governs; the call centre dispatches")
     check("the page carries the correct position, not the correction",
           "No carbon quantity is attached to any of this" in idx
-          and "297" not in re.sub(r"<[^>]+>", " ",
-                                  re.sub(r"<script[^>]*>.*?</script>", " ",
-                                         idx, flags=re.S)),
+          and not re.search(r"\b297\s*(?:tCO|tonnes?\b|t\b)",
+                            re.sub(r"<[^>]+>", " ", re.sub(
+                                r"<script[^>]*>.*?</script>", " ", idx, flags=re.S))),
           "position only", "position only"
           if "No carbon quantity is attached to any of this" in idx else "MISSING",
           "the withdrawal is recorded in docs/decision_log.md")
@@ -2582,7 +2643,10 @@ def main():
     # The withdrawal itself belongs in the decision log, where a verifier looks.
     _plainw = re.sub(r"<[^>]+>", " ",
                      re.sub(r"<script[^>]*>.*?</script>", " ", idx, flags=re.S))
-    _re297 = re.findall(r"\b297\b", _plainw)
+    # the withdrawn figure is 297 tCO2e, not the integer 297: the
+    # calendar-evidenced population is 297 records and is a different
+    # quantity that happens to share the number.
+    _re297 = re.findall(r"\b297\s*(?:tCO|tonnes?\b|t\b)", _plainw)
     _re35 = re.findall(r"3\.5\s*tCO", _plainw)
     check("the withdrawn call-centre tonnages do not appear on the page",
           not _re297 and not _re35, "absent",

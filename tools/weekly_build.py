@@ -52,6 +52,10 @@ STEPS = [
     # the carbon denominator is derived from the register, so it must be
     # recomputed before the datasets are inlined
     ("tools/carbon_denominator.py",  ["--write"],      True),
+    # the semantic layer, and everything that renders from it
+    ("tools/populations.py",         ["--json", "data/populations.json"], True),
+    ("tools/render_derivations.py",  ["--write"],      True),
+    ("tools/render_definitions.py",  ["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
 ]

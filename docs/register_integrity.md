@@ -64,6 +64,33 @@ The derived values live in `data/register_corrections.json` under `admin_region_
 the evidence for each, which is the documented record independent of mWater that was asked for.
 `act-admin-region-mwater` is open to apply them through a route that works.
 
+### The geocoder hypothesis, tested 22 September
+
+The likeliest explanation is that mWater derives `admin_region` server-side from `location`
+against its boundary set, and that the import path which created these nine bypassed the
+geocoder. That was tested on `698771103` exactly as proposed: `PATCH` the entity with the
+**identical** coordinates it already holds.
+
+**Result: inconclusive, leaning negative.** The server treated the identical document as a no-op
+— `_rev` did not move — so no geocoder was invoked and `admin_region` stayed null. A stronger
+test would need the coordinate to actually change, and a write that perturbs a production
+coordinate is not something to do casually even by a sub-millimetre amount; it was not
+attempted.
+
+**So the field is not writable through this credential**, by either route tried. It needs Lanja
+in the mWater admin interface, where the geocoder or the field itself is reachable.
+`act-admin-region-mwater` stays open with that as its next step.
+
+### Phantom revisions on 698771103 — not edits
+
+`698771103` now carries `_rev` **8 → 10**: two revisions whose content is byte-identical to the
+pre-write backup in `data/mwater_backups/`. They are the two discarded `admin_region` patches of
+22 September. **Nobody should later read them as edits.** No field changed; only `_rev` and
+`_modified_on` moved. A third attempt on the same day — the identical-coordinates test above —
+was a no-op and did not create a revision.
+
+No other entity was written to at any point.
+
 ---
 
 ## 2. `670401842` "Morafeno"

@@ -30,6 +30,7 @@ SETS = {
     "METRICS": ("data", "action_metrics.json"),
     "CARBON": ("data", "carbon_denominator.json"),
     "ACTN": ("data", "action_counts.json"),
+    "FRESH": ("data", "data_freshness.json"),
 }
 
 

@@ -9,6 +9,37 @@ position is closed is the Head of Carbon's call.
 
 ---
 
+## 2026-09-22 — The register chain does not reconcile, and the definitions now say so
+
+**Decision.** `tools/populations.py` is the single definition of every population the report
+counts. Each is a **set of records** with a predicate, never a stored count and never a
+subtraction. The reconciliation is produced by that file and rendered on the page; where a step
+does not hold it is reported, not closed.
+
+**Two steps do not hold.**
+
+**1. One managed point is not in the register export.** `742896839`. Already tracked as
+`act-742896839`; the chain rediscovered it independently, which is the point of having a chain.
+
+**2. The first-rehabilitation figures cannot be reproduced from the form the page cites.**
+The page carries 773 first-rehabilitation records and 723 successful, sourced to
+`86cf66efdd3749dd8a121314bab3675a`. Read today, that form yields **725** distinct points with a
+first-rehabilitation record and **686** recorded successful — a gap of 48 and 37.
+
+The register-chain note also says the fleet is the successfully rehabilitated points plus a
+handful never rehabilitated. On the records there are **46** managed non-Marolinta points with no
+successful first-rehabilitation record, not one.
+
+**Nothing was adjusted to close either gap.** Both are rendered on the page under *Does the chain
+reconcile?* and both `REG.total_first_rehab` and `REG.succ` expand to a caveat saying the figure
+does not reconcile with the form it cites.
+
+**What does reconcile.** register ⊇ first-rehabilitated ⊇ successful holds; managed ⊇ Marolinta
+holds; **carbon_fleet + marolinta = managed_fleet exactly** (731 + 5 = 736); calendar-evidenced ⊆
+carbon_fleet holds (297 of 731).
+
+---
+
 ## 2026-09-22 — A published sensitivity figure was wrong by 8,478 people for six days
 
 **What was wrong.** The people-served sensitivity note read: *"On the earlier basis of Canzee 250
