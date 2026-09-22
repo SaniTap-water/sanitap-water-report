@@ -95,6 +95,29 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
     say "Nothing committed. Inspect, fix, or re-record with --manifest if intended."
     exit 1
   fi
+
+  # Every number on the page must be live, declared in PARAMS with its
+  # citation, or from a dated manual file. These two gates enforce it from
+  # both sides: the census reads the rendered page and asks whether each
+  # figure has a source; the prose gate reads the source and asks whether it
+  # was typed. Each holds a dated backlog of what is not yet converted, and
+  # that backlog may only shrink - so neither can quietly become an
+  # exemption list.
+  say ""
+  say "running the figure gates ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/figure_census.py --gate | tail -22
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a figure renders on the page with no source (exit $RC)."
+    exit 1
+  fi
+  "$PYBIN" tools/prose_figures.py --gate | tail -22
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a figure is typed into the prose (exit $RC)."
+    say "Make it a data-fig span, a PARAMS entry, or a dated manual figure."
+    exit 1
+  fi
 else
   say "  SKIPPED: playwright/chromium not available here."
   say "  The markup checks below still run, but nothing is verifying what renders."

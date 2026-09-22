@@ -15,6 +15,101 @@ tools/publish.sh --check-only            # gate the working tree
 tools/publish.sh -m "what changed"       # check, commit, push
 ```
 
+## Every number on the page has exactly one home
+
+An audit in September 2026 counted 191 live figures typed into the body prose
+and nothing asserting any of them: `736` appeared in fifty-four sentences,
+`127` in twenty-seven, `84` in fifteen. The only protection was a blacklist of
+withdrawn phrases, which can only ever catch a number somebody already knew
+was wrong. Had the register moved to 737, fifty-four sentences would have
+become false and every gate would still have passed.
+
+**The rule. A figure with an mWater source is interpolated. A parameter is
+declared in `PARAMS` with its citation. A hand-entered figure lives in a dated
+manual file with an owner. Nothing else may appear as a number on the page.**
+
+### Tier 1 — live
+
+Anything derivable from an extract. Never type it.
+
+* In JavaScript, interpolate: `${fmt(S.n)}`.
+* In body prose — static HTML, which cannot interpolate — write
+  `<span data-fig="S.n"></span>`. `fillFigures()` evaluates the expression
+  against the page's own data on every render, so a sentence is on exactly the
+  same footing as a tile. The span carries no digits, which is what makes the
+  prose gate below exact.
+* The same span works inside `data/action_details.json`, inside the `TRACE`
+  array and anywhere else whose text reaches the page through `innerHTML`.
+
+Do not store a figure that can be computed. `SUCC_CORRECTED`, `WPOP_IM500` and
+`WPOP_C250` were stored constants sitting beside the data they duplicated;
+`WPOP_C250` had drifted 8,478 people out of date before anyone noticed. They
+are computed now, from `CORR` and from `WPOP`.
+
+### Tier 2 — declared constants, in `PARAMS`
+
+Registered or chosen values that must **not** become live: the capacity
+ceilings, the Type 3 annual cap, the registered per-point emission reductions,
+the 347-day SDWS 27 cap, the mWater group id. Each entry carries:
+
+```js
+im_cap:{v:300,unit:'people per pump',
+ source:'Rural Water Supply Network and Akvopedia design service population. '+
+  'Still unsettled between the WorldPop methodology note, which used 500, and '+
+  'the technical note, which argues 300; this page uses the lower of the two. '+
+  'Open as act-indiamark-premises.',
+ set:'2026-09-16, with the WorldPop R2025A run'},
+```
+
+Render it with `${pp('im_cap')}` in JavaScript, or
+`<span data-param="im_cap"></span>` in prose; both show the citation on hover.
+A constant with a citation is correct. A constant without one is
+indistinguishable from a typo, and `check_consistency.py` fails the build if
+any `PARAMS` entry has no `source` or no `set`.
+
+### Tier 3 — hand-entered, in a dated manual file
+
+Endur'O is not on mWater, so its figures cannot be derived. That is a fact
+about the programme. Them ageing silently is not acceptable. They live in
+`data/enduro_manual.json` with an `as_at` date, the person who supplied them
+and the document they came from, and `tools/render_enduro.py` writes them into
+the page. `enduroAsAt()` prints *"as at 2026-09-18, supplied by …"* wherever
+one of them appears. Past `max_age_days` (60) the page says so in red and
+`act-enduro-refresh` reopens on its own.
+
+A figure whose source is recorded as "not recorded" is not sourced, however
+long it has been carried: `enduro_figures_unattributed` counts them and
+`act-enduro-people-source` stays open until it reaches zero.
+
+### The two gates
+
+Both run in `publish.sh` and both must pass.
+
+```
+python3 tools/figure_census.py --gate    # the rendered page: does each figure have a source?
+python3 tools/prose_figures.py --gate    # the source: was it typed rather than rendered?
+```
+
+They ask different questions and neither can answer the other's. The census
+walks all five scope buttons and asks of every rendered literal whether its
+value is reachable from the live data, declared in `PARAMS`, or in the manual
+file. It cannot tell a typed figure from an interpolated one — they are
+identical in the DOM. The prose gate can, because a `data-fig` span contains no
+digits: every digit left in the body prose is typed by hand.
+
+The blacklist of withdrawn figures stays. A positive rule and a negative one
+catch different things.
+
+**The backlogs.** `data/figure_backlog.json` (134 rendered figures with no
+source) and `data/prose_figure_backlog.json` (354 still typed) record what was
+outstanding on 22 September 2026. Anything not on them fails the gate
+immediately, so no new unsourced figure can land. **They may only shrink**: a
+value that acquires a source must be removed from the file, and the gate fails
+if it is not. They are a worklist with a date on it, never an exemption list.
+
+To clear one: convert the figure, run `--gate`, and it will tell you which
+entry to delete.
+
 ## The two-copies rule
 
 **Every generated artefact is edited only at its generator, and no script

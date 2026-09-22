@@ -47,6 +47,10 @@ STEPS = [
     ("tools/render_block.py",        ["--write"],      True),
     ("tools/render_form_freshness.py", ["--write"],    True),
     ("tools/render_actions.py",      ["--write"],      True),
+    # the Endur'O block and the inlined datasets, so every figure the prose
+    # quotes is reachable from the page's own data
+    ("tools/render_enduro.py",       ["--write"],      True),
+    ("tools/render_datasets.py",     ["--write"],      True),
 ]
 
 

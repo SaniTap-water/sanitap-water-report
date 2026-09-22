@@ -1,0 +1,46 @@
+{
+  "_comment": "Endur'O figures are hand-entered. Endur'O is not on mWater, so nothing here can be derived from an extract - which is a fact about the programme, not a fault. What IS a fault is these figures ageing silently, so every one of them carries the date it was established, who established it, and the document it came from. tools/render_enduro.py writes them into index.html; tools/figure_census.py accepts a rendered literal as sourced only if it appears here.",
+  "as_at": "2026-09-18",
+  "supplied_by": "Adriaan Mol, COO SaniTap",
+  "doc": "data/enduro_disposition.csv, reconciled against the contractor folders and the 111-site list on 18 September 2026 (commit 71feb90); mWater register figures read directly from Endur'O's group on 16 September 2026",
+  "max_age_days": 60,
+  "figures": {
+    "systems": {
+      "v": 131,
+      "what": "piped systems under management",
+      "as_at": "2026-09-18",
+      "supplied_by": "Adriaan Mol, COO SaniTap",
+      "doc": "data/enduro_disposition.csv - reconciliation of the 128-site contractor file against the 111-site list; superseded the earlier 138"
+    },
+    "people": {
+      "v": 146000,
+      "what": "people served, agreed programme figure",
+      "as_at": "2026-09-01",
+      "supplied_by": "not recorded",
+      "doc": "agreed programme figure carried since Sep 2026; the document that set it is not recorded in this repository - act-enduro-people-source is open to establish it"
+    }
+  },
+  "register": {
+    "_doc": "Read from Endur'O's own mWater group, readable since 16 September 2026. NOT reconciled to the programme figures above and not a restatement of them.",
+    "as_at": "2026-09-16",
+    "supplied_by": "Adriaan Mol, COO SaniTap",
+    "points": 181,
+    "tana": 74,
+    "analamanga_other": 17,
+    "moramanga": 5,
+    "south": 85,
+    "systems": 24,
+    "sys_attr": 4
+  },
+  "contract": {
+    "_doc": "The contractor folders and the 111-site list, as reconciled in data/enduro_disposition.csv.",
+    "as_at": "2026-09-18",
+    "supplied_by": "Adriaan Mol, COO SaniTap",
+    "contract": 111,
+    "contract_mus": 88,
+    "contract_classic": 23,
+    "matched_sys": 102,
+    "matched_pts": 65,
+    "south_near_contract": 10
+  }
+}

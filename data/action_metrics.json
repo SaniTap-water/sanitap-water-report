@@ -1,5 +1,5 @@
 {
- "counted": "2026-09-21",
+ "counted": "2026-09-22",
  "metrics": {
   "consent_question_answers": {
    "says": "point-of-use responses that actually answer the consent question A4",
@@ -16,10 +16,20 @@
    "source": "local",
    "value": 0
   },
-  "enduro_sites_outside_mwater": {
-   "says": "Endur'O managed sites not yet represented in mWater",
+  "enduro_figures_age_days": {
+   "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 107
+   "value": 4
+  },
+  "enduro_figures_unattributed": {
+   "says": "hand-entered Endur'O figures with no document recorded behind them",
+   "source": "local",
+   "value": 1
+  },
+  "enduro_sites_outside_mwater": {
+   "says": "Endur'O managed sites not yet represented in mWater (not computable: 'NoneType' object has no attribute 'group')",
+   "source": "local",
+   "value": null
   },
   "er_percent_of_type3_cap": {
    "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
@@ -149,7 +159,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 46
+   "value": 44
   },
   "usage_question_answers": {
    "says": "point-of-use responses that actually answer the usage question A9",

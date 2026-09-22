@@ -415,6 +415,42 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7c-bis. every declared constant carries its citation -------------
+    # A constant with a citation is correct; a constant without one is
+    # indistinguishable from a typo. PARAMS is the only place a non-live
+    # figure may be declared, and every entry must say where it came from and
+    # when it was set.
+    pm = re.search(r"const PARAMS=\{(.*?)\n\};", idx, re.S)
+    if pm:
+        entries = re.findall(r"\n\s*([a-z_0-9]+):\{(.*?)\n?\s*\},",
+                             pm.group(1) + ",", re.S)
+        check("PARAMS is not empty", len(entries) >= 6, ">=6 entries",
+              f"{len(entries)} entries", "the declared constants of this page")
+        nosrc = [k for k, body in entries
+                 if "source:" not in body or len(body.split("source:")[1]) < 40]
+        check("every PARAMS entry carries a source", not nosrc, "all sourced",
+              f"missing on {', '.join(nosrc[:3])}" if nosrc else "all sourced",
+              "VPA-DD section, methodology clause, technical note, or the "
+              "decision that set it")
+        noset = [k for k, body in entries if "set:" not in body]
+        check("every PARAMS entry carries the date it was set", not noset,
+              "all dated", f"undated: {', '.join(noset[:3])}" if noset
+              else "all dated", "a parameter without a date cannot be reviewed")
+    else:
+        check("PARAMS exists on the page", False, "present", "MISSING",
+              "the one place a non-live figure may be declared")
+
+    # the two figure backlogs may only shrink
+    for f, what in (("data/figure_backlog.json", "rendered figures with no source"),
+                    ("data/prose_figure_backlog.json", "figures typed into prose")):
+        pth = os.path.join(repo_root, f)
+        if os.path.exists(pth):
+            doc = json.loads(read(pth))
+            check(f"{os.path.basename(f)} is dated and non-empty",
+                  bool(doc.get("recorded")) and "values" in doc, "dated",
+                  doc.get("recorded") or "undated",
+                  f"{len(doc.get('values', {}))} {what}; this list may only shrink")
+
     # ---- 7d. the Endur'O count is stated once, from the disposition file ---
     # Earlier editions carried 138, 111 and 131 in different places. The count
     # must come from data/enduro_disposition.csv and appear with one value.
@@ -425,10 +461,31 @@ def main():
             rows = list(_csv.DictReader(fh))
         active = [r for r in rows if r["disposition"] in ("matched", "new", "duplicate")]
         n = len(active)
-        m = re.search(r"const ENDURO\s*=\s*\{systems:(\d+)", idx)
-        check("Endur'O count matches the disposition file",
-              bool(m) and int(m.group(1)) == n, n, m.group(1) if m else "ENDURO not found",
+        # ENDURO is now generated from data/enduro_manual.json by
+        # tools/render_enduro.py, so it is JSON with quoted keys. Assert the
+        # whole chain: disposition file -> manual file -> page.
+        man = os.path.join(repo_root, "data", "enduro_manual.json")
+        mdoc = json.loads(read(man)) if os.path.exists(man) else {}
+        mval = (mdoc.get("figures", {}).get("systems", {}) or {}).get("v")
+        check("the manual Endur'O file matches the disposition file",
+              mval == n, n, mval if mval is not None else "not in the file",
               "data/enduro_disposition.csv, matched+new+duplicate")
+        m = re.search(r'const ENDURO\s*=\s*\{"systems":(\d+)', idx)
+        check("Endur'O count matches the disposition file",
+              bool(m) and int(m.group(1)) == n, n,
+              m.group(1) if m else "ENDURO not found",
+              "written into the page by tools/render_enduro.py")
+        check("the Endur'O figures carry a date, an owner and a document",
+              bool(mdoc.get("as_at")) and bool(mdoc.get("supplied_by"))
+              and bool(mdoc.get("doc")) and bool(mdoc.get("max_age_days")),
+              "dated and owned",
+              "dated and owned" if mdoc.get("as_at") else "MISSING",
+              "hand-entered figures may be manual; they may not age unnoticed")
+        check("the page states the Endur'O as-at date where the figures are",
+              "as at ${ENDURO_SRC.as_at}, supplied by" in idx
+              and idx.count("enduroAsAt()") >= 3, "stated",
+              "stated" if "enduroAsAt()" in idx else "MISSING",
+              "a reader never meets one of these figures without its date")
         for stale in ("138 systems", "111 southern", "90,000 across 111"):
             check(f"withdrawn Endur'O figure absent: {stale!r}", stale not in idx,
                   "absent", "FOUND" if stale in idx else "absent",
@@ -787,7 +844,10 @@ def main():
     # The conditional attention entry became an action row with a stored
     # closing condition, so the ceiling is now raised and lowered by the
     # evaluator rather than by a branch in the page script.
-    for needle, why in (("const CAP_T=60000", "the cap constant"),
+    # The cap is now declared in PARAMS with its citation (VPA-DD sect.A.4)
+    # and CAP_T reads it, so the constant is checked where it is declared.
+    for needle, why in (("cap_t:{v:60000", "the cap constant, declared in PARAMS"),
+                        ("const CAP_T=PARAMS.cap_t.v", "CAP_T reads PARAMS"),
                         ('id="capnote"', "the audit-trail line"),
                         ('id="act-type3-cap"', "the action row that raises it"),
                         ("er_percent_of_type3_cap", "its closing condition")):
@@ -1436,7 +1496,13 @@ def main():
     # Every published reading that sits above the 347-day cap, not just the
     # first one. A stratum average is no more claimable than a per-point one.
     ABOVE_CAP = ("356.2", "353.6", "353.3", "356.7", "357.8", "358.6", "357.3")
-    plain = re.sub(r"<[^>]+>", " ", idx)
+    # Strip the scripts BEFORE the tags. Stripping tags alone leaves the
+    # inlined data objects behind as if they were prose, and a JSON blob
+    # containing "353.6" next to the word "applied" reads to this check as a
+    # published claim. It is not prose and must not be scanned as prose.
+    plain = re.sub(r"<script\b[^>]*>.*?</script>", " ", idx, flags=re.S)
+    plain = re.sub(r"<style\b[^>]*>.*?</style>", " ", plain, flags=re.S)
+    plain = re.sub(r"<[^>]+>", " ", plain)
     plain = plain.replace("&mdash;", "—").replace("&nbsp;", " ")
     offenders = []
     for sent in re.split(r"(?<=[.!?])\s+", plain):

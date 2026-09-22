@@ -150,6 +150,22 @@
   "target": 0,
   "when_satisfied": "OK"
  },
+ "act-enduro-people-source": {
+  "kind": "data",
+  "metric": "enduro_figures_unattributed",
+  "op": "==",
+  "says": "closes when every hand-entered Endur'O figure names the document behind it",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-enduro-refresh": {
+  "kind": "data",
+  "metric": "enduro_figures_age_days",
+  "op": "<=",
+  "says": "closes while the hand-entered Endur'O figures are under 60 days old; reopens the day they are not",
+  "target": 60,
+  "when_satisfied": "OK"
+ },
  "act-establish-renewal-dates-current": {
   "kind": "decision",
   "question": "What are the renewal dates and current status for SDWS 6, 8, 11 and 12?",
@@ -239,7 +255,7 @@
   "kind": "data",
   "metric": "marolinta_rehabs_final",
   "op": ">=",
-  "says": "closes when final R\u00e9habilitation records on the borehole form reach 10",
+  "says": "closes when final Réhabilitation records on the borehole form reach 10",
   "target": 10,
   "when_satisfied": "OK"
  },

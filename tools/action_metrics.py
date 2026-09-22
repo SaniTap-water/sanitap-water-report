@@ -123,6 +123,28 @@ def _m9():
     return abs(reg["dashboard_fdmar"] - ours)
 
 
+@metric("enduro_figures_age_days",
+        "days since the hand-entered Endur'O figures were last confirmed")
+def _m_enduro():
+    """Endur'O is off mWater, so nothing here refreshes itself. The figures
+    are allowed to be manual; they are not allowed to age unnoticed."""
+    import datetime
+    m = json.load(open(d("data", "enduro_manual.json"), encoding="utf8"))
+    return (datetime.date.today()
+            - datetime.date.fromisoformat(m["as_at"])).days
+
+
+@metric("enduro_figures_unattributed",
+        "hand-entered Endur'O figures with no document recorded behind them")
+def _m_enduro_attr():
+    """A figure whose source is 'not recorded' is not sourced, however long
+    it has been carried. This counts them rather than trusting the block."""
+    m = json.load(open(d("data", "enduro_manual.json"), encoding="utf8"))
+    return sum(1 for f in m["figures"].values()
+               if str(f.get("supplied_by", "")).strip().lower()
+               in ("", "not recorded", "unknown", "none"))
+
+
 @metric("extract_lag_days",
         "days the extract on this page runs behind mWater")
 def _m10():
