@@ -30,6 +30,23 @@ done
 
 say() { printf '  %s\n' "$*"; }
 
+# ---- 0. freeze the outgoing edition ----------------------------------------
+# Archiving used to live only in weekly_build.py, so every edition published
+# through this script - which is every edition since 18 September - was never
+# archived. Week 39 had no archive at all, which is also how the edition
+# counter came to reset. The outgoing edition is frozen here, BEFORE anything
+# is overwritten, and the publish refuses to continue if it is not on disk.
+if [ -z "${SANITAP_SKIP_ARCHIVE:-}" ]; then
+  say ""
+  say "archiving the outgoing edition ..."
+  python3 tools/archive_edition.py || true
+  python3 tools/archive_edition.py --assert
+  if [ $? -ne 0 ]; then
+    say "ABORT: the outgoing edition is not archived; nothing overwritten."
+    exit 1
+  fi
+fi
+
 # ---- 1. stage the new files ------------------------------------------------
 if [ -n "$NEW_INDEX" ]; then
   if [ ! -f "$NEW_INDEX" ]; then say "ABORT: $NEW_INDEX does not exist"; exit 2; fi

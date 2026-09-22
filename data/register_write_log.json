@@ -1,0 +1,30 @@
+[
+ {
+  "code": "698771103",
+  "action": "WRITE NOT VERIFIED",
+  "when": "2026-09-22T05:27:37.333Z",
+  "before": {
+   "admin_region": null,
+   "_rev": 8
+  },
+  "after": {
+   "admin_region": null,
+   "_rev": 9
+  },
+  "evidence": {
+   "fokontany": "Ankofabe/Antoraka",
+   "fokontany_mates": 14,
+   "fokontany_values": [
+    "303143"
+   ],
+   "nearest8_values": [
+    "303143"
+   ],
+   "nearest_m": 156
+  },
+  "backups": {
+   "before": "/home/bushp/sanitap-water-report/data/mwater_backups/698771103_2026-09-22T05-27-35-974Z_before.json",
+   "after": "/home/bushp/sanitap-water-report/data/mwater_backups/698771103_2026-09-22T05-27-37-332Z_after.json"
+  }
+ }
+]

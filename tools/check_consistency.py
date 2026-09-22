@@ -415,6 +415,74 @@ def main():
             check(f"{f}: has {tag}", tag in src.lower(), "present",
                   "present" if tag in src.lower() else "MISSING")
 
+    # ---- 7b-9. register integrity -----------------------------------------
+    # No managed point may have a missing or unresolvable admin_region, and no
+    # point may enter or leave the fleet without something that explains it.
+    rc_p = os.path.join(repo_root, "data", "register_corrections.json")
+    rc = json.loads(read(rc_p)) if os.path.exists(rc_p) else {}
+    der = (rc.get("admin_region_derived") or {}).get("points") or []
+    check("every point with no admin_region has a derived value on file",
+          len(der) == 9, 9, len(der),
+          "derived from fokontany-mates and GPS, both unanimous; "
+          "data/register_corrections.json")
+    noev = [d["wp"] for d in der if not d.get("evidence") or not d.get("admin_region")]
+    check("every derived admin_region carries its evidence",
+          not noev, "all evidenced",
+          f"missing on {', '.join(noev[:3])}" if noev else "all evidenced",
+          "a derived value without its evidence is a guess")
+    check("the mWater write attempt is recorded either way",
+          "written_to_mwater" in (rc.get("admin_region_derived") or {}),
+          "recorded",
+          "recorded" if "written_to_mwater" in (rc.get("admin_region_derived") or {})
+          else "MISSING",
+          "the API accepts the PATCH and discards the field; that is a finding, "
+          "not a silence")
+    # fleet churn against the archived editions
+    import glob as _glob
+    def _pumps(h):
+        mm = re.search(r"\bconst PUMPS\s*=\s*\[", h)
+        if not mm:
+            return None
+        i0 = h.index("[", mm.start()); dd = 0; jj = i0; ins = esc = False
+        while jj < len(h):
+            ch = h[jj]
+            if ins:
+                if esc: esc = False
+                elif ch == "\\": esc = True
+                elif ch == '"': ins = False
+            elif ch == '"': ins = True
+            elif ch == "[": dd += 1
+            elif ch == "]":
+                dd -= 1
+                if dd == 0: break
+            jj += 1
+        try: return {x["wp"] for x in json.loads(h[i0:jj + 1])}
+        except Exception: return None
+    eds = []
+    for f in sorted(_glob.glob(os.path.join(repo_root, "editions", "*.html"))):
+        if "-routes" in f or "-portfolio" in f:
+            continue
+        sp = _pumps(read(f))
+        if sp: eds.append((os.path.basename(f), sp))
+    cur_set = _pumps(idx)
+    if eds and cur_set:
+        excluded = {x["wp"] for x in (rc.get("excluded") or [])}
+        unexplained = []
+        prev = None
+        for name, sp in eds + [("index.html", cur_set)]:
+            if prev is not None:
+                for wp in (prev - sp):
+                    if wp not in excluded:
+                        unexplained.append(f"{wp} left at {name}")
+                for wp in (sp - prev):
+                    unexplained.append(f"{wp} joined at {name}")
+            prev = sp
+        check("no point enters or leaves the fleet unexplained",
+              not unexplained, "none",
+              "; ".join(unexplained[:3]) if unexplained else "none",
+              f"{len(eds) + 1} editions compared; departures must appear in "
+              "register_corrections.json")
+
     # ---- 7c-0. an aggregate and its row set are ONE quantity --------------
     # S.n and len(PUMPS) are two sources for the same number. That is the
     # two-bases fault one layer down: the prose reads S.n, agg() reads PUMPS,
@@ -1801,13 +1869,21 @@ def main():
              "the logger is on every pump"),
             ("Meter every pump, calibrate by sampling",
              "the guiding principle is quoted"),
-            ("~770", "the fleet-wide logger count is stated"),
-            ("<b>723</b>", "the fleet size is stated"),
-            ("<b>646</b>", "the Canzee count is stated"),
-            ("<b>77</b>", "the India Mark II count is stated")):
+            ):
         check(f"sensor section: {why}", frag in idx, "present",
               "present" if frag in idx else "MISSING",
-              "from StrokeMeter_Technical_Development_Plan_v1.2")
+              "quoted commitments from StrokeMeter_Technical_Development_Plan_v1.2")
+    # The plan's COUNTS are gone, and must stay gone. They were illustrative
+    # figures written to brief a supplier and were carried here as though they
+    # were the register. A figure's source is a form response, a registered
+    # parameter or a named decision - never a plan or a deck.
+    plan_counts = [f for f in ("~770", "<b>723</b>", "<b>646</b>",
+                               "~688", "~82", "<b>~10</b> units")
+                   if f in idx]
+    check("no StrokeMeter-plan count is carried as a figure",
+          not plan_counts, "none",
+          f"still present: {', '.join(plan_counts[:3])}" if plan_counts else "none",
+          "illustrative supplier-briefing counts, removed 2026-09-22")
     check("the report states the calendars retire if the logger is accepted",
           "retire as a carbon instrument" in idx
           and "cap would cease to bind" in idx, "stated",

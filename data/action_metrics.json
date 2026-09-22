@@ -1,6 +1,11 @@
 {
  "counted": "2026-09-22",
  "metrics": {
+  "calls_using_service_visit_choice": {
+   "says": "calls recorded with the routine-service-visit choice",
+   "source": "local",
+   "value": 0
+  },
   "consent_question_answers": {
    "says": "point-of-use responses that actually answer the consent question A4",
    "source": "mWater",
@@ -159,7 +164,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 44
+   "value": 43
   },
   "usage_question_answers": {
    "says": "point-of-use responses that actually answer the usage question A9",

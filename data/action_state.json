@@ -2,9 +2,9 @@
  "evaluated": "2026-09-22",
  "kinds": {
   "artefact": 7,
-  "data": 37,
+  "data": 38,
   "decision": 39,
-  "form": 8,
+  "form": 7,
   "none": 20
  },
  "state": {
@@ -52,10 +52,10 @@
   },
   "act-call-service-visit": {
    "evaluated": "2026-09-22",
-   "evidence": "a question mentioning \"service visit\" is not on the call-centre form",
-   "kind": "form",
+   "evidence": "calls_using_service_visit_choice = 0 (calls recorded with the routine-service-visit choice); target >= 1",
+   "kind": "data",
    "satisfied": false,
-   "says": "closes when the call form carries a service-visit-requested question",
+   "says": "closes when the call team has actually used the routine-service-visit choice at least once",
    "when_satisfied": "OK"
   },
   "act-carbon-year-basis": {
@@ -488,7 +488,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-09-22",
-   "evidence": "unapproved_works_records = 44 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 43 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",

@@ -1,0 +1,109 @@
+# Register integrity
+
+What was wrong in the water-point register, how it happened, how each case was resolved, and the
+checks that stop it coming back. Written 22 September 2026.
+
+---
+
+## 1. Nine managed points with no `admin_region`
+
+**What was wrong.** Nine points carry complete `admin_div1`–`admin_div5` text — region, district,
+commune, fokontany — but no `admin_region`, the separate field holding an id into mWater's
+`admin_regions` table. Every export and every view that keys on `admin_region` therefore shows
+them with no district, while the report, which reads the `admin_div` text, shows commune and
+fokontany correctly. They are:
+
+`698771103` `698771110` `698771244` `698771251` `699596004` `699596114` `742897074` `742897115`
+`742897232`
+
+**They are not ghosts and not duplicates.** Each has maintenance visits, an E. coli test, a
+distinct beneficiary count and its own mWater response links. Pairs sit 137–255 m apart with
+different visit dates and different populations.
+
+**How it happened — partly confirmed, partly corrected.** `742897074`, `742897115` and
+`742897232` share `_created_on` `2024-08-15T10:04:23.856Z` to the millisecond and one creator,
+which no form entry can produce: those three were bulk-imported. The other six were created
+singly between 2 and 9 September 2024 by two different users, so "bulk import" explains three of
+the nine, not all nine.
+
+**The brief expected the names to need fixing. They do not.** `Canzee` is the house convention
+across the register — 663 of the 908 managed entities carry it and 104 carry `IndiaMark`. There
+is no better name in any form response, and no name was changed.
+
+**How each was resolved.** The value is *derived*, from two independent lines that agree
+unanimously on all nine:
+
+| point | commune / fokontany | `admin_region` | fokontany-mates agreeing | nearest 8 by GPS | closest |
+|---|---|---|---|---|---|
+| 698771103 | Ankofabe / Antoraka | 303143 | 14 of 14 | 8 of 8 | 156 m |
+| 698771110 | Ankofabe / Antoraka | 303143 | 14 of 14 | 8 of 8 | 302 m |
+| 698771244 | Voloina / Ambodipaka | 308394 | 10 of 10 | 8 of 8 | 304 m |
+| 698771251 | Voloina / Ambodipaka | 308394 | 10 of 10 | 8 of 8 | 168 m |
+| 699596004 | Ankofabe / Antoraka | 303143 | 14 of 14 | 8 of 8 | 490 m |
+| 699596114 | Ankofabe / Manambia | 303141 | 12 of 12 | 8 of 8 | 19 m |
+| 742897074 | Anjahana / Navana | 303144 | 27 of 27 | 8 of 8 | 262 m |
+| 742897115 | Anjahana / Navana | 303144 | 27 of 27 | 8 of 8 | 110 m |
+| 742897232 | Anjahana / Navana | 303144 | 27 of 27 | 8 of 8 | 222 m |
+
+A third line — the region and district dropdowns on a works form — does not exist: no form export
+carries a region or district column, and `premiere_rehabilitation.csv` is header-only. So *all
+available* evidence agrees, which is the test that was set.
+
+**The values are NOT in mWater, and that is a finding.** The v3 entities API accepts a `PATCH`,
+bumps `_rev`, and silently discards `admin_region`. It was tried twice on `698771103`: once as a
+full-document patch and once as a minimal `{_id, _rev, admin_region}` patch. Both returned 200.
+Neither persisted the field. `admin_region` is a declared property of its own type
+`admin_region`, so this is not a format error — the field is almost certainly derived server-side
+or gated behind a route this credential does not reach. **No further writes were attempted.**
+
+That entity's `_rev` moved 8 → 10 with no content change: every other field is byte-identical to
+the pre-write backup in `data/mwater_backups/`. Before-and-after documents and the full attempt
+log are in `data/mwater_backups/` and `data/register_write_log.json`.
+
+The derived values live in `data/register_corrections.json` under `admin_region_derived`, with
+the evidence for each, which is the documented record independent of mWater that was asked for.
+`act-admin-region-mwater` is open to apply them through a route that works.
+
+---
+
+## 2. `670401842` "Morafeno"
+
+**It never left the fleet, because it was never in it.** It appears in no archived edition's
+`PUMPS`, including the 751-point fleet of 7 September. Its entity `type` is `other`, not a pump
+type.
+
+**What actually happened.** It was on the portfolio **map**, which until commit `d439714` drew
+every entity in the MadAvance group. `d439714` changed the map to draw the actively managed
+portfolio only, and that is what removed it. The departure is explained by that commit.
+
+**Name and `admin_region` were never set, not cleared.** `_rev` is 1 and `_modified_on` is
+absent: the record has never been modified since it was created on 2024-09-03. The September map
+displayed "Morafeno" because it reads `desc`, which is set; `name` is null and always has been.
+Its `admin_region` 306666 resolves to no row in `admin_regions`.
+
+Recorded in `data/register_corrections.json` under `excluded_from_map`.
+
+---
+
+## 3. Points entering or leaving the fleet without a recorded decision
+
+**Size of the fault class: zero.**
+
+Across all eight archived editions and the live page, fleet membership changes exactly once:
+751 → 736 on 15 September 2026, fifteen points leaving and none joining. Those fifteen are
+*exactly* the fifteen in `register_corrections.json` → `excluded`, matching in both directions
+with no residue. No point has ever joined the fleet unexplained.
+
+---
+
+## The checks that stop this returning
+
+In `tools/check_consistency.py`:
+
+* every point with no `admin_region` has a derived value on file, and every derived value carries
+  its evidence;
+* the mWater write attempt is recorded either way — the API accepting a patch and discarding the
+  field is a finding, not a silence;
+* **no point enters or leaves the fleet unexplained**: every archived edition is compared against
+  its predecessor and the live page, and any departure must appear in
+  `register_corrections.json`.

@@ -1,6 +1,20 @@
 {
- "note": "Figures rendered on the page that are neither live, nor declared in PARAMS, nor from the dated manual Endur'O file. This list may only shrink. A figure not on it fails the gate.",
+ "note": "Every figure the report renders that is not derivable from a population, not declared in PARAMS with a citation, and not in a dated manual file. Under the derivation rule each of these must gain a derivation or stop rendering. This file is the worklist, dated, and may only shrink.",
  "recorded": "2026-09-22",
+ "resolved_citations": {
+  "0.405": {
+   "derivation": "CARBON.carbon_points_with_2026_sheet / CARBON.carbon_points",
+   "source": "derivable as carbon points with a dated 2026 sheet over the carbon fleet",
+   "tier": "TIER 1 - live; should never have been on this list",
+   "what": "2026 calendar coverage fraction"
+  },
+  "4.3": {
+   "confirmed": "correspondence with James Walker, 18 September 2026",
+   "source": "national rural average, Institut National de la Statistique",
+   "tier": "PARAMS - a registered/cited parameter, not a live figure",
+   "what": "people per household, HN in Q_pop"
+  }
+ },
  "values": {
   "0.08": {
    "n": 9,

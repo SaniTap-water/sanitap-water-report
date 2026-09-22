@@ -123,6 +123,22 @@ def _m9():
     return abs(reg["dashboard_fdmar"] - ours)
 
 
+@metric("calls_using_service_visit_choice",
+        "calls recorded with the routine-service-visit choice")
+def _m_service_choice():
+    """The form carries the choice; this counts whether anyone uses it.
+    A form change nobody adopts has changed nothing."""
+    import csv as _csv
+    p = os.path.expanduser("~/mwater-exports/appel_signalement_pannes.csv")
+    if not os.path.isfile(p):
+        return 0
+    n = 0
+    for r in _csv.DictReader(open(p, encoding="utf8")):
+        if "RXSXFTT" in (r.get("data") or ""):
+            n += 1
+    return n
+
+
 @metric("enduro_figures_age_days",
         "days since the hand-entered Endur'O figures were last confirmed")
 def _m_enduro():

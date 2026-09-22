@@ -81,6 +81,16 @@ Q_PM = "bd1c90799b654d82b5496ddff92164c7"
 Q_PM_AFTER = "24ef8df2226d454b86e3f8ae42d6609f"
 Q_REPAIR = "d3a9ef133011453093c4dc7cfd24a719"
 Q_ISSUE = "77af76c977f4449d9f0dc0e9a0a45b3c"
+# "Probleme principal observe" on the call form. RXSXFTT was added on
+# 2026-09-22 (form rev 474) as "Demande de visite d'entretien de routine" /
+# "Routine service visit requested". It is NOT a fault: a call whose only
+# reported problem is a routine service request says the pump works and
+# somebody wants it serviced. Before this choice existed the call team had
+# nowhere to put such a call, so it went in as a fault and the pump landed in
+# "partially working" with nothing to say why - which is why that bucket was
+# carried forward unclassified.
+Q_PROBLEM = "77af76c9ed95441d84adf04df6aa0507"
+C_SERVICE_REQUEST = "RXSXFTT"
 M_CALL = {"3uqxzHU": "ok", "N2gp8lv": "down", "plUyXhB": "partial"}
 M_PM = {"EBT8gZe": "ok", "hrk1VC4": "partial", "fZ6nTFE": "down"}
 M_PM_AFTER = {"CjHm67x": "ok", "YxPjA45": "down"}
@@ -134,7 +144,8 @@ def events(code, calls, pm, rep, cut):
         s = M_CALL.get(r[Q_CALL])
         if s:
             ev.append(dict(date=r["date"], rank=1, status=s, src="call",
-                           ts=r["ts"], rid=r["rid"], issue=r.get(Q_ISSUE)))
+                           ts=r["ts"], rid=r["rid"], issue=r.get(Q_ISSUE),
+                           problem=r.get(Q_PROBLEM)))
     for r in pm.get(code, []):
         if not (YEAR_FROM <= r["date"] <= cut):
             continue
@@ -153,7 +164,7 @@ def events(code, calls, pm, rep, cut):
 
 
 def build(cut, pumps):
-    calls = load("appel_signalement_pannes.csv", (Q_CALL, Q_ISSUE))
+    calls = load("appel_signalement_pannes.csv", (Q_CALL, Q_ISSUE, Q_PROBLEM))
     pm = load("pm.csv", (Q_PM, Q_PM_AFTER))
     rep = load("reparation_apres_panne.csv", (Q_REPAIR,))
     holds = (json.load(open(HOLDS)).get("holds", {})
@@ -163,7 +174,7 @@ def build(cut, pumps):
         ev = events(p["wp"], calls, pm, rep, cut)
         if not ev:
             rows[p["wp"]] = dict(status="unknown", date=None, src=None, rid=None,
-                                 issue=None)
+                                 issue=None, problem=None)
             branch["no answered record at all -> unknown"] += 1
             continue
         last = ev[-1]
@@ -174,7 +185,8 @@ def build(cut, pumps):
             branch[f"latest record is a {last['src']}"] += 1
         rows[p["wp"]] = dict(status=last["status"], date=last["date"],
                              src=last["src"], rid=last["rid"],
-                             issue=last.get("issue"))
+                             issue=last.get("issue"),
+                             problem=last.get("problem"))
     held = 0
     for wp, h in holds.items():
         if wp in rows and rows[wp]["status"] != h["status"]:
@@ -230,9 +242,23 @@ def apply_to_page(rows, cut):
             down.append(d)
         elif q["status"] == "partial":
             c, st = extra.get(q["wp"], ("", None))
+            # The split finally comes from evidence. RXSXFTT on the selected
+            # call response says the caller asked for a routine service visit,
+            # which is not a fault; anything else stays as it was rather than
+            # being invented. Before the choice existed there was nowhere to
+            # record this, which is why the bucket was carried forward.
+            prob = rows[q["wp"]].get("problem") or []
+            if isinstance(prob, str):
+                prob = [prob]
+            if C_SERVICE_REQUEST in prob:
+                kind, basis = "service request", "call"
+            else:
+                kind, basis = kind_of.get(q["wp"]), (
+                    "carried forward" if kind_of.get(q["wp"]) else None)
             partial.append({"wp": q["wp"], "site": q["site"],
                             "commune": q.get("commune"), "date": q["status_date"],
-                            "kind": kind_of.get(q["wp"]), "comments": c or "",
+                            "kind": kind, "kind_basis": basis,
+                            "comments": c or "",
                             "rid": rows[q["wp"]].get("rid"),
                             "status": st or "not classified"})
     out = idx

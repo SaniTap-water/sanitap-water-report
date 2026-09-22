@@ -5,7 +5,7 @@
   "0": {
    "ctx": "chip\" data-own=\"unassigned\" aria-pressed=\"false\">UUnassigned 1 &middot; 0 ACT Show To act on &mdash; <span data-fig=",
    "line": 276,
-   "n": 96
+   "n": 98
   },
   "0.0001": {
    "ctx": "> E. coli7320 &ndash; 50 CFU/100&nbsp;mL0&lt; 1 CFU/100&nbsp;mL Manganese2430.0001 &ndash; 0.19 mg/L0.001WHO 0.08 mg/L provisional So part (i) of CAR#7(b) looks answerable from records we already hold, and",
@@ -64,7 +64,7 @@
   },
   "0.405": {
    "ctx": "ntsetra region. The sub-national figure for Toamasina province is 36%. The two sources disagree and the registered one is lower. This page applies the registered 34%, giving a portfolio-weighted fNRB of 0.405. Confirm th",
-   "line": 319,
+   "line": 318,
    "n": 5
   },
   "0.54": {
@@ -128,9 +128,9 @@
    "n": 7
   },
   "1": {
-   "ctx": "D masthead :: tools/render_masthead.py :: do not edit between these markers --> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 1 data to Mon 21 Sept",
-   "line": 208,
-   "n": 109
+   "ctx": "in mWater. Management notes — internal, remove before sharing with a validation and verification body (VVB) 1. Call-centre wording. The call form offers guardians a small option list plus a free-text box. Most of them lo",
+   "line": 243,
+   "n": 110
   },
   "1,000": {
    "ctx": "00 households at 90% confidence and 10% margin of error &mdash; but 100 is a floor, not a demonstration. The Design Review raised this as CAR#9: &ldquo;a sample size of 100 for a population greater than 1,000 does not in",
@@ -169,7 +169,7 @@
   },
   "1,464": {
    "ctx": "version of this item asked for 2,334 records to be approved. That was the wrong ask.What is worth doing: a documented quality check, against stated criteria, on a sample of the 1,464 unapproved old-combined-works records",
-   "line": 321,
+   "line": 320,
    "n": 4
   },
   "1,899": {
@@ -203,9 +203,9 @@
    "n": 3
   },
   "10": {
-   "ctx": "India Mark II variant) against a fleet of 723 pumps &mdash; 646 Canzee and 77 India Mark II. The calibration sample is separate and much smaller. Device B the Calibration Pod is portable, ~10 units plus 2 spares, and the",
+   "ctx": "ch smaller. Device B the Calibration Pod is portable, a small portable set, and the plan is explicit that pods &ldquo;operate as sampling-campaign instruments&hellip; not as a fleet rotation&rdquo;. The 90/10 sampling es",
    "line": 293,
-   "n": 85
+   "n": 82
   },
   "10,227": {
    "ctx": "bon-year-basis.\">356.710,227 t10,499 t</span",
@@ -268,13 +268,13 @@
    "n": 4
   },
   "12": {
-   "ctx": "n action. The minimum-sample-size divergence between v1.0 and v2.0 bears on the calibration sample, not on the logger count.brief issued: ~770 loggers, ~12 podsAdriaan MolACT</spa",
-   "line": 293,
-   "n": 18
+   "ctx": "sheet in the frame, and 1 of a sample bottle on a pump platform. They sit on the three calendar questions &mdash; 120 on 2.15.5, 74 on 2.15.6, 12 on 1.3.1.3 &mdash; where they count as calendar evidence that does not exi",
+   "line": 323,
+   "n": 16
   },
   "120": {
    "ctx": "an a calendar, 21 of a standpipe or pump head, 42 portraits or site views with no sheet in the frame, and 1 of a sample bottle on a pump platform. They sit on the three calendar questions &mdash; 120 on 2.15.5, 74 on 2.1",
-   "line": 324,
+   "line": 323,
    "n": 3
   },
   "120,000": {
@@ -444,7 +444,7 @@
   },
   "16": {
    "ctx": "a printed document other than a calendar, 6 portraits or site views with no sheet in frame, 1 of a sample bottle on a pump platform. They sit on 17 responses to 2.15.5, 16 to 2.15.6 and 4 to 1.3.1.3. The full list with w",
-   "line": 330,
+   "line": 329,
    "n": 19
   },
   "162": {
@@ -503,8 +503,8 @@
    "n": 2
   },
   "180": {
-   "ctx": "s\">data closes when no submitted works record is left unapprovedunapproved_works_records = 44 (submitted works records with no approval, last 180 days); target == 0 Endur’O to move its register fully into mWater.</summar",
-   "line": 321,
+   "ctx": "s\">data closes when no submitted works record is left unapprovedunapproved_works_records = 43 (submitted works records with no approval, last 180 days); target == 0 Endur’O to move its register fully into mWater.</summar",
+   "line": 320,
    "n": 2
   },
   "181": {
@@ -548,13 +548,13 @@
    "n": 1
   },
   "2": {
-   "ctx": "ate was reconciled against the contractor folders and written to data/enduro_disposition.csv, which holds 148 candidate records: 92 matched to the contract list, 37 new, 2 duplicates and 17 retired. The 131 are the recor",
-   "line": 225,
-   "n": 81
+   "ctx": "D masthead :: tools/render_masthead.py :: do not edit between these markers --> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 2 data to Mon 21 Sept",
+   "line": 208,
+   "n": 79
   },
   "2,334": {
    "ctx": "n workflow, and that matters: a bulk approval by someone who has not read the records is worse than none, because it manufactures assurance a verifier may then rely on. The previous version of this item asked for 2,334 r",
-   "line": 321,
+   "line": 320,
    "n": 2
   },
   "2,348": {
@@ -614,7 +614,7 @@
   },
   "206": {
    "ctx": "th its date and sourceno answer logged Move the 206 misfiled photographs to the question they belong on.Move the 206 misfiled photographs to the question they belong on. Every calendar photograph on file was inspected by",
-   "line": 324,
+   "line": 323,
    "n": 17
   },
   "208": {
@@ -623,9 +623,9 @@
    "n": 3
   },
   "21": {
-   "ctx": "ekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 1 data to Mon 21 September 2026, current <img src=\"assets/sanitap.png\" alt=\"SaniTap\" style=\"height:40px;width:auto;displ",
+   "ctx": "ekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 2 data to Mon 21 September 2026, current <img src=\"assets/sanitap.png\" alt=\"SaniTap\" style=\"height:40px;width:auto;displ",
    "line": 209,
-   "n": 47
+   "n": 45
   },
   "21,200": {
    "ctx": "an> enters the volume calculation linearly. The span from 347 to 365 days is +5.19%, or +1.45 tCO2e per point per year &mdash; USD 29 per point per year at USD 20 per tonne, USD 21,200 a year across the 731 carbon points",
@@ -643,9 +643,9 @@
    "n": 1
   },
   "22": {
-   "ctx": "v class=\"wrap\"> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 1 data to Mon 21 September 2026, current <!-- END GENERATED masthead",
+   "ctx": "v class=\"wrap\"> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 2 data to Mon 21 September 2026, current <!-- END GENERATED masthead",
    "line": 208,
-   "n": 10
+   "n": 12
   },
   "224": {
    "ctx": "2025239100%1750202629939%022420271330%0133 What that means for <spa",
@@ -819,7 +819,7 @@
   },
   "3,131": {
    "ctx": "Explicitly out of scope. Blanket approval of the ongoing weekly forms: approving records as they arrive adds a signature and no scrutiny, and it would have to be done for ever. The call-centre form (3,131 unapproved): a ",
-   "line": 321,
+   "line": 320,
    "n": 2
   },
   "3,503": {
@@ -1128,7 +1128,7 @@
    "n": 2
   },
   "39": {
-   "ctx": "yle> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 1 data to Mon 21 September 2026, current <!--",
+   "ctx": "yle> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 2 data to Mon 21 September 2026, current <!--",
    "line": 208,
    "n": 10
   },
@@ -1194,7 +1194,7 @@
   },
   "4.19": {
    "ctx": "arrangement Produce the §4.19 CL#2 installation database.Produce the &sect;4.19 CL#2 installation database. Number of households under each borehole, to a stated cut-off date. Derivable today for all 736 points from the ",
-   "line": 327,
+   "line": 326,
    "n": 3
   },
   "4.2": {
@@ -1203,9 +1203,9 @@
    "n": 6
   },
   "4.3": {
-   "ctx": "ehold size &mdash; 139.6 &divide; 4.5 = 31.0 for Anosy, 139.6 &divide; 3.7 = 37.7 for Maroantsetra, entered as 37. So 32.5 and 35.8 are the same population estimate divided by different household sizes: a blended 4.3 in ",
-   "line": 691,
-   "n": 8
+   "ctx": "details class=\"expl\" style=\"margin-top:8px\">How people per premises is derived &mdash; INSTAT RGPH-3 People per premises is taken from INSTAT RGPH-3, rural stratum, 4.3 persons per household. National is 4.2 and urban 3.",
+   "line": 868,
+   "n": 6
   },
   "4.5": {
    "ctx": "er over 636 water points = 139.6 people per CWS, and 20,647 households over the same 636 = 32.5. The district pair reproduces the same 139.6 divided by district household size &mdash; 139.6 &divide; 4.5 = 31.0 for Anosy,",
@@ -1249,7 +1249,7 @@
   },
   "42": {
    "ctx": "d 206 are not calendars: 75 of the blue &ldquo;Point d&rsquo;Eau Potable et P&eacute;renne&rdquo; signboard, 67 of a printed document other than a calendar, 21 of a standpipe or pump head, 42 portraits or site views with",
-   "line": 324,
+   "line": 323,
    "n": 4
   },
   "428": {
@@ -1258,9 +1258,9 @@
    "n": 1
   },
   "43": {
-   "ctx": "in the field by the k-th-household walking rule. Design effect (DEFF) = 1 + (m &minus; 1) &times; intra-cluster correlation (ICC); at ICC 0.1 that is 1.4, so a nominal 60 samples gives an effective sample size of about 4",
-   "line": 896,
-   "n": 1
+   "ctx": "td>31 Oct 2026data closes when no submitted works record is left unapprovedunapproved_works_records = 43 (submitted works records with no approval, last 180 days); target == 0 Endu",
+   "line": 320,
+   "n": 3
   },
   "434": {
    "ctx": "registered estimate, or something else &mdash; there is no provision to quote. Our own SOP fills the gap with a conservative fallback, but that is a house rule no verifier is bound by, and it decides the treatment of 434",
@@ -1270,7 +1270,7 @@
   "44": {
    "ctx": "the extraction and manual transcription. It now also decides something larger than the accuracy figure. The calendar was made the official record of days operational on 21 September 2026, and on 44 points with open call-",
    "line": 301,
-   "n": 20
+   "n": 18
   },
   "45": {
    "ctx": "te in every month since September 2025. Calendar currency is therefore a function of how often a point is visited, not of whether the procedure is followed. Visits have collapsed: 100 in March 2026, 45 in July, 10 in Aug",
@@ -1304,7 +1304,7 @@
   },
   "49": {
    "ctx": "output, which is the only way the comparison means anything. Until this closes, the extraction bounds its own over-counting but nothing bounds what it misses.at most 49 transcripts compared — one of the 50 is a signboard",
-   "line": 318,
+   "line": 317,
    "n": 3
   },
   "49.4071": {
@@ -1449,7 +1449,7 @@
   },
   "62": {
    "ctx": "controlled source file exists anywhere in SharePoint. The calendar in service was designed and printed in August 2024; there is no template, no artwork file, no print order and no distribution record. The 62 points with ",
-   "line": 328,
+   "line": 327,
    "n": 11
   },
   "628": {
@@ -1463,9 +1463,9 @@
    "n": 3
   },
   "646": {
-   "ctx": "rmanently mounted to a static part of every metered pump&rdquo;, with production sized at ~770 units (~6% spares: ~688 Canzee variant, ~82 India Mark II variant) against a fleet of 723 pumps &mdash; 646 Canzee and 77 Ind",
-   "line": 293,
-   "n": 5
+   "ctx": "l\" id=\"act-update-sops-portfolio-figures\">Update the SOP’s portfolio figures.Update the SOP&rsquo;s portfolio figures. It states its scope, in the SOP's own words, as &ldquo;646 Canzee + 77 India Mark III = 723 pumps&rdq",
+   "line": 336,
+   "n": 2
   },
   "67": {
    "ctx": "/tr> Run the transcription validation round.Run the transcription validation round. 67 sheets are loaded and ready at the transcription page; 34 of them are machine-comparable and",
@@ -1481,11 +1481,6 @@
    "ctx": "These 84 are not the 62 counted above: the 62 have no calendar photograph at all, out of 736 managed points; the 84 have photographs of which none is readable, out of the 681 points that have any. A point can be in both ",
    "line": 1111,
    "n": 1
-  },
-  "688": {
-   "ctx": "er the StrokeMeter Technical Development Plan v1.2, Device A the Stroke Logger is &ldquo;permanently mounted to a static part of every metered pump&rdquo;, with production sized at ~770 units (~6% spares: ~688 Canzee var",
-   "line": 293,
-   "n": 2
   },
   "69": {
    "ctx": "39.3% First recorded202422635938.6% 2025816954.0% Photographs on filenone0620.0% 1&ndash;225<td",
@@ -1524,7 +1519,7 @@
   },
   "71": {
    "ctx": "the Improved Cooking VPA found a doubtful sub-population it ran a census rather than a sample and then removed it: &ldquo;To mitigate the risk of over crediting, a conservative approach has been taken of removing the 71 ",
-   "line": 320,
+   "line": 319,
    "n": 2
   },
   "722": {
@@ -1533,9 +1528,9 @@
    "n": 6
   },
   "723": {
-   "ctx": "ke Logger is &ldquo;permanently mounted to a static part of every metered pump&rdquo;, with production sized at ~770 units (~6% spares: ~688 Canzee variant, ~82 India Mark II variant) against a fleet of 723 pumps &mdash;",
+   "ctx": "; not which pumps are metered. Every pump is metered. This item previously read as a 60-unit sampled sensor deployment, which is not the architecture. The plan works to the 17 July 2026 census of 723 pumps; the register ",
    "line": 293,
-   "n": 12
+   "n": 8
   },
   "726.6": {
    "ctx": "mmary>Supply the per-year carbon activity basis, or withdraw the per-year table. The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) ",
@@ -1565,7 +1560,7 @@
   "736": {
    "ctx": "ord of any kind is unknown. Rebuilt every edition by tools/build_call_tables.py, which reproduces the published tables exactly from the extract they were built on &mdash; 736 of 736 pumps. 39 pumps it cannot reproduce ar",
    "line": 238,
-   "n": 32
+   "n": 30
   },
   "738": {
    "ctx": "act-dashboard-gap\">Reconcile the 7-point gap between the MadAvance dashboard and our register.Reconcile the 7-point gap between the MadAvance dashboard and our register. The dashboard counts 738 points in Maroantsetra an",
@@ -1574,7 +1569,7 @@
   },
   "74": {
    "ctx": "head, 42 portraits or site views with no sheet in the frame, and 1 of a sample bottle on a pump platform. They sit on the three calendar questions &mdash; 120 on 2.15.5, 74 on 2.15.6, 12 on 1.3.1.3 &mdash; where they cou",
-   "line": 324,
+   "line": 323,
    "n": 3
   },
   "741": {
@@ -1594,7 +1589,7 @@
   },
   "75": {
    "ctx": "d photographs to the question they belong on.Move the 206 misfiled photographs to the question they belong on. Every calendar photograph on file was inspected by eye and 206 are not calendars: 75 of the blue &ldquo;Point",
-   "line": 324,
+   "line": 323,
    "n": 5
   },
   "75,129": {
@@ -1618,14 +1613,9 @@
    "n": 1
   },
   "77": {
-   "ctx": "static part of every metered pump&rdquo;, with production sized at ~770 units (~6% spares: ~688 Canzee variant, ~82 India Mark II variant) against a fleet of 723 pumps &mdash; 646 Canzee and 77 India Mark II. The calibra",
-   "line": 293,
-   "n": 7
-  },
-  "770": {
-   "ctx": "etering is fleet-wide. Per the StrokeMeter Technical Development Plan v1.2, Device A the Stroke Logger is &ldquo;permanently mounted to a static part of every metered pump&rdquo;, with production sized at ~770 units (~6%",
-   "line": 293,
-   "n": 6
+   "ctx": "date-sops-portfolio-figures\">Update the SOP’s portfolio figures.Update the SOP&rsquo;s portfolio figures. It states its scope, in the SOP's own words, as &ldquo;646 Canzee + 77 India Mark III = 723 pumps&rdquo;. That is ",
+   "line": 336,
+   "n": 4
   },
   "78": {
    "ctx": "e. Fort-Dauphin measures 322 against 139.5. The gap is settlement density, not the capacity caps. Before capping, the WorldPop allocation averages 615 people per point in Fort-Dauphin with 78 of 127 points at the pump ce",
@@ -1676,11 +1666,6 @@
    "ctx": "5139.3% First recorded202422635938.6% 2025816954.0% Photographs on filenone0620.0% 1&ndash;2<td",
    "line": 1034,
    "n": 1
-  },
-  "82": {
-   "ctx": "chnical Development Plan v1.2, Device A the Stroke Logger is &ldquo;permanently mounted to a static part of every metered pump&rdquo;, with production sized at ~770 units (~6% spares: ~688 Canzee variant, ~82 India Mark ",
-   "line": 293,
-   "n": 2
   },
   "83": {
    "ctx": "tr> Marolinta00&mdash;&mdash;&mdash; 2024 sheets8383358.6360.7352.3 2025 sheets169<td class=\"num",

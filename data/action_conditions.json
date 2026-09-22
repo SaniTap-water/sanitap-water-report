@@ -32,12 +32,12 @@
   "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it"
  },
  "act-call-service-visit": {
-  "form": "call-centre",
-  "kind": "form",
-  "predicate": {
-   "text": "service visit"
-  },
-  "says": "closes when the call form carries a service-visit-requested question"
+  "kind": "data",
+  "metric": "calls_using_service_visit_choice",
+  "op": ">=",
+  "says": "closes when the call team has actually used the routine-service-visit choice at least once",
+  "target": 1,
+  "when_satisfied": "OK"
  },
  "act-carbon-year-basis": {
   "kind": "none",

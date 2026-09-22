@@ -225,6 +225,33 @@ The checker enforces the parts it can see: that nothing marked OK is still descr
 that every detailed row carries an up-link to the list, that no action-shaped text hides inside
 a collapsed block without a row, and that the status vocabulary is exactly these three.
 
+## A figure's source is never a working document, plan or deck
+
+A figure's source is **a form response, a registered methodology parameter, or a named
+decision.** Never a plan, deck, proposal or working document. Numbers in those were written to
+make a point, not to be accurate, and they do not become accurate by being quoted.
+
+This was applied on 22 September to the StrokeMeter Technical Development Plan v1.2, whose
+illustrative counts had been carried into the report as though they were the register: 770 units,
+688 and 82 by variant, a fleet of 723, 646 Canzee and 77 India Mark II, and 10 pods plus 2 spares.
+All removed. The substantive quotation — that the Stroke Logger is *"permanently mounted to a
+static part of every metered pump"* — stays, because it is a commitment, not a measurement.
+
+Quoting a document in order to correct it is allowed, and must be visibly a quotation: the SOP
+item says the SOP's own words are *"646 Canzee + 77 India Mark III = 723 pumps"* and then gives
+the managed fleet from the register.
+
+## Tracing whether a figure left the building: check the attachment, not the folder
+
+When establishing whether a figure reached an external artefact, check **the file actually
+attached to the email**, not the similarly named file sitting in the folder. They are routinely
+different: a deck is revised after it is sent, or sent from a copy, and the folder holds the
+version nobody received. A file named for the date of a meeting is not evidence it is the file
+that went to the meeting.
+
+Where the attachment cannot be recovered, say so and give the folder evidence for what it is —
+an indication, not a finding.
+
 ## Waiting for a background job: never `pgrep -f` on its own pattern
 
 On 22 September a session was ending every report with "18 shells still running". Nothing in
