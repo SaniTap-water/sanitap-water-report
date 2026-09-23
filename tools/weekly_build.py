@@ -56,6 +56,9 @@ REQUEST = os.path.join(REPO, "logs", "update_requested")
 # region generators below; regenerating is idempotent, so that is harmless.)
 STEPS = [
     ("tools/pull_extract.py",        ["--write"],      True),
+    # the whole mWater group, classified silently: a new pump that meets the
+    # rule joins PUMPS here, anything unclassifiable is logged for review
+    ("tools/classify_register.py",   ["--write"],      True),
     ("tools/rebuild_activity.py",    ["--write"],      True),
     ("tools/build_call_tables.py",   ["--write"],      True),
     ("tools/rebuild_ttr.py",         ["--write"],      True),

@@ -45,15 +45,11 @@ DENY = [
     ("93,178",  "population from the wrong (2020) raster", ()),
     ("41,285",  "Fort-Dauphin figure from the wrong (2020) raster", ()),
     ("24.5%",   "cookstove overlap computed on the wrong denominator", ()),
-    # 908 is the register record count and is legitimate when labelled as such.
-    # It is NOT legitimate as a count of points under management.
-    # 908 is the mWater register record count. It is legitimate where the page
-    # says so; it is NOT legitimate as a count of points under management, in the
-    # carbon portfolio, or as a people-served figure. This is a keyword test, so
-    # it catches a bare "908" but cannot read a sentence - see LIMITATIONS below.
-    ("908", "register record count quoted as a management figure",
-     ("register", "registre", "record", "record count", "in mwater",
-      "managed by madavance", "sampling frame", "register chain")),
+    # 908 was the whole MadAvance mWater group's record count. Since
+    # 2026-09-23 the page covers the actively managed portfolio only and the
+    # group count appears nowhere, labelled or not. The CURRENT group count is
+    # asserted absent from the rendered page by tools/render_check.py.
+    ("908", "the whole mWater group count; the page covers the portfolio only", ()),
 ]
 
 RESULTS = []
@@ -2978,11 +2974,13 @@ def main():
     # ---- 7ar. what the source checks established, 21 September 2026 -----
     # Each of these replaced a note that was wrong about its own cause. They
     # are asserted so the corrected statement cannot quietly revert.
-    check("the register note says what the non-portfolio records are",
-          "What the register holds beyond the portfolio" in idx
-          and "One known defect, not yet fixed" not in idx, "corrected",
-          "corrected" if "What the register holds beyond the portfolio" in idx
-          else "OLD NOTE BACK",
+    # The paragraph describing the records outside the portfolio was removed
+    # on 2026-09-23 (portfolio only). What this guards is the corrected
+    # statement about the managed points, which stays.
+    _regok = ("matches the register record for every one of them" in idx
+              and "One known defect, not yet fixed" not in idx)
+    check("the register note states the managed points match their records",
+          _regok, "corrected", "corrected" if _regok else "OLD NOTE BACK",
           "the page does not read district from form answers; it matches the record")
     check("the duplicate-registration item is settled, not open",
           "are not in the managed portfolio at all" in idx,

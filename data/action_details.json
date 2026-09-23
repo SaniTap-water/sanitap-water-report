@@ -364,11 +364,6 @@
   "owner": "Angelo, tracked by Jan",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>with the 2026 annual evaluation</b><br><span class=\"muted\" style=\"font-size:.85em\">proposed &mdash; Jan to confirm or move</span>"
  },
- "act-read-district-commune-water": {
-  "detail": "<b>Read district and commune from the water point register</b> rather than from form answers. Closes 109 of the 118 points that have no district on this page, with no data entry by anyone; <b>The 9 Maroantsetra points mWater leaves without a region are resolved</b>: mWater computes <span class=\"mono\">admin_region</span> from location, and these nine lie just outside its boundary polygons, so their region is derived and held in <span class=\"mono\">data/register_corrections.json</span> &mdash; the permanent answer, with nothing to set in mWater.",
-  "owner": "Adriaan",
-  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
- },
  "act-reconcile-cookstove-water-programmes": {
   "detail": "<b>Reconcile the cookstove and water programmes for double counting.</b> <span data-fig=\"S.by_site['Fort-Dauphin']\"></span> of the <span data-fig=\"PUMPS.filter(p=>p.site!=='Marolinta').length\"></span> carbon hand pumps sit in the district where 120,000 improved cookstoves were distributed. Both programmes claim reductions from the same act of boiling water, and no reconciliation exists. Agree the method, then quantify the overlap and decide which programme carries it.",
   "owner": "James Walker on method, Adriaan on data",

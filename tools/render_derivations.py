@@ -136,9 +136,6 @@ D = {
  "S.by_site['Maroantsetra']": dict(pop="managed_fleet",
    arith="`managed points whose site is Maroantsetra: ${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').length)}`",
    forms=[("the register", None, REGQ)]),
- "REG.register_total": dict(pop="register_records",
-   arith="`every water-point record in the MadAvance group: ${fmt(REG.register_total)}`",
-   forms=[("the register", None, REGQ)]),
  "REG.total_first_rehab": dict(pop="first_rehabilitated",
    arith="`first-rehabilitation records on the works form: ${fmt(REG.total_first_rehab)}`",
    forms=[("Clean Water || Premi\\u00e8re r\\u00e9habilitation / Entretien pr\\u00e9ventif / R\\u00e9paration apr\\u00e8s panne",
@@ -226,6 +223,7 @@ D["PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict
             "SDWS 1 barrier clip applied; Marolinta excluded")])
 
 # ---- figures converted from typed prose on 2026-09-23 ----------------------
+_PPWHY = "Drives maintenance cost per credit: cost scales with pumps, credits with people."
 _WBASIS = ("WorldPop R2025A 100 m, 1 km service area, SDWS 1 barrier clip, "
            "overlap split equally, capacity cap per pump type")
 F_WQ = "7b33c5d7e5074808a94915939a5a0783"
@@ -257,10 +255,12 @@ for _s in ("Maroantsetra", "Fort-Dauphin"):
             forms=[])
     D[f"Math.round(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site==='{_s}').length)"] = dict(pop="carbon_fleet",
         arith=f"`people served in {_s} ${{fmt(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0))}} \u00f7 ${{PUMPS.filter(p=>p.site==='{_s}').length}} maintained pumps = ${{fmt(Math.round(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site==='{_s}').length))}} per pump`",
-        forms=[("WorldPop R2025A run", None, _WBASIS)])
+        forms=[("WorldPop R2025A run", None, _WBASIS)],
+        why=_PPWHY)
 D["Math.round(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site!=='Marolinta').length)"] = dict(pop="carbon_fleet",
     arith="`people served across the carbon portfolio ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} \u00f7 ${PUMPS.filter(p=>p.site!=='Marolinta').length} maintained pumps = ${fmt(Math.round(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site!=='Marolinta').length))} per pump; Marolinta is outside the carbon programme and not counted`",
-    forms=[("WorldPop R2025A run", None, _WBASIS)])
+    forms=[("WorldPop R2025A run", None, _WBASIS)],
+    why=_PPWHY)
 for _f, _lab in (("wpop", "the capped WorldPop allocation"), ("benef", "the roof-count census")):
     D[f"HP.reduce((a,p)=>a+(p.{_f}||0),0)"] = dict(pop="managed_fleet",
         arith=f"`{_lab} summed over every point in this scope: ${{fmt(HP.reduce((a,p)=>a+(p.{_f}||0),0))}}`", forms=[])

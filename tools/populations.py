@@ -309,6 +309,9 @@ def population(**meta):
             "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56", None)],
     decided="The group is the boundary of what MadAvance holds. Not a decision "
             "so much as a fact about the account.",
+    # the whole mWater group: classified inside the build, never rendered
+    # (the report covers the actively managed portfolio only, 2026-09-23)
+    internal=True,
     decided_on="—",
     derives_from=[])
 def register_records():
@@ -625,6 +628,7 @@ def repairs_time_measured():
             "records whose location carries coordinates")],
     decided="The distances in the corrections log were hand-measured with no "
             "stated set. Declaring the set makes them derivable.",
+    internal=True,
     decided_on="2026-09-22",
     derives_from=["register_records"])
 def located_register_points():
@@ -1075,7 +1079,10 @@ def main():
                                          if k != "members"}
                                | {"size": len(p["members"]())}
                                for p in POPULATIONS},
-               "chain": [{"step": n, "holds": ok, "detail": d}
+               # a step relating a population to the whole mWater group is
+               # checked here but not rendered (portfolio-only, 2026-09-23)
+               "chain": [{"step": n, "holds": ok, "detail": d,
+                          "internal": "\u2286 register" in n}
                          for n, ok, d in steps],
                "gaps": gaps,
                "form_base": MW_FORM}

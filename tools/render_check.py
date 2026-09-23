@@ -23,11 +23,14 @@ catch what nobody thought to list.
 Chromium comes from the Playwright cache already on this machine; the browser
 path is discovered rather than assumed, so this runs without a download.
 """
-import glob, json, os, sys
+import glob, json, os, re, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 MANIFEST = os.path.join(REPO, "data", "render_manifest.json")
+# headline tiles at desktop width: the tallest content may exceed the
+# shortest by at most this much before the row reads as ragged
+TILE_TOLERANCE_PX = 6
 HEIGHT_TOLERANCE = 0.10          # the page may shrink by a tenth, not more
 
 
@@ -186,6 +189,56 @@ def probe(page_path):
             except Exception:
                 scopes[s] = None
         out["scope_visible_sections"] = scopes
+
+        # THE PORTFOLIO ONLY (decided 2026-09-23). The count of the whole
+        # MadAvance mWater group must not appear in any text the page can
+        # show, on any scope, including collapsed blocks. Script and style
+        # are not text; data objects in scripts are not rendered.
+        grp = None
+        try:
+            grp = json.load(open(os.path.join(REPO, "data",
+                                              "register_classification.json")))["group_records"]
+        except Exception:                                      # noqa: BLE001
+            pass
+        out["group_count"] = grp
+        out["group_count_seen"] = []
+        if grp:
+            pat = r"(?<![\d.,])" + re.escape(f"{grp:,}") + r"(?![\d,])"
+            for s in ("all", "mad", "madx", "mar", "enduro"):
+                pg.click(f'#scopebar button[data-s="{s}"]')
+                pg.wait_for_timeout(250)
+                txt = pg.evaluate("""() => { const c = document.body.cloneNode(true);
+                    c.querySelectorAll('script,style,template').forEach(x => x.remove());
+                    return c.textContent; }""")
+                for m in re.finditer(pat, txt):
+                    out["group_count_seen"].append(
+                        f"{s}: ...{' '.join(txt[max(0, m.start()-60):m.end()+40].split())}...")
+            pg.click('#scopebar button[data-s="all"]')
+            pg.wait_for_timeout(250)
+
+        # THE HEADLINE ROW IS ONE FRAME. A tile taller than its neighbours
+        # stretches every tile in the row and leaves empty space.
+        out["tile_heights"] = pg.evaluate("""() => {
+            const g = document.querySelector('#tiles'); if (!g) return [];
+            const was = g.style.alignItems; g.style.alignItems = 'start';
+            const r = [...g.querySelectorAll(':scope > .tile')].map(t => ({
+                h: Math.round(t.getBoundingClientRect().height),
+                v: Math.round(t.querySelector('.v').getBoundingClientRect().height),
+                l: t.textContent.trim().replace(/\\s+/g, ' ').slice(0, 40)}));
+            g.style.alignItems = was; return r; }""")
+
+        # THE PAGE NEVER SCROLLS SIDEWAYS ON A PHONE. A wide table scrolls
+        # inside its own container; the page does not.
+        mp = b.new_page(viewport={"width": 390, "height": 800})
+        mp.goto("file://" + page_path, wait_until="load", timeout=60000)
+        mp.wait_for_timeout(1200)
+        out["mobile"] = mp.evaluate("""() => ({sw: document.documentElement.scrollWidth,
+            vw: innerWidth,
+            wide: [...document.querySelectorAll('body *')]
+              .filter(e => e.getBoundingClientRect().right > innerWidth + 1
+                        && !e.closest('.tablewrap'))
+              .slice(0, 4).map(e => e.tagName + (e.id ? '#' + e.id : ''))})""")
+        mp.close()
         b.close()
     out["page_errors"] = errors
     return out
@@ -298,6 +351,23 @@ def main():
         if drop > HEIGHT_TOLERANCE:
             fails.append(f"page height fell {drop:.0%} "
                          f"({want['height']} -> {got['height']}px)")
+
+    for x in got.get("group_count_seen") or []:
+        fails.append(f"the whole mWater group count ({got['group_count']}) is "
+                     f"rendered; the page covers the managed portfolio only: {x}")
+    tiles = sorted(got.get("tile_heights") or [], key=lambda t: -t["h"])
+    if len(tiles) > 1 and tiles[0]["h"] - tiles[1]["h"] > TILE_TOLERANCE_PX:
+        fails.append(f"one headline tile sets the row height: {tiles[0]['l']!r} is "
+                     f"{tiles[0]['h']}px against {tiles[1]['h']}px for the next tallest "
+                     f"(limit {TILE_TOLERANCE_PX}px)")
+    vs = [t["v"] for t in tiles]
+    if vs and max(vs) - min(vs) > TILE_TOLERANCE_PX:
+        fails.append(f"headline tile numbers are not one line of one size: "
+                     f"heights {min(vs)}-{max(vs)}px")
+    mob = got.get("mobile") or {}
+    if mob and mob["sw"] > mob["vw"] + 1:
+        fails.append(f"the page scrolls sideways at phone width ({mob['sw']}px "
+                     f"against {mob['vw']}px): {', '.join(mob['wide']) or 'unknown'}")
 
     if got["page_errors"]:
         fails.append("javascript errors on load: " + "; ".join(got["page_errors"][:3]))

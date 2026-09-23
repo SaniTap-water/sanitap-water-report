@@ -25,7 +25,6 @@ FIELDS = {"succ": "rehabilitated_successfully",
           "final_records": "first_rehabilitation_records_final",
           "fail": "first_rehab_recorded_unsuccessful",
           "blank": "first_rehab_success_blank",
-          "register_total": "register_records",
           "marolinta_new": "marolinta_new_constructions",
           "marolinta_rehab": "marolinta_rehabilitations"}
 

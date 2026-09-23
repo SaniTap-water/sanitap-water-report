@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 49,
+ "count": 46,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -396,43 +396,10 @@
    "how": "derivable from no population in reach"
   },
   {
-   "field": "REG.register_classified",
-   "value": "790",
-   "object": "REG",
-   "why": "register records classified against the fleet by hand in the reconciliation; no rule written down",
-   "found": "2026-09-23",
-   "action": null,
-   "group": "D-register-block",
-   "class": "neither",
-   "how": "derivable from no population in reach"
-  },
-  {
-   "field": "REG.register_unclassified",
-   "value": "118",
-   "object": "REG",
-   "why": "the unclassified remainder of that reconciliation; no rule written down",
-   "found": "2026-09-23",
-   "action": null,
-   "group": "D-register-block",
-   "class": "neither",
-   "how": "derivable from no population in reach"
-  },
-  {
    "field": "REG.recon",
    "value": "list[16]",
    "object": "REG",
    "why": "the sixteen-point reconciliation table, assembled by hand",
-   "found": "2026-09-23",
-   "action": null,
-   "group": "D-register-block",
-   "class": "neither",
-   "how": "derivable from no population in reach"
-  },
-  {
-   "field": "REG.missing_from_register",
-   "value": "list[1]",
-   "object": "REG",
-   "why": "a point found missing from the register during reconciliation, by hand",
    "found": "2026-09-23",
    "action": null,
    "group": "D-register-block",
@@ -511,5 +478,5 @@
   "B-need-population": "reproducible, but a population must be defined first",
   "C-hand-maintained": "hand-maintained by design; a generator would be wrong"
  },
- "register_block_note": "2026-09-23: REG became visible to the generator audit (it was declared mid-line, after COAST, where the audit's line-start match could not see it). Of its 21 fields, 9 are populations and are written each build by tools/sync_reg_populations.py; the other 12 were added here as group D, dated. The count rose once, from 37 to 49, to record them; from here it may only shrink."
+ "register_block_note": "2026-09-23: REG became visible to the generator audit (it was declared mid-line, after COAST, where the audit's line-start match could not see it). Of its 21 fields, 9 are populations and are written each build by tools/sync_reg_populations.py; the other 12 were added here as group D, dated. The count rose once, from 37 to 49, to record them; from here it may only shrink. 2026-09-23 later: register_total, register_classified, register_unclassified and missing_from_register left the page with the portfolio-only decision; the whole group is classified inside the build (tools/classify_register.py). Backlog 49 -> 46."
 }

@@ -46,6 +46,8 @@ def block():
     P = pops["populations"]
     rows = []
     for pid, p in sorted(P.items(), key=lambda kv: -kv[1]["size"]):
+        if p.get("internal"):            # the whole mWater group: build-only
+            continue
         reads = "<br>".join(
             (f'<a href="{MW}{r[1]}" target="_blank" rel="noopener">{esc(r[0])}</a>'
              if len(r) > 1 and r[1] else esc(r[0]))
@@ -70,7 +72,7 @@ def block():
         f'<td class="num"><span data-fig="POPS.chain[{k}].detail"></span></td>'
         f'<td><span class="verdict {"vok" if c["holds"] else "vbad"}">'
         f'{"holds" if c["holds"] else "does not hold"}</span></td></tr>'
-        for k, c in enumerate(pops.get("chain", [])))
+        for k, c in enumerate(pops.get("chain", [])) if not c.get("internal"))
 
     gaps = "".join(
         f'<li><b>{esc(g["step"])}</b> &mdash; '

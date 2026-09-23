@@ -157,8 +157,6 @@ REACH = r"""() => {
   if (R) {
     note(R.total_first_rehab - R.succ, 'REG.total_first_rehab - REG.succ');
     note(R.dashboard_fdmar - R.succ, 'REG.dashboard_fdmar - REG.succ');
-    note(R.register_total - R.register_classified,
-         'REG.register_total - REG.register_classified');
   }
   if (A) { note(A.n - A.st.down, 'scope n - down');
            note(A.st.ok + A.st.partial, 'scope ok + partial'); }

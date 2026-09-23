@@ -2,7 +2,7 @@
  "evaluated": "2026-09-23",
  "kinds": {
   "artefact": 7,
-  "data": 38,
+  "data": 37,
   "decision": 38,
   "form": 7,
   "none": 24
@@ -489,7 +489,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-09-23",
-   "evidence": "unapproved_works_records = 48 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 49 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
@@ -598,14 +598,6 @@
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition: an annual recurrence, not a task that finishes",
-   "when_satisfied": "OK"
-  },
-  "act-read-district-commune-water": {
-   "evaluated": "2026-09-23",
-   "evidence": "register_chain_unresolved = 119 (register records still unclassified against the maintained fleet); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when every register record is classified against the maintained fleet",
    "when_satisfied": "OK"
   },
   "act-reconcile-cookstove-water-programmes": {

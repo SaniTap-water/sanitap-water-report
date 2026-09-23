@@ -3,46 +3,55 @@
   {
    "detail": "731 of 773 records",
    "holds": true,
+   "internal": false,
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
    "detail": "787 of 909 points",
    "holds": true,
+   "internal": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
    "detail": "731 of 787 points",
    "holds": true,
+   "internal": false,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
    "detail": "736 of 909 points",
    "holds": true,
+   "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
   {
    "detail": "5 of 736 points",
    "holds": true,
+   "internal": false,
    "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
    "detail": "731 + 5 = 736 points",
    "holds": true,
+   "internal": false,
    "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
    "detail": "730 rehabilitated + 6 never = 736 points",
    "holds": true,
+   "internal": false,
    "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
   },
   {
    "detail": "297 of 731 points",
    "holds": true,
+   "internal": false,
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
   },
   {
    "detail": "6 never rehabilitated = 5 Marolinta (works on the borehole form) + 1 recorded + 0 unexplained",
    "holds": true,
+   "internal": false,
    "step": "POINTS: every fleet point with no successful rehabilitation is accounted for"
   }
  ],
@@ -320,6 +329,7 @@
     "register_records"
    ],
    "id": "located_register_points",
+   "internal": true,
    "name": "Located register points",
    "reads": [
     [
@@ -516,6 +526,7 @@
    "decided_on": "—",
    "derives_from": [],
    "id": "register_records",
+   "internal": true,
    "name": "Register records",
    "reads": [
     [

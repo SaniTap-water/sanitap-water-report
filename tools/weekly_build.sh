@@ -50,10 +50,14 @@ main() {
   }
 
   if [ -z "${SANITAP_SYNCED:-}" ]; then
-    # Keep this clone's own log lines: a refused run is never pushed, so its
-    # reason exists only here and the reset below would otherwise erase it.
-    local keep="$build/logs/.publisher.local"
-    [ -f "$log" ] && cp "$log" "$keep"
+    # logs/publisher.log is untracked (23 September), so neither this reset
+    # nor a rollback can touch it. The copy below covers the one reset that
+    # moves from a commit where it was tracked to one where it is not.
+    local keep; keep="$(mktemp /tmp/sanitap-publisher-log.XXXXXX)" || keep=""
+    # outside the tree, so neither the reset nor git clean can remove it
+    if [ -n "$keep" ]; then
+      if [ -f "$log" ]; then cp "$log" "$keep"; else rm -f "$keep"; fi
+    fi
     local from="${SANITAP_BUILD_FROM:-origin}" branch="${SANITAP_BUILD_BRANCH:-main}"
     if ! git fetch -q "$from" "$branch"; then
       outcome "Not published: the build could not fetch $from/$branch from GitHub, so nothing was built."
@@ -63,10 +67,17 @@ main() {
       outcome "Not published: the build clone could not be reset to $from/$branch, so nothing was built."
       return 1
     fi
-    if [ -f "$keep" ]; then
-      # published lines first, then any local line the published log lacks
-      grep -vxF -f "$log" "$keep" >> "$log" 2>/dev/null
-      rm -f "$keep"
+    if [ -n "$keep" ] && [ -f "$keep" ]; then
+      if [ -f "$log" ]; then
+        # a tracked log (before 23 September): published lines first, then
+        # any local line the published log lacks
+        grep -vxF -f "$log" "$keep" >> "$log" 2>/dev/null
+        rm -f "$keep"
+      else
+        # the log is untracked since 23 September; the reset that stopped
+        # tracking it deleted the file, so put this clone's history back
+        mkdir -p "$(dirname "$log")" && mv "$keep" "$log"
+      fi
     fi
     SANITAP_SYNCED=1 exec bash "$build/tools/weekly_build.sh" "$@"
   fi

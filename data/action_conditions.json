@@ -460,14 +460,6 @@
   "kind": "none",
   "says": "no closing condition: an annual recurrence, not a task that finishes"
  },
- "act-read-district-commune-water": {
-  "kind": "data",
-  "metric": "register_chain_unresolved",
-  "op": "==",
-  "says": "closes when every register record is classified against the maintained fleet",
-  "target": 0,
-  "when_satisfied": "OK"
- },
  "act-reconcile-cookstove-water-programmes": {
   "kind": "decision",
   "question": "How are the cookstove and water programmes reconciled for double counting?",

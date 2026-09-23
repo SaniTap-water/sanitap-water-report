@@ -762,3 +762,42 @@ the rest of the fleet") rests on that list, and so do the two readings built on
 it: stale tickets, or gardiens not marking outage days. None of it is shown until the
 list is derivable; `tools/check_consistency.py` keeps it off the page. The
 transcription round stands on its own purpose, measuring the reader's accuracy.
+
+
+## 23 September 2026 — the report covers the actively managed portfolio only
+
+**Decided by Adriaan Mol.** The report covers only water points that are
+actively managed: maintained by us and serving people. Records that merely sit
+in the MadAvance mWater group - abandoned points, survey and identification
+records, points handed on, rope pumps, anything not in the maintained fleet -
+are not the portfolio and are not on the page.
+
+**Removed from the page:** every statement of the whole group's record count
+(then 909): the *"Why the scope figure is 867 while the mWater register record
+count still reads 909"* block, the register tile and its derivation, the
+register count in the evidence-trail table, the sampling-frame and
+cookstove-overlap sentences that started from it, the scope-line sentence,
+the *"What the register holds beyond the portfolio"* paragraph, the two
+register rows of the definitions table and the two chain steps that relate a
+population to the whole group, and `act-read-district-commune-water`, which
+counted unclassified group records (119). `REG.register_total`,
+`register_classified`, `register_unclassified` and `missing_from_register`
+are gone from the page's data.
+
+**Kept:** every maintained pump whatever its state. A pump reported down is in
+the portfolio, in "reported down" and in downtime. The retired-points and
+reconciliation tables stay, because each includes maintained pumps. Marolinta's
+points are maintained, so they stay in the portfolio and its scope, and stay out
+of every carbon figure.
+
+**Inside the build, silently:** `tools/classify_register.py` classifies every
+group record each week. A record with a successful first rehabilitation that
+is not excluded, has a district that maps to a site, a coordinate and a pump
+model joins PUMPS on its own. Anything it cannot place is written to
+`logs/publisher.log` for review and nowhere else. On the day of the decision
+one record was logged: `742894057`, with a successful first rehabilitation and
+newly in the group, but its register name, *"IndiaMark- changée en canzee"*, is
+not a pump model. Set the name in mWater and it joins on the next build.
+
+**Enforced:** `tools/render_check.py` fails the build if the current group
+count appears anywhere in the rendered text, on any scope.

@@ -265,13 +265,6 @@ def _m15():
     return len(json.load(open(p)))
 
 
-@metric("register_chain_unresolved",
-        "register records still unclassified against the maintained fleet")
-def _m16():
-    reg = js("REG")
-    return reg["register_total"] - reg["register_classified"]
-
-
 @metric("er_percent_of_type3_cap",
         "annual emission reductions as a percentage of the 60,000 tCO2e cap")
 def _m17():

@@ -15,6 +15,25 @@ tools/publish.sh --check-only            # gate the working tree
 tools/publish.sh -m "what changed"       # check, commit, push
 ```
 
+## The report covers the actively managed portfolio only
+
+Decided by Adriaan, 23 September 2026 (`docs/decision_log.md`). The page covers
+the water points we maintain and that serve people, broken ones included. A
+maintained pump reported down stays in the portfolio, in "reported down" and
+in downtime. Records that merely sit in the MadAvance mWater group, such as
+survey entries, failed or abandoned points, points handed on and rope pumps,
+are not the portfolio. **The count of the whole group never appears in
+rendered text.** `tools/render_check.py` fails the build if it does, on any
+scope.
+
+The group is still read every week, inside the build.
+`tools/classify_register.py` classifies every record: in the fleet; joins (a
+successful first rehabilitation, not excluded, with a site, a coordinate and a
+pump model, appended to PUMPS automatically); excluded by decision; a
+rehabilitation that did not succeed; no first rehabilitation; or review.
+Anything it cannot place goes to `logs/publisher.log` for a person to look at,
+and nowhere on the page. Its full result is `data/register_classification.json`.
+
 ## Every number on the page has exactly one home
 
 An audit in September 2026 counted 191 live figures typed into the body prose
@@ -138,6 +157,13 @@ if it is not. They are a worklist with a date on it, never an exemption list.
 
 To clear one: convert the figure, run `--gate`, and it will tell you which
 entry to delete.
+
+**Two layout rules the render check enforces.** In the headline tile row, no
+single tile may set the row's height (tallest within 6 px of the next
+tallest), and every number is one line at one size. The row sizes each tile by
+its number, not its label. At phone width (390 px) the page never scrolls
+sideways: a wide table scrolls inside its own container (`wrapTables()` gives
+one to any table without it), and grid children may shrink.
 
 **The generator audit** (`tools/check_generators.py`) holds every field of
 every embedded data object to a generator, a population, or the dated,
@@ -728,8 +754,9 @@ reset copy of itself. So it builds from what is published and from nothing
 else. Run from any other clone, `tools/weekly_build.sh` hands over to the
 build clone. `~/sanitap-water-report` is for interactive work only.
 
-The build clone's own log lines survive the reset. A refused run is never
-pushed, so its reason exists only there. **The last line of
+`logs/publisher.log` is not tracked by git (since 23 September), so no reset
+or rollback can erase it. A refused run is never pushed, so its reason exists
+only in the build clone's log. **The last line of
 `~/sanitap-water-report-build/logs/publisher.log` is always one plain sentence
 beginning `OUTCOME:`**, for example *"OUTCOME: Not published: publish.sh
 refused the edition because a figure renders on the page with no source
