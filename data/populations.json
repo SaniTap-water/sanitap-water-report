@@ -19,31 +19,31 @@
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "736 of 909 points",
+   "detail": "737 of 909 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
   {
-   "detail": "5 of 736 points",
+   "detail": "5 of 737 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
-   "detail": "731 + 5 = 736 points",
+   "detail": "732 + 5 = 737 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
-   "detail": "730 rehabilitated + 6 never = 736 points",
+   "detail": "731 rehabilitated + 6 never = 737 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
   },
   {
-   "detail": "297 of 731 points",
+   "detail": "297 of 732 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
@@ -111,7 +111,7 @@
     ]
    ],
    "rule": "The managed fleet less Marolinta. This is the denominator under every carbon figure on the page.",
-   "size": 731,
+   "size": 732,
    "unit": "points"
   },
   "down_now": {
@@ -358,7 +358,7 @@
     ]
    ],
    "rule": "The water points MadAvance actively maintains today - the fleet this report is about. Every one has a maintenance history: it is visited, repaired and called about. This is the population behind “water points in scope”.",
-   "size": 736,
+   "size": 737,
    "unit": "points"
   },
   "marolinta": {
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 453,
+   "size": 454,
    "unit": "points"
   },
   "pm_visits": {
@@ -728,7 +728,7 @@
     ]
    ],
    "rule": "Water points with a result on the SDWS 3 water-quality results form. Read from the LIVE results form, not from the retired combined form's water-analysis branch - that branch stopped taking records in July 2025 and a population reading it would have frozen there.",
-   "size": 729,
+   "size": 730,
    "unit": "points"
   }
  }

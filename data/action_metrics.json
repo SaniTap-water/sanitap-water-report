@@ -39,7 +39,7 @@
   "er_percent_of_type3_cap": {
    "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
    "source": "local",
-   "value": 34.7
+   "value": 34.8
   },
   "extract_lag_days": {
    "says": "days the extract on this page runs behind mWater",
@@ -124,7 +124,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 453
+   "value": 454
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -139,7 +139,7 @@
   "register_dashboard_gap": {
    "says": "points the MadAvance dashboard counts that our register does not",
    "source": "local",
-   "value": 7
+   "value": 6
   },
   "sites_without_route_plan": {
    "says": "sites with overdue pumps and no catch-up route plan",

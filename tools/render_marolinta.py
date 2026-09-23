@@ -83,7 +83,7 @@ def headline():
       '</div>\n'
       '<p class="note"><b>These count the work, not the register.</b> The '
       'maintained register holds <b>5</b> Marolinta points &mdash; the five '
-      'boreholes that appear in the 736 reconciliation as <i>actively managed but '
+      'boreholes that appear in the fleet reconciliation as <i>actively managed but '
       'never first-rehabilitated</i> &mdash; and <b>only one of those five</b> '
       f'appears on this form at all. The work is <b>{m["points_final"]}</b> points, '
       'and the Marolinta scope button reports it on that basis.</p>\n'

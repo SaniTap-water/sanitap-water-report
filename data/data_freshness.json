@@ -2,8 +2,8 @@
  "blocking_lag_days": 0,
  "checked": "2026-09-23",
  "extract_newest": "2026-09-23",
- "files_age_days": 1,
- "files_newest": "2026-09-22",
+ "files_age_days": 0,
+ "files_newest": "2026-09-23",
  "known_gaps": {},
  "lag_days": 0,
  "latest_in_extract": {
@@ -19,7 +19,7 @@
   "hygiene.json": "2026-03-16",
   "identification.json": "2026-06-16",
   "marolinta_borehole.json": "2026-08-29",
-  "pm.csv": "2026-09-22",
+  "pm.csv": "2026-09-23",
   "repair.json": "2026-09-22",
   "reparation_apres_panne.csv": "2026-09-22",
   "wq_results.json": "2026-02-02"
@@ -32,7 +32,7 @@
  },
  "mwater_newest": "2026-09-23",
  "page_age_days": 0,
- "page_behind_files_days": -1,
+ "page_behind_files_days": 0,
  "per_source": {
   "call-centre": {
    "behind_days": 0,

@@ -2,7 +2,7 @@
  "branches": {
   "call and works on the same day -> the call wins": 190,
   "held on the published value (unsettled)": 36,
-  "latest record is a call": 326,
+  "latest record is a call": 327,
   "latest record is a maintenance": 124,
   "latest record is a repair": 79,
   "no answered record at all -> unknown": 17
@@ -11,7 +11,7 @@
  "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
  "split": {
   "down": 18,
-  "ok": 521,
+  "ok": 522,
   "partial": 176,
   "unknown": 21
  },
@@ -1837,6 +1837,14 @@
    "problem": null,
    "rid": "52848663a1ac4edb8904bc46d45fefd9",
    "src": "repair",
+   "status": "ok"
+  },
+  "742894057": {
+   "date": "2026-03-19",
+   "issue": null,
+   "problem": null,
+   "rid": "46c20bb0cf9a4d74aee42ed48f6df858",
+   "src": "call",
    "status": "ok"
   },
   "742894064": {

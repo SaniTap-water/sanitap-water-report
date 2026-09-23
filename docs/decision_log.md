@@ -801,3 +801,24 @@ not a pump model. Set the name in mWater and it joins on the next build.
 
 **Enforced:** `tools/render_check.py` fails the build if the current group
 count appears anywhere in the rendered text, on any scope.
+
+## 23 September 2026 — 742894057 named Canzee in mWater; the first pump to join automatically
+
+Water point `742894057` (`_id 5d185c0f-7bf6-495b-9a7f-b4e0f85a7e82`) carried the
+name *"IndiaMark- changée en canzee"*, set 27 October 2025: the India Mark was
+replaced by a Canzee. Its name was set to **Canzee** and its description to
+*"Pompe à main — India Mark remplacée par une Canzee (nom corrigé le
+2026-09-23)"*, so the history stays on the record. `_rev` 7 → 8, verified by
+re-reading, no other field changed; before and after are in
+`data/mwater_backups/` and the write is logged in `data/register_write_log.json`.
+Requested by Adriaan Mol.
+
+On the next build `tools/classify_register.py` joined it to the portfolio: a
+successful first rehabilitation (April 2024), not excluded, Fort-Dauphin, a
+coordinate and now a pump model. The managed fleet went 736 → 737 and the carbon
+fleet 731 → 732. The join is recorded in `data/register_classification.json`
+(`joined`), which the fleet-churn check reads as its explanation. It is a record
+correction, not new work, and the page says so. It has no WorldPop allocation
+until the population run is repeated (`act-population-rerun`), and its
+roof-count and water-quality columns are among the page columns no generator
+fills yet, so it shows as untested on the page though the extract holds a result.

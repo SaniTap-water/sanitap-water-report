@@ -163,6 +163,10 @@ def actions(idx):
     st = load_state()
     wb, _wb_problem = load_owners()
     WB_PROBLEM.append(_wb_problem)
+    # A workbook row for an action that no longer exists renders nothing and
+    # fails nothing. The shared workbook is people's file and is not edited
+    # from here, so the stale row is reported to us, not to readers.
+    log_orphan_rows(sorted(set(wb) - set(det)))
     for a in out:
         w = wb.get(a["id"])
         if w:
@@ -241,6 +245,34 @@ def face(lead, size=20):
     return (f'<span class="face ini" aria-hidden="true" '
             f'style="width:{size}px;height:{size}px;line-height:{size}px">'
             f'{initials(lead)}</span>')
+
+
+def log_orphan_rows(ids):
+    """Record each ignored workbook row in logs/publisher.log, once a day.
+
+    render_actions runs several times in one build, so a line already
+    written today is not written again.
+    """
+    if not ids:
+        return
+    p = os.path.join(REPO, "logs", "publisher.log")
+    today = datetime.date.today().isoformat()
+    try:
+        seen = open(p, encoding="utf8").read()
+    except OSError:
+        seen = ""
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p, "a", encoding="utf8") as fh:
+        for aid in ids:
+            msg = (f"owner workbook: row {aid} ignored - no such action on the "
+                   "page; the row can be deleted from the shared workbook")
+            if any(l.startswith(today) and l.endswith(msg)
+                   for l in seen.splitlines()):
+                continue
+            stamp = datetime.datetime.now(datetime.timezone.utc).isoformat(
+                timespec="seconds")
+            fh.write(f"{stamp}  {msg}\n")
+            print(msg)
 
 
 def load_owners():

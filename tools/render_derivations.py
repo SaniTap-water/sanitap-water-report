@@ -268,9 +268,16 @@ D["HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(po
     arith="`the capped allocation summed over the Marolinta points: ${fmt(HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))}`", forms=[])
 D["HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.benef||0),0)"] = dict(pop="marolinta",
     arith="`the roof-count census summed over the Marolinta points: ${fmt(HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.benef||0),0))}`", forms=[])
-D["Math.round(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+((WPOP[p.wp]||[0])[0]||0),0)/PUMPS.filter(p=>p.site==='Fort-Dauphin').length)"] = dict(pop="managed_fleet",
+D["Math.round(PUMPS.filter(p=>p.site==='Fort-Dauphin'&&WPOP[p.wp]).reduce((a,p)=>a+WPOP[p.wp][0],0)/PUMPS.filter(p=>p.site==='Fort-Dauphin'&&WPOP[p.wp]).length)"] = dict(pop="managed_fleet",
     arith="`the WorldPop allocation BEFORE the capacity cap, averaged over the Fort-Dauphin points`",
     forms=[("WorldPop R2025A run", None, "WPOP[wp][0], the allocation before the cap")])
+D["S.by_site['Maroantsetra']+S.by_site['Fort-Dauphin']"] = dict(pop="carbon_fleet",
+    arith="`Maroantsetra ${S.by_site['Maroantsetra']} + Fort-Dauphin ${S.by_site['Fort-Dauphin']} = ${S.by_site['Maroantsetra']+S.by_site['Fort-Dauphin']} managed points in the two carbon districts`", forms=[])
+D["REG.dashboard_fdmar-(S.by_site['Maroantsetra']+S.by_site['Fort-Dauphin'])"] = dict(pop="carbon_fleet",
+    arith="`the MadAvance dashboard's ${REG.dashboard_fdmar} less our ${S.by_site['Maroantsetra']+S.by_site['Fort-Dauphin']} in the same two districts = ${REG.dashboard_fdmar-(S.by_site['Maroantsetra']+S.by_site['Fort-Dauphin'])}`",
+    forms=[("the MadAvance dashboard (REG.dashboard_fdmar, read off the dashboard)", None, None)])
+D["PUMPS.filter(p=>p.wpop!=null).length"] = dict(pop="managed_fleet",
+    arith="`managed points carrying a WorldPop allocation: ${PUMPS.filter(p=>p.wpop!=null).length} of ${PUMPS.length}`", forms=[])
 D["pairsWithin(200)"] = dict(pop="managed_fleet",
     arith="`pairs of managed points within 200 m of each other, by haversine over PUMPS: ${fmt(pairsWithin(200))}`", forms=[])
 for _e, _a in (("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_anosy.v).toFixed(1)", "people per CWS ÷ Anosy household size"),

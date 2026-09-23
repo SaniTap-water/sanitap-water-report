@@ -132,6 +132,14 @@ def main():
         log(f"register: {k} is in the fleet but no longer in the mWater group; "
             "it stays in the portfolio until someone decides otherwise")
 
+    # joins are recorded for good: once in the fleet a pump is "in_fleet",
+    # so this ledger is what explains, later, how it got there
+    prev = json.load(open(OUT, encoding="utf8")) if os.path.isfile(OUT) else {}
+    joined = dict(prev.get("joined") or {})
+    for k in joins:
+        joined.setdefault(k, {"on": datetime.date.today().isoformat(),
+                              "why": "successful first rehabilitation, not excluded, "
+                                     f"{reg[k]['site']}, {reg[k]['pump']}, located"})
     doc = {"note": "Every record in the MadAvance mWater group, classified by "
                    "tools/classify_register.py. Build-internal: nothing here is "
                    "rendered on the page.",
@@ -140,6 +148,7 @@ def main():
            "counts": dict(sorted(n.items())),
            "review": {k: why[k] for k in review},
            "fleet_points_not_in_group": gone,
+           "joined": dict(sorted(joined.items())),
            "records": dict(sorted(cls.items()))}
     json.dump(doc, open(OUT, "w", encoding="utf8"), indent=1, ensure_ascii=False)
     return 0

@@ -12,7 +12,7 @@
   "premiere_rehabilitation.csv": 0,
   "repair.json": 214,
   "reparation_apres_panne.csv": 214,
-  "wp_madavance.csv": 908,
+  "wp_madavance.csv": 909,
   "wq_results.json": 736
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",

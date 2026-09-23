@@ -4,15 +4,18 @@
  "group_records": 909,
  "counts": {
   "excluded": 16,
-  "in_fleet": 736,
+  "in_fleet": 737,
   "no_first_rehab": 118,
-  "rehab_not_successful": 38,
-  "review": 1
+  "rehab_not_successful": 38
  },
- "review": {
-  "742894057": "successful first rehabilitation, but it cannot join automatically: its register name 'IndiaMark- changée en canzee' is not a pump model (Canzee, IndiaMark)"
- },
+ "review": {},
  "fleet_points_not_in_group": [],
+ "joined": {
+  "742894057": {
+   "on": "2026-09-23",
+   "why": "successful first rehabilitation, not excluded, Fort-Dauphin, Canzee, located (register name corrected in mWater the same day; data/register_write_log.json)"
+  }
+ },
  "records": {
   "1035592162": "no_first_rehab",
   "1052525143": "no_first_rehab",
@@ -254,7 +257,7 @@
   "742894026": "in_fleet",
   "742894033": "in_fleet",
   "742894040": "in_fleet",
-  "742894057": "review",
+  "742894057": "in_fleet",
   "742894064": "in_fleet",
   "742894071": "in_fleet",
   "742894088": "in_fleet",

@@ -1,9 +1,9 @@
 {
  "basis": "actively managed register less Marolinta (Deichmann-funded, no carbon figure); 2026 evidence is a dated 2026 sheet in data/calendar_year_coverage.csv, sheet year read off the sheet",
  "carbon_2026_coverage_pct": 40.6,
- "carbon_points": 731,
+ "carbon_points": 732,
  "carbon_points_with_2026_sheet": 297,
- "carbon_points_without_2026_sheet": 434,
+ "carbon_points_without_2026_sheet": 435,
  "sheets_2026_outside_the_fleet": 2,
  "supersedes": "727 active carbon points and 293 covered, which were carried from 2026-09-20 (commit 8b33228) with no computation behind them and are not reproducible from any data in this repository"
 }

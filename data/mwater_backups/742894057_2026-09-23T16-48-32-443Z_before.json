@@ -1,0 +1,45 @@
+{
+  "_id": "5d185c0f-7bf6-495b-9a7f-b4e0f85a7e82",
+  "_rev": 7,
+  "_created_on": "2024-08-15T10:04:23.856Z",
+  "_created_by": "0336889caebc433d8ab0bba5dc919bed",
+  "_managed_by": "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+  "_modified_on": "2025-10-27T11:55:35.249Z",
+  "_modified_by": "0336889caebc433d8ab0bba5dc919bed",
+  "_roles": [
+    {
+      "to": "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
+      "role": "admin"
+    }
+  ],
+  "_private": true,
+  "name": "IndiaMark- changée en canzee",
+  "desc": "Pompe à main",
+  "type": "other",
+  "location": {
+    "type": "Point",
+    "coordinates": [
+      46.870517402,
+      -24.976456965,
+      0
+    ]
+  },
+  "admin_region": 419684,
+  "location_accuracy": 0,
+  "code": "742894057",
+  "photos": [
+    {
+      "id": "83ad35d2648e40ed8ffd7f7374dd2d54",
+      "cover": false
+    },
+    {
+      "id": "8f6df68015664ed38a8cb04eb3a109d4",
+      "cover": false
+    }
+  ],
+  "admin_div1": "Anosy",
+  "admin_div2": "Taolagnaro",
+  "admin_div3": "Ifarantsa",
+  "admin_div4": "Vatomivarina",
+  "admin_div5": "Vohibandriky"
+}

@@ -124,7 +124,7 @@
   },
   "act-dashboard-gap": {
    "evaluated": "2026-09-23",
-   "evidence": "register_dashboard_gap = 7 (points the MadAvance dashboard counts that our register does not); target == 0",
+   "evidence": "register_dashboard_gap = 6 (points the MadAvance dashboard counts that our register does not); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when the MadAvance dashboard and our two-district count agree",
@@ -816,7 +816,7 @@
   "act-type3-cap": {
    "closed_since": "2026-09-21",
    "evaluated": "2026-09-23",
-   "evidence": "er_percent_of_type3_cap = 34.7 (annual emission reductions as a percentage of the 60,000 tCO2e cap); target < 80",
+   "evidence": "er_percent_of_type3_cap = 34.8 (annual emission reductions as a percentage of the 60,000 tCO2e cap); target < 80",
    "kind": "data",
    "satisfied": true,
    "says": "stands as a watch while annual reductions are under 80% of the 60,000 tCO2e cap",
@@ -904,7 +904,7 @@
   },
   "act-visit-collapse": {
    "evaluated": "2026-09-23",
-   "evidence": "points_over_6_months = 453 (points with no maintenance visit for more than six months); target <= 50",
+   "evidence": "points_over_6_months = 454 (points with no maintenance visit for more than six months); target <= 50",
    "kind": "data",
    "satisfied": false,
    "says": "closes when fewer than 50 points are more than six months without a visit",

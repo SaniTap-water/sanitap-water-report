@@ -625,6 +625,10 @@ def main():
     cur_set = _pumps(idx)
     if eds and cur_set:
         excluded = {x["wp"] for x in (rc.get("excluded") or [])}
+        # a join is explained by the classification ledger: the pump met the
+        # rule in tools/classify_register.py on a recorded date
+        _clsp = os.path.join(repo_root, "data", "register_classification.json")
+        joined = (json.loads(read(_clsp)).get("joined") or {}) if os.path.isfile(_clsp) else {}
         unexplained = []
         prev = None
         for name, sp in eds + [("index.html", cur_set)]:
@@ -633,13 +637,14 @@ def main():
                     if wp not in excluded:
                         unexplained.append(f"{wp} left at {name}")
                 for wp in (sp - prev):
-                    unexplained.append(f"{wp} joined at {name}")
+                    if wp not in joined:
+                        unexplained.append(f"{wp} joined at {name}")
             prev = sp
         check("no point enters or leaves the fleet unexplained",
               not unexplained, "none",
               "; ".join(unexplained[:3]) if unexplained else "none",
               f"{len(eds) + 1} editions compared; departures must appear in "
-              "register_corrections.json")
+              "register_corrections.json, joins in the classification ledger")
 
     # ---- 7c-0. an aggregate and its row set are ONE quantity --------------
     # S.n and len(PUMPS) are two sources for the same number. That is the
@@ -3322,10 +3327,12 @@ def main():
     # and outside the carbon programme, so the lighter progress form is the
     # right record and not a failure. The earlier note framed it as lost
     # carbon, which it is not.
+    # 23 September: one point joined through a record correction, so the
+    # finding is now "not grown through new work"; the substance is unchanged.
     check("the page states the carbon fleet has not grown, without alarm",
-          "carbon fleet has not grown since 1 January 2026" in idx
+          "carbon fleet has not grown through new work since 1 January 2026" in idx
           and "that is the right form for uncredited work" in idx, "stated",
-          "stated" if "carbon fleet has not grown since 1 January 2026" in idx
+          "stated" if "carbon fleet has not grown through new work since 1 January 2026" in idx
           else "MISSING",
           "Marolinta is outside the carbon programme")
     check("the Marolinta work is not presented as lost carbon",
