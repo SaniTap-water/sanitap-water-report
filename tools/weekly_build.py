@@ -36,6 +36,8 @@ STEPS = [
     ("tools/refresh_form_snapshot.py", ["--if-possible"], False),
     ("tools/rebuild_activity.py",    ["--write"],      True),
     ("tools/build_call_tables.py",   ["--write"],      True),
+    ("tools/rebuild_ttr.py",         ["--write"],      True),
+    ("tools/rebuild_summary.py",     ["--write"],      True),
     ("tools/marolinta_admin.py",     ["--write"],      False),
     ("tools/check_freshness.py",     ["--write"],      True),
     ("tools/action_metrics.py",      ["--write"],      False),

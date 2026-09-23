@@ -7,7 +7,7 @@
   "hygiene.json": 108,
   "identification.json": 47,
   "marolinta_borehole.json": 18,
-  "pm.csv": 759,
+  "pm.csv": 760,
   "premiere_rehabilitation.csv": 0,
   "repair.json": 214,
   "reparation_apres_panne.csv": 214,
@@ -15,5 +15,5 @@
   "wq_results.json": 736
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-09-22"
+ "recorded": "2026-09-23"
 }

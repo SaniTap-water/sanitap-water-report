@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 69,
+ "count": 43,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -64,16 +64,6 @@
    "how": "down_now joined to the register record for each point"
   },
   {
-   "field": "DOWN.[].commune",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
    "field": "DOWN.[].days",
    "value": "20 rows",
    "object": "DOWN",
@@ -82,56 +72,6 @@
    "action": null,
    "group": "A-have-population",
    "how": "down_now, days since last visit - the same rule S.over6 uses"
-  },
-  {
-   "field": "DOWN.[].fkt",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
-   "field": "DOWN.[].lat",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
-   "field": "DOWN.[].lon",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
-   "field": "DOWN.[].pump",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
-   "field": "DOWN.[].site",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "DOWN.[].wq",
@@ -152,26 +92,6 @@
    "action": null,
    "group": "B-need-population",
    "how": "preventive-maintenance records in the last full month"
-  },
-  {
-   "field": "METRICS.points_no_works_record",
-   "value": "57",
-   "object": "METRICS",
-   "why": "headline metrics duplicated from figures computed elsewhere",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "duplicate of S.never"
-  },
-  {
-   "field": "METRICS.points_over_6_months",
-   "value": "452",
-   "object": "METRICS",
-   "why": "headline metrics duplicated from figures computed elsewhere",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "duplicate of S.over6, which rebuild_activity already computes"
   },
   {
    "field": "OPENREP.[].age",
@@ -224,66 +144,6 @@
    "how": "managed_fleet joined to the register record for each point"
   },
   {
-   "field": "PUMPS.[].commune",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].fkt",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].lat",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].lon",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].pump",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].site",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
    "field": "PUMPS.[].wq",
    "value": "736 rows",
    "object": "PUMPS",
@@ -322,36 +182,6 @@
    "action": null,
    "group": "B-need-population",
    "how": "beneficiaries summed over managed_fleet"
-  },
-  {
-   "field": "S.by_pump",
-   "value": "{Canzee, IndiaMark}",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet, grouped by the register's pump attribute"
-  },
-  {
-   "field": "S.by_site",
-   "value": "{Fort-Dauphin, Maroantsetra, Marolinta}",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet, grouped by the register's site attribute"
-  },
-  {
-   "field": "S.down_list",
-   "value": "list[19]",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now (20 members) - the list IS the population"
   },
   {
    "field": "S.gap",
@@ -464,16 +294,6 @@
    "how": "visit records per working day, by site"
   },
   {
-   "field": "S.wq_untested",
-   "value": "{Fort-Dauphin, Marolinta}",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet minus water_quality_tested, by site"
-  },
-  {
    "field": "TTR.call_lag_mean",
    "value": "13.7",
    "object": "TTR",
@@ -522,86 +342,6 @@
    "action": null,
    "group": "B-need-population",
    "how": "calls with no linked repair"
-  },
-  {
-   "field": "TTR.ttr_2026",
-   "value": "list[3]",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "the same three statistics restricted to 2026"
-  },
-  {
-   "field": "TTR.ttr_3d",
-   "value": "84",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "share of that set repaired within 3 days"
-  },
-  {
-   "field": "TTR.ttr_7d",
-   "value": "91",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "share within 7 days"
-  },
-  {
-   "field": "TTR.ttr_Fort-Dauphin",
-   "value": "list[3]",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "the same three, Fort-Dauphin only"
-  },
-  {
-   "field": "TTR.ttr_Maroantsetra",
-   "value": "list[3]",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "the same three, Maroantsetra only"
-  },
-  {
-   "field": "TTR.ttr_mean",
-   "value": "3.6",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "mean of the same"
-  },
-  {
-   "field": "TTR.ttr_median",
-   "value": "1.0",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "median of the interval over repairs_time_measured"
-  },
-  {
-   "field": "TTR.ttr_n",
-   "value": "606",
-   "object": "TTR",
-   "why": "the time-to-repair and call-lag statistics; no tool computes any of them",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "repairs_time_measured (617), defined 2026-09-22"
   },
   {
    "field": "WPOP.{*}",

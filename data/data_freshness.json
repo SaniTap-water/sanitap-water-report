@@ -1,46 +1,52 @@
 {
  "blocking_lag_days": 0,
- "checked": "2026-09-21",
- "extract_newest": "2026-09-21",
- "files_age_days": 0,
- "files_newest": "2026-09-21",
+ "checked": "2026-09-23",
+ "extract_newest": "2026-09-22",
+ "files_age_days": 1,
+ "files_newest": "2026-09-22",
  "known_gaps": {},
  "lag_days": 0,
  "latest_in_extract": {
-  "call-centre": "2026-09-21",
-  "preventive-maintenance": "2026-09-11",
-  "repair-after-breakdown": "2026-09-14"
+  "call-centre": "2026-09-22",
+  "preventive-maintenance": "2026-09-22",
+  "repair-after-breakdown": "2026-09-22"
  },
  "latest_in_extract_files": {
-  "appel_signalement_pannes.csv": "2026-09-21",
+  "appel_signalement_pannes.csv": "2026-09-22",
+  "combined_rehab.json": "2026-01-16",
   "forage_moramanga.csv": "2026-08-29",
-  "pm.csv": "2026-09-11",
-  "reparation_apres_panne.csv": "2026-09-14"
+  "hygiene.json": "2026-03-16",
+  "identification.json": "2026-06-16",
+  "marolinta_borehole.json": "2026-08-29",
+  "pm.csv": "2026-09-22",
+  "repair.json": "2026-09-22",
+  "reparation_apres_panne.csv": "2026-09-22",
+  "wq_results.json": "2026-02-02"
  },
  "latest_in_mwater": {
-  "call-centre": "2026-09-21",
+  "call-centre": "2026-09-22",
   "premiere-rehabilitation": null,
-  "preventive-maintenance": "2026-09-11",
-  "repair-after-breakdown": "2026-09-14"
+  "preventive-maintenance": "2026-09-22",
+  "repair-after-breakdown": "2026-09-22"
  },
- "mwater_newest": "2026-09-21",
- "page_age_days": 0,
+ "mwater_newest": "2026-09-22",
+ "page_age_days": 1,
  "page_behind_files_days": 0,
  "per_source": {
   "call-centre": {
    "behind_days": 0,
-   "mwater": "2026-09-21",
-   "page": "2026-09-21"
+   "mwater": "2026-09-22",
+   "page": "2026-09-22"
   },
   "preventive-maintenance": {
    "behind_days": 0,
-   "mwater": "2026-09-11",
-   "page": "2026-09-11"
+   "mwater": "2026-09-22",
+   "page": "2026-09-22"
   },
   "repair-after-breakdown": {
    "behind_days": 0,
-   "mwater": "2026-09-14",
-   "page": "2026-09-14"
+   "mwater": "2026-09-22",
+   "page": "2026-09-22"
   }
  },
  "worst_source": "repair-after-breakdown",

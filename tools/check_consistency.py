@@ -1757,12 +1757,20 @@ def main():
           "stated" if "They cannot raise it" in idx else "MISSING")
 
     # ---- 7v. the per-year quantification -----------------------------------
+    # The tonnages and cash totals were WITHDRAWN on 2026-09-23: every one was
+    # computed from the per-year quantification, whose basis does not exist
+    # here. These checks used to assert the figures were present. They now
+    # assert the opposite - a withdrawn figure that comes back is a
+    # regression, and this is what catches it.
     for v, why in (("20,697", "2026 ER at 347 days"),
                    ("10,227", "2025 ER at 347 days"),
                    ("17,681", "the 2026 evidence gap in tCO2e"),
-                   ("354,000", "the 2026 evidence gap in USD"),
-                   ("722", "carbon points active in 2025"),
-                   ("434", "2026 points with no dated sheet"),
+                   ("354,000", "the 2026 evidence gap in USD")):
+        check(f"withdrawn and stays off the page: {v} ({why})",
+              v not in idx, "absent",
+              "absent" if v not in idx else "BACK ON THE PAGE",
+              "withdrawn 2026-09-23 with the per-year carbon basis")
+    for v, why in (("434", "2026 points with no dated sheet"),
                    ("11 April 2025", "the earliest passing SDWS 3 test")):
         check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
               v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
@@ -1794,17 +1802,18 @@ def main():
         # a labelled withdrawn block, so a reader learns it cannot be
         # reproduced before reading a single cell.
         check("the per-year carbon table is withdrawn behind a labelled block",
-              idx.count('class="unsourced"') >= 13
-              and "Withdrawn: the per-year carbon quantification" in idx
-              and "Its basis is being rebuilt" in idx, "marked",
-              f'{idx.count(chr(34)+"unsourced"+chr(34))} cells marked',
+              "Withdrawn: the per-year carbon quantification" in idx
+              and "The figures have been removed, not corrected" in idx
+              and "unreproducible, which is not the same as wrong" in idx,
+              "marked",
+              "marked" if "The figures have been removed, not corrected" in idx
+              else "NOT MARKED",
               "no per-year activity basis exists in this repository")
-    check("the quantification is marked contingent, not a claim",
-          "Nothing in this block is presented as a claim" in idx
-          and "Contingent on the" in idx, "marked",
-          "marked" if "Nothing in this block is presented as a claim" in idx
-          else "NOT MARKED",
-          "it depends on the SDWS 27 basis being settled")
+    check("the withdrawal names what restores it",
+          "act-carbon-year-basis" in idx
+          and "return when the basis is rebuilt" in idx, "named",
+          "named" if "return when the basis is rebuilt" in idx else "NOT NAMED",
+          "the reader is told the money was unreproducible, not wrong")
     check("page states 2024 carries no carbon value",
           "No point could credit in 2024" in idx, "stated",
           "stated" if "No point could credit in 2024" in idx else "MISSING")
@@ -1875,10 +1884,10 @@ def main():
     check("the page says the reading is not a figure we can apply",
           "not a figure we can apply" in idx, "stated",
           "stated" if "not a figure we can apply" in idx else "MISSING")
-    check("the per-year table labels the difference as sizing only",
-          "Sensor decision only" in idx and "not claimable" in idx
-          and "not available to us" in idx, "relabelled",
-          "relabelled" if "Sensor decision only" in idx else "STILL READS AS VALUE")
+    check("the sensor-decision columns went with the withdrawn table",
+          "Sensor decision only" not in idx, "absent",
+          "absent" if "Sensor decision only" not in idx else "STILL PRESENT",
+          "they sized a difference in tonnes and USD, withdrawn 2026-09-23")
     check("the page states what the calendars are for: 18 days per point-year",
           "18</b> days per point-year" in idx, "stated",
           "stated" if "18</b> days per point-year" in idx else "MISSING",
@@ -1886,31 +1895,13 @@ def main():
 
     # ---- 7y. the open exposure, and the two unsettled questions ------------
     for v, why in (("7,440", "2025 tonnes resting on the estimate"),
-                   ("17,681", "2026 tonnes resting on the estimate"),
                    ("148,800", "2025 gap in USD"),
                    ("353,600", "2026 gap in USD"),
-                   ("485", "2025 points with no dated sheet"),
                    ("25,121", "the two-year exposure")):
-        check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
-              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE")
-    check("the page says neither question is settled by the documents",
-          "Neither is settled in either methodology version" in idx
-          and "we do not know which" in idx, "stated plainly",
-          "stated plainly" if "we do not know which" in idx else "SOFTENED",
-          "the text does not settle it and the report must not pretend otherwise")
-    if os.path.exists(basis):
-        bs2 = open(basis, encoding="utf8").read()
-        for frag, why in (
-                ("Operational sensors may be applied on a (90/10) sample basis",
-                 "the VPA-DD sampling sentence is quoted"),
-                ("SDWS 27 does not appear", "the VPA-DD sampling plan omits SDWS 27"),
-                ("does **not settle the question explicitly**",
-                 "the sampling question is reported as unsettled"),
-                ("Silence, in both documents",
-                 "the lost-evidence question is reported as silence"),
-                ("minimum sample size of 30", "the v1.0 sampling floor is quoted")):
-            check(f"basis document, Part 2: {why}", frag in bs2, "present",
-                  "present" if frag in bs2 else "MISSING")
+        check(f"withdrawn and stays off the page: {v} ({why})",
+              v not in idx, "absent",
+              "absent" if v not in idx else "BACK ON THE PAGE",
+              "withdrawn 2026-09-23 with the per-year carbon basis")
 
     # ---- 7z. the version divergence register -------------------------------
     vmap = os.path.join(here, "docs", "methodology_version_map.md")

@@ -510,3 +510,54 @@ internal consistency cannot see an input that has stopped moving.
 the oldest *last record*, which reported "data to 29 August" because the Marolinta borehole form
 had simply been quiet since then. That is the error in the other direction, and it was fixed
 before the check was wired in: the floor is the oldest **pull**.
+
+---
+
+## 2026-09-23 — The register joined the build; the carbon money was withdrawn
+
+**The register was the vintage floor.** `wp_madavance.csv` came from a hand-run export because an
+*unfiltered* `water_point` export walks the whole global mWater entity table. Filtered to the
+managed group it is **one bounded query returning 908 rows in 1.7 seconds** — so the reason it sat
+outside the build never applied to the filtered form of the query. While it sat outside, every
+population rested on an eleven-day-old file: a pump rehabilitated last week was not in the fleet,
+and the page said 736 with confidence.
+
+`tools/mwater/pull_entities.mjs` now pulls it, walking 90-day `_created_on` windows and
+de-duplicating on `_id`, and refuses to write if the windowed walk and a single bounded query
+disagree. **The vintage floor is now the build's own day and the spread across all 13 extracts is
+zero.** The 14-day allowance in `check_vintage.py` is gone; nothing carries a longer one.
+
+**The carbon monetary framing is withdrawn.** Every tonnage and cash figure in the gardien-calendar
+section — the 2025 and 2026 emission reductions, the USD sizing at 20/t, the evidenced-versus-
+unevidenced split, the two-year exposure — was computed from the SDWS 27 per-year quantification,
+whose basis does not exist in this repository. **They were unreproducible, not wrong**: no error was
+found in any of them and none is corrected. They return when `act-carbon-year-basis` rebuilds the
+basis, which restores the whole framing at once. Logged as `carbon_money`.
+
+**The section now states the same risk in points and days, both of which derive:** 434 of 731 active
+carbon points have no readable dated 2026 sheet, each resting on the registered 347 days with
+nothing on file to demonstrate it — and 347 is a ceiling a manual log may not exceed, so evidence
+can only ever confirm the registered figure, never raise it.
+
+**A correction to the count I reported.** I told Adriaan 29 figures would be withdrawn. That number
+was wrong: it came from a classifier that swept in a CSS `font-size:1.45rem`, a form `_rev` of 391,
+a question count of 750, water-point id fragments, and derivable counts like the 415 point-years
+and the 2,348 calendar photographs. **The real withdrawal is 20**, and the derivable counts stay.
+Withdrawing them would have removed true, reproducible facts.
+
+**TTR is unfrozen.** `tools/rebuild_ttr.py` computes the eight `ttr_*` fields from
+`repairs_time_measured`. The median of 1.0 days, the mean of 3.6 and the 7-day share of 91% all
+reproduce exactly; `ttr_n` moves 606 → 617 and the site and year splits move with it, off the
+basis that reproduced from no rule. **The five `call_*` fields are NOT computed**: no filter on the
+call-centre extract reproduces their 122 / 90 / 32, and inventing one to make them fit is the
+fault this whole exercise exists to stop. They stay on the backlog, named.
+
+**Group A is wired.** `tools/rebuild_summary.py` recomputes `S.by_site`, `S.by_pump`,
+`S.down_list`, `S.wq_untested`, the two duplicated `METRICS` fields, and the register columns on
+`PUMPS` and `DOWN`. The site column needed care: the page's `site` is SaniTap's operational
+grouping and is **not** a register column — the register calls Fort-Dauphin's district Taolagnaro.
+The 1:1 mapping is declared explicitly and an unknown district fails the build, because inferring
+it would have silently renamed 127 points.
+
+**The ungenerated backlog is 69 → 43.** Nine parameters are declared in `PARAMS` with citations,
+and the figure residue is 93 → 75.

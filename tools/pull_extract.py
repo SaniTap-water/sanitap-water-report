@@ -50,6 +50,7 @@ JSON_FORMS = {
     "first_rehab_current.json": "63747997e70e478fbb2ebf71581ceeb0",
 }
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
+PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
 
 
 def pull_json(name, form_id, tries=3):
@@ -256,20 +257,35 @@ def main():
                        "written": datetime.datetime.fromtimestamp(
                            os.path.getmtime(p)).isoformat(timespec="seconds")}
 
-    # The register is NOT pulled here. An unfiltered water_point export walks
-    # the whole global mWater entity table, not ours, and runs for as long as
-    # it is allowed to; the register also is not what goes stale - the
-    # activity forms are. It is pulled separately, filtered to the managed
-    # group, and its file date is reported here so the gap is still visible.
+    # The register, filtered to the managed group. It used to sit outside this
+    # tool because an UNFILTERED water_point export walks the whole global
+    # mWater entity table. Filtered to the group it is one bounded query
+    # returning 908 rows in under two seconds, so the reason it was excluded
+    # never applied to the filtered form of the query. While it was excluded it
+    # set the page's vintage floor: every population sits on the register, so
+    # an eleven-day-old register meant a pump rehabilitated last week was not
+    # in the fleet and the page still said 736 with confidence.
     p = os.path.join(EXPORTS, "wp_madavance.csv")
-    files["wp_madavance.csv"] = {
-        "entity_type": "water_point",
-        "pulled_by": "separate filtered export, not by this tool",
-        "rows": sum(1 for _ in io.open(p, encoding="utf8", errors="replace")) - 1
-        if os.path.isfile(p) else 0,
-        "written": datetime.datetime.fromtimestamp(
-            os.path.getmtime(p)).isoformat(timespec="seconds")
-        if os.path.isfile(p) else None}
+    r = subprocess.run(["node", PULL_ENTITIES, p], capture_output=True,
+                       text=True, cwd=REPO)
+    if r.returncode != 0:
+        failed.append("wp_madavance.csv: " + " ".join(
+            (r.stderr or r.stdout or "").split())[-200:])
+    else:
+        n = sum(1 for _ in io.open(p, encoding="utf8", errors="replace")) - 1
+        codes = set()
+        with io.open(p, encoding="utf8", errors="replace") as fh:
+            for row in csv.DictReader(fh):
+                if row.get("code"):
+                    codes.add(row["code"])
+        files["wp_madavance.csv"] = {
+            "entity_type": "water_point",
+            "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the "
+                         "managed group and walked in 90-day windows",
+            "rows": n, "unique": len(codes),
+            "written": datetime.datetime.fromtimestamp(
+                os.path.getmtime(p)).isoformat(timespec="seconds")}
+
     # A pull that lands on a name nothing reads is the failure that cost two
     # weeks: repairs.csv, written 21 September, was a correct export of the
     # repair form under a name no build has ever opened. Anything in the

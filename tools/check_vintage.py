@@ -39,10 +39,11 @@ MANIFEST = os.path.join(REPO, "data", "extract_manifest.json")
 OUT = os.path.join(REPO, "data", "extract_vintage.json")
 HIST = os.path.join(REPO, "data", "extract_rowcounts.json")
 
-# Pulled by a separate filtered export, not by pull_extract.py: an unfiltered
-# water_point export walks the whole global mWater entity table. Its age is
-# reported and held to its own limit rather than exempted silently.
-SEPARATE = {"wp_madavance.csv": 14}
+# Every extract is now pulled by the build, including the register: the
+# filtered entity query is one bounded request, so the global-table walk that
+# kept it outside never applied. Nothing carries a longer allowance; if one
+# ever does, it belongs here where it is visible.
+SEPARATE = {}
 
 
 def expected():
