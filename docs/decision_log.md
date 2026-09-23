@@ -822,3 +822,32 @@ correction, not new work, and the page says so. It has no WorldPop allocation
 until the population run is repeated (`act-population-rerun`), and its
 roof-count and water-quality columns are among the page columns no generator
 fills yet, so it shows as untested on the page though the extract holds a result.
+
+## 23 September 2026 — a joining pump gets its per-pump inputs in the same build
+
+742894057 joined with a blank WorldPop allocation, water-quality result and roof
+count, because those values were written once and never recomputed. Fort-Dauphin's
+people per pump fell 323 → 320 and the pump read as untested although mWater held
+a passing result. Now, every build:
+
+- `tools/rebuild_pump_inputs.py` recomputes the water-quality result (the latest
+  SDWS 3 result, Pass when E. coli is 0) and the roof count (roofs ÷ 2.5 × 4.5
+  from the roof-count form, now pulled as `roof_count.json`) for every portfolio
+  pump, and sets `wq_status` tested / not tested on every row. The rules
+  reproduced 729 of 729 and 724 of 724 stored values before replacing them.
+- `tools/rerun_wpop.py` reruns the SDWS 1 allocation when a pump joins or
+  leaves, on the run of record's own inputs plus the change. Every pump more
+  than 2 km from a change must reproduce exactly, or the build fails. Reusing the
+  run's inputs matters: rerunning on the page's re-rounded coordinates (about
+  0.1 m) alone moved 90 capped allocations. If the raster, its checksum or the
+  SDWS1 workspace is unavailable, the build fails with an OUTCOME sentence.
+- `tools/render_portfolio.py` keeps the map page's figures and marker list in
+  step with the report.
+- `tools/check_consistency.py` fails if any portfolio pump lacks an allocation
+  or a water-quality status.
+
+Result for 742894057: 529 allocated, 500 after the Canzee cap; roof count 106;
+E. coli Pass on 25 April 2025. Three neighbours within 2 km shared cells with it
+(742894071 973 → 602, 742894181 1,264 → 1,116, 742894552 432 → 429 allocated),
+all India Marks at their 300 cap before and after. People served 128,221 →
+128,721 (carbon portfolio 126,780 → 127,280); run `r2025a_barriers_20260923`.

@@ -17,6 +17,15 @@ Anything absent from all three is unregistered and the gate fails.
 """
 
 GENERATED = {
+    # recomputed for every portfolio pump each build (23 September)
+    'PUMPS.[].wq': 'rebuild_pump_inputs',
+    'PUMPS.[].wq_date': 'rebuild_pump_inputs',
+    'PUMPS.[].wq_status': 'rebuild_pump_inputs',
+    'PUMPS.[].benef': 'rebuild_pump_inputs',
+    'DOWN.[].wq': 'rebuild_pump_inputs',
+    'DOWN.[].wq_date': 'rebuild_pump_inputs',
+    'DOWN.[].wq_status': 'rebuild_pump_inputs',
+    'DOWN.[].benef': 'rebuild_pump_inputs',
     'CALS.custody': 'calendar_stratum',
     'FORMSNAP.fetched': 'refresh_form_snapshot',
     'FORMSNAP.forms': 'refresh_form_snapshot',
@@ -250,7 +259,6 @@ UNTESTABLE = {
     'DOWN.[].nocomm',
     'DOWN.[].status_date',
     'DOWN.[].wp',
-    'DOWN.[].wq_date',
     'ENDURO_SRC.as_at',
     'ENDURO_SRC.people_as_at',
     'ENDURO_SRC.reg_as_at',
@@ -279,7 +287,6 @@ UNTESTABLE = {
     'PUMPS.[].nocomm',
     'PUMPS.[].status_date',
     'PUMPS.[].wp',
-    'PUMPS.[].wq_date',
     'RESP.{*}.h',
     'RESP.{*}.p',
     'RESP.{*}.q',

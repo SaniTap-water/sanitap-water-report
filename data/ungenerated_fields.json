@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 46,
+ "count": 42,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -54,16 +54,6 @@
    "how": "the log's own preamble"
   },
   {
-   "field": "DOWN.[].benef",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
-  },
-  {
    "field": "DOWN.[].days",
    "value": "20 rows",
    "object": "DOWN",
@@ -72,16 +62,6 @@
    "action": null,
    "group": "A-have-population",
    "how": "down_now, days since last visit - the same rule S.over6 uses"
-  },
-  {
-   "field": "DOWN.[].wq",
-   "value": "20 rows",
-   "object": "DOWN",
-   "why": "register attributes copied into the down-points table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "down_now joined to the register record for each point"
   },
   {
    "field": "METRICS.pm_visits_last_full_month",
@@ -132,26 +112,6 @@
    "action": null,
    "group": "B-need-population",
    "how": "open repairs, current status"
-  },
-  {
-   "field": "PUMPS.[].benef",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
-  },
-  {
-   "field": "PUMPS.[].wq",
-   "value": "736 rows",
-   "object": "PUMPS",
-   "why": "register attributes copied into the fleet table",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "A-have-population",
-   "how": "managed_fleet joined to the register record for each point"
   },
   {
    "field": "S.abandoned",

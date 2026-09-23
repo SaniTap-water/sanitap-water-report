@@ -59,7 +59,12 @@ STEPS = [
     # the whole mWater group, classified silently: a new pump that meets the
     # rule joins PUMPS here, anything unclassifiable is logged for review
     ("tools/classify_register.py",   ["--write"],      True),
+    # a pump that joined or left: rerun the WorldPop allocation for it and
+    # every pump whose 1 km area overlaps it, or fail rather than publish blanks
+    ("tools/rerun_wpop.py",          ["--write"],      True),
     ("tools/rebuild_activity.py",    ["--write"],      True),
+    # water-quality result and roof count, for every portfolio pump
+    ("tools/rebuild_pump_inputs.py", ["--write"],      True),
     ("tools/build_call_tables.py",   ["--write"],      True),
     ("tools/rebuild_ttr.py",         ["--write"],      True),
     ("tools/rebuild_summary.py",     ["--write"],      True),
@@ -91,6 +96,8 @@ STEPS = [
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
+    # the portfolio map page, from the report's own PUMPS and WPOP
+    ("tools/render_portfolio.py",    ["--write"],      True),
 ]
 
 

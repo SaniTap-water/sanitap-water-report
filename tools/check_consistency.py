@@ -595,6 +595,32 @@ def main():
           else "MISSING",
           "the API accepts the PATCH and discards the field; that is a finding, "
           "not a silence")
+    # ---- every portfolio pump carries its per-pump inputs (2026-09-23) -----
+    # 742894057 joined with a blank allocation and a blank water-quality
+    # result, and every figure over it was quietly biased downward. A join
+    # may not do that again: no pump without a population allocation, and no
+    # pump without an explicit tested / not tested status.
+    def _const(name):
+        mm = re.search(r"\bconst %s\s*=\s*" % name, idx)
+        if not mm:
+            return None
+        i0 = mm.end(); close = "};" if idx[i0] == "{" else "];"
+        return json.loads(idx[i0:idx.index(close, i0) + 1])
+    _P = _const("PUMPS") or []
+    _W = _const("WPOP") or {}
+    _noalloc = [p["wp"] for p in _P if p["wp"] not in _W]
+    check("every portfolio pump has a population allocation",
+          not _noalloc, "all allocated",
+          f"{len(_noalloc)} without: {', '.join(_noalloc[:4])}" if _noalloc else "all allocated",
+          "tools/rerun_wpop.py reruns the allocation when a pump joins or leaves")
+    _nowq = [p["wp"] for p in _P
+             if p.get("wq_status") not in ("tested", "not tested")
+             or (p.get("wq_status") == "tested") != (p.get("wq") in ("Pass", "Fail"))]
+    check("every portfolio pump states whether its water was tested",
+          not _nowq, "tested or not tested, on every pump",
+          f"{len(_nowq)} without a consistent status: {', '.join(_nowq[:4])}" if _nowq
+          else "every pump", "tools/rebuild_pump_inputs.py, from the live results form")
+
     # fleet churn against the archived editions
     import glob as _glob
     def _pumps(h):

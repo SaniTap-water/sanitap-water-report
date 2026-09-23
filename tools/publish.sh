@@ -87,7 +87,7 @@ fi
 # named in its own marker in index.html; block 7af of the checker fails the
 # build if a region and its generator disagree.
 for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr_table.py \
-           tools/render_datasets.py tools/render_actions.py; do
+           tools/render_datasets.py tools/render_actions.py tools/render_portfolio.py; do
   python3 "$gen" --write
   RC=$?
   if [ "$RC" -ne 0 ]; then

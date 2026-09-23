@@ -50,6 +50,9 @@ JSON_FORMS = {
     "first_rehab_current.json": "63747997e70e478fbb2ebf71581ceeb0",
     # the annual monitoring survey: SDWS 26 usage, SDWS 25 household size
     "cbn_gender.json": "2eeb86824b4545eca33db9e7cf7dcbd4",
+    # the beneficiary roof count per water point - PUMPS.benef is computed
+    # from it every build (tools/rebuild_pump_inputs.py)
+    "roof_count.json": "8aa2dd78eb1f460f8f43db7935955846",
 }
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
