@@ -3,7 +3,7 @@
  "kinds": {
   "artefact": 7,
   "data": 39,
-  "decision": 40,
+  "decision": 36,
   "form": 7,
   "none": 22
  },
@@ -66,14 +66,6 @@
    "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked",
    "when_satisfied": "OK"
   },
-  "act-chase-s4-16-car": {
-   "evaluated": "2026-09-23",
-   "evidence": "no answer logged",
-   "kind": "decision",
-   "satisfied": false,
-   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
   "act-close-eight-2-2": {
    "evaluated": "2026-09-23",
    "evidence": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads",
@@ -83,22 +75,6 @@
    "when_satisfied": "OK"
   },
   "act-close-out-6-5": {
-   "evaluated": "2026-09-23",
-   "evidence": "no answer logged",
-   "kind": "decision",
-   "satisfied": false,
-   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
-  "act-close-s4-15-car": {
-   "evaluated": "2026-09-23",
-   "evidence": "no answer logged",
-   "kind": "decision",
-   "satisfied": false,
-   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
-  "act-close-s4-16-car": {
    "evaluated": "2026-09-23",
    "evidence": "no answer logged",
    "kind": "decision",
@@ -697,14 +673,6 @@
    "when_satisfied": "OK"
   },
   "act-repeat-breakdown": {
-   "evaluated": "2026-09-23",
-   "evidence": "no answer logged",
-   "kind": "decision",
-   "satisfied": false,
-   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
-  "act-resolve-s4-16-car": {
    "evaluated": "2026-09-23",
    "evidence": "no answer logged",
    "kind": "decision",

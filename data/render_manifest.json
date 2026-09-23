@@ -224,15 +224,14 @@
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
   "Register corrections and exclusions",
-  "Carbon file — Gold Standard programme of activities (PoA) GS12600 / voluntary project activity (VPA) GS12601",
+  "Data the carbon programme needs from us",
   "Cookstoves and water: the overlap, measured",
   "Carbon data gaps — the list Jan drives",
   "Impact",
-  "Gold Standard design review — what is still open",
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 27893,
+ "height": 29915,
  "measure": 1132,
  "missing_ids": [],
  "off_measure": [],
@@ -266,7 +265,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 32,
+ "sections": 31,
  "tables": {
   "chaintbl": {
    "hidden": false,
@@ -276,9 +275,13 @@
    "hidden": false,
    "rows": 9
   },
+  "cptbl": {
+   "hidden": false,
+   "rows": 13
+  },
   "downtbl": {
    "hidden": false,
-   "rows": 20
+   "rows": 18
   },
   "exctbl": {
    "hidden": false,
@@ -294,11 +297,11 @@
   },
   "over6": {
    "hidden": false,
-   "rows": 452
+   "rows": 449
   },
   "paramstbl": {
    "hidden": false,
-   "rows": 24
+   "rows": 40
   },
   "parttbl": {
    "hidden": false,
@@ -306,7 +309,7 @@
   },
   "popstbl": {
    "hidden": false,
-   "rows": 11
+   "rows": 17
   },
   "poptbl": {
    "hidden": false,

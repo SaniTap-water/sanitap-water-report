@@ -43,11 +43,6 @@
   "kind": "none",
   "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked"
  },
- "act-chase-s4-16-car": {
-  "kind": "decision",
-  "question": "Has Earthood amended its validation report on the two external experts (CAR#8)?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
- },
  "act-close-eight-2-2": {
   "kind": "none",
   "says": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads"
@@ -55,16 +50,6 @@
  "act-close-out-6-5": {
   "kind": "decision",
   "question": "Are the January population figures reconciled or formally retired?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
- },
- "act-close-s4-15-car": {
-  "kind": "decision",
-  "question": "Does Gold Standard accept our answer on Section F eligibility criteria (CAR#1)?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
- },
- "act-close-s4-16-car": {
-  "kind": "decision",
-  "question": "Does Gold Standard accept the technical life evidence for India Mk2/3 and Afridev (CAR#5)?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
  },
  "act-close-s4-16-car-2": {
@@ -532,11 +517,6 @@
  "act-repeat-breakdown": {
   "kind": "decision",
   "question": "Do the two repeat-breakdown villages get a second water point?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
- },
- "act-resolve-s4-16-car": {
-  "kind": "decision",
-  "question": "How is CAR#4 resolved - baseline surveys after the crediting period start?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
  },
  "act-resolve-sdws-27-sdws": {

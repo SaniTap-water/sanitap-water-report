@@ -606,3 +606,44 @@ is removed.
 dedicated sweep.** Both backlogs are shrink-only and gated, so they cannot quietly grow and cannot
 become permanent exemption lists. Neither needs another campaign. The sweep found what a sweep can
 find; what is left is work that belongs to whoever next edits the prose around it.
+
+---
+
+## 2026-09-23 — The carbon section moved to the right side of the line
+
+**The scope correction.** This report tracks what the field operation must measure and whether it
+is measuring it. It does not run the carbon programme: methodology interpretation, the design
+review, the VPA-DD and the Gold Standard relationship are the Head of Carbon's. Where the two meet
+there is one question — **can we supply the data the carbon programme needs, and if not what is
+missing and who owns it** — and that is now the only carbon question this report answers.
+
+**What replaced it.** *Data the carbon programme needs from us*: one row per parameter we must
+evidence, from `data/carbon_parameters.json`. Coverage is derived from the named population over
+the named relevant population; freshness from the extract manifest; **readiness falls out of both
+rather than being asserted**, so a row cannot read Ready while its evidence says otherwise. The
+rows filter by readiness, so "what are we not ready on" is one press rather than a read.
+
+**What came out.** The design review section entirely — round state, Request Clarification,
+CAR#1, #4, #5, #7(b), #8 and CL#2 — and the JavaScript status deck behind the old *Carbon file*
+section. Four action items that were pure review-chasing went with it. **Two were kept and
+restated without the review framing**, because the deliverable underneath is ours: the
+installation database of households per borehole, and the SDWS 3 record correction plus the
+parallel validation round.
+
+**The version map split the same way.** Six divergences alter what the field must collect or
+record and stay: the minimum sample size moving 30 → 50, mandatory confidence intervals, the
+end-user non-claiming assertion, embodied emissions under SDWS 21/41, the annual stove-stacking
+survey, and the stroke-count proxy under SDWS 28. Eight were interpretation and moved to the Head
+of Carbon, named on the page so a reader knows where they went.
+
+**Built to take additions.** A new requirement is a row in `data/carbon_parameters.json` — id,
+plain-language measure, form, population, owner, action. Nothing else changes. The consistency
+checker asserts every row names populations that exist and an owner, so a row cannot be added with
+a typed coverage figure or with no one accountable for the gap.
+
+**One thing I could not do.** `claude/sdws-parameter-map-what-must-be-evidenced.md` is in the
+Claude Project and is not readable from the build machine — Claude Code sees only the local
+filesystem. The **row set** is therefore reconstructed from `docs/methodology_version_map.md`,
+`docs/sdws27_basis.md` and the live form snapshot, and is marked provisional in the data file and
+on the page. Every row's **evidence** is derived and is not provisional. Reconciling the row set
+against that map is a five-minute job for whoever can open it.

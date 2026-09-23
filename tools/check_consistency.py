@@ -1294,22 +1294,37 @@ def main():
             check(f"corrections file matches the page: {k}", a_ == b_, a_, b_,
                   "the page is built from this file, so they cannot differ")
 
-    # ---- 7p. the open Gold Standard review items are tracked ---------------
-    # These are the gate to certification. The report went months without
-    # tracking any of them; the section and the actions must both stay.
-    check("the Gold Standard design review section exists",
-          'id="gsrevsec"' in idx, "present",
-          "present" if 'id="gsrevsec"' in idx else "MISSING",
-          "round 3 sits at Request Clarification with six items open")
-    for ref, why in (("&sect;4.15 CAR#1", "Section F eligibility criteria"),
-                     ("&sect;4.16 CAR#4", "baseline surveys after crediting period start"),
-                     ("&sect;4.16 CAR#5", "technical life of India Mk2/3 and Afridev"),
-                     ("&sect;4.16 CAR#7(b)", "SDWS 3 chemical tests and parallel validation"),
-                     ("&sect;4.16 CAR#8", "VVB external experts"),
-                     ("&sect;4.19 CL#2", "installation database")):
-        check(f"open review item tracked: {ref} ({why})", ref in idx, "tracked",
-              "tracked" if ref in idx else "MISSING",
-              "each open item needs a reference, an owner and a date")
+    # ---- 7p. the design review is NOT ours to track -----------------------
+    # Removed 2026-09-23 with the section itself. This report tracks what the
+    # field operation must measure and whether it is measuring it; the design
+    # review, the CAR and CL items, round state and submission status are the
+    # Head of Carbon's and showing them here implied we tracked them. What
+    # replaces it is a parameter readiness view: can we supply the data.
+    check("the design review section stays out",
+          'id="gsrevsec"' not in idx and "CAR#1" not in idx, "absent",
+          "absent" if 'id="gsrevsec"' not in idx else "BACK ON THE PAGE",
+          "out of remit: the Head of Carbon owns the review")
+    check("the parameter readiness view replaces it",
+          'id="carbon-params"' in idx
+          and "Data the carbon programme needs from us" in idx, "present",
+          "present" if 'id="carbon-params"' in idx else "MISSING",
+          "one row per parameter we must evidence, coverage derived")
+    # every row's coverage must come from a population, never a stored number
+    cpj = os.path.join(here, "data", "carbon_parameters.json")
+    if os.path.exists(cpj):
+        cp = json.loads(read(cpj))
+        popdoc = json.loads(read(os.path.join(here, "data", "populations.json")))
+        known = set(popdoc["populations"])
+        bad = [p["id"] for p in cp["parameters"]
+               if (p.get("population") and p["population"] not in known)
+               or (p.get("relevant") and p["relevant"] not in known)]
+        check("every parameter row names populations that exist",
+              not bad, "all resolve", f"{len(bad)} unresolved" if bad else "all resolve",
+              ", ".join(bad[:3]) if bad else "coverage is derived, never typed")
+        owned = [p["id"] for p in cp["parameters"] if not p.get("owner")]
+        check("every parameter row names an owner",
+              not owned, "all named", f"{len(owned)} unowned" if owned else "all named",
+              "a gap with no owner closes by itself, which is to say never")
 
     # ---- 7q. the transcription page must not leak the machine output -------
     # The whole point of the human round is that it is independent. If any
@@ -1913,8 +1928,11 @@ def main():
         vm = open(vmap, encoding="utf8").read()
         idx_rows = re.findall(r"^\|\s*(\d+)\s*\|\s*(yes|no)\s*\|\s*([a-z0-9-]*)\s*\|\s*$",
                               vm, re.M)
+        # Trimmed 2026-09-23 to the six divergences with a COLLECTION
+        # consequence; the eight interpretation rows went to the Head of
+        # Carbon. The floor is the six, not the old fourteen.
         check("the register carries a machine-readable action_now index",
-              len(idx_rows) >= 10, ">= 10 rows", len(idx_rows),
+              len(idx_rows) >= 6, ">= 6 rows", len(idx_rows),
               "so every action_now = yes can be checked against the action list")
         yes = [(n, aid) for n, f, aid in idx_rows if f == "yes"]
         check("every divergence needing action now names an action",
@@ -1933,11 +1951,11 @@ def main():
               "v1.0 governs this crediting period" in idx, "present",
               "present" if "v1.0 governs this crediting period" in idx else "MISSING")
         n_div = len(idx_rows); n_now = len(yes)
-        ok_counts = ("Fourteen divergences" in idx
-                     and f"<b>{n_now}</b> require action now" in idx)
-        check(f"page states the divergence counts: {n_div} found, {n_now} act now",
-              ok_counts, f"{n_div} found, {n_now} act now",
-              "stated" if ok_counts else "NOT ON THE PAGE")
+        ok_counts = f"<b>{n_now}</b> require action now" in idx
+        check(f"page states the divergence count: {n_now} act now",
+              ok_counts, f"{n_now} act now",
+              "stated" if ok_counts else "NOT ON THE PAGE",
+              "the register now carries only what changes collection")
 
     # ---- 7aa. the standing adherence item and the custody metric -----------
     check("the standing methodology-adherence item is present",

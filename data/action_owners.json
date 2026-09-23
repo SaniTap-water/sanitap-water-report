@@ -25,10 +25,6 @@
    "deadline": "2026-10-31",
    "owner": "Angelo Nahavitatsara / MadAvance"
   },
-  "act-chase-s4-16-car": {
-   "deadline": "2026-10-15",
-   "owner": "James Walker"
-  },
   "act-close-eight-2-2": {
    "deadline": "2026-11-30",
    "owner": "MadAvance"
@@ -36,14 +32,6 @@
   "act-close-out-6-5": {
    "deadline": null,
    "owner": "Adriaan"
-  },
-  "act-close-s4-15-car": {
-   "deadline": "2026-10-15",
-   "owner": "James Walker"
-  },
-  "act-close-s4-16-car": {
-   "deadline": "2026-10-15",
-   "owner": "James Walker"
   },
   "act-close-s4-16-car-2": {
    "deadline": "2026-11-30",
@@ -75,7 +63,7 @@
   },
   "act-decommission-inactivity-field": {
    "deadline": "2026-09-21",
-   "owner": "\u2014"
+   "owner": "—"
   },
   "act-define-maintenance-record-becomes": {
    "deadline": null,
@@ -163,47 +151,47 @@
   },
   "act-mor-1b-betanatanana-go-look": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-bring-back-site-lists": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-correct-two-sampling-records": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-count-draw-off-point": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-fill-three-new-fields": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-fix-type-sampled-point": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-have-those-five-records": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-households-people-served-per": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-re-take-gps-fix": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-record-what-community-drank": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-mor-remove-reclassify-two-test": {
    "deadline": null,
-   "owner": "Jan / Endur\u2019O team"
+   "owner": "Jan / Endur’O team"
   },
   "act-move-stroke-test-sop": {
    "deadline": "2026-10-31",
@@ -305,10 +293,6 @@
    "deadline": null,
    "owner": "Jan de Graaf"
   },
-  "act-resolve-s4-16-car": {
-   "deadline": "2026-10-15",
-   "owner": "James Walker"
-  },
   "act-resolve-sdws-27-sdws": {
    "deadline": "2026-10-15",
    "owner": "James Walker"
@@ -363,7 +347,7 @@
   },
   "act-transcription-round": {
    "deadline": "2026-10-10",
-   "owner": "MadAvance \u2014 transcriber to be named"
+   "owner": "MadAvance — transcriber to be named"
   },
   "act-type3-cap": {
    "deadline": null,
