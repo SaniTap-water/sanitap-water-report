@@ -1,0 +1,56 @@
+{
+ "all": {
+  "max": 55,
+  "mean": 4.8,
+  "median": 1,
+  "n": 187,
+  "p90": 16
+ },
+ "by_quarter": {
+  "2025 Q4": {
+   "max": 8,
+   "mean": 0.9,
+   "median": 1,
+   "n": 30,
+   "p90": 1
+  },
+  "2026 Q1": {
+   "max": 38,
+   "mean": 2.3,
+   "median": 1,
+   "n": 84,
+   "p90": 4
+  },
+  "2026 Q2": {
+   "max": 55,
+   "mean": 11.8,
+   "median": 1,
+   "n": 46,
+   "p90": 35
+  },
+  "2026 Q3": {
+   "max": 30,
+   "mean": 4.9,
+   "median": 3,
+   "n": 27,
+   "p90": 9
+  }
+ },
+ "by_site": {
+  "Fort-Dauphin": {
+   "max": 55,
+   "mean": 7.0,
+   "median": 1,
+   "n": 54,
+   "p90": 23
+  },
+  "Maroantsetra": {
+   "max": 49,
+   "mean": 3.9,
+   "median": 1,
+   "n": 132,
+   "p90": 9
+  }
+ },
+ "note": "Time to repair on the live repair form, final responses with both dates; written by tools/render_ttr_table.py."
+}

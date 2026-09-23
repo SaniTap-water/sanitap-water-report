@@ -570,6 +570,9 @@ def water_quality_tested():
             "written down and the number allowed to follow it. Withdrawal "
             "logged as repairs_628.",
     decided_on="2026-09-22",
+    # values quoted in `decided` that are no longer carried: the definitions
+    # table renders each struck through and labelled retired
+    retired=[("628", "2026-09-22", "repairs since August 2024, stored and never reproduced")],
     derives_from=[])
 def repairs_since_aug_2024():
     out, seen = set(), set()
@@ -600,6 +603,8 @@ def repairs_since_aug_2024():
             "set is 617. The median of 1.0 days and mean of 3.6 days are "
             "unchanged by the correction.",
     decided_on="2026-09-22",
+    retired=[("606", "2026-09-22", "the stored ttr_n, reproducing from no rule"),
+             ("617", "2026-09-22", "the size of this set on the day it was decided; the live size is beside it")],
     derives_from=["repairs_since_aug_2024"])
 def repairs_time_measured():
     keep = repairs_since_aug_2024()
@@ -699,6 +704,154 @@ def usage_served_either_season():
     derives_from=["managed_fleet"])
 def down_now():
     return {p["wp"] for p in _page_pumps() if p.get("status") == "down"}
+
+
+def _form_csv(name):
+    """A response CSV whose `data` column is the answers as JSON."""
+    out = []
+    for r in _rows(name):
+        try:
+            r["data"] = json.loads(r.get("data") or "{}")
+        except ValueError:
+            r["data"] = {}
+        out.append(r)
+    return out
+
+
+def _submitted(r):
+    return r.get("status") not in ("draft", "rejected")
+
+
+Q_CAL_PHOTOS = "1f8f66868c384a20b8b1ebae329fc7b0"    # 2.15.5 calendar photos
+Q_CAL_RECORD = "5e18776a39f04b79a80d9695676c47cf"    # 2.15.6 the field of record
+Q_OUT_3M = "ea3e342a575343e5a3e16bcc5f697160"        # "Contrôle : ... en panne depuis plus de 3 mois"
+C_OUT_3M_YES = "q1r8np6"
+Q_OUT_PHOTOS = "a4d239382dc94372868db0314095c289"    # photos proving non-functionality before
+
+
+@population(
+    name="Pumps without a visit for more than six months",
+    unit="points",
+    rule="Managed points whose last preventive visit or repair - or, where "
+         "there has been neither, the commissioning date - is more than 182 "
+         "days before the build date. The same test the maintenance tiles and "
+         "the build's own counters apply.",
+    reads=[("Entretien préventif", F_PM, None),
+           ("Réparation après panne", F_REPAIR, None)],
+    decided="Six months is 182 days everywhere on the page. The table under "
+            "this heading used 183 until 23 September 2026 and so counted one "
+            "pump fewer than the tile above it.",
+    decided_on="2026-09-23",
+    retired=[("183", "2026-09-23", "the threshold the table used, one day off the page's own rule")],
+    derives_from=["managed_fleet"])
+def overdue_six_months():
+    return {p["wp"] for p in _page_pumps()
+            if p.get("days") is not None and p["days"] > 182}
+
+
+@population(
+    name="Preventive-maintenance visits on record",
+    unit="records",
+    rule="Every submitted response on the preventive-maintenance form - drafts "
+         "and rejected responses excluded.",
+    reads=[("Entretien préventif", F_PM, None)],
+    decided="A visit is on record once it is submitted, whether or not it has "
+            "been approved yet.",
+    decided_on="2026-09-23",
+    derives_from=[])
+def pm_visits():
+    return {r["_id"] for r in _form_csv("pm.csv") if _submitted(r)}
+
+
+@population(
+    name="Preventive-maintenance visits carrying a calendar photograph",
+    unit="records",
+    rule="Of the visits on record, those with at least one photograph on "
+         "question 2.15.5, the gardiens' calendar generally.",
+    reads=[("Entretien préventif", F_PM, "question 2.15.5 " + Q_CAL_PHOTOS)],
+    decided="Any calendar photograph shows the practice was kept up; whether "
+            "it is on the field of record is counted separately.",
+    decided_on="2026-09-23",
+    derives_from=["pm_visits"])
+def pm_visits_calendar_photo():
+    return {r["_id"] for r in _form_csv("pm.csv")
+            if _submitted(r) and _answer(r, Q_CAL_PHOTOS)}
+
+
+@population(
+    name="Preventive-maintenance visits with a photograph on the field of record",
+    unit="records",
+    rule="Of the visits on record, those with at least one photograph on "
+         "question 2.15.6, the calendar photograph of record.",
+    reads=[("Entretien préventif", F_PM, "question 2.15.6 " + Q_CAL_RECORD)],
+    decided="2.15.6 is the field of record for the days-not-operational "
+            "evidence.",
+    decided_on="2026-09-23",
+    derives_from=["pm_visits"])
+def pm_visits_calendar_of_record():
+    return {r["_id"] for r in _form_csv("pm.csv")
+            if _submitted(r) and _answer(r, Q_CAL_RECORD)}
+
+
+@population(
+    name="Call-centre records awaiting approval",
+    unit="records",
+    rule="Submitted (final) responses on the call-centre form whose approvals "
+         "list is empty.",
+    reads=[("Appel / signalement de pannes", F_CALL, "the approvals field")],
+    decided="A dispatch record carries no carbon quantity, so approving one "
+            "asserts nothing; the form is out of scope for approval (decided "
+            "21 September 2026). Counted so the scope decision is over a "
+            "stated set.",
+    decided_on="2026-09-23",
+    derives_from=[])
+def callcentre_unapproved():
+    out = set()
+    for r in _rows("appel_signalement_pannes.csv"):
+        if r.get("status") != "final":
+            continue
+        try:
+            appr = json.loads(r.get("approvals") or "[]")
+        except ValueError:
+            appr = []
+        if not appr:
+            out.add(r["_id"])
+    return out
+
+
+@population(
+    name="First rehabilitations confirmed out of order for three months",
+    unit="records",
+    rule="First-rehabilitation records on the retired combined form whose "
+         "control question - out of order for more than three months before "
+         "the repair - carries choice q1r8np6 (yes).",
+    reads=[("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            "question " + Q_OUT_3M)],
+    decided="Methodology 2.2.1(d) / SDWS 2: a rehabilitated pump must have been "
+            "out of order beforehand.",
+    decided_on="2026-09-23",
+    derives_from=["first_rehabilitation_records"])
+def first_rehab_confirmed_out_of_order():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB
+            and _answer(r, Q_OUT_3M) == C_OUT_3M_YES}
+
+
+@population(
+    name="First rehabilitations confirmed out of order and photographed",
+    unit="records",
+    rule="Of those, the records that also carry a photograph proving the pump "
+         "was not working before the rehabilitation period.",
+    reads=[("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            "question " + Q_OUT_PHOTOS)],
+    decided="The confirmation is evidenced only where a photograph backs it.",
+    decided_on="2026-09-23",
+    derives_from=["first_rehab_confirmed_out_of_order"])
+def first_rehab_out_of_order_photographed():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB
+            and _answer(r, Q_OUT_3M) == C_OUT_3M_YES
+            and _answer(r, Q_OUT_PHOTOS)}
 
 
 BY_ID = None

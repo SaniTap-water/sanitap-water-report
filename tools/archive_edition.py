@@ -13,6 +13,12 @@ So the archive step is its own tool, publish.sh calls it before it overwrites
 anything, and --assert refuses to let a publish proceed if the outgoing
 edition is not on disk.
 
+One edition per ISO week reaches the archive. A mid-week update republishes
+OVER the current edition (tools/weekly_build.py), so when the outgoing and
+incoming pages belong to the same week the outgoing one is being replaced, not
+superseded: it is not archived, and --assert accepts that. The week's last
+version is frozen when the next week's edition replaces it.
+
     python3 tools/archive_edition.py            # archive the current index.html
     python3 tools/archive_edition.py --assert   # fail unless it is archived
 """
@@ -74,6 +80,13 @@ def main():
         print("archive: cannot read the masthead of index.html")
         return 2
     wk, ed = wk_ed
+    # the incoming edition: the working tree's masthead, else today
+    inc, _ = masthead_of(os.path.join(REPO, "index.html"))
+    inc = inc or datetime.date.today()
+    if inc.isocalendar()[:2] == d.isocalendar()[:2]:
+        print(f"outgoing edition {d.isoformat()} wk{wk} ed{ed} is this week's: "
+              "replaced in place, not archived")
+        return 0
     srcs = {s: from_head(s) for s, _ in names(d, wk, ed)}
     want = [(s, n) for s, n in names(d, wk, ed) if srcs.get(s)]
     missing = [n for _, n in want if not os.path.isfile(os.path.join(ED, n))]

@@ -24,6 +24,22 @@ def esc(x):
     return (str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
 
+
+def retire(text, retired):
+    """Mark each retired value quoted in a decision as history, not current.
+
+    A decision records what changed - "the stored ttr_n of 606 reproduces from
+    no rule" - so it has to quote the value it retired. Rendered bare, that
+    value reads as a figure the page stands behind; marked, it renders struck
+    through and labelled, and the census classes it as a retired quotation.
+    """
+    import re as _re
+    for val, on, was in retired or []:
+        text = _re.sub(r"(?<![\d.,])" + _re.escape(val) + r"(?![\d])",
+                       f'<span class="retired" data-retired="{on}" '
+                       f'data-was="{esc(was)}">{val}</span>', text, count=1)
+    return text
+
 def block():
     pops = json.load(open(os.path.join(REPO, "data", "populations.json"),
                           encoding="utf8"))
@@ -44,7 +60,7 @@ def block():
             f"""<td class="num"><b><span data-fig="POPS.populations['{pid}'].size"></span></b></td>"""
             f'<td>{esc(p["rule"])}</td>'
             f'<td>{reads}</td>'
-            f'<td>{esc(p.get("decided"))}'
+            f'<td>{retire(esc(p.get("decided")), p.get("retired"))}'
             + (f'<br><span class="muted">{esc(p.get("decided_on"))}</span>'
                if p.get("decided_on") and p["decided_on"] != "—" else "")
             + f'</td><td>{derives}</td></tr>')

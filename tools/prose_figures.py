@@ -30,6 +30,17 @@ PAGE = os.path.join(REPO, "index.html")
 BACKLOG = os.path.join(REPO, "data", "prose_figure_backlog.json")
 
 NOT_PROSE = [
+    # A generated region is rewritten by its generator every build and checked
+    # against it (--check); its figures are the generator's output, not typed
+    # by hand, and the census checks their values. Counting them here made the
+    # gate fail on any week a metric moved - a closing-condition readout such
+    # as "points_over_6_months = 450" is a new value the moment it changes -
+    # so the automated build could never pass it. Excluded since 23 September.
+    re.compile(r"<!-- BEGIN GENERATED ([\w-]+) .*?<!-- END GENERATED \1 -->", re.S),
+    # A figure its own element marks as a quotation, a retired value, a
+    # withdrawn one or an artefact's output is typed by design; the census
+    # holds each to its registry (and an artefact's value to its data).
+    re.compile(r'<span\b[^>]*\bdata-(?:quote|retired|withdrawn|artefact)="[^"]*"[^>]*>[^<]*</span>'),
     re.compile(r"<script\b[^>]*>.*?</script>", re.S),
     re.compile(r"<style\b[^>]*>.*?</style>", re.S),
     re.compile(r"<!--.*?-->", re.S),

@@ -6,18 +6,18 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "786 of 908 points",
+   "detail": "787 of 909 points",
    "holds": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "730 of 786 points",
+   "detail": "731 of 787 points",
    "holds": true,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "736 of 908 points",
-   "holds": false,
+   "detail": "736 of 909 points",
+   "holds": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
   {
@@ -31,7 +31,7 @@
    "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
-   "detail": "729 rehabilitated + 7 never = 736 points",
+   "detail": "730 rehabilitated + 6 never = 736 points",
    "holds": true,
    "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
   },
@@ -47,14 +47,7 @@
   }
  ],
  "form_base": "https://portal.mwater.co/#/forms/",
- "gaps": [
-  {
-   "known": "already tracked as act-742896839",
-   "n": 1,
-   "step": "managed fleet is a subset of the register",
-   "what": "1 managed point(s) are not in the register export: 742896839"
-  }
- ],
+ "gaps": [],
  "populations": {
   "calendar_evidenced_2026": {
    "decided": "The gardien calendar is the official record of days operational.",
@@ -74,6 +67,23 @@
    "rule": "Carbon-fleet points with a readable gardien calendar sheet dated 2026, the year read off the sheet itself. This is what the days-operational evidence rests on.",
    "size": 297,
    "unit": "points"
+  },
+  "callcentre_unapproved": {
+   "decided": "A dispatch record carries no carbon quantity, so approving one asserts nothing; the form is out of scope for approval (decided 21 September 2026). Counted so the scope decision is over a stated set.",
+   "decided_on": "2026-09-23",
+   "derives_from": [],
+   "id": "callcentre_unapproved",
+   "name": "Call-centre records awaiting approval",
+   "reads": [
+    [
+     "Appel / signalement de pannes",
+     "c08b3fe26d0f42c084074701f29eb75e",
+     "the approvals field"
+    ]
+   ],
+   "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
+   "size": 2813,
+   "unit": "records"
   },
   "carbon_fleet": {
    "decided": "Marolinta is Deichmann-funded and enters no carbon figure, so it cannot be in a carbon denominator.",
@@ -124,6 +134,44 @@
    "size": 18,
    "unit": "points"
   },
+  "first_rehab_confirmed_out_of_order": {
+   "decided": "Methodology 2.2.1(d) / SDWS 2: a rehabilitated pump must have been out of order beforehand.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "first_rehabilitation_records"
+   ],
+   "id": "first_rehab_confirmed_out_of_order",
+   "name": "First rehabilitations confirmed out of order for three months",
+   "reads": [
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question ea3e342a575343e5a3e16bcc5f697160"
+    ]
+   ],
+   "rule": "First-rehabilitation records on the retired combined form whose control question - out of order for more than three months before the repair - carries choice q1r8np6 (yes).",
+   "size": 765,
+   "unit": "records"
+  },
+  "first_rehab_out_of_order_photographed": {
+   "decided": "The confirmation is evidenced only where a photograph backs it.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "first_rehab_confirmed_out_of_order"
+   ],
+   "id": "first_rehab_out_of_order_photographed",
+   "name": "First rehabilitations confirmed out of order and photographed",
+   "reads": [
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question a4d239382dc94372868db0314095c289"
+    ]
+   ],
+   "rule": "Of those, the records that also carry a photograph proving the pump was not working before the rehabilitation period.",
+   "size": 693,
+   "unit": "records"
+  },
   "first_rehabilitated": {
    "decided": "A first rehabilitation is what puts a point into the programme. The record is the evidence it happened.",
    "decided_on": "methodology 2.2.1(d) / SDWS 2",
@@ -150,7 +198,7 @@
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on the works form, whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 786,
+   "size": 787,
    "unit": "points"
   },
   "first_rehabilitation_records": {
@@ -224,7 +272,7 @@
     ]
    ],
    "rule": "Register records carrying a coordinate in mWater. This is the set every “nearest other point” distance is measured against: the whole register, not the managed fleet, because the nearest point to a dormant one is often a working point and sometimes another dormant one.",
-   "size": 908,
+   "size": 909,
    "unit": "points"
   },
   "managed_fleet": {
@@ -282,6 +330,92 @@
    "size": 20,
    "unit": "records"
   },
+  "overdue_six_months": {
+   "decided": "Six months is 182 days everywhere on the page. The table under this heading used 183 until 23 September 2026 and so counted one pump fewer than the tile above it.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "managed_fleet"
+   ],
+   "id": "overdue_six_months",
+   "name": "Pumps without a visit for more than six months",
+   "reads": [
+    [
+     "Entretien préventif",
+     "de26d89a5c8a4452b42158c622be20d0",
+     null
+    ],
+    [
+     "Réparation après panne",
+     "958b4763788348d699e7d8c5821f92ee",
+     null
+    ]
+   ],
+   "retired": [
+    [
+     "183",
+     "2026-09-23",
+     "the threshold the table used, one day off the page's own rule"
+    ]
+   ],
+   "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
+   "size": 453,
+   "unit": "points"
+  },
+  "pm_visits": {
+   "decided": "A visit is on record once it is submitted, whether or not it has been approved yet.",
+   "decided_on": "2026-09-23",
+   "derives_from": [],
+   "id": "pm_visits",
+   "name": "Preventive-maintenance visits on record",
+   "reads": [
+    [
+     "Entretien préventif",
+     "de26d89a5c8a4452b42158c622be20d0",
+     null
+    ]
+   ],
+   "rule": "Every submitted response on the preventive-maintenance form - drafts and rejected responses excluded.",
+   "size": 759,
+   "unit": "records"
+  },
+  "pm_visits_calendar_of_record": {
+   "decided": "2.15.6 is the field of record for the days-not-operational evidence.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "pm_visits"
+   ],
+   "id": "pm_visits_calendar_of_record",
+   "name": "Preventive-maintenance visits with a photograph on the field of record",
+   "reads": [
+    [
+     "Entretien préventif",
+     "de26d89a5c8a4452b42158c622be20d0",
+     "question 2.15.6 5e18776a39f04b79a80d9695676c47cf"
+    ]
+   ],
+   "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
+   "size": 721,
+   "unit": "records"
+  },
+  "pm_visits_calendar_photo": {
+   "decided": "Any calendar photograph shows the practice was kept up; whether it is on the field of record is counted separately.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "pm_visits"
+   ],
+   "id": "pm_visits_calendar_photo",
+   "name": "Preventive-maintenance visits carrying a calendar photograph",
+   "reads": [
+    [
+     "Entretien préventif",
+     "de26d89a5c8a4452b42158c622be20d0",
+     "question 2.15.5 1f8f66868c384a20b8b1ebae329fc7b0"
+    ]
+   ],
+   "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
+   "size": 759,
+   "unit": "records"
+  },
   "register_records": {
    "decided": "The group is the boundary of what MadAvance holds. Not a decision so much as a fact about the account.",
    "decided_on": "—",
@@ -296,7 +430,7 @@
     ]
    ],
    "rule": "Every water-point record in the MadAvance group in mWater. This is everything MadAvance holds, most of which we do not maintain: surveys, points handed on, rope pumps, abandoned points.",
-   "size": 908,
+   "size": 909,
    "unit": "points"
   },
   "rehabilitated_successfully": {
@@ -325,7 +459,7 @@
     ]
    ],
    "rule": "Of the first-rehabilitated points, those whose record answers Yes to “Verify: did the repair or maintenance succeed?”. A point with any successful first-rehabilitation record counts as successful.",
-   "size": 730,
+   "size": 731,
    "unit": "points"
   },
   "repairs_since_aug_2024": {
@@ -344,6 +478,13 @@
      "Clean Water || ... (retired combined form)",
      "86cf66efdd3749dd8a121314bab3675a",
      "question \"Type de travaux\" = \"Réparation après panne\""
+    ]
+   ],
+   "retired": [
+    [
+     "628",
+     "2026-09-22",
+     "repairs since August 2024, stored and never reproduced"
     ]
    ],
    "rule": "Every repair-after-breakdown record on either repair source - the retired combined form and its live successor - that is linked to a water point and was submitted on or after 1 August 2024, counted once per point and date. The de-duplication is not cosmetic: three (point, date) pairs carry two records each, one of which spans the migration boundary and is a genuine double entry.",
@@ -368,6 +509,18 @@
      "Clean Water || ... (retired combined form)",
      "86cf66efdd3749dd8a121314bab3675a",
      "dates \"Date de notification de la panne\" and \"Date fin des travaux\""
+    ]
+   ],
+   "retired": [
+    [
+     "606",
+     "2026-09-22",
+     "the stored ttr_n, reproducing from no rule"
+    ],
+    [
+     "617",
+     "2026-09-22",
+     "the size of this set on the day it was decided; the live size is beside it"
     ]
    ],
    "rule": "Repairs since 1 August 2024 that carry BOTH a breakdown notification date and a works completion date, and whose completion is not before its notification. Only these can be timed, so only these are in the median and the mean.",

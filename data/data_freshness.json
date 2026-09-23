@@ -1,14 +1,14 @@
 {
  "blocking_lag_days": 0,
  "checked": "2026-09-23",
- "extract_newest": "2026-09-22",
+ "extract_newest": "2026-09-23",
  "files_age_days": 1,
  "files_newest": "2026-09-22",
  "known_gaps": {},
  "lag_days": 0,
  "latest_in_extract": {
   "call-centre": "2026-09-22",
-  "preventive-maintenance": "2026-09-22",
+  "preventive-maintenance": "2026-09-23",
   "repair-after-breakdown": "2026-09-22"
  },
  "latest_in_extract_files": {
@@ -27,12 +27,12 @@
  "latest_in_mwater": {
   "call-centre": "2026-09-22",
   "premiere-rehabilitation": null,
-  "preventive-maintenance": "2026-09-22",
+  "preventive-maintenance": "2026-09-23",
   "repair-after-breakdown": "2026-09-22"
  },
- "mwater_newest": "2026-09-22",
- "page_age_days": 1,
- "page_behind_files_days": 0,
+ "mwater_newest": "2026-09-23",
+ "page_age_days": 0,
+ "page_behind_files_days": -1,
  "per_source": {
   "call-centre": {
    "behind_days": 0,
@@ -41,8 +41,8 @@
   },
   "preventive-maintenance": {
    "behind_days": 0,
-   "mwater": "2026-09-22",
-   "page": "2026-09-22"
+   "mwater": "2026-09-23",
+   "page": "2026-09-23"
   },
   "repair-after-breakdown": {
    "behind_days": 0,

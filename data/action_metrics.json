@@ -124,7 +124,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 450
+   "value": 453
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -164,12 +164,12 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 48
+   "value": 47
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",
    "source": "local",
-   "value": 73
+   "value": 0
   },
   "usage_question_answers": {
    "says": "point-of-use responses that actually answer the usage question A9",

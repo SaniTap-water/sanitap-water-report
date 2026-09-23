@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-22",
+ "fetched": "2026-09-23",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -860,14 +860,14 @@
    ],
    "id": "8764843c94484f5b984078c68f13b2ca",
    "locales": [
-    "en"
+    "fr"
    ],
    "questions": [
     {
      "code": "1.1",
      "conditions": [],
-     "en": "ID du point d'eau",
-     "fr": "",
+     "en": "",
+     "fr": "ID du point d'eau",
      "group": null,
      "id": "575ffc62a3c546dfb97eee5387fcd8f5",
      "required": true,
@@ -876,8 +876,8 @@
     {
      "code": "1.2",
      "conditions": [],
-     "en": "Date de réalisation / d'intervention",
-     "fr": "",
+     "en": "",
+     "fr": "Date de réalisation / d'intervention",
      "group": null,
      "id": "86fc2a6da1624b8bb7dfc672a079e638",
      "required": true,
@@ -886,18 +886,28 @@
     {
      "code": "1.3",
      "conditions": [],
-     "en": "Type d'intervention",
-     "fr": "",
+     "en": "",
+     "fr": "Type d'intervention",
      "group": null,
      "id": "660d59b922d843b1a6f51676ad2ccd14",
      "required": true,
      "type": "RadioQuestion"
     },
     {
+     "code": "1.3b",
+     "conditions": [],
+     "en": "",
+     "fr": "Résultat de la foration",
+     "group": null,
+     "id": "841feee6c2814a6391a791a062da3061",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
      "code": "1.4",
      "conditions": [],
-     "en": "Statut fonctionnel actuel",
-     "fr": "",
+     "en": "",
+     "fr": "Statut fonctionnel actuel",
      "group": null,
      "id": "0a46051cee394b46ad1e7478dd40117a",
      "required": true,
@@ -906,8 +916,8 @@
     {
      "code": "1.5",
      "conditions": [],
-     "en": "Nombre de bénéficiaires directs",
-     "fr": "",
+     "en": "",
+     "fr": "Nombre de bénéficiaires directs",
      "group": null,
      "id": "b8863edcd9a5487390946b8804415baf",
      "required": true,
@@ -916,8 +926,8 @@
     {
      "code": "1.6",
      "conditions": [],
-     "en": "Nom du partenaire / bailleur",
-     "fr": "",
+     "en": "",
+     "fr": "Nom du partenaire / bailleur",
      "group": null,
      "id": "23786e9dfe9645e5921395c2a03fe7b3",
      "required": true,
@@ -926,8 +936,8 @@
     {
      "code": "1.7",
      "conditions": [],
-     "en": "Entreprise de réalisation",
-     "fr": "",
+     "en": "",
+     "fr": "Entreprise de réalisation",
      "group": null,
      "id": "54720a687d88405aab21d2af97e8f071",
      "required": false,
@@ -936,8 +946,8 @@
     {
      "code": "1.8",
      "conditions": [],
-     "en": "Bureau de contrôle",
-     "fr": "",
+     "en": "",
+     "fr": "Bureau de contrôle",
      "group": null,
      "id": "56a40f9364bf49f28e3e70ad838c9793",
      "required": true,
@@ -946,9 +956,9 @@
     {
      "code": "1.9",
      "conditions": [],
-     "en": "Photo : Vue générale du site",
-     "fr": "",
-     "group": null,
+     "en": "",
+     "fr": "Photo : Vue générale du site",
+     "group": "Forage positif",
      "id": "50298fc2b7eb4e53b2fb470cfa5a12f0",
      "required": true,
      "type": "ImagesQuestion"
@@ -956,9 +966,9 @@
     {
      "code": "1.10",
      "conditions": [],
-     "en": "Photo : Plaque d'identification",
-     "fr": "",
-     "group": null,
+     "en": "",
+     "fr": "Photo : Plaque d'identification",
+     "group": "Forage positif",
      "id": "026ee2243f0b46a8baa220618265a760",
      "required": true,
      "type": "ImagesQuestion"
@@ -966,9 +976,9 @@
     {
      "code": "1.11",
      "conditions": [],
-     "en": "Photo : Environnement immédiat du forage",
-     "fr": "",
-     "group": null,
+     "en": "",
+     "fr": "Photo : Environnement immédiat du forage",
+     "group": "Forage positif",
      "id": "2ebd3530c5f14d80be46e408472978f8",
      "required": true,
      "type": "ImagesQuestion"
@@ -976,8 +986,8 @@
     {
      "code": "2.1",
      "conditions": [],
-     "en": "Profondeur totale du forage",
-     "fr": "",
+     "en": "",
+     "fr": "Profondeur totale du forage",
      "group": null,
      "id": "a5e1adbcb9cd4fb6a1ec9be484ce799f",
      "required": true,
@@ -985,9 +995,22 @@
     },
     {
      "code": "2.2",
-     "conditions": [],
-     "en": "Niveau statique",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Niveau statique",
      "group": null,
      "id": "ccd150fd1b52465a807c3f4fd15b9805",
      "required": true,
@@ -996,8 +1019,8 @@
     {
      "code": "2.3",
      "conditions": [],
-     "en": "Niveau dynamique",
-     "fr": "",
+     "en": "",
+     "fr": "Niveau dynamique",
      "group": null,
      "id": "9d85f86768ba480f81f1ee37059df83f",
      "required": true,
@@ -1006,8 +1029,8 @@
     {
      "code": "2.4",
      "conditions": [],
-     "en": "Débit d'exploitation",
-     "fr": "",
+     "en": "",
+     "fr": "Débit d'exploitation",
      "group": null,
      "id": "fae3aee1363a4c9b800c6ebd42b48d15",
      "required": true,
@@ -1015,9 +1038,22 @@
     },
     {
      "code": "2.5",
-     "conditions": [],
-     "en": "Type de forage",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Type de forage",
      "group": null,
      "id": "4bc5bf671fe849a18b322cab950fe710",
      "required": true,
@@ -1026,8 +1062,8 @@
     {
      "code": "2.6",
      "conditions": [],
-     "en": "Méthode de forage",
-     "fr": "",
+     "en": "",
+     "fr": "Méthode de forage",
      "group": null,
      "id": "f3b5fadb1db8445e80a8725ccb74667b",
      "required": true,
@@ -1036,8 +1072,8 @@
     {
      "code": "2.7",
      "conditions": [],
-     "en": "Nature géologique principale",
-     "fr": "",
+     "en": "",
+     "fr": "Nature géologique principale",
      "group": null,
      "id": "c846c649422a41f089370c1e5bbcfc13",
      "required": true,
@@ -1045,9 +1081,22 @@
     },
     {
      "code": "2.8",
-     "conditions": [],
-     "en": "Diamètre du forage",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Diamètre du forage",
      "group": null,
      "id": "5f5a02edbb6044039e77d17b3fe58fd2",
      "required": true,
@@ -1055,9 +1104,22 @@
     },
     {
      "code": "2.9",
-     "conditions": [],
-     "en": "Type de cuvelage",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Type de cuvelage",
      "group": null,
      "id": "5b47f2730f73471f8fd5df0278df4c61",
      "required": true,
@@ -1065,9 +1127,22 @@
     },
     {
      "code": "2.10",
-     "conditions": [],
-     "en": "Profondeur de cuvelage plein",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Profondeur de cuvelage plein",
      "group": null,
      "id": "4e92b564f6fd49dba74bf1cb9ab382f7",
      "required": true,
@@ -1076,8 +1151,8 @@
     {
      "code": "2.11.1",
      "conditions": [],
-     "en": "Type de crépine",
-     "fr": "",
+     "en": "",
+     "fr": "Type de crépine",
      "group": "Crépinée",
      "id": "8ca6a6f582c046f2a0225ae5f267a4cc",
      "required": true,
@@ -1086,8 +1161,8 @@
     {
      "code": "2.11.2",
      "conditions": [],
-     "en": "Taille des fentes de la crépine",
-     "fr": "",
+     "en": "",
+     "fr": "Taille des fentes de la crépine",
      "group": "Crépinée",
      "id": "b6dd95d31ca940f58f7eb3a287497bdc",
      "required": true,
@@ -1096,8 +1171,8 @@
     {
      "code": "2.11.3",
      "conditions": [],
-     "en": "Début de la zone crépinée",
-     "fr": "",
+     "en": "",
+     "fr": "Début de la zone crépinée",
      "group": "Crépinée",
      "id": "b9b479ea233e48dd9bf1a74a52937f3a",
      "required": true,
@@ -1106,8 +1181,8 @@
     {
      "code": "2.11.4",
      "conditions": [],
-     "en": "Fin de la zone crépinée",
-     "fr": "",
+     "en": "",
+     "fr": "Fin de la zone crépinée",
      "group": "Crépinée",
      "id": "495ee0f27fe746feb0d5151abb4858c4",
      "required": true,
@@ -1116,8 +1191,8 @@
     {
      "code": "2.11.5",
      "conditions": [],
-     "en": "Massif filtrant (nature)",
-     "fr": "",
+     "en": "",
+     "fr": "Massif filtrant (nature)",
      "group": "Crépinée",
      "id": "333e19f9edb74c509b7179de96739601",
      "required": true,
@@ -1126,8 +1201,8 @@
     {
      "code": "2.11.6",
      "conditions": [],
-     "en": "Bouchon sanitaire présent ?",
-     "fr": "",
+     "en": "",
+     "fr": "Bouchon sanitaire présent ?",
      "group": "Crépinée",
      "id": "dd5b51de0e8f44f384fb8cff58d5ad12",
      "required": true,
@@ -1136,8 +1211,8 @@
     {
      "code": "2.11.7",
      "conditions": [],
-     "en": "Qualité du scellement de tête",
-     "fr": "",
+     "en": "",
+     "fr": "Qualité du scellement de tête",
      "group": "Crépinée",
      "id": "4ddbd8605b3b445cbee74342ad265843",
      "required": true,
@@ -1146,8 +1221,8 @@
     {
      "code": "2.12.2",
      "conditions": [],
-     "en": "Débit maximal estimé du forage",
-     "fr": "",
+     "en": "",
+     "fr": "Débit maximal estimé du forage",
      "group": "Test de débit par palier",
      "id": "d7013cdeb53c4220bf44cc37292974be",
      "required": true,
@@ -1156,18 +1231,28 @@
     {
      "code": null,
      "conditions": [],
-     "en": "Durée par palier",
-     "fr": "",
+     "en": "",
+     "fr": "Durée par palier",
      "group": "Test de débit par palier",
      "id": "3beeb3bf9e184d18b3d1b6bc304ac47e",
      "required": true,
      "type": "DropdownQuestion"
     },
     {
+     "code": "2.12.4.1",
+     "conditions": [],
+     "en": "",
+     "fr": "Débit de l'essai par palier (mètre cube/h)",
+     "group": "Premier palier",
+     "id": "e09cfcae030e41ba9114aa51eb04da9e",
+     "required": true,
+     "type": "NumberQuestion"
+    },
+    {
      "code": "2.12.4.2",
      "conditions": [],
-     "en": "NIveau de rabattement du test permier palier",
-     "fr": "",
+     "en": "",
+     "fr": "Rabattement à l'essai par palier (mètres)",
      "group": "Premier palier",
      "id": "bb36ad3ed48a45aa9312958369d852af",
      "required": true,
@@ -1176,8 +1261,8 @@
     {
      "code": "2.12.5.2",
      "conditions": [],
-     "en": "NIveau de rabattement du test deuxième palier",
-     "fr": "",
+     "en": "",
+     "fr": "NIveau de rabattement du test deuxième palier",
      "group": "Deuxième palier",
      "id": "cdd5953101274db182ff4dac4692ddc7",
      "required": true,
@@ -1186,8 +1271,8 @@
     {
      "code": "2.12.6.2",
      "conditions": [],
-     "en": "NIveau de rabattement du test troisième palier",
-     "fr": "",
+     "en": "",
+     "fr": "NIveau de rabattement du test troisième palier",
      "group": "Troisième palier",
      "id": "9f29a551e83a422a90a1f75283beb0d2",
      "required": true,
@@ -1196,8 +1281,8 @@
     {
      "code": "2.12.7.2",
      "conditions": [],
-     "en": "NIveau de rabattement du test quatrième palier",
-     "fr": "",
+     "en": "",
+     "fr": "NIveau de rabattement du test quatrième palier",
      "group": "Quatrième palier",
      "id": "69fb3ac18079447b9a0a296b8e28af43",
      "required": true,
@@ -1206,8 +1291,8 @@
     {
      "code": "2.13.1",
      "conditions": [],
-     "en": "Durée de pompage",
-     "fr": "",
+     "en": "",
+     "fr": "Durée de pompage",
      "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
      "id": "0013a188ee75455bb541c9d923d09cd9",
      "required": true,
@@ -1216,8 +1301,8 @@
     {
      "code": "2.13.2.1",
      "conditions": [],
-     "en": "Débit de test à longue durée",
-     "fr": "",
+     "en": "",
+     "fr": "Débit de test à longue durée",
      "group": "Débit du test à longue durée",
      "id": "e7e25bdfad714003821d6310e61cf4a1",
      "required": true,
@@ -1226,8 +1311,8 @@
     {
      "code": "2.13.2.3",
      "conditions": [],
-     "en": "NIveau de rabattement du test de débit à longue durée",
-     "fr": "",
+     "en": "",
+     "fr": "NIveau de rabattement du test de débit à longue durée",
      "group": "Débit du test à longue durée",
      "id": "50f177dad5e3463a9e8e2198c68d78de",
      "required": true,
@@ -1236,18 +1321,28 @@
     {
      "code": "2.13.3",
      "conditions": [],
-     "en": "Débit réel confirmé",
-     "fr": "",
+     "en": "",
+     "fr": "Débit réel confirmé",
      "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
      "id": "7f88b0eb5103441bae9c00c0e4d5288c",
      "required": true,
      "type": "UnitsQuestion"
     },
     {
+     "code": "2.13.4",
+     "conditions": [],
+     "en": "",
+     "fr": "Photo : fiche d'essai de pompage du foreur (relevés bruts : heure, niveau, débit)",
+     "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
+     "id": "d79d936110aa43ce98758b5520cfcc01",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
      "code": "2.14",
      "conditions": [],
-     "en": "Photo : Tête de forage",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Tête de forage",
      "group": null,
      "id": "97ce3017e7ac4e72bfcd1068bf705129",
      "required": true,
@@ -1256,8 +1351,8 @@
     {
      "code": "2.15",
      "conditions": [],
-     "en": "Photo : Cuvelage visible",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Cuvelage visible",
      "group": null,
      "id": "e40a3321ffee4d46a583bc96f74e3464",
      "required": true,
@@ -1266,8 +1361,8 @@
     {
      "code": "2.16",
      "conditions": [],
-     "en": "Photo : Margelle",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Margelle",
      "group": null,
      "id": "d4bbc34ae06548faaa9e839a378a7acf",
      "required": true,
@@ -1276,8 +1371,8 @@
     {
      "code": "2.17",
      "conditions": [],
-     "en": "Photo : Aire d'assainissement",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Aire d'assainissement",
      "group": null,
      "id": "4290f0555f004dd6af6e2b3a4d3595eb",
      "required": true,
@@ -1286,8 +1381,8 @@
     {
      "code": "2.18",
      "conditions": [],
-     "en": "Photo : Protection sanitaire",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Protection sanitaire",
      "group": null,
      "id": "f02848a65dac4b6d8d4bb0382081d8ff",
      "required": true,
@@ -1296,8 +1391,8 @@
     {
      "code": "2.19",
      "conditions": [],
-     "en": "Photo : Système de drainage",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Système de drainage",
      "group": null,
      "id": "5d87050acb034b01a936f709731fbbab",
      "required": true,
@@ -1305,9 +1400,22 @@
     },
     {
      "code": "3.1",
-     "conditions": [],
-     "en": "Catégorie de pompe",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Catégorie de pompe",
      "group": null,
      "id": "8fccdddd2db34cb89744b0a26d485131",
      "required": true,
@@ -1315,9 +1423,22 @@
     },
     {
      "code": "3.2.1",
-     "conditions": [],
-     "en": "Modèle de pompe manuelle",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Modèle de pompe manuelle",
      "group": "Informations sur la pompe",
      "id": "1e8f9bf782144b3ab2a703ccc8823ec9",
      "required": true,
@@ -1326,8 +1447,8 @@
     {
      "code": "3.2.2.1",
      "conditions": [],
-     "en": "Type de pompe électrique",
-     "fr": "",
+     "en": "",
+     "fr": "Type de pompe électrique",
      "group": "Pompe électrique",
      "id": "935e319aec3c4a3681d9c6c05086474a",
      "required": true,
@@ -1336,8 +1457,8 @@
     {
      "code": "3.2.2.2",
      "conditions": [],
-     "en": "Marque de la pompe",
-     "fr": "",
+     "en": "",
+     "fr": "Marque de la pompe",
      "group": "Pompe électrique",
      "id": "7db3c189f0c146a4b98ee6f6fc91a75d",
      "required": true,
@@ -1346,8 +1467,8 @@
     {
      "code": "3.2.2.3",
      "conditions": [],
-     "en": "Modèle / Référence",
-     "fr": "",
+     "en": "",
+     "fr": "Modèle / Référence",
      "group": "Pompe électrique",
      "id": "70055534e6a942c795fcaa4e87802563",
      "required": true,
@@ -1356,8 +1477,8 @@
     {
      "code": "3.2.2.4",
      "conditions": [],
-     "en": "Débit nominal de la pompe",
-     "fr": "",
+     "en": "",
+     "fr": "Débit nominal de la pompe",
      "group": "Pompe électrique",
      "id": "3d15bcbcac2a42089ad74e71e7d68680",
      "required": true,
@@ -1366,8 +1487,8 @@
     {
      "code": "3.2.2.5",
      "conditions": [],
-     "en": "Profondeur d'installation de la pompe",
-     "fr": "",
+     "en": "",
+     "fr": "Profondeur d'installation de la pompe",
      "group": "Pompe électrique",
      "id": "8431de57767246518bc1ce1d07534e62",
      "required": true,
@@ -1376,8 +1497,8 @@
     {
      "code": "3.2.2.6",
      "conditions": [],
-     "en": "État fonctionnel de la pompe",
-     "fr": "",
+     "en": "",
+     "fr": "État fonctionnel de la pompe",
      "group": "Pompe électrique",
      "id": "c310ab7a9e26457ea385ad74031d33bc",
      "required": true,
@@ -1386,8 +1507,8 @@
     {
      "code": "3.2.2.7",
      "conditions": [],
-     "en": "Pièces de rechange disponibles localement ?",
-     "fr": "",
+     "en": "",
+     "fr": "Pièces de rechange disponibles localement ?",
      "group": "Pompe électrique",
      "id": "ff74afbdc3e04b9cbc453f6f643cba31",
      "required": true,
@@ -1396,8 +1517,8 @@
     {
      "code": "3.2.2.8",
      "conditions": [],
-     "en": "Année d'installation de la pompe",
-     "fr": "",
+     "en": "",
+     "fr": "Année d'installation de la pompe",
      "group": "Pompe électrique",
      "id": "0db0229cb1b34bacb9e562e10049b0e2",
      "required": true,
@@ -1405,9 +1526,22 @@
     },
     {
      "code": "3.2.3",
-     "conditions": [],
-     "en": "Photo : Pompe installée (vue générale)",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Pompe installée (vue générale)",
      "group": "Informations sur la pompe",
      "id": "27e0dc72218348fa8c0f3042f9cdcde8",
      "required": true,
@@ -1415,9 +1549,22 @@
     },
     {
      "code": "3.2.4",
-     "conditions": [],
-     "en": "Photo : Tête de pompe (détail)",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Tête de pompe (détail)",
      "group": "Informations sur la pompe",
      "id": "170043e101434916a96a6964bea3babe",
      "required": true,
@@ -1425,9 +1572,22 @@
     },
     {
      "code": "3.2.5",
-     "conditions": [],
-     "en": "Photo : Colonne montante",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Colonne montante",
      "group": "Informations sur la pompe",
      "id": "1409a989782e475aaa4b82c7fba30483",
      "required": true,
@@ -1436,8 +1596,8 @@
     {
      "code": "3.2.6",
      "conditions": [],
-     "en": "Photo : Tableau électrique",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Tableau électrique",
      "group": "Informations sur la pompe",
      "id": "6822fe961f444340a20f1116d902c645",
      "required": false,
@@ -1446,8 +1606,8 @@
     {
      "code": "3.2.7",
      "conditions": [],
-     "en": "Photo : Système de protection",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Système de protection",
      "group": "Informations sur la pompe",
      "id": "3e9507491b634616a0a6e30c558ae88c",
      "required": false,
@@ -1456,8 +1616,8 @@
     {
      "code": "4.1",
      "conditions": [],
-     "en": "Source d'énergie principale",
-     "fr": "",
+     "en": "",
+     "fr": "Source d'énergie principale",
      "group": null,
      "id": "5640a654974948ac82a92b82dec06cfb",
      "required": true,
@@ -1466,8 +1626,8 @@
     {
      "code": "4.2.1",
      "conditions": [],
-     "en": "Nombre de panneaux solaires",
-     "fr": "",
+     "en": "",
+     "fr": "Nombre de panneaux solaires",
      "group": "Solaire ou hybride",
      "id": "da4439b0fb084405b0915590b798735e",
      "required": true,
@@ -1476,8 +1636,8 @@
     {
      "code": "4.2.2",
      "conditions": [],
-     "en": "Puissance totale installée (Wc)",
-     "fr": "",
+     "en": "",
+     "fr": "Puissance totale installée (Wc)",
      "group": "Solaire ou hybride",
      "id": "3767cd7c7e7449cbbbb03acb365a9085",
      "required": true,
@@ -1486,8 +1646,8 @@
     {
      "code": "4.2.3",
      "conditions": [],
-     "en": "Type d'onduleur",
-     "fr": "",
+     "en": "",
+     "fr": "Type d'onduleur",
      "group": "Solaire ou hybride",
      "id": "3924b4969d10463bb751dd8408f912c5",
      "required": true,
@@ -1496,8 +1656,8 @@
     {
      "code": "4.2.4",
      "conditions": [],
-     "en": "Régulateur de charge présent ?",
-     "fr": "",
+     "en": "",
+     "fr": "Régulateur de charge présent ?",
      "group": "Solaire ou hybride",
      "id": "fb262db94ce2467faf1d7f14e84bf56e",
      "required": true,
@@ -1506,8 +1666,8 @@
     {
      "code": "4.2.5",
      "conditions": [],
-     "en": "Nombre de batteries",
-     "fr": "",
+     "en": "",
+     "fr": "Nombre de batteries",
      "group": "Solaire ou hybride",
      "id": "8c776b8d86274d928b4ce75ccb59962d",
      "required": true,
@@ -1516,8 +1676,8 @@
     {
      "code": "4.2.6",
      "conditions": [],
-     "en": "Capacité de stockage (Ah)",
-     "fr": "",
+     "en": "",
+     "fr": "Capacité de stockage (Ah)",
      "group": "Solaire ou hybride",
      "id": "81dca9702f5f4767aa9cc5f312f0f733",
      "required": true,
@@ -1526,8 +1686,8 @@
     {
      "code": "4.2.7",
      "conditions": [],
-     "en": "Type de structure support panneaux",
-     "fr": "",
+     "en": "",
+     "fr": "Type de structure support panneaux",
      "group": "Solaire ou hybride",
      "id": "a435f22edd5440469ab5a052449ba772",
      "required": true,
@@ -1536,8 +1696,8 @@
     {
      "code": "4.2.8",
      "conditions": [],
-     "en": "État général du système énergétique",
-     "fr": "",
+     "en": "",
+     "fr": "État général du système énergétique",
      "group": "Solaire ou hybride",
      "id": "407e0fef652e46e1bab9d044da8cd4e8",
      "required": true,
@@ -1546,8 +1706,8 @@
     {
      "code": "4.2.9",
      "conditions": [],
-     "en": "Photo : Panneaux solaires (vue générale)",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Panneaux solaires (vue générale)",
      "group": "Solaire ou hybride",
      "id": "197341be9dcd4dabb962cab2e8c9d513",
      "required": true,
@@ -1556,8 +1716,8 @@
     {
      "code": "4.2.10",
      "conditions": [],
-     "en": "Photo : Batteries et bâti",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Batteries et bâti",
      "group": "Solaire ou hybride",
      "id": "e63ae90bd7ef4e44b803ff4e3b467db3",
      "required": true,
@@ -1566,8 +1726,8 @@
     {
      "code": "4.2.11",
      "conditions": [],
-     "en": "Photo : Coffret électrique",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Coffret électrique",
      "group": "Solaire ou hybride",
      "id": "e1d6bc9370b841b795d176747d55553b",
      "required": true,
@@ -1576,8 +1736,8 @@
     {
      "code": "4.2.12",
      "conditions": [],
-     "en": "Photo : Onduleur / régulateur",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Onduleur / régulateur",
      "group": "Solaire ou hybride",
      "id": "fd25be04c0f2406b9c3021db85c47cf8",
      "required": true,
@@ -1586,8 +1746,8 @@
     {
      "code": "4.2.13",
      "conditions": [],
-     "en": "Photo : Support métallique",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Support métallique",
      "group": "Solaire ou hybride",
      "id": "13d149224a7a432e8f3844f81c107893",
      "required": true,
@@ -1596,8 +1756,8 @@
     {
      "code": "4.2.14",
      "conditions": [],
-     "en": "Photo : Sécurisation du site énergie",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Sécurisation du site énergie",
      "group": "Solaire ou hybride",
      "id": "32804f90db164d8e9e12f5428d6c2b06",
      "required": true,
@@ -1605,9 +1765,22 @@
     },
     {
      "code": "5.1.1",
-     "conditions": [],
-     "en": "Type d'aire d'assainissement",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Type d'aire d'assainissement",
      "group": "Aire d'assenissement",
      "id": "224570ce831944d38049e3734d7d7126",
      "required": true,
@@ -1624,10 +1797,22 @@
        "rhs": {
         "literal": "CUhjm6d"
        }
+      },
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
       }
      ],
-     "en": "Photo : Aire d'assainissement",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Aire d'assainissement",
      "group": "Aire d'assenissement",
      "id": "a19e2b283fbf4c039eef90ccf42fb0b9",
      "required": true,
@@ -1635,9 +1820,22 @@
     },
     {
      "code": "5.2.1",
-     "conditions": [],
-     "en": "Type d'évacuation des eaux usées",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Type d'évacuation des eaux usées",
      "group": "Evacuation des eaux usées",
      "id": "592a0e572e1a44e2b92c3c3d0dcb6978",
      "required": true,
@@ -1645,9 +1843,22 @@
     },
     {
      "code": "5.2.2.1",
-     "conditions": [],
-     "en": "Longueur du système d'évacuation",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Longueur du système d'évacuation",
      "group": "Informations sur le type d'évacuation",
      "id": "b0154f3d5b5d4dfa9d0072bdfec33455",
      "required": true,
@@ -1655,9 +1866,22 @@
     },
     {
      "code": "5.2.2.2",
-     "conditions": [],
-     "en": "Pente de l'évacuation",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Pente de l'évacuation",
      "group": "Informations sur le type d'évacuation",
      "id": "caa932530944437c9be416a1c7a579db",
      "required": true,
@@ -1665,9 +1889,22 @@
     },
     {
      "code": "5.2.2.3",
-     "conditions": [],
-     "en": "État de l'évacuation",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "État de l'évacuation",
      "group": "Informations sur le type d'évacuation",
      "id": "28b903547ac14471ada94220deafe1d5",
      "required": true,
@@ -1675,9 +1912,22 @@
     },
     {
      "code": "5.2.2.4",
-     "conditions": [],
-     "en": "Photo : Système d'évacuation",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Système d'évacuation",
      "group": "Informations sur le type d'évacuation",
      "id": "ece7c7299e434eb2a5e070c2b78f2a4a",
      "required": true,
@@ -1685,9 +1935,22 @@
     },
     {
      "code": "5.3.1",
-     "conditions": [],
-     "en": "Risque d'érosion observé ?",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Risque d'érosion observé ?",
      "group": "Erosion",
      "id": "b0638e826e1c425bb767e7b164a10ddf",
      "required": true,
@@ -1704,10 +1967,22 @@
        "rhs": {
         "literal": "ax1NVZY"
        }
+      },
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
       }
      ],
-     "en": "Photo : Zones d'érosion",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Zones d'érosion",
      "group": "Erosion",
      "id": "dab90abf5be1406b84cd55bfafee6bf5",
      "required": true,
@@ -1715,9 +1990,22 @@
     },
     {
      "code": "5.4.1",
-     "conditions": [],
-     "en": "Clôture de protection présente ?",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Clôture de protection présente ?",
      "group": "Clôture",
      "id": "18e639ae94eb444caa0d6be01d66bd6e",
      "required": true,
@@ -1725,9 +2013,22 @@
     },
     {
      "code": "5.4.2",
-     "conditions": [],
-     "en": "Photo : Clôture et sécurisation",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Clôture et sécurisation",
      "group": "Clôture",
      "id": "337564de2ce84bbd8f459e800b4db631",
      "required": true,
@@ -1735,9 +2036,22 @@
     },
     {
      "code": "5.5",
-     "conditions": [],
-     "en": "Présence d'animaux à proximité ?",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Présence d'animaux à proximité ?",
      "group": null,
      "id": "f10a783d795f47f78498f751065e1ae4",
      "required": true,
@@ -1745,9 +2059,22 @@
     },
     {
      "code": "5.6",
-     "conditions": [],
-     "en": "Photo : Point de rejet final",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Photo : Point de rejet final",
      "group": null,
      "id": "8cf5c9e3a807401aba2fa78d18df8c63",
      "required": true,
@@ -1756,8 +2083,8 @@
     {
      "code": "6.1.1",
      "conditions": [],
-     "en": "Type de réservoir",
-     "fr": "",
+     "en": "",
+     "fr": "Type de réservoir",
      "group": "Réservoir",
      "id": "af710687c17d42fea5476eef231dafed",
      "required": true,
@@ -1766,8 +2093,8 @@
     {
      "code": "6.1.2.1",
      "conditions": [],
-     "en": "Capacité du réservoir",
-     "fr": "",
+     "en": "",
+     "fr": "Capacité du réservoir",
      "group": "Informations sur le réservoir",
      "id": "14cc73cdd4f4412a8c62a489ee9f3c44",
      "required": true,
@@ -1776,8 +2103,8 @@
     {
      "code": "6.1.2.2",
      "conditions": [],
-     "en": "Photo : Château d'eau / réservoir",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Château d'eau / réservoir",
      "group": "Informations sur le réservoir",
      "id": "48051341f220434f87d4ac51aa39ef18",
      "required": true,
@@ -1786,8 +2113,8 @@
     {
      "code": "6.2.1",
      "conditions": [],
-     "en": "Type de conduite principale",
-     "fr": "",
+     "en": "",
+     "fr": "Type de conduite principale",
      "group": "Réseau de distribution",
      "id": "c2ac251c84a14dbc82001c092b612496",
      "required": true,
@@ -1796,8 +2123,8 @@
     {
      "code": "6.2.2.1.1",
      "conditions": [],
-     "en": "Longueur totale du réseau",
-     "fr": "",
+     "en": "",
+     "fr": "Longueur totale du réseau",
      "group": "Réseaux",
      "id": "5d6a6e3b12964a7f9e29619ad659902d",
      "required": true,
@@ -1806,8 +2133,8 @@
     {
      "code": "6.2.2.1.2",
      "conditions": [],
-     "en": "Photo : Réseau visible",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Réseau visible",
      "group": "Réseaux",
      "id": "a7b44408b0974868b94dc74cc344435b",
      "required": true,
@@ -1816,8 +2143,8 @@
     {
      "code": "6.2.2.1.3.1",
      "conditions": [],
-     "en": "Fuites observées sur le réseau ?",
-     "fr": "",
+     "en": "",
+     "fr": "Fuites observées sur le réseau ?",
      "group": "Fuites",
      "id": "75a82d69b75d415abe4a480f1f5b682f",
      "required": true,
@@ -1826,8 +2153,8 @@
     {
      "code": "6.2.2.1.3.2",
      "conditions": [],
-     "en": "Localisation des fuites",
-     "fr": "",
+     "en": "",
+     "fr": "Localisation des fuites",
      "group": "Fuites",
      "id": "014ef83ca6cf440387f08f22677ef6df",
      "required": true,
@@ -1836,8 +2163,8 @@
     {
      "code": "6.2.2.1.3.3",
      "conditions": [],
-     "en": "Photo : Fuites observées",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Fuites observées",
      "group": "Fuites",
      "id": "2af05b2e55d2412ca2b1a873b51c4113",
      "required": false,
@@ -1846,8 +2173,8 @@
     {
      "code": "6.2.2.2.1",
      "conditions": [],
-     "en": "Nombre de bornes fontaines",
-     "fr": "",
+     "en": "",
+     "fr": "Nombre de bornes fontaines",
      "group": "Bornes fontaines",
      "id": "136e508017994781ae8c1a9e4b95cf82",
      "required": true,
@@ -1856,8 +2183,8 @@
     {
      "code": "6.2.2.2.2",
      "conditions": [],
-     "en": "Pression observée aux bornes fontaines",
-     "fr": "",
+     "en": "",
+     "fr": "Pression observée aux bornes fontaines",
      "group": "Bornes fontaines",
      "id": "98bfe064243544ec9a61b8e03e404d84",
      "required": true,
@@ -1866,8 +2193,8 @@
     {
      "code": "6.2.2.2.3",
      "conditions": [],
-     "en": "Photo : Bornes fontaines (vue)",
-     "fr": "",
+     "en": "",
+     "fr": "Photo : Bornes fontaines (vue)",
      "group": "Bornes fontaines",
      "id": "c5102554324b406ca5ecbd257af8674c",
      "required": true,
@@ -1876,8 +2203,8 @@
     {
      "code": "7.1",
      "conditions": [],
-     "en": "Observations générales de l'enquêteur",
-     "fr": "",
+     "en": "",
+     "fr": "Observations générales de l'enquêteur",
      "group": null,
      "id": "582971d3b2b549a794c80d5d7244b9f2",
      "required": true,
@@ -1885,9 +2212,22 @@
     },
     {
      "code": "7.2",
-     "conditions": [],
-     "en": "Points critiques à signaler",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Points critiques à signaler",
      "group": null,
      "id": "f65a22ea7fc24a6592c19cb6df769891",
      "required": true,
@@ -1895,16 +2235,29 @@
     },
     {
      "code": "7.3",
-     "conditions": [],
-     "en": "Signature numérique de l'enquêteur",
-     "fr": "",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "841feee6c2814a6391a791a062da3061"
+       },
+       "op": "isoneof",
+       "rhs": {
+        "literal": [
+         "VgmleuK",
+         "DTlQUAS"
+        ]
+       }
+      }
+     ],
+     "en": "",
+     "fr": "Signature numérique de l'enquêteur",
      "group": null,
      "id": "2c6e54873e9d4a2fadf102562508ec9d",
      "required": true,
      "type": "TextQuestion"
     }
    ],
-   "rev": 261,
+   "rev": 303,
    "state": "active"
   },
   "old-combined-works": {

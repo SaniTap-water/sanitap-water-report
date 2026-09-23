@@ -1,5 +1,7 @@
 {
  "admin_region_derived": {
+  "cause_confirmed_on": "2026-09-23",
+  "cause_evidence": "water_point schema, property admin_region: 'assigned automatically by mWater based on the GPS location'. tools/mwater/admin_polygon_test.mjs -> data/admin_polygon_test.json: each of the nine lies in no polygon at any level (country to fokontany), 1-91 m outside; the nearest fokontany polygon is in every case the value derived here, and every control neighbour lies inside.",
   "derived_by": "tools/mwater/fix_admin_region.mjs",
   "derived_on": "2026-09-22",
   "note": "Nine managed points carry complete admin_div1-5 text but no admin_region id, so every export that keys on admin_region shows them with no district. The value below is DERIVED, not read: for each point every coded water point sharing its commune and fokontany carries one admin_region value, and the eight nearest coded points by GPS all carry that same value. Two independent lines, unanimous on all nine.",
@@ -10,6 +12,12 @@
     "admin_region": 303143,
     "commune_fokontany": "Ankofabe/Antoraka",
     "evidence": "14 coded points in the same fokontany all carry 303143; 8 of 8 nearest coded points carry 303143; closest is 156 m",
+    "location": [
+     49.665198,
+     -15.483088
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 13 m outside the nearest, fokontany 303143 Antoraka - the derived value; control 699595979 (156 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "698771103"
    },
    {
@@ -18,6 +26,12 @@
     "admin_region": 303143,
     "commune_fokontany": "Ankofabe/Antoraka",
     "evidence": "14 coded points in the same fokontany all carry 303143; 8 of 8 nearest coded points carry 303143; closest is 302 m",
+    "location": [
+     49.664297,
+     -15.484701
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 71 m outside the nearest, fokontany 303143 Antoraka - the derived value; control 699596011 (302 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "698771110"
    },
    {
@@ -26,6 +40,12 @@
     "admin_region": 308394,
     "commune_fokontany": "Voloina/Ambodipaka",
     "evidence": "10 coded points in the same fokontany all carry 308394; 8 of 8 nearest coded points carry 308394; closest is 304 m",
+    "location": [
+     49.6207956,
+     -15.5418162
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 9 m outside the nearest, fokontany 308394 Ambodipaka - the derived value; control 698771268 (304 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "698771244"
    },
    {
@@ -34,6 +54,12 @@
     "admin_region": 308394,
     "commune_fokontany": "Voloina/Ambodipaka",
     "evidence": "10 coded points in the same fokontany all carry 308394; 8 of 8 nearest coded points carry 308394; closest is 168 m",
+    "location": [
+     49.6202416,
+     -15.5429355
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 1 m outside the nearest, fokontany 308394 Ambodipaka - the derived value; control 698771268 (168 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "698771251"
    },
    {
@@ -42,6 +68,12 @@
     "admin_region": 303143,
     "commune_fokontany": "Ankofabe/Antoraka",
     "evidence": "14 coded points in the same fokontany all carry 303143; 8 of 8 nearest coded points carry 303143; closest is 490 m",
+    "location": [
+     49.6626181,
+     -15.4863382
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 69 m outside the nearest, fokontany 303143 Antoraka - the derived value; control 699596011 (490 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "699596004"
    },
    {
@@ -50,6 +82,12 @@
     "admin_region": 303141,
     "commune_fokontany": "Ankofabe/Manambia",
     "evidence": "12 coded points in the same fokontany all carry 303141; 8 of 8 nearest coded points carry 303141; closest is 19 m",
+    "location": [
+     49.6334724,
+     -15.5199504
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 12 m outside the nearest, fokontany 303141 Manambia - the derived value; control 699596121 (19 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "699596114"
    },
    {
@@ -58,6 +96,12 @@
     "admin_region": 303144,
     "commune_fokontany": "Anjahana/Navana",
     "evidence": "27 coded points in the same fokontany all carry 303144; 8 of 8 nearest coded points carry 303144; closest is 262 m",
+    "location": [
+     49.8592585,
+     -15.4129472
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 37 m outside the nearest, fokontany 303144 Navana - the derived value; control 742897081 (262 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "742897074"
    },
    {
@@ -66,6 +110,12 @@
     "admin_region": 303144,
     "commune_fokontany": "Anjahana/Navana",
     "evidence": "27 coded points in the same fokontany all carry 303144; 8 of 8 nearest coded points carry 303144; closest is 110 m",
+    "location": [
+     49.8631942,
+     -15.4130945
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 9 m outside the nearest, fokontany 303144 Navana - the derived value; control 742897108 (110 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "742897115"
    },
    {
@@ -74,10 +124,17 @@
     "admin_region": 303144,
     "commune_fokontany": "Anjahana/Navana",
     "evidence": "27 coded points in the same fokontany all carry 303144; 8 of 8 nearest coded points carry 303144; closest is 222 m",
+    "location": [
+     49.8612331,
+     -15.4132043
+    ],
+    "polygon_test": "inside no mWater admin_regions polygon at any level; 91 m outside the nearest, fokontany 303144 Navana - the derived value; control 742897081 (222 m away) lies inside all five levels",
+    "reason": "mWater computes admin_region from location; this point lies outside mWater's boundary polygons",
     "wp": "742897232"
    }
   ],
-  "why_not_written": "The v3 entities API accepts a PATCH and bumps _rev but silently discards admin_region. Tried as a full-document PATCH and as a minimal {_id,_rev,admin_region} PATCH; both returned 200 and neither persisted the field. admin_region is a declared property of type 'admin_region' and is almost certainly derived server-side or gated behind a route this credential does not have. Two attempts were made on 698771103 and no further writes were attempted. That entity's _rev moved 8 -> 10 with no content change - every other field is byte-identical to the pre-write backup in data/mwater_backups/. See act-admin-region-mwater.",
+  "resolution": "PERMANENT. This file is the solution, not a stopgap: mWater computes admin_region from location, the nine locations lie just outside its Madagascar boundary polygons on the Antongil Bay shore, so mWater will never assign one and there is nothing for anyone to set in mWater. Coordinates are not to be moved to make the geocoder match. Resolved 2026-09-23.",
+  "why_not_written": "The v3 entities API accepts a PATCH and bumps _rev but silently discards admin_region. Tried as a full-document PATCH and as a minimal {_id,_rev,admin_region} PATCH; both returned 200 and neither persisted the field. admin_region is a declared property of type 'admin_region' and is almost certainly derived server-side or gated behind a route this credential does not have. Two attempts were made on 698771103 and no further writes were attempted. That entity's _rev moved 8 -> 10 with no content change - every other field is byte-identical to the pre-write backup in data/mwater_backups/. The field is not settable in practice because mWater computes it; see resolution.",
   "written_to_mwater": false
  },
  "bulk_import_confirmed": {

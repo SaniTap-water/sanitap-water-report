@@ -100,9 +100,38 @@ digits: every digit left in the body prose is typed by hand.
 The blacklist of withdrawn figures stays. A positive rule and a negative one
 catch different things.
 
+**What the prose gate does not count** (since 23 September 2026): digits inside
+a generated region, and digits in a span its own element marks as
+`data-quote`, `data-retired`, `data-withdrawn` or `data-artefact`. A generated
+region is its generator's output, rewritten every build and checked with
+`--check`. Counting it made the gate fail whenever a metric readout in the
+action list moved, so the automated build could never pass. A marked span is
+typed by design, and the census holds it to its registry. The census still
+checks every one of these values.
+
+**The census classes.** Beyond live, `PARAMS` and manual there are four marked
+classes, each sourced by what it is: a quotation (`data-quote`, registered in
+`QUOTES`); a computed artefact (`data-artefact`, registered in `ARTEFACTS`
+with its generator, input, run date and seed, and its value must be reachable
+in the artefact's inlined data, not merely marked); a figure named only to
+record its withdrawal (`data-withdrawn`); and **a retired value quoted as
+history** (`<span class="retired" data-retired="DATE" data-was="…">628</span>`).
+A retired value renders struck through and labelled *retired*, so it cannot be
+read as current. Use it where a sentence records what changed ("changed from
+727 to …"). In a population's `decided` text, list the value under `retired=`
+in `tools/populations.py` and the definitions generator marks it.
+
+A figure JavaScript writes goes through `figSpan(expr, value)`. That writes the
+same `data-fig` contract as the prose, so the census sees it as rendered and a
+click opens `DERIV[expr]`. Every such expression needs an entry in
+`tools/render_derivations.py`.
+
 **The backlogs.** `data/figure_backlog.json` (134 rendered figures with no
-source) and `data/prose_figure_backlog.json` (354 still typed) record what was
-outstanding on 22 September 2026. Anything not on them fails the gate
+source) and `data/prose_figure_backlog.json` (354 still typed) recorded what was
+outstanding on 22 September 2026. On 23 September the figure backlog reached
+**zero**. Its `cleared_note` says how each group was resolved and what stopped
+rendering. `data/unsourced_figures.json`, an older worklist no gate reads, was
+emptied with it. Anything not on them fails the gate
 immediately, so no new unsourced figure can land. **They may only shrink**: a
 value that acquires a source must be removed from the file, and the gate fails
 if it is not. They are a worklist with a date on it, never an exemption list.
@@ -156,8 +185,10 @@ python3 tools/render_block.py --write    # splice into index.html
 python3 tools/render_block.py --check    # exit 1 if index.html has drifted
 ```
 
-There are two generated regions today — `machine-extraction`
-(`tools/render_block.py`) and `form-freshness` (`tools/render_form_freshness.py`).
+The generated regions include `machine-extraction` (`tools/render_block.py`),
+`form-freshness` (`tools/render_form_freshness.py`), `ttr-table`
+(`tools/render_ttr_table.py`, the time-to-repair table, typed by hand until 23
+September), `marolinta-table` and `definitions`.
 `tools/publish.sh` runs every one of them with `--write` before it gates, so the gate sees
 current output; the checker then fails the build if any region and its generator disagree.
 Adding a third means writing a generator with `--write`/`--check`, putting its markers in
@@ -652,23 +683,46 @@ Mondays **07:00 local (03:00 UTC)**, repeating every 2 hours for 14 hours —
 07:00 through 21:00. It no longer waits an hour for a cloud build to finish,
 so it runs as early as the machine is likely to be on.
 
-`tools/weekly_build.py` does, in this order:
+`tools/weekly_build.py` **builds**; `tools/publish.sh` **gates and publishes**.
+There is one gate list, and it is in `publish.sh`. Until 23 September the weekly
+build carried its own shorter list, only the render gate and the consistency
+checker, and committed and pushed itself. So the automated edition skipped the
+figure census, the prose gate, the link check and the migration check that
+every manual publish runs. `tools/publish_waiting.py`, the Downloads path, did
+the same. Both now publish only through `publish.sh`.
+
+In order:
 
 1. refuse if the working tree is dirty, and remember `HEAD`
-2. do nothing if today's edition is already published (retries are for a
-   machine that was off, not for publishing twice)
-3. archive the outgoing edition into `editions/`
-4. pull the mWater extracts and refresh the form snapshot
-5. rebuild the activity fields, the call tables, the Marolinta admin data,
-   the freshness record, the metrics and the condition evaluation
-6. re-render every generated region
-7. run **both gates**
-8. publish only if both pass — otherwise `git reset --hard` to the remembered
-   `HEAD` and `git clean` the directories it writes to
+2. do nothing if today's edition is already out, unless an update was asked
+   for (below), `--force`, or `--dry-run`
+3. pull the mWater extracts
+4. rebuild the activity fields, the call tables, the Marolinta admin data,
+   the freshness record, the metrics and the condition evaluation, and
+   re-render every generated region
+5. hand over to `publish.sh`, which archives the outgoing edition, refreshes
+   the form snapshot and runs **every** gate: `--check-only` on a dry run,
+   `-m` otherwise
+6. if `publish.sh` refuses, `git reset --hard` to the remembered `HEAD`
 
-Nothing is committed until both gates have passed on the rebuilt page, and any
-failure after the first write rolls the tree back, so a half-built edition can
-never be left behind and never published.
+A `--dry-run` stops before commit and push and always rolls back.
+
+### Updating mid-week
+
+A second run in the same ISO week pulls live mWater again and republishes
+**over** the current edition. The week and edition number stay the same, and
+the issue date becomes today's (`render_masthead.edition()` keeps the number
+of the edition at `HEAD` when it is this week's). `tools/archive_edition.py`
+archives the outgoing edition only across a week boundary, so a mid-week
+update adds nothing to `editions/` and cannot duplicate an entry. The week's
+last version is frozen when the next week's edition replaces it.
+
+**The desktop shortcut "Update water report now"** (on the Windows desktop)
+runs `tools/update_now.cmd`. It drops `logs/update_requested`, runs
+`schtasks /run /tn SaniTapWeeklyPublish`, waits for the task, and leaves the
+window open with the result and the tail of `logs/publisher.log`. The request
+file is how the build tells a click from a scheduled retry: a retry after
+today's edition is out does nothing, a click rebuilds.
 
 ### The Downloads path is still live, and secondary
 

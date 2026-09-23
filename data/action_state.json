@@ -230,10 +230,11 @@
    "when_satisfied": "OK"
   },
   "act-figure-residue": {
+   "closed_since": "2026-09-23",
    "evaluated": "2026-09-23",
-   "evidence": "unsourced_figures = 73 (rendered figures with no source of any kind); target == 0",
+   "evidence": "unsourced_figures = 0 (rendered figures with no source of any kind); target == 0",
    "kind": "data",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when no rendered figure is without a source",
    "when_satisfied": "OK"
   },
@@ -488,7 +489,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-09-23",
-   "evidence": "unapproved_works_records = 48 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 47 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
@@ -911,7 +912,7 @@
   },
   "act-visit-collapse": {
    "evaluated": "2026-09-23",
-   "evidence": "points_over_6_months = 450 (points with no maintenance visit for more than six months); target <= 50",
+   "evidence": "points_over_6_months = 453 (points with no maintenance visit for more than six months); target <= 50",
    "kind": "data",
    "satisfied": false,
    "says": "closes when fewer than 50 points are more than six months without a visit",

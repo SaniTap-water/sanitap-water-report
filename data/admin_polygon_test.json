@@ -1,0 +1,213 @@
+{
+ "tested_on": "2026-09-23",
+ "method": "jsonql ST_Intersects / ST_Distance on admin_regions.shape (EPSG:3857); metres = Mercator distance x cos(latitude)",
+ "points": [
+  {
+   "code": "698771103",
+   "lat": -15.483088,
+   "lon": 49.665198,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Ankofabe/Antoraka",
+   "polygons_containing": [],
+   "nearest_country_m": 13,
+   "nearest_fokontany": "303143 Antoraka",
+   "nearest_fokontany_m": 13,
+   "control": {
+    "code": "699595979",
+    "dist_m": 156,
+    "admin_region": 303143,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Ankofabe",
+     "4:Antoraka"
+    ]
+   }
+  },
+  {
+   "code": "698771251",
+   "lat": -15.5429355,
+   "lon": 49.6202416,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Voloina/Ambodipaka",
+   "polygons_containing": [],
+   "nearest_country_m": 1,
+   "nearest_fokontany": "308394 Ambodipaka",
+   "nearest_fokontany_m": 1,
+   "control": {
+    "code": "698771268",
+    "dist_m": 168,
+    "admin_region": 308394,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Voloina",
+     "4:Ambodipaka"
+    ]
+   }
+  },
+  {
+   "code": "699596004",
+   "lat": -15.4863382,
+   "lon": 49.6626181,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Ankofabe/Antoraka",
+   "polygons_containing": [],
+   "nearest_country_m": 69,
+   "nearest_fokontany": "303143 Antoraka",
+   "nearest_fokontany_m": 69,
+   "control": {
+    "code": "699596011",
+    "dist_m": 490,
+    "admin_region": 303143,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Ankofabe",
+     "4:Antoraka"
+    ]
+   }
+  },
+  {
+   "code": "698771244",
+   "lat": -15.5418162,
+   "lon": 49.6207956,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Voloina/Ambodipaka",
+   "polygons_containing": [],
+   "nearest_country_m": 9,
+   "nearest_fokontany": "308394 Ambodipaka",
+   "nearest_fokontany_m": 9,
+   "control": {
+    "code": "698771268",
+    "dist_m": 304,
+    "admin_region": 308394,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Voloina",
+     "4:Ambodipaka"
+    ]
+   }
+  },
+  {
+   "code": "742897232",
+   "lat": -15.4132043,
+   "lon": 49.8612331,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Anjahana/Navana",
+   "polygons_containing": [],
+   "nearest_country_m": 91,
+   "nearest_fokontany": "303144 Navana",
+   "nearest_fokontany_m": 91,
+   "control": {
+    "code": "742897081",
+    "dist_m": 222,
+    "admin_region": 303144,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Anjahana",
+     "4:Navana"
+    ]
+   }
+  },
+  {
+   "code": "698771110",
+   "lat": -15.484701,
+   "lon": 49.664297,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Ankofabe/Antoraka",
+   "polygons_containing": [],
+   "nearest_country_m": 71,
+   "nearest_fokontany": "303143 Antoraka",
+   "nearest_fokontany_m": 71,
+   "control": {
+    "code": "699596011",
+    "dist_m": 302,
+    "admin_region": 303143,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Ankofabe",
+     "4:Antoraka"
+    ]
+   }
+  },
+  {
+   "code": "742897115",
+   "lat": -15.4130945,
+   "lon": 49.8631942,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Anjahana/Navana",
+   "polygons_containing": [],
+   "nearest_country_m": 9,
+   "nearest_fokontany": "303144 Navana",
+   "nearest_fokontany_m": 9,
+   "control": {
+    "code": "742897108",
+    "dist_m": 110,
+    "admin_region": 303144,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Anjahana",
+     "4:Navana"
+    ]
+   }
+  },
+  {
+   "code": "699596114",
+   "lat": -15.5199504,
+   "lon": 49.6334724,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Ankofabe/Manambia",
+   "polygons_containing": [],
+   "nearest_country_m": 12,
+   "nearest_fokontany": "303141 Manambia",
+   "nearest_fokontany_m": 12,
+   "control": {
+    "code": "699596121",
+    "dist_m": 19,
+    "admin_region": 303141,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Ankofabe",
+     "4:Manambia"
+    ]
+   }
+  },
+  {
+   "code": "742897074",
+   "lat": -15.4129472,
+   "lon": 49.8592585,
+   "admin_region": null,
+   "admin_div": "Ambatosoa/Maroantsetra/Anjahana/Navana",
+   "polygons_containing": [],
+   "nearest_country_m": 37,
+   "nearest_fokontany": "303144 Navana",
+   "nearest_fokontany_m": 37,
+   "control": {
+    "code": "742897081",
+    "dist_m": 262,
+    "admin_region": 303144,
+    "polygons_containing": [
+     "0:Madagascar",
+     "1:Ambatosolo",
+     "2:Maroantsetra",
+     "3:Anjahana",
+     "4:Navana"
+    ]
+   }
+  }
+ ]
+}

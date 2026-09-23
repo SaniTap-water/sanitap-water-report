@@ -9,7 +9,7 @@ the gap between them is spelled out.
 
     python3 tools/render_masthead.py --write | --check
 """
-import datetime, difflib, json, os, subprocess, sys
+import datetime, difflib, json, os, re, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED masthead :: tools/render_masthead.py "
@@ -45,6 +45,23 @@ def edition():
     """
     today = datetime.date.today()
     wk = today.isocalendar()[1]
+    # A mid-week update republishes OVER the current edition: if the edition
+    # at HEAD is this ISO week's, keep its number (tools/archive_edition.py
+    # does not archive it, so counting would not move anyway - this makes it
+    # explicit and independent of what the ledger holds).
+    r = subprocess.run(["git", "show", "HEAD:index.html"], cwd=REPO,
+                       capture_output=True, text=True)
+    m = re.search(r"week\s+(\d+)\s*(?:&middot;|·)\s*issued\s+\w{3}\s+(\d{1,2})\s+"
+                  r"(\w+)\s+(\d{4}).{0,40}?edition\s+(\d+)", r.stdout or "", re.S)
+    if m:
+        for fmt in ("%d %b %Y", "%d %B %Y"):
+            try:
+                hd = datetime.datetime.strptime(
+                    f"{m.group(2)} {m.group(3)} {m.group(4)}", fmt).date()
+            except ValueError:
+                continue
+            if hd.isocalendar()[:2] == today.isocalendar()[:2]:
+                return int(m.group(5))
     d = os.path.join(REPO, "editions")
     from_archive = 0
     if os.path.isdir(d):

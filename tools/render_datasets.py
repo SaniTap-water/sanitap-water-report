@@ -31,6 +31,19 @@ SETS = {
     "CARBON": ("data", "carbon_denominator.json"),
     "ACTN": ("data", "action_counts.json"),
     "FRESH": ("data", "data_freshness.json"),
+    # every "nearest other point" distance in the corrections log, derived
+    # from located_register_points by tools/check_distances.py each build
+    "NEAREST": ("data", "nearest_point_distances.json"),
+    # computed artefacts: the calendar stratum (tools/calendar_stratum.py) and
+    # the people-served runs (tools/wpop_pipeline_figures.py), so the figures
+    # the prose quotes from them are values the page can reach
+    "CALS": ("data", "calendar_stratum_figures.json"),
+    "WPOPX": ("data", "wpop_pipeline_figures.json"),
+    # the time-to-repair table's own figures (tools/render_ttr_table.py)
+    "TTRQ": ("data", "ttr_table.json"),
+    # the counts the form-freshness sentence quotes, summarised from the
+    # snapshot rather than inlining the whole design
+    "FORMSNAP": ("data", "mwater_form_snapshot.json"),
 }
 
 
@@ -43,6 +56,10 @@ def block():
         doc = json.load(open(os.path.join(REPO, *path), encoding="utf8"))
         if name == "METRICS":            # values only; the prose quotes those
             doc = {k: v.get("value") for k, v in doc.get("metrics", {}).items()}
+        if name == "FORMSNAP":           # counts only, not the form designs
+            doc = {"fetched": doc["fetched"], "forms": len(doc["forms"]),
+                   "questions": sum(len(f["questions"]) for f in doc["forms"].values()),
+                   "rev": {k: f.get("rev") for k, f in sorted(doc["forms"].items())}}
         out.append(f"// {name}: {'/'.join(path)}")
         out.append(f"const {name}="
                    + json.dumps(doc, separators=(",", ":"), ensure_ascii=False)

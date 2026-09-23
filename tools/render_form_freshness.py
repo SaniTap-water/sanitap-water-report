@@ -31,7 +31,10 @@ def block():
     nice = d.strftime("%-d %B %Y")
     forms = snap["forms"]
     nq = sum(len(f["questions"]) for f in forms.values())
-    revs = ", ".join(f"{k} <span class=\"mono\">_rev</span> {v['rev']}"
+    # the counts are the snapshot's own output, reachable on the page as
+    # FORMSNAP (tools/render_datasets.py) and marked as that artefact
+    art = lambda v: f'<span data-artefact="form_snapshot">{v}</span>'
+    revs = ", ".join(f"{k} <span class=\"mono\">_rev</span> {art(v['rev'])}"
                      for k, v in sorted(forms.items())
                      if k in ("preventive-maintenance", "repair-after-breakdown"))
     if age <= 0:
@@ -44,7 +47,7 @@ def block():
         f'<p class="note"><b>How fresh this is.</b> Every statement on this page about what an '
         f'mWater form captures or requires is checked against a snapshot of the live form '
         f'designs, read from mWater on <b>{nice}</b> &mdash; {when}. '
-        f'<b>{len(forms)}</b> forms, <b>{nq:,}</b> questions; {revs}. '
+        f'<b>{art(len(forms))}</b> forms, <b>{art(f"{nq:,}")}</b> questions; {revs}. '
         f'<span class="muted">The snapshot is refreshed as part of the weekly build wherever '
         f'the network and credentials are available, and the build <b>fails</b> rather than '
         f'publishes if it is more than <b>{MAX_AGE_DAYS} days</b> old &mdash; so a form changed '

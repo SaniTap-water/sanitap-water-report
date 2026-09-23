@@ -578,6 +578,20 @@ def main():
           not noev, "all evidenced",
           f"missing on {', '.join(noev[:3])}" if noev else "all evidenced",
           "a derived value without its evidence is a guess")
+    # The override is the permanent answer, not a stopgap: mWater computes
+    # admin_region from location, and these locations lie outside its
+    # boundary polygons (data/admin_polygon_test.json). Nothing is to be
+    # fixed in mWater, so every point must say why it is overridden.
+    _why = ("mWater computes admin_region from location; this point lies "
+            "outside mWater's boundary polygons")
+    nowhy = [d["wp"] for d in der if d.get("reason") != _why]
+    check("every derived admin_region states why it is a permanent override",
+          not nowhy and "PERMANENT" in ((rc.get("admin_region_derived") or {})
+                                        .get("resolution") or ""),
+          "all nine, resolution PERMANENT",
+          f"no reason on {', '.join(nowhy[:3])}" if nowhy else "all nine",
+          "the cause is mWater's boundary data; the page must not ask anyone "
+          "to fix these nine in mWater")
     check("the mWater write attempt is recorded either way",
           "written_to_mwater" in (rc.get("admin_region_derived") or {}),
           "recorded",
@@ -1995,10 +2009,14 @@ def main():
           "rendered" if 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx
           else "MISSING",
           "calendar custody is a headline operational metric")
-    for v, why in (("32.8%", "the 2025 custody percentage"),):
-        check(f"fleet section states {why}: {v}", f"<b>{v}</b>" in idx, v,
-              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
-              "calendar custody is a headline operational metric")
+    # The 2025 custody figures (237 of 722, 32.8%) rested on "active in
+    # 2025", the per-year basis withdrawn as unreproducible (per_year_carbon).
+    # They stopped rendering on 23 September 2026 and must not come back until
+    # act-carbon-year-basis rebuilds that basis.
+    _c25 = [v for v in ("<b>32.8%</b>", "<b>722</b>", "<b>237</b>") if v in idx]
+    check("the 2025 custody figures stay withdrawn with their basis",
+          not _c25, "absent", ", ".join(_c25) if _c25 else "absent",
+          "they rest on the withdrawn per-year activity basis")
 
     # ---- 7ab. metering is fleet-wide; sampling is for calibration only -----
     # The report previously described a 60-unit sampled sensor deployment.
@@ -2628,9 +2646,13 @@ def main():
     check("the repair-time action exists with the baseline on it",
           '<tr id="act-repair-time">' in ACTSRC, "present",
           "present" if '<tr id="act-repair-time">' in ACTSRC else "MISSING")
+    # The count of forms the account could see (741, on the day of the
+    # listing) is stored nowhere and was dropped on 23 September 2026; the
+    # finding it supported - that the form does not exist - is what is kept.
+    _settled = "does not exist" in idx and "paged to exhaustion" in idx
     check("the emergency-event form is settled either way",
-          "741" in idx and "does not exist" in idx, "settled",
-          "settled" if "741" in idx else "STILL UNVERIFIED",
+          _settled, "settled",
+          "settled" if _settled else "STILL UNVERIFIED",
           "the form listing was paged to exhaustion")
 
     # ---- 7ak. every evidenced-point count names its basis ---------------

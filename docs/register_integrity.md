@@ -61,25 +61,52 @@ the pre-write backup in `data/mwater_backups/`. Before-and-after documents and t
 log are in `data/mwater_backups/` and `data/register_write_log.json`.
 
 The derived values live in `data/register_corrections.json` under `admin_region_derived`, with
-the evidence for each, which is the documented record independent of mWater that was asked for.
-`act-admin-region-mwater` is open to apply them through a route that works.
+the evidence for each.
+
+### Resolved 23 September: mWater's boundary polygons stop short of these nine
+
+**This is resolved, permanently, by the override in `data/register_corrections.json`.** Nothing is
+to be set in mWater, by Lanja or anyone else, and no coordinate is to be moved.
+
+**`admin_region` is computed by mWater, not entered.** The `water_point` entity schema describes
+the property as *"Geographical divisions and subdivisions (country, state/province, region,
+district, etc.); assigned automatically by mWater based on the GPS location"*. Its roles
+nominally allow editing, but the two patches of 22 September show that a written value is
+discarded, which is what a computed field does.
+
+**The cause: every one of the nine lies outside mWater's boundary polygons.**
+`tools/mwater/admin_polygon_test.mjs` asks mWater's own `admin_regions` table, through `jsonql`,
+which polygons contain each location, and how far each point is from the nearest. The output is
+in `data/admin_polygon_test.json`. Not one of the nine falls inside any polygon at any level, not
+even the country, so the geocoder has nothing to assign. Each lies 1–91 m outside, and the nearest
+fokontany polygon is in every case the value derived above. As a control, the nearest coded
+neighbour of each lies inside all five levels (country to fokontany).
+
+| point | lat, lon | polygons containing it | outside by | nearest fokontany | control |
+|---|---|---|---|---|---|
+| 698771103 | -15.48309, 49.66520 | none | 13 m | 303143 Antoraka | 699595979, 156 m away: inside all five |
+| 698771251 | -15.54294, 49.62024 | none | 1 m | 308394 Ambodipaka | 698771268, 168 m away: inside all five |
+| 699596004 | -15.48634, 49.66262 | none | 69 m | 303143 Antoraka | 699596011, 490 m away: inside all five |
+| 698771244 | -15.54182, 49.62080 | none | 9 m | 308394 Ambodipaka | 698771268, 304 m away: inside all five |
+| 742897232 | -15.41320, 49.86123 | none | 91 m | 303144 Navana | 742897081, 222 m away: inside all five |
+| 698771110 | -15.48470, 49.66430 | none | 71 m | 303143 Antoraka | 699596011, 302 m away: inside all five |
+| 742897115 | -15.41309, 49.86319 | none | 9 m | 303144 Navana | 742897108, 110 m away: inside all five |
+| 699596114 | -15.51995, 49.63347 | none | 12 m | 303141 Manambia | 699596121, 19 m away: inside all five |
+| 742897074 | -15.41295, 49.85926 | none | 37 m | 303144 Navana | 742897081, 262 m away: inside all five |
+
+Distances are Mercator distance × cos(latitude). All nine are on the Maroantsetra shore of Antongil
+Bay, so the Madagascar boundary data appears to clip the shoreline. A note to mWater support is
+drafted in `docs/mwater_support_admin_region_note.md` (not sent). It is a courtesy to them. The
+report does not depend on it.
 
 ### The geocoder hypothesis, tested 22 September
 
-The likeliest explanation is that mWater derives `admin_region` server-side from `location`
-against its boundary set, and that the import path which created these nine bypassed the
-geocoder. That was tested on `698771103` exactly as proposed: `PATCH` the entity with the
-**identical** coordinates it already holds.
-
-**Result: inconclusive, leaning negative.** The server treated the identical document as a no-op
-— `_rev` did not move — so no geocoder was invoked and `admin_region` stayed null. A stronger
-test would need the coordinate to actually change, and a write that perturbs a production
-coordinate is not something to do casually even by a sub-millimetre amount; it was not
-attempted.
-
-**So the field is not writable through this credential**, by either route tried. It needs Lanja
-in the mWater admin interface, where the geocoder or the field itself is reachable.
-`act-admin-region-mwater` stays open with that as its next step.
+The likeliest explanation was that mWater derives `admin_region` server-side from `location`
+against its boundary set. That was tested on `698771103` by patching the entity with the
+**identical** coordinates it already holds. The server treated the identical document as a no-op
+(`_rev` did not move), so no geocoder was invoked and `admin_region` stayed null. The polygon test
+above answers what that test could not: the geocoder does run from location, and for these nine
+locations it finds no polygon.
 
 ### Phantom revisions on 698771103 — not edits
 

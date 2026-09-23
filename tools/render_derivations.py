@@ -197,6 +197,16 @@ D["((PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PAR
     forms=[("the registered fNRB values, weighted by people served",
             None, "PARAMS.fnrb_toliary and PARAMS.fnrb_mofuss_maroantsetra")])
 
+# every "nearest other point" distance in the corrections log
+for _wp in json.load(open(os.path.join(REPO, "data", "nearest_point_distances.json"),
+                          encoding="utf8"))["distances"]:
+    D[f"NEAREST.distances['{_wp}'].metres"] = dict(pop="located_register_points",
+        arith=f"`haversine from {_wp} to the nearest other located register point, "
+              f"${{NEAREST.distances['{_wp}'].nearest}}: ${{fmt(NEAREST.distances['{_wp}'].metres)}} m`",
+        forms=[("the register", None, REGQ + ", records carrying a coordinate")],
+        caveat="Recomputed by tools/check_distances.py on every build and asserted "
+               "against the distance the corrections log states.")
+
 # people-served allocations by site: a sum over the WorldPop run
 for _site, _lab in (("Fort-Dauphin", "Fort-Dauphin"),
                     ("Maroantsetra", "Maroantsetra")):
@@ -215,6 +225,57 @@ D["PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict
     forms=[("WorldPop R2025A run, capped per pump type", None,
             "SDWS 1 barrier clip applied; Marolinta excluded")])
 
+# ---- figures converted from typed prose on 2026-09-23 ----------------------
+F_WQ = "7b33c5d7e5074808a94915939a5a0783"
+D["HP.filter(p=>p.days!=null&&p.days>182).length"] = dict(pop="overdue_six_months",
+    arith="`managed points in this scope whose last visit, repair or commissioning is more than 182 days old: ${HP.filter(p=>p.days!=null&&p.days>182).length}`",
+    forms=[("Entretien préventif", F_PM, None), ("Réparation après panne", F_REP, None)])
+for _k, _pop, _what in (("h", "first_rehabilitated", "a first-rehabilitation record to open"),
+                        ("v", "managed_fleet", "a preventive-maintenance or repair record behind the last-visit date"),
+                        ("q", "water_quality_tested", "an E. coli result behind the water-quality date")):
+    D[f"Object.values(RESP).filter(e=>e.{_k}).length"] = dict(pop=_pop,
+        arith=f"`water points with {_what}: ${{Object.values(RESP).filter(e=>e.{_k}).length}}`",
+        forms=[])
+_ER = "S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v"
+D[f"Math.round({_ER})"] = dict(pop="carbon_fleet",
+    arith="`${S.by_site['Fort-Dauphin']} Fort-Dauphin points × ${PARAMS.er_anosy.v} + ${S.by_site['Maroantsetra']} Maroantsetra points × ${PARAMS.er_maro.v} tCO2e = ${fmt(Math.round(" + _ER + "))} tCO2e a year`",
+    forms=[("the register and the registered per-point emission reductions", None, "PARAMS.er_anosy, PARAMS.er_maro")])
+D[f"Math.floor(PARAMS.cap_t.v/(({_ER})/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra'])))"] = dict(pop="carbon_fleet",
+    arith="`${fmt(PARAMS.cap_t.v)} tCO2e cap ÷ the current mean per point = ${fmt(Math.floor(PARAMS.cap_t.v/((" + _ER + ")/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra']))))} points`",
+    forms=[("the register and PARAMS", None, "PARAMS.cap_t, er_anosy, er_maro")])
+for _s in ("Maroantsetra", "Fort-Dauphin"):
+    _e = (f"(ROUTES.{_s}.n/ROUTES.{_s}.days.length).toFixed(1)" if _s == "Maroantsetra"
+          else "(ROUTES['Fort-Dauphin'].n/ROUTES['Fort-Dauphin'].days.length).toFixed(1)")
+    _r = "ROUTES.Maroantsetra" if _s == "Maroantsetra" else "ROUTES['Fort-Dauphin']"
+    D[_e] = dict(pop=None, arith=f"`${{{_r}.n}} pumps over ${{{_r}.days.length}} route days = ${{{_e}}} a day`",
+        forms=[("the catch-up route plan for " + _s, None, "ROUTES, drawn from the overdue list and road time")])
+    for _f, _lab in (("wpop", "the capped WorldPop allocation"), ("benef", "the roof-count census")):
+        D[f"HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0)"] = dict(pop="managed_fleet",
+            arith=f"`{_lab} summed over the {_s} points in this scope: ${{fmt(HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0))}}`",
+            forms=[])
+    D[f"Math.round(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site==='{_s}').length)"] = dict(pop="managed_fleet",
+        arith=f"`the capped allocation over {_s}, divided by its points: ${{fmt(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0))}} ÷ ${{PUMPS.filter(p=>p.site==='{_s}').length}}`",
+        forms=[("WorldPop R2025A run, capped per pump type", None, "SDWS 1 barrier clip applied")])
+for _f, _lab in (("wpop", "the capped WorldPop allocation"), ("benef", "the roof-count census")):
+    D[f"HP.reduce((a,p)=>a+(p.{_f}||0),0)"] = dict(pop="managed_fleet",
+        arith=f"`{_lab} summed over every point in this scope: ${{fmt(HP.reduce((a,p)=>a+(p.{_f}||0),0))}}`", forms=[])
+D["HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(pop="marolinta",
+    arith="`the capped allocation summed over the Marolinta points: ${fmt(HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))}`", forms=[])
+D["HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.benef||0),0)"] = dict(pop="marolinta",
+    arith="`the roof-count census summed over the Marolinta points: ${fmt(HP.filter(p=>p.site==='Marolinta').reduce((a,p)=>a+(p.benef||0),0))}`", forms=[])
+D["Math.round(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+((WPOP[p.wp]||[0])[0]||0),0)/PUMPS.filter(p=>p.site==='Fort-Dauphin').length)"] = dict(pop="managed_fleet",
+    arith="`the WorldPop allocation BEFORE the capacity cap, averaged over the Fort-Dauphin points`",
+    forms=[("WorldPop R2025A run", None, "WPOP[wp][0], the allocation before the cap")])
+D["pairsWithin(200)"] = dict(pop="managed_fleet",
+    arith="`pairs of managed points within 200 m of each other, by haversine over PUMPS: ${fmt(pairsWithin(200))}`", forms=[])
+for _e, _a in (("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_anosy.v).toFixed(1)", "people per CWS ÷ Anosy household size"),
+               ("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_analanjirofo.v).toFixed(1)", "people per CWS ÷ Analanjirofo household size"),
+               ("(PARAMS.premises_per_cws_maroantsetra.v*PARAMS.hh_size_analanjirofo.v).toFixed(1)", "Maroantsetra premises per CWS × Analanjirofo household size"),
+               ("(PARAMS.premises_per_cws_anosy.v*PARAMS.hh_size_anosy.v).toFixed(1)", "Anosy premises per CWS × Anosy household size"),
+               ("(PARAMS.er_maro.v*(365/PARAMS.do_cap.v-1)).toFixed(2)", "Maroantsetra ER per point × (365 ÷ the 347-day cap − 1)")):
+    D[_e] = dict(pop=None, arith=f"`{_a} = ${{{_e}}}`",
+        forms=[("declared parameters, each with its VPA-DD citation", None, "see the parameters table")])
+
 # the chain table's own cells: each is the reconciliation step it reports
 for _k in range(12):
     D[f"POPS.chain[{_k}].detail"] = dict(pop=None, chain=True,
@@ -232,6 +293,9 @@ for _pid in _json.load(open(_popfile, encoding="utf8"))["populations"]:
         pop=_pid,
         arith=f'`the number of records the rule selects: ${{fmt(POPS.populations[\'{_pid}\'].size)}}`',
         forms=[])
+    # the same figure written with a dot, for text that sits inside a
+    # single-quoted JavaScript string (the TRACE rows)
+    D[f"POPS.populations.{_pid}.size"] = D[f"POPS.populations['{_pid}'].size"]
 
 for k in ("act", "watch", "closed", "rows", "nodate", "open"):
     D[f"ACTN.{k}"] = dict(pop=None, actions=True,

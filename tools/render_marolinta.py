@@ -110,7 +110,7 @@ def headline():
       f'</b> The <b>{ben["total"]:,}</b> above is a <b>field count</b>: the sum of the '
       f'beneficiaries the team recorded on each of the <b>{ben["n"]}</b> records, '
       f'{ben["lo"]}&ndash;{ben["hi"]} per point. Every other people-served figure on '
-      'this page &mdash; the <b>126,780</b> for MadAvance among them &mdash; is a '
+      'this page &mdash; the <b><span data-fig="PUMPS.filter(p=>p.site!==\'Marolinta\').reduce((a,p)=>a+(p.wpop||0),0)"></span></b> for MadAvance among them &mdash; is a '
       '<b>WorldPop allocation</b> over 1&nbsp;km service areas, overlaps split, '
       'capacity ceiling applied. <b>The model is deliberately not run over these '
       'points.</b> Marolinta sits outside the carbon programme, the field count is the '

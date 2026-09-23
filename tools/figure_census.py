@@ -12,8 +12,12 @@ become false and nothing fails.
 This is the positive rule. It reads the RENDERED page, per scope, pulls out
 every numeric literal, and asks of each one: is this value reachable from the
 live data for this scope (TIER 1), declared in PARAMS with a citation
-(TIER 2), or carried in the dated manual Endur'O file (TIER 3)? A literal
-that is none of those three has no source at all, and is reported with the
+(TIER 2), or carried in the dated manual Endur'O file (TIER 3)? Four
+marked classes are sourced by what they are rather than by the data: a
+quotation from a document (4), a computed artefact whose value is in the
+artefact's own data (5), a figure named only to record its withdrawal (6),
+and a retired value quoted as history, rendered struck through (7). A literal
+that is none of these has no source at all, and is reported with the
 sentence it sits in.
 
     python3 tools/figure_census.py             # the census, per tier
@@ -100,7 +104,7 @@ REACH = r"""() => {
   };
   for (const n of ['S', 'REG', 'TTR', 'WPOPMETA', 'CORR', 'ROUTES', 'ENDURO',
                    'TRACE', 'SCOPES', 'DOWN', 'OPENREP', 'PARTIAL', 'PUMPS',
-                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH'])
+                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH', 'NEAREST', 'CALS', 'WPOPX', 'TTRQ', 'FORMSNAP'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
   // A computed artefact's own field values, and nothing derived from them.
@@ -197,7 +201,7 @@ TEXT = r"""() => {
     const t = n.nodeValue;
     if (!/\d/.test(t)) continue;
     // where it is, and whether the page has already declared a source for it
-    const sourced = el.closest('[data-fig],[data-param],[data-manual],[data-src],[data-quote],[data-artefact],[data-withdrawn]');
+    const sourced = el.closest('[data-fig],[data-param],[data-manual],[data-src],[data-quote],[data-artefact],[data-withdrawn],[data-retired]');
     const sec = el.closest('section');
     const h = sec ? sec.querySelector('h2') : null;
     out.push({
@@ -207,12 +211,13 @@ TEXT = r"""() => {
       cls: (el.className || '').toString().slice(0, 40),
       mono: !!el.closest('.mono,code,pre'),
       selfMarked: !!(el.dataset && (el.dataset.artefact || el.dataset.quote
-                     || el.dataset.withdrawn)),
+                     || el.dataset.withdrawn || el.dataset.retired)),
       sourced: sourced ? (sourced.dataset.fig ? 'FIG'
                         : sourced.dataset.param ? 'PARAMS'
                         : sourced.dataset.quote ? 'QUOTE'
                         : sourced.dataset.artefact ? 'ARTEFACT'
                         : sourced.dataset.withdrawn ? 'WITHDRAWN'
+                        : sourced.dataset.retired ? 'RETIRED'
                         : sourced.dataset.manual ? 'MANUAL' : 'SRC') : null,
     });
   }
@@ -350,6 +355,15 @@ def classify(lits, reach, params, manual):
         elif L["sourced"] == "WITHDRAWN":
             L["tier"] = 6
             L["why"] = "named only to record its withdrawal"
+        elif L["sourced"] == "RETIRED":
+            # A value the page no longer carries, quoted in a sentence that
+            # records what changed ("changed from 727 to ..."). It is sourced
+            # as a quotation of the page's own history, and the markup renders
+            # it struck through and labelled RETIRED, so it cannot be read as
+            # current. Only the element itself can carry the marking: a
+            # retired value is one literal, never a section.
+            L["tier"] = 7
+            L["why"] = "retired value quoted as history"
         elif L["sourced"] in ("PARAMS",) or v in params:
             L["tier"] = 2
             L["why"] = params.get(v, "declared in PARAMS")
@@ -405,11 +419,11 @@ def report(found, params, manual, verbose=False):
     print("  FIGURE CENSUS - every number the page renders, by tier")
     print("  " + "-" * 92)
     print(f"  {'scope':8} {'literals':>9} {'live':>8} {'param':>7} "
-          f"{'manual':>7} {'quoted':>7} {'artef':>6} {'withdr':>7} {'NO SOURCE':>10}   distinct")
-    tot = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+          f"{'manual':>7} {'quoted':>7} {'artef':>6} {'withdr':>7} {'retired':>7} {'NO SOURCE':>10}   distinct")
+    tot = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
     allbad, alltyped = {}, {}
     for s, d in found.items():
-        c = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+        c = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0}
         bad = {}
         for L in d["lits"]:
             c[L["tier"]] += 1
@@ -419,11 +433,11 @@ def report(found, params, manual, verbose=False):
         for k in c:
             tot[k] += c[k]
         print(f"  {s:8} {len(d['lits']):>9} {c[1]:>8} {c[2]:>7} {c[3]:>7} "
-              f"{c[4]:>7} {c[5]:>6} {c[6]:>7} {c[0]:>10}   {len(bad)}")
+              f"{c[4]:>7} {c[5]:>6} {c[6]:>7} {c[7]:>7} {c[0]:>10}   {len(bad)}")
     n = sum(tot.values())
     print("  " + "-" * 92)
     print(f"  {'TOTAL':8} {n:>9} {tot[1]:>8} {tot[2]:>7} {tot[3]:>7} "
-          f"{tot[4]:>7} {tot[5]:>6} {tot[6]:>7} {tot[0]:>10}   {len(allbad)} distinct")
+          f"{tot[4]:>7} {tot[5]:>6} {tot[6]:>7} {tot[7]:>7} {tot[0]:>10}   {len(allbad)} distinct")
     print()
     drop = {}
     for d in found.values():

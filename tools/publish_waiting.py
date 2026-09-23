@@ -7,13 +7,16 @@ folder and asks for a manual push - and on 21 September nobody pushed, so a
 complete edition sat there all day while the site showed a fortnight-old page
 and every check passed. This removes the person from that loop.
 
-The order matters and is not negotiable: VERIFY the candidate where it lies,
-THEN copy, THEN commit. Copying first and checking after leaves the repository
-half-written when the check fails, which is worse than not publishing at all.
-Any failure after the first byte is copied rolls the working tree back.
+It gates and publishes through tools/publish.sh and nothing else. Until 23
+September it carried its own two-gate list and committed and pushed itself,
+so a Downloads edition skipped the figure census, the prose gate, the link
+check and the migration check. Now: remember HEAD, copy the candidate in, run
+publish.sh; any failure resets the tree to HEAD, so a half-written repository
+is never left behind. A dry run runs `publish.sh --check-only` and always
+resets.
 
     python3 tools/publish_waiting.py            # the real thing
-    python3 tools/publish_waiting.py --dry-run  # verify and report, never write
+    python3 tools/publish_waiting.py --dry-run  # gate and report, then roll back
 """
 import datetime, json, os, re, shutil, subprocess, sys
 
@@ -61,21 +64,17 @@ def issue_date(path):
     return None, int(m.group(4))
 
 
-def gates(candidate_index):
-    """Both gates against the candidate, in place. Returns (ok, [reasons])."""
-    bad = []
-    r = run([PY, "tools/render_check.py", "--page", candidate_index])
-    if r.returncode != 0:
-        head = [l.strip() for l in (r.stdout or "").splitlines() if l.strip()][:4]
-        bad.append("render gate: " + "; ".join(head))
-    r = run([PY, "tools/check_consistency.py", candidate_index, "portfolio.html"])
-    if r.returncode != 0:
-        fails = [l.split("FAIL")[0].strip()
-                 for l in (r.stdout or "").splitlines() if "FAIL !" in l]
-        tally = next((l.strip() for l in (r.stdout or "").splitlines()
-                      if re.search(r"\d+ checks,", l)), "")
-        bad.append(f"consistency: {tally} | first: " + "; ".join(fails[:4]))
-    return (not bad), bad
+def publish_sh(args):
+    """THE gate list (tools/publish.sh). Returns (ok, reason)."""
+    r = run(["bash", "tools/publish.sh"] + args)
+    lines = [l.strip() for l in ((r.stdout or "") + (r.stderr or "")).splitlines()
+             if l.strip()]
+    if r.returncode == 0:
+        return True, ""
+    why = next((l for l in lines if l.startswith("ABORT") or "FAILED" in l),
+               lines[-1] if lines else "no output")
+    fails = [l.split("FAIL")[0].strip() for l in lines if "FAIL !" in l][:4]
+    return False, why + (" | " + "; ".join(fails) if fails else "")
 
 
 def main():
@@ -107,16 +106,6 @@ def main():
             + ", ".join(l[3:] for l in dirty[:3]))
         return 1
 
-    ok, why = gates(cand)
-    if not ok:
-        log(f"{tag}REFUSED: candidate {c_date} (ed {c_ed}) failed the gates, "
-            "nothing copied. " + " || ".join(why))
-        return 1
-    log(f"{tag}candidate {c_date} (edition {c_ed}) passed both gates")
-    if dry:
-        log(f"{tag}stopping before any write, as asked")
-        return 0
-
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
     copied = []
     try:
@@ -135,29 +124,26 @@ def main():
                 shutil.copy2(os.path.join(src, f),
                              os.path.join(REPO, "editions", f))
                 copied.append(f"editions/{f}")
-        ok2, why2 = gates(os.path.join(REPO, "index.html"))
-        if not ok2:
-            raise RuntimeError("in-repo re-check failed: " + " || ".join(why2))
         wk = c_date.isocalendar()[1]
-        run(["git", "add", "-A"])
         msg = (f"Week {wk} edition {c_ed}, issued {c_date}: published from the "
                f"build's Downloads drop by tools/publish_waiting.py\n\n"
                f"The cloud build could not push, so it wrote the edition to "
-               f"{DROP}. Verified there with the render gate and the "
-               f"consistency checker before anything was copied, re-verified "
-               f"in the repository, then committed.\n\n"
-               f"Files: {', '.join(copied)}")
-        r = run(["git", "commit", "-m", msg])
-        if r.returncode != 0:
-            raise RuntimeError("commit failed: " + (r.stderr or r.stdout)[:200])
-        r = run(["git", "push"])
-        if r.returncode != 0:
-            raise RuntimeError("push failed: " + (r.stderr or r.stdout)[:200])
+               f"{DROP}. Copied in, then gated and published by "
+               f"tools/publish.sh.\n\nFiles: {', '.join(copied)}")
+        ok, why = publish_sh(["--check-only"] if dry else ["-m", msg])
+        if not ok:
+            raise RuntimeError("publish.sh refused: " + why)
     except Exception as e:                                    # noqa: BLE001
         run(["git", "reset", "--hard", head])
         run(["git", "clean", "-fd", "editions"])
-        log(f"REFUSED and ROLLED BACK to {head[:8]}: {e}")
+        log(f"{tag}REFUSED and ROLLED BACK to {head[:8]}: {e}")
         return 1
+    if dry:
+        run(["git", "reset", "--hard", head])
+        run(["git", "clean", "-fd", "editions"])
+        log(f"{tag}candidate {c_date} (edition {c_ed}) passed publish.sh; "
+            "rolled back, nothing published")
+        return 0
 
     urls = [SITE, SITE + "routes.html"]
     arch = [c for c in copied if c.startswith("editions/")]

@@ -25,6 +25,9 @@ PAGE = os.path.join(REPO, "index.html")
 PAT = re.compile(r"[Nn]earest other (?:water )?point\s+([\d,]+)\s*m")
 # "471 m from 742894916, a working India Mark in Ranopiso."
 PAT2 = re.compile(r"\b([\d,]+)\s*m from\s+(\d{6,})")
+# "3,150 m from the nearest registered point" - missed by both patterns
+# above until 23 September, so this distance was stated and never checked.
+PAT3 = re.compile(r"\b([\d,]+)\s*m from the nearest")
 
 
 def main():
@@ -41,7 +44,7 @@ def main():
     for key in ("corrected", "excluded", "eligibility_flags"):
         for e in corr.get(key) or []:
             ev = str(e.get("evidence") or "")
-            hit = PAT.search(ev) or PAT2.search(ev)
+            hit = PAT.search(ev) or PAT2.search(ev) or PAT3.search(ev)
             if not hit:
                 continue
             stated = int(hit.group(1).replace(",", ""))

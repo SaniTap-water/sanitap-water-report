@@ -1,0 +1,50 @@
+{
+ "barrier_exclusion": {
+  "by_site": {
+   "Fort-Dauphin": {
+    "people": 658,
+    "points": 10
+   },
+   "Maroantsetra": {
+    "people": 26801,
+    "points": 209
+   }
+  },
+  "file": "~/sdws1/barrier_overexclusion.csv",
+  "people": 27459,
+  "run_on": "2026-09-16"
+ },
+ "generator": "tools/wpop_pipeline_figures.py",
+ "note": "Figures from the WorldPop people-served runs that the page quotes and data/sdws1_summary_equal.json does not carry. Read from the run outputs, never re-run.",
+ "pipeline": "~/sdws1/sdws1_population.py",
+ "runs": {
+  "barriers": {
+   "equal": 128221,
+   "folder": "~/sdws1/runs/r2025a_barriers",
+   "idw": 127326,
+   "nearest": 123513,
+   "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+   "run_on": "2026-09-16"
+  },
+  "nobarriers": {
+   "equal": 128605,
+   "folder": "~/sdws1/runs/r2025a_nobarriers",
+   "idw": 127722,
+   "nearest": 124016,
+   "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+   "run_on": "2026-09-16"
+  },
+  "streams_as_barriers": {
+   "equal": 128606,
+   "folder": "~/sdws1/runs/sens_c",
+   "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+   "run_on": "2026-09-16"
+  }
+ },
+ "seed": null,
+ "streams_as_barriers_delta": 385,
+ "streams_as_barriers_delta_pct": 0.3
+}

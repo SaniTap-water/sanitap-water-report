@@ -1,25 +1,41 @@
 # -*- coding: utf-8 -*-
-"""Build and publish the weekly edition, on this machine, start to finish.
+"""Build the weekly edition on this machine, then publish it through publish.sh.
 
 The edition used to be built in a cloud session that could not publish, wrote
 its output into the Windows Downloads folder and asked for a manual push. On
 21 September nobody pushed and a complete edition sat there all day. Every
-piece it needed now lives here - the extract pull, the call tables, the region
-generators, both gates and the publisher - so the build runs here and the
-cloud session is reduced to a watchdog.
+piece it needed now lives here, so the build runs here and the cloud session
+is reduced to a watchdog.
 
-The order is the safeguard. The working tree is clean before anything starts,
-HEAD is remembered, the outgoing edition is archived, everything is rebuilt,
-and BOTH gates must pass before a single byte is committed. Any failure after
-the first write rolls the tree back to the remembered HEAD, so a half-built
+THIS SCRIPT BUILDS; tools/publish.sh GATES AND PUBLISHES. Until 23 September
+this script carried its own gate list - the render gate and the consistency
+checker - and committed and pushed itself, so the automated edition skipped
+the figure census, the prose gate, the link check and the migration check that
+every manual publish runs. There is now one gate list, in publish.sh, and both
+paths go through it: a dry run calls `publish.sh --check-only`, a real run
+calls `publish.sh -m`. publish.sh also archives the outgoing edition.
+
+The working tree is clean before anything starts and HEAD is remembered; any
+failure after the first write rolls the tree back to it, so a half-built
 edition can never be left behind - and never published.
 
-A candidate in Downloads is still considered, gated identically, and preferred
-only when its data is genuinely newer than what this build produced. That
-keeps a route open if this machine is unavailable for a long stretch.
+SAFE TO RUN MORE THAN ONCE A WEEK. A second run in the same ISO week pulls
+live mWater again and republishes OVER the current edition: same week, same
+edition number, today's issue date. The outgoing edition is archived only when
+the incoming one belongs to a later week (tools/archive_edition.py), so a
+mid-week update adds nothing to editions/ and cannot duplicate an entry.
+The scheduled retries (every two hours on Mondays) exist for a machine that
+was off, so once today's edition is out a retry does nothing - unless an
+update was asked for: the desktop shortcut "Update water report now" drops
+logs/update_requested before starting the task, and that forces one rebuild.
 
-    python3 tools/weekly_build.py --dry-run   # build, gate, report, roll back
-    python3 tools/weekly_build.py             # and publish if both gates pass
+A candidate in Downloads is still considered, and preferred only when its
+data is genuinely newer than what this build produced; it goes through the
+same publish.sh gates as the local build.
+
+    python3 tools/weekly_build.py --dry-run   # build, run every gate, stop before commit/push, roll back
+    python3 tools/weekly_build.py             # and publish through publish.sh
+    python3 tools/weekly_build.py --force     # rebuild even if today's edition is out
 """
 import datetime, io, json, os, re, shutil, subprocess, sys
 
@@ -29,11 +45,17 @@ PW = "/home/bushp/.cache/ms-playwright"
 LOG = os.path.join(REPO, "logs", "publisher.log")
 DROP = os.environ.get("SANITAP_DROP", "/mnt/c/Users/bushp/Downloads")
 SITE = "https://sanitap-water.github.io/sanitap-water-report/"
+# Dropped by the desktop shortcut before it starts the scheduled task, so an
+# on-demand run is told apart from a scheduled retry. Consumed on read.
+REQUEST = os.path.join(REPO, "logs", "update_requested")
 
 # (script, args, must it succeed?)  Order matters: pull first, render last.
+# BUILD STEPS ONLY. The form-snapshot refresh and every gate are run by
+# tools/publish.sh, which this script calls at the end - listing gates here as
+# well is how the two paths drifted apart. (publish.sh re-runs three of the
+# region generators below; regenerating is idempotent, so that is harmless.)
 STEPS = [
     ("tools/pull_extract.py",        ["--write"],      True),
-    ("tools/refresh_form_snapshot.py", ["--if-possible"], False),
     ("tools/rebuild_activity.py",    ["--write"],      True),
     ("tools/build_call_tables.py",   ["--write"],      True),
     ("tools/rebuild_ttr.py",         ["--write"],      True),
@@ -48,6 +70,7 @@ STEPS = [
     ("tools/render_marolinta.py",    ["--write"],      True),
     ("tools/render_block.py",        ["--write"],      True),
     ("tools/render_form_freshness.py", ["--write"],    True),
+    ("tools/render_ttr_table.py",    ["--write"],      True),
     ("tools/render_actions.py",      ["--write"],      True),
     # the Endur'O block and the inlined datasets, so every figure the prose
     # quotes is reachable from the page's own data
@@ -56,6 +79,8 @@ STEPS = [
     ("tools/carbon_denominator.py",  ["--write"],      True),
     # the semantic layer, and everything that renders from it
     ("tools/populations.py",         ["--json", "data/populations.json"], True),
+    # REG counts that are populations, written from them (REG.succ was stored)
+    ("tools/sync_reg_populations.py", ["--write"],     True),
     ("tools/render_derivations.py",  ["--write"],      True),
     ("tools/render_definitions.py",  ["--write"],      True),
     ("tools/rebuild_sdws26.py",      ["--write"],      True),
@@ -63,11 +88,6 @@ STEPS = [
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
-    ("tools/check_vintage.py",       [],               True),
-    ("tools/check_wpopmeta.py",      [],               True),
-    ("tools/check_distances.py",     [],               True),
-    ("tools/check_extracts.py",      [],               True),
-    ("tools/check_generators.py",    [],               True),
 ]
 
 
@@ -114,77 +134,63 @@ def newest_record(path):
         return None
 
 
-def archive():
-    """Freeze the outgoing edition before it is overwritten."""
-    d, wk_ed = masthead_of(os.path.join(REPO, "index.html"))
-    if not d or not wk_ed:
-        return []
-    wk, ed = wk_ed
-    out = []
-    os.makedirs(os.path.join(REPO, "editions"), exist_ok=True)
-    for src, suffix in (("index.html", ""), ("routes.html", "-routes"),
-                        ("portfolio.html", "-portfolio")):
-        p = os.path.join(REPO, src)
-        if not os.path.isfile(p):
-            continue
-        name = f"{d.isoformat()}-wk{wk}-ed{ed}{suffix}.html"
-        shutil.copy2(p, os.path.join(REPO, "editions", name))
-        out.append(f"editions/{name}")
-    # Record it outside the tree as well. editions/ is a working-tree
-    # artefact: a rollback removes it and the edition number goes backwards
-    # with nothing left to say it ever went forwards.
-    try:
-        sys.path.insert(0, os.path.join(REPO, "tools"))
-        import render_masthead as _rm
-        out.append(_rm.record_issued(d.isoformat(), wk, ed))
-    except Exception as e:                                     # noqa: BLE001
-        out.append(f"edition ledger NOT written: {e}")
-    return out
+def publish_sh(dry, msg):
+    """THE gate list, and the only way anything is published.
 
-
-def gates(page):
-    bad = []
-    r = run([PY, "tools/render_check.py", "--page", page])
+    --check-only runs every gate and stops before commit and push; -m runs the
+    same gates, then commits and pushes. Returns (ok, one-line summary, tally).
+    """
+    args = ["--check-only"] if dry else ["-m", msg]
+    r = run(["bash", "tools/publish.sh"] + args)
+    out = (r.stdout or "") + (r.stderr or "")
+    io.open(os.path.join(REPO, "logs", "last_publish_sh.txt"), "w",
+            encoding="utf8").write(out)
+    lines = [l.strip() for l in out.splitlines() if l.strip()]
+    tally = next((l for l in lines if re.search(r"\d+ checks,", l)), "")
     if r.returncode != 0:
-        head = [l.strip() for l in (r.stdout or "").splitlines() if l.strip()][:4]
-        bad.append("render gate: " + "; ".join(head))
-    r = run([PY, "tools/check_consistency.py", page, "portfolio.html"])
-    tally = next((l.strip() for l in (r.stdout or "").splitlines()
-                  if re.search(r"\d+ checks,", l)), "")
-    if r.returncode != 0:
-        fails = [l.split("FAIL")[0].strip()
-                 for l in (r.stdout or "").splitlines() if "FAIL !" in l]
-        bad.append(f"consistency: {tally} | " + "; ".join(fails[:4]))
-    return (not bad), bad, tally
+        why = next((l for l in lines if l.startswith("ABORT") or "FAILED" in l),
+                   lines[-1] if lines else "no output")
+        fails = [l.split("FAIL")[0].strip() for l in lines if "FAIL !" in l][:4]
+        return False, why + (" | " + "; ".join(fails) if fails else ""), tally
+    return True, (lines[-1] if lines else ""), tally
 
 
 def main():
-    dry = "--dry-run" in sys.argv[1:]
+    argv = sys.argv[1:]
+    dry = "--dry-run" in argv
     tag = "[dry-run] " if dry else ""
+    requested = os.path.isfile(REQUEST)
+    if requested:
+        # consume it now: one click asks for one rebuild, not a standing one
+        try:
+            os.remove(REQUEST)
+        except OSError:
+            pass
+        log(f"{tag}update requested on demand (desktop shortcut)")
     dirty = [l for l in run(["git", "status", "--porcelain"]).stdout.splitlines()
              if l.strip() and not l[3:].startswith("logs/")]
     if dirty:
         log(f"{tag}REFUSED: working tree is not clean, {len(dirty)} path(s): "
             + ", ".join(l[3:] for l in dirty[:3]))
         return 1
-    # The retries exist for a machine that was off, not to publish an edition
-    # an hour after the last one. Once today's edition is out, later runs in
-    # the same day do nothing - unless --force, or a Downloads candidate turns
-    # up with newer data, which publish_waiting.py handles on its own.
+    # The scheduled retries exist for a machine that was off, not to republish
+    # every two hours. Once today's edition is out a retry does nothing - unless
+    # an update was asked for (the shortcut), --force, or --dry-run. A run on
+    # any later day of the week rebuilds and republishes over the current
+    # edition; publish.sh archives only across a week boundary.
     today = datetime.date.today()
     issued, _ = masthead_of(os.path.join(REPO, "index.html"))
-    if issued == today and "--force" not in sys.argv[1:] and not dry:
+    if issued == today and not (requested or dry or "--force" in argv):
         log(f"already built today: the published edition is issued {issued}")
         return 0
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
 
     def rollback(why):
         run(["git", "reset", "--hard", head])
-        run(["git", "clean", "-fd", "editions", "data", "logs"])
+        run(["git", "clean", "-fd", "editions", "data"])
         log(f"{tag}REFUSED and ROLLED BACK to {head[:8]}: {why}")
 
     try:
-        archived = archive()
         failures = []
         # The extract pull is by far the slowest step - it walks date windows
         # per form and takes a quarter of an hour. SANITAP_SKIP_PULL lets a
@@ -203,40 +209,53 @@ def main():
                 if required:
                     raise RuntimeError(f"{script} failed: {msg}")
                 failures.append(f"{os.path.basename(script)} ({msg[:60]})")
-        ok, why, tally = gates(os.path.join(REPO, "index.html"))
         d, wk_ed = masthead_of(os.path.join(REPO, "index.html"))
         built_rec = newest_record(os.path.join(REPO, "index.html"))
     except Exception as e:                                     # noqa: BLE001
         rollback(str(e))
         return 1
 
-    # A Downloads candidate is still considered - gated the same way - and
-    # preferred only when its DATA is genuinely newer than what we just built.
+    # A Downloads candidate is still considered, and preferred only when its
+    # DATA is genuinely newer than what we just built. It is gated by the same
+    # publish.sh as everything else; if it fails, the local build goes back in.
+    source = "built on this machine by tools/weekly_build.py"
     cand = os.path.join(DROP, "index.html")
     if os.path.isfile(cand):
         c_rec = newest_record(cand)
         if c_rec and built_rec and c_rec > built_rec:
-            c_ok, c_why, _ = gates(cand)
+            keep = {f: io.open(os.path.join(REPO, f), encoding="utf8").read()
+                    for f in ("index.html", "routes.html")
+                    if os.path.isfile(os.path.join(REPO, f))}
+            for f in ("index.html", "routes.html"):
+                if os.path.isfile(os.path.join(DROP, f)):
+                    shutil.copy2(os.path.join(DROP, f), os.path.join(REPO, f))
+            c_ok, c_why, _ = publish_sh(True, None)
             if c_ok:
                 log(f"{tag}the Downloads candidate holds newer data "
-                    f"({c_rec} against {built_rec}) and passed both gates - "
+                    f"({c_rec} against {built_rec}) and passed publish.sh - "
                     "preferring it over the local build")
-                for f in ("index.html", "routes.html"):
-                    if os.path.isfile(os.path.join(DROP, f)):
-                        shutil.copy2(os.path.join(DROP, f), os.path.join(REPO, f))
-                ok, why = True, []
+                source = f"taken from the Downloads drop (data to {c_rec})"
+                d, wk_ed = masthead_of(os.path.join(REPO, "index.html"))
+                built_rec = c_rec
             else:
+                for f, t in keep.items():
+                    io.open(os.path.join(REPO, f), "w", encoding="utf8").write(t)
                 log(f"{tag}the Downloads candidate holds newer data ({c_rec}) but "
-                    "failed the gates, so the local build stands: "
-                    + " || ".join(c_why)[:200])
+                    f"failed publish.sh, so the local build stands: {c_why[:200]}")
 
-    if not ok:
-        rollback("gates failed after a full rebuild. " + " || ".join(why))
-        return 1
     nonfatal = (" optional step(s) skipped: " + ", ".join(failures)) if failures else ""
-    log(f"{tag}built week {wk_ed[0]} edition {wk_ed[1]}, issued {d}, "
-        f"data to {built_rec}; both gates pass ({tally}); "
-        f"archived {len(archived)} file(s).{nonfatal}")
+    wk, ed = wk_ed if wk_ed else ("?", "?")
+    msg = (f"Week {wk} edition {ed}, issued {d}: {source}\n\n"
+           f"Extracts pulled, activity and call tables rebuilt, every generated "
+           f"region re-rendered, then gated and published by tools/publish.sh. "
+           f"Data to {built_rec}.{nonfatal}")
+    ok, why, tally = publish_sh(dry, msg)
+    if not ok:
+        rollback("publish.sh refused: " + why)
+        return 1
+    log(f"{tag}built week {wk} edition {ed}, issued {d}, data to {built_rec}; "
+        f"every publish.sh gate passed ({tally}).{nonfatal}")
+
     if dry:
         # say what it WOULD have published, before the tree goes back
         was = run(["git", "show", "HEAD:index.html"]).stdout
@@ -277,21 +296,9 @@ def main():
                 log(f"{tag}    {d_}")
         else:
             log(f"{tag}no figure differs from what is live")
-        rollback("--dry-run: reporting only, nothing published")
+        rollback("--dry-run: stopped before commit and push, nothing published")
         return 0
 
-    run(["git", "add", "-A"])
-    msg = (f"Week {wk_ed[0]} edition {wk_ed[1]}, issued {d}: built and published "
-           f"on this machine by tools/weekly_build.py\n\n"
-           f"Extracts pulled, activity and call tables rebuilt, every generated "
-           f"region re-rendered, the outgoing edition archived, both gates run "
-           f"before anything was committed. Data to {built_rec}. {tally}.")
-    for cmd, what in ((["git", "commit", "-m", msg], "commit"),
-                      (["git", "push"], "push")):
-        r = run(cmd)
-        if r.returncode != 0:
-            rollback(f"{what} failed: " + (r.stderr or r.stdout)[:200])
-            return 1
     sha = run(["git", "rev-parse", "HEAD"]).stdout.strip()[:8]
     bad_urls = []
     for u in (SITE, SITE + "routes.html"):
@@ -299,7 +306,7 @@ def main():
                             "-L", "--max-time", "30", u], capture_output=True, text=True)
         if r.stdout.strip() != "200":
             bad_urls.append(f"{u} -> {r.stdout.strip() or 'no response'}")
-    log(f"PUBLISHED week {wk_ed[0]} edition {wk_ed[1]} as {sha}"
+    log(f"PUBLISHED week {wk} edition {ed} as {sha}"
         + (f"; live check: {'; '.join(bad_urls)} (Pages can lag)" if bad_urls
            else "; live URLs returned 200"))
     return 0
