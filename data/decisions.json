@@ -6,11 +6,23 @@
    "decided_on": "2026-09-21",
    "source": "docs/decision_log.md"
   },
+  "act-run-sdws-26-premises": {
+   "answer": "Superseded, not abandoned. The premise was that SDWS 26 had no field instrument and no data until a new round ran. Both were false: the annual monitoring survey (form 2eeb8682) already carried the usage question in both seasons and had been run 11-21 November 2025, giving 410 responses that answered both seasons. The parameter is measured for the 2025 monitoring period. Replaced by act-sdws26-annual-round, which makes it a recurring annual obligation rather than a one-off, and by act-sdws26-approve-2025 for the approval state.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-23",
+   "source": "docs/decision_log.md, 2026-09-23; derived live from form 2eeb8682"
+  },
+  "act-sdws26-instrument-review": {
+   "answer": "Superseded. The review was scoped to sign an instrument off BEFORE round one, and round one had already run - on the annual monitoring survey, not on the point-of-use form the review was written against. The substance is not lost: which form is the standing SDWS 26 instrument, and whether it must also carry SDWS 22 boiling, the JMP core questions, the enumerator's identity and the household-versus-institution split, is carried into act-sdws26-annual-round as the question to settle before the 2026 round.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-23",
+   "source": "docs/decision_log.md, 2026-09-23"
+  },
   "act-standardised-stroke-test-basis": {
    "answer": "Yes. The standardised stroke test is SDWS 28 of ERSDWS V2, and the five-minute test is the accepted method pending the StrokeMeter.",
    "decided_by": "James Walker, Head of Carbon",
    "decided_on": "2026-09-18",
-   "source": "email \u201cRe: Water program dashboard & actions\u201d, 18 September 2026"
+   "source": "email “Re: Water program dashboard & actions”, 18 September 2026"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision."

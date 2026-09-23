@@ -1,13 +1,14 @@
 {
  "counts": {
   "appel_signalement_pannes.csv": 2826,
+  "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
   "first_rehab_current.json": 0,
-  "forage_moramanga.csv": 18,
+  "forage_moramanga.csv": 20,
   "hygiene.json": 108,
   "identification.json": 47,
-  "marolinta_borehole.json": 18,
-  "pm.csv": 760,
+  "marolinta_borehole.json": 20,
+  "pm.csv": 761,
   "premiere_rehabilitation.csv": 0,
   "repair.json": 214,
   "reparation_apres_panne.csv": 214,

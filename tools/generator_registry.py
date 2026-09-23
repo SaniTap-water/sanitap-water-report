@@ -17,6 +17,23 @@ Anything absent from all three is unregistered and the gate fails.
 """
 
 GENERATED = {
+    'SDWS26.answered_both': 'rebuild_sdws26',
+    'SDWS26.approved': 'rebuild_sdws26',
+    'SDWS26.excluded_part_entries': 'rebuild_sdws26',
+    'SDWS26.form': 'rebuild_sdws26',
+    'SDWS26.min_clusters': 'rebuild_sdws26',
+    'SDWS26.q_dry': 'rebuild_sdws26',
+    'SDWS26.q_rain': 'rebuild_sdws26',
+    'SDWS26.responses_total': 'rebuild_sdws26',
+    'SDWS26.round_from': 'rebuild_sdws26',
+    'SDWS26.round_to': 'rebuild_sdws26',
+    'SDWS26.rule_difference': 'rebuild_sdws26',
+    'SDWS26.scenarios': 'rebuild_sdws26',
+    'SDWS26.served_both_seasons': 'rebuild_sdws26',
+    'SDWS26.served_choices': 'rebuild_sdws26',
+    'SDWS26.served_either_season': 'rebuild_sdws26',
+    'SDWS26.statuses': 'rebuild_sdws26',
+
     'WPOPMETA.points_at_the_cap': 'check_wpopmeta (data/sdws1_summary_equal.json)',
     'WPOPMETA.points_cut_over_10pct': 'check_wpopmeta (data/sdws1_summary_equal.json)',
     'WPOPMETA.points_with_a_barrier': 'check_wpopmeta (data/sdws1_summary_equal.json)',

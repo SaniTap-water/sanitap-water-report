@@ -2,10 +2,10 @@
  "evaluated": "2026-09-23",
  "kinds": {
   "artefact": 7,
-  "data": 39,
-  "decision": 36,
+  "data": 38,
+  "decision": 38,
   "form": 7,
-  "none": 23
+  "none": 24
  },
  "state": {
   "act-2026-recovery": {
@@ -721,11 +721,12 @@
    "when_satisfied": "OK"
   },
   "act-run-sdws-26-premises": {
+   "closed_since": "2026-09-23",
    "evaluated": "2026-09-23",
-   "evidence": "usage_question_answers = 0 (point-of-use responses that actually answer the usage question A9); target >= 100",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when the SDWS 26 survey has 100 answered responses",
+   "evidence": "decided 2026-09-23 by Adriaan Mol, COO SaniTap: Superseded, not abandoned. The premise was that SDWS 26 had no field instrument and no data until a new round ran. Both were false: the annual monitoring survey (form 2eeb8682) already carried the usage question in both seasons and had been run 11-21 November 2025, giving 410 responses that answered both seasons. The parameter is measured for the 2025 monitoring period. Replaced by act-sdws26-annual-round, which makes it a recurring annual obligation rather than a one-off, and by act-sdws26-approve-2025 for the approval state.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closed by the finding that the round had already run: the November 2025 annual monitoring survey answers SDWS 26 for 2025",
    "when_satisfied": "OK"
   },
   "act-run-stroke-test-sdws": {
@@ -737,12 +738,29 @@
    "says": "closes when the stroke-test form carries results for the SDWS 23 sample",
    "when_satisfied": "OK"
   },
-  "act-sdws26-instrument-review": {
+  "act-sdws26-annual-round": {
    "evaluated": "2026-09-23",
-   "evidence": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one",
+   "evidence": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period",
    "kind": "none",
    "satisfied": null,
-   "says": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one",
+   "says": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period",
+   "when_satisfied": "OK"
+  },
+  "act-sdws26-approve-2025": {
+   "evaluated": "2026-09-23",
+   "evidence": "closes when the November 2025 usage responses carry approvals in mWater",
+   "kind": "none",
+   "satisfied": null,
+   "says": "closes when the November 2025 usage responses carry approvals in mWater",
+   "when_satisfied": "OK"
+  },
+  "act-sdws26-instrument-review": {
+   "closed_since": "2026-09-23",
+   "evaluated": "2026-09-23",
+   "evidence": "decided 2026-09-23 by Adriaan Mol, COO SaniTap: Superseded. The review was scoped to sign an instrument off BEFORE round one, and round one had already run - on the annual monitoring survey, not on the point-of-use form the review was written against. The substance is not lost: which form is the standing SDWS 26 instrument, and whether it must also carry SDWS 22 boiling, the JMP core questions, the enumerator's identity and the household-versus-institution split, is carried into act-sdws26-annual-round as the question to settle before the 2026 round.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closed by the same finding: the review was scoped 'before the field round', and the round had already happened on a different instrument",
    "when_satisfied": "OK"
   },
   "act-sdws27-basis": {

@@ -549,11 +549,8 @@
   "when_satisfied": "OK"
  },
  "act-run-sdws-26-premises": {
-  "kind": "data",
-  "metric": "usage_question_answers",
-  "op": ">=",
-  "says": "closes when the SDWS 26 survey has 100 answered responses",
-  "target": 100,
+  "kind": "decision",
+  "says": "closed by the finding that the round had already run: the November 2025 annual monitoring survey answers SDWS 26 for 2025",
   "when_satisfied": "OK"
  },
  "act-run-stroke-test-sdws": {
@@ -564,9 +561,18 @@
   "target": 30,
   "when_satisfied": "OK"
  },
- "act-sdws26-instrument-review": {
+ "act-sdws26-annual-round": {
   "kind": "none",
-  "says": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one"
+  "says": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period"
+ },
+ "act-sdws26-approve-2025": {
+  "kind": "none",
+  "says": "closes when the November 2025 usage responses carry approvals in mWater"
+ },
+ "act-sdws26-instrument-review": {
+  "kind": "decision",
+  "says": "closed by the same finding: the review was scoped 'before the field round', and the round had already happened on a different instrument",
+  "when_satisfied": "OK"
  },
  "act-sdws27-basis": {
   "kind": "decision",

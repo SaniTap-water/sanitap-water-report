@@ -227,6 +227,60 @@ def nearest_other(code):
     return best
 
 
+# ---- the annual monitoring survey: SDWS 26 usage, SDWS 25 household size ----
+F_CBN = "2eeb86824b4545eca33db9e7cf7dcbd4"
+Q_USE_DRY = "3f2318ebf8044db9885e3e6c4f25f9c0"     # WS1.18, Dry season
+Q_USE_RAIN = "086efa3bdf4d4715ba166cd0d9e55a04"    # WS1.39, Rainy season
+Q_HH_SIZE = "0dc5822718664528944408e6c8343f4e"      # WS1.12, household size (SDWS 25)
+
+# Served = at least every two days, BY CHOICE ID. The declared scale is not
+# monotonic - "More than 1 time per day" sits SECOND, after "Every day" - so
+# anything that maps this scale by position is wrong. These are the ids.
+C_EVERY_DAY = "J1qZUqA"
+C_MORE_THAN_DAILY = "6wqmK16"
+C_EVERY_2_DAYS = "h4uZZBz"
+SERVED_CHOICES = {C_EVERY_DAY, C_MORE_THAN_DAILY, C_EVERY_2_DAYS}
+
+
+def _cbn():
+    """The annual monitoring survey responses."""
+    p = os.path.join(EXPORTS, "cbn_gender.json")
+    return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []
+
+
+def _cbn_answered_both():
+    """Responses that answered BOTH seasonal usage questions.
+
+    This is the denominator, and the exclusion is a STATED RULE rather than a
+    silent filter: four Fort-Dauphin responses answer neither question. They
+    are not refusals - they are abandoned part-entries, answering between 2 and
+    21 of the form's 92 questions - and three of them are marked final on
+    questions the form declares required. A part-entry counted as a
+    non-response would understate the served proportion; counted as served
+    would overstate it. Neither is honest, so they are excluded and said so.
+    """
+    return [r for r in _cbn()
+            if _answer(r, Q_USE_DRY) not in (None, "", [])
+            and _answer(r, Q_USE_RAIN) not in (None, "", [])]
+
+
+def _cbn_scenario(r):
+    """Which project scenario a response belongs to, from its deployment."""
+    d = str(r.get("deployment") or "")
+    name = _CBN_DEPLOYMENTS.get(d, "")
+    if "Fort-Dauphin" in name:
+        return "Fort-Dauphin"
+    if "Maroantsetra" in name:
+        return "Maroantsetra"
+    return None
+
+
+_CBN_DEPLOYMENTS = {
+    "19a95dd4fd514647a78030924abc9a17": "Evaluation annuelle (Fort-Dauphin)",
+    "356351018e4e4fcb942b5b43e94c3d37": "Evaluation annuelle (Maroantsetra)",
+}
+
+
 def population(**meta):
     """A population declares its UNIT: records or points.
 
@@ -570,6 +624,66 @@ def repairs_time_measured():
     derives_from=["register_records"])
 def located_register_points():
     return set(_register_coords())
+
+
+@population(
+    name="Usage-survey responses answering both seasons",
+    unit="records",
+    rule="Responses to the annual monitoring survey that answered BOTH "
+         "seasonal usage questions - WS1.18 for the dry season and WS1.39 for "
+         "the rainy season. This is the SDWS 26 denominator. Four Fort-Dauphin "
+         "responses answered neither and are excluded: they are abandoned "
+         "part-entries, answering between 2 and 21 of the form's 92 questions, "
+         "not refusals. The exclusion is stated because counting a part-entry "
+         "as a non-response understates the proportion and counting it as "
+         "served overstates it.",
+    reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+            F_CBN, "questions WS1.18 and WS1.39")],
+    decided="The denominator is premises that answered the question, not "
+            "premises the enumerator visited.",
+    decided_on="2026-09-23",
+    derives_from=[])
+def usage_survey_answered_both():
+    return {r["_id"] for r in _cbn_answered_both()}
+
+
+@population(
+    name="Premises served, both seasons (SDWS 26, conservative)",
+    unit="records",
+    rule="Of the responses answering both seasons, those reporting use at "
+         "least every two days in BOTH the dry and the rainy season - choice "
+         "ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz "
+         "(every two days). Matched BY CHOICE ID: the declared scale is not "
+         "monotonic, because \u201cmore than once a day\u201d sits second, so "
+         "matching by position would be wrong. Requiring both seasons is the "
+         "conservative reading.",
+    reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+            F_CBN, "WS1.18 and WS1.39, both in the served choice set")],
+    decided="The seasonal rule is not settled; this is the conservative branch "
+            "and the alternative is rendered beside it.",
+    decided_on="2026-09-23",
+    derives_from=["usage_survey_answered_both"])
+def usage_served_both_seasons():
+    return {r["_id"] for r in _cbn_answered_both()
+            if _answer(r, Q_USE_DRY) in SERVED_CHOICES
+            and _answer(r, Q_USE_RAIN) in SERVED_CHOICES}
+
+
+@population(
+    name="Premises served, either season (SDWS 26, permissive)",
+    unit="records",
+    rule="The same set on the permissive branch: served in EITHER season "
+         "rather than both. Carried so the sensitivity of the parameter to the "
+         "undecided seasonal rule is visible rather than asserted.",
+    reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+            F_CBN, "WS1.18 or WS1.39 in the served choice set")],
+    decided="Rendered beside the conservative branch, not instead of it.",
+    decided_on="2026-09-23",
+    derives_from=["usage_survey_answered_both"])
+def usage_served_either_season():
+    return {r["_id"] for r in _cbn_answered_both()
+            if _answer(r, Q_USE_DRY) in SERVED_CHOICES
+            or _answer(r, Q_USE_RAIN) in SERVED_CHOICES}
 
 
 @population(

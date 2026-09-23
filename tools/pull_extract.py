@@ -48,6 +48,8 @@ JSON_FORMS = {
     "identification.json": "198b016d72af41baa2608a8c9c35f8cb",
     "marolinta_borehole.json": "8764843c94484f5b984078c68f13b2ca",
     "first_rehab_current.json": "63747997e70e478fbb2ebf71581ceeb0",
+    # the annual monitoring survey: SDWS 26 usage, SDWS 25 household size
+    "cbn_gender.json": "2eeb86824b4545eca33db9e7cf7dcbd4",
 }
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")

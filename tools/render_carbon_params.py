@@ -40,6 +40,7 @@ FORM_EXTRACT = {
     "283c5670de82489d833e986cb76a67d8": "hygiene.json",
     "198b016d72af41baa2608a8c9c35f8cb": "identification.json",
     "86cf66efdd3749dd8a121314bab3675a": "combined_rehab.json",
+    "2eeb86824b4545eca33db9e7cf7dcbd4": "cbn_gender.json",
 }
 
 

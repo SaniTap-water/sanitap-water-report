@@ -696,3 +696,54 @@ before the round rather than discovered during it.
 `docs/review/sdws26_usage_instrument_db0bcbf2.md` — every question in all three languages, choices,
 skip logic in plain words, and the parameter each question serves **where the form itself states
 it**, never inferred.
+
+---
+
+## 2026-09-23 — SDWS 26 was already measured, from the November 2025 round
+
+**The parameter has an answer, and it did before any new instrument was proposed.** The annual
+monitoring survey (`2eeb8682`, *Clean Water || Project Cbn&Gender*) asks how often a household
+draws drinking water from the project water point, once for the dry season (WS1.18) and once for
+the rainy (WS1.39). It was run **11–21 November 2025**, and 410 responses answered both.
+
+**Served is matched by choice id, never by position.** The declared scale is *not* monotonic —
+*"More than 1 time per day"* sits **second**, after *"Every day"* — so anything mapping it by
+position is wrong. The served set is the three ids meaning every day, more than once a day, and
+every two days.
+
+**The result is 99.5% of premises served** on the conservative reading, and **the seasonal rule
+does not move it**: served-in-both and served-in-either differ by **one record out of 410**. The
+choice of rule was the open question; it turns out not to matter, and that is worth knowing before
+anyone spends time settling it.
+
+**The denominator excludes four responses as a stated rule.** They answered neither usage question,
+and between 2 and 21 of the form's 92 questions — abandoned part-entries, three of them marked
+final on questions the form declares required. Counting a part-entry as a non-response understates
+the proportion; counting it as served overstates it. Neither is honest, so they are excluded and
+the exclusion is written into the population's rule rather than applied silently.
+
+**The limits are rendered from the same data as the result**, because they are what a verifier will
+test: the round evidences **2025 only** and cannot be carried into 2026; **Maroantsetra reached 6
+village or commune clusters against the VPA-DD B.7.3 minimum of 8** while Fort-Dauphin met it at 8;
+and **not one of the 414 responses carries an approval**.
+
+**SDWS 25 in passing:** mean household size in this round is 4.47 in Fort-Dauphin and 3.66 in
+Maroantsetra, which still round to the registered 4.5 and 3.7. Derived from the same round,
+question WS1.12; the registered values are untouched.
+
+**Two actions were closed, not deleted.** `act-run-sdws-26-premises` rested on the premise that the
+parameter had no field instrument and no data until a new round ran — both false. `act-sdws26-
+instrument-review` was scoped to sign an instrument off *before* round one, and round one had
+already happened, on a different form. Both are recorded in `data/decisions.json` with the reason
+and the date, so the audit trail shows why they went rather than showing a gap. Their substance —
+which form is the standing instrument, and whether it must also carry SDWS 22, the JMP core
+questions, the enumerator's identity and the household-versus-institution split — is carried into
+the replacement.
+
+**Replaced by two.** `act-sdws26-annual-round`, recurring annually with Angelo owning it and the
+condition that Maroantsetra must draw at least 8 clusters; and `act-sdws26-approve-2025`, because
+an unapproved response is weaker evidence in front of a VVB than an approved one, and approving
+them is a review the team can do now rather than during a verification.
+
+**What was deliberately not built:** the sample-size calculator and the draw publication. At 99.5%
+the precision question is not live, and the next round is months away.

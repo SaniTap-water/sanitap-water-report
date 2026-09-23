@@ -58,6 +58,8 @@ STEPS = [
     ("tools/populations.py",         ["--json", "data/populations.json"], True),
     ("tools/render_derivations.py",  ["--write"],      True),
     ("tools/render_definitions.py",  ["--write"],      True),
+    ("tools/rebuild_sdws26.py",      ["--write"],      True),
+    ("tools/render_sdws26.py",       ["--write"],      True),
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),

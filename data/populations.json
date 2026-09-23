@@ -6,12 +6,12 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "785 of 908 points",
+   "detail": "786 of 908 points",
    "holds": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "730 of 785 points",
+   "detail": "730 of 786 points",
    "holds": true,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
@@ -150,7 +150,7 @@
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on the works form, whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 785,
+   "size": 786,
    "unit": "points"
   },
   "first_rehabilitation_records": {
@@ -279,7 +279,7 @@
     ]
    ],
    "rule": "Every works record on the Marolinta borehole-progress form - rehabilitations and new constructions both. These never appear on the works form, so a query that reads only that form cannot see Marolinta at all.",
-   "size": 18,
+   "size": 20,
    "unit": "records"
   },
   "register_records": {
@@ -391,6 +391,61 @@
    ],
    "rule": "Of those records, the ones answering Yes to “Verify: did the repair or maintenance succeed?”. Still a count of records.",
    "size": 731,
+   "unit": "records"
+  },
+  "usage_served_both_seasons": {
+   "decided": "The seasonal rule is not settled; this is the conservative branch and the alternative is rendered beside it.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "usage_survey_answered_both"
+   ],
+   "id": "usage_served_both_seasons",
+   "name": "Premises served, both seasons (SDWS 26, conservative)",
+   "reads": [
+    [
+     "Clean Water || Project Cbn&Gender (annual monitoring survey)",
+     "2eeb86824b4545eca33db9e7cf7dcbd4",
+     "WS1.18 and WS1.39, both in the served choice set"
+    ]
+   ],
+   "rule": "Of the responses answering both seasons, those reporting use at least every two days in BOTH the dry and the rainy season - choice ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz (every two days). Matched BY CHOICE ID: the declared scale is not monotonic, because “more than once a day” sits second, so matching by position would be wrong. Requiring both seasons is the conservative reading.",
+   "size": 408,
+   "unit": "records"
+  },
+  "usage_served_either_season": {
+   "decided": "Rendered beside the conservative branch, not instead of it.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "usage_survey_answered_both"
+   ],
+   "id": "usage_served_either_season",
+   "name": "Premises served, either season (SDWS 26, permissive)",
+   "reads": [
+    [
+     "Clean Water || Project Cbn&Gender (annual monitoring survey)",
+     "2eeb86824b4545eca33db9e7cf7dcbd4",
+     "WS1.18 or WS1.39 in the served choice set"
+    ]
+   ],
+   "rule": "The same set on the permissive branch: served in EITHER season rather than both. Carried so the sensitivity of the parameter to the undecided seasonal rule is visible rather than asserted.",
+   "size": 409,
+   "unit": "records"
+  },
+  "usage_survey_answered_both": {
+   "decided": "The denominator is premises that answered the question, not premises the enumerator visited.",
+   "decided_on": "2026-09-23",
+   "derives_from": [],
+   "id": "usage_survey_answered_both",
+   "name": "Usage-survey responses answering both seasons",
+   "reads": [
+    [
+     "Clean Water || Project Cbn&Gender (annual monitoring survey)",
+     "2eeb86824b4545eca33db9e7cf7dcbd4",
+     "questions WS1.18 and WS1.39"
+    ]
+   ],
+   "rule": "Responses to the annual monitoring survey that answered BOTH seasonal usage questions - WS1.18 for the dry season and WS1.39 for the rainy season. This is the SDWS 26 denominator. Four Fort-Dauphin responses answered neither and are excluded: they are abandoned part-entries, answering between 2 and 21 of the form's 92 questions, not refusals. The exclusion is stated because counting a part-entry as a non-response understates the proportion and counting it as served overstates it.",
+   "size": 410,
    "unit": "records"
   },
   "water_quality_tested": {
