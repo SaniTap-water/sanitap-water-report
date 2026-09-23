@@ -564,6 +564,10 @@
   "target": 30,
   "when_satisfied": "OK"
  },
+ "act-sdws26-instrument-review": {
+  "kind": "none",
+  "says": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one"
+ },
  "act-sdws27-basis": {
   "kind": "decision",
   "question": "Does Gold Standard accept the SDWS 27 basis as set out in docs/sdws27_basis.md?",

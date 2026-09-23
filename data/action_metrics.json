@@ -164,7 +164,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 48
+   "value": 44
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

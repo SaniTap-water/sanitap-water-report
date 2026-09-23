@@ -89,22 +89,24 @@
    "population": null,
    "relevant": "carbon_fleet",
    "owner": "Lanja Randriamanantena",
-   "action": null,
-   "gap": "No population reads the survey, and the form is not pulled by the build."
+   "action": "act-find-source-annual-independent",
+   "gap": "No population reads the survey, and the form is not pulled by the build.",
+   "commitment": "VPA-DD B.7.1: same instrument as SDWS 26. Ex-ante values 4.5 Anosy and 3.7 Maroantsetra; the VPA-DD requires a cross-check against one external source in the Monitoring Report."
   },
   {
    "id": "sdws26-usage",
    "v1": "SDWS 26",
    "v2": "SDWS 31",
    "name": "How often a household uses the pump",
-   "measure": "Whether the household drew drinking water from this point at least every two days over the past year. Only those count as served.",
+   "measure": "Whether the household drew drinking water from this point at least every two days over the past year. Only premises reporting that may be counted as served.",
    "form": "db0bcbf2e7ea44b280aed653a715553e",
    "source_label": "Clean Water || project SDWS18, question A9",
    "population": null,
    "relevant": "carbon_fleet",
    "owner": "Lanja Randriamanantena",
-   "action": null,
-   "gap": "No population reads the survey, and the form is not pulled by the build."
+   "action": "act-sdws26-instrument-review",
+   "gap": "The instrument exists and is live — question A9 on the point-of-use form, with choices that evaluate the every-two-days threshold without interpretation — and is awaiting the Head of Carbon's sign-off before round one. No responses exist yet, so the parameter is not yet measured. The sample is drawn and reproducible.",
+   "commitment": "VPA-DD B.7.1: source “SDWS 1; and Project survey”, annual, sampled, “Premises that report at least every two days use may be counted”. B.7.2: 90% confidence, 10% margin of error, CDM sample size calculator, minimum 100 households per project scenario, minimum 8 villages or communes as clusters per scenario, Anosy and Maroantsetra separate. B.7.3: face to face, on tablet, in mWater."
   },
   {
    "id": "sdws22-pou-quality",
@@ -117,8 +119,9 @@
    "population": null,
    "relevant": "carbon_fleet",
    "owner": "Lanja Randriamanantena",
-   "action": null,
-   "gap": "No population reads the survey, and the form is not pulled by the build."
+   "action": "act-sdws26-instrument-review",
+   "gap": "No population reads the survey, the form is not pulled by the build, and the boiling question the VPA-DD commits to is not on it — raised in the instrument review.",
+   "commitment": "VPA-DD B.7.1: the same instrument yields SDWS 22, SDWS 25 and SDWS 26 and carries the WHO/UNICEF JMP core questions for drinking water and hygiene (SDWS 20)."
   },
   {
    "id": "sdws21-embodied",

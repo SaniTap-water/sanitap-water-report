@@ -1,0 +1,3832 @@
+{
+ "note": "SDWS 26 annual usage survey sample. Redraw identically with the same --seed against the same register extract.",
+ "commitment": "VPA-DD section B.7.2: 90% confidence, 10% margin of error, CDM sample size calculator; minimum 100 households per project scenario; minimum 8 villages or communes randomly selected per scenario as clusters; Anosy and Maroantsetra are separate scenarios.",
+ "drawn_on": "2026-09-23",
+ "seed": 20260923,
+ "register_extract_pulled": "2026-09-23",
+ "register_rows": 908,
+ "register_sha256": "6bceb2c47e3edd0437e1c16a7a72bcbcee91e3209b76ea7b175588ee78e5584d",
+ "clusters_per_scenario": 8,
+ "households_per_scenario": 100,
+ "density_stratum_km": 2.0,
+ "scenarios": {
+  "Anosy": {
+   "region": "Anosy",
+   "fleet_points": 127,
+   "communes_available": 13,
+   "clusters_drawn": [
+    "Ampasy Nahampoana",
+    "Analapatsy",
+    "Fort-Dauphin",
+    "Isaka-Ivondro",
+    "Mahatalaky",
+    "Manambaro",
+    "Manantenina",
+    "Mandiso"
+   ],
+   "clusters_short": 0,
+   "points_in_clusters": 66,
+   "households_target": 100,
+   "households_per_point": 2,
+   "points": [
+    {
+     "wp": "670401749",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895278",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742894246",
+     "commune": "Mandiso",
+     "fkt": "Mahabo",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742894686",
+     "commune": "Manambaro",
+     "fkt": "Tsihary",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894552",
+     "commune": "Manambaro",
+     "fkt": "Esalo",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742895302",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "670401732",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742895405",
+     "commune": "Mahatalaky",
+     "fkt": "Tsiharoa Ambondro",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742894600",
+     "commune": "Manambaro",
+     "fkt": "Nosibe",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742894239",
+     "commune": "Mandiso",
+     "fkt": "Soamanonga",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895199",
+     "commune": "Mahatalaky",
+     "fkt": "Tsanoriha",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742894648",
+     "commune": "Manambaro",
+     "fkt": "Antanamasy",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742894291",
+     "commune": "Mandiso",
+     "fkt": "Mandiso Atsinanana",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "670401763",
+     "commune": "Mahatalaky",
+     "fkt": "Tsiharoa Ampasy",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895759",
+     "commune": "Manantenina",
+     "fkt": "Manantenina Bas",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895230",
+     "commune": "Mahatalaky",
+     "fkt": "Mahatalaky Eroanga",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894538",
+     "commune": "Manambaro",
+     "fkt": "Esalo",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742895821",
+     "commune": "Manantenina",
+     "fkt": "Ampasimasay",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894301",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ihazoambo",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894318",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ihazoambo",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894569",
+     "commune": "Manambaro",
+     "fkt": "Nosibe",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742894370",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ambatomainty",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "670402094",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ihazoambo",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894253",
+     "commune": "Mandiso",
+     "fkt": "Mahabo",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742894583",
+     "commune": "Manambaro",
+     "fkt": "Nosibe",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742895216",
+     "commune": "Mahatalaky",
+     "fkt": "Tsanoriha",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895209",
+     "commune": "Mahatalaky",
+     "fkt": "Tsanoriha",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742894514",
+     "commune": "Manambaro",
+     "fkt": "Esalo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "670401684",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895285",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742894590",
+     "commune": "Manambaro",
+     "fkt": "Nosibe",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "670402056",
+     "commune": "Mandiso",
+     "fkt": "Mandiso",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895151",
+     "commune": "Ampasy Nahampoana",
+     "fkt": "Ampasy Centre",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742894363",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ambatomainty",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894655",
+     "commune": "Manambaro",
+     "fkt": "Manambaro I",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895728",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894387",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Montifeno",
+     "neighbours_2km": 0
+    },
+    {
+     "wp": "742895395",
+     "commune": "Mahatalaky",
+     "fkt": "Tsiharoa Ambondro",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895120",
+     "commune": "Analapatsy",
+     "fkt": "Marovatoforiha",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894985",
+     "commune": "Analapatsy",
+     "fkt": "Ambarobe",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742895711",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895814",
+     "commune": "Manantenina",
+     "fkt": "Manantenina Haut",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895670",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895144",
+     "commune": "Ampasy Nahampoana",
+     "fkt": "Ampasy Centre",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742895182",
+     "commune": "Mahatalaky",
+     "fkt": "Tsanoriha",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895137",
+     "commune": "Analapatsy",
+     "fkt": "Andrivory",
+     "neighbours_2km": 0
+    },
+    {
+     "wp": "742894284",
+     "commune": "Mandiso",
+     "fkt": "Mandiso Atsinanana",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895247",
+     "commune": "Mahatalaky",
+     "fkt": "Mahatalaky Eroanga",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742894222",
+     "commune": "Mandiso",
+     "fkt": "Nagnarena",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "742895704",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742894978",
+     "commune": "Analapatsy",
+     "fkt": "Analapatsy II",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894662",
+     "commune": "Manambaro",
+     "fkt": "Manambaro I",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742895292",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895687",
+     "commune": "Manantenina",
+     "fkt": "Ambalateza",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895034",
+     "commune": "Analapatsy",
+     "fkt": "Namanona",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "670401770",
+     "commune": "Ampasy Nahampoana",
+     "fkt": "Ampasy Centre",
+     "neighbours_2km": 3
+    },
+    {
+     "wp": "670401639",
+     "commune": "Manantenina",
+     "fkt": "Ankaramany",
+     "neighbours_2km": 0
+    },
+    {
+     "wp": "742894260",
+     "commune": "Mandiso",
+     "fkt": "Mandiso Atsinanana",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742895168",
+     "commune": "Ampasy Nahampoana",
+     "fkt": "Ampasy Centre",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742894521",
+     "commune": "Manambaro",
+     "fkt": "Esalo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "742893805",
+     "commune": "Fort-Dauphin",
+     "fkt": "Ambinanibe",
+     "neighbours_2km": 0
+    },
+    {
+     "wp": "742894356",
+     "commune": "Isaka-Ivondro",
+     "fkt": "Ambatomainty",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "742895742",
+     "commune": "Manantenina",
+     "fkt": "Manantenina Bas",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "670401691",
+     "commune": "Manantenina",
+     "fkt": "Ampasimasay",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742893829",
+     "commune": "Manambaro",
+     "fkt": "Esalo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "742895333",
+     "commune": "Mahatalaky",
+     "fkt": "Sainte Luce",
+     "neighbours_2km": 4
+    }
+   ]
+  },
+  "Maroantsetra": {
+   "region": "Ambatosoa",
+   "fleet_points": 603,
+   "communes_available": 9,
+   "clusters_drawn": [
+    "Ambinanitelo",
+    "Andranofotsy",
+    "Anjahana",
+    "Anjanazana",
+    "Ankofa",
+    "Ankofabe",
+    "Mahalevona",
+    "Voloina"
+   ],
+   "clusters_short": 0,
+   "points_in_clusters": 558,
+   "households_target": 100,
+   "households_per_point": 1,
+   "points": [
+    {
+     "wp": "698773631",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896365",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742896420",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "698771103",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "816234895",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "905251200",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "698772056",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "814009107",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742897971",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699597641",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "814646306",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "699597531",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742895869",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699597603",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742897287",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "698772245",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698772135",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "699597067",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897270",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742896097",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742897641",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742896482",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "771825925",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "810377501",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "699597720",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "698771921",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "699595728",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 34
+    },
+    {
+     "wp": "905251334",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698771110",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742896640",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "698771206",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "698772348",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742895326",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742897050",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 5
+    },
+    {
+     "wp": "698772104",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "742897593",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "699595979",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "794012210",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "699596671",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742896327",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742896169",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742896231",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897397",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "699597029",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "771799293",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897744",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698771251",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "699596891",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742896255",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "698772173",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897108",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "699597081",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "833032692",
+     "commune": "Ankofa",
+     "fkt": "Fampanambo",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742895340",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "742897854",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699596114",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742896183",
+     "commune": "Anjanazana",
+     "fkt": "Andasibe",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742897067",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "742897555",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699597115",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742897995",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897751",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742895553",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "813642325",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742895993",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "765855507",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698771220",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742897263",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 53
+    },
+    {
+     "wp": "742897902",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896444",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "771703469",
+     "commune": "Ankofa",
+     "fkt": "Benavony",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "765258739",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742897957",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "833032654",
+     "commune": "Ankofa",
+     "fkt": "Benavony",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "742897218",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "905251286",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742897689",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "797885233",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "699596808",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "771799262",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "815285539",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897335",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 52
+    },
+    {
+     "wp": "742895625",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896884",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "771799286",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "771580734",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "794587460",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "698771952",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742895632",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "833032506",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "905251372",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742896547",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "791122592",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 47
+    },
+    {
+     "wp": "699596066",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742895876",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "742897799",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896303",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "699597696",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "771580693",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897892",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896743",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "742896901",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742895577",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "792022655",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "794012203",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "771799248",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896396",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "698771938",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "742972377",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897476",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "792494830",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742896279",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897256",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 55
+    },
+    {
+     "wp": "771799310",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 49
+    },
+    {
+     "wp": "742896808",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742895429",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "699597421",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "797195318",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742897665",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "698772025",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699598013",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742897490",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "698771244",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742895560",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "699596767",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896853",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "699597593",
+     "commune": "Ankofabe",
+     "fkt": "Sahajinja",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "699596877",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "805544226",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "699596695",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "698771237",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742895591",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "699597892",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "698795345",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "699596815",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742895845",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "742897562",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699597490",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742896619",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 49
+    },
+    {
+     "wp": "742895900",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "817548803",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "742896004",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742897469",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698772111",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "699597775",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "742896891",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742898099",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "765258746",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "833032678",
+     "commune": "Ankofa",
+     "fkt": "Fampanambo",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "742897885",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896602",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "699596121",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742897074",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "742896530",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "905251224",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "743345808",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "742896217",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "742897548",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "771580710",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897926",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896688",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742897610",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896080",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "905251262",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "742896671",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742897098",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "698771907",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "833033181",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "698771062",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742897146",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "699597036",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897184",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742897153",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896114",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "742896925",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742896846",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "782134540",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896499",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "699596774",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699596004",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "820780971",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "699597012",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742898006",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699595883",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699596918",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "833032661",
+     "commune": "Ankofa",
+     "fkt": "Benavony",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "742896138",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742895371",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699597809",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "699597438",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "699596860",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699596956",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "698773624",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "742896389",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "699597940",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "698772087",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "698771945",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896011",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "812862094",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "905251327",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699595759",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "771580741",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742895890",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "698771983",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742898068",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "698771196",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "742897380",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 54
+    },
+    {
+     "wp": "698772317",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699596743",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "770197467",
+     "commune": "Ankofa",
+     "fkt": "Ampatakana",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "718551997",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "772300771",
+     "commune": "Ankofa",
+     "fkt": "Benavony",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "763895314",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742897500",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "742897304",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742895508",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699597919",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "742896293",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742897517",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 59
+    },
+    {
+     "wp": "698771859",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "699596970",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "742895443",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "786932780",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "699597335",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "823466032",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742896516",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "766720695",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "699597555",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "699597469",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "699596035",
+     "commune": "Ankofabe",
+     "fkt": "Analalava",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "742897531",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698772238",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "742896774",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "698771172",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "699595649",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897249",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "699596028",
+     "commune": "Ankofabe",
+     "fkt": "Analalava",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "699595711",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "905251255",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "699597366",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742897328",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 51
+    },
+    {
+     "wp": "825513589",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "803229680",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742896750",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "742896860",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742896190",
+     "commune": "Anjanazana",
+     "fkt": "Andasibe",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "698771268",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "786871997",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "699595962",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742897878",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699597407",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "833033246",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "905251217",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699596901",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742897407",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 49
+    },
+    {
+     "wp": "699596073",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742895618",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "718552008",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897658",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742896729",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699597964",
+     "commune": "Ankofa",
+     "fkt": "Talanaro",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "742896437",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "699596853",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699597885",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "742896475",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "771799231",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "698772166",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742897029",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 25
+    },
+    {
+     "wp": "698771000",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "699597610",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742897036",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "742897452",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "699596011",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "820198370",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "699595632",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "699597122",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "699597579",
+     "commune": "Ankofabe",
+     "fkt": "Anjiabe",
+     "neighbours_2km": 8
+    },
+    {
+     "wp": "742896310",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742896334",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "699597005",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698771976",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896059",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742896798",
+     "commune": "Andranofotsy",
+     "fkt": "Ampafatra",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699597108",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "815132789",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "795836457",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897706",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742898020",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742896468",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "905251341",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "771783434",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896633",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "699597397",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742895498",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "699597658",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699597050",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896509",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "699595948",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "905251248",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "699596994",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "742895948",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "699597500",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "698772142",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699597665",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699595917",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742896035",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "742897122",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742895766",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "698771914",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742895986",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742895852",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742895735",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "822906175",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742897201",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "742895838",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "764113653",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "771820645",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "791617832",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742896066",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "767290205",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "742896451",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 21
+    },
+    {
+     "wp": "742896736",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742898075",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 1
+    },
+    {
+     "wp": "699595845",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "782134533",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 34
+    },
+    {
+     "wp": "897923486",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897782",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "905251190",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742896406",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742896341",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "905251279",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "742896262",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "764166242",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742895450",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742897627",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "742897847",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896121",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742897737",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "698771969",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "754036911",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 25
+    },
+    {
+     "wp": "763107680",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742895797",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742895979",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "833032513",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "699596712",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897809",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699597548",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699597933",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "742896822",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742897115",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742895522",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "742897373",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 53
+    },
+    {
+     "wp": "799521955",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "742895515",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "698770999",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "763895321",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "742896554",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "699595900",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699595876",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699596963",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "699595931",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742895924",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "742896200",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina ",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "742897232",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "825367379",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742897720",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896152",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "698772018",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "699597957",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "699597328",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "699597799",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "699596107",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742897696",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742895436",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "742897043",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "742896949",
+     "commune": "Andranofotsy",
+     "fkt": "Ivato",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698771897",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "698772221",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "743091752",
+     "commune": "Andranofotsy",
+     "fkt": "Antsangambato",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "742895481",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "699597359",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742898044",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "699595986",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742896286",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897438",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742895883",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742896585",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "742896767",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 21
+    },
+    {
+     "wp": "699597098",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "742896664",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742896592",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "699597562",
+     "commune": "Ankofabe",
+     "fkt": "Anjiabe",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742895917",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "742896877",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "698772001",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896781",
+     "commune": "Andranofotsy",
+     "fkt": "Ambohimoko",
+     "neighbours_2km": 23
+    },
+    {
+     "wp": "698772180",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "771580686",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "833033198",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "754036928",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "699595993",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742897933",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742898037",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "905251293",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "742897311",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 51
+    },
+    {
+     "wp": "699596688",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "771799303",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "773024427",
+     "commune": "Ankofa",
+     "fkt": "Fampanambo",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742895931",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 22
+    },
+    {
+     "wp": "699597483",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "833033253",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "699598044",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 26
+    },
+    {
+     "wp": "699597861",
+     "commune": "Ankofa",
+     "fkt": "Mahajinavola",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "800634100",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897524",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742895412",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742896372",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 43
+    },
+    {
+     "wp": "742897191",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698773617",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742895254",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "768991507",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "699597768",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "772365307",
+     "commune": "Ankofa",
+     "fkt": "Fampanambo",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "813933184",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742896626",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "698771880",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "742895584",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "742896523",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742896413",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "742895955",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742896073",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "698772331",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "742897579",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742896028",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742897160",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897830",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742895539",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699597854",
+     "commune": "Ankofa",
+     "fkt": "Sadikamonjo",
+     "neighbours_2km": 19
+    },
+    {
+     "wp": "699597995",
+     "commune": "Ankofa",
+     "fkt": "Talanaro",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "699596932",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "698772197",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "698772214",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "742895962",
+     "commune": "Anjanazana",
+     "fkt": "Anjanazana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "699596750",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698772063",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "771580703",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina I",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "698771213",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "698772032",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742897988",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "771021680",
+     "commune": "Ankofa",
+     "fkt": "Ampatakana",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "742896224",
+     "commune": "Andranofotsy",
+     "fkt": "Andranofotsy",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "742896956",
+     "commune": "Andranofotsy",
+     "fkt": "Ivato",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "698771275",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "767290212",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 30
+    },
+    {
+     "wp": "699597737",
+     "commune": "Ankofa",
+     "fkt": "Ambodiadabo",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "823946480",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "699597414",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "742897768",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897359",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "699597988",
+     "commune": "Ankofa",
+     "fkt": "Talanaro",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "769020855",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742897445",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "742897366",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 53
+    },
+    {
+     "wp": "797195301",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742895546",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "742897414",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 47
+    },
+    {
+     "wp": "772741428",
+     "commune": "Ankofa",
+     "fkt": "Ampatakana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "742898082",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "699596729",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "744500936",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 24
+    },
+    {
+     "wp": "699595869",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "833032647",
+     "commune": "Ankofa",
+     "fkt": "Ampatakana",
+     "neighbours_2km": 21
+    },
+    {
+     "wp": "742897816",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "905251389",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "786872060",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 46
+    },
+    {
+     "wp": "742898051",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "742896712",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742897225",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742897586",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "742897421",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "742897603",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "699596664",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "698770982",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "768979123",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "792699587",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "771799255",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "698771048",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "819378051",
+     "commune": "Ambinanitelo",
+     "fkt": "Marovovonana",
+     "neighbours_2km": 7
+    },
+    {
+     "wp": "742897672",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742898109",
+     "commune": "Mahalevona",
+     "fkt": "Masindrano",
+     "neighbours_2km": 6
+    },
+    {
+     "wp": "833033208",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "698772283",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698771031",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "742896695",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742897342",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 50
+    },
+    {
+     "wp": "742896107",
+     "commune": "Anjanazana",
+     "fkt": "Ankadimbazaha",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "742897713",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742897861",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896987",
+     "commune": "Andranofotsy",
+     "fkt": "Ivato",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "772383873",
+     "commune": "Ankofa",
+     "fkt": "Fampanambo",
+     "neighbours_2km": 17
+    },
+    {
+     "wp": "742897081",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "742896561",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742898013",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896145",
+     "commune": "Anjanazana",
+     "fkt": "Andasibe",
+     "neighbours_2km": 2
+    },
+    {
+     "wp": "699596736",
+     "commune": "Voloina",
+     "fkt": "Ambodibaro",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "699596705",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "771799279",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "699596781",
+     "commune": "Voloina",
+     "fkt": "Voloina",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "742896815",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 27
+    },
+    {
+     "wp": "824580917",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "699597043",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "698771141",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "699597342",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 10
+    },
+    {
+     "wp": "742897823",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897483",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 38
+    },
+    {
+     "wp": "698774003",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "905251358",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "897922595",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "742896176",
+     "commune": "Anjanazana",
+     "fkt": "Vohidravina",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "743644978",
+     "commune": "Ankofa",
+     "fkt": "Ankofa",
+     "neighbours_2km": 25
+    },
+    {
+     "wp": "742896042",
+     "commune": "Anjanazana",
+     "fkt": "Tanambao Anjanazana",
+     "neighbours_2km": 20
+    },
+    {
+     "wp": "833032630",
+     "commune": "Ankofa",
+     "fkt": "Vinanimbidy",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "742896578",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 45
+    },
+    {
+     "wp": "742897294",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 47
+    },
+    {
+     "wp": "771580727",
+     "commune": "Anjahana",
+     "fkt": "Mahafidina II",
+     "neighbours_2km": 31
+    },
+    {
+     "wp": "698772094",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "742897177",
+     "commune": "Anjahana",
+     "fkt": "Navana",
+     "neighbours_2km": 39
+    },
+    {
+     "wp": "698772252",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 33
+    },
+    {
+     "wp": "905251396",
+     "commune": "Ambinanitelo",
+     "fkt": "Rantavatobe",
+     "neighbours_2km": 41
+    },
+    {
+     "wp": "810943803",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 42
+    },
+    {
+     "wp": "699595955",
+     "commune": "Ankofabe",
+     "fkt": "Antoraka",
+     "neighbours_2km": 16
+    },
+    {
+     "wp": "699597517",
+     "commune": "Ankofabe",
+     "fkt": "Andrangazaha",
+     "neighbours_2km": 13
+    },
+    {
+     "wp": "698773648",
+     "commune": "Voloina",
+     "fkt": "Nandrasana",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "699597373",
+     "commune": "Ankofabe",
+     "fkt": "Ankofabe",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742897919",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742896963",
+     "commune": "Andranofotsy",
+     "fkt": "Ivato",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "698771873",
+     "commune": "Voloina",
+     "fkt": "Ambodipaka",
+     "neighbours_2km": 11
+    },
+    {
+     "wp": "742895467",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "742896705",
+     "commune": "Andranofotsy",
+     "fkt": "Matsotarihina",
+     "neighbours_2km": 44
+    },
+    {
+     "wp": "742895474",
+     "commune": "Anjanazana",
+     "fkt": "Ambodimandrorofo",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "742897964",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Nord",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "742897634",
+     "commune": "Anjahana",
+     "fkt": "Anjahana",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742895663",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "742895601",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 35
+    },
+    {
+     "wp": "699597452",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 15
+    },
+    {
+     "wp": "699596059",
+     "commune": "Ankofabe",
+     "fkt": "Manambia",
+     "neighbours_2km": 4
+    },
+    {
+     "wp": "897922492",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "699597476",
+     "commune": "Ankofabe",
+     "fkt": "Tsarahonenana",
+     "neighbours_2km": 14
+    },
+    {
+     "wp": "742897775",
+     "commune": "Mahalevona",
+     "fkt": "Mahalevona Sud",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699597971",
+     "commune": "Ankofa",
+     "fkt": "Talanaro",
+     "neighbours_2km": 29
+    },
+    {
+     "wp": "742895780",
+     "commune": "Anjanazana",
+     "fkt": "Ambodivoanio",
+     "neighbours_2km": 32
+    },
+    {
+     "wp": "814478712",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambalamahogo",
+     "neighbours_2km": 12
+    },
+    {
+     "wp": "742895656",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 37
+    },
+    {
+     "wp": "699596925",
+     "commune": "Voloina",
+     "fkt": "Tanantsara",
+     "neighbours_2km": 40
+    },
+    {
+     "wp": "742896918",
+     "commune": "Andranofotsy",
+     "fkt": "Ankazomandroko",
+     "neighbours_2km": 28
+    },
+    {
+     "wp": "742895649",
+     "commune": "Anjanazana",
+     "fkt": "Anteviala",
+     "neighbours_2km": 36
+    },
+    {
+     "wp": "699597823",
+     "commune": "Ankofa",
+     "fkt": "Sadikamonjo",
+     "neighbours_2km": 18
+    },
+    {
+     "wp": "897922519",
+     "commune": "Ambinanitelo",
+     "fkt": "Ambinanitelo",
+     "neighbours_2km": 36
+    }
+   ]
+  }
+ },
+ "not_in_any_scenario": [
+  {
+   "wp": "987623517",
+   "region": "Androy",
+   "district": "Beloha",
+   "commune": "Marolinta"
+  },
+  {
+   "wp": "987623256",
+   "region": "Androy",
+   "district": "Beloha",
+   "commune": "Marolinta"
+  },
+  {
+   "wp": "987623115",
+   "region": "Androy",
+   "district": "Beloha",
+   "commune": "Marolinta"
+  },
+  {
+   "wp": "987623555",
+   "region": "Androy",
+   "district": "Beloha",
+   "commune": "Marolinta"
+  },
+  {
+   "wp": "987623270",
+   "region": "Androy",
+   "district": "Beloha",
+   "commune": "Marolinta"
+  }
+ ]
+}

@@ -647,3 +647,52 @@ filesystem. The **row set** is therefore reconstructed from `docs/methodology_ve
 `docs/sdws27_basis.md` and the live form snapshot, and is marked provisional in the data file and
 on the page. Every row's **evidence** is derived and is not provisional. Reconciling the row set
 against that map is a five-minute job for whoever can open it.
+
+---
+
+## 2026-09-23 — The SDWS 26 instrument already existed; no form was built
+
+**Step 1 stopped the build, which is what it was for.** Every mWater form reachable to us was
+enumerated — paged in full, and the paged and unpaged sets agree exactly, so the enumeration is
+complete — and every design searched for a question asking frequency of use of the project water
+point.
+
+**It is already there.** `db0bcbf2e7ea44b280aed653a715553e`, *Clean Water || project SDWS18*,
+revision 118, **state active with three active deployments** (Maroantsetra, Fort-Dauphin,
+Moramanga), carries:
+
+* **A9** — *"In the past year, how often did this household take drinking water from this water
+  point?"*, whose own hint reads *"Parameter SDWS 26 — only premises reporting use at least every
+  two days may be counted as served"*. Its choices are **exactly** the specification: Every day /
+  At least every two days / Two or three times a week / About once a week / Less often / Never.
+  The every-two-days threshold evaluates without interpretation.
+* **A10** — people per premises, SDWS 25.
+* Consent, GPS, the water-point link and photographs, on the house conventions.
+* **All three languages on all 100 questions**, so the Malagasy translation task the goal
+  anticipated is not needed for this instrument.
+
+A second instrument asks the same thing differently: `2eeb8682`, *Clean Water || Project
+Cbn&Gender*, questions WS1.18 and WS1.39, with day-by-day choices (Every 2 days / Every 3 days / …).
+Two live forms asking one parameter two ways is worth a decision before round one.
+
+**What the instrument does not carry**, against the VPA-DD commitment (B.7.1, B.7.3): SDWS 22
+boiling, the JMP core questions for drinking water and hygiene (SDWS 20), the enumerator's
+identity, and the household-versus-institution distinction with a population figure for
+institutions. **Each is an addition to a live form, not a new survey** — which is why building a
+parallel instrument would have been the wrong move even before the duplicate question was found.
+
+**What was built instead.** `tools/draw_usage_sample.py` draws the sample to the VPA-DD design
+(B.7.2) — 90% confidence, 10% margin of error, ≥100 households and ≥8 clusters per scenario, Anosy
+and Maroantsetra separate — recording the seed, the extract date and the register checksum so it
+redraws identically. It does; a different seed gives a different draw, and the floors cannot be
+argued below. **Five managed points in Androy fall in neither named scenario** and are reported
+for a decision rather than assigned: they are the Marolinta boreholes, outside the carbon fleet.
+
+Maroantsetra is tight: **9 communes exist and 8 are required**, so the cluster draw there is close
+to a census of communes. That is a fact about the design meeting the estate, and it should be said
+before the round rather than discovered during it.
+
+`tools/export_form_review.py` writes the review copy at
+`docs/review/sdws26_usage_instrument_db0bcbf2.md` — every question in all three languages, choices,
+skip logic in plain words, and the parameter each question serves **where the form itself states
+it**, never inferred.

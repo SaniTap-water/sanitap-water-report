@@ -5,7 +5,7 @@
   "data": 39,
   "decision": 36,
   "form": 7,
-  "none": 22
+  "none": 23
  },
  "state": {
   "act-2026-recovery": {
@@ -231,7 +231,7 @@
   },
   "act-figure-residue": {
    "evaluated": "2026-09-23",
-   "evidence": "unsourced_figures = 94 (rendered figures with no source of any kind); target == 0",
+   "evidence": "unsourced_figures = 73 (rendered figures with no source of any kind); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no rendered figure is without a source",
@@ -735,6 +735,14 @@
    "kind": "data",
    "satisfied": true,
    "says": "closes when the stroke-test form carries results for the SDWS 23 sample",
+   "when_satisfied": "OK"
+  },
+  "act-sdws26-instrument-review": {
+   "evaluated": "2026-09-23",
+   "evidence": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: closes when the Head of Carbon signs the instrument off, or specifies the additions he wants before round one",
    "when_satisfied": "OK"
   },
   "act-sdws27-basis": {

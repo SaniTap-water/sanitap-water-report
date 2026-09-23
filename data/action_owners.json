@@ -321,6 +321,10 @@
    "deadline": "2026-12-15",
    "owner": "Angelo, tracked by Jan"
   },
+  "act-sdws26-instrument-review": {
+   "deadline": null,
+   "owner": "James Walker"
+  },
   "act-sdws27-basis": {
    "deadline": "2026-10-03",
    "owner": "James Walker"
