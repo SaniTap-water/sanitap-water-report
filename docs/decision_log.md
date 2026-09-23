@@ -561,3 +561,48 @@ it would have silently renamed 127 points.
 
 **The ungenerated backlog is 69 → 43.** Nine parameters are declared in `PARAMS` with citations,
 and the figure residue is 93 → 75.
+
+---
+
+## 2026-09-23 — The sourcing work is closed
+
+**What it changed.** Five published figures — `WPOP_C250`, 727, 723, 628 and `S.wq_tested` — were
+values computed once and frozen, and every one was found by a person noticing. That is now a class
+the build catches rather than five accidents:
+
+* **Every embedded field is accounted for.** 236 fields, each resolving to a generator, a
+  population, or a dated shrink-only backlog. `check_generators.py` fails the build on anything
+  else, on a backlog that grows, or on a population-backed field that stops matching its
+  population.
+* **Every extract is pulled by the build and carries its pull date.** Thirteen of them, including
+  the register, which was outside the pipeline and set an eleven-day vintage floor. The page states
+  the OLDEST pull, never the newest.
+* **A failed pull can no longer look like an empty month.** `call()` returned `[]` for any failure;
+  two pulls of the call-centre form minutes apart returned 2,747 and 2,826 rows because of it.
+* **Withdrawn figures stay withdrawn.** The consistency checks that asserted the carbon tonnages
+  were present now assert they stay absent.
+
+**What remains, and it is meant to remain.**
+
+* **Ungenerated fields: 37.** Five `call_*` fields that reproduce from no rule anyone has found —
+  and no rule was invented to make them fit, which is the whole point; the rest of `S`, `OPENREP`,
+  `WPOP`, and the genuinely hand-maintained `CORR` and the two `WPOPMETA` description fields.
+* **Figure residue: 73.** 58 derivable, 13 deferred by decision, 2 explanatory references to
+  withdrawn figures. The 13 are the people-served figures: capturing them is a change to what
+  `sdws1_population.py` *emits*, not to the model — about half a day — and on 2026-09-23 that was
+  judged not worth it for 14 prose figures. The decision is recorded per figure so it is not
+  re-taken by accident.
+
+**A correction worth keeping.** I reported 29 figures for withdrawal. Thirteen of them were not
+carbon money at all: four census false positives (a CSS `font-size`, a form `_rev`, a question
+count, an identifier fragment), two quoted from the Gold Standard monitoring report, six derivable
+counts, and `20,827`, which is a live product of a population and two quoted per-point values.
+**The real withdrawal was 20.** Withdrawing the other thirteen would have deleted true,
+reproducible facts. The lesson is the one the whole exercise keeps teaching: a classifier that
+matches on value alone is not evidence, and the figures have to be read in context before anything
+is removed.
+
+**The rule from here: a figure gains a source when someone next touches its section, not in a
+dedicated sweep.** Both backlogs are shrink-only and gated, so they cannot quietly grow and cannot
+become permanent exemption lists. Neither needs another campaign. The sweep found what a sweep can
+find; what is left is work that belongs to whoever next edits the prose around it.

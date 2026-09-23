@@ -450,20 +450,42 @@ def report(found, params, manual, verbose=False):
 BACKLOG = os.path.join(REPO, "data", "figure_backlog.json")
 
 
+_prev_doc = None
+
+
 def load_backlog():
+    global _prev_doc
     if not os.path.isfile(BACKLOG):
-        return {"recorded": None, "values": {}}
-    return json.load(open(BACKLOG, encoding="utf8"))
+        _prev_doc = {"recorded": None, "values": {}}
+        return _prev_doc
+    _prev_doc = json.load(open(BACKLOG, encoding="utf8"))
+    return _prev_doc
+
+
+# Annotations a person put on a backlog entry - what it would take to source
+# it, and the decision not to. They are carried forward rather than rebuilt,
+# because the census knows what is unsourced and nothing else: a decision
+# recorded here was lost on the next run before this.
+KEEP = ("disposition", "why", "owner", "note")
 
 
 def write_backlog(allbad, note):
+    prev = (load_backlog().get("values") or {})
+    values = {}
+    for raw, hits in sorted(allbad.items()):
+        v = {"n": len(hits),
+             "scopes": sorted({s for s, _ in hits}),
+             "section": hits[0][1]["section"],
+             "sentence": hits[0][1]["sentence"]}
+        for k in KEEP:
+            if k in (prev.get(raw) or {}):
+                v[k] = prev[raw][k]
+        values[raw] = v
     doc = {"recorded": datetime.date.today().isoformat(),
-           "note": note,
-           "values": {raw: {"n": len(hits),
-                            "scopes": sorted({s for s, _ in hits}),
-                            "section": hits[0][1]["section"],
-                            "sentence": hits[0][1]["sentence"]}
-                      for raw, hits in sorted(allbad.items())}}
+           "note": note, "values": values}
+    for k in ("deferred_note", "disposition_note", "correction_note"):
+        if k in (globals().get("_prev_doc") or {}):
+            doc[k] = _prev_doc[k]
     json.dump(doc, open(BACKLOG, "w", encoding="utf8"),
               indent=1, ensure_ascii=False, sort_keys=True)
     return doc

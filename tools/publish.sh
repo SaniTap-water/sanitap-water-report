@@ -179,6 +179,15 @@ if [ "$RC" -ne 0 ]; then
 fi
 
 say ""
+say "checking WPOPMETA against the allocation run's own summary ..."
+python3 tools/check_wpopmeta.py | tail -4
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: a WPOPMETA field disagrees with the run that produced it."
+  exit 1
+fi
+
+say ""
 say "checking that every embedded figure has a generator ..."
 python3 tools/check_generators.py
 RC=$?

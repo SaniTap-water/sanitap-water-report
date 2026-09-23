@@ -8,3 +8,4 @@
 2026-09-21T15:43:13+00:00  nothing newer: candidate 2026-09-21 (ed 11) is not after published 2026-09-21 (ed 1)
 2026-09-21T16:24:41+00:00  [dry-run] REFUSED and ROLLED BACK to 917cf375: --dry-run: reporting only, nothing published
 2026-09-21T17:00:01+00:00  REFUSED: working tree is not clean, 17 path(s): build/action_owners.xlsx, data/action_conditions.json, data/action_details.json
+2026-09-23T03:00:45+00:00  [dry-run] REFUSED: working tree is not clean, 10 path(s): data/figure_backlog.json, data/ungenerated_fields.json, docs/decision_log.md

@@ -1,49 +1,11 @@
 {
+ "deferred_note": "The people-served figures are deferred, not unexplained. See the per-figure why: capturing them is a change to what sdws1_population.py EMITS, not to the model, and was judged not worth half a day for 14 prose figures on 2026-09-23.",
+ "disposition_note": "D derive from a population or a captured artefact; P declare as a chosen parameter or an external quotation, which is a source class not a computation; W withdraw the sentence. Counted 2026-09-22 before any of it was applied.",
  "note": "Figures rendered on the page that are neither live, nor declared in PARAMS, nor from the dated manual Endur'O file. This list may only shrink. A figure not on it fails the gate.",
- "recorded": "2026-09-22",
+ "recorded": "2026-09-23",
  "values": {
-  "0.1": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Point-of-use water quality (SDWS 22 / 24)",
-   "sentence": "at ICC 0.1 that is 1.4, so a nominal 60 samples gives an effective sample size of about 43.",
-   "disposition": "P",
-   "why": "ICC and design effect are chosen statistical parameters"
-  },
-  "0.14": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gold Standard design review — what is still open",
-   "sentence": "0.14",
-   "disposition": "P",
-   "why": "methodology thresholds quoted from the Gold Standard documents"
-  },
-  "0.19": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gold Standard design review — what is still open",
-   "sentence": "0.0001 – 0.19 mg/L",
-   "disposition": "P",
-   "why": "methodology thresholds quoted from the Gold Standard documents"
-  },
   "1,156": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -53,10 +15,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": ", against 1,156 on the first reader, and can call individual days on",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "NOT carbon money - my first classification was wrong. pages the first reader could read - an extraction artefact figure"
   },
   "1,169": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -66,10 +28,10 @@
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
    "sentence": "others, the most crowded overlaps 59, and 1,169 pairs of pumps in the portfolio stand within 200 m of each other.",
-   "disposition": "D",
    "why": "pairwise distances and overlap counts over the same register coordinates"
   },
   "1,202": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -79,10 +41,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "1,202",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "NOT carbon money - my first classification was wrong. calendar photographs on preventive-maintenance question 2.15.6 - a count"
   },
   "1,209": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -92,10 +54,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "1,209",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "NOT carbon money - my first classification was wrong. days discounted for maintenance, QUOTED from the Gold Standard monitoring report"
   },
   "1,364": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -105,10 +67,10 @@
    ],
    "section": "Register corrections and exclusions",
    "sentence": "Nearest other water point 1,364 m - not a duplicate.",
-   "disposition": "D",
    "why": "distances against located_register_points; four already proven to the metre"
   },
   "1,441": {
+   "disposition": "D-deferred",
    "n": 2,
    "scopes": [
     "all",
@@ -116,62 +78,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "1,441",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
-  },
-  "1.4": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Point-of-use water quality (SDWS 22 / 24)",
-   "sentence": "at ICC 0.1 that is 1.4, so a nominal 60 samples gives an effective sample size of about 43.",
-   "disposition": "P",
-   "why": "ICC and design effect are chosen statistical parameters"
-  },
-  "1.45": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "+1.45 tCO",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
-  },
-  "10,227": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "10,227",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "10,975": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "USD 10,975",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "102,860": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -180,10 +90,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "102,860",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "11.8": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -193,24 +103,10 @@
    ],
    "section": "Maintenance coverage",
    "sentence": "11.8",
-   "disposition": "D",
    "why": "visits per point per year from the preventive-maintenance records"
   },
-  "120,000": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "carbon hand pumps sit in the district where 120,000 improved cookstoves were distributed.",
-   "disposition": "P",
-   "why": "cookstoves distributed: quoted from the Clean Cooking programme"
-  },
   "126,780": {
+   "disposition": "D",
    "n": 7,
    "scopes": [
     "all",
@@ -220,10 +116,10 @@
    ],
    "section": "Marolinta — what has been logged so far",
    "sentence": "126,780",
-   "disposition": "D",
    "why": "from the Marolinta borehole form and the register"
   },
   "13,715,217": {
+   "disposition": "D",
    "n": 9,
    "scopes": [
     "all",
@@ -234,10 +130,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "13,715,217",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "136.9": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -246,10 +142,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "136.9",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "139.5": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -258,37 +154,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "139.5",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
-  },
-  "148,800": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "148,800",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "17,681": {
-   "n": 13,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "17,681",
-   "disposition": "D",
-   "why": "a count of records or points; the action text should read it from a population"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "2,105": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -299,24 +168,10 @@
    ],
    "section": "Where every figure on this page comes from",
    "sentence": "2,105",
-   "disposition": "D",
    "why": "counts over populations already defined"
   },
-  "2,334": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "The previous version of this item asked for 2,334 records to be approved.",
-   "disposition": "W",
-   "why": "a superseded count, quoted from a previous version of the same action"
-  },
   "2,348": {
+   "disposition": "D",
    "n": 8,
    "scopes": [
     "all",
@@ -326,36 +181,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "2,348",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "2,787": {
-   "n": 8,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "2,787",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "2.3": {
-   "n": 7,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "How the people-served figure is built",
-   "sentence": "Capping already removes about half the modelled population in Fort-Dauphin and what remains is still 2.3× the ex ante average.",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "NOT carbon money - my first classification was wrong. calendar photographs held on a managed point - a count, derivable"
   },
   "20,647": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -364,24 +193,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": ", and 20,647 households over the same 636 =",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
-  },
-  "20,697": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "20,697",
-   "disposition": "D",
-   "why": "a count of records or points; the action text should read it from a population"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "20,827": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -392,36 +207,10 @@
    ],
    "section": "Where every figure on this page comes from",
    "sentence": "20,827 tCO",
-   "disposition": "W",
-   "why": "a carbon tonnage: rests on the withdrawn per-year quantification"
-  },
-  "21,200": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "USD 21,200 a year across the 731 carbon points",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "25,121": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "25,121",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "NOT from the withdrawn per-year basis. It is carbon_points (731, derivable) multiplied by the registered per-point emission reductions quoted from the registration document (Anosy 31.3, Maroantsetra 27.9 tCO2e per point per year), computed at render time. It derives; it needs the two per-point values moved into PARAMS and the product made a data-fig span."
   },
   "260": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -431,10 +220,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "260",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
+   "why": "NOT carbon money - my first classification was wrong. census false positive: not a figure in prose"
   },
   "27,459": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -443,23 +232,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "27,459",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
-  },
-  "3,015": {
-   "n": 8,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "3,015",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "3,131": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -470,10 +246,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "(3,131 unapproved): a dispatch record carries no carbon quantity, decided 21 September 2026, so approving one asserts nothing about anything this page",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "3,150": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -483,23 +259,10 @@
    ],
    "section": "Register corrections and exclusions",
    "sentence": "Isolated - 3,150 m from the nearest registered point, so not a duplicate.",
-   "disposition": "D",
    "why": "distances against located_register_points; four already proven to the metre"
   },
-  "3.3": {
-   "n": 8,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Who is counted as served: the annual usage survey",
-   "sentence": "3.3",
-   "disposition": "P",
-   "why": "household size and usage frequency are survey parameters, not counts"
-  },
   "32,378": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -508,10 +271,23 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "32,378",
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
+  },
+  "338": {
    "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "n": 4,
+   "scopes": [
+    "all",
+    "mad",
+    "madx",
+    "mar"
+   ],
+   "section": "Mapping rules: how the 1 km service area is drawn",
+   "sentence": "155 people per pump in Maroantsetra against 338 in Fort-Dauphin.",
+   "why": "people per pump in Fort-Dauphin - derivable from the allocation and the fleet"
   },
   "347.1": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -521,10 +297,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "347.1",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "347.2": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -534,10 +310,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "347.2",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "347.4": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -547,10 +323,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "347.4",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "347.9": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -560,10 +336,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "347.9",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "349.9": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -573,10 +349,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "349.9",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "352.3": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -586,23 +362,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "352.3",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
-  "353,600": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "353,600",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
   "353.3": {
+   "disposition": "D",
    "n": 12,
    "scopes": [
     "all",
@@ -612,10 +375,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "353.3",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "353.4": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -625,10 +388,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "of 353.0 days, against 353.4 for the fleet",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "353.6": {
+   "disposition": "D",
    "n": 16,
    "scopes": [
     "all",
@@ -638,24 +401,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "353.6",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
-  "354,000": {
-   "n": 9,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "354,000",
-   "disposition": "D",
-   "why": "a count of records or points; the action text should read it from a population"
-  },
   "356.7": {
+   "disposition": "D",
    "n": 8,
    "scopes": [
     "all",
@@ -665,10 +414,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "356.7",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "356.8": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -678,10 +427,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "356.8",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "357.3": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -691,10 +440,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "357.3",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "357.8": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -704,10 +453,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "357.8",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "358.6": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -717,10 +466,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "358.6",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "358.7": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -730,10 +479,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "358.7",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "360.7": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -743,10 +492,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "360.7",
-   "disposition": "D",
    "why": "days operational per point-year, from the calendar extraction and the 347-day cap"
   },
   "37.7": {
+   "disposition": "D-deferred",
    "n": 6,
    "scopes": [
     "all",
@@ -755,10 +504,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "139.6 ÷ 4.5 = 31.0 for Anosy, 139.6 ÷ 3.7 = 37.7 for Maroantsetra, entered as 37.",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "391": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -768,37 +517,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "391.",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
-  },
-  "4,500": {
-   "n": 5,
-   "scopes": [
-    "all",
-    "enduro",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Actions — the one list",
-   "sentence": "and 4,500 for a new borehole, and",
-   "disposition": "P",
-   "why": "a unit cost, chosen not measured"
-  },
-  "4.1": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Who is counted as served: the annual usage survey",
-   "sentence": "4.1",
-   "disposition": "P",
-   "why": "household size and usage frequency are survey parameters, not counts"
+   "why": "NOT carbon money - my first classification was wrong. census false positive: a form _rev, not a figure"
   },
   "4.8": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -808,10 +530,10 @@
    ],
    "section": "Maintenance coverage",
    "sentence": "4.8",
-   "disposition": "D",
    "why": "visits per point per year from the preventive-maintenance records"
   },
   "4.9": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -821,10 +543,10 @@
    ],
    "section": "Maintenance coverage",
    "sentence": "4.9",
-   "disposition": "D",
    "why": "visits per point per year from the preventive-maintenance records"
   },
   "40,962": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -833,10 +555,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "40,962",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "415": {
+   "disposition": "D",
    "n": 12,
    "scopes": [
     "all",
@@ -846,21 +568,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "415",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
-  },
-  "431": {
-   "n": 2,
-   "scopes": [
-    "all",
-    "mad"
-   ],
-   "section": "Time out of service",
-   "sentence": "That figure is not reproducible from the two repair sources: the retired form holds 431 repair records and the live repair form 214, which is 645 naiv",
-   "disposition": "W",
-   "why": "the residue of the withdrawn 628 explanation"
+   "why": "NOT carbon money - my first classification was wrong. point-years the day-call average is taken over - a count, derivable from the calendar extraction"
   },
   "446": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -870,10 +581,22 @@
    ],
    "section": "Register corrections and exclusions",
    "sentence": "Nearest other point 446 m - not a duplicate.",
-   "disposition": "D",
    "why": "distances against located_register_points; four already proven to the metre"
   },
+  "449": {
+   "disposition": "D",
+   "n": 3,
+   "scopes": [
+    "all",
+    "mad",
+    "madx"
+   ],
+   "section": "All pumps without a visit for more than 6 months",
+   "sentence": "449 pumps",
+   "why": "pumps without a visit for more than six months - derivable from PUMPS.days"
+  },
   "471": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -883,36 +606,10 @@
    ],
    "section": "Register corrections and exclusions",
    "sentence": "471 m from 742894916, a working India Mark in Ranopiso.",
-   "disposition": "D",
    "why": "distances against located_register_points; four already proven to the metre"
   },
-  "5,423": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "USD 5,423",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "502,000": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "502,000",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
   "6.2": {
+   "disposition": "D",
    "n": 2,
    "scopes": [
     "all",
@@ -920,10 +617,24 @@
    ],
    "section": "Preventive-maintenance schedule (6-monthly)",
    "sentence": "6.2",
-   "disposition": "D",
    "why": "visit intervals from the same records"
   },
+  "606": {
+   "disposition": "D",
+   "n": 7,
+   "scopes": [
+    "all",
+    "enduro",
+    "mad",
+    "madx",
+    "mar"
+   ],
+   "section": "What every figure is over",
+   "sentence": "The stored ttr_n of 606 reproduces from no rule; the measurable set is 617.",
+   "why": "the withdrawn ttr_n, named in the withdrawal log"
+  },
   "615": {
+   "disposition": "D-deferred",
    "n": 7,
    "scopes": [
     "all",
@@ -933,10 +644,24 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "615",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
-  "628": {
+  "617": {
+   "disposition": "D",
+   "n": 9,
+   "scopes": [
+    "all",
+    "enduro",
+    "mad",
+    "madx",
+    "mar"
+   ],
+   "section": "What every figure is over",
+   "sentence": "the measurable set is 617.",
+   "why": "derives: population repairs_time_measured"
+  },
+  "620": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -945,11 +670,25 @@
     "madx"
    ],
    "section": "Carbon file — Gold Standard programme of activities ",
-   "sentence": "Breakdown log: 628 repairs since Aug 2024, median 2 days down; 21 events >30 days.",
-   "disposition": "W",
-   "why": "withdrawn 2026-09-22"
+   "sentence": "the derivable figure is 620 repairs, 617 of them timed.",
+   "why": "derives: population repairs_since_aug_2024"
+  },
+  "628": {
+   "disposition": "W-done",
+   "n": 15,
+   "scopes": [
+    "all",
+    "enduro",
+    "mad",
+    "madx",
+    "mar"
+   ],
+   "section": "What every figure is over",
+   "sentence": "628 could not be reproduced from anything held, so the rule was written down and the number allowed to follow it.",
+   "why": "withdrawn 2026-09-22; the remaining occurrences are the withdrawal log explaining why"
   },
   "654": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -960,10 +699,10 @@
    ],
    "section": "Where every figure on this page comes from",
    "sentence": "773 water points have a rehabilitation record to open, 654 have a visit record and 729 have a water-quality result.",
-   "disposition": "D",
    "why": "counts over populations already defined"
   },
   "658": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -972,10 +711,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "The exclusion is also highly concentrated: every one of the thirty largest cases is in Maroantsetra, Fort-Dauphin loses 658 people across 10 points an",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "691": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -986,10 +725,10 @@
    ],
    "section": "Where every figure on this page comes from",
    "sentence": "691",
-   "disposition": "D",
    "why": "counts over populations already defined"
   },
   "7,370": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -999,24 +738,11 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "7,370",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
-  },
-  "7,440": {
-   "n": 4,
-   "scopes": [
-    "all",
-    "mad",
-    "madx",
-    "mar"
-   ],
-   "section": "Gardien calendars — the days-not-operational record",
-   "sentence": "7,440",
-   "disposition": "W",
-   "why": "a tonnage or a cash total downstream of the withdrawn per-year carbon basis"
+   "why": "NOT carbon money - my first classification was wrong. days discounted for unit transfer, QUOTED from the same report"
   },
   "722": {
-   "n": 12,
+   "disposition": "D",
+   "n": 8,
    "scopes": [
     "all",
     "mad",
@@ -1025,10 +751,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "722",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
+   "why": "NOT carbon money - my first classification was wrong. carbon points active in 2025 - a count of points, derivable"
   },
   "727": {
+   "disposition": "W-done",
    "n": 5,
    "scopes": [
     "all",
@@ -1039,10 +765,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "Note the denominator elsewhere on this page changed from 727 to the derivable",
-   "disposition": "W",
-   "why": "the withdrawn denominator, named in an action note"
+   "why": "withdrawn 2026-09-22; the remaining occurrence explains the denominator change"
   },
   "732": {
+   "disposition": "D",
    "n": 30,
    "scopes": [
     "all",
@@ -1053,10 +779,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "732",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "741": {
+   "disposition": "D",
    "n": 9,
    "scopes": [
     "all",
@@ -1067,10 +793,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "741",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "750": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1080,10 +806,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "750",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
+   "why": "NOT carbon money - my first classification was wrong. census false positive: a question count in the form snapshot"
   },
   "755": {
+   "disposition": "D",
    "n": 5,
    "scopes": [
     "all",
@@ -1094,10 +820,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "all 755",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "795": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1107,10 +833,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "795",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
+   "why": "NOT carbon money - my first classification was wrong. census false positive: part of a water-point identifier"
   },
   "8,579": {
+   "disposition": "D",
    "n": 9,
    "scopes": [
     "all",
@@ -1121,10 +847,10 @@
    ],
    "section": "Actions — the one list",
    "sentence": "8,579",
-   "disposition": "D",
    "why": "a count of records or points; the action text should read it from a population"
   },
   "800": {
+   "disposition": "D",
    "n": 16,
    "scopes": [
     "all",
@@ -1135,10 +861,10 @@
    ],
    "section": "What every figure is over",
    "sentence": "The ex-ante households-per-CWS figure on the 1,000-point build-out weighting (200 Anosy, 800 Maroantsetra) rather than the blended national household ",
-   "disposition": "D",
    "why": "a count over records held"
   },
   "827": {
+   "disposition": "D",
    "n": 8,
    "scopes": [
     "all",
@@ -1148,10 +874,10 @@
    ],
    "section": "Register corrections and exclusions",
    "sentence": "Nearest other point 827 m (742895357, also dormant).",
-   "disposition": "D",
    "why": "distances against located_register_points; four already proven to the metre"
   },
   "844": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1161,10 +887,10 @@
    ],
    "section": "Gardien calendars — the days-not-operational record",
    "sentence": "844",
-   "disposition": "W",
-   "why": "carbon arithmetic on the withdrawn per-year basis"
+   "why": "NOT carbon money - my first classification was wrong. calendar photographs on preventive-maintenance question 2.15.5 - a count"
   },
   "85,818": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -1173,10 +899,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "85,818",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "88,454": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1186,10 +912,10 @@
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
    "sentence": "88,454",
-   "disposition": "D",
    "why": "pairwise distances and overlap counts over the same register coordinates"
   },
   "88,783": {
+   "disposition": "D-deferred",
    "n": 3,
    "scopes": [
     "all",
@@ -1198,10 +924,10 @@
    ],
    "section": "How the people-served figure is built",
    "sentence": "88,783",
-   "disposition": "D",
-   "why": "from the WorldPop allocation run, once that run's outputs are captured as an artefact the repo holds"
+   "why": "derivable, but NOT captured and deliberately not pursued. The WorldPop allocation run does not emit these as named quantities and no retained output holds them: the run summary and the per-point CSV reproduce the run's own totals (1,343,882 allocated before overlap split, 166,372 after, 128,221 after the cap) and none of these. Capturing them means adding named fields to the summary dict in sdws1_population.py and re-running - about half a day, and the model does not change; the arithmetic currently living in prose has to move into the script. Decided 2026-09-23 not to do it for 14 prose figures. Recorded so the decision is not re-taken by accident."
   },
   "91,067": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1211,10 +937,10 @@
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
    "sentence": "91,067",
-   "disposition": "D",
    "why": "pairwise distances and overlap counts over the same register coordinates"
   },
   "91,957": {
+   "disposition": "D",
    "n": 4,
    "scopes": [
     "all",
@@ -1224,9 +950,8 @@
    ],
    "section": "Mapping rules: how the 1 km service area is drawn",
    "sentence": "91,957",
-   "disposition": "D",
    "why": "pairwise distances and overlap counts over the same register coordinates"
   }
  },
- "disposition_note": "D derive from a population or a captured artefact; P declare as a chosen parameter or an external quotation, which is a source class not a computation; W withdraw the sentence. Counted 2026-09-22 before any of it was applied."
+ "correction_note": "2026-09-23: thirteen figures were classified W (withdraw) by a crude first pass that matched on value alone. They are not carbon money - four are census false positives (a form _rev, a question count, an identifier fragment), two are quoted from the Gold Standard monitoring report, six are derivable counts, and 20,827 is a live product of a population and two quoted per-point values. Withdrawing them would have deleted true facts. Corrected before anything was removed."
 }

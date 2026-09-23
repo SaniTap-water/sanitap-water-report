@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 43,
+ "count": 37,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -361,67 +361,7 @@
    "found": "2026-09-22",
    "action": null,
    "group": "C-hand-maintained",
-   "how": "the per-pump-type service ceilings, a chosen parameter"
-  },
-  {
-   "field": "WPOPMETA.points_at_the_cap",
-   "value": "84",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "the same"
-  },
-  {
-   "field": "WPOPMETA.points_cut_over_10pct",
-   "value": "122",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "the same"
-  },
-  {
-   "field": "WPOPMETA.points_with_a_barrier",
-   "value": "627",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "a result of the external allocation run"
-  },
-  {
-   "field": "WPOPMETA.raster",
-   "value": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "the pinned raster filename for an external run"
-  },
-  {
-   "field": "WPOPMETA.raster_national_sum",
-   "value": "32351522",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "that raster's national total, a property of the file"
-  },
-  {
-   "field": "WPOPMETA.rows",
-   "value": "736",
-   "object": "WPOPMETA",
-   "why": "the WorldPop run's own metadata, written by hand after each run",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "C-hand-maintained",
-   "how": "points in the run"
+   "how": "restates the declared parameters im_cap and cz_cap; it is not a run output and not a measurement"
   },
   {
    "field": "WPOPMETA.source",
@@ -431,7 +371,7 @@
    "found": "2026-09-22",
    "action": null,
    "group": "C-hand-maintained",
-   "how": "the WorldPop release the run used"
+   "how": "a written description of the method, fuller than the run's own raster_status; prose, not a computed field"
   }
  ],
  "groups": {

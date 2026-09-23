@@ -17,6 +17,13 @@ Anything absent from all three is unregistered and the gate fails.
 """
 
 GENERATED = {
+    'WPOPMETA.points_at_the_cap': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.points_cut_over_10pct': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.points_with_a_barrier': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.raster': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.raster_national_sum': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.rows': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+
     'PARTIAL.[].kind_basis': 'build_call_tables',
     'DOWN.[].commune': 'rebuild_summary',
     'DOWN.[].fkt': 'rebuild_summary',
