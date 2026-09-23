@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 37,
+ "count": 49,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -372,11 +372,144 @@
    "action": null,
    "group": "C-hand-maintained",
    "how": "a written description of the method, fuller than the run's own raster_status; prose, not a computed field"
+  },
+  {
+   "field": "REG.dashboard",
+   "value": "751",
+   "object": "REG",
+   "why": "the MadAvance dashboard's own count, read off the dashboard; not in any extract",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.dashboard_fdmar",
+   "value": "738",
+   "object": "REG",
+   "why": "the same dashboard, Maroantsetra and Fort-Dauphin; not in any extract (act-dashboard-gap)",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.register_classified",
+   "value": "790",
+   "object": "REG",
+   "why": "register records classified against the fleet by hand in the reconciliation; no rule written down",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.register_unclassified",
+   "value": "118",
+   "object": "REG",
+   "why": "the unclassified remainder of that reconciliation; no rule written down",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.recon",
+   "value": "list[16]",
+   "object": "REG",
+   "why": "the sixteen-point reconciliation table, assembled by hand",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.missing_from_register",
+   "value": "list[1]",
+   "object": "REG",
+   "why": "a point found missing from the register during reconciliation, by hand",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.retired",
+   "value": "list[5]",
+   "object": "REG",
+   "why": "functionality reports marking points retired, copied from a form this build does not pull",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.func_report_counts",
+   "value": "{Functional, …}",
+   "object": "REG",
+   "why": "counts over the functionality-report form, which this build does not pull",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.func_reports_n",
+   "value": "28",
+   "object": "REG",
+   "why": "the number of those reports, same",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.marolinta",
+   "value": "list[13]",
+   "object": "REG",
+   "why": "the Marolinta works rows; data/marolinta_works.json carries the same records, but nothing writes this copy",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.marolinta_noadmin",
+   "value": "{1052525198, …}",
+   "object": "REG",
+   "why": "Marolinta records without administrative fields; nothing writes this copy",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "neither",
+   "how": "derivable from no population in reach"
+  },
+  {
+   "field": "REG.succ_withdrawn",
+   "value": "723",
+   "object": "REG",
+   "why": "the withdrawn value, kept so the withdrawal is on the record (WITHDRAWN.succ_723); a declared constant, never live",
+   "found": "2026-09-23",
+   "action": null,
+   "group": "D-register-block",
+   "class": "declared",
+   "how": "declared, with its citation"
   }
  ],
  "groups": {
   "A-have-population": "a population already defined would produce it",
   "B-need-population": "reproducible, but a population must be defined first",
   "C-hand-maintained": "hand-maintained by design; a generator would be wrong"
- }
+ },
+ "register_block_note": "2026-09-23: REG became visible to the generator audit (it was declared mid-line, after COAST, where the audit's line-start match could not see it). Of its 21 fields, 9 are populations and are written each build by tools/sync_reg_populations.py; the other 12 were added here as group D, dated. The count rose once, from 37 to 49, to record them; from here it may only shrink."
 }

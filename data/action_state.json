@@ -489,7 +489,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-09-23",
-   "evidence": "unapproved_works_records = 47 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 48 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
@@ -602,7 +602,7 @@
   },
   "act-read-district-commune-water": {
    "evaluated": "2026-09-23",
-   "evidence": "register_chain_unresolved = 118 (register records still unclassified against the maintained fleet); target == 0",
+   "evidence": "register_chain_unresolved = 119 (register records still unclassified against the maintained fleet); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every register record is classified against the maintained fleet",

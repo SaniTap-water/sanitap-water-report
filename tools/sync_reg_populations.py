@@ -17,9 +17,17 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 PAGE = os.path.join(REPO, "index.html")
 
+# REG field -> the population whose size it is. Every other REG field is on
+# the dated ungenerated backlog (data/ungenerated_fields.json).
 FIELDS = {"succ": "rehabilitated_successfully",
           "succ_records": "successful_first_rehabilitation_records",
-          "total_first_rehab": "first_rehabilitation_records"}
+          "total_first_rehab": "first_rehabilitation_records",
+          "final_records": "first_rehabilitation_records_final",
+          "fail": "first_rehab_recorded_unsuccessful",
+          "blank": "first_rehab_success_blank",
+          "register_total": "register_records",
+          "marolinta_new": "marolinta_new_constructions",
+          "marolinta_rehab": "marolinta_rehabilitations"}
 
 
 def main():

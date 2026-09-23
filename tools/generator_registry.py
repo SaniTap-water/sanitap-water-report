@@ -227,6 +227,16 @@ GENERATED = {
 
 POPULATION = {
     'S.n': 'managed_fleet',
+    # the register block: written each build by tools/sync_reg_populations.py
+    'REG.succ': 'rehabilitated_successfully',
+    'REG.succ_records': 'successful_first_rehabilitation_records',
+    'REG.total_first_rehab': 'first_rehabilitation_records',
+    'REG.final_records': 'first_rehabilitation_records_final',
+    'REG.fail': 'first_rehab_recorded_unsuccessful',
+    'REG.blank': 'first_rehab_success_blank',
+    'REG.register_total': 'register_records',
+    'REG.marolinta_new': 'marolinta_new_constructions',
+    'REG.marolinta_rehab': 'marolinta_rehabilitations',
     'S.wq_tested': 'water_quality_tested',
 }
 

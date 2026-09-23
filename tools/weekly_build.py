@@ -98,6 +98,38 @@ def log(line):
     print(line)
 
 
+def said(sentence):
+    """The one plain sentence tools/weekly_build.sh writes as the run's last
+    log line ("OUTCOME: ..."), for the Monday watchdog to quote."""
+    os.makedirs(os.path.dirname(LOG), exist_ok=True)
+    io.open(os.path.join(os.path.dirname(LOG), "last_outcome.txt"), "w",
+            encoding="utf8").write(sentence.rstrip(".") + ".")
+
+
+def plain_refusal(lines):
+    """Why publish.sh stopped, as one sentence: its ABORT line, plus the first
+    specific item it names (a failing check, or the figure with no source)."""
+    if any("git push FAILED" in l for l in lines):
+        return ("the edition passed every gate and was committed, but GitHub "
+                "refused the push, so the commit was rolled back")
+    abort = next((l for l in lines if l.startswith("ABORT")), None)
+    why = (abort.split(":", 1)[1].strip().rstrip(".") if abort
+           else (lines[-1] if lines else "it gave no reason"))
+    detail = next((l.split("FAIL")[0].strip() for l in lines if "FAIL !" in l), None)
+    if not detail:
+        # the figure gates name the value and the section on an indented line
+        for i, l in enumerate(lines):
+            if "GATE FAILED" in l:
+                vals = [x.strip() for x in lines[i + 1:i + 6]
+                        if x.strip() and not x.strip().startswith(("Each", "Make"))]
+                detail = vals[0] if vals else None
+                break
+    why = re.sub(r"\s*\(exit \d+\)", "", why)
+    detail = re.sub(r"\s+", " ", detail) if detail else detail
+    return f"publish.sh refused the edition because {why}" + (
+        f" (first: {detail})" if detail else "")
+
+
 def run(cmd, **kw):
     env = dict(os.environ, PLAYWRIGHT_BROWSERS_PATH=PW)
     return subprocess.run(cmd, cwd=REPO, capture_output=True, text=True,
@@ -151,7 +183,7 @@ def publish_sh(dry, msg):
         why = next((l for l in lines if l.startswith("ABORT") or "FAILED" in l),
                    lines[-1] if lines else "no output")
         fails = [l.split("FAIL")[0].strip() for l in lines if "FAIL !" in l][:4]
-        return False, why + (" | " + "; ".join(fails) if fails else ""), tally
+        return False, plain_refusal(lines), tally
     return True, (lines[-1] if lines else ""), tally
 
 
@@ -172,6 +204,8 @@ def main():
     if dirty:
         log(f"{tag}REFUSED: working tree is not clean, {len(dirty)} path(s): "
             + ", ".join(l[3:] for l in dirty[:3]))
+        said("Not published: the working tree had uncommitted changes ("
+             + ", ".join(l[3:] for l in dirty[:3]) + "), so nothing was built")
         return 1
     # The scheduled retries exist for a machine that was off, not to republish
     # every two hours. Once today's edition is out a retry does nothing - unless
@@ -182,13 +216,17 @@ def main():
     issued, _ = masthead_of(os.path.join(REPO, "index.html"))
     if issued == today and not (requested or dry or "--force" in argv):
         log(f"already built today: the published edition is issued {issued}")
+        said(f"Nothing to do: today's edition ({issued}) is already published "
+             "and no update was asked for")
         return 0
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
 
-    def rollback(why):
+    def rollback(why, sentence=None):
         run(["git", "reset", "--hard", head])
         run(["git", "clean", "-fd", "editions", "data"])
         log(f"{tag}REFUSED and ROLLED BACK to {head[:8]}: {why}")
+        if sentence:
+            said(sentence)
 
     try:
         failures = []
@@ -212,7 +250,8 @@ def main():
         d, wk_ed = masthead_of(os.path.join(REPO, "index.html"))
         built_rec = newest_record(os.path.join(REPO, "index.html"))
     except Exception as e:                                     # noqa: BLE001
-        rollback(str(e))
+        rollback(str(e), ("Dry run failed" if dry else "Not published")
+                 + f": the build step {e}, so the tree was rolled back")
         return 1
 
     # A Downloads candidate is still considered, and preferred only when its
@@ -251,7 +290,8 @@ def main():
            f"Data to {built_rec}.{nonfatal}")
     ok, why, tally = publish_sh(dry, msg)
     if not ok:
-        rollback("publish.sh refused: " + why)
+        rollback("publish.sh refused: " + why,
+                 ("Dry run failed" if dry else "Not published") + ": " + why)
         return 1
     log(f"{tag}built week {wk} edition {ed}, issued {d}, data to {built_rec}; "
         f"every publish.sh gate passed ({tally}).{nonfatal}")
@@ -297,6 +337,9 @@ def main():
         else:
             log(f"{tag}no figure differs from what is live")
         rollback("--dry-run: stopped before commit and push, nothing published")
+        said(f"Dry run passed: week {wk} edition {ed} was built from data to "
+             f"{built_rec}, every publish.sh gate passed ({tally}), and it "
+             "stopped before commit and push as asked")
         return 0
 
     sha = run(["git", "rev-parse", "HEAD"]).stdout.strip()[:8]
@@ -306,6 +349,7 @@ def main():
                             "-L", "--max-time", "30", u], capture_output=True, text=True)
         if r.stdout.strip() != "200":
             bad_urls.append(f"{u} -> {r.stdout.strip() or 'no response'}")
+    said(f"Published week {wk} edition {ed}, issued {d}, as commit {sha}")
     log(f"PUBLISHED week {wk} edition {ed} as {sha}"
         + (f"; live check: {'; '.join(bad_urls)} (Pages can lag)" if bad_urls
            else "; live URLs returned 200"))

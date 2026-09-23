@@ -1,21 +1,91 @@
 #!/usr/bin/env bash
 # What the Windows scheduled task runs on Mondays, and what the desktop
 # shortcut "Update water report now" starts on demand. The full edition is
-# built here; tools/publish.sh gates and publishes it. The cloud session is
-# only a watchdog.
+# built here; tools/publish.sh gates and publishes it.
 #
 #   tools/weekly_build.sh             # build, gate, publish
 #   tools/weekly_build.sh --dry-run   # build, run every gate, stop before
 #                                     # commit and push, roll back
-set -uo pipefail
-cd /home/bushp/sanitap-water-report || exit 1
-export PLAYWRIGHT_BROWSERS_PATH=/home/bushp/.cache/ms-playwright
-/home/bushp/sdws1/venv/bin/python tools/weekly_build.py "$@"
-rc=$?
-# If the local build did nothing, a candidate may still be waiting in Downloads
-# from a stretch when this machine was unavailable. It publishes through
-# publish.sh too, and a dry run stays a dry run.
-dry=""
-for a in "$@"; do [ "$a" = "--dry-run" ] && dry="--dry-run"; done
-[ "$rc" -eq 0 ] && /home/bushp/sdws1/venv/bin/python tools/publish_waiting.py $dry
-exit $rc
+#
+# IT RUNS IN ITS OWN CLONE, ~/sanitap-water-report-build. The scheduled run on
+# 21 September refused to build because the working tree was dirty: the task
+# shared ~/sanitap-water-report with interactive sessions, so anyone's
+# uncommitted work stopped the Monday edition. The build clone is never
+# worked in. Every run starts by fetching and resetting it to origin/main, so
+# it builds from what is published and from nothing else. Run from any other
+# clone, this script hands over to the build clone.
+#
+# The last line of logs/publisher.log in the build clone is always one plain
+# sentence starting "OUTCOME:", so the Monday watchdog can quote why a run did
+# or did not publish.
+#
+# Everything is inside main(), so bash has read the whole file before the
+# reset below replaces it on disk.
+main() {
+  set -uo pipefail
+  local here build log py
+  here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  build=/home/bushp/sanitap-water-report-build
+  py=/home/bushp/sdws1/venv/bin/python
+  export PLAYWRIGHT_BROWSERS_PATH=/home/bushp/.cache/ms-playwright
+  # wsl.exe from Task Scheduler starts a non-login shell, so ~/.local/bin -
+  # where node lives - is not on PATH, and every extract pull failed with
+  # "No such file or directory: 'node'". Found by the rehearsal of 23 September.
+  export PATH="/home/bushp/.local/bin:$PATH"
+
+  if [ "$here" != "$build" ]; then
+    if [ ! -x "$build/tools/weekly_build.sh" ]; then
+      echo "OUTCOME: nothing was built, because the build clone $build does not exist."
+      return 1
+    fi
+    exec bash "$build/tools/weekly_build.sh" "$@"
+  fi
+
+  cd "$build" || return 1
+  log="$build/logs/publisher.log"
+  outcome() {   # the one sentence the watchdog quotes, always the last line
+    mkdir -p "$build/logs"
+    printf '%s  OUTCOME: %s\n' "$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" "$1" >> "$log"
+    echo "OUTCOME: $1"
+  }
+
+  if [ -z "${SANITAP_SYNCED:-}" ]; then
+    # Keep this clone's own log lines: a refused run is never pushed, so its
+    # reason exists only here and the reset below would otherwise erase it.
+    local keep="$build/logs/.publisher.local"
+    [ -f "$log" ] && cp "$log" "$keep"
+    local from="${SANITAP_BUILD_FROM:-origin}" branch="${SANITAP_BUILD_BRANCH:-main}"
+    if ! git fetch -q "$from" "$branch"; then
+      outcome "Not published: the build could not fetch $from/$branch from GitHub, so nothing was built."
+      return 1
+    fi
+    if ! git reset -q --hard "$from/$branch" || ! git clean -qfd; then
+      outcome "Not published: the build clone could not be reset to $from/$branch, so nothing was built."
+      return 1
+    fi
+    if [ -f "$keep" ]; then
+      # published lines first, then any local line the published log lacks
+      grep -vxF -f "$log" "$keep" >> "$log" 2>/dev/null
+      rm -f "$keep"
+    fi
+    SANITAP_SYNCED=1 exec bash "$build/tools/weekly_build.sh" "$@"
+  fi
+
+  rm -f "$build/logs/last_outcome.txt"
+  "$py" tools/weekly_build.py "$@"
+  local rc=$?
+  # If the local build did nothing, a candidate may still be waiting in
+  # Downloads from a stretch when this machine was unavailable. It publishes
+  # through publish.sh too, and a dry run stays a dry run.
+  local dry="" a
+  for a in "$@"; do [ "$a" = "--dry-run" ] && dry="--dry-run"; done
+  [ "$rc" -eq 0 ] && "$py" tools/publish_waiting.py $dry
+  if [ -s "$build/logs/last_outcome.txt" ]; then
+    outcome "$(cat "$build/logs/last_outcome.txt")"
+  else
+    outcome "Not published: tools/weekly_build.py stopped (exit $rc) without saying why; see the lines above."
+  fi
+  return $rc
+}
+main "$@"
+exit $?

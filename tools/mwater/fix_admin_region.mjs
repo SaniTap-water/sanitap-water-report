@@ -18,7 +18,7 @@ const NINE = ["698771103","698771110","698771244","698771251","699596004",
               "699596114","742897074","742897115","742897232"];
 const WRITE = process.argv.includes("--write");
 const ONLY = process.argv.slice(2).filter(a => /^\d{9}$/.test(a));
-const LOG = "/home/bushp/sanitap-water-report/data/register_write_log.json";
+const LOG = new URL("../../data/register_write_log.json", import.meta.url).pathname;
 
 const hav = (a, b) => {
   const R = 6371000, r = Math.PI / 180;

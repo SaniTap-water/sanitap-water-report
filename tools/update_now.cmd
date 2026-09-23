@@ -6,7 +6,8 @@ rem this only starts it. See CONTRIBUTING.md, "Updating mid-week".
 title Update water report now
 cd /d "%USERPROFILE%"
 set TASK=SaniTapWeeklyPublish
-set REPO=/home/bushp/sanitap-water-report
+rem The build has its own clone; it resets itself to origin/main every run.
+set REPO=/home/bushp/sanitap-water-report-build
 
 schtasks /query /tn %TASK% /fo LIST | findstr /c:"Status:" | findstr /c:"Running" >nul
 if not errorlevel 1 (

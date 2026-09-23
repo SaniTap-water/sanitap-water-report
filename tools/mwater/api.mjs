@@ -6,7 +6,7 @@ import path from "node:path";
 
 const ENV = "/home/bushp/mwater-mcp/.env";
 const API = "https://api.mwater.co/v3";
-export const BACKUP = "/home/bushp/sanitap-water-report/data/mwater_backups";
+export const BACKUP = path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "data", "mwater_backups");
 
 function creds() {
   const t = fs.readFileSync(ENV, "utf8");

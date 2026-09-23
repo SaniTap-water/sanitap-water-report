@@ -854,6 +854,89 @@ def first_rehab_out_of_order_photographed():
             and _answer(r, Q_OUT_PHOTOS)}
 
 
+F_MAR_DEPLOY = "2b408dd532e944ad91c0bb77cd6ad576"   # the Marolinta deployment of F_MAR
+Q_MAR_TYPE = "660d59b922d843b1a6f51676ad2ccd14"
+C_MAR_NEW, C_MAR_REHAB = "xl1VJVT", "TFTjqNm"
+
+
+@population(
+    name="Final first-rehabilitation records",
+    unit="records",
+    rule="First-rehabilitation records on the retired combined form whose "
+         "status is final.",
+    reads=[("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            'question "Type de travaux" = "Première réhabilitation", status final')],
+    decided="A draft or rejected record is not a rehabilitation on file.",
+    decided_on="2026-09-23",
+    derives_from=["first_rehabilitation_records"])
+def first_rehabilitation_records_final():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB and r.get("status") == "final"}
+
+
+@population(
+    name="First rehabilitations recorded as not successful",
+    unit="records",
+    rule="First-rehabilitation records answering No to \u201cVérifier : la "
+         "réparation ou la maintenance a réussi ?\u201d.",
+    reads=[("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            "the success question, choice No")],
+    decided="Recorded outcome, as entered.",
+    decided_on="2026-09-23",
+    derives_from=["first_rehabilitation_records"])
+def first_rehab_recorded_unsuccessful():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB and _answer(r, Q_SUCCESS) == C_NO}
+
+
+@population(
+    name="First rehabilitations with the success field blank",
+    unit="records",
+    rule="First-rehabilitation records that leave the success question "
+         "unanswered.",
+    reads=[("Clean Water || ... (retired combined form)", F_RETIRED_COMBINED,
+            "the success question, no answer")],
+    decided="A blank is neither success nor failure and is counted apart.",
+    decided_on="2026-09-23",
+    derives_from=["first_rehabilitation_records"])
+def first_rehab_success_blank():
+    return {r["_id"] for r in _combined()
+            if _answer(r, Q_TYPE) == C_FIRST_REHAB
+            and _answer(r, Q_SUCCESS) not in (C_YES, C_NO)}
+
+
+@population(
+    name="Marolinta new constructions",
+    unit="records",
+    rule="Final records on the Marolinta deployment of the borehole-progress "
+         "form whose works type is Nouvelle construction.",
+    reads=[("Clean Water || Suivi avancement nouveau forage et réhabilitation",
+            F_MAR, "Marolinta deployment, works type Nouvelle construction")],
+    decided="The Moramanga deployment of the same form is counted apart.",
+    decided_on="2026-09-23",
+    derives_from=["marolinta_works_records"])
+def marolinta_new_constructions():
+    return {r["_id"] for r in _borehole()
+            if r.get("deployment") == F_MAR_DEPLOY and r.get("status") == "final"
+            and _answer(r, Q_MAR_TYPE) == C_MAR_NEW}
+
+
+@population(
+    name="Marolinta rehabilitations",
+    unit="records",
+    rule="Final records on the Marolinta deployment of the borehole-progress "
+         "form whose works type is Réhabilitation.",
+    reads=[("Clean Water || Suivi avancement nouveau forage et réhabilitation",
+            F_MAR, "Marolinta deployment, works type Réhabilitation")],
+    decided="The Moramanga deployment of the same form is counted apart.",
+    decided_on="2026-09-23",
+    derives_from=["marolinta_works_records"])
+def marolinta_rehabilitations():
+    return {r["_id"] for r in _borehole()
+            if r.get("deployment") == F_MAR_DEPLOY and r.get("status") == "final"
+            and _answer(r, Q_MAR_TYPE) == C_MAR_REHAB}
+
+
 BY_ID = None
 
 

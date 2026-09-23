@@ -172,6 +172,44 @@
    "size": 693,
    "unit": "records"
   },
+  "first_rehab_recorded_unsuccessful": {
+   "decided": "Recorded outcome, as entered.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "first_rehabilitation_records"
+   ],
+   "id": "first_rehab_recorded_unsuccessful",
+   "name": "First rehabilitations recorded as not successful",
+   "reads": [
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "the success question, choice No"
+    ]
+   ],
+   "rule": "First-rehabilitation records answering No to “Vérifier : la réparation ou la maintenance a réussi ?”.",
+   "size": 38,
+   "unit": "records"
+  },
+  "first_rehab_success_blank": {
+   "decided": "A blank is neither success nor failure and is counted apart.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "first_rehabilitation_records"
+   ],
+   "id": "first_rehab_success_blank",
+   "name": "First rehabilitations with the success field blank",
+   "reads": [
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "the success question, no answer"
+    ]
+   ],
+   "rule": "First-rehabilitation records that leave the success question unanswered.",
+   "size": 4,
+   "unit": "records"
+  },
   "first_rehabilitated": {
    "decided": "A first rehabilitation is what puts a point into the programme. The record is the evidence it happened.",
    "decided_on": "methodology 2.2.1(d) / SDWS 2",
@@ -215,6 +253,25 @@
     ]
    ],
    "rule": "Every first-rehabilitation RECORD on the works form. This counts records, not water points: it is the number of times the work was written down. On the current data each record is on a different point, so the two happen to be equal - that is a fact about today, not a rule.",
+   "size": 773,
+   "unit": "records"
+  },
+  "first_rehabilitation_records_final": {
+   "decided": "A draft or rejected record is not a rehabilitation on file.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "first_rehabilitation_records"
+   ],
+   "id": "first_rehabilitation_records_final",
+   "name": "Final first-rehabilitation records",
+   "reads": [
+    [
+     "Clean Water || ... (retired combined form)",
+     "86cf66efdd3749dd8a121314bab3675a",
+     "question \"Type de travaux\" = \"Première réhabilitation\", status final"
+    ]
+   ],
+   "rule": "First-rehabilitation records on the retired combined form whose status is final.",
    "size": 773,
    "unit": "records"
   },
@@ -312,6 +369,44 @@
    "rule": "The Marolinta boreholes. Deichmann-funded, and outside the carbon programme entirely - they enter no carbon figure.",
    "size": 5,
    "unit": "points"
+  },
+  "marolinta_new_constructions": {
+   "decided": "The Moramanga deployment of the same form is counted apart.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "marolinta_works_records"
+   ],
+   "id": "marolinta_new_constructions",
+   "name": "Marolinta new constructions",
+   "reads": [
+    [
+     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
+     "8764843c94484f5b984078c68f13b2ca",
+     "Marolinta deployment, works type Nouvelle construction"
+    ]
+   ],
+   "rule": "Final records on the Marolinta deployment of the borehole-progress form whose works type is Nouvelle construction.",
+   "size": 6,
+   "unit": "records"
+  },
+  "marolinta_rehabilitations": {
+   "decided": "The Moramanga deployment of the same form is counted apart.",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "marolinta_works_records"
+   ],
+   "id": "marolinta_rehabilitations",
+   "name": "Marolinta rehabilitations",
+   "reads": [
+    [
+     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
+     "8764843c94484f5b984078c68f13b2ca",
+     "Marolinta deployment, works type Réhabilitation"
+    ]
+   ],
+   "rule": "Final records on the Marolinta deployment of the borehole-progress form whose works type is Réhabilitation.",
+   "size": 7,
+   "unit": "records"
   },
   "marolinta_works_records": {
    "decided": "Marolinta works were put on their own form because the works form has no “Nouvelle construction” option.",

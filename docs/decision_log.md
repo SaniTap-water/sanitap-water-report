@@ -747,3 +747,18 @@ them is a review the team can do now rather than during a verification.
 
 **What was deliberately not built:** the sample-size calculator and the draw publication. At 99.5%
 the precision question is not live, and the next round is months away.
+
+
+## 23 September 2026 — the 44-pump comparison removed from the page
+
+The block headed *"Open issue — 44 pumps reported down that read as fully
+operational"* and the matching passage in `act-transcription-round` are
+removed. Their premise, 44 points whose latest call-centre answer says the pump
+is down with no repair since, cannot be rebuilt from any extract: a stable
+enumeration with the call and repair mappings of `tools/build_call_tables.py`
+gives 26 to 33 points, at cut-offs of 20, 21 and 23 September. The comparison
+that followed (353.0 against 353.4 days, reduced on 23 September to "read like
+the rest of the fleet") rests on that list, and so do the two readings built on
+it: stale tickets, or gardiens not marking outage days. None of it is shown until the
+list is derivable; `tools/check_consistency.py` keeps it off the page. The
+transcription round stands on its own purpose, measuring the reader's accuracy.

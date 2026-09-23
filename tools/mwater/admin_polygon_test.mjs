@@ -50,4 +50,4 @@ for (const code of NINE) {
     control: {code: ctl.o.code, dist_m: Math.round(ctl.d), admin_region: ctl.o.admin_region, polygons_containing: cins.map(r=>`${r.level}:${r.name}`)}};
   out.push(row); console.log(JSON.stringify(row));
 }
-fs.writeFileSync("/home/bushp/sanitap-water-report/data/admin_polygon_test.json", JSON.stringify({tested_on: new Date().toISOString().slice(0,10), method: "jsonql ST_Intersects / ST_Distance on admin_regions.shape (EPSG:3857); metres = Mercator distance x cos(latitude)", points: out}, null, 1) + "\n");
+fs.writeFileSync(new URL("../../data/admin_polygon_test.json", import.meta.url).pathname, JSON.stringify({tested_on: new Date().toISOString().slice(0,10), method: "jsonql ST_Intersects / ST_Distance on admin_regions.shape (EPSG:3857); metres = Mercator distance x cos(latitude)", points: out}, null, 1) + "\n");

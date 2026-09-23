@@ -139,6 +139,15 @@ if it is not. They are a worklist with a date on it, never an exemption list.
 To clear one: convert the figure, run `--gate`, and it will tell you which
 entry to delete.
 
+**The generator audit** (`tools/check_generators.py`) holds every field of
+every embedded data object to a generator, a population, or the dated,
+shrink-only `data/ungenerated_fields.json`. It finds objects by a `const NAME=`
+at the start of a line, so **declare every data object on its own line**.
+`REG` was declared after `COAST` on the same line and was invisible to the
+audit until 23 September. Its nine population fields are now written each
+build by `tools/sync_reg_populations.py`; the other twelve are group D of the
+backlog, each classed *declared* or *neither*.
+
 ## The two-copies rule
 
 **Every generated artefact is edited only at its generator, and no script
@@ -678,7 +687,7 @@ check passed. Every piece the edition needs now lives in this repository, so
 the build runs here and the cloud session is a watchdog rather than the
 builder.
 
-**`SaniTapWeeklyPublish`** → `wsl.exe -d Ubuntu -- tools/weekly_build.sh`
+**`SaniTapWeeklyPublish`** → `wsl.exe -d Ubuntu -- /home/bushp/sanitap-water-report-build/tools/weekly_build.sh`
 Mondays **07:00 local (03:00 UTC)**, repeating every 2 hours for 14 hours —
 07:00 through 21:00. It no longer waits an hour for a cloud build to finish,
 so it runs as early as the machine is likely to be on.
@@ -707,6 +716,38 @@ In order:
 
 A `--dry-run` stops before commit and push and always rolls back.
 
+### The build has its own clone: `~/sanitap-water-report-build`
+
+The scheduled run of 21 September refused to build because the working tree
+was dirty. The task shared `~/sanitap-water-report` with interactive sessions,
+so anyone's uncommitted work stopped the Monday edition, and it would have
+happened again. **The build clone is never worked in.** Every run of
+`tools/weekly_build.sh` in it starts with `git fetch` and
+`git reset --hard origin/main` plus `git clean -fd`, then re-runs the freshly
+reset copy of itself. So it builds from what is published and from nothing
+else. Run from any other clone, `tools/weekly_build.sh` hands over to the
+build clone. `~/sanitap-water-report` is for interactive work only.
+
+The build clone's own log lines survive the reset. A refused run is never
+pushed, so its reason exists only there. **The last line of
+`~/sanitap-water-report-build/logs/publisher.log` is always one plain sentence
+beginning `OUTCOME:`**, for example *"OUTCOME: Not published: publish.sh
+refused the edition because a figure renders on the page with no source
+(first: 339 x4 in …)."* That is the line the Monday watchdog quotes.
+
+What it needs from outside the repository, all by absolute or `~` path, so any
+clone resolves them: `/home/bushp/sdws1/venv` (Python and Playwright),
+`~/.cache/ms-playwright`, `node` in `~/.local/bin` (the wrapper puts it on
+`PATH` itself: a scheduled `wsl.exe` shell does not load the profile, so it was
+missing there), `~/mwater-mcp` (mWater credentials and CLI),
+`~/mwater-exports` (shared with interactive sessions) and push credentials
+through `gh auth git-credential` in `~/.gitconfig`. The untracked edition
+ledger `logs/editions_issued.tsv` is the clone's own.
+
+A rehearsal against unpublished work: add the interactive clone as a remote in
+the build clone, then run with `SANITAP_BUILD_FROM=<remote>
+SANITAP_BUILD_BRANCH=<branch>`.
+
 ### Updating mid-week
 
 A second run in the same ISO week pulls live mWater again and republishes
@@ -718,7 +759,7 @@ update adds nothing to `editions/` and cannot duplicate an entry. The week's
 last version is frozen when the next week's edition replaces it.
 
 **The desktop shortcut "Update water report now"** (on the Windows desktop)
-runs `tools/update_now.cmd`. It drops `logs/update_requested`, runs
+runs `tools/update_now.cmd` in the build clone. It drops `logs/update_requested`, runs
 `schtasks /run /tn SaniTapWeeklyPublish`, waits for the task, and leaves the
 window open with the result and the tail of `logs/publisher.log`. The request
 file is how the build tells a click from a scheduled retry: a retry after

@@ -2564,10 +2564,19 @@ def main():
           "Yes, it is biased" in idx and "64.8%" in idx and "19.8%" in idx,
           "reported", "reported" if "Yes, it is biased" in idx else "MISSING",
           "visit frequency, threefold")
-    check("the page records that the calendars do not corroborate the backlog",
-          "should not look like every other pump" in idx, "recorded",
-          "recorded" if "should not look like every other pump" in idx else "MISSING",
-          "a finding against the evidence base, not for it")
+    # The "44 pumps reported down that read as fully operational" block was
+    # removed on 23 September 2026: the 44-pump list cannot be rebuilt from
+    # any extract (a stable enumeration gives 26-33, not 44), so neither the
+    # comparison nor the two readings built on it can be shown. It stays off
+    # the page until that list is derivable. See docs/decision_log.md.
+    _unv = [p_ for p_ in ("read like the rest of the fleet",
+                          "should not look like every other pump",
+                          "read as fully operational",
+                          "not marking outage days")
+            if p_ in idx]
+    check("the unverifiable 44-pump comparison stays off the page",
+          not _unv, "absent", "; ".join(_unv) if _unv else "absent",
+          "a claim nothing on the page can support")
 
     # ---- repair time is a headline metric ------------------------------
     check("time to repair is on the page with its baseline",
@@ -2594,18 +2603,9 @@ def main():
           "position only", "position only"
           if "No carbon quantity is attached to any of this" in idx else "MISSING",
           "the withdrawal is recorded in docs/decision_log.md")
-    check("both explanations for the 44 stay on the page",
-          "the tickets are stale" in idx and "not marking outage days" in idx,
-          "both stated", "both stated" if "not marking outage days" in idx else "MISSING",
-          "the hierarchy decides which instrument governs, not whether it is filled in")
-    # Match on the claim, not on one sentence: what this guards is that the
-    # transcription round is named as the thing that tells the two
-    # explanations apart, and that the reader can reach the action row.
-    _sep = re.search(r"transcription round\s+(?:is what\s+)?"
-                     r"(?:separates|distinguishes)\s+them", idx)
-    check("the transcription round is named as what separates them, both ways",
-          bool(_sep) and "act-transcription-round" in idx, "linked",
-          "linked" if _sep else "MISSING")
+    check("the transcription round is still reachable from the page",
+          "act-transcription-round" in idx, "linked",
+          "linked" if "act-transcription-round" in idx else "MISSING")
     check("the decision log records both decisions",
           all(s in read(os.path.join(repo_root, "docs", "decision_log.md"))
               for s in ("official record of days operational",

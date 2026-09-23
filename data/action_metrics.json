@@ -139,7 +139,7 @@
   "register_chain_unresolved": {
    "says": "register records still unclassified against the maintained fleet",
    "source": "local",
-   "value": 118
+   "value": 119
   },
   "register_dashboard_gap": {
    "says": "points the MadAvance dashboard counts that our register does not",
@@ -164,7 +164,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 47
+   "value": 48
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",
