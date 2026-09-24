@@ -52,7 +52,8 @@ def classify():
     import rebuild_summary as RS
     pumps = P._page_pumps()
     fleet = {p["wp"] for p in pumps}
-    models = {p.get("pump") for p in pumps if p.get("pump")}
+    import build_config
+    models = set(build_config.load()["portfolio"]["pump_models"])
     rows = {r["code"]: r for r in P._rows("wp_madavance.csv") if r.get("code")}
     reg = RS.register(set())                  # attributes, for every record
     succ = P.get("rehabilitated_successfully")["members"]()

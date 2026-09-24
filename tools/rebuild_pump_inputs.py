@@ -36,7 +36,12 @@ Q_WQ_DATE = "630ccd46f76f420692572e0db2d86ad8"    # WS7.10 result date & time
 Q_WQ_ECOLI = "892f1d81bf1a4c4483e53271dda474a5"   # WS7.11 E. coli CFU/100 mL
 Q_ROOF_WP = "e796e451be1243d58b547bc0f6c1d5b4"    # ID du point d'eau
 Q_ROOFS = "00ae079e071a40349e0706c659430f9b"      # Nombre de toits
-ROOF_TO_PEOPLE = 4.5 / 2.5
+import build_config as _cfg
+_C = _cfg.load()
+# from data/build_config.json, which the page's footnotes render
+ECOLI_PASS_MAX = _C["water_quality"]["ecoli_pass_max_cfu_per_100ml"]
+ROOF_TO_PEOPLE = (_C["roof_count"]["people_per_household"]
+                  / _C["roof_count"]["roofs_per_household"])
 
 
 def compute():
@@ -66,7 +71,8 @@ def compute():
         if wq.get(code):
             date, ec = sorted(wq[code])[-1]
             v["wq_date"] = date or None
-            v["wq"] = "Pass" if ec == 0 else ("Fail" if ec is not None else None)
+            v["wq"] = ("Pass" if ec is not None and ec <= ECOLI_PASS_MAX
+                       else ("Fail" if ec is not None else None))
         if roofs.get(code):
             n = sorted(roofs[code])[-1][1]
             v["benef"] = int(n * ROOF_TO_PEOPLE + 0.5)

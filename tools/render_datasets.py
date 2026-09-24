@@ -44,6 +44,9 @@ SETS = {
     # the counts the form-freshness sentence quotes, summarised from the
     # snapshot rather than inlining the whole design
     "FORMSNAP": ("data", "mwater_form_snapshot.json"),
+    # the rules the build applies; the "How this is worked out" footnotes
+    # render every number they state from this, never typed
+    "BUILDCFG": ("data", "build_config.json"),
 }
 
 

@@ -595,6 +595,83 @@ def main():
           else "MISSING",
           "the API accepts the PATCH and discards the field; that is a finding, "
           "not a silence")
+    # ---- the footnotes state what the build applies (2026-09-24) ----------
+    # "How this is worked out" footnotes sit beside the figures they govern.
+    # Every number in them is rendered from data/build_config.json, and that
+    # file is held here to what the build and the SDWS1 pipeline actually
+    # applied - so a footnote cannot describe a rule the code no longer runs.
+    _cfgp = os.path.join(repo_root, "data", "build_config.json")
+    _cfg = json.loads(read(_cfgp)) if os.path.isfile(_cfgp) else {}
+    _want = ["how-current", "how-portfolio", "how-joins", "how-wq", "how-people", "how-district"]
+    _have = re.findall(r'<details class="expl howworked" id="([^"]+)">(.*?)</details>', idx, re.S)
+    _ids = [i for i, _b in _have]
+    check("the six 'How this is worked out' footnotes are on the page, closed",
+          _ids == [i for i in _want if i in _ids] and set(_want) <= set(_ids)
+          and all(b.lstrip().startswith("<summary>How this is worked out") for _i, b in _have),
+          "all six", ", ".join(_ids) or "none")
+    _typed = []
+    for _i, _b in _have:
+        _txt = re.sub(r'<span data-fig="[^"]*"></span>', "", _b)
+        _txt = re.sub(r"<[^>]+>", " ", _txt)
+        _txt = re.sub(r"SDWS\s*\d+", "", _txt)
+        # a unit is not a parameter: "CFU per 100 mL"
+        _txt = re.sub(r"per\s+100(?:&nbsp;|\s)*mL", "", _txt)
+        _typed += [f"{_i}: {x}" for x in re.findall(r"\d[\d.,]*", _txt)]
+        _typed += [f"{_i}: {e}" for e in re.findall(r'data-fig="([^"]*)"', _b)
+                   if not e.startswith("BUILDCFG.")]
+    check("every number in a footnote is rendered from the build configuration",
+          not _typed, "none typed", "; ".join(_typed[:4]) if _typed else "none typed",
+          "data/build_config.json, via data-fig")
+    _bad = []
+    try:
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        import rebuild_pump_inputs as _rpi, rerun_wpop as _rw, rebuild_summary as _rs
+        _wp = _cfg["worldpop"]; _rc = _cfg["roof_count"]
+        if _rpi.ECOLI_PASS_MAX != _cfg["water_quality"]["ecoli_pass_max_cfu_per_100ml"]:
+            _bad.append("E. coli threshold in rebuild_pump_inputs")
+        if abs(_rpi.ROOF_TO_PEOPLE - _rc["people_per_household"] / _rc["roofs_per_household"]) > 1e-12:
+            _bad.append("roof factor in rebuild_pump_inputs")
+        if _rw.OVERLAP_M != _wp["neighbourhood_radius_m"] or _rw.RASTER_SHA256 != _wp["raster_sha256"]:
+            _bad.append("neighbourhood radius or checksum in rerun_wpop")
+        if _rs.DISTRICT_TO_SITE != _cfg["portfolio"]["districts"]:
+            _bad.append("district map in rebuild_summary")
+        # the pipeline itself, outside the repository: what it actually applies
+        _pl = os.path.expanduser("~/sdws1/sdws1_population.py")
+        if not os.path.isfile(_pl):
+            _bad.append("the SDWS1 pipeline is not here to compare against")
+        else:
+            _src = read(_pl)
+            _rad = re.search(r"^RADIUS_M\s*=\s*(\d+)", _src, re.M)
+            _caps = re.search(r"^CAPS\s*=\s*(\{[^}]*\})", _src, re.M)
+            _sha = re.search(r'^RASTER_OF_RECORD_SHA256\s*=\s*"([0-9a-f]+)"', _src, re.M)
+            if not _rad or int(_rad.group(1)) != _wp["service_radius_m"]:
+                _bad.append(f"service radius: pipeline {_rad and _rad.group(1)}")
+            if not _caps or json.loads(_caps.group(1).replace("'", '"')) != _wp["caps"]:
+                _bad.append(f"caps: pipeline {_caps and _caps.group(1)}")
+            if not _sha or _sha.group(1) != _wp["raster_sha256"]:
+                _bad.append("raster checksum pinned in the pipeline")
+        _sum = json.loads(read(os.path.join(repo_root, "data", "sdws1_summary_equal.json")))
+        if _sum.get("raster_sha256") != _wp["raster_sha256"] or _sum.get("raster") != _wp["raster"]:
+            _bad.append("raster of the run of record")
+        # the caps actually applied, pump by pump
+        _pm = re.search(r"\bconst PUMPS\s*=\s*", idx); _wm = re.search(r"\bconst WPOP\s*=\s*", idx)
+        _PP = json.loads(idx[_pm.end():idx.index("];", _pm.end()) + 1])
+        _WW = json.loads(idx[_wm.end():idx.index("};", _wm.end()) + 1])
+        _capx = [p["wp"] for p in _PP if p["wp"] in _WW and _WW[p["wp"]][2] != _wp["caps"].get(p["pump"])]
+        if _capx:
+            _bad.append(f"{len(_capx)} pump(s) allocated under a cap other than the configured one")
+        _pp = re.search(r"\bim_cap:\{v:(\d+)", idx), re.search(r"\bcz_cap:\{v:(\d+)", idx)
+        if not (_pp[0] and _pp[1]) or (int(_pp[0].group(1)), int(_pp[1].group(1))) != (_wp["caps"]["IndiaMark"], _wp["caps"]["Canzee"]):
+            _bad.append("PARAMS im_cap / cz_cap")
+        _models = {p.get("pump") for p in _PP}
+        if not _models <= set(_cfg["portfolio"]["pump_models"]):
+            _bad.append(f"fleet pump models outside the configured list: {sorted(_models - set(_cfg['portfolio']['pump_models']))}")
+    except Exception as _e:                                    # noqa: BLE001
+        _bad.append(f"could not compare: {_e}")
+    check("the build configuration is what the build applied",
+          not _bad, "all match", "; ".join(_bad[:4]) if _bad else "all match",
+          "the footnotes render data/build_config.json; this holds it to the code")
+
     # ---- every portfolio pump carries its per-pump inputs (2026-09-23) -----
     # 742894057 joined with a blank allocation and a blank water-quality
     # result, and every figure over it was quietly biased downward. A join

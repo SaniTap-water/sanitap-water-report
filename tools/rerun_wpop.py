@@ -44,13 +44,18 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 SUMMARY = os.path.join(REPO, "data", "sdws1_summary_equal.json")
 RERUN_LOG = os.path.join(REPO, "data", "wpop_rerun_log.json")
+sys.path.insert(0, os.path.join(REPO, "tools"))
+import build_config as _cfg
+_C = _cfg.load()["worldpop"]
 SDWS1 = "/home/bushp/sdws1"
 PIPELINE = os.path.join(SDWS1, "sdws1_population.py")
 PY = os.path.join(SDWS1, "venv", "bin", "python")
-RASTER = os.path.join(SDWS1, "rasters", "mdg_pop_2025_CN_100m_R2025A_v1.tif")
-RASTER_SHA256 = "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade"
+RASTER = os.path.join(SDWS1, "rasters", _cfg.load()["worldpop"]["raster"])
+# from data/build_config.json, which the page's footnotes render
+RASTER_SHA256 = _C["raster_sha256"]
 BARRIERS = os.path.join(SDWS1, "madagascar-barriers.osm.pbf")
-OVERLAP_M = 2000          # two 1 km service areas can only meet within 2 km
+# two service areas can only meet within twice the service radius
+OVERLAP_M = _C["neighbourhood_radius_m"]
 FROM_RUN = {"rows": "points", "points_with_a_barrier": "points_with_a_barrier",
             "points_cut_over_10pct": "points_cut_over_10pct",
             "points_at_the_cap": "points_at_the_cap",

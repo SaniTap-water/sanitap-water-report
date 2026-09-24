@@ -288,6 +288,24 @@ for _e, _a in (("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_anosy.v).toFixed
     D[_e] = dict(pop=None, arith=f"`{_a} = ${{{_e}}}`",
         forms=[("declared parameters, each with its VPA-DD citation", None, "see the parameters table")])
 
+# the "How this is worked out" footnotes: every number they state is a value
+# of the build configuration, which check_consistency holds to what was applied
+for _e in ("BUILDCFG.portfolio.pump_models.join(', ')",
+           "BUILDCFG.water_quality.ecoli_pass_max_cfu_per_100ml",
+           "BUILDCFG.worldpop.release",
+           "BUILDCFG.worldpop.raster_sha256.slice(0,12)+'…'",
+           "BUILDCFG.worldpop.service_radius_m",
+           "BUILDCFG.worldpop.caps.Canzee",
+           "BUILDCFG.worldpop.caps.IndiaMark",
+           "BUILDCFG.worldpop.neighbourhood_radius_m",
+           "BUILDCFG.roof_count.roofs_per_household",
+           "BUILDCFG.roof_count.people_per_household"):
+    D[_e] = dict(pop=None,
+        arith="`from the build configuration, data/build_config.json - the value the "
+              "build applies, checked against the tools and the SDWS1 pipeline on every "
+              "build: ${" + _e + "}`",
+        forms=[])
+
 # the chain table's own cells: each is the reconciliation step it reports
 for _k in range(12):
     D[f"POPS.chain[{_k}].detail"] = dict(pop=None, chain=True,

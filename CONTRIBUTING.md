@@ -34,6 +34,19 @@ rehabilitation that did not succeed; no first rehabilitation; or review.
 Anything it cannot place goes to `logs/publisher.log` for a person to look at,
 and nowhere on the page. Its full result is `data/register_classification.json`.
 
+### "How this is worked out" footnotes
+
+Six collapsed footnotes sit beside the figures they govern: the data date, the
+scope line, the fleet count, the water-quality tile, people served, and the
+register corrections. Every number in them (the pump models, the E. coli
+threshold, the WorldPop release and checksum, the service and neighbourhood
+radii, the caps and the roof-count factors) renders from
+`data/build_config.json`. The tools read the same file (`tools/build_config.py`).
+`check_consistency.py` fails if a footnote carries a typed number, or if the
+configuration differs from what the tools, the SDWS1 pipeline, the run of
+record, the per-pump caps or `PARAMS` actually applied. Change a rule in the
+configuration, not in a footnote.
+
 ## Every number on the page has exactly one home
 
 An audit in September 2026 counted 191 live figures typed into the body prose

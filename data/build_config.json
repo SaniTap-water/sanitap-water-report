@@ -1,0 +1,22 @@
+{
+ "note": "The rules the weekly build applies, in one place. The tools read these values and the page's 'How this is worked out' footnotes render them, so what the page says and what the build does cannot drift apart. tools/check_consistency.py fails if a value here differs from what the build or the SDWS1 pipeline actually applied.",
+ "portfolio": {
+  "pump_models": ["Canzee", "IndiaMark"],
+  "districts": {"Maroantsetra": "Maroantsetra", "Taolagnaro": "Fort-Dauphin", "Beloha": "Marolinta"}
+ },
+ "water_quality": {
+  "ecoli_pass_max_cfu_per_100ml": 0
+ },
+ "worldpop": {
+  "release": "WorldPop R2025A v1, 2025, constrained, 100 m",
+  "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+  "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+  "service_radius_m": 1000,
+  "neighbourhood_radius_m": 2000,
+  "caps": {"Canzee": 500, "IndiaMark": 300}
+ },
+ "roof_count": {
+  "roofs_per_household": 2.5,
+  "people_per_household": 4.5
+ }
+}

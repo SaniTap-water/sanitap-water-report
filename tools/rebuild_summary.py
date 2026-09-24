@@ -33,11 +33,10 @@ REG_COLS = ["site", "commune", "fkt", "pump", "lat", "lon"]
 # column: the register calls Fort-Dauphin's district Taolagnaro. The mapping is
 # 1:1 and is declared here rather than inferred, so an unknown district fails
 # the build instead of silently renaming 127 points.
-DISTRICT_TO_SITE = {
-    "Maroantsetra": "Maroantsetra",
-    "Taolagnaro": "Fort-Dauphin",
-    "Beloha": "Marolinta",
-}
+# from data/build_config.json, which the page's footnotes describe
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _cfg
+DISTRICT_TO_SITE = dict(_cfg.load()["portfolio"]["districts"])
 
 
 def register(fleet):

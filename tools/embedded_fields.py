@@ -28,6 +28,9 @@ FURNITURE = {
     "ARTEFACTS", "PARAMS", "RWHY", "NA", "SC", "G", "IND", "CAP_T", "SA",
     "W", "MW", "MWR", "TRACE", "RECONSET", "DERIV", "COAST", "FULLMAD",
     "EDITION", "PHOTOS",
+    # declared configuration; check_consistency asserts it against what the
+    # build and the SDWS1 pipeline actually applied
+    "BUILDCFG",
 }
 
 
