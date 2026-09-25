@@ -7,7 +7,7 @@
    "newest_submitted": "2026-09-24",
    "rows": 2829,
    "unique": 2829,
-   "written": "2026-09-25T19:35:23"
+   "written": "2026-09-25T20:11:33"
   },
   "cbn_gender.json": {
    "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
@@ -15,7 +15,7 @@
    "read_by": "populations.py",
    "rows": 414,
    "unique": 414,
-   "written": "2026-09-25T19:45:42"
+   "written": "2026-09-25T20:21:43"
   },
   "combined_rehab.json": {
    "form_id": "86cf66efdd3749dd8a121314bab3675a",
@@ -23,7 +23,7 @@
    "read_by": "populations.py",
    "rows": 1688,
    "unique": 1688,
-   "written": "2026-09-25T19:39:59"
+   "written": "2026-09-25T20:16:04"
   },
   "first_rehab_current.json": {
    "form_id": "63747997e70e478fbb2ebf71581ceeb0",
@@ -31,7 +31,7 @@
    "read_by": "populations.py",
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-25T19:44:51"
+   "written": "2026-09-25T20:20:54"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -39,7 +39,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-25T19:38:55"
+   "written": "2026-09-25T20:15:04"
   },
   "hygiene.json": {
    "form_id": "283c5670de82489d833e986cb76a67d8",
@@ -47,7 +47,7 @@
    "read_by": "populations.py",
    "rows": 108,
    "unique": 108,
-   "written": "2026-09-25T19:42:27"
+   "written": "2026-09-25T20:18:42"
   },
   "identification.json": {
    "form_id": "198b016d72af41baa2608a8c9c35f8cb",
@@ -55,7 +55,7 @@
    "read_by": "populations.py",
    "rows": 56,
    "unique": 56,
-   "written": "2026-09-25T19:43:11"
+   "written": "2026-09-25T20:19:23"
   },
   "marolinta_borehole.json": {
    "form_id": "8764843c94484f5b984078c68f13b2ca",
@@ -63,7 +63,7 @@
    "read_by": "populations.py",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-25T19:44:07"
+   "written": "2026-09-25T20:20:07"
   },
   "piped_systems.csv": {
    "entity_type": "water_system",
@@ -72,7 +72,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 25,
    "unique": 25,
-   "written": "2026-09-25T19:48:16"
+   "written": "2026-09-25T20:24:24"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
@@ -80,7 +80,7 @@
    "newest_submitted": "2026-09-23",
    "rows": 761,
    "unique": 761,
-   "written": "2026-09-25T19:30:46"
+   "written": "2026-09-25T20:06:47"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -88,7 +88,7 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-25T19:37:11"
+   "written": "2026-09-25T20:13:14"
   },
   "repair.json": {
    "form_id": "958b4763788348d699e7d8c5821f92ee",
@@ -96,7 +96,7 @@
    "read_by": "populations.py",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-25T19:40:56"
+   "written": "2026-09-25T20:17:08"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
@@ -104,7 +104,7 @@
    "newest_submitted": "2026-09-22",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-25T19:32:27"
+   "written": "2026-09-25T20:08:39"
   },
   "roof_count.json": {
    "form_id": "8aa2dd78eb1f460f8f43db7935955846",
@@ -112,7 +112,7 @@
    "read_by": "populations.py",
    "rows": 725,
    "unique": 725,
-   "written": "2026-09-25T19:46:29"
+   "written": "2026-09-25T20:22:32"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
@@ -121,7 +121,7 @@
    "read_by": "populations.py",
    "rows": 918,
    "unique": 918,
-   "written": "2026-09-25T19:47:52"
+   "written": "2026-09-25T20:23:55"
   },
   "wq_results.json": {
    "form_id": "7b33c5d7e5074808a94915939a5a0783",
@@ -129,7 +129,7 @@
    "read_by": "populations.py",
    "rows": 736,
    "unique": 736,
-   "written": "2026-09-25T19:41:43"
+   "written": "2026-09-25T20:17:58"
   },
   "wq_results_piped.json": {
    "form_id": "0ac68d8274d24f54af0c28b29119b77d",
@@ -137,12 +137,12 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 45,
    "unique": 45,
-   "written": "2026-09-25T19:47:13"
+   "written": "2026-09-25T20:23:23"
   }
  },
  "newest_in_files": "2026-09-25",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-09-25T19:48:16",
+ "pulled_at": "2026-09-25T20:24:24",
  "strays": [
   "old_combined_reparation.csv",
   "wp_lookup.csv"
