@@ -32,6 +32,7 @@ import collections, datetime, difflib, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
 from prerender_figures import same as _same  # noqa: E402
+from table_notes import render as _tablenote  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED action-list :: tools/render_actions.py "
@@ -146,6 +147,12 @@ def actions(idx):
         if len(cells) < 3:
             continue
         title = re.search(r"<b>(.*?)</b>", cells[0], re.S)
+        # the summary keeps a live figure's markup, so a number in a title
+        # stays a figure rather than becoming typed text; a water point id
+        # loses its unlinked mono wrapper - the linked id follows in the body
+        title_html = (re.sub(r"<(?!/?span\b)[^>]+>", "",
+                             re.sub(r'<span class="mono">([^<]*)</span>', r"\1", title.group(1))).strip()
+                      if title else None)
         title = strip(title.group(1)) if title else strip(cells[0])[:90]
         pill = re.search(r'pill\s+[a-z]+">([^<]*)<', cells[1])
         old = (pill.group(1).strip().upper() if pill else "DUE")
@@ -153,11 +160,16 @@ def actions(idx):
         dl_raw = re.search(r"<b>([^<]*)</b>", cells[1])
         dl_raw = strip(dl_raw.group(1)) if dl_raw else ""
         due = parse_deadline(dl_raw)
-        crit = re.findall(r'<span class="muted"[^>]*>(.*?)</span>', cells[1], re.S)
-        crit = strip(crit[-1]) if crit else ""
+        crit = re.findall(r'<span class="muted"[^>]*>(.*?)</span>(?=(?:<br>)?\s*$)', cells[1], re.S) \
+            or re.findall(r'<span class="muted"[^>]*>(.*?)</span>', cells[1], re.S)
+        # the criterion keeps its markup, so a figure in it stays a figure
+        crit = crit[-1].strip() if crit else ""
         owner = strip(cells[2]) or "—"
-        out.append(dict(id=aid, title=title, owner=owner,
-                        detail=det.get(aid, {}).get("detail", ""),
+        out.append(dict(id=aid, title=title, title_html=title_html or title, owner=owner,
+                        # a data table inside a detail carries its footnote
+                        detail=re.sub(r"<!--tablenote:([\w-]+)-->",
+                                      lambda m: _tablenote(m.group(1)),
+                                      det.get(aid, {}).get("detail", "")),
                         lead=lead_owner(owner),
                         state=state, label=label, deadline=dl_raw, due=due,
                         # an item to act on with no date is a date still
@@ -316,6 +328,33 @@ def slug(s):
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", s.lower())).strip("-")
 
 
+CONDS = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), encoding="utf8"))
+DECISIONS = json.load(open(os.path.join(REPO, "data", "decisions.json"), encoding="utf8"))
+_cp = os.path.join(REPO, "data", "decision_candidates.json")
+CANDIDATES = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
+# quotations this list renders: decided answers and candidate answers from mail
+QUOTES_EXTRA = {}
+METRIC_DEFS = (json.load(open(os.path.join(REPO, "data", "action_metrics.json"), encoding="utf8"))
+               .get("metrics", {}))
+
+
+def _num(v):
+    return f"{v:,}" if isinstance(v, int) else str(v)
+
+
+# numbers a closing condition's own words carry that are declared elsewhere:
+# the Type 3 cap and the approvals window render from where they are declared
+_LIVE = [(r"(?<![\d.,])60,000(?![\d.,])", '<span data-param="cap_t">60,000</span>'),
+         (r"(?<![\d.,])180(?= days)", '<span data-fig="BUILDCFG.approvals.window_days">180</span>'),
+         (r"at least 8 clusters", 'at least <span data-param="sdws26_min_clusters">8</span> clusters')]
+
+
+def _live(text):
+    for pat, rep in _LIVE:
+        text = re.sub(pat, rep, text)
+    return text
+
+
 def row(a, today, owner_cell=True):
     overdue = (a["state"] == "ACT" and a["due"] is not None and a["due"] < today)
     badge = ('<span class="pill crit" style="margin-left:6px">OVERDUE</span>'
@@ -333,12 +372,49 @@ def row(a, today, owner_cell=True):
         closes = ('<span class="muted">no closing condition &mdash; a person has '
                   'to close this one</span>')
     elif kind == "none":
-        closes = f'<span class="muted">{c["says"]}</span>'
+        closes = f'<span class="muted">{_live(c["says"])}</span>'
     else:
         ev = c.get("evidence", "")
+        says = c["says"]
+        cc = CONDS.get(a["id"]) or {}
+        if kind == "data" and cc.get("metric") in METRIC_DEFS:
+            # the readout is built from the data, so the value and the target
+            # are live figures that open their derivation, not typed text
+            mk, tgt = cc["metric"], cc["target"]
+            val = METRIC_DEFS[mk].get("value")
+            tspan = (f'<span data-fig="ACTCOND[\'{a["id"]}\'].target">'
+                     f'{_num(tgt)}</span>')
+            ev = (f'<span class="mono">{mk}</span> = '
+                  + (f'<span data-fig="METRICS.{mk}">{_num(val)}</span>'
+                     if val is not None else "could not be counted this build")
+                  + f' ({_live(METRIC_DEFS[mk].get("says", ""))}); target '
+                  + f'{cc["op"].replace("<", "&lt;").replace(">", "&gt;")} {tspan}')
+            says = re.sub(r"(?<![\d.,])" + re.escape(_num(tgt)) + r"(?![\d.,])",
+                          lambda _m: tspan, _live(says), count=1)
+        else:
+            says = _live(says)
+        if kind == "decision":
+            dec = (DECISIONS.get("decisions") or {}).get(a["id"])
+            cand = (CANDIDATES.get("candidates") or {}).get(a["id"])
+            if dec:
+                key = f"decision:{a['id']}"
+                QUOTES_EXTRA[key] = {"doc": f"Decision recorded in data/decisions.json, from {dec.get('source', 'the decision log')}",
+                                     "version": dec.get("decided_on", ""), "dated": dec.get("decided_on", ""),
+                                     "says": strip(dec.get("answer", "")),
+                                     "note": f"Decided by {dec.get('decided_by', 'not recorded')}. The answer is quoted as recorded."}
+                ev = (f'decided {dec.get("decided_on")} by {dec.get("decided_by")}: '
+                      f'<span class="quoted" data-quote="{key}">{dec.get("answer", "")}</span>')
+            elif cand:
+                key = f"candidate:{a['id']}"
+                QUOTES_EXTRA[key] = {"doc": f"email \u201c{cand.get('subject', '')}\u201d from {cand.get('from', '')}",
+                                     "version": cand.get("on", ""), "dated": cand.get("on", ""),
+                                     "says": strip(cand.get("summary", "")),
+                                     "note": "A possible answer found in the mail thread. It closes nothing until it is confirmed and logged in data/decisions.json."}
+                ev = ('possible answer received &mdash; confirm to close: '
+                      f'<span class="quoted" data-quote="{key}">{cand.get("summary", "")}</span>')
         mark = ("&#10003; " if c.get("satisfied") else
                 "&mdash; " if c.get("satisfied") is None else "")
-        closes = (f'<span class="ckind ck-{kind}">{kind}</span> {c["says"]}'
+        closes = (f'<span class="ckind ck-{kind}">{kind}</span> {says}'
                   f'<div class="muted" style="font-size:.82em">{mark}{ev}</div>')
         if c.get("reopened_on"):
             closes += ('<div class="muted" style="font-size:.82em">'
@@ -347,8 +423,8 @@ def row(a, today, owner_cell=True):
                        '</div>')
     det = a.get("detail") or ""
     body = (f'<details class="act-detail" id="{a["id"]}">'
-            f'<summary>{a["title"]}</summary>{det}</details>'
-            if det else f'<b>{a["title"]}</b>')
+            f'<summary>{a["title_html"]}</summary>{det}</details>'
+            if det else f'<b>{a["title_html"]}</b>')
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
             f'<td>{body}'
@@ -474,7 +550,7 @@ def block(idx, today=None):
               'that workbook.</span></p>'),
         # --- the rows, once ----------------------------------------------
         '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
-        '<table class="ind">' + head + '<tbody>',
+        '<table class="ind" data-prose-table>' + head + '<tbody>',
     ]
     out += ["    " + row(a, today) for a in acts]
     out += ['  </tbody></table></div>',
@@ -489,10 +565,13 @@ def block(idx, today=None):
                    f'<summary>{face(lead, 22)}{lead} &mdash; {len(rows)} item(s) '
                    f'<span class="muted">({bits})</span></summary>'
                    '<div class="tablewrap" style="margin-top:8px">'
-                   '<table class="ind">' + head_no_owner + '<tbody>')
+                   '<table class="ind" data-prose-table>' + head_no_owner + '<tbody>')
         out += ["    " + row(a, today, owner_cell=False) for a in rows]
         out.append("  </tbody></table></div></details>")
-    out += ['  </div>', ACT_JS, "</section>"]
+    out += ['  </div>',
+            '  <script>window.QUOTES_EXTRA=Object.assign(window.QUOTES_EXTRA||{},'
+            + json.dumps(QUOTES_EXTRA, ensure_ascii=False, sort_keys=True).replace("</", "<\\/")
+            + ');</script>', ACT_JS, "</section>"]
     return "\n".join(out)
 
 
@@ -542,10 +621,12 @@ ACT_JS = r"""  <script>
         b.setAttribute('aria-pressed', String(b.dataset.view === view));
       });
       var who = owner ? ownerName(owner) : null;
-      note.textContent =
+      note.innerHTML =
         (view === 'owner'
           ? 'Grouped by lead owner. Every row also appears in the full list.'
-          : 'Showing ' + shown + ' of ' + rows.length + ' rows.')
+          : 'Showing <span data-fig="document.querySelectorAll(\'#act-flat tbody tr:not([hidden])\').length">' + shown
+            + '</span> of <span data-fig="document.querySelectorAll(\'#act-flat tbody tr\').length">'
+            + rows.length + '</span> rows.')
         + (who ? '  Filtered to ' + who + ' \u2014 press "All owners" to clear.'
                : '');
       sec.classList.toggle('filtered', !!owner);

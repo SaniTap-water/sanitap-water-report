@@ -1,47 +1,12 @@
 {
  "note": "Numbers still typed into the body prose of index.html. Every one of these should become a data-fig span, a PARAMS entry, or a figure in a dated manual file. This list may only shrink: tools/prose_figures.py --gate fails on any literal not on it.",
  "recorded": "2026-09-22",
- "shrunk_note": "2026-09-23: shrunk from 349 to 183. Generated regions and figures their own element marks as a quotation, retired value, withdrawn value or artefact output are no longer counted as typed (see tools/prose_figures.py); live counts converted to data-fig spans left the list.",
+ "shrunk_note": "25 Sep 2026: 132 values converted to live figures, parameters or quotations (class d census); 46 remain.",
  "values": {
   "0": {
    "ctx": "chip\" data-own=\"unassigned\" aria-pressed=\"false\">UUnassigned 1 &middot; 0 ACT Show To act on &mdash; <span data-fig=",
    "line": 335,
    "n": 138
-  },
-  "0.08": {
-   "ctx": "Water. A point is eligible if it has a final SDWS 3 result passing the health-based rule (Escherichia coli 0 per 100 ml; arsenic &le; 10 &micro;g/L; fluoride &le; 1.5 mg/L; nitrate &le; 50 mg/L and manganese &le; 0.08 mg",
-   "line": 960,
-   "n": 2
-  },
-  "0.1": {
-   "ctx": "ross communes, plus 20&nbsp;% replacements, then 5 households per source selected in the field by the k-th-household walking rule. Design effect (DEFF) = 1 + (m &minus; 1) &times; intra-cluster correlation (ICC); at ICC ",
-   "line": 961,
-   "n": 1
-  },
-  "0.34": {
-   "ctx": "tra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_mofuss_maroantsetra.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)\"> portfolio-weighted (Toliary 0.54 Fort-Dauphin, MoFuSS 0.34 Maroan",
-   "line": 1203,
-   "n": 1
-  },
-  "0.36": {
-   "ctx": "same pumps. Fort-Dauphin sits in Toliary, which carries the sub-national uplift in the fraction of non-renewable biomass (fNRB) &mdash; 0.54 against the national 0.36 (see below). The same points that are exposed to the ",
-   "line": 1267,
-   "n": 2
-  },
-  "0.54": {
-   "ctx": "ter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_mofuss_maroantsetra.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)\"> portfolio-weighted (Toliary 0.54 Fort-D",
-   "line": 1203,
-   "n": 2
-  },
-  "0.80": {
-   "ctx": "an class=\"mono\">SDWS 27 Option 3 (as the SOP says throughout) or SDWS 28 of ERSDWS V2 (as the Head of Carbon says); and whether the quarterly calibration to R&sup2;&nbsp;&ge;&nbsp;0.80 and slope 0.9&ndash;1.1 on 30 pumps",
-   "line": 364,
-   "n": 4
-  },
-  "0.9": {
-   "ctx": ">SDWS 27 Option 3 (as the SOP says throughout) or SDWS 28 of ERSDWS V2 (as the Head of Carbon says); and whether the quarterly calibration to R&sup2;&nbsp;&ge;&nbsp;0.80 and slope 0.9&ndash;1.1 on 30 pumps per zone still",
-   "line": 364,
-   "n": 4
   },
   "009": {
    "ctx": "values&hellip;&rdquo; The values are taken under option (a); the rule update is held in Water Documents/Methodology of record/ with its checksum. A6.4-AMT-009 is not the basis and is no longer cited as one. The rule upda",
@@ -53,31 +18,6 @@
    "line": 270,
    "n": 108
   },
-  "1,000": {
-   "ctx": "00 households at 90% confidence and 10% margin of error &mdash; but 100 is a floor, not a demonstration. The Design Review raised this as CAR#9: &ldquo;a sample size of 100 for a population greater than 1,000 does not in",
-   "line": 391,
-   "n": 7
-  },
-  "1,202": {
-   "ctx": "347 days either way. Where the photographs live. Calendar photographs sit on three mWater questions. Preventive maintenance 2.15.6 is the field of record and carries 1,202; preventive maintenance 2.15.5, the gardiens&rsq",
-   "line": 1054,
-   "n": 1
-  },
-  "1.1": {
-   "ctx": "ption 3 (as the SOP says throughout) or SDWS 28 of ERSDWS V2 (as the Head of Carbon says); and whether the quarterly calibration to R&sup2;&nbsp;&ge;&nbsp;0.80 and slope 0.9&ndash;1.1 on 30 pumps per zone still stands, g",
-   "line": 364,
-   "n": 3
-  },
-  "1.4": {
-   "ctx": "s, plus 20&nbsp;% replacements, then 5 households per source selected in the field by the k-th-household walking rule. Design effect (DEFF) = 1 + (m &minus; 1) &times; intra-cluster correlation (ICC); at ICC 0.1 that is ",
-   "line": 961,
-   "n": 1
-  },
-  "1.5": {
-   "ctx": "al\"> water points managed by MadAvance in mWater. A point is eligible if it has a final SDWS 3 result passing the health-based rule (Escherichia coli 0 per 100 ml; arsenic &le; 10 &micro;g/L; fluoride &le; 1.5 mg/L; nitr",
-   "line": 960,
-   "n": 3
-  },
   "10": {
    "ctx": "Suivi avancement nouveau forage et réhabilitationthe Marolinta deployment of that formMarolinta is funded separately and is not in the VPA.2026-09-10managed_fleet Does the chain reconcile? Each step is a set relation tha",
    "line": 296,
@@ -88,25 +28,10 @@
    "line": 358,
    "n": 35
   },
-  "101": {
-   "ctx": "frequency has collapsed, and calendar coverage depends on it directly.Maintenance visit frequency has collapsed, and calendar coverage depends on it directly. Preventive-maintenance visits fell from 101 in March to 4 in ",
-   "line": 349,
-   "n": 4
-  },
-  "109": {
-   "ctx": "detail\" id=\"act-read-district-commune-water\">Read district and commune from the water point registerRead district and commune from the water point register rather than from form answers. Closes 109 of the 118 points that",
-   "line": 443,
-   "n": 3
-  },
   "11": {
    "ctx": "2026, against the previous 7 days and the last 28. Every source is level with mWater as of 21 September 2026: call-centre contacts to 21 September 2026 &mdash; current; preventive maintenance to 11 September 2026 &mdash;",
    "line": 282,
    "n": 12
-  },
-  "111": {
-   "ctx": "circ;t file: every one of the matches a 13 Ao&ucirc;t row on both name and coordinates. The 26 points dropped between them are all FAHASOAVANA. Against those sit the 111-point UNICEF list and the Endur&rsquo;O mWater gro",
-   "line": 707,
-   "n": 3
   },
   "12": {
    "ctx": "sheet in the frame, and 1 of a sample bottle on a pump platform. They sit on the three calendar questions &mdash; 120 on 2.15.5, 74 on 2.15.6, 12 on 1.3.1.3 &mdash; where they count as calendar evidence that does not exi",
@@ -118,105 +43,25 @@
    "line": 423,
    "n": 3
   },
-  "126": {
-   "ctx": "ere measured), is not abandoned, and is not in Beloha district (Marolinta, which sits outside the carbon programme). pH, electrical conductivity, turbidity and iron never disqualify a source. Current eligible counts: 126",
-   "line": 960,
-   "n": 1
-  },
-  "127": {
-   "ctx": "the cookstove overlap has not been calculated, and it has. The restatement lands at 29.3% of modelled credits, 25.7% with the measured overlap applied, and the overlap itself is measured across all 127 Fort-Dauphin point",
-   "line": 353,
-   "n": 7
-  },
   "128": {
    "ctx": "the single disposition per site, and where the Endur&rsquo;O count on this page comes from. 131 sites. The three lists. Coddy&rsquo;s 128 Sites KML &mdash; which actually holds 131 points &mdash; is an exact subset of th",
    "line": 707,
    "n": 1
-  },
-  "128,221": {
-   "ctx": "/sub> &mdash; population-derived volume&Sigma; over premises types of premises &times; people per premises &times; SDWS 24 litres per person per day &times; DOp,y; 128,221 people servedWorldPop R2025A run, raster pinned ",
-   "line": 1208,
-   "n": 2
   },
   "13": {
    "ctx": ">no date setdata closes when every Marolinta record has an E. coli result on filemarolinta_points_without_wq = 13 (Marolinta records with no E. coli result on file); target == 0 <summary",
    "line": 436,
    "n": 16
   },
-  "130": {
-   "ctx": "d the map are still separate universes &mdash; the count is Coddy&rsquo;s KML, not a live mWater figure, and cannot yet be refreshed automatically. And the duplicate pair is unresolved: if they are one site the count is ",
-   "line": 716,
-   "n": 1
-  },
-  "131": {
-   "ctx": "ill reads today, unchanged. The two were never the same figure and neither has replaced the other. What did move is Endur&rsquo;O, from 138 sites to 131, and it was a deliberate reconciliation rather than an artefact of ",
-   "line": 252,
-   "n": 9
-  },
-  "138": {
-   "ctx": "and it still reads today, unchanged. The two were never the same figure and neither has replaced the other. What did move is Endur&rsquo;O, from 138 sites to 131, and it was a deliberate reconciliation rather than an art",
-   "line": 252,
-   "n": 2
-  },
-  "139.6": {
-   "ctx": "households, not 32.5. Both reduce to one number. The ex ante ER calculator derives people per source directly: 88,783 users recorded on mWater over 636 water points = 139.6 people per CWS, and 20,647 households over the ",
-   "line": 756,
-   "n": 4
-  },
-  "14": {
-   "ctx": "last 28. Every source is level with mWater as of 21 September 2026: call-centre contacts to 21 September 2026 &mdash; current; preventive maintenance to 11 September 2026 &mdash; current; repairs to 14 September 2026 &md",
-   "line": 282,
-   "n": 13
-  },
-  "141": {
-   "ctx": "begin following a successful SDWS 3 water quality test, demonstrated in the Project Database&rdquo;. The earliest passing test on the register is 11 April 2025. No point could credit in 2024, so the 141 calendar sheets d",
-   "line": 1037,
-   "n": 1
-  },
-  "142": {
-   "ctx": "The point-of-use form does carry a consent question &mdash; A4, &ldquo;Household consent obtained?&rdquo; &mdash; but it is optional and conditional, and it holds 0 answers in 142 responses, while the Water Quality Testi",
-   "line": 369,
-   "n": 6
-  },
-  "143": {
-   "ctx": "of 16 days from notification to completion, across 187 repairs on 145 points. That is not the whole picture and cannot be: the repair form is created only once the work is finished &mdash; 143 of 187 records carry a comp",
-   "line": 410,
-   "n": 5
-  },
-  "144": {
-   "ctx": "/b>. The gap is settlement density, not the capacity caps. Before capping, the WorldPop allocation averages 615 people per point in Fort-Dauphin with 78 of 127 points at the pump ceiling, against 144 in Maroantsetra with",
-   "line": 758,
-   "n": 2
-  },
-  "145": {
-   "ctx": "in this item feeds a carbon calculation. Baseline, 21 September 2026. Recorded repairs run at a median of 1 day and a p90 of 16 days from notification to completion, across 187 repairs on 145 points. That is not the whol",
-   "line": 410,
-   "n": 3
-  },
   "15": {
    "ctx": "s by the weekly buildtools/rebuild_activity.pyAdriaan Mol, COO SaniTap - the standing reconciliation recorded in data/register_corrections.json2026-09-15register_recordsCarbon fleetcarbon_fleet<span data-fig=\"POPS.popula",
    "line": 296,
    "n": 18
   },
-  "157": {
-   "ctx": "31 sites. The three lists. Coddy&rsquo;s 128 Sites KML &mdash; which actually holds 131 points &mdash; is an exact subset of the earlier 157-point 13 Ao&ucirc;t file: every one of the matches a 13 Ao&ucirc;t row on both ",
-   "line": 707,
-   "n": 1
-  },
   "16": {
    "ctx": "a printed document other than a calendar, 6 portraits or site views with no sheet in frame, 1 of a sample bottle on a pump platform. They sit on 17 responses to 2.15.5, 16 to 2.15.6 and 4 to 1.3.1.3. The full list with w",
    "line": 388,
    "n": 19
-  },
-  "163": {
-   "ctx": "d class=\"num muted\">169169357.3358.7351.0 2026 sheets163163347.1349.9341.0 The two districts are indistinguishable &",
-   "line": 1082,
-   "n": 2
-  },
-  "169": {
-   "ctx": "8383358.6360.7352.3 2025 sheets169169357.3358.7351.0 2026 sheets163<td class=\"n",
-   "line": 1081,
-   "n": 6
   },
   "17": {
    "ctx": "st the contractor folders and written to data/enduro_disposition.csv, which holds 148 candidate records: 92 matched to the contract list, 37 new, 2 duplicates and 17 retired. The 131 are the records the reconciliation ke",
@@ -228,70 +73,15 @@
    "line": 252,
    "n": 34
   },
-  "182": {
-   "ctx": "tatus Preventive-maintenance schedule (6-monthly)Each pump is due 182 days after its last preventive visit or repair — or, where there has been neither, 182 days after it was rehabilitated or constructed. Water points wi",
-   "line": 844,
-   "n": 2
-  },
-  "187": {
-   "ctx": "mber 2026. Nothing in this item feeds a carbon calculation. Baseline, 21 September 2026. Recorded repairs run at a median of 1 day and a p90 of 16 days from notification to completion, across 187 repairs on 145 points. T",
-   "line": 410,
-   "n": 8
-  },
-  "19": {
-   "ctx": "ed\" style=\"font-size:.82em\">no answer logged Correct the village spelling on 19 works-form records.Correct the village spelling on 19 works-form records. Nineteen records submitted 22&ndash;23 August 2025 spell the villa",
-   "line": 454,
-   "n": 6
-  },
-  "193": {
-   "ctx": "e submission date &mdash; so the system cannot represent outstanding work at all. Counted from the call centre instead, 44 tickets are open with no repair recorded since, at a median 84 days, p90 193, longest 258; 21 hav",
-   "line": 410,
-   "n": 3
-  },
   "2": {
    "ctx": "ate was reconciled against the contractor folders and written to data/enduro_disposition.csv, which holds 148 candidate records: 92 matched to the contract list, 37 new, 2 duplicates and 17 retired. The 131 are the recor",
    "line": 252,
    "n": 77
   },
-  "2,348": {
-   "ctx": "/div> 62have none, ever 385have nothing in the last six months 2,367calendar photographs on file, 2,348 of them on a managed point Calendar custody &mdash; the operational metric this section now turns on <div class=\"st",
-   "line": 989,
-   "n": 2
-  },
-  "2,367": {
-   "ctx": "at least one calendar photograph (91.6%) 62have none, ever 385have nothing in the last six months 2,367calendar photographs on file, 2,348 of them on a managed point Calendar custody &mdash; the operational metric this s",
-   "line": 989,
-   "n": 3
-  },
-  "2.3": {
-   "ctx": "phin with 78 of 127 points at the pump ceiling, against 144 in Maroantsetra with 3 of 604 capped. Capping already removes about half the modelled population in Fort-Dauphin and what remains is still 2.3&times; the ex ant",
-   "line": 758,
-   "n": 2
-  },
   "20": {
    "ctx": "he estate we maintain\" loading=\"lazy\"> What is on it, and what is not. Every MadAvance hand pump in the maintained register, with its field photographs, 20 sampled taps on the Moramanga axis, and the 131 southern Endur'O",
    "line": 279,
    "n": 28
-  },
-  "200": {
-   "ctx": "sh; confirm to close: James Walker, 15 Sep 2026: &ldquo;WorldPop 100%. Rigorous and all of the claims and data is supported. There are references for higher numbers on handpumps. In Richard Carter&rsquo;s book he states ",
-   "line": 392,
-   "n": 9
-  },
-  "201": {
-   "ctx": "td>39481.25% of 208 Maroantsetra 35635101&hellip;WS1.31 dry0201&mdash;0% No seasonal difference. The rainy-season twin question WS1.",
-   "line": 1301,
-   "n": 2
-  },
-  "206": {
-   "ctx": "th its date and sourceno answer logged Move the 206 misfiled photographs to the question they belong on.Move the 206 misfiled photographs to the question they belong on. Every calendar photograph on file was inspected by",
-   "line": 382,
-   "n": 17
-  },
-  "208": {
-   "ctx": "ed cookstoves10% three-stone baseline, adjusted ex post on 81.25% improved-cookstove use in Fort-Dauphin, 0% MaroantsetramWater form 2eeb8682&hellip; WS1.31 / WS1.52, n=208sourced and evidenced Cb &mdash; already on a sa",
-   "line": 1204,
-   "n": 3
   },
   "21": {
    "ctx": "ekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 September 2026, current <img src=\"assets/sanitap.png\" alt=\"SaniTap\" style=\"height:40px;width:auto;displ",
@@ -308,16 +98,6 @@
    "line": 332,
    "n": 8
   },
-  "233": {
-   "ctx": "procedure with the form it describes. So every current SOP was swept against the live forms to see whether that was one mistake or a pattern. 15 SOPs, 12 live mWater forms, 748 questions; 233 paragraphs mention a form, f",
-   "line": 1062,
-   "n": 1
-  },
-  "235": {
-   "ctx": "0620.0% 1&ndash;22510119.8% 3&ndash;523524049.5% 6&ndash;9462564.8% Yes, it is bia",
-   "line": 1101,
-   "n": 1
-  },
   "24": {
    "ctx": "-own=\"jan-de-graaf\" aria-pressed=\"false\">Jan de Graaf 27 &middot; 24 ACT ANAngelo Nahavit",
    "line": 330,
@@ -326,16 +106,6 @@
   "24.25": {
    "ctx": "an administrative region with a cookstove distribution. 127 of those are in the carbon portfolio &mdash; and Fort-Dauphin has exactly 127 points. Every one lies between latitude &minus;25.18 and &minus;24.25, entirely wi",
    "line": 1263,
-   "n": 1
-  },
-  "240": {
-   "ctx": "td>620.0% 1&ndash;22510119.8% 3&ndash;523524049.5% 6&ndash;9462564.8% Yes, it is biased, on one dimension an",
-   "line": 1101,
-   "n": 1
-  },
-  "247": {
-   "ctx": "six. By district: 28 Fort-Dauphin, 16 Maroantsetra &mdash; Fort-Dauphin carries 127 of the managed points and 64% of the backlog. A further 247 points last answered &ldquo;partially&rdquo; working, which is neither count",
-   "line": 867,
    "n": 1
   },
   "25": {
@@ -348,55 +118,15 @@
    "line": 1263,
    "n": 1
   },
-  "250": {
-   "ctx": "both name and coordinates. The 26 points dropped between them are all FAHASOAVANA. Against those sit the 111-point UNICEF list and the Endur&rsquo;O mWater group. Sites were matched on proximity within 250&nbsp;m, never ",
-   "line": 707,
-   "n": 2
-  },
-  "258": {
-   "ctx": "dash; so the system cannot represent outstanding work at all. Counted from the call centre instead, 44 tickets are open with no repair recorded since, at a median 84 days, p90 193, longest 258; 21 have been open more tha",
-   "line": 410,
-   "n": 3
-  },
-  "259": {
-   "ctx": "d>415310353.6356.7347.4 Maroantsetra360259353.6356.7347.2 Fort-Dauphin5148353.3357.8<td c",
-   "line": 1077,
-   "n": 1
-  },
   "26": {
    "ctx": "ell\">ANAngelo Nahavitatsara / MadAvanceACT26 Sep 2026no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which <tr da",
    "line": 347,
    "n": 9
   },
-  "260": {
-   "ctx": "DimensionValueEvidencedNot% evidenced DistrictMaroantsetra26034443.0% Fort-Dauphin487937.8% Marolinta0<td class",
-   "line": 1092,
-   "n": 1
-  },
-  "27.9": {
-   "ctx": "lls on or before the year end, pro-rated by the part of the year they were credited; Marolinta is excluded throughout; per-point annual emission reductions are the registered 31.3 tCO2e in Anosy and 27.9 in Maroantsetra,",
-   "line": 1049,
-   "n": 2
-  },
-  "275": {
-   "ctx": "td>7937.8% Marolinta050.0% Pump typeCanzee27537742.2% India Mark335139.3% First recorded2024<td",
-   "line": 1095,
-   "n": 1
-  },
-  "28": {
-   "ctx": "eekActivity in the 7 days to 21 September 2026, against the previous 7 days and the last 28. Every source is level with mWater as of 21 September 2026: call-centre contacts to 21 September 2026 &mdash; current; preventiv",
-   "line": 282,
-   "n": 3
-  },
   "29": {
    "ctx": "e-portfolio view of the Marolinta works, kept so the new boreholes can be followed from survey to register entry, and so nothing is counted as ours before it has been registered. Borehole progress form, submitted 25–29 A",
    "line": 786,
    "n": 12
-  },
-  "295": {
-   "ctx": "answer is &ldquo;edition, not period&rdquo;: the reader must key on something other than the printed year, and the published coverage figures move &mdash; bounded and small, water points with 2026 evidence going from 295",
-   "line": 370,
-   "n": 4
   },
   "3": {
    "ctx": "click away from every row via the mWater column, so nothing is hidden from a verifier &mdash; the record is the record. The fix is the form, not the history. 2. Field productivity. Median 3 pumps per repair team per fiel",
@@ -413,240 +143,20 @@
    "line": 936,
    "n": 3
   },
-  "3.7": {
-   "ctx": "139.6 people per CWS, and 20,647 households over the same 636 = 32.5. The district pair reproduces the same 139.6 divided by district household size &mdash; 139.6 &divide; 4.5 = 31.0 for Anosy, 139.6 &divide; 3.7 = 37.7 ",
-   "line": 756,
-   "n": 3
-  },
   "3.9": {
    "ctx": "ss=\"num\">1164.855 Maroantsetra132193.949 Fort-Dauphin541237.055 202",
    "line": 858,
    "n": 4
-  },
-  "30": {
-   "ctx": "an class=\"ownercell\">James WalkerACT30 Sep 2026decision closes when the answer is logged in data/decisions.json with its date and sourceno answer logg",
-   "line": 348,
-   "n": 43
-  },
-  "308": {
-   "ctx": "le marked day weighs more. It is not evidence that 2026 is a worse year. Is the evidenced subset representative? On the day-call basis, 308 of the 736 managed points &mdash; 41.8% &mdash; have a calendar the extraction c",
-   "line": 1087,
-   "n": 3
-  },
-  "309": {
-   "ctx": "uo;edition, not period&rdquo;: the reader must key on something other than the printed year, and the published coverage figures move &mdash; bounded and small, water points with 2026 evidence going from 295 to 309 on the",
-   "line": 370,
-   "n": 4
-  },
-  "31": {
-   "ctx": "an class=\"ownercell\">James WalkerACT31 Oct 2026form closes when the survey form carries a stove-stacking questiona question mentioning \"stove\" is not on t",
-   "line": 375,
-   "n": 67
-  },
-  "31.3": {
-   "ctx": "g SDWS 3 test falls on or before the year end, pro-rated by the part of the year they were credited; Marolinta is excluded throughout; per-point annual emission reductions are the registered 31.3 tCO2e in Anosy and 27.9 ",
-   "line": 1049,
-   "n": 1
-  },
-  "310": {
-   "ctx": "the false-positive floor 356.2days operational implied by that, in a 365-day year 415point-years it is averaged over, across 310 points &mdash; the day-call basis 347the figure of record. Nothing above it can be claimed ",
-   "line": 980,
-   "n": 3
   },
   "32": {
    "ctx": "traces to a clause of SDWS V2.0 &mdash; the logger is the SDWS 28 Option 2 operation sensor; the pod is its documented volumetric calibration instrument per &sect;14.4.4; the stroke log doubles as the SDWS 31/32 O&amp;M ",
    "line": 1125,
    "n": 2
   },
-  "32.5": {
-   "ctx": "location data&hellip;&rdquo; The rooftop figure is the ex ante average, not the measured value. Same box, Value(s) applied: &ldquo;Ex-ante average of 32.5 households per CWS is based on initial assessment of 4,310 water ",
-   "line": 740,
-   "n": 5
-  },
-  "321": {
-   "ctx": "cord and carries 1,202; preventive maintenance 2.15.5, the gardiens&rsquo; calendar generally, carries 844; repair-after-breakdown 1.3.1.3 carries 321. 2,367 calendar photographs on file in total, 2,348 of them on one of",
-   "line": 1054,
-   "n": 1
-  },
-  "33": {
-   "ctx": "the error direction in both: whether the software over- or under-counts marked days, since the impossible-cell probe bounds over-counting only and nothing yet bounds what it misses. The remaining 33 sheets stay in the ro",
-   "line": 360,
-   "n": 6
-  },
-  "339": {
-   "ctx": "um\">None everOlder than 6 monthsCoverage Maroantsetra6045653933993.5% Fort-Dauphin127109184685.8% Marolinta<td cla",
-   "line": 1001,
-   "n": 1
-  },
-  "341.0": {
-   "ctx": "d class=\"num muted\">351.0 2026 sheets163163347.1349.9341.0 The two districts are indistinguishable &mdash; 353.6 against 353.3 days &mdash; which is the first thing that would have to be true for a single strat",
-   "line": 1082,
-   "n": 1
-  },
-  "344": {
-   "ctx": "ValueEvidencedNot% evidenced DistrictMaroantsetra26034443.0% Fort-Dauphin487937.8% Marolinta05<td class=\"",
-   "line": 1092,
-   "n": 1
-  },
-  "347": {
-   "ctx": "ive fallback, but that is a house rule no verifier is bound by, and it decides the treatment of 434 points. Then the three already open: (a) Is DOp,y a fixed ex ante 347, or 365 less documented downtime? The registered p",
-   "line": 355,
-   "n": 69
-  },
-  "347.1": {
-   "ctx": "d class=\"num muted\">357.3358.7351.0 2026 sheets163163347.1349.9341.0 The two districts are indistinguishable &mdash; 353.6 against 353.3 days &mdash; which",
-   "line": 1082,
-   "n": 1
-  },
-  "347.2": {
-   "ctx": "um\">353.6356.7347.4 Maroantsetra360259353.6356.7347.2 Fort-Dauphin5148353.3357.8347.9 Marolinta0<td c",
-   "line": 1077,
-   "n": 1
-  },
-  "347.4": {
-   "ctx": "class=\"num\">Before the floor Portfolio415310353.6356.7347.4 Maroantsetra360259353.6356.7347.2 Fort-Dauphin51</td",
-   "line": 1076,
-   "n": 1
-  },
-  "347.9": {
-   "ctx": "class=\"num\">353.6356.7347.2 Fort-Dauphin5148353.3357.8347.9 Marolinta00&mdash;&mdash;&mdash; 2024 sheets<td class=",
-   "line": 1078,
-   "n": 1
-  },
-  "349.9": {
-   "ctx": "d class=\"num muted\">358.7351.0 2026 sheets163163347.1349.9341.0 The two districts are indistinguishable &mdash; 353.6 against 353.3 days &mdash; which is the first thing that would ha",
-   "line": 1082,
-   "n": 1
-  },
-  "35": {
-   "ctx": "\">142.338 2026 Q24613511.855 2026 Q32739",
-   "line": 862,
-   "n": 2
-  },
-  "35.8": {
-   "ctx": "lues instead &mdash; &ldquo;Estimated premises per CWS: Anosy: 31, Maroantsetra: 37&rdquo; &mdash; on a build-out of 1,000 water points, 200 in Anosy and 800 in Maroantsetra. Weighted 200/800 those give 35.8 households, ",
-   "line": 755,
-   "n": 2
-  },
-  "351.0": {
-   "ctx": "d class=\"num muted\">352.3 2025 sheets169169357.3358.7351.0 2026 sheets163163347.1349.9341.0 </tb",
-   "line": 1081,
-   "n": 1
-  },
-  "352.3": {
-   "ctx": "/td>&mdash; 2024 sheets8383358.6360.7352.3 2025 sheets169169357.3358.7351.0",
-   "line": 1080,
-   "n": 1
-  },
-  "353.0": {
-   "ctx": ". It does not push the figure the obvious way. Within the evidenced set, implied days operational does not rise with visit frequency: 356.8 days at one or two photographs, 353.0 at three to five, 355.0 at six or more. Th",
-   "line": 1105,
-   "n": 2
-  },
-  "353.3": {
-   "ctx": ">356.2 days operational. It is a stratum average over 415 point-years on the day-call basis, not a per-pump figure, and the two districts are indistinguishable within it &mdash; 353.6 against 353.3 days before the floor ",
-   "line": 983,
-   "n": 3
-  },
-  "353.6": {
-   "ctx": "ational a year, so 356.2 days operational. It is a stratum average over 415 point-years on the day-call basis, not a per-pump figure, and the two districts are indistinguishable within it &mdash; 353.6 against 353.3 days",
-   "line": 983,
-   "n": 4
-  },
-  "355.0": {
-   "ctx": "\">It does not push the figure the obvious way. Within the evidenced set, implied days operational does not rise with visit frequency: 356.8 days at one or two photographs, 353.0 at three to five, 355.0 at six or more. Th",
-   "line": 1105,
-   "n": 1
-  },
-  "356.2": {
-   "ctx": "Pump attendants keep a paper calendar marking the days the pump was not working. Photographed during maintenance visits, those calendars are the only field record of downtime we have.356.2 days implied uptime What the ca",
-   "line": 974,
-   "n": 6
-  },
-  "356.7": {
-   "ctx": "bon activity basis, or withdraw the per-year table. The SDWS 27 per-year quantification reports carbon points active and point-years for 2024, 2025 and 2026 (0, 722, 727 and 0, 356.7, 726.6) and computes every tonnage an",
-   "line": 451,
-   "n": 5
-  },
-  "356.8": {
-   "ctx": "se\">maintenance visit frequency has collapsed. It does not push the figure the obvious way. Within the evidenced set, implied days operational does not rise with visit frequency: 356.8 days at one or two photographs, 353",
-   "line": 1105,
-   "n": 1
-  },
-  "357.3": {
-   "ctx": "d class=\"num muted\">358.6360.7352.3 2025 sheets169169357.3358.7351.0 2026 sheets163163347.1<td class=",
-   "line": 1081,
-   "n": 1
-  },
-  "357.8": {
-   "ctx": "td class=\"num\">259353.6356.7347.2 Fort-Dauphin5148353.3357.8347.9 Marolinta00&mdash;&mdash;&mdash;",
-   "line": 1078,
-   "n": 1
-  },
-  "358.6": {
-   "ctx": "\"num\">0&mdash;&mdash;&mdash; 2024 sheets8383358.6360.7352.3 2025 sheets169169357.3<td class=",
-   "line": 1080,
-   "n": 1
-  },
-  "358.7": {
-   "ctx": "d class=\"num muted\">360.7352.3 2025 sheets169169357.3358.7351.0 2026 sheets163163347.1349.9<td class=",
-   "line": 1081,
-   "n": 1
-  },
-  "359": {
-   "ctx": "lass=\"num\">42.2% India Mark335139.3% First recorded202422635938.6% 2025816954.0% Photographs on filenone0<td cl",
-   "line": 1097,
-   "n": 1
-  },
-  "360": {
-   "ctx": ">Portfolio415310353.6356.7347.4 Maroantsetra360259353.6356.7347.2 Fort-Dauphin5148353.3<td cla",
-   "line": 1077,
-   "n": 1
-  },
-  "360.7": {
-   "ctx": "sh;&mdash;&mdash; 2024 sheets8383358.6360.7352.3 2025 sheets169169357.3358.7<td class=",
-   "line": 1080,
-   "n": 1
-  },
-  "365": {
-   "ctx": "back, but that is a house rule no verifier is bound by, and it decides the treatment of 434 points. Then the three already open: (a) Is DOp,y a fixed ex ante 347, or 365 less documented downtime? The registered parameter",
-   "line": 355,
-   "n": 7
-  },
-  "37": {
-   "ctx": "dur&rsquo;O estate was reconciled against the contractor folders and written to data/enduro_disposition.csv, which holds 148 candidate records: 92 matched to the contract list, 37 new, 2 duplicates and 17 retired. The 13",
-   "line": 252,
-   "n": 9
-  },
-  "377": {
-   "ctx": "d>37.8% Marolinta050.0% Pump typeCanzee27537742.2% India Mark335139.3% First recorded2024226<td",
-   "line": 1095,
-   "n": 1
-  },
-  "38": {
-   "ctx": ">0.98 2026 Q184142.338 2026 Q24613511.855 <td c",
-   "line": 861,
-   "n": 2
-  },
-  "385": {
-   "ctx": "026, 45 in July, 10 in August. Fort-Dauphin has had no preventive-maintenance visit since June 2026, and none in October or November 2025. The 62 points with no calendar photograph and the 385 stale beyond six months are",
-   "line": 408,
-   "n": 8
-  },
-  "39": {
-   "ctx": "yle> SaniTap &middot; weekly water programme report &middot; week 39 &middot; issued Tue 22 September 2026 &middot; edition 6 data to Mon 21 September 2026, current <!--",
-   "line": 235,
-   "n": 10
-  },
   "4": {
    "ctx": "driamanantena\" aria-pressed=\"false\">LRLanja Randriamanantena 6 &middot; 4 ACT MMadAvance 6<span cla",
    "line": 333,
    "n": 54
-  },
-  "4,310": {
-   "ctx": "style=\"margin-bottom:0\">The rooftop figure is the ex ante average, not the measured value. Same box, Value(s) applied: &ldquo;Ex-ante average of 32.5 households per CWS is based on initial assessment of 4,310 water sourc",
-   "line": 740,
-   "n": 3
   },
   "4.0": {
    "ctx": "-Dauphin']\"> points Androy4.54.54.5Marolinta &mdash; 5 points Alaotra Mangoro4.04.24.2Moramanga axis (Endur&rsquo;O) Analamanga3.94.14.0Antana",
@@ -673,84 +183,19 @@
    "line": 756,
    "n": 7
   },
-  "40": {
-   "ctx": "Dec 2026data closes when the stroke-test form carries results for the SDWS 23 sample&#10003; stroke_test_responses = 40 (results recorded on the stroke-meter form); target >= 30 1. Re-take the GPS fix at",
-   "line": 464,
-   "n": 3
-  },
   "41": {
    "ctx": "/b>. National is 4.2 and urban 3.9. Source: RGPH-3 Th&egrave;me 4, INSTAT, February 2021, R&eacute;sum&eacute; p.&nbsp;XXI. The same figure appears in RGPH-3 Tome 1, Tableau 26, p.&nbsp;41, which is now in the evidence f",
    "line": 933,
    "n": 1
-  },
-  "415": {
-   "ctx": "a pump is marked not working, after subtracting the false-positive floor 356.2days operational implied by that, in a 365-day year 415point-years it is averaged over, across 310 points &mdash; the day-call basis 347the fi",
-   "line": 980,
-   "n": 3
-  },
-  "42": {
-   "ctx": "d 206 are not calendars: 75 of the blue &ldquo;Point d&rsquo;Eau Potable et P&eacute;renne&rdquo; signboard, 67 of a printed document other than a calendar, 21 of a standpipe or pump head, 42 portraits or site views with",
-   "line": 382,
-   "n": 4
-  },
-  "428": {
-   "ctx": "call basis, 308 of the 736 managed points &mdash; 41.8% &mdash; have a calendar the extraction can call days on. The test is whether those 308 on the day-call basis differ systematically from the 428 that do not. The two",
-   "line": 1087,
-   "n": 1
-  },
-  "43": {
-   "ctx": "in the field by the k-th-household walking rule. Design effect (DEFF) = 1 + (m &minus; 1) &times; intra-cluster correlation (ICC); at ICC 0.1 that is 1.4, so a nominal 60 samples gives an effective sample size of about 4",
-   "line": 961,
-   "n": 1
-  },
-  "44": {
-   "ctx": "the extraction and manual transcription. It now also decides something larger than the accuracy figure. The calendar was made the official record of days operational on 21 September 2026, and on 44 points with open call-",
-   "line": 360,
-   "n": 20
-  },
-  "45": {
-   "ctx": "te in every month since September 2025. Calendar currency is therefore a function of how often a point is visited, not of whether the procedure is followed. Visits have collapsed: 100 in March 2026, 45 in July, 10 in Aug",
-   "line": 408,
-   "n": 3
-  },
-  "46": {
-   "ctx": "Q184142.338 2026 Q24613511.855 2026 Q327<td class=\"num muted\"",
-   "line": 862,
-   "n": 3
-  },
-  "48": {
-   "ctx": "tr>Maroantsetra360259353.6356.7347.2 Fort-Dauphin5148353.3357.8347.9 Marolinta00&mdash;&mdash;<td cla",
-   "line": 1078,
-   "n": 2
   },
   "5": {
    "ctx": "wnchip\" data-own=\"madavance\" aria-pressed=\"false\">MMadAvance 6 &middot; 5 ACT UUnassigned 1<span c",
    "line": 334,
    "n": 36
   },
-  "50": {
-   "ctx": "eight=\"20\" loading=\"lazy\">Jan de GraafACT30 Sep 2026data closes when fewer than 50 points are more than six months without a visitpoints_over_6_months = 452 (points with no maintenance visit for more than six months); ta",
-   "line": 349,
-   "n": 36
-  },
-  "51": {
-   "ctx": "\"num\">347.4 Maroantsetra360259353.6356.7347.2 Fort-Dauphin5148353.3357.8347.9 Marolinta00&mdash;<td class=\"n",
-   "line": 1078,
-   "n": 2
-  },
-  "565": {
-   "ctx": "th class=\"num\">With a calendarNone everOlder than 6 monthsCoverage Maroantsetra6045653933993.5% Fort-Dauphin1271091846<td class=\"num",
-   "line": 1001,
-   "n": 1
-  },
   "58": {
    "ctx": "SDWS 27 basis. Why DO is indexed on the premises type, quoted from the registered documents The registered VPA-DD, page 58, sets out Equation 5 with three of its four terms reading &ldquo;premises type p&rdquo; in so man",
    "line": 1069,
-   "n": 1
-  },
-  "59": {
-   "ctx": "close together: every one of the has at least one neighbour whose service area overlaps its own, the average point overlaps 28 others, the most crowded overlaps 59, and 1,169 pairs of pumps in the portfolio stand within ",
-   "line": 907,
    "n": 1
   },
   "6": {
@@ -763,120 +208,20 @@
    "line": 1274,
    "n": 4
   },
-  "60": {
-   "ctx": ">The 90/10 sampling establishes litres per counted event &mdash; a fleet conversion factor per pump type &mdash; not which pumps are metered. Every pump is metered. This item previously read as a 60-unit sampled sensor d",
-   "line": 352,
-   "n": 16
-  },
-  "601": {
-   "ctx": "istrict (Marolinta, which sits outside the carbon programme). pH, electrical conductivity, turbidity and iron never disqualify a source. Current eligible counts: 126 in stratum HP-FD (Fort-Dauphin / Anosy) and 601 in HP-",
-   "line": 960,
-   "n": 1
-  },
-  "604": {
-   "ctx": ", not the capacity caps. Before capping, the WorldPop allocation averages 615 people per point in Fort-Dauphin with 78 of 127 points at the pump ceiling, against 144 in Maroantsetra with 3 of 604 capped. Capping already ",
-   "line": 758,
-   "n": 2
-  },
-  "62": {
-   "ctx": "controlled source file exists anywhere in SharePoint. The calendar in service was designed and printed in August 2024; there is no template, no artwork file, no print order and no distribution record. The 62 points with ",
-   "line": 386,
-   "n": 11
-  },
-  "636": {
-   "ctx": "200/800 those give 35.8 households, not 32.5. Both reduce to one number. The ex ante ER calculator derives people per source directly: 88,783 users recorded on mWater over 636 water points = 139.6 people per CWS, and 20,",
-   "line": 756,
-   "n": 3
-  },
-  "674": {
-   "ctx": "the evidence reaches. Coverage, custody and the evidence base beneath that figure 674of points have at least one calendar photograph (91.6%) 62have none, ever 385have nothing",
-   "line": 986,
-   "n": 3
-  },
-  "69": {
-   "ctx": "39.3% First recorded202422635938.6% 2025816954.0% Photographs on filenone0620.0% 1&ndash;225<td",
-   "line": 1098,
-   "n": 1
-  },
   "7": {
    "ctx": "on> This weekActivity in the 7 days to 21 September 2026, against the previous 7 days and the last 28. Every source is level with mWater as of 21 September 2026: call-centre contacts to 21 September 2026 &mdash; current;",
    "line": 282,
    "n": 53
-  },
-  "7.5": {
-   "ctx": "rbon_points_without_2026_sheet\">active carbon points have none for 2026 237of 722 had it for 2025 (32.8%) +7.5percentage points 2025 to 2026 &mdash; the trend is up, and far too slow This is the figure to watch, not the ",
-   "line": 996,
-   "n": 2
   },
   "723": {
    "ctx": "metered. This item previously read as a 60-unit sampled sensor deployment, which is not the architecture. The plan works to the 17 July 2026 census of 723 pumps; the register now reads 736 managed points, and the reconci",
    "line": 352,
    "n": 8
   },
-  "736": {
-   "ctx": "ord of any kind is unknown. Rebuilt every edition by tools/build_call_tables.py, which reproduces the published tables exactly from the extract they were built on &mdash; 736 of 736 pumps. 39 pumps it cannot reproduce ar",
-   "line": 265,
-   "n": 22
-  },
-  "743": {
-   "ctx": "the project water source during the year. Only premises reporting use at least every two days may be counted. Annual. It is a sample, not a census. Surveying every household around 743 hand pumps is neither required nor ",
-   "line": 925,
-   "n": 1
-  },
-  "748": {
-   "ctx": "mpared a sentence in a procedure with the form it describes. So every current SOP was swept against the live forms to see whether that was one mistake or a pattern. 15 SOPs, 12 live mWater forms, 748 questions; 233 parag",
-   "line": 1062,
-   "n": 1
-  },
-  "77": {
-   "ctx": "olio figures.Update the SOP&rsquo;s portfolio figures. It states its scope, in the SOP&rsquo;s own words, as &ldquo;646 Canzee + 77 India Mark III = 723 pumps&rdquo;. That is a quotation of the document being corrected, ",
-   "line": 395,
-   "n": 4
-  },
-  "78": {
-   "ctx": "e. Fort-Dauphin measures 322 against 139.5. The gap is settlement density, not the capacity caps. Before capping, the WorldPop allocation averages 615 people per point in Fort-Dauphin with 78 of 127 points at the pump ce",
-   "line": 758,
-   "n": 2
-  },
-  "79": {
-   "ctx": "> DistrictMaroantsetra26034443.0% Fort-Dauphin487937.8% Marolinta050.0% Pump typeCanzee275<td class=\"",
-   "line": 1093,
-   "n": 1
-  },
   "8": {
    "ctx": "s already in the field for SDWS 22, 25 and 26; this is one more question on an instrument that already exists. Divergence 8 in docs/methodology_version_map.md.question live in the mWater survey<img class=\"face\" src=\"a",
    "line": 375,
    "n": 19
-  },
-  "8.8": {
-   "ctx": "p>356.2 days implied uptime What the calendars say the uptime is 8.8days a year a pump is marked not working, after subtracting the false-positive floor 356.2days operational implied by that, in a 365-day year",
-   "line": 978,
-   "n": 7
-  },
-  "800": {
-   "ctx": "an>&rsquo;s additional comment registers district values instead &mdash; &ldquo;Estimated premises per CWS: Anosy: 31, Maroantsetra: 37&rdquo; &mdash; on a build-out of 1,000 water points, 200 in Anosy and 800 in Maroant",
-   "line": 755,
-   "n": 2
-  },
-  "81": {
-   "ctx": "5139.3% First recorded202422635938.6% 2025816954.0% Photographs on filenone0620.0% 1&ndash;2<td",
-   "line": 1098,
-   "n": 1
-  },
-  "83": {
-   "ctx": "tr> Marolinta00&mdash;&mdash;&mdash; 2024 sheets8383358.6360.7352.3 2025 sheets169<td class=\"num",
-   "line": 1080,
-   "n": 2
-  },
-  "84": {
-   "ctx": "2026data closes when every point with calendar photographs has one that can be readpoints_without_readable_calendar = 84 (points whose calendar photographs cannot be read); target == 0 Reconcile the",
-   "line": 371,
-   "n": 15
-  },
-  "844": {
-   "ctx": "Preventive maintenance 2.15.6 is the field of record and carries 1,202; preventive maintenance 2.15.5, the gardiens&rsquo; calendar generally, carries 844; repair-after-breakdown 1.3.1.3 carries 321. 2,367 calendar photo",
-   "line": 1054,
-   "n": 1
   },
   "9": {
    "ctx": "WS v2.0 applies to this VPA before renewal.Confirm whether ERSDWS v2.0 applies to this VPA before renewal. The VPA is registered under v1.0. v2.0 was published 9 July 2026 and &sect;3.3.1 sets entry into force at &ldquo;",
@@ -887,11 +232,6 @@
    "ctx": "ther ERSDWS v2.0 applies to this VPA before renewal. The VPA is registered under v1.0. v2.0 was published 9 July 2026 and &sect;3.3.1 sets entry into force at &ldquo;90 days from the publication date&rdquo; &mdash; appro",
    "line": 348,
    "n": 37
-  },
-  "92": {
-   "ctx": ". On 18 September 2026 the Endur&rsquo;O estate was reconciled against the contractor folders and written to data/enduro_disposition.csv, which holds 148 candidate records: 92 matched to the contract list, 37 new, 2 dupl",
-   "line": 252,
-   "n": 4
   }
  }
 }

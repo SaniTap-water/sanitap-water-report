@@ -41,6 +41,25 @@ def age_days(m, today=None):
     return (today - datetime.date.fromisoformat(m["as_at"])).days
 
 
+def disposition():
+    """The Endur'O estate reconciliation, counted from its own evidence file.
+
+    data/enduro_disposition.csv carries one row per site with its disposition
+    and the evidence for it; every count the estate section states is counted
+    from it here, on every build, so none of them is typed.
+    """
+    import csv, collections
+    rows = list(csv.DictReader(open(os.path.join(REPO, "data", "enduro_disposition.csv"),
+                                    encoding="utf8")))
+    by = collections.Counter(r["disposition"] for r in rows)
+    managed = [r for r in rows if r["disposition"] != "retired"]
+    return {"matched": by.get("matched", 0), "new": by.get("new", 0),
+            "duplicate": by.get("duplicate", 0), "retired": by.get("retired", 0),
+            "managed": len(managed),
+            "unicef_list": sum(1 for r in rows if r["in_111"] == "yes"),
+            "in_mwater": sum(1 for r in managed if r["in_mwater"] == "yes")}
+
+
 def block(m=None, today=None):
     m = m or load()
     reg = {k: v for k, v in m["register"].items() if not k.startswith("_")
@@ -54,6 +73,7 @@ def block(m=None, today=None):
         "systems": m["figures"]["systems"]["v"],
         "people": m["figures"]["people"]["v"],
         "reg": reg,
+        "disp": disposition(),
     }
     js = json.dumps(body, separators=(",", ":"), ensure_ascii=False)
     prov = {

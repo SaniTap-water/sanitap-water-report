@@ -210,7 +210,7 @@ def _m14():
 
 
 @metric("point_742896839_in_register",
-        "is water point 742896839 absent from the maintained register (1 = still absent)")
+        "is water point 742896839 absent from the maintained register (one while it is still absent, none once it is in)")
 def _m23():
     return 0 if any(x.get("wp") == "742896839" for x in js("PUMPS")) else 1
 
@@ -316,7 +316,9 @@ def remote():
 
     # records submitted but never approved, on the two works forms
     unapproved = 0
-    since = (datetime.date.today() - datetime.timedelta(days=180)).isoformat()
+    import build_config as _bc
+    since = (datetime.date.today() - datetime.timedelta(
+        days=_bc.load()["approvals"]["window_days"])).isoformat()
     for key in ("repair-after-breakdown", "preventive-maintenance"):
         fid = snap.get(key, {}).get("id")
         if not fid:

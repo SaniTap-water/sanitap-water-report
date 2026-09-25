@@ -1,8 +1,15 @@
 {
  "note": "The rules the weekly build applies, in one place. The tools read these values and the page's 'How this is worked out' footnotes render them, so what the page says and what the build does cannot drift apart. tools/check_consistency.py fails if a value here differs from what the build or the SDWS1 pipeline actually applied.",
  "portfolio": {
-  "pump_models": ["Canzee", "IndiaMark"],
-  "districts": {"Maroantsetra": "Maroantsetra", "Taolagnaro": "Fort-Dauphin", "Beloha": "Marolinta"}
+  "pump_models": [
+   "Canzee",
+   "IndiaMark"
+  ],
+  "districts": {
+   "Maroantsetra": "Maroantsetra",
+   "Taolagnaro": "Fort-Dauphin",
+   "Beloha": "Marolinta"
+  }
  },
  "water_quality": {
   "ecoli_pass_max_cfu_per_100ml": 0
@@ -13,10 +20,57 @@
   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
   "service_radius_m": 1000,
   "neighbourhood_radius_m": 2000,
-  "caps": {"Canzee": 500, "IndiaMark": 300}
+  "caps": {
+   "Canzee": 500,
+   "IndiaMark": 300
+  }
  },
  "roof_count": {
   "roofs_per_household": 2.5,
   "people_per_household": 4.5
+ },
+ "maintenance": {
+  "overdue_after_days": 182,
+  "overdue_after_months": 6,
+  "visit_age_band_edges_days": [
+   91,
+   183,
+   366
+  ],
+  "visit_age_band_months": [
+   3,
+   6,
+   12
+  ],
+  "note": "A pump is overdue when its last preventive visit or repair (or, with neither, its commissioning) is more than overdue_after_days old - six months. The visit-age bands on the page split pumps at these edges: under 91 days, 91-182, 183-365, 366 and over.",
+  "schedule_due_soon_days": 28,
+  "schedule_due_soon_weeks": 4,
+  "schedule_due_quarter_days": 91,
+  "schedule_due_quarter_months": 3,
+  "catch_up_weeks": 4
+ },
+ "activity": {
+  "week_days": 7,
+  "window_days": 28,
+  "note": "The week counters: activity in the last week_days, the week before it, and the last window_days, counted back from the newest activity date in the extracts."
+ },
+ "repairs": {
+  "within_days": [
+   3,
+   7
+  ],
+  "note": "Time-to-repair shares: the percentage of measured repairs completed within each of these many days of notification."
+ },
+ "approvals": {
+  "window_days": 180,
+  "note": "The approval backlog counts submitted works records in the last window_days that carry no approval."
+ },
+ "form_snapshot": {
+  "max_age_days": 7,
+  "note": "The build fails rather than publishes once the snapshot of the live mWater form designs is older than this."
+ },
+ "calendar": {
+  "min_observed_days": 30,
+  "note": "A point-year enters the calendar stratum only with at least this many observed days on its sheet."
  }
 }

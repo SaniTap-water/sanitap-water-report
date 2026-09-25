@@ -16,7 +16,7 @@ that a figure in that section is one the extraction actually produced.
     python3 tools/render_datasets.py --write
     python3 tools/render_datasets.py --check
 """
-import json, os, sys
+import json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
@@ -51,6 +51,23 @@ SETS = {
     # the rules the build applies; the "How this is worked out" footnotes
     # render every number they state from this, never typed
     "BUILDCFG": ("data", "build_config.json"),
+    # each extract's form id, pull date and row count, so every data table's
+    # footnote states its own source's extraction date (25 September 2026)
+    "PULLS": ("data", "extract_manifest.json"),
+    # the vintage floor the week caption states (tools/check_vintage.py)
+    "VINTAGE": ("data", "extract_vintage.json"),
+    # how many pumps the status rule holds on their published value
+    "HOLDS": ("data", "call_status_holds.json"),
+    # each data-kind action's closing threshold, which the action list renders
+    "ACTCOND": ("data", "action_conditions.json"),
+    # the calendar photographs that are not calendars, counted from the
+    # by-eye inspection file (data/calendar_not_calendar.csv)
+    "NOTCAL": ("data", "calendar_not_calendar.csv"),
+    # the points with no usable calendar image, by cause and field action
+    "NOUSABLE": ("data", "calendar_no_usable_image.csv"),
+    # the methodology-divergence register's machine-readable index: how many
+    # divergences it carries and how many require action now
+    "VMAP": ("docs", "methodology_version_map.md"),
 }
 
 
@@ -60,9 +77,44 @@ def block():
            "// reachable from one of these, or from the register objects, or be",
            "// declared in PARAMS - see tools/figure_census.py."]
     for name, path in SETS.items():
+        if name == "VMAP":
+            rows = re.findall(r"^\|\s*(\d+)\s*\|\s*(yes|no)\s*\|\s*([a-z0-9-]*)\s*\|\s*$",
+                              open(os.path.join(REPO, *path), encoding="utf8").read(), re.M)
+            doc = {"divergences": len(rows), "action_now": sum(1 for _, f, _a in rows if f == "yes")}
+            out.append(f"// {name}: {'/'.join(path)}")
+            out.append(f"const {name}=" + json.dumps(doc, separators=(",", ":")) + ";")
+            continue
+        if path[-1].endswith(".csv"):
+            import csv as _csv, collections as _co
+            rows = list(_csv.DictReader(open(os.path.join(REPO, *path), encoding="utf8")))
+            if name == "NOUSABLE":
+                doc = {"total": len(rows),
+                       "by_category": dict(sorted(_co.Counter(r["category"] for r in rows).items()))}
+                out.append(f"// {name}: {'/'.join(path)}")
+                out.append(f"const {name}=" + json.dumps(doc, separators=(",", ":"), ensure_ascii=False) + ";")
+                continue
+            def _summ(rs):
+                return {"total": len(rs),
+                        "by_reason": dict(sorted(_co.Counter(r["reason"] for r in rs).items())),
+                        "by_question": dict(sorted(_co.Counter(r["question"] for r in rs).items()))}
+            doc = _summ(rows)
+            # the subset the calendar reader had accepted as calendars
+            doc["accepted"] = _summ([r for r in rows if r["reader"] == "accepted as a calendar"])
+            out.append(f"// {name}: {'/'.join(path)}")
+            out.append(f"const {name}=" + json.dumps(doc, separators=(",", ":"), ensure_ascii=False) + ";")
+            continue
         doc = json.load(open(os.path.join(REPO, *path), encoding="utf8"))
         if name == "METRICS":            # values only; the prose quotes those
             doc = {k: v.get("value") for k, v in doc.get("metrics", {}).items()}
+        if name == "ACTCOND":            # data conditions: metric, op, target
+            doc = {k: {"metric": v["metric"], "op": v["op"], "target": v["target"]}
+                   for k, v in sorted(doc.items()) if v.get("kind") == "data"}
+        if name == "HOLDS":              # the count and the cut, not every row
+            doc = {"n": len(doc.get("holds") or []), "cut_used": doc.get("cut_used")}
+        if name == "PULLS":              # per extract: form, pulled, rows
+            doc = {k: {"form_id": v.get("form_id"), "pulled": str(v.get("written") or "")[:10],
+                       "rows": v.get("rows"), "newest": v.get("newest_submitted")}
+                   for k, v in sorted(doc.get("files", {}).items())}
         if name == "FORMSNAP":           # counts only, not the form designs
             doc = {"fetched": doc["fetched"], "forms": len(doc["forms"]),
                    "questions": sum(len(f["questions"]) for f in doc["forms"].values()),

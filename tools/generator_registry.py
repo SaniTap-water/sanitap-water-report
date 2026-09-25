@@ -67,6 +67,8 @@ GENERATED = {
     'SDWS26.answered_both': 'rebuild_sdws26',
     'SDWS26.approved': 'rebuild_sdws26',
     'SDWS26.excluded_part_entries': 'rebuild_sdws26',
+    'SDWS26.excluded_answered_max': 'rebuild_sdws26',
+    'SDWS26.excluded_answered_min': 'rebuild_sdws26',
     'SDWS26.form': 'rebuild_sdws26',
     'SDWS26.min_clusters': 'rebuild_sdws26',
     'SDWS26.q_dry': 'rebuild_sdws26',
@@ -233,6 +235,40 @@ GENERATED = {
     'S.over6_site': 'rebuild_activity',
     'S.status': 'build_call_tables',
     'S.week': 'rebuild_activity',
+    # 25 September: perturbed one leaf of each, ran the generator, the value came back
+    'TTRQ.facts': ('render_ttr_table', 'render_datasets'),
+    'ENDURO.disp': 'render_enduro',
+    'DERIV_RULES.[].re': 'render_derivations',
+    'DERIV_RULES.[].pop': 'render_derivations',
+    'DERIV_RULES.[].what': 'render_derivations',
+    'DERIV_RULES.[].forms': 'render_derivations',
+    'DERIV_RULES.[].why': 'render_derivations',
+    'VINTAGE.checked': 'render_datasets',
+    'VINTAGE.data_to': 'render_datasets',
+    'VINTAGE.last_record_by_source': 'render_datasets',
+    'VINTAGE.newest_pull': 'render_datasets',
+    'VINTAGE.note': 'render_datasets',
+    'VINTAGE.oldest_sources': 'render_datasets',
+    'VINTAGE.per_extract': 'render_datasets',
+    'VINTAGE.spread_days': 'render_datasets',
+    'HOLDS.n': 'render_datasets',
+    'HOLDS.cut_used': 'render_datasets',
+    'NOTCAL.total': 'render_datasets',
+    'NOTCAL.by_reason': 'render_datasets',
+    'NOTCAL.by_question': 'render_datasets',
+    'NOTCAL.accepted': 'render_datasets',
+    'NOUSABLE.total': 'render_datasets',
+    'NOUSABLE.by_category': 'render_datasets',
+    'VMAP.divergences': 'render_datasets',
+    'VMAP.action_now': 'render_datasets',
+}
+
+# Objects keyed by something that changes week to week (an extract file, an
+# action id), rebuilt whole by one generator: every key is covered. Each was
+# perturbed and came back on 25 September.
+WHOLE = {
+    'PULLS': 'render_datasets',     # data/extract_manifest.json, one key per extract
+    'ACTCOND': 'render_datasets',   # data-kind conditions, one key per action
 }
 
 POPULATION = {
@@ -311,6 +347,8 @@ def resolve(obj, field):
         return f"population:{POPULATION[key]}"
     if key in UNTESTABLE:
         return "untestable"
+    if obj in WHOLE:
+        return WHOLE[obj]
     return None
 
 

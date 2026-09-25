@@ -25,6 +25,8 @@ import datetime, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
 from prerender_figures import same as _same  # noqa: E402
+from table_notes import render as _tablenote  # noqa: E402
+from gen_figs import GenFigs  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
@@ -161,6 +163,7 @@ def block():
                      ("none", "Not collected")) if counts.get(l))
 
     notready = sum(v for k, v in counts.items() if k != "Ready")
+    G = GenFigs("cparams")
     return f"""{BEGIN}
 <section data-scopes="all mad madx mar" id="carbon-params">
   <div class="sechead"><div><h2>Data the carbon programme needs from us</h2>
@@ -171,19 +174,21 @@ def block():
   <span class="muted">Coverage and freshness are computed every build from the populations and the
   extract manifest; nothing in this table is typed. A new requirement is a row in
   <span class="mono">data/carbon_parameters.json</span>, not a rebuild of this section.</span></p>
-  </div><span class="count">{notready} of {len(rows)} not ready</span></div>
+  </div><span class="count">{G.fig('not_ready', notready)} of {G.fig('parameters', len(rows))} not ready</span></div>
   <div class="actviews" style="margin:10px 0 12px">{chips}
   <button class="chip cp" data-r="all" aria-pressed="true">Show all</button></div>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="cptbl">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="cptbl" data-table="cptbl">
   <thead><tr><th>Parameter &mdash; and what must be measured</th><th>Where it comes from</th>
   <th class="num">Coverage</th><th>Most recent record</th><th>Readiness</th>
   <th>Gap, and who owns it</th></tr></thead>
   <tbody>{''.join(rows)}</tbody></table></div>
+  {_tablenote('cptbl')}
   <p class="note"><b>Readiness is derived, not asserted.</b> A row reads Ready only when a
   population covers the relevant set; <i>No route</i> means no population reads that form, so
   coverage cannot be computed at all; <i>Not collected</i> means no form captures it.
   <span class="muted">{esc(reg["source"])}</span></p>
 </section>
+{G.script()}
 {END}"""
 
 

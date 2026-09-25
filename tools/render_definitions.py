@@ -15,6 +15,7 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
 from prerender_figures import same as _same  # noqa: E402
+from table_notes import render as _tablenote  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
@@ -92,17 +93,19 @@ def block():
   a figure cannot drift from the thing it counts. Every number on this page expands to name one of
   these. Written by <span class="mono">tools/populations.py</span>; nothing here is typed.</p>
   </div></div>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl">
   <thead><tr><th>Population</th><th class="num">Records</th><th>The rule</th>
   <th>What it reads</th><th>The decision that set it</th><th>Derives from</th></tr></thead>
   <tbody>{''.join(rows)}</tbody></table></div>
+  {_tablenote('popstbl')}
 
   <div class="sechead" style="margin-top:22px"><div><h3>Does the chain reconcile?</h3>
   <p>Each step is a set relation that either holds or does not. A step that does not hold is
   reported here rather than closed by adjusting a definition.</p></div></div>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="chaintbl">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="chaintbl" data-table="chaintbl">
   <thead><tr><th>Step</th><th class="num">Counts</th><th>Verdict</th></tr></thead>
   <tbody>{chain}</tbody></table></div>
+  {_tablenote('chaintbl')}
   {'<div class="panel" style="margin-top:14px"><div class="eyebrow">Where it does not reconcile</div><ul class="note">' + gaps + '</ul></div>' if gaps else ''}
 
   <details class="expl" style="margin-top:18px"><summary>Declared parameters &mdash; the values
@@ -111,9 +114,10 @@ def block():
   <p class="note" style="margin-top:0">These do not move with the data and must not. Each carries
   the citation that makes it a parameter rather than a typo, and the date it was set. Rendered
   from <span class="mono">PARAMS</span> on this page.</p>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="paramstbl">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="paramstbl" data-table="paramstbl">
   <thead><tr><th>Parameter</th><th class="num">Value</th><th>Citation</th><th>Set</th></tr></thead>
-  <tbody></tbody></table></div></div></details>
+  <tbody></tbody></table></div>
+  {_tablenote('paramstbl')}</div></details>
 </section>
 {END}"""
 

@@ -127,6 +127,13 @@ def find_summary(explicit, repo_root):
 
 
 # ---------------------------------------------------------------- the checks
+FIG_SPAN = re.compile(r'<span (?:class="quoted" )?data-(?:fig|param|artefact|manual|quote|retired)="[^"]*"[^>]*>([^<]*)</span>')
+
+
+def unwrap_figs(html):
+    return FIG_SPAN.sub(r"\1", html)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("index")
@@ -136,7 +143,14 @@ def main():
                          f"<repo>/data/, then a sibling ~/sdws1 checkout.")
     a = ap.parse_args()
 
-    idx = read(a.index)
+    # Figures are live spans prerendered with their value: <b><span data-fig=
+    # "...">505</span></b>. Every check of what the page states reads idx, the
+    # page with each figure span unwrapped to the value the reader sees; the
+    # few checks about the markup itself (which expression, filled or empty)
+    # read idx_raw.
+    idx_raw = read(a.index)
+    idx = unwrap_figs(idx_raw)
+    idxv = idx
 
     # The action detail used to live in two tables in the body, one <tr> per
     # action. It is now data/action_details.json, rendered collapsed inside the
@@ -519,10 +533,19 @@ def main():
         check(f"population {pid} is fully declared", not missing,
               "complete", f"missing {', '.join(missing)}" if missing else "complete",
               "id, name, plain-English rule, what it reads, the decision, the size")
-    exprs = set(re.findall(r'data-fig="([^"]+)"', idx))
+    # A ${...} placeholder is an expression the script builds at run time (the
+    # donut centres); tools/figure_census.py --gate resolves those in the
+    # rendered page, where the expression exists. An expression written inside
+    # a script string carries escaped quotes the browser removes.
+    exprs = set(e.replace("\\'", "'") for e in re.findall(r'data-fig="([^"]+)"', idx_raw)
+                if "${" not in e)
     m_der = re.search(r"const DERIV=(\{.*?\});", idx, re.S)
     der = json.loads(m_der.group(1)) if m_der else {}
-    undeclared = sorted(e for e in exprs if e not in der)
+    # a figure resolves through its DERIV entry or the first matching rule
+    m_rules = re.search(r"const DERIV_RULES=(\[.*?\]);\n", idx, re.S)
+    der_rules = [re.compile(r["re"]) for r in json.loads(m_rules.group(1))] if m_rules else []
+    undeclared = sorted(e for e in exprs
+                        if e not in der and not any(r.search(e) for r in der_rules))
     check("every rendered figure has a recorded derivation",
           not undeclared, f"{len(exprs)} expressions",
           f"no derivation for: {', '.join(undeclared[:4])}" if undeclared
@@ -620,7 +643,7 @@ def main():
     # to any reader that does not run the page's script.
     sys.path.insert(0, os.path.join(repo_root, "tools"))
     import prerender_figures as _pf
-    _sf = _pf.figures(idx)
+    _sf = _pf.figures(idx_raw)
     _se = [k for _kind, k, t in _sf if not t.strip()]
     check("every data-fig and data-param carries its value in the static HTML",
           bool(_sf) and not _se, "none empty",
@@ -635,7 +658,7 @@ def main():
     _cfgp = os.path.join(repo_root, "data", "build_config.json")
     _cfg = json.loads(read(_cfgp)) if os.path.isfile(_cfgp) else {}
     _want = ["how-current", "how-portfolio", "how-joins", "how-wq", "how-people", "how-district"]
-    _have = re.findall(r'<details class="expl howworked" id="([^"]+)">(.*?)</details>', idx, re.S)
+    _have = re.findall(r'<details class="expl howworked" id="([^"]+)">(.*?)</details>', idx_raw, re.S)
     _ids = [i for i, _b in _have]
     check("the six 'How this is worked out' footnotes are on the page, closed",
           _ids == [i for i in _want if i in _ids] and set(_want) <= set(_ids)
@@ -1242,8 +1265,8 @@ def main():
           "present" if "value applied in the VPA-DD is 347 days" in idx else "MISSING",
           "347 is the default for a project without operation sensors")
     check("the 90/10 sampling provision is attributed to sensors",
-          "(90/10) sample basis" in idx and "attaches to <b>sensors</b>" in idx,
-          "stated", "present" if "attaches to <b>sensors</b>" in idx else "MISSING",
+          "(90/10) sample basis" in idx and "attaches to <b>sensors</b>" in idxv,
+          "stated", "present" if "attaches to <b>sensors</b>" in idxv else "MISSING",
           "the provision is not a licence to sample calendars")
     for bad in ("record covering the estate is required", "invokes &sect;4.2 nowhere"):
         check(f"superseded SDWS 27 reading absent: {bad!r}", bad not in idx,
@@ -1294,7 +1317,7 @@ def main():
         # <b>. Match against a span-stripped copy: the assertion is that the
         # value is on the page, not how it is marked up.
         _idx_nospan = re.sub(r"<span data-artefact=\"[^\"]*\">(.*?)</span>",
-                             r"\1", idx, flags=re.S)
+                             r"\1", idxv, flags=re.S)
         for key, label in keys:
             want = fmt_n(fig[key])
             there = f"<b>{want}</b>" in _idx_nospan
@@ -1309,8 +1332,8 @@ def main():
         pct_keys.append(("implied_true_marked_pct", "implied true marked rate"))
         for key, label in pct_keys:
             want = f"{fig[key]:.2f}%"
-            check(f"page states the {label}: {want}", f"<b>{want}</b>" in idx, want,
-                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+            check(f"page states the {label}: {want}", f"<b>{want}</b>" in idxv, want,
+                  want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE",
                   "from data/calendar_extraction_figures.json")
 
     # ---- 7m. the small-scale Type 3 annual ceiling ------------------------
@@ -1420,15 +1443,15 @@ def main():
                            (none_ever, "with none ever"), (len(stale), "stale beyond six months")):
             want = f"{got:,}" if got >= 1000 else str(got)
             check(f"calendar coverage on the page matches the file: {label} = {want}",
-                  f"<b>{want}</b>" in idx, want,
-                  want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE",
+                  f"<b>{want}</b>" in idxv, want,
+                  want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE",
                   "from data/gardien_calendar_coverage.csv")
         # the page states the inventory total; the coverage file counts only
         # photographs on managed points. Both are stated, and both must be right.
         check("the two photograph counts are distinguished on the page",
-              f"<b>{photos_managed:,}</b>" in idx and "<b>2,367</b>" in idx,
+              f"<b>{photos_managed:,}</b>" in idxv and "<b>2,367</b>" in idxv,
               f"{photos_managed:,} on managed points and 2,367 on file",
-              "both stated" if f"<b>{photos_managed:,}</b>" in idx else f"{photos_managed:,} NOT STATED",
+              "both stated" if f"<b>{photos_managed:,}</b>" in idxv else f"{photos_managed:,} NOT STATED",
               "2,367 is every calendar photograph; the rest sit on unregistered points")
 
     # the corrections file the page says is versioned alongside it must exist
@@ -1554,8 +1577,8 @@ def main():
         for n, what in ((len(accepted), "accepted"), (len(rejected), "rejected"),
                         (len(nc), "total")):
             check(f"page states the non-calendar count ({what}): {n}",
-                  f"<b>{n}</b>" in idx, n,
-                  n if f"<b>{n}</b>" in idx else "NOT ON THE PAGE")
+                  f"<b>{n}</b>" in idxv, n,
+                  n if f"<b>{n}</b>" in idxv else "NOT ON THE PAGE")
         allowed_reasons = {"signboard", "pump", "document", "other", "bottle_on_pump"}
         bad = [r for r in nc if r["reason"] not in allowed_reasons
                or not r["water_point"] or not r["image_id"]
@@ -1569,7 +1592,7 @@ def main():
         # the cell arithmetic and the per-year impossible-cell count are
         # asserted in 7ra, which knows which years are leap years
         check("the page states the impossible-cell count per sheet by year",
-              "<b>seven</b>" in idx and "in a leap year six" in idx
+              "<b>seven</b>" in idxv and "in a leap year six" in idx
               and "Six cells on every sheet" not in idx,
               "seven, or six in a leap year",
               "seven, or six in a leap year" if "in a leap year six" in idx
@@ -1598,8 +1621,8 @@ def main():
                   "'photograph unreadable' is the wrong instruction for a signboard")
             never = sum(1 for r in nu if r["category"] == "no calendar was ever photographed")
             check(f"page states how many points never had a calendar photographed: {never}",
-                  f"<b>{never}</b>" in idx, never,
-                  never if f"<b>{never}</b>" in idx else "NOT ON THE PAGE")
+                  f"<b>{never}</b>" in idxv, never,
+                  never if f"<b>{never}</b>" in idxv else "NOT ON THE PAGE")
 
     # ---- 7ra. the observed-cell basis -------------------------------------
     # A calendar photographed on date D can only carry marks for days up to D.
@@ -1651,15 +1674,15 @@ def main():
                 v = fig[key]
                 want = f"{v:,}" if v >= 1000 else str(v)
                 check(f"page states the {label}: {want}",
-                      f"<b>{want}</b>" in idx, want,
-                      want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE")
+                      f"<b>{want}</b>" in idxv, want,
+                      want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE")
             for key, label in (("observed_marked_pct", "observed-cell marked rate"),
                                ("probe_marked_pct", "impossible-cell marked rate"),
                                ("implied_true_marked_pct", "implied true marked rate")):
                 want = f"{fig[key]:.2f}%"
                 check(f"page states the {label}: {want}",
-                      f"<b>{want}</b>" in idx, want,
-                      want if f"<b>{want}</b>" in idx else "NOT ON THE PAGE")
+                      f"<b>{want}</b>" in idxv, want,
+                      want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE")
 
     # ---- 7s. the transcription round's method is stated, not assumed -------
     # A reference transcription made by someone who had seen the aggregate
@@ -1704,7 +1727,7 @@ def main():
               "present" if cov_span else "MISSING",
               "an agreement figure means nothing without its population")
         if cov_span:
-            txt = cov_span.group(1)
+            txt = unwrap_figs(cov_span.group(1))
             for key in ("images_with_day_calls", "images_readable",
                         "photographs_total"):
                 v = f"{fig[key]:,}" if fig[key] >= 1000 else str(fig[key])
@@ -1777,8 +1800,8 @@ def main():
                        (len(kept), "the sheets kept from the original draw"),
                        (len(drew), "the sheets drawn to make up the shortfall"),
                        (len(outfr), "the sheets scored human-to-human only")):
-            check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
-                  v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
+            check(f"page states {why}: {v}", f"<b>{v}</b>" in idxv, v,
+                  v if f"<b>{v}</b>" in idxv else "NOT ON THE PAGE",
                   "from transcription/validation_selection.csv")
         check("every selected sheet records the frame, the reason and the date",
               all(r["frame"] and r["origin"] and r["seed"] for r in sel)
@@ -1936,10 +1959,11 @@ def main():
               v not in idx, "absent",
               "absent" if v not in idx else "BACK ON THE PAGE",
               "withdrawn 2026-09-23 with the per-year carbon basis")
-    for v, why in (("434", "2026 points with no dated sheet"),
+    _cd = json.loads(read(os.path.join(repo_root, "data", "carbon_denominator.json")))
+    for v, why in ((f'{_cd["carbon_points_without_2026_sheet"]:,}', "2026 points with no dated sheet"),
                    ("11 April 2025", "the earliest passing SDWS 3 test")):
-        check(f"page states {why}: {v}", f"<b>{v}</b>" in idx, v,
-              v if f"<b>{v}</b>" in idx else "NOT ON THE PAGE",
+        check(f"page states {why}: {v}", f"<b>{v}</b>" in idxv, v,
+              v if f"<b>{v}</b>" in idxv else "NOT ON THE PAGE",
               "Part 2, computed on the register")
     # The carbon denominator is derived, and the check asserts the derivation.
     # 727 was pinned here as a literal for two days; pinning 731 in its place
@@ -1954,8 +1978,8 @@ def main():
               cdoc.get("carbon_points"),
               "actively managed register less Marolinta, which enters no carbon figure")
         check("the carbon denominator is rendered, never typed",
-              'data-fig="CARBON.carbon_points"' in idx
-              and idx.count('data-fig="CARBON.carbon_points"') >= 8,
+              'data-fig="CARBON.carbon_points"' in idx_raw
+              and idx_raw.count('data-fig="CARBON.carbon_points"') >= 8,
               "rendered",
               f'{idx.count(chr(34)+"CARBON.carbon_points"+chr(34))} spans',
               "it was typed in eleven places and could not be derived at all")
@@ -2141,9 +2165,9 @@ def main():
     # The 2026 custody figures are derived now, so they are not literals in
     # the source; assert the spans that produce them instead.
     check("fleet section renders the 2026 custody figures from the data",
-          'data-fig="CARBON.carbon_points_with_2026_sheet"' in idx
-          and 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx, "rendered",
-          "rendered" if 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx
+          'data-fig="CARBON.carbon_points_with_2026_sheet"' in idx_raw
+          and 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx_raw, "rendered",
+          "rendered" if 'data-fig="CARBON.carbon_2026_coverage_pct"' in idx_raw
           else "MISSING",
           "calendar custody is a headline operational metric")
     # The 2025 custody figures (237 of 722, 32.8%) rested on "active in
@@ -2245,7 +2269,7 @@ def main():
     # community-level notice is already signed.
     _cons_zero = re.search(r"no individual record exists for any of the\s*"
                            r'(?:<[^>]+>\s*)*(?:<span data-fig="CARBON\.'
-                           r'carbon_points">[^<]*</span>)\s*active carbon points', idx)
+                           r'carbon_points">[^<]*</span>)\s*active carbon points', idx_raw)
     check("the page carries the consent figure",
           bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
           "present", "present" if _cons_zero else "MISSING")
@@ -2281,7 +2305,9 @@ def main():
           "the claim did not survive testing")
     check("the page states the printed year is real but the sheets are in service",
           "A printed year later than the photograph does not mean an unused sheet" in idx
-          and "4.94%" in idx and "1.48%" in idx, "stated",
+          # the two rates are computed from the reader's output since 25 September
+          and 'data-fig="GEN.calendar.rate_early_pct"' in idx_raw
+          and 'data-fig="GEN.calendar.rate_late_pct"' in idx_raw, "stated",
           "stated" if "does not mean an unused sheet" in idx else "MISSING",
           "marks concentrate in months already elapsed at the photograph")
     check("the custody rule stands on rolling replacement, not on timing",
@@ -2697,8 +2723,11 @@ def main():
           "415" in idx and "353.6" in idx and "353.3" in idx, "present",
           "present" if "353.6" in idx else "MISSING",
           "portfolio and both districts")
+    _calsf = json.loads(read(os.path.join(repo_root, "data", "calendar_stratum_figures.json")))
     check("the page reports the representativeness test and its answer",
-          "Yes, it is biased" in idx and "64.8%" in idx and "19.8%" in idx,
+          "Yes, it is biased" in idx
+          and all(f"<b>{100 * b['evidenced'] / (b['evidenced'] + b['not']):.1f}%</b>" in idx
+                  for b in (_calsf["evidenced_by"]["photos"][k] for k in ("6+", "1-2"))),
           "reported", "reported" if "Yes, it is biased" in idx else "MISSING",
           "visit frequency, threefold")
     # The "44 pumps reported down that read as fully operational" block was
@@ -2717,8 +2746,8 @@ def main():
 
     # ---- repair time is a headline metric ------------------------------
     check("time to repair is on the page with its baseline",
-          "Time to repair" in idx and "187" in idx and "Median 84 days open" in idx,
-          "present", "present" if "Median 84 days open" in idx else "MISSING",
+          "Time to repair" in idx and "187" in idx and "median 84 days open" in idx.lower(),
+          "present", "present" if "median 84 days open" in idx.lower() else "MISSING",
           "median 1 day recorded; 44 tickets open at a median 84 days")
 
     # ---- 7aj. the calendar is the record; the call centre is not -------
@@ -3163,8 +3192,12 @@ def main():
     # reporting rather than carbon evidence
     check("the Marolinta count reconciliation is on the list",
           '<tr id="act-rehab-recording">' in ACTSRC
-          and "the minutes say 10 and 10, the form holds 7 and 7" in idx, "raised",
-          "raised" if "the minutes say 10 and 10" in idx else "MISSING",
+          # since 25 September the minutes are quoted and the form's counts are
+          # live, so the sentence cannot go stale the way "7 and 7" did
+          and "Reconcile the Marolinta count: the minutes say" in idx
+          and 'data-quote="slt_minutes_marolinta"' in idx_raw
+          and 'data-fig="METRICS.marolinta_rehabs_final"' in idx_raw, "raised",
+          "raised" if "Reconcile the Marolinta count: the minutes say" in idx else "MISSING",
           "Deichmann reporting, not carbon")
 
     # ---- 7as. a caption may not name a date in prose --------------------

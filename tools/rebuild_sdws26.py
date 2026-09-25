@@ -23,6 +23,12 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 PAGE = os.path.join(REPO, "index.html")
 MIN_CLUSTERS = 8          # VPA-DD B.7.3
+# The main cooking device, same survey: WS1.31 dry season, WS1.52 rainy.
+# SDWS 11 is adjusted ex post on the improved-cookstove share (25 Sep 2026:
+# the page's 169 / 39 / 4 were typed; they are counted here now).
+Q_STOVE = {"dry": "4c964cb9368c4d109cb02fb5440e340a",
+           "rain": "071cf4bb8aa1488da2ff8d063ac6c0f1"}
+C_IMPROVED, C_THREE_STONE = "J2E4JeG", "qZ2xJJR"
 
 
 def register():
@@ -83,6 +89,15 @@ def compute():
         com.discard(None)
         sizes = [hh(r) for r in srows]
         sizes = [x for x in sizes if x is not None]
+        stoves = {}
+        for season, q in Q_STOVE.items():
+            ans = [P._answer(r, q) for r in srows]
+            imp = sum(1 for x in ans if x == C_IMPROVED)
+            three = sum(1 for x in ans if x == C_THREE_STONE)
+            other = sum(1 for x in ans if x not in (None, "", [], C_IMPROVED, C_THREE_STONE))
+            stoves[season] = {"improved": imp, "three_stone": three, "other": other,
+                              "no_answer": len(srows) - imp - three - other,
+                              "answered": imp + three + other}
         out["scenarios"][scen] = {
             "responses": len(srows),
             "answered_both": len(sboth),
@@ -96,7 +111,17 @@ def compute():
             "communes": sorted(com),
             "hh_size_n": len(sizes),
             "hh_size_mean": round(statistics.mean(sizes), 2) if sizes else None,
+            "stoves": stoves,
         }
+    # how much of the form the excluded part-entries answered, so the page can
+    # say "between N and M questions" from the data rather than from a note
+    both_ids = {r["_id"] for r in both}
+    def answered(r):
+        return sum(1 for v in (r.get("data") or {}).values()
+                   if (v.get("value") if isinstance(v, dict) else v) not in (None, "", []))
+    ex = [answered(r) for r in rows if r["_id"] not in both_ids]
+    out["excluded_answered_min"] = min(ex) if ex else None
+    out["excluded_answered_max"] = max(ex) if ex else None
     tot_both = sum(v["answered_both"] for v in out["scenarios"].values())
     out["answered_both"] = tot_both
     out["served_dry"] = sum(v["served_dry"] for v in out["scenarios"].values())

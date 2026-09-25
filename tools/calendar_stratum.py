@@ -30,6 +30,11 @@ there is no seed.
     python3 tools/calendar_stratum.py --check
 """
 import calendar, csv, datetime, json, os, re, statistics, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc
+# six months, from data/build_config.json - the one value the page, the tiles
+# and every tool apply
+OVERDUE_DAYS = _bc.load()["maintenance"]["overdue_after_days"]
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAL = os.path.expanduser("~/sdws1/calendar_extract")
@@ -57,7 +62,7 @@ def build():
         y = int(r["period_year"])
         n = 366 if calendar.isleap(y) else 365
         obs = n - int(r["days_unobserved"])
-        if obs < 30:
+        if obs < _bc.load()["calendar"]["min_observed_days"]:
             continue
         rate = int(r["days_not_operational"]) / obs
         rows.append({"wp": r["water_point"], "site": r["site"], "year": y,
@@ -117,7 +122,7 @@ def build():
     dims["first_recorded"] = dict(sorted(t.items()))
     out["evidenced_by"] = dims
     # calendar custody by site: the table under "Calendar custody", from the
-    # coverage file (a photograph older than 182 days is "older than 6 months")
+    # coverage file (a photograph older than OVERDUE_DAYS is "older than 6 months")
     cust = {}
     for r in cov.values():
         for k in (r["site"], "All sites"):
@@ -127,7 +132,7 @@ def build():
             has = r["has_calendar_photo"] == "True"
             c["with_calendar" if has else "none_ever"] += 1
             c["older_than_6_months"] += bool(has and r["days_since"]
-                                             and int(r["days_since"]) > 182)
+                                             and int(r["days_since"]) > OVERDUE_DAYS)
     for c in cust.values():
         c["coverage_pct"] = round(100 * c["with_calendar"] / c["points"], 1)
     out["custody"] = {"file": "data/gardien_calendar_coverage.csv",

@@ -77,7 +77,7 @@
    "value": 13
   },
   "marolinta_rehabs_final": {
-   "says": "final R\u00e9habilitation records on the Marolinta deployment",
+   "says": "final Réhabilitation records on the Marolinta deployment",
    "source": "local",
    "value": 7
   },
@@ -102,7 +102,7 @@
    "value": 10
   },
   "point_742896839_in_register": {
-   "says": "is water point 742896839 absent from the maintained register (1 = still absent)",
+   "says": "is water point 742896839 absent from the maintained register (one while it is still absent, none once it is in)",
    "source": "local",
    "value": 0
   },

@@ -36,6 +36,7 @@ REG_COLS = ["site", "commune", "fkt", "pump", "lat", "lon"]
 # from data/build_config.json, which the page's footnotes describe
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_config as _cfg
+OVERDUE_DAYS = _cfg.load()["maintenance"]["overdue_after_days"]
 DISTRICT_TO_SITE = dict(_cfg.load()["portfolio"]["districts"])
 
 
@@ -120,7 +121,7 @@ def main():
 
     new_M = {
         "points_over_6_months": sum(
-            1 for p in PUMPS if p.get("days") is not None and p["days"] > 182),
+            1 for p in PUMPS if p.get("days") is not None and p["days"] > OVERDUE_DAYS),
         "points_no_works_record": S.get("never"),
     }
 

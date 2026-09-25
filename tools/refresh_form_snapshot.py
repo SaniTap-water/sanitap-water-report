@@ -55,7 +55,10 @@ FORMS = {
 }
 
 
-MAX_AGE_DAYS = 7
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc  # noqa: E402
+# from data/build_config.json, which the page renders
+MAX_AGE_DAYS = _bc.load()["form_snapshot"]["max_age_days"]
 
 
 class Unavailable(Exception):

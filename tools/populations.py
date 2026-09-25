@@ -28,6 +28,11 @@ predicate can.
     python3 tools/populations.py --json OUT   # for the page
 """
 import argparse, csv, json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc
+# six months, from data/build_config.json - the one value the page, the tiles
+# and every tool apply
+OVERDUE_DAYS = _bc.load()["maintenance"]["overdue_after_days"]
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXPORTS = os.path.expanduser("~/mwater-exports")
@@ -792,12 +797,12 @@ Q_OUT_PHOTOS = "a4d239382dc94372868db0314095c289"    # photos proving non-functi
     name="Pumps without a visit for more than six months",
     unit="points",
     rule="Managed points whose last preventive visit or repair - or, where "
-         "there has been neither, the commissioning date - is more than 182 "
-         "days before the build date. The same test the maintenance tiles and "
+         "there has been neither, the commissioning date - is more than "
+         f"{OVERDUE_DAYS} days before the build date. The same test the maintenance tiles and "
          "the build's own counters apply.",
     reads=[("Entretien préventif", F_PM, None),
            ("Réparation après panne", F_REPAIR, None)],
-    decided="Six months is 182 days everywhere on the page. The table under "
+    decided=f"Six months is {OVERDUE_DAYS} days everywhere on the page. The table under "
             "this heading used 183 until 23 September 2026 and so counted one "
             "pump fewer than the tile above it.",
     decided_on="2026-09-23",
@@ -805,7 +810,7 @@ Q_OUT_PHOTOS = "a4d239382dc94372868db0314095c289"    # photos proving non-functi
     derives_from=["managed_fleet"])
 def overdue_six_months():
     return {p["wp"] for p in _page_pumps()
-            if p.get("days") is not None and p["days"] > 182}
+            if p.get("days") is not None and p["days"] > OVERDUE_DAYS}
 
 
 @population(

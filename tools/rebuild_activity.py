@@ -16,6 +16,11 @@ nothing is quietly restated.
     python3 tools/rebuild_activity.py --write
 """
 import csv, datetime, io, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc
+# six months, from data/build_config.json - the one value the page, the tiles
+# and every tool apply
+OVERDUE_DAYS = _bc.load()["maintenance"]["overdue_after_days"]
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXPORTS = os.path.expanduser("~/mwater-exports")
@@ -56,7 +61,8 @@ def counts(name, asof):
         lo = (asof - datetime.timedelta(days=a)).isoformat()
         hi = (asof - datetime.timedelta(days=b)).isoformat()
         return sum(1 for d in ds if hi < d <= lo)
-    return [win(0, 7), win(7, 14), win(0, 28)]
+    wk, win_n = _bc.load()["activity"]["week_days"], _bc.load()["activity"]["window_days"]
+    return [win(0, wk), win(wk, 2 * wk), win(0, win_n)]
 
 
 def main():
@@ -95,15 +101,15 @@ def main():
     unseen = sorted(seen - {p["wp"] for p in pumps})
 
     # S.over6 / S.never are stored copies of figures the page also recomputes
-    # in the browser from PUMPS.days > 182. They had already drifted apart -
+    # in the browser from PUMPS.days > OVERDUE_DAYS. They had already drifted apart -
     # the stored copy said 438 against 432 computed - so they are rebuilt here
     # from the same rule the page uses, and can no longer disagree.
     over6_old, never_old = S.get("over6"), S.get("never")
-    over6 = sum(1 for p in pumps if p.get("days") is not None and p["days"] > 182)
+    over6 = sum(1 for p in pumps if p.get("days") is not None and p["days"] > OVERDUE_DAYS)
     never = sum(1 for p in pumps if p.get("days") is None)
     by_site = {}
     for p in pumps:
-        if p.get("days") is not None and p["days"] > 182:
+        if p.get("days") is not None and p["days"] > OVERDUE_DAYS:
             by_site[p["site"]] = by_site.get(p["site"], 0) + 1
 
     week_old = dict(S.get("week") or {})

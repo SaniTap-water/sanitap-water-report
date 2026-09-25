@@ -18,6 +18,7 @@ import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
 from prerender_figures import same as _same  # noqa: E402
+from table_notes import render as _tablenote  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
@@ -94,7 +95,7 @@ def block():
   expands to its population, rule, form and arithmetic.</span></p></div>
   <span class="count">{fig(avg("SDWS26"))}% served</span></div>
 
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="sdws26tbl">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="sdws26tbl" data-table="sdws26tbl">
   <thead><tr><th>Scenario</th><th class="num">Answered both seasons</th>
   <th class="num">Served, dry season<br><span class="muted" style="font-weight:400">WS1.18</span></th>
   <th class="num">Served, rainy season<br><span class="muted" style="font-weight:400">WS1.39</span></th>
@@ -102,6 +103,7 @@ def block():
   <th class="num">Water points</th><th>Clusters vs B.7.3</th>
   <th class="num">Mean household size</th></tr></thead>
   <tbody>{''.join(rows)}{total}</tbody></table></div>
+  {_tablenote('sdws26tbl')}
 
   <p class="note"><b>The headline is the seasonal average: {fig(avg("SDWS26"))}% across both
   scenarios</b>, {fig(avg("SDWS26.scenarios['Fort-Dauphin']"))}% in Fort-Dauphin and
@@ -112,8 +114,8 @@ def block():
   <p class="note" id="sdws26-rule"><b>The seasonal rule.</b> The served share is the average of two
   shares: the premises served in the dry season (WS1.18) and the premises served in the rainy season
   (WS1.39), each over the premises that answered both questions. It is <b>not</b> the share served in
-  both seasons. <b>The served set</b> is <i>Every day</i>, <i>More than 1 time per day</i> and
-  <i>Every 2 days</i>, matched by choice id (<span class="mono">J1qZUqA</span>,
+  both seasons. <b>The served set</b> is <span class="mono">Every day</span>, <span class="mono">More than 1 time per day</span> and
+  <span class="mono">Every 2 days</span>, matched by choice id (<span class="mono">J1qZUqA</span>,
   <span class="mono">6wqmK16</span>, <span class="mono">h4uZZBz</span>), never by position: the
   declared scale is not monotonic, because &ldquo;more than once a day&rdquo; sits second.
   <span class="muted">Source for both: James Walker, Carbon Lead, email &ldquo;Re: Water program
@@ -135,15 +137,15 @@ def block():
     {fig("SDWS26.responses_total")} sit unapproved in mWater
     &mdash; <a href="#act-sdws26-approve-2025">act-sdws26-approve-2025</a>.</li>
     <li><b>{fig("SDWS26.excluded_part_entries")} responses are excluded from the denominator</b>
-    as abandoned part-entries: they answered neither usage question, and between 2 and 21 of the
-    form's 92 questions. Counting a part-entry as a non-response understates the proportion;
+    as abandoned part-entries: they answered neither usage question, and between
+    {fig("SDWS26.excluded_answered_min")} and {fig("SDWS26.excluded_answered_max")} of the form's questions. Counting a part-entry as a non-response understates the proportion;
     counting it as served overstates it. The exclusion is a stated rule, not a silent filter.</li>
   </ul></div>
 
   <p class="note" style="margin-bottom:0"><b>SDWS 25, in passing.</b> Mean household size in this
   round is <b>{fig("SDWS26.scenarios['Fort-Dauphin'].hh_size_mean")}</b> in Fort-Dauphin and
   <b>{fig("SDWS26.scenarios['Maroantsetra'].hh_size_mean")}</b> in Maroantsetra, which still round
-  to the registered 4.5 and 3.7. <span class="muted">Derived from the same round, question WS1.12;
+  to the registered <span data-param="hh_size_anosy"></span> and <span data-param="hh_size_analanjirofo"></span>. <span class="muted">Derived from the same round, question WS1.12;
   the registered values are unchanged and nothing here restates them.</span>
   <a href="{MW}{S['form']}" target="_blank" rel="noopener">The survey form</a>.</p>
 </section>

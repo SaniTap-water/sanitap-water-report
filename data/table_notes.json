@@ -1,0 +1,173 @@
+{
+ "note": "One collapsed footnote per data table: source, extraction, rows and columns. Rendered by tools/table_notes.py; asserted by tools/figure_census.py --gate.",
+ "tables": {
+  "over6": {
+   "source": "PUMPS on this page, built each run from the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>), the preventive-maintenance form <span class=\"mono\">de26d89a…</span> (<span class=\"mono\">pm.csv</span>), the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>), the call-centre form <span class=\"mono\">c08b3fe2…</span> (<span class=\"mono\">appel_signalement_pannes.csv</span>), the water-quality results form <span class=\"mono\">7b33c5d7…</span> (<span class=\"mono\">wq_results.json</span>) and the WorldPop allocation run (SDWS 1).",
+   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>. Water quality <span data-fig=\"PULLS['wq_results.json'].pulled\"></span>.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose last maintenance visit or repair is more than six months before the newest activity date in the extracts. Pumps never visited are counted separately, not listed here.",
+   "columns": "<b>Last visit</b>: the later of the last preventive visit and the last repair. <b>Days</b>: from that visit to the newest activity date in the extracts. <b>Last status</b>: the latest answered status by date across call, visit and repair records, the call winning a same-day tie (tools/build_call_tables.py). <b>People</b>: the pump&rsquo;s WorldPop allocation after its capacity cap. <b>Last WQ</b>: the date of the latest SDWS 3 result, marked fail when E. coli was above the pass threshold."
+  },
+  "itin": {
+   "source": "ROUTES on this page: a catch-up route plan drawn from the overdue list above, with road time between stops. It is stored in the page and no build step redraws it; it is on the recorded ungenerated backlog.",
+   "extracted": "Stops are pumps from the overdue list; their register attributes come from the register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>. The plan itself is as drawn.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. Overdue pumps only, one site at a time, in visiting order.",
+   "columns": "<b>Day</b>: route day, with the day&rsquo;s road distance and hours. <b>Days since visit</b>: as in the overdue list when the plan was drawn. <b>People</b>: the pump&rsquo;s people served, as in the overdue list."
+  },
+  "downtbl": {
+   "source": "DOWN on this page, written each run by tools/build_call_tables.py from the call-centre form <span class=\"mono\">c08b3fe2…</span> (<span class=\"mono\">appel_signalement_pannes.csv</span>), the preventive-maintenance form <span class=\"mono\">de26d89a…</span> (<span class=\"mono\">pm.csv</span>) and the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>), joined to the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>).",
+   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose latest answered status is &ldquo;down&rdquo;.",
+   "columns": "<b>Reported</b>: the date of the record that set the status. <b>Days down</b>: from that date to the build&rsquo;s cut-off date. <b>Via</b>: which kind of record set it. <b>People</b>: the pump&rsquo;s WorldPop allocation after its cap."
+  },
+  "parttbl": {
+   "source": "PARTIAL on this page, written each run by tools/build_call_tables.py from the same three activity forms as the down list, joined to the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>).",
+   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose latest answered status is &ldquo;partially working&rdquo;; the buttons above split service requests from reduced performance.",
+   "columns": "<b>Reported</b>: the date of the record that set the status. <b>Status</b>: service request or reduced performance, from the call&rsquo;s issue question where it was answered, otherwise carried forward, never invented. <b>Comment</b>: the caller&rsquo;s own words."
+  },
+  "opentbl": {
+   "source": "OPENREP on this page: breakdown reports from the call centre with no repair recorded since. It is stored in the page; no build step recomputes its rows, and it is on the recorded ungenerated backlog.",
+   "extracted": "The call-centre and repair extracts were pulled <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span> and <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; the rows are as stored.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is an open down-report with no later repair record.",
+   "columns": "<b>Days open</b>: from the report to the date the list was built. <b>Latest status</b>: the pump&rsquo;s latest recorded status."
+  },
+  "poptbl": {
+   "source": "PUMPS and the WorldPop allocation (SDWS 1) on this page, run on WorldPop R2025A with the barrier clip and capacity caps; the roof-count census from roof-count form <span class=\"mono\">8aa2dd78…</span> (<span class=\"mono\">roof_count.json</span>).",
+   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; roof counts pulled <span data-fig=\"PULLS['roof_count.json'].pulled\"></span>; allocation run of <span data-fig=\"WPOPMETA.run\"></span>.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. One row per site, then the total.",
+   "columns": "<b>With a WorldPop figure</b>: pumps the allocation covers. <b>WorldPop (capped)</b>: the sum of each pump&rsquo;s allocation after its capacity cap. <b>Roof-count census</b>: the sum of roofs &divide; the roofs-per-household factor &times; household size. <b>Difference</b>: WorldPop against the roof count, as a percentage of the roof count."
+  },
+  "recontbl": {
+   "source": "REG.recon on this page: the pumps that sat between the dashboard count and the successful-rehabilitation count, assembled by hand from the register and the first-rehabilitation records. No build step recomputes it; it is on the recorded ungenerated backlog.",
+   "extracted": "Assembled from the register and the combined rehabilitation form <span class=\"mono\">86cf66ef…</span>; those extracts were last pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span> and <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
+   "filter": "The reconciliation set only, filtered by the reason buttons above and by scope.",
+   "columns": "<b>Why it is not in the count</b>: the state of its first-rehabilitation record. <b>Last status</b> and <b>Last visit</b>: from the activity records when the set was assembled."
+  },
+  "rettbl": {
+   "source": "REG.retired on this page: functionality reports marking points retired, copied from a form this build does not pull. No build step recomputes it; it is on the recorded ungenerated backlog.",
+   "extracted": "As copied; the form is not in the build&rsquo;s extract set.",
+   "filter": "Retired-point reports on MadAvance-managed points, filtered by scope.",
+   "columns": "Every column is the report&rsquo;s own field; nothing is computed."
+  },
+  "corrtbl": {
+   "source": "CORR on this page, from <span class=\"mono\">data/register_corrections.json</span>, the standing record of corrections to the mWater register, versioned with the report.",
+   "extracted": "Each entry carries its own evidence date. The nearest-point distances in the evidence are recomputed every run from the register by tools/check_distances.py.",
+   "filter": "Every correction applied when the page is built; nothing is filtered out.",
+   "columns": "<b>Evidence that settled it</b>: the dated records the decision rests on, with the nearest other point&rsquo;s distance computed live."
+  },
+  "exctbl": {
+   "source": "CORR on this page, from <span class=\"mono\">data/register_corrections.json</span>: the points excluded from the portfolio by a recorded decision.",
+   "extracted": "Each entry carries its own evidence date; distances are recomputed every run by tools/check_distances.py.",
+   "filter": "Every exclusion; an excluded point cannot re-enter the portfolio unless its entry is removed.",
+   "columns": "<b>Evidence</b>: the dated records the exclusion rests on."
+  },
+  "efbox": {
+   "source": "CORR.eligibility_flags on this page, from <span class=\"mono\">data/register_corrections.json</span>.",
+   "extracted": "Each flag carries its own evidence; the file is versioned with the report.",
+   "filter": "Points with an eligibility question under methodology 2.2.1(d); these are not data errors.",
+   "columns": "Every column is the flag&rsquo;s own text; nothing is computed."
+  },
+  "sdws26tbl": {
+   "source": "SDWS26 on this page, recomputed each run by tools/rebuild_sdws26.py from the annual monitoring survey, form <span class=\"mono\">2eeb8682…</span> (<span class=\"mono\">cbn_gender.json</span>), questions WS1.18 (dry season) and WS1.39 (rainy season).",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['cbn_gender.json'].pulled\"></span>.",
+   "filter": "Responses that answered both usage questions, by project scenario (deployment). Part-entries that answered neither are excluded, as stated in the section.",
+   "columns": "<b>Served, per season</b>: responses whose answer is every day, more than once a day or every two days, by choice id. <b>Served share</b>: the average of the dry-season and rainy-season shares (James Walker, 23 September 2026). <b>Clusters</b>: communes reached against the VPA-DD B.7.3 minimum. <b>Mean household size</b>: question WS1.12."
+  },
+  "popstbl": {
+   "source": "The populations defined in tools/populations.py, exported each run to <span class=\"mono\">data/populations.json</span>.",
+   "extracted": "Each population is counted on this run&rsquo;s extracts; the register was pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
+   "filter": "Every population the page uses, except the build-internal ones.",
+   "columns": "<b>Records</b>: the population&rsquo;s size this run. <b>The rule</b>, <b>What it reads</b> and <b>The decision</b>: the population&rsquo;s own declaration, not computed."
+  },
+  "chaintbl": {
+   "source": "The reconciliation chain in <span class=\"mono\">data/populations.json</span>: each step is a set relation between two populations.",
+   "extracted": "Counted on this run&rsquo;s extracts; register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
+   "filter": "Every step of the chain from first rehabilitation to the maintained fleet.",
+   "columns": "<b>Counts</b>: the two population sizes the step relates. <b>Verdict</b>: whether the relation holds."
+  },
+  "paramstbl": {
+   "source": "PARAMS on this page: every declared parameter, each with its own citation.",
+   "extracted": "Not extracted: each parameter was read from its cited document on the date in its <b>Set</b> column.",
+   "filter": "Every declared parameter.",
+   "columns": "<b>Value</b>: the declared value. <b>Citation</b> and <b>Set</b>: where it was read and when. Nothing is computed."
+  },
+  "marolinta": {
+   "source": "The Marolinta deployment of the borehole-progress form <span class=\"mono\">8764843c…</span> (<span class=\"mono\">marolinta_borehole.json</span>), joined to the register&rsquo;s administrative fields, by tools/marolinta_works.py.",
+   "extracted": "Form pulled <span data-fig=\"PULLS['marolinta_borehole.json'].pulled\"></span>; register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
+   "filter": "Final records on the Marolinta deployment only. Marolinta is outside the carbon programme.",
+   "columns": "<b>Beneficiaries</b>: the field team&rsquo;s own count on the record. <b>District / commune</b>: from the register where the record lacks them, marked as such."
+  },
+  "ttr": {
+   "source": "TTRQ on this page, from <span class=\"mono\">data/ttr_table.json</span>, computed each run by tools/render_ttr_table.py from the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>).",
+   "extracted": "Repairs pulled <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>.",
+   "filter": "Final repair records on actively managed pumps that carry both a notification date and a completion date.",
+   "columns": "<b>Median</b>, <b>p90</b>, <b>Mean</b>, <b>Max</b>: days from breakdown notified to repair completed, over the row&rsquo;s records."
+  },
+  "sdws25": {
+   "source": "INSTAT, RGPH-3, Tome 1, Tableau 26: average household size by region and stratum. A published table, not a measurement of ours.",
+   "extracted": "Read from the published table in the evidence folder; it does not change between runs.",
+   "filter": "The regions the programme works in, plus the national figures.",
+   "columns": "<b>Where we work</b>: the live point count in that region."
+  },
+  "calcov": {
+   "source": "The gardien-calendar photograph inventory from mWater, machine-read by tools/read_year_ocr.py into <span class=\"mono\">data/calendar_extraction_figures.json</span> and <span class=\"mono\">data/gardien_calendar_coverage.csv</span>.",
+   "extracted": "Reader run of 2026-09-20 over the photographs then on file.",
+   "filter": "Actively managed points in the two carbon sites, one row per site.",
+   "columns": "<b>With a calendar</b>: points with at least one calendar photograph. <b>None ever</b>: points with none. <b>Older than six months</b>: points whose latest calendar photograph is more than six months old. <b>Coverage</b>: with a calendar &divide; points."
+  },
+  "calstrata": {
+   "source": "<span class=\"mono\">data/calendar_stratum_figures.json</span>, computed by tools/calendar_stratum.py from the calendar reader&rsquo;s outputs.",
+   "extracted": "Reader outputs of 2026-09-18 to 2026-09-20; stratum computed 2026-09-23.",
+   "filter": "Point-years on the day-call basis with at least the minimum observed window stated above the table.",
+   "columns": "<b>Mean implied DO</b> and <b>Median</b>: implied days operational per point-year, after subtracting the false-positive floor. <b>Before the floor</b>: the same mean without that subtraction."
+  },
+  "caldim": {
+   "source": "<span class=\"mono\">data/calendar_stratum_figures.json</span>, computed by tools/calendar_stratum.py.",
+   "extracted": "Stratum computed 2026-09-23 from reader outputs of 2026-09-18 to 2026-09-20.",
+   "filter": "Actively managed points in the carbon sites, split by each dimension in turn.",
+   "columns": "<b>Evidenced</b>: points with day calls on the day-call basis. <b>Not</b>: the rest. <b>% evidenced</b>: evidenced &divide; (evidenced + not)."
+  },
+  "calyear": {
+   "source": "<span class=\"mono\">data/calendar_extraction_figures.json</span> and <span class=\"mono\">data/calendar_year_coverage.csv</span>, from the calendar reader (tools/read_year_ocr.py).",
+   "extracted": "Reader run of 2026-09-20.",
+   "filter": "Point-years with a readable sheet whose year could be read, one row per sheet year.",
+   "columns": "<b>Median covered</b>: the median share of the point-year carrying photographic evidence, up to the day its latest photograph was taken. <b>At least nine in ten</b> and <b>under half covered</b>: counts of point-years in those bands."
+  },
+  "fnrb": {
+   "source": "The fNRB values in PARAMS (MoFuSS, Toliary provincial for Fort-Dauphin), and PUMPS with the WorldPop allocation for people served.",
+   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; allocation run of <span data-fig=\"WPOPMETA.run\"></span>.",
+   "filter": "Carbon portfolio sites only; Marolinta is outside the carbon programme.",
+   "columns": "<b>People served</b>: the sum of the site&rsquo;s WorldPop allocations after caps, computed live."
+  },
+  "icsdep": {
+   "source": "SDWS26 on this page, recomputed each run by tools/rebuild_sdws26.py from the annual monitoring survey, form <span class=\"mono\">2eeb8682…</span>: questions WS1.31 (dry season) and WS1.52 (rainy season), the household&rsquo;s main cooking device.",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['cbn_gender.json'].pulled\"></span>; counted on every build.",
+   "filter": "All responses on each scenario&rsquo;s deployment of the survey.",
+   "columns": "<b>Improved</b>: choice <span class=\"mono\">J2E4JeG</span>. <b>Three-stone</b>: choice <span class=\"mono\">qZ2xJJR</span>. <b>No answer</b>: responses that left the question blank. <b>Proportion</b>: improved &divide; responses that answered."
+  },
+  "enduro-disp": {
+   "source": "<span class=\"mono\">data/enduro_disposition.csv</span>: Coddy&rsquo;s managed-sites KML, the earlier Endur&rsquo;O file, the UNICEF list and the Endur&rsquo;O mWater group, matched by proximity.",
+   "extracted": "Reconciled to the contractor folders on 18 September 2026 (data/enduro_disposition.csv); the Endur&rsquo;O figures are hand-entered until Endur&rsquo;O is on mWater.",
+   "filter": "Endur&rsquo;O sites only, one disposition per site.",
+   "columns": "<b>Sites</b>: the number of sites given that disposition by the proximity match."
+  },
+  "act-close-eight": {
+   "source": "The first-rehabilitation records of the listed pumps on the combined rehabilitation form <span class=\"mono\">86cf66ef…</span>, question 2.2.1(d).",
+   "extracted": "Combined form pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
+   "filter": "The pumps this action concerns.",
+   "columns": "Every column is the record&rsquo;s own field; nothing is computed."
+  },
+  "cptbl": {
+   "source": "<span class=\"mono\">data/carbon_parameters.json</span>: one row per parameter the methodology requires us to evidence, with the population or form that supplies it.",
+   "extracted": "Coverage and the most recent record are computed on every build from the populations and the extract manifest; each extract&rsquo;s pull date is in <span class=\"mono\">data/extract_manifest.json</span> and the register was pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
+   "filter": "Every parameter in the register of requirements; the chips above filter by readiness.",
+   "columns": "<b>Coverage</b>: the share of the relevant set that the supplying population covers. <b>Most recent record</b>: the newest record on the supplying form, and its age. <b>Readiness</b>: derived from coverage and route, as the note below the table states."
+  },
+  "erinputs": {
+   "source": "The registered parameters of the VPA-DD and the Gold Standard ERSDWS methodology, each value with its own source in the <b>Source</b> column; fNRB and the days-operational cap from PARAMS; people served from the WorldPop allocation; calendar custody from <span class=\"mono\">data/gardien_calendar_coverage.csv</span> via the calendar stratum.",
+   "extracted": "Registered values do not change between runs. People served is live on this page; calendar custody is as at the date in its cell; the register was pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
+   "filter": "One row per input of the baseline-emissions equation above.",
+   "columns": "<b>Value</b>: the registered or applied value, or the live figure it rests on. <b>Evidence status</b>: whether that value is sourced, and whether it is evidenced for the current monitoring period."
+  }
+ }
+}

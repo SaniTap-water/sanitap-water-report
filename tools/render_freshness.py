@@ -53,37 +53,41 @@ def caption():
     for k, v in sorted(per.items()):
         if not v.get("page"):
             continue
-        tag = (f' &mdash; <b>{v["behind_days"]} days behind</b>'
+        tag = (f' &mdash; <b><span data-fig="FRESH.per_source[\'{k}\'].behind_days">{v["behind_days"]}</span> days behind</b>'
                if v.get("behind_days") else " &mdash; current")
         bits.append(f'{NAMES.get(k, k)} to {nice(v["page"])}{tag}')
     body = "; ".join(bits)
-    head = ('<p id="weekcap">Activity in the <b>7 days to ' + nice(ex) + '</b>, '
-            'against the previous 7 days and the last 28. ')
+    import build_config as _bc
+    act = _bc.load()["activity"]
+    wk = f'<span data-fig="BUILDCFG.activity.week_days">{act["week_days"]}</span>'
+    head = ('<p id="weekcap">Activity in the <b>' + wk + ' days to ' + nice(ex) + '</b>, '
+            'against the previous ' + wk + ' days and the last '
+            f'<span data-fig="BUILDCFG.activity.window_days">{act["window_days"]}</span>. ')
     if vin and vin.get("data_to"):
         n_ex = len(vin.get("per_extract") or {})
         spread = vin.get("spread_days")
         head += ('<b>Data to ' + nice(vin["data_to"]) + '.</b> '
-                 + (f'That is the oldest of the {n_ex} extracts this edition is '
+                 + (f'That is the oldest of the <span data-fig="Object.keys(PULLS).length">{n_ex}</span> extracts this edition is '
                     f'built from, not the newest: '
                     + ", ".join(vin.get("oldest_sources") or [])
-                    + f' was pulled {spread} day(s) before the most recent one, '
+                    + f' was pulled <span data-fig="VINTAGE.spread_days">{spread}</span> day(s) before the most recent one, '
                       'so nothing here is claimed to be more current than that. '
                     if spread else
-                    f'All {n_ex} extracts were pulled the same day, so every '
+                    f'All <span data-fig="Object.keys(PULLS).length">{n_ex}</span> extracts were pulled the same day, so every '
                     'source is of one vintage. '))
     if not late:
         return (head + '<span class="muted">Every source is level with mWater as '
                 'of ' + nice(f["checked"]) + ': ' + body + '.</span></p>')
     worst, wname = late[-1]
     known = wname in gaps
-    return (head + f'<b>{NAMES.get(wname, wname)} is {worst} days behind mWater</b> '
+    return (head + f'<b>{NAMES.get(wname, wname)} is <span data-fig="FRESH.per_source[\'{wname}\'].behind_days">{worst}</span> days behind mWater</b> '
             + ('and cannot be rebuilt by any code in this repository yet &mdash; '
                f'<a href="#{gaps[wname]["action"]}">write the builder</a>. '
                if known else
                'and should have been rebuilt &mdash; run the pull and rebuild. ')
             + '<span class="muted">By source: ' + body
             + f'. Checked against mWater on {nice(f["checked"])}; '
-            f'{len(fresh)} of {len(per)} sources level.</span></p>')
+            f'<span data-fig="Object.values(FRESH.per_source).filter(v=>v.behind_days===0).length">{len(fresh)}</span> of <span data-fig="Object.keys(FRESH.per_source).length">{len(per)}</span> sources level.</span></p>')
 
 
 def splice(b):

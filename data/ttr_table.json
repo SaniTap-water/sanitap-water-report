@@ -52,5 +52,11 @@
    "p90": 9
   }
  },
+ "facts": {
+  "completed_on_submission": 143,
+  "points": 145,
+  "same_day_notification_pct": 71,
+  "zero_or_one_day_pct": 61
+ },
  "note": "Time to repair on the live repair form, final responses with both dates; written by tools/render_ttr_table.py."
 }

@@ -50,7 +50,8 @@ def stats(v):
 def compute():
     import populations as P
     site = {p["wp"]: p["site"] for p in P._page_pumps()}
-    rows = []
+    rows, facts = [], {"completed_on_submission": 0, "same_day_notification": 0, "points": set()}
+    Q_BREAKDOWN = "bd8f9d5bc66c4d7ab07257a14d846b6f"      # 1.3.1.1 date of breakdown
     for src, r in P._repair_records():
         if src != "live" or r.get("status") != "final":
             continue
@@ -58,8 +59,19 @@ def compute():
         if d is None:
             continue
         done = str(P._answer(r, P._Q_DONE["live"]) or "")[:10]
+        # what the form can and cannot show: completion dated the day the form
+        # was submitted, and breakdown dated the day it was notified
+        facts["completed_on_submission"] += done == str(r.get("submittedOn") or "")[:10]
+        facts["same_day_notification"] += (str(P._answer(r, Q_BREAKDOWN) or "")[:10]
+                                           == str(P._answer(r, P._Q_NOTIF["live"]) or "")[:10])
+        facts["points"].add(P._point_of(r))
         q = f"{done[:4]} Q{(int(done[5:7]) - 1) // 3 + 1}"
         rows.append((d, site.get(P._point_of(r)), q))
+    n_ = len(rows)
+    facts = {"completed_on_submission": facts["completed_on_submission"],
+             "same_day_notification_pct": round(100 * facts["same_day_notification"] / n_) if n_ else None,
+             "zero_or_one_day_pct": round(100 * sum(1 for d, *_r in rows if d <= 1) / n_) if n_ else None,
+             "points": len(facts["points"])}
     out = {"note": "Time to repair on the live repair form, final responses "
                    "with both dates; written by tools/render_ttr_table.py.",
            "all": stats([d for d, _s, _q in rows]),
@@ -67,7 +79,8 @@ def compute():
                        for s in ("Maroantsetra", "Fort-Dauphin")
                        if any(ss == s for _d, ss, _q in rows)},
            "by_quarter": {q: stats([d for d, _s, qq in rows if qq == q])
-                          for q in sorted({q for *_x, q in rows})}}
+                          for q in sorted({q for *_x, q in rows})},
+           "facts": facts}
     return out
 
 

@@ -22,6 +22,10 @@ import json, os, re, statistics, sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 PAGE = os.path.join(REPO, "index.html")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc  # noqa: E402
+# the repair-time windows, from data/build_config.json, which the page renders
+WITHIN = _bc.load()["repairs"]["within_days"]
 
 # Computed here; anything else in TTR is left exactly as it was.
 OWNED = ["ttr_n", "ttr_median", "ttr_mean", "ttr_3d", "ttr_7d",
@@ -54,8 +58,8 @@ def compute():
         "ttr_n": len(days),
         "ttr_median": float(round(statistics.median(days), 1)),
         "ttr_mean": float(round(statistics.mean(days), 1)),
-        "ttr_3d": round(100 * sum(1 for d in days if d <= 3) / len(days)),
-        "ttr_7d": round(100 * sum(1 for d in days if d <= 7) / len(days)),
+        "ttr_3d": round(100 * sum(1 for d in days if d <= WITHIN[0]) / len(days)),
+        "ttr_7d": round(100 * sum(1 for d in days if d <= WITHIN[1]) / len(days)),
     }
     for s in ("Maroantsetra", "Fort-Dauphin"):
         out[f"ttr_{s}"] = stats([d for d, st, _y in rows if st == s])

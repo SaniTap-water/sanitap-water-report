@@ -101,11 +101,11 @@ def masthead():
     ex = f.get("extract_newest")
     age = f.get("page_age_days")
     if ex and age is not None and age > MAX_EXTRACT_AGE_DAYS:
-        gap = (f'<span class="pill crit">DATA {age} DAYS OLD</span> '
+        gap = (f'<span class="pill crit">DATA <span data-fig="FRESH.page_age_days">{age}</span> DAYS OLD</span> '
                f'<b>the figures below describe {nice(ex)}</b>, not today')
     elif ex:
         gap = (f'data to <b>{nice(ex)}</b>'
-               + (f", {age} day{'s' if age != 1 else ''} old" if age else ", current"))
+               + (f", <span data-fig=\"FRESH.page_age_days\">{age}</span> day{'s' if age != 1 else ''} old" if age else ", current"))
     else:
         gap = '<span class="pill crit">NO EXTRACT DATE</span>'
     return (f'<div class="eyebrow">SaniTap &middot; weekly water programme report '

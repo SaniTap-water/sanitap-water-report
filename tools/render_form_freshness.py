@@ -23,7 +23,10 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED form-freshness :: tools/render_form_freshness.py "
          ":: do not edit between these markers -->")
 END = "<!-- END GENERATED form-freshness -->"
-MAX_AGE_DAYS = 7
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_config as _bc  # noqa: E402
+# from data/build_config.json, which the page renders
+MAX_AGE_DAYS = _bc.load()["form_snapshot"]["max_age_days"]
 
 
 def block():
@@ -54,7 +57,7 @@ def block():
         f'<b>{art(len(forms))}</b> forms, <b>{art(f"{nq:,}")}</b> questions; {revs}. '
         f'<span class="muted">The snapshot is refreshed as part of the weekly build wherever '
         f'the network and credentials are available, and the build <b>fails</b> rather than '
-        f'publishes if it is more than <b>{MAX_AGE_DAYS} days</b> old &mdash; so a form changed '
+        f'publishes if it is more than <b><span data-fig="BUILDCFG.form_snapshot.max_age_days">{MAX_AGE_DAYS}</span> days</b> old &mdash; so a form changed '
         f'in the mWater designer cannot sit unnoticed behind a conformance claim for longer '
         f'than that. Snapshot: <span class="mono">data/mwater_form_snapshot.json</span>; '
         f'statement by statement in <span class="mono">docs/sop_form_conformance.md</span>.</span></p>')

@@ -1,38 +1,44 @@
 {
  "basis": {
   "all": {
-   "headline": "867",
-   "note": "867 water points in scope: all 736 MadAvance hand pumps in the maintained register plus Endur'O's 131 piped systems (manual figures until Endur'O is on mWater, ",
+   "headline": "868",
+   "note": "868 water points in scope, the actively managed portfolio: 737 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 piped systems (ma",
    "note_bold": [
-    "867"
+    "868"
    ],
    "q": {
     "people": [
      {
       "l": "people with safe water",
-      "v": "274,221"
+      "v": "274,721"
      },
      {
       "l": "People served",
-      "v": "274,221"
+      "v": "274,721"
      },
      {
       "l": "people with safe water today",
-      "v": "274,221"
+      "v": "274,721"
+     }
+    ],
+    "people-per-pump": [
+     {
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
+      "v": "324 · 142"
      }
     ],
     "points": [
      {
       "l": "water points in scope",
-      "v": "867"
+      "v": "868"
      },
      {
       "l": "Water points under maintenance",
-      "v": "867"
+      "v": "868"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "867"
+      "v": "868"
      }
     ]
    }
@@ -58,6 +64,12 @@
       "v": "146,000"
      }
     ],
+    "people-per-pump": [
+     {
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
+      "v": "324 · 142"
+     }
+    ],
     "points": [
      {
       "l": "water points in scope",
@@ -75,75 +87,87 @@
    }
   },
   "mad": {
-   "headline": "736",
-   "note": "736 water points in scope: all 736 MadAvance hand pumps in the maintained register, Marolinta included.",
+   "headline": "737",
+   "note": "737 water points in scope: the 737 MadAvance hand pumps we maintain, broken ones included, Marolinta among them.",
    "note_bold": [
-    "736"
+    "737"
    ],
    "q": {
     "people": [
      {
       "l": "people with safe water",
-      "v": "128,221"
+      "v": "128,721"
      },
      {
       "l": "People served",
-      "v": "128,221"
+      "v": "128,721"
      },
      {
       "l": "people with safe water today",
-      "v": "128,221"
+      "v": "128,721"
+     }
+    ],
+    "people-per-pump": [
+     {
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
+      "v": "324 · 142"
      }
     ],
     "points": [
      {
       "l": "water points in scope",
-      "v": "736"
+      "v": "737"
      },
      {
       "l": "Water points under maintenance",
-      "v": "736"
+      "v": "737"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "736"
+      "v": "737"
      }
     ]
    }
   },
   "madx": {
-   "headline": "731",
-   "note": "731 water points in scope: Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbo",
+   "headline": "732",
+   "note": "732 water points in scope: Maroantsetra and Fort-Dauphin only — the established fleet, without the Marolinta works in progress. This is the population the carbo",
    "note_bold": [
-    "731"
+    "732"
    ],
    "q": {
     "people": [
      {
       "l": "people with safe water",
-      "v": "126,780"
+      "v": "127,280"
      },
      {
       "l": "People served",
-      "v": "126,780"
+      "v": "127,280"
      },
      {
       "l": "people with safe water today",
-      "v": "126,780"
+      "v": "127,280"
+     }
+    ],
+    "people-per-pump": [
+     {
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
+      "v": "324 · 142"
      }
     ],
     "points": [
      {
       "l": "water points in scope",
-      "v": "731"
+      "v": "732"
      },
      {
       "l": "Water points under maintenance",
-      "v": "731"
+      "v": "732"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "731"
+      "v": "732"
      }
     ]
    }
@@ -200,6 +224,8 @@
   "Marolinta only",
   "Endur'O"
  ],
+ "group_count": 909,
+ "group_count_seen": [],
  "headings": [
   "The fleet at a glance",
   "This week",
@@ -213,7 +239,7 @@
   "Pumps reported down",
   "Pumps reported \"partially working\" — for management to check",
   "Time out of service",
-  "Preventive-maintenance schedule (6-monthly)",
+  "Preventive-maintenance schedule (every 6 months)",
   "Maintenance coverage",
   "Catch-up routes for overdue pumps",
   "All pumps without a visit for more than 6 months",
@@ -231,15 +257,25 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 29915,
+ "height": 35008,
  "measure": 1132,
  "missing_ids": [],
+ "mobile": {
+  "sw": 390,
+  "vw": 390,
+  "wide": [
+   "TABLE#ptable",
+   "THEAD",
+   "TR",
+   "TH"
+  ]
+ },
  "off_measure": [],
  "page_errors": [],
  "partner": {
   "all": {
    "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
-   "tot": "867"
+   "tot": "868"
   },
   "enduro": {
    "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
@@ -247,11 +283,11 @@
   },
   "mad": {
    "end": "not in this scope — “MadAvance — all” does not cover it",
-   "tot": "736"
+   "tot": "737"
   },
   "madx": {
    "end": "not in this scope — “MadAvance excl. Marolinta” does not cover it",
-   "tot": "731"
+   "tot": "732"
   },
   "mar": {
    "end": "not in this scope — “Marolinta only” does not cover it",
@@ -265,11 +301,11 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 31,
+ "sections": 32,
  "tables": {
   "chaintbl": {
    "hidden": false,
-   "rows": 9
+   "rows": 7
   },
   "corrtbl": {
    "hidden": false,
@@ -281,14 +317,14 @@
   },
   "downtbl": {
    "hidden": false,
-   "rows": 18
+   "rows": 20
   },
   "exctbl": {
    "hidden": false,
    "rows": 15
   },
   "itin": {
-   "hidden": false,
+   "hidden": true,
    "rows": 365
   },
   "opentbl": {
@@ -297,11 +333,11 @@
   },
   "over6": {
    "hidden": false,
-   "rows": 449
+   "rows": 459
   },
   "paramstbl": {
-   "hidden": false,
-   "rows": 40
+   "hidden": true,
+   "rows": 75
   },
   "parttbl": {
    "hidden": false,
@@ -309,7 +345,7 @@
   },
   "popstbl": {
    "hidden": false,
-   "rows": 17
+   "rows": 30
   },
   "poptbl": {
    "hidden": false,
@@ -320,16 +356,57 @@
    "rows": 9
   },
   "recontbl": {
-   "hidden": false,
+   "hidden": true,
    "rows": 16
   },
   "rettbl": {
    "hidden": false,
    "rows": 5
   },
+  "sdws26tbl": {
+   "hidden": false,
+   "rows": 3
+  },
   "tracetbl": {
    "hidden": false,
    "rows": 16
   }
- }
+ },
+ "tile_heights": [
+  {
+   "h": 110,
+   "l": "868water points in scope",
+   "v": 34
+  },
+  {
+   "h": 90,
+   "l": "274,721people with safe water",
+   "v": 34
+  },
+  {
+   "h": 110,
+   "l": "97%hand pumps not reported down",
+   "v": 34
+  },
+  {
+   "h": 131,
+   "l": "20hand pumps reported down",
+   "v": 34
+  },
+  {
+   "h": 131,
+   "l": "459hand pumps with no visit in 6+ months",
+   "v": 34
+  },
+  {
+   "h": 131,
+   "l": "99%hand pumps with a passed E. coli test",
+   "v": 34
+  },
+  {
+   "h": 131,
+   "l": "324 · 142people per pump · Fort-Dauphin ",
+   "v": 34
+  }
+ ]
 }

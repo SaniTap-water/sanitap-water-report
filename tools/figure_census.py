@@ -56,8 +56,10 @@ REFERENCE = re.compile(
     r"admin_region|\u00a7|\bs\.|#|\b[A-Za-z]\.)[:\s]*[\u2011-]?\s*$", re.I)
 # 2.2.1, 4.2.2, A.1.1 - two dots or more is never a quantity on this page
 SECTIONISH = re.compile(r"^\d+(\.\d+){2,}$")
+# A percentage IS a quantity (class d) and is classified like any other
+# number since 25 September 2026; only layout units are dropped here.
 UNIT_AFTER = re.compile(
-    r"^\s*(%|\s?per cent|°|px|pt|em|rem)")
+    r"^\s*(°|px|pt|em|rem)\b")
 
 
 def chromium():
@@ -208,12 +210,22 @@ TEXT = r"""() => {
       tag: el.tagName.toLowerCase(),
       cls: (el.className || '').toString().slice(0, 40),
       mono: !!el.closest('.mono,code,pre'),
+      // which table, if any, and whether it is a declared data table
+      control: !!el.closest('button,select,option,svg .grid,svg .axislab'),
+      // a subscript straight after letters is part of a formula: CO<sub>2</sub>
+      formula: el.tagName === 'SUB' && /[A-Za-z]$/.test((n.previousSibling && n.previousSibling.textContent) || (el.previousSibling && el.previousSibling.textContent) || ''),
+      table: (() => { const t = el.closest('table'); if (!t) return null;
+        return { key: t.dataset.table || null, prose: t.hasAttribute('data-prose-table'),
+                 cell: !!el.closest('td,th') }; })(),
       selfMarked: !!(el.dataset && (el.dataset.artefact || el.dataset.quote
                      || el.dataset.withdrawn || el.dataset.retired)),
-      sourced: sourced ? (sourced.dataset.fig ? 'FIG'
-                        : sourced.dataset.param ? 'PARAMS'
+      // a marker counts only if its footnote exists: an expression with no
+      // DERIV entry, a parameter not in PARAMS or an artefact not in ARTEFACTS
+      // opens a panel that says so, which is not a derivation
+      sourced: sourced ? (sourced.dataset.fig ? ((typeof derivOf === 'function' ? derivOf(sourced.dataset.fig) : DERIV[sourced.dataset.fig]) ? 'FIG' : 'FIG-NODERIV')
+                        : sourced.dataset.param ? (PARAMS[sourced.dataset.param] ? 'PARAMS' : 'PARAM-UNKNOWN')
+                        : sourced.dataset.artefact ? (ARTEFACTS[sourced.dataset.artefact] ? 'ARTEFACT' : 'ARTEFACT-UNKNOWN')
                         : sourced.dataset.quote ? 'QUOTE'
-                        : sourced.dataset.artefact ? 'ARTEFACT'
                         : sourced.dataset.withdrawn ? 'WITHDRAWN'
                         : sourced.dataset.retired ? 'RETIRED'
                         : sourced.dataset.manual ? 'MANUAL' : 'SRC') : null,
@@ -236,6 +248,69 @@ def sentence(text, start, end):
     right = len(text) if right < 0 else right + 1
     s = text[left:right].strip()
     return re.sub(r"\s+", " ", s)[:150]
+
+
+# ---------------------------------------------------------------------------
+# The five classes every kept literal falls into (25 September 2026).
+#   a  identifier or reference: list numbering, clause, table, page, option
+#   b  date, time, week or edition number
+#   c  a cell of a declared data table - the table's footnote carries it
+#   d  a quantity - must open a derivation (data-fig, data-param, data-artefact
+#      or data-manual), or the gate fails
+#   e  a number the page states as someone else's or as history: a document
+#      quotation (data-quote), a retired or a withdrawn value. Listed singly.
+# Rules are tried in that order; anything no rule claims is a quantity, so a
+# gap in the rules can only make the gate stricter, never looser.
+# ---------------------------------------------------------------------------
+_MON = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?"
+_DAY = r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\.?"
+DERIVED = {"FIG", "PARAMS", "ARTEFACT", "MANUAL"}
+HISTORY = {"QUOTE", "RETIRED", "WITHDRAWN"}
+_REF_BEFORE = re.compile(
+    r"(?:chapter|section|table|tableau|th[eè]me|theme|tome|p\.|page|row|cell|"
+    r"divergence|options?|item|question|step|annex|appendix|part|clause|"
+    r"equation|eq\.|RGPH-|(?:SDWS|options?)\s[\d/&, ]*(?:and\s|&\s*|or\s)?|[A-Za-z]-|\u203a|EB|methods?|tier|phase|"
+    r"sheet|template|generation|version|type|model|quartile)\s*$", re.I)
+
+
+def figure_class(raw, before, after, table, sourced, control=False):
+    if table and table.get("cell") and table.get("key"):
+        return "c"
+    # a button or selector label names a view, it does not state a quantity
+    if control:
+        return "a"
+    # the denominator of a unit - "CFU per 100 mL" - is part of the unit
+    if re.search(r"\bper\s*$", before) and re.match(r"^\s*(?:mL|ml|L|l|km|m)\b", after):
+        return "a"
+    if (re.match(r"^\s*" + _MON + r"(?![a-z])", after)
+            or re.match(r"^\s*(?:[\u2013-]|to)\s*\d{1,2}\s+" + _MON, after)
+            or re.match(r"^(?:\s*,\s*\d{1,2})*\s*(?:,\s*)?and\s+\d{1,2}\s+" + _MON, after)
+            or re.search(r"\d{1,2}\s*,\s*$", before) and re.match(r"^\s*and\s+\d{1,2}\s+" + _MON, after)
+            or re.search(_MON + r"\s*$", before) or re.search(_DAY + r"\s*$", before)
+            or re.search(r"\d{4}-(?:\d\d-)?$", before)
+            or re.search(r"\b(?:week|wk|edition|issue)\s*$", before, re.I)
+            or re.match(r"^:\d\d", after) or re.search(r"\d:$", before)):
+        return "b"
+    if (re.search(r"\(\s*$", before) and re.match(r"^\s*\)", after)) \
+            or (re.match(r"^\.(?:\s|$)", after) and (not before.strip()
+                                                       or before.rstrip()[-1:] in "\u203a>")) \
+            or _REF_BEFORE.search(before) or re.match(r"^\s*(?:bis|ter)\b", after):
+        return "a"
+    if sourced in HISTORY:
+        return "e"
+    return "d"
+
+
+TABLES = r"""() => [...document.querySelectorAll('table')].map(t => {
+  const key = t.dataset.table || null;
+  const note = key ? document.querySelector(`details.tablenote[data-for="${key}"]`) : null;
+  const part = r => { const e = note && note.querySelector(`[data-note="${r}"]`);
+                      return !!(e && e.textContent.trim()); };
+  return { key, prose: t.hasAttribute('data-prose-table'),
+           where: t.id || (t.closest('[id]') || {}).id || '(no id)',
+           head: (t.tHead ? t.tHead.textContent : '').replace(/\s+/g, ' ').trim().slice(0, 60),
+           note: !!note, parts: note ? ['source', 'extracted', 'filter', 'columns'].filter(r => !part(r)) : null };
+})"""
 
 
 def literals(nodes):
@@ -291,9 +366,13 @@ def literals(nodes):
                 val = float(norm)
             except ValueError:
                 continue
-            kept.append({"raw": raw, "val": val, "section": nd["section"],
-                         "sourced": nd["sourced"],
-                         "sentence": sentence(t, m.start(), m.end())})
+            L = {"raw": raw, "val": val, "section": nd["section"],
+                 "sourced": nd["sourced"],
+                 "sentence": sentence(t, m.start(), m.end())}
+            L["cls"] = ("a" if nd.get("formula") else
+                        figure_class(raw, before[-40:], after[:40], nd.get("table"),
+                                     nd["sourced"], nd.get("control")))
+            kept.append(L)
     return kept, dropped
 
 
@@ -407,7 +486,8 @@ def walk_page(page_path, scopes=SCOPES):
             reach = pg.evaluate(REACH)
             kept, dropped = literals(pg.evaluate(TEXT))
             found[s] = {"lits": classify(kept, reach, params, manual),
-                        "dropped": dropped, "reach": len(reach)}
+                        "dropped": dropped, "reach": len(reach),
+                        "tables": pg.evaluate(TABLES)}
         b.close()
     return found, errs, params, manual
 
@@ -503,6 +583,59 @@ def write_backlog(allbad, note):
     return doc
 
 
+def class_report(found, verbose=False):
+    """Counts per class, the class-d derivation split, and the table footnotes.
+
+    Returns (quantities without a derivation, tables that fail), each keyed so
+    that one fault seen in several scopes is reported once.
+    """
+    print()
+    print("  FIGURE CLASSES - a identifier, b date, c data-table cell, d quantity, e quoted or history")
+    naked, badtab = {}, {}
+    for s, d in found.items():
+        n = {k: 0 for k in "abcde"}
+        dw = 0
+        for L in d["lits"]:
+            n[L["cls"]] += 1
+            if L["cls"] == "d":
+                if L["sourced"] in DERIVED:
+                    dw += 1
+                else:
+                    naked.setdefault((L["raw"], L["sentence"]), []).append(s)
+        tabs = d["tables"]
+        data = [t for t in tabs if t["key"]]
+        for t in tabs:
+            why = ("declared neither data-table nor data-prose-table"
+                   if not t["key"] and not t["prose"]
+                   else "no table footnote" if t["key"] and not t["note"]
+                   else ("footnote lacks: " + ", ".join(t["parts"])) if t["key"] and t["parts"]
+                   else None)
+            if why:
+                badtab.setdefault((t["where"], t["head"]), (why, set()))[1].add(s)
+        print(f"  {s:8} a {n['a']:>5}  b {n['b']:>5}  c {n['c']:>5}  d {n['d']:>5} "
+              f"(with derivation {dw}, without {n['d'] - dw})  e {n['e']:>4}   "
+              f"tables {len(tabs)}: data {len(data)}, with footnote "
+              f"{sum(1 for t in data if t['note'] and not t['parts'])}")
+    e = {}
+    for s, d in found.items():
+        for L in d["lits"]:
+            if L["cls"] == "e":
+                e.setdefault((L["raw"], L["sourced"], L["sentence"][:110]), set()).add(s)
+    if e:
+        print(f"\n  class e, listed singly ({len(e)} distinct):")
+        for (raw, src, sen), sc in sorted(e.items()):
+            print(f"    {raw:>9}  {src:9} {sen}")
+    if naked:
+        print(f"\n  CLASS d WITHOUT A DERIVATION - {len(naked)} distinct")
+        for (raw, sen), sc in list(naked.items())[:60 if not verbose else 99999]:
+            print(f"    {raw:>9}  [{','.join(sorted(set(sc)))}]  {sen[:110]}")
+    if badtab:
+        print(f"\n  TABLES FAILING - {len(badtab)}")
+        for (where, head), (why, sc) in badtab.items():
+            print(f"    {where:24} {why:48} {head[:40]}")
+    return naked, badtab
+
+
 def gate(allbad, backlog):
     """New unsourced figures fail. The recorded backlog is allowed, and can
     only ever shrink: an entry that has been sourced must be removed, so the
@@ -527,6 +660,7 @@ def main():
     found, errs, params, manual = walk_page(os.path.abspath(a.page),
                                             a.scope or SCOPES)
     tot, bad, typed = report(found, params, manual, a.verbose)
+    naked, badtab = class_report(found, a.verbose)
     if a.json:
         json.dump({s: d["lits"] for s, d in found.items()},
                   open(a.json, "w", encoding="utf8"), indent=1, ensure_ascii=False)
@@ -563,6 +697,11 @@ def main():
             return 1
         if cleared:
             print("\n  FIGURE GATE FAILED: the backlog is out of date.")
+            return 1
+        if naked or badtab:
+            print(f"\n  FIGURE GATE FAILED: {len(naked)} quantity(ies) open no "
+                  f"derivation, {len(badtab)} table(s) lack a declaration or "
+                  "their table footnote.")
             return 1
         print("\n  figure gate: every rendered literal is live, declared in "
               "PARAMS, from the dated manual file, or on the recorded "
