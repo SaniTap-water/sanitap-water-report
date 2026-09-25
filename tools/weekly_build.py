@@ -140,6 +140,32 @@ def plain_refusal(lines):
         f" (first: {detail})" if detail else "")
 
 
+def mcp_pin_problem():
+    """Why ~/mwater-mcp is not the pinned read-only tooling, or None.
+
+    Every extract comes through it, it lives outside this repository, and its
+    dist/ is untracked, so a checkout that moved or a rebuild from edited
+    source would change what the build sends to mWater without any commit
+    here. data/mwater_mcp_pin.json fixes the commit and the hashes of the two
+    files that execute."""
+    import hashlib
+    pin = json.load(io.open(os.path.join(REPO, "data", "mwater_mcp_pin.json"), encoding="utf8"))
+    root = os.path.expanduser(pin["path"])
+    r = subprocess.run(["git", "-C", root, "rev-parse", "HEAD"], capture_output=True, text=True)
+    at = r.stdout.strip()
+    if r.returncode != 0 or at != pin["commit"]:
+        return (f"{pin['path']} is at {at[:7] or 'no commit'}, not the pinned "
+                f"{pin['commit'][:7]}")
+    if subprocess.run(["git", "-C", root, "diff", "--quiet", "HEAD"]).returncode != 0:
+        return f"{pin['path']} has uncommitted changes to tracked files"
+    for rel, want in pin["sha256"].items():
+        p = os.path.join(root, rel)
+        got = hashlib.sha256(open(p, "rb").read()).hexdigest() if os.path.isfile(p) else "missing"
+        if got != want:
+            return f"{pin['path']}/{rel} does not match the pinned build ({got[:12]})"
+    return None
+
+
 def run(cmd, **kw):
     env = dict(os.environ, PLAYWRIGHT_BROWSERS_PATH=PW)
     return subprocess.run(cmd, cwd=REPO, capture_output=True, text=True,
@@ -229,6 +255,13 @@ def main():
         said(f"Nothing to do: today's edition ({issued}) is already published "
              "and no update was asked for")
         return 0
+    # nothing is pulled through mWater tooling other than the pinned one
+    bad = mcp_pin_problem()
+    if bad:
+        log(f"{tag}REFUSED: the mWater tooling is not the pinned version: {bad}")
+        said(("Dry run failed" if dry else "Not published")
+             + f": the mWater tooling is not the pinned version ({bad}), so nothing was pulled")
+        return 1
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
 
     def rollback(why, sentence=None):

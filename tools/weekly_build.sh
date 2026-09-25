@@ -62,8 +62,12 @@ main() {
       last=$(cat "$stamp" 2>/dev/null || echo 0)
       mins=$(( (now - last) / 60 ))
       if [ "$mins" -ge 0 ] && [ "$mins" -lt 60 ]; then
-        outcome "Skipped: the last run started $mins minute(s) ago, and runs are at least 60 minutes apart."
-        return 0
+        # Non-zero (75, "try again later"), so the task's Last Result shows
+        # the run did not build. The retry is the next 2-hourly repetition of
+        # the trigger, which fires whatever this returned; nothing here is
+        # consumed, so a pending logs/update_requested waits for that run.
+        outcome "Skipped, not built: the last run started $mins minute(s) ago, and runs are at least 60 minutes apart; the next scheduled run will build."
+        return 75
       fi
     fi
     mkdir -p "$build/logs" && echo "$now" > "$stamp"

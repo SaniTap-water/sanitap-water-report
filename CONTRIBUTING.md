@@ -800,11 +800,29 @@ build if anything the build runs calls a retired script, or if `api.mjs` grows
 a write path again. A correction to a register record is made in the portal
 and arrives with the next pull.
 
+**The build runs only the pinned `~/mwater-mcp`.** That checkout has no
+remote and its `dist/` is untracked build output, so neither a commit here nor
+one there fixes what executes. `data/mwater_mcp_pin.json` records the commit
+and the SHA-256 of `dist/index.js` and `cli_call.mjs`; `weekly_build.py`
+refuses to pull if the checkout is at another commit, has uncommitted changes
+to tracked files, or either file differs. To move the pin: commit in
+`~/mwater-mcp`, `npm run build`, `npm test`, record the new values.
+
 **Runs are at least 60 minutes apart.** A real run of `weekly_build.sh`
 records its start in `logs/last_run_started` (untracked). A run that starts
 within 60 minutes of the last one stops before any fetch or pull, with the
-`OUTCOME:` line "Skipped: the last run started N minute(s) ago…". Dry runs
-are exempt.
+`OUTCOME:` line "Skipped, not built: the last run started N minute(s) ago…",
+and **exits 75**, so the task's Last Result shows it did not build. The retry
+is not triggered by the exit code: the task's trigger repeats every 2 hours
+from 07:00 to 21:00 whatever the last result was. A skip consumes nothing, so
+a pending `logs/update_requested` is honoured by the next run. Dry runs are
+exempt.
+
+*A manual update in the hour before Monday 07:00* cannot lose the Monday
+edition. It builds the new ISO week's edition itself; the 07:00 run is either
+ignored by Task Scheduler (`IgnoreNew`, while the manual run is still going)
+or skipped by the guard; the 09:00 run then finds today's edition published
+and does nothing, or, if the manual run did not publish, builds it.
 
 ### Updating mid-week
 
