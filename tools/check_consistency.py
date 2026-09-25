@@ -3606,6 +3606,42 @@ def main():
           not unlinked, "none", f"{len(unlinked)} unlinked" if unlinked else "none",
           ", ".join(sorted(set(unlinked))[:6]))
 
+    # ---- 7ba. piped systems: every one has a status; baseline never counts --
+    # A piped system joins the managed portfolio only when its works are
+    # complete and its post-rehabilitation tests are done (Adriaan Mol,
+    # 25 Sep 2026). The status file must list every Endur'O system the build
+    # pulled, and the managed figures may hold post-rehabilitation results only.
+    import rebuild_piped_wq as _pw
+    _st = json.load(open(_pw.STATUS, encoding="utf8"))["systems"]
+    try:
+        _ext = _pw.extract_systems()
+        _gap = _pw.status_problems(_st, _ext)
+    except FileNotFoundError as e:
+        _ext, _gap = {}, [f"no piped systems extract: {e}"]
+    check("every Endur'O water system in the extract has a status",
+          not _gap, f"{len(_ext)} listed", "; ".join(_gap)[:120] if _gap else f"{len(_ext)} listed",
+          "data/piped_systems_status.json; a new system fails the build until it is classified")
+    _pwq = json.load(open(os.path.join(repo_root, "data", "piped_wq.json"), encoding="utf8"))
+    _msys = {c: v for c, v in _pwq["systems"].items() if v["status"] == "managed"}
+    _ok = (_pwq["managed"]["results"] == sum(v["results_post"] for v in _msys.values())
+           and all(v["works_complete"] for v in _msys.values()))
+    check("no managed piped figure includes a baseline result",
+          _ok, "post-rehabilitation only",
+          "post-rehabilitation only" if _ok else "MIXED",
+          "a result on or before works completion is baseline and never counts")
+    _panel = idx_raw[idx_raw.find('id="piped-wq"'):idx_raw.find('id="piped-wq-how"')]
+    _leak = [e for e in re.findall(r'data-fig="([^"]*PIPEDWQ\.baseline[^"]*)"', _panel)
+             if "managed" in e]
+    _headed = 'data-fig="PIPEDWQ.managed.results"' in _panel and "baseline" in _panel.lower()
+    check("the piped panel keeps baseline and managed figures apart",
+          _headed and not _leak, "separate", "separate" if _headed and not _leak else "MIXED")
+    _t = subprocess.run([sys.executable, os.path.join(repo_root, "tools", "test_piped_wq.py")],
+                        capture_output=True, text=True)
+    check("the piped join rule is proved on doctored status files",
+          _t.returncode == 0, "5 cases hold",
+          "5 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
+          "tools/test_piped_wq.py")
+
     # ---- 7az. the list is grouped, filtered, and counts what it holds ---
     # 93 rows in one flat table is a wall. The generated list must carry the
     # controls that make it usable, and - the defect this check exists for -

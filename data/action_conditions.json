@@ -703,5 +703,21 @@
   "says": "closes when no point carries a failed E. coli result without a retest",
   "target": 0,
   "when_satisfied": "OK"
+ },
+ "act-piped-wq-misfiled-742895333": {
+  "kind": "data",
+  "metric": "piped_form_hand_pump_results",
+  "op": "==",
+  "target": 0,
+  "says": "closes when the piped result form holds no hand-pump result",
+  "when_satisfied": "OK"
+ },
+ "act-moramanga-post-rehab-wq": {
+  "kind": "data",
+  "metric": "piped_systems_in_process",
+  "op": "==",
+  "target": 0,
+  "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+  "when_satisfied": "OK"
  }
 }

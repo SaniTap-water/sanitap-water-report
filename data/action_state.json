@@ -2,7 +2,7 @@
  "evaluated": "2026-09-25",
  "kinds": {
   "artefact": 7,
-  "data": 37,
+  "data": 39,
   "decision": 38,
   "form": 7,
   "none": 25
@@ -471,6 +471,14 @@
    "says": "closes when all four Moramanga draft records reach status final",
    "when_satisfied": "OK"
   },
+  "act-moramanga-post-rehab-wq": {
+   "evaluated": "2026-09-25",
+   "evidence": "piped_systems_in_process = 4 (piped systems in process: works or post-rehabilitation tests not yet done); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+   "when_satisfied": "OK"
+  },
   "act-move-stroke-test-sop": {
    "evaluated": "2026-09-25",
    "evidence": "nothing matching \"StrokeTest\" in Water Documents/SOPs",
@@ -550,6 +558,14 @@
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
+   "when_satisfied": "OK"
+  },
+  "act-piped-wq-misfiled-742895333": {
+   "evaluated": "2026-09-25",
+   "evidence": "piped_form_hand_pump_results = 2 (hand-pump water-quality results filed on the piped result form 0ac68d82); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when the piped result form holds no hand-pump result",
    "when_satisfied": "OK"
   },
   "act-point-use-round-one": {

@@ -96,6 +96,16 @@
    "source": "local",
    "value": 206
   },
+  "piped_form_hand_pump_results": {
+   "says": "hand-pump water-quality results filed on the piped result form 0ac68d82",
+   "source": "local",
+   "value": 2
+  },
+  "piped_systems_in_process": {
+   "says": "piped systems in process: works or post-rehabilitation tests not yet done",
+   "source": "local",
+   "value": 4
+  },
   "pm_visits_last_full_month": {
    "says": "preventive maintenance visits in the last full month",
    "source": "local",

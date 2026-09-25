@@ -301,6 +301,20 @@ def _m21():
     return len(reg["marolinta"])
 
 
+@metric("piped_form_hand_pump_results",
+        "hand-pump water-quality results filed on the piped result form 0ac68d82")
+def _m_piped_misfiled():
+    return json.load(open(d("data", "piped_wq.json"), encoding="utf8"))[
+        "excluded"]["hand_pump_on_piped_form"]["n"]
+
+
+@metric("piped_systems_in_process",
+        "piped systems in process: works or post-rehabilitation tests not yet done")
+def _m_piped_in_process():
+    return json.load(open(d("data", "piped_wq.json"), encoding="utf8"))[
+        "status_counts"]["in_process"]
+
+
 # --------------------------------------------------------------- remote ----
 def remote():
     """REMOTE: counts that can only come from mWater."""

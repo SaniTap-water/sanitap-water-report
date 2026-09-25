@@ -74,13 +74,9 @@
   "note": "A point-year enters the calendar stratum only with at least this many observed days on its sheet."
  },
  "piped": {
-  "note": "The piped water-quality figures (tools/rebuild_piped_wq.py). A sample counts when the site it names is a water system in Endur'O's mWater group and lies outside Antananarivo: the page's scope keeps the Antananarivo kiosks out, as diagnosed and not under management, and keeps the Moramanga-axis systems in.",
+  "note": "The piped water-quality figures (tools/rebuild_piped_wq.py). Which systems are managed is data/piped_systems_status.json, not a rule here: a piped system joins the managed portfolio only when its rehabilitation works are complete and its post-rehabilitation water-quality tests are done (Adriaan Mol, 25 Sep 2026). A result dated on or before a system's works completion is baseline and never counts toward a managed figure.",
   "wq_form": "0ac68d8274d24f54af0c28b29119b77d",
   "operator_group": "group:c305b9b85f41417387b553d9a33c795b",
-  "antananarivo_centre_lat_lon": [
-   -18.9137,
-   47.5361
-  ],
-  "antananarivo_radius_km": 30
+  "status_file": "data/piped_systems_status.json"
  }
 }

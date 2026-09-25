@@ -70,6 +70,9 @@ STEPS = [
     ("tools/rebuild_summary.py",     ["--write"],      True),
     ("tools/marolinta_admin.py",     ["--write"],      False),
     ("tools/check_freshness.py",     ["--write"],      True),
+    # the piped water-quality figures and the join rule, before the metrics
+    # that two actions close on
+    ("tools/rebuild_piped_wq.py",    ["--write"],      True),
     ("tools/action_metrics.py",      ["--write"],      False),
     ("tools/eval_conditions.py",     ["--write"],      True),
     ("tools/check_build_drop.py",    ["--write"],      False),
@@ -95,8 +98,6 @@ STEPS = [
     ("tools/render_sdws26.py",       ["--write"],      True),
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
-    # the piped water-quality figures, from the piped SDWS 3 result form
-    ("tools/rebuild_piped_wq.py",    ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
     # the portfolio map page, from the report's own PUMPS and WPOP
     ("tools/render_portfolio.py",    ["--write"],      True),
@@ -160,6 +161,13 @@ def mcp_pin_problem():
                 f"{pin['commit'][:7]}")
     if subprocess.run(["git", "-C", root, "diff", "--quiet", "HEAD"]).returncode != 0:
         return f"{pin['path']} has uncommitted changes to tracked files"
+    # the pinned commit must be on the remote branch (the local tracking ref;
+    # no network), so what runs is what anyone can read back from GitHub
+    if pin.get("branch") and subprocess.run(
+            ["git", "-C", root, "merge-base", "--is-ancestor", pin["commit"],
+             f"refs/remotes/origin/{pin['branch']}"]).returncode != 0:
+        return (f"{pin['path']} commit {pin['commit'][:7]} is not on "
+                f"origin/{pin['branch']} ({pin.get('remote', 'no remote')})")
     for rel, want in pin["sha256"].items():
         p = os.path.join(root, rel)
         got = hashlib.sha256(open(p, "rb").read()).hexdigest() if os.path.isfile(p) else "missing"

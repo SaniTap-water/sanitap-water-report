@@ -220,6 +220,8 @@ GENERATED = {
     'METRICS.usage_question_answers': 'render_datasets',
     'METRICS.usage_survey_responses': 'render_datasets',
     'METRICS.water_quality_failures_unretested': 'render_datasets',
+    'METRICS.piped_form_hand_pump_results': 'render_datasets',
+    'METRICS.piped_systems_in_process': 'render_datasets',
     'PARTIAL.[].comments': 'build_call_tables',
     'PARTIAL.[].commune': 'build_call_tables',
     'PARTIAL.[].kind': 'build_call_tables',

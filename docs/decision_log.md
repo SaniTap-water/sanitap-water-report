@@ -925,3 +925,29 @@ case", or carried an action on Moramanga fuel quantity. Nothing to remove and no
 The ruling is now stated on the page as the collapsed footnote `piped-baseline-ruling` in the
 Endur'O smart-meter panel, quoted from the email (QUOTES `jw_2026_09_23_moramanga_baseline`). The
 boiling and stove counts from the survey are not on the page: the build does not pull that form.
+
+## 25 September 2026 — Adriaan Mol: when a piped system joins the managed portfolio
+
+**From:** Adriaan Mol, COO SaniTap · 25 September 2026.
+
+- The 43 results on the piped SDWS 3 result form (`0ac68d82`) for Amboasary gara, March to
+  August 2026, are **pre-project baseline** tests: they establish the starting situation so the
+  system qualifies for the carbon work. Works are not complete and post-rehabilitation tests have
+  not happened.
+- The four Deichmann-funded Moramanga piped systems are therefore **in process**, not part of the
+  managed portfolio.
+- **Rule:** a piped system joins the managed portfolio only when its rehabilitation works are
+  complete **and** its post-rehabilitation water-quality tests are done.
+
+**Applied to the report:** `data/piped_systems_status.json` gives every Endur'O water system a
+status. The four Moramanga systems were identified from mWater, not assumed: the Moramanga carbon
+baseline survey (`3ef4385a`, 331 households) and the Moramanga piped water-point identification
+(`a34cb66b`) both name exactly 1108783583 Amboasary gara, 1108783624 Ambohibola, 1108783648
+Amboanjo and 1108783662 Andilanatoby. mWater records no funder for any of them (the donor form
+`8c9f8dc1` has no Moramanga entry; the one system registration is the Antananarivo kiosk), so
+"Deichmann-funded" rests on this ruling. The other 21 systems are not managed; 17 of those statuses
+are inferred (duplicates or sub-records near the four, or Antananarivo records named "Amboasary
+gara") and marked `confirmed: false` for Endur'O to confirm. `tools/rebuild_piped_wq.py` applies
+the rule by date: a result after a recorded works-completion date is post-rehabilitation and
+counts; one on or before it is baseline and never counts. The build fails on any Endur'O system
+missing from the status file. The earlier 30 km-from-Antananarivo proxy is withdrawn.

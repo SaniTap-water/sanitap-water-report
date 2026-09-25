@@ -1,0 +1,207 @@
+{
+ "note": "Status of every water system in Endur'O's mWater group (piped_systems.csv). A piped system joins the managed portfolio only when its rehabilitation works are complete AND its post-rehabilitation water-quality tests are done (Adriaan Mol, 25 Sep 2026). tools/rebuild_piped_wq.py applies it: a system whose works_complete date is set and which has a result dated after it is managed, and only those post-rehabilitation results count; a result dated on or before works completion is baseline and never counts. The build fails if the extract holds a system id that is not listed here. status: managed / in_process / not_managed. confirmed: false marks a status inferred here that Endur'O should confirm.",
+ "source": "Endur'O water systems from mWater (group c305b9b8, extract piped_systems.csv, pulled 2026-09-25); the four Moramanga systems identified from forms 3ef4385a and a34cb66b; status and join rule per Adriaan Mol, 25 Sep 2026.",
+ "rule_by": "Adriaan Mol, 25 Sep 2026",
+ "systems": {
+  "1108783538": {
+   "name": "AEPG",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
+  },
+  "1108783552": {
+   "name": "AEPG",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+  },
+  "1108783569": {
+   "name": "Amboasary gara",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
+  },
+  "1108783583": {
+   "name": "Amboasary gara",
+   "status": "in_process",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+  },
+  "1108783624": {
+   "name": "Ambohibola",
+   "status": "in_process",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+  },
+  "1108783631": {
+   "name": "Amboanjo",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.0 km from Amboanjo (1108783648), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108783648": {
+   "name": "Amboanjo",
+   "status": "in_process",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+  },
+  "1108783655": {
+   "name": "Andilanatoby",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.0 km from Andilanatoby (1108783662), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108783662": {
+   "name": "Andilanatoby",
+   "status": "in_process",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+  },
+  "1108784120": {
+   "name": "ECAR Saint Mathieu",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.0 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108784175": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.1 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108784199": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.1 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108784216": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108784223": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.1 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1108784278": {
+   "name": "ECAR AMBOASARY",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.0 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1110083543": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1110083574": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1110083646": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1110083653": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1110083660": {
+   "name": null,
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.2 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "1125843376": {
+   "name": "Kiosk",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+  },
+  "928174397": {
+   "name": "Forage Andringitra",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": true,
+   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+  },
+  "928471757": {
+   "name": "AEPP AMBOHIBOLA",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 0.5 km from Ambohibola (1108783624), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "929469223": {
+   "name": "AEPP AMBOASARY GARE",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 1.3 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  },
+  "929469247": {
+   "name": "Forage Amboasary gare",
+   "status": "not_managed",
+   "works_complete": null,
+   "post_rehab_test": null,
+   "confirmed": false,
+   "basis": "Moramanga axis, 1.3 km from Amboasary gara (1108783583), but not named by the Moramanga baseline survey or identification form: a duplicate or a sub-record of that system, not one of the four. Not managed until Endur'O confirms what it is."
+  }
+ }
+}

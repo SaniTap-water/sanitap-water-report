@@ -1,10 +1,12 @@
 {
- "note": "The mWater tooling the build runs, pinned. ~/mwater-mcp is outside this repository and its dist/ is untracked build output, so the commit alone does not fix what executes: the build also checks the hash of the compiled server and of the CLI it calls. tools/weekly_build.py refuses to pull if any of the three differs. To move the pin: commit in ~/mwater-mcp, npm run build, npm test, then record the new values here.",
+ "note": "The mWater tooling the build runs, pinned. ~/mwater-mcp is outside this repository and its dist/ is untracked build output, so the commit alone does not fix what executes: the build also checks the hash of the compiled server and of the CLI it calls, and that the commit is on the remote branch. tools/weekly_build.py refuses to pull if any of these differs. To move the pin: commit in ~/mwater-mcp, npm run build, npm test, push, then record the new values here.",
  "path": "~/mwater-mcp",
+ "remote": "https://github.com/SaniTap-water/mwater-mcp",
+ "branch": "master",
  "commit": "31f777d3f27c66949bc71d505d847b77e135da01",
  "sha256": {
   "dist/index.js": "eef66b8d315deecd56050691ecba64e118ffa2ff7a6074f266cd4348949fc5a3",
   "cli_call.mjs": "9187fba6141943aa0a5ac3e98fdddcbfe06951228f33fe38207f24e37257383f"
  },
- "pinned": "2026-09-25: the read-only conversion (guard on every request; form-edit write tools removed). dist/index.js verified byte-identical to src/index.ts at this commit compiled with the project's tsc."
+ "pinned": "2026-09-25: the read-only conversion (guard on every request; form-edit write tools removed). dist/index.js verified byte-identical to src/index.ts at this commit compiled with the project's tsc. Pushed to the private repo SaniTap-water/mwater-mcp the same day; remote master is this commit."
 }

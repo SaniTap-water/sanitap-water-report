@@ -1,34 +1,42 @@
 {
- "by_system": {
-  "1108783583": {
-   "complete": 1,
-   "fail": 38,
-   "first": "2026-03-26",
-   "km_from_antananarivo": 93,
-   "last": "2026-08-24",
-   "name": "Amboasary gara",
-   "no_result": 0,
-   "partial": 42,
-   "pass": 5,
-   "samples": 43
-  }
- },
- "chlorine_measured": 43,
- "chlorine_zero": 42,
- "complete": 1,
- "excluded": {
-  "antananarivo": {
-   "codes": [],
-   "n": 0
+ "baseline": {
+  "by_system": {
+   "1108783583": {
+    "exceeds": 38,
+    "first": "2026-03-25",
+    "last": "2026-08-21",
+    "meets": 5,
+    "name": "Amboasary gara",
+    "results": 43
+   }
   },
+  "chlorine_measured": 43,
+  "chlorine_zero": 42,
+  "exceeds": 38,
+  "first": "2026-03-25",
+  "last": "2026-08-21",
+  "max_cfu": 50,
+  "median_cfu": 3,
+  "meets": 5,
+  "meets_pct": 11.6,
+  "no_result": 0,
+  "results": 43,
+  "rounds": 5,
+  "systems": 1,
+  "tap_recorded": 0
+ },
+ "excluded": {
   "hand_pump_on_piped_form": {
    "codes": [
     "742895333"
    ],
-   "n": 2
+   "n": 2,
+   "responses": [
+    "85ca794c0e694e34aa9584330c18e882",
+    "ddf41ec2ed63413f8f07b7500edf1c31"
+   ]
   },
   "no_site": {
-   "codes": [],
    "n": 0
   },
   "not_an_operator_system": {
@@ -36,26 +44,266 @@
    "n": 0
   },
   "not_final": {
-   "codes": [],
    "n": 0
   }
  },
- "fail": 38,
- "first": "2026-03-26",
  "form": "0ac68d8274d24f54af0c28b29119b77d",
- "in_portfolio": 43,
- "last": "2026-08-24",
- "max_cfu": 50,
- "median_cfu": 3,
- "no_result": 0,
- "note": "Written by tools/rebuild_piped_wq.py from the piped SDWS 3 result form; the rule is data/build_config.json 'piped'.",
- "operator_systems": 25,
- "partial": 42,
- "pass": 5,
- "pass_pct": 11.6,
+ "in_process_names": [
+  "Amboasary gara",
+  "Ambohibola",
+  "Amboanjo",
+  "Andilanatoby"
+ ],
+ "managed": {
+  "chlorine_measured": 0,
+  "chlorine_zero": 0,
+  "exceeds": 0,
+  "first": null,
+  "last": null,
+  "max_cfu": null,
+  "median_cfu": null,
+  "meets": 0,
+  "meets_pct": null,
+  "no_result": 0,
+  "results": 0,
+  "rounds": 0,
+  "systems": 0,
+  "tap_recorded": 0
+ },
+ "not_managed_results": 0,
+ "note": "Written by tools/rebuild_piped_wq.py. Managed = post-rehabilitation results of systems that met the join rule; baseline = results dated on or before a system's works completion, which never count toward a managed figure.",
  "pulled": "2026-09-25",
  "responses": 45,
- "rounds": 5,
- "systems_sampled": 1,
- "tap_recorded": 0
+ "status_counts": {
+  "in_process": 4,
+  "managed": 0,
+  "not_managed": 21
+ },
+ "systems": {
+  "1108783538": {
+   "declared": "not_managed",
+   "name": "AEPG",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108783552": {
+   "declared": "not_managed",
+   "name": "AEPG",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108783569": {
+   "declared": "not_managed",
+   "name": "Amboasary gara",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108783583": {
+   "declared": "in_process",
+   "name": "Amboasary gara",
+   "post_rehab_first": null,
+   "results_baseline": 43,
+   "results_post": 0,
+   "status": "in_process",
+   "works_complete": null
+  },
+  "1108783624": {
+   "declared": "in_process",
+   "name": "Ambohibola",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "in_process",
+   "works_complete": null
+  },
+  "1108783631": {
+   "declared": "not_managed",
+   "name": "Amboanjo",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108783648": {
+   "declared": "in_process",
+   "name": "Amboanjo",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "in_process",
+   "works_complete": null
+  },
+  "1108783655": {
+   "declared": "not_managed",
+   "name": "Andilanatoby",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108783662": {
+   "declared": "in_process",
+   "name": "Andilanatoby",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "in_process",
+   "works_complete": null
+  },
+  "1108784120": {
+   "declared": "not_managed",
+   "name": "ECAR Saint Mathieu",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108784175": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108784199": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108784216": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108784223": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1108784278": {
+   "declared": "not_managed",
+   "name": "ECAR AMBOASARY",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1110083543": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1110083574": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1110083646": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1110083653": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1110083660": {
+   "declared": "not_managed",
+   "name": null,
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "1125843376": {
+   "declared": "not_managed",
+   "name": "Kiosk",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "928174397": {
+   "declared": "not_managed",
+   "name": "Forage Andringitra",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "928471757": {
+   "declared": "not_managed",
+   "name": "AEPP AMBOHIBOLA",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "929469223": {
+   "declared": "not_managed",
+   "name": "AEPP AMBOASARY GARE",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  },
+  "929469247": {
+   "declared": "not_managed",
+   "name": "Forage Amboasary gare",
+   "post_rehab_first": null,
+   "results_baseline": 0,
+   "results_post": 0,
+   "status": "not_managed",
+   "works_complete": null
+  }
+ }
 }
