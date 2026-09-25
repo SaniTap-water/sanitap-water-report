@@ -128,15 +128,24 @@
   "says": "closes when the answer is logged in data/decisions.json with its date and source"
  },
  "act-enduro-feed": {
-  "kind": "none",
-  "says": "no closing condition: a scheduled export either arrives or it does not, and this build cannot see the arrangement"
+  "kind": "artefact",
+  "where": "repo",
+  "path": "data/curtech_dispensing_events.json",
+  "says": "closes when the build writes the Curtech dispensing-events extract",
+  "when_satisfied": "OK"
  },
  "act-enduro-move-register-fully": {
-  "kind": "data",
-  "metric": "enduro_sites_outside_mwater",
-  "op": "==",
-  "says": "closes when every Endur'O managed site is represented in mWater",
-  "target": 0,
+  "kind": "children",
+  "children": [
+   "act-enduro-onboard-1-enumerators",
+   "act-enduro-onboard-2-register-sites",
+   "act-enduro-onboard-3-bind-taps",
+   "act-enduro-feed",
+   "act-enduro-onboard-5-calibration",
+   "act-enduro-onboard-6-kiosk-wq",
+   "act-enduro-onboard-7-piped-sdws27"
+  ],
+  "says": "closes when every onboarding step below has closed",
   "when_satisfied": "OK"
  },
  "act-enduro-people-source": {
@@ -718,6 +727,54 @@
   "op": "==",
   "target": 0,
   "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-1-enumerators": {
+  "kind": "data",
+  "metric": "enduro_tana_enumerators",
+  "op": ">=",
+  "target": 1,
+  "says": "closes when the Enduro > EndurO Tana > Enumerators team has members",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-2-register-sites": {
+  "kind": "data",
+  "metric": "enduro_sites_unregistered",
+  "op": "==",
+  "target": 0,
+  "says": "closes when every managed Endur'O site carries a submitted System registration",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-3-bind-taps": {
+  "kind": "data",
+  "metric": "smart_taps_unbound",
+  "op": "==",
+  "target": 0,
+  "says": "closes when every installed smart tap is bound by its test dispense",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-5-calibration": {
+  "kind": "data",
+  "metric": "smart_meters_without_certificate",
+  "op": "==",
+  "target": 0,
+  "says": "closes when every installed meter has a calibration certificate on file",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-6-kiosk-wq": {
+  "kind": "data",
+  "metric": "managed_kiosk_wq_results",
+  "op": ">=",
+  "target": 1,
+  "says": "closes when a water-quality result names the managed kiosk's water point",
+  "when_satisfied": "OK"
+ },
+ "act-enduro-onboard-7-piped-sdws27": {
+  "kind": "data",
+  "metric": "piped_sdws27_record_types_missing",
+  "op": "==",
+  "target": 0,
+  "says": "closes when maintenance, repair and days-not-operational records exist for the managed piped systems",
   "when_satisfied": "OK"
  }
 }

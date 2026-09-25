@@ -211,6 +211,30 @@ def actions(idx):
         # a date is only outstanding on something still to act on, so this is
         # recomputed after the conditions have had their say
         a["nodate"] = a["nodate"] and a["state"] == "ACT"
+    # A parent action lists its steps, in order, each with its own state, owner
+    # and date. The steps are ordinary rows elsewhere in the list (so the owner
+    # filter still finds them); the parent closes only when all of them have
+    # (kind "children" in data/action_conditions.json).
+    conds = json.load(open(os.path.join(REPO, "data", "action_conditions.json"),
+                           encoding="utf8"))
+    by_id = {a["id"]: a for a in out}
+    for a in out:
+        kids = (conds.get(a["id"]) or {}).get("children")
+        if not kids or "<!--children-->" not in a["detail"]:
+            continue
+        items = []
+        for k in kids:
+            c = by_id.get(k)
+            if not c:
+                continue
+            pill = {"ACT": "crit", "WATCH": "warn", "OK": "ok"}.get(c["state"], "crit")
+            items.append(
+                f'<li><span class="pill {pill}">{c["state"]}</span> '
+                f'<a href="#{k}">{c["title_html"]}</a> '
+                f'<span class="muted">&mdash; {c["owner"]}'
+                f'{", " + c["deadline"] if c.get("deadline") else ""}</span></li>')
+        a["detail"] = a["detail"].replace(
+            "<!--children-->", '<ol class="act-steps">' + "".join(items) + "</ol>")
     declared = len(det)
     if len(out) != declared:
         got = {a["id"] for a in out}
@@ -391,6 +415,13 @@ def row(a, today, owner_cell=True):
                   + f'{cc["op"].replace("<", "&lt;").replace(">", "&gt;")} {tspan}')
             says = re.sub(r"(?<![\d.,])" + re.escape(_num(tgt)) + r"(?![\d.,])",
                           lambda _m: tspan, _live(says), count=1)
+        elif kind == "children":
+            # closed / total come from the evaluator's state, inlined as ACTKIDS
+            aid = a["id"]
+            ev = (f'<span data-fig="ACTKIDS[\'{aid}\'].closed">{c.get("children_closed", 0)}</span> '
+                  f'of <span data-fig="ACTKIDS[\'{aid}\'].of">{len(c.get("children") or [])}</span> '
+                  f'steps closed')
+            says = _live(says)
         else:
             says = _live(says)
         if kind == "decision":

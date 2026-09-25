@@ -1,5 +1,5 @@
 {
- "note": "Status of every water system in Endur'O's mWater group (piped_systems.csv). A piped system joins the managed portfolio only when its rehabilitation works are complete AND its post-rehabilitation water-quality tests are done (Adriaan Mol, 25 Sep 2026). tools/rebuild_piped_wq.py applies it: a system whose works_complete date is set and which has a result dated after it is managed, and only those post-rehabilitation results count; a result dated on or before works completion is baseline and never counts. The build fails if the extract holds a system id that is not listed here. status: managed / in_process / not_managed. confirmed: false marks a status inferred here that Endur'O should confirm.",
+ "note": "Status of every water system in Endur'O's mWater group (piped_systems.csv). A piped system joins the managed portfolio only when its rehabilitation works are complete AND its post-rehabilitation water-quality tests are done (Adriaan Mol, 25 Sep 2026). tools/rebuild_piped_wq.py applies it: a system whose works_complete date is set and which has a result dated after it is managed, and only those post-rehabilitation results count; a result dated on or before works completion is baseline and never counts. The build fails if the extract holds a system id that is not listed here. status: managed / in_process / not_managed. admitted_by_decision records a system managed by decision rather than by the rule; the rule still applies to every other system. confirmed: false marks a status inferred here that Endur'O should confirm.",
  "source": "Endur'O water systems from mWater (group c305b9b8, extract piped_systems.csv, pulled 2026-09-25); the four Moramanga systems identified from forms 3ef4385a and a34cb66b; status and join rule per Adriaan Mol, 25 Sep 2026.",
  "rule_by": "Adriaan Mol, 25 Sep 2026",
  "systems": {
@@ -9,7 +9,7 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": false,
-   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
+   "basis": "Antananarivo, not onboarded: diagnosed but not yet admitted to the managed portfolio; only onboarded Antananarivo sites are managed. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
   },
   "1108783552": {
    "name": "AEPG",
@@ -17,7 +17,7 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+   "basis": "Antananarivo, not onboarded: diagnosed but not yet admitted to the managed portfolio; only onboarded Antananarivo sites are managed."
   },
   "1108783569": {
    "name": "Amboasary gara",
@@ -25,7 +25,7 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": false,
-   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
+   "basis": "Antananarivo, not onboarded: diagnosed but not yet admitted to the managed portfolio; only onboarded Antananarivo sites are managed. Named or described 'Amboasary gara' but placed in Antananarivo and not named by any Moramanga form: probably a duplicate registration with a wrong GPS fix. To confirm with Endur'O."
   },
   "1108783583": {
    "name": "Amboasary gara",
@@ -165,11 +165,18 @@
   },
   "1125843376": {
    "name": "Kiosk",
-   "status": "not_managed",
-   "works_complete": null,
+   "status": "managed",
+   "works_complete": "2026-09-14",
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+   "basis": "The first Antananarivo smart-tap kiosk, admitted to the managed portfolio by decision (Adriaan Mol, 25 Sep 2026): operational with SaniTap/Curtech meters, its data in Zoho. Registered in mWater through the Endur'O System form (44044e27, response b0b01aa0, draft) and the Distribution Point form (8a3af50c, response 840ae830, draft): one dispensing point, water point 1125843383, with one outlet fitted with a smart tap, installed 7 Sep 2026 and commissioned 14 Sep 2026. The join rule still applies to every other piped system; this one is admitted by decision, and no water-quality test is yet on record for it.",
+   "operational_since": "2026-09-14",
+   "operational_since_basis": "Date of commissioning (first service to users), question 1.9 of the Distribution Point registration 840ae8302d4b4c55b456fa31e337a1b9 (draft), mWater. The first real dispense in Zoho (earliest non-test transaction; SK01 and SK02 are test records, SK03 the live shopkeeper) could not be read: the Curtech endpoints getTransactions and getShopkeepers are not reachable from this build.",
+   "admitted_by_decision": "Adriaan Mol, 25 Sep 2026",
+   "water_points": [
+    "1125843383"
+   ],
+   "location": "Antsahakely, Fiombonana, Antananarivo Avaradrano, Analamanga; -18.89313, 47.47879"
   },
   "928174397": {
    "name": "Forage Andringitra",
@@ -177,7 +184,7 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "Antananarivo: the page keeps the Antananarivo kiosks and systems out as diagnosed, not under management."
+   "basis": "Antananarivo, not onboarded: diagnosed but not yet admitted to the managed portfolio; only onboarded Antananarivo sites are managed."
   },
   "928471757": {
    "name": "AEPP AMBOHIBOLA",

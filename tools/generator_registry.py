@@ -222,6 +222,12 @@ GENERATED = {
     'METRICS.water_quality_failures_unretested': 'render_datasets',
     'METRICS.piped_form_hand_pump_results': 'render_datasets',
     'METRICS.piped_systems_in_process': 'render_datasets',
+    'METRICS.enduro_sites_unregistered': 'render_datasets',
+    'METRICS.smart_taps_unbound': 'render_datasets',
+    'METRICS.smart_meters_without_certificate': 'render_datasets',
+    'METRICS.managed_kiosk_wq_results': 'render_datasets',
+    'METRICS.enduro_tana_enumerators': 'render_datasets',
+    'METRICS.piped_sdws27_record_types_missing': 'render_datasets',
     'PARTIAL.[].comments': 'build_call_tables',
     'PARTIAL.[].commune': 'build_call_tables',
     'PARTIAL.[].kind': 'build_call_tables',
@@ -273,6 +279,8 @@ WHOLE = {
     'ACTCOND': 'render_datasets',   # data-kind conditions, one key per action
     # the piped water-quality figures, keyed by system code
     'PIPEDWQ': ('rebuild_piped_wq', 'render_datasets'),
+    # parent actions' closed steps, keyed by action id
+    'ACTKIDS': ('eval_conditions', 'render_datasets'),
 }
 
 POPULATION = {

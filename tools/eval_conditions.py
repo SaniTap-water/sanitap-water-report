@@ -6,7 +6,7 @@ open; PEOPLE decide only who owns it and by when. An item with a stored closing
 condition is not marked done by hand - the build evaluates the condition, and
 the item closes itself when the condition is met and REOPENS when it regresses.
 
-Four kinds of condition:
+Five kinds of condition:
 
   data      a count the build recounts (tools/action_metrics.py). Closes when
             the count reaches its threshold - usually zero.
@@ -20,6 +20,8 @@ Four kinds of condition:
             the date and the source. An email is never enough - a candidate
             answer found in the mail thread is surfaced on the row for
             confirmation and closes nothing.
+  children  a parent action: closes only when every child listed has closed,
+            and reopens with any of them.
 
 Items with no condition are reported as such: that count is the measure of how
 much of this list still needs a human to close it.
@@ -151,7 +153,8 @@ def main():
     today = datetime.date.today().isoformat()
 
     state, counts = {}, {"data": 0, "form": 0, "artefact": 0, "decision": 0,
-                         "none": 0}
+                         "none": 0,
+                         "children": 0}
     for aid, c in sorted(conds.items()):
         kind = c["kind"]
         counts[kind] = counts.get(kind, 0) + 1
@@ -163,11 +166,37 @@ def main():
             ok, ev = eval_artefact(c, sp)
         elif kind == "decision":
             ok, ev = eval_decision(aid, c, decisions, cands)
+        elif kind == "children":
+            continue                  # needs its children's verdicts: below
         else:
             ok, ev = None, c.get("says", "")
         was = prev.get(aid, {})
         rec = {"kind": kind, "says": c.get("says", ""), "satisfied": ok,
                "evidence": ev, "evaluated": today,
+               "when_satisfied": c.get("when_satisfied", "OK")}
+        if ok:
+            rec["closed_since"] = (was.get("closed_since")
+                                   if was.get("satisfied") else today)
+        elif was.get("satisfied"):
+            rec["reopened_on"] = today
+            rec["was_closed_since"] = was.get("closed_since")
+        state[aid] = rec
+    # A parent closes only when every one of its children has closed, and
+    # reopens with any of them. Its children are ordinary actions with their
+    # own conditions; the parent adds no predicate of its own.
+    for aid, c in sorted(conds.items()):
+        if c["kind"] != "children":
+            continue
+        kids = [(k, state.get(k, {}).get("satisfied")) for k in c["children"]]
+        missing = [k for k in c["children"] if k not in state]
+        done = sum(1 for _k, s in kids if s)
+        ok = False if missing else all(s for _k, s in kids)
+        ev = (f"{done} of {len(kids)} steps closed"
+              + (f"; no condition for {', '.join(missing)}" if missing else ""))
+        was = prev.get(aid, {})
+        rec = {"kind": "children", "says": c.get("says", ""), "satisfied": ok,
+               "evidence": ev, "evaluated": today, "children": c["children"],
+               "children_closed": done,
                "when_satisfied": c.get("when_satisfied", "OK")}
         if ok:
             rec["closed_since"] = (was.get("closed_since")

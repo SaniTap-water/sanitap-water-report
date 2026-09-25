@@ -72,238 +72,328 @@
  },
  "not_managed_results": 0,
  "note": "Written by tools/rebuild_piped_wq.py. Managed = post-rehabilitation results of systems that met the join rule; baseline = results dated on or before a system's works completion, which never count toward a managed figure.",
+ "onboarding": {
+  "managed_kiosk_points": [
+   "1125843383"
+  ],
+  "managed_kiosk_wq_results": 0,
+  "points_registered": 0,
+  "points_registered_draft": 1,
+  "systems_registered": 0,
+  "systems_registered_draft": 1,
+  "taps_bound": 0,
+  "taps_installed": 1,
+  "taps_unbound": 1
+ },
  "pulled": "2026-09-25",
  "responses": 45,
  "status_counts": {
   "in_process": 4,
-  "managed": 0,
-  "not_managed": 21
+  "managed": 1,
+  "not_managed": 20
  },
  "systems": {
   "1108783538": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "AEPG",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783552": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "AEPG",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783569": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "Amboasary gara",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783583": {
+   "admitted_by_decision": null,
    "declared": "in_process",
    "name": "Amboasary gara",
    "post_rehab_first": null,
    "results_baseline": 43,
    "results_post": 0,
    "status": "in_process",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783624": {
+   "admitted_by_decision": null,
    "declared": "in_process",
    "name": "Ambohibola",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "in_process",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783631": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "Amboanjo",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783648": {
+   "admitted_by_decision": null,
    "declared": "in_process",
    "name": "Amboanjo",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "in_process",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783655": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "Andilanatoby",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108783662": {
+   "admitted_by_decision": null,
    "declared": "in_process",
    "name": "Andilanatoby",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "in_process",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784120": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "ECAR Saint Mathieu",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784175": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784199": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784216": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784223": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1108784278": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "ECAR AMBOASARY",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1110083543": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1110083574": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1110083646": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1110083653": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1110083660": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": null,
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "1125843376": {
-   "declared": "not_managed",
+   "admitted_by_decision": "Adriaan Mol, 25 Sep 2026",
+   "declared": "managed",
    "name": "Kiosk",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
-   "status": "not_managed",
-   "works_complete": null
+   "status": "managed",
+   "water_points": [
+    "1125843383"
+   ],
+   "works_complete": "2026-09-14",
+   "wq_on_record": false
   },
   "928174397": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "Forage Andringitra",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "928471757": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "AEPP AMBOHIBOLA",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "929469223": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "AEPP AMBOASARY GARE",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   },
   "929469247": {
+   "admitted_by_decision": null,
    "declared": "not_managed",
    "name": "Forage Amboasary gare",
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
    "status": "not_managed",
-   "works_complete": null
+   "water_points": [],
+   "works_complete": null,
+   "wq_on_record": false
   }
  }
 }

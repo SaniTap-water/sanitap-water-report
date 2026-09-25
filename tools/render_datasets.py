@@ -70,6 +70,8 @@ SETS = {
     "VMAP": ("docs", "methodology_version_map.md"),
     # the piped water-quality figures (tools/rebuild_piped_wq.py)
     "PIPEDWQ": ("data", "piped_wq.json"),
+    # parent actions: how many of their steps have closed (tools/eval_conditions.py)
+    "ACTKIDS": ("data", "action_state.json"),
 }
 
 
@@ -111,6 +113,9 @@ def block():
         if name == "ACTCOND":            # data conditions: metric, op, target
             doc = {k: {"metric": v["metric"], "op": v["op"], "target": v["target"]}
                    for k, v in sorted(doc.items()) if v.get("kind") == "data"}
+        if name == "ACTKIDS":            # per parent: steps closed, of how many
+            doc = {k: {"closed": v.get("children_closed", 0), "of": len(v.get("children") or [])}
+                   for k, v in sorted((doc.get("state") or {}).items()) if v.get("kind") == "children"}
         if name == "HOLDS":              # the count and the cut, not every row
             doc = {"n": len(doc.get("holds") or []), "cut_used": doc.get("cut_used")}
         if name == "PULLS":              # per extract: form, pulled, rows

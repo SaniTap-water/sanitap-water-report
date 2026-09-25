@@ -27,6 +27,8 @@
   "hygiene.json",
   "identification.json",
   "marolinta_borehole.json",
+  "piped_point_reg.json",
+  "piped_system_reg.json",
   "piped_systems.csv",
   "pm.csv",
   "premiere_rehabilitation.csv",
@@ -76,6 +78,16 @@
   "marolinta_borehole.json": {
    "age_days": 0,
    "data_to": "2026-08-29",
+   "pulled": "2026-09-25"
+  },
+  "piped_point_reg.json": {
+   "age_days": 0,
+   "data_to": null,
+   "pulled": "2026-09-25"
+  },
+  "piped_system_reg.json": {
+   "age_days": 0,
+   "data_to": null,
    "pulled": "2026-09-25"
   },
   "piped_systems.csv": {

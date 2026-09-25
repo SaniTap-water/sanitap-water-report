@@ -36,6 +36,16 @@
    "source": "local",
    "value": null
   },
+  "enduro_sites_unregistered": {
+   "says": "managed Endur'O sites with no submitted System registration in mWater",
+   "source": "local",
+   "value": 131
+  },
+  "enduro_tana_enumerators": {
+   "says": "members of the mWater team Enduro > EndurO Tana > Enumerators",
+   "source": "mWater",
+   "value": 3
+  },
   "er_percent_of_type3_cap": {
    "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
    "source": "local",
@@ -43,6 +53,11 @@
   },
   "extract_lag_days": {
    "says": "days the extract on this page runs behind mWater",
+   "source": "local",
+   "value": 0
+  },
+  "managed_kiosk_wq_results": {
+   "says": "water-quality results bound to the managed kiosk's water point",
    "source": "local",
    "value": 0
   },
@@ -101,6 +116,11 @@
    "source": "local",
    "value": 2
   },
+  "piped_sdws27_record_types_missing": {
+   "says": "of maintenance, repair and days-not-operational, the record types with no final piped record on a managed system in mWater",
+   "source": "mWater",
+   "value": 3
+  },
   "piped_systems_in_process": {
    "says": "piped systems in process: works or post-rehabilitation tests not yet done",
    "source": "local",
@@ -153,6 +173,16 @@
   },
   "sites_without_route_plan": {
    "says": "sites with overdue pumps and no catch-up route plan",
+   "source": "local",
+   "value": 1
+  },
+  "smart_meters_without_certificate": {
+   "says": "installed smart-tap meters with no calibration certificate on file",
+   "source": "local",
+   "value": 1
+  },
+  "smart_taps_unbound": {
+   "says": "installed smart taps not yet bound to their water point by a test dispense",
    "source": "local",
    "value": 1
   },

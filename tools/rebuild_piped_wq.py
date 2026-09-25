@@ -49,6 +49,11 @@ Q_SAMPLED = "b25338d8"   # 1.2.2 sampling date & time
 Q_RESULT = "630ccd46"    # 1.3 result date & time
 Q_ECOLI = "892f1d81"     # 1.4 E. coli, CFU/100 ml
 Q_CHLORINE = "0594065a"  # free residual chlorine (no question code on the form)
+# the Endur'O registrations (onboarding progress)
+SYS_REG_FORM, SR_SYSTEM = "44044e27c0f24cc4a432a38b09886684", "1c1893f3"
+PT_REG_FORM, PR_POINT, PR_SYSTEM, PR_TAPS, PR_TESTED = (
+    "8a3af50ceec84cda85d454d96079991d", "8f174aec", "e5380235", "44faf0f2", "ebf4c6ec")
+TESTED_YES = "mXEQQFB"   # 3.1 commissioning test dispenses done: Yes
 
 
 class RuleBroken(Exception):
@@ -97,6 +102,9 @@ def status_problems(status, in_extract):
     for code, e in sorted(status.items()):
         if e.get("status") not in STATES:
             bad.append(f"{code}: status {e.get('status')!r} is not one of {', '.join(STATES)}")
+        if e.get("admitted_by_decision") and not e.get("works_complete"):
+            bad.append(f"{code}: admitted by decision but has no operational date "
+                       "(works_complete)")
         for k in ("works_complete", "post_rehab_test"):
             v = e.get(k)
             if v is not None and not (isinstance(v, str) and len(v) == 10 and v[:2] == "20"):
@@ -134,12 +142,15 @@ def build():
     with io.open(os.path.join(EXPORTS, "wp_madavance.csv"), encoding="utf8") as fh:
         reg = {r["code"] for r in csv.DictReader(fh) if r.get("code")}
 
+    # a result may name a kiosk's water point rather than its system
+    point_of = {wp: c for c, e in status.items() for wp in (e.get("water_points") or [])}
     by_sys, excl = {}, {"not_final": [], "no_site": [], "hand_pump_on_piped_form": [],
                         "not_an_operator_system": []}
     for r in rows:
         if r.get("form") != PIPED["wq_form"]:
             continue
         code = site_code(answer(r, Q_SYSTEM))
+        code = point_of.get(code, code)
         if r.get("status") != "final":
             excl["not_final"].append(r["_id"]); continue
         if not code:
@@ -159,6 +170,8 @@ def build():
         tested = bool(post) or bool(e.get("post_rehab_test"))
         if e["status"] == "not_managed":
             eff = "not_managed"
+        elif e["status"] == "managed" and e.get("admitted_by_decision"):
+            eff = "managed"          # by decision; the rule applies to the rest
         elif works and tested:
             eff = "managed"          # joins by the rule, whatever was declared
         elif e["status"] == "managed":
@@ -169,6 +182,9 @@ def build():
             eff = "in_process"
         systems[code] = {"name": e.get("name") or ext.get(code), "declared": e["status"],
                          "status": eff, "works_complete": works,
+                         "admitted_by_decision": e.get("admitted_by_decision"),
+                         "water_points": e.get("water_points") or [],
+                         "wq_on_record": bool(post),
                          "post_rehab_first": (min(d for _c, _r, d in post) if post
                                               else e.get("post_rehab_test")),
                          "results_post": len(post), "results_baseline": len(base)}
@@ -190,7 +206,37 @@ def build():
         if q is not None:
             x["meets" if q <= ECOLI_PASS_MAX else "exceeds"] += 1
         x["first"], x["last"] = min(x["first"], d), max(x["last"], d)
+    # onboarding progress, from the Endur'O registrations (drafts named apart:
+    # a draft is not a registration until it is submitted)
+    def regs(name, form):
+        p = os.path.join(EXPORTS, name)
+        return [r for r in json.load(open(p, encoding="utf8")) if r.get("form") == form] \
+            if os.path.isfile(p) else []
+    sreg, preg = regs("piped_system_reg.json", SYS_REG_FORM), regs("piped_point_reg.json", PT_REG_FORM)
+    fin = lambda rs, q: {site_code(answer(r, q)) for r in rs
+                         if r.get("status") == "final" and site_code(answer(r, q))}
+    drf = lambda rs, q: {site_code(answer(r, q)) for r in rs
+                         if r.get("status") != "final" and site_code(answer(r, q))}
+    taps = lambda rs: sum(int(answer(r, PR_TAPS) or 0) for r in rs)
+    bound = [r for r in preg if answer(r, PR_TESTED) == TESTED_YES]
+    kiosk_points = {wp for c, v in systems.items()
+                    if v["status"] == "managed" and v.get("admitted_by_decision")
+                    for wp in v["water_points"]}
+    on_point = [r for r in rows if r.get("form") == PIPED["wq_form"] and r.get("status") == "final"
+                and ({site_code(answer(r, Q_TAP)), site_code(answer(r, Q_SYSTEM))} & kiosk_points)]
+    onboarding = {
+        "systems_registered": len(fin(sreg, SR_SYSTEM)),
+        "systems_registered_draft": len(drf(sreg, SR_SYSTEM) - fin(sreg, SR_SYSTEM)),
+        "points_registered": len(fin(preg, PR_POINT)),
+        "points_registered_draft": len(drf(preg, PR_POINT) - fin(preg, PR_POINT)),
+        "taps_installed": taps(preg),
+        "taps_bound": taps(bound),
+        "taps_unbound": taps(preg) - taps(bound),
+        "managed_kiosk_points": sorted(kiosk_points),
+        "managed_kiosk_wq_results": len(on_point),
+    }
     return {
+        "onboarding": onboarding,
         "note": "Written by tools/rebuild_piped_wq.py. Managed = post-rehabilitation results "
                 "of systems that met the join rule; baseline = results dated on or before a "
                 "system's works completion, which never count toward a managed figure.",

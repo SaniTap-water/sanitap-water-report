@@ -951,3 +951,31 @@ gara") and marked `confirmed: false` for Endur'O to confirm. `tools/rebuild_pipe
 the rule by date: a result after a recorded works-completion date is post-rehabilitation and
 counts; one on or before it is baseline and never counts. The build fails on any Endur'O system
 missing from the status file. The earlier 30 km-from-Antananarivo proxy is withdrawn.
+
+## 25 September 2026 — Adriaan Mol: the first Antananarivo smart-tap kiosk joins the managed portfolio
+
+**From:** Adriaan Mol, COO SaniTap · 25 September 2026.
+
+- The first Antananarivo smart-tap kiosk is in the managed portfolio. It is operational with
+  SaniTap/Curtech meters and its data is in Zoho.
+- The join rule for piped systems (works complete AND post-rehabilitation water-quality test)
+  stays; this kiosk is admitted by decision.
+
+**Applied to the report:** the kiosk was identified from mWater, not assumed: water system
+1125843376 "Kiosk" (Endur'O group; -18.89313, 47.47879; Antsahakely, Fiombonana, Antananarivo
+Avaradrano), registered on the Endur'O System form (44044e27, response b0b01aa0) with one
+Distribution Point (8a3af50c, response 840ae830): water point 1125843383 "SmarTap", a public tap
+stand in a built kiosk, one outlet fitted with a smart tap, installed 7 Sep 2026, commissioned
+14 Sep 2026. Both registrations are still drafts. In `data/piped_systems_status.json` it is
+`managed` with `admitted_by_decision`, operational from 14 September 2026 (the commissioning date
+on the registration). The first real dispense in Zoho could not be read: the Curtech endpoints are
+not reachable from this build. No water-quality test is on record for the kiosk; that is an
+onboarding step. Every statement that the Antananarivo kiosks are "not under management" was
+reworded: only Antananarivo sites not yet onboarded are outside.
+
+The umbrella action act-enduro-move-register-fully became a parent of seven onboarding steps,
+each with an owner, a date and a condition the build evaluates; the parent closes only when all
+have (condition kind `children`). act-enduro-feed ("Obtain a feed or scheduled export from
+Endur'O for the smart-meter figures") was merged into the dispensing-events step, keeping its id.
+The enumerator-team step was already done: the team Enduro › EndurO Tana › Enumerators has three
+members and is the enumerator group on both registration forms.

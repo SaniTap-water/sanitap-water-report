@@ -1,11 +1,12 @@
 {
  "evaluated": "2026-09-25",
  "kinds": {
-  "artefact": 7,
-  "data": 39,
+  "artefact": 8,
+  "children": 1,
+  "data": 44,
   "decision": 38,
   "form": 7,
-  "none": 25
+  "none": 24
  },
  "state": {
   "act-2026-recovery": {
@@ -182,18 +183,77 @@
   },
   "act-enduro-feed": {
    "evaluated": "2026-09-25",
-   "evidence": "no closing condition: a scheduled export either arrives or it does not, and this build cannot see the arrangement",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: a scheduled export either arrives or it does not, and this build cannot see the arrangement",
+   "evidence": "data/curtech_dispensing_events.json does not exist in the repository",
+   "kind": "artefact",
+   "satisfied": false,
+   "says": "closes when the build writes the Curtech dispensing-events extract",
    "when_satisfied": "OK"
   },
   "act-enduro-move-register-fully": {
+   "children": [
+    "act-enduro-onboard-1-enumerators",
+    "act-enduro-onboard-2-register-sites",
+    "act-enduro-onboard-3-bind-taps",
+    "act-enduro-feed",
+    "act-enduro-onboard-5-calibration",
+    "act-enduro-onboard-6-kiosk-wq",
+    "act-enduro-onboard-7-piped-sdws27"
+   ],
+   "children_closed": 1,
    "evaluated": "2026-09-25",
-   "evidence": "enduro_sites_outside_mwater could not be counted this build",
+   "evidence": "1 of 7 steps closed",
+   "kind": "children",
+   "satisfied": false,
+   "says": "closes when every onboarding step below has closed",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-1-enumerators": {
+   "closed_since": "2026-09-25",
+   "evaluated": "2026-09-25",
+   "evidence": "enduro_tana_enumerators = 3 (members of the mWater team Enduro > EndurO Tana > Enumerators); target >= 1",
    "kind": "data",
-   "satisfied": null,
-   "says": "closes when every Endur'O managed site is represented in mWater",
+   "satisfied": true,
+   "says": "closes when the Enduro > EndurO Tana > Enumerators team has members",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-2-register-sites": {
+   "evaluated": "2026-09-25",
+   "evidence": "enduro_sites_unregistered = 131 (managed Endur'O sites with no submitted System registration in mWater); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every managed Endur'O site carries a submitted System registration",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-3-bind-taps": {
+   "evaluated": "2026-09-25",
+   "evidence": "smart_taps_unbound = 1 (installed smart taps not yet bound to their water point by a test dispense); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every installed smart tap is bound by its test dispense",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-5-calibration": {
+   "evaluated": "2026-09-25",
+   "evidence": "smart_meters_without_certificate = 1 (installed smart-tap meters with no calibration certificate on file); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every installed meter has a calibration certificate on file",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-6-kiosk-wq": {
+   "evaluated": "2026-09-25",
+   "evidence": "managed_kiosk_wq_results = 0 (water-quality results bound to the managed kiosk's water point); target >= 1",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when a water-quality result names the managed kiosk's water point",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-onboard-7-piped-sdws27": {
+   "evaluated": "2026-09-25",
+   "evidence": "piped_sdws27_record_types_missing = 3 (of maintenance, repair and days-not-operational, the record types with no final piped record on a managed system in mWater); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when maintenance, repair and days-not-operational records exist for the managed piped systems",
    "when_satisfied": "OK"
   },
   "act-enduro-people-source": {

@@ -1,0 +1,4 @@
+{
+ "note": "One entry per installed piped meter: its Curtech device id, the certificate reference and date, and where the certificate is filed. Gold Standard SDWS 23 Option 1 requires calibration traceable to the device. tools/action_metrics.py counts installed smart taps without an entry here; the onboarding step closes when none is left. Entries are added when Curtech supplies each certificate.",
+ "certificates": []
+}

@@ -38,10 +38,13 @@ def main():
     fails = []
     out, err = run(REAL)
     base0 = out["baseline"]["results"] if out else 0
-    print(f"1. today: managed {out['status_counts']['managed']}, "
-          f"managed results {out['managed']['results']}, baseline {base0}")
-    if err or out["status_counts"]["managed"] or out["managed"]["results"]:
-        fails.append("today's file should manage nothing")
+    by_decision = sum(1 for e in REAL["systems"].values()
+                      if e["status"] == "managed" and e.get("admitted_by_decision"))
+    print(f"1. today: managed {out['status_counts']['managed']} "
+          f"({by_decision} by decision), managed results {out['managed']['results']}, "
+          f"baseline {base0}")
+    if err or out["status_counts"]["managed"] != by_decision:
+        fails.append("today's file should manage only the systems admitted by decision")
     sampled = [c for c, v in out["systems"].items() if v["results_baseline"]]
     if not sampled:
         print("no sampled system to test with"); return 2
@@ -82,6 +85,20 @@ def main():
           + (f": {err[:90]}" if err else ""))
     if not err:
         fails.append("a system missing from the status file was accepted")
+
+    # 6. admitted by decision: managed at once, but only results after its
+    # operational date count; results before it stay baseline
+    doc = copy.deepcopy(REAL)
+    doc["systems"][code].update({"status": "managed", "admitted_by_decision": "test",
+                                 "works_complete": mid})
+    out, err = run(doc)
+    s = out["systems"][code] if out else {}
+    print(f"6. {code} admitted by decision, operational {mid}: {s.get('status')}; "
+          f"managed results {out['managed']['results'] if out else '-'} (expected {after}), "
+          f"its baseline kept apart {s.get('results_baseline')} (expected {len(dates) - after})")
+    if err or s.get("status") != "managed" or out["managed"]["results"] != after \
+            or s.get("results_baseline") != len(dates) - after:
+        fails.append("a system admitted by decision counted results from before its operational date")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

@@ -56,13 +56,19 @@ JSON_FORMS = {
     # the piped-scheme SDWS 3 result form (tap, kiosk or system samples); read
     # by tools/rebuild_piped_wq.py for the piped water-quality figures
     "wq_results_piped.json": "0ac68d8274d24f54af0c28b29119b77d",
+    # Endur'O onboarding: the system and distribution-point registrations,
+    # read by tools/rebuild_piped_wq.py for the onboarding progress counts
+    "piped_system_reg.json": "44044e27c0f24cc4a432a38b09886684",
+    "piped_point_reg.json": "8a3af50ceec84cda85d454d96079991d",
 }
 # Pulled and counted, read by nothing yet. Moving a name out of this set is
 # the step that puts it into a figure.
 COUNTED_ONLY = set()
 # who reads each extract, where it is not populations.py
 READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
-           "piped_systems.csv": "rebuild_piped_wq.py"}
+           "piped_systems.csv": "rebuild_piped_wq.py",
+           "piped_system_reg.json": "rebuild_piped_wq.py",
+           "piped_point_reg.json": "rebuild_piped_wq.py"}
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
 # Entity extracts: name -> (entity type, managed-by group). The register is

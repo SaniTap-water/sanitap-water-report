@@ -315,6 +315,40 @@ def _m_piped_in_process():
         "status_counts"]["in_process"]
 
 
+def _onb():
+    return json.load(open(d("data", "piped_wq.json"), encoding="utf8"))["onboarding"]
+
+
+@metric("enduro_sites_unregistered",
+        "managed Endur'O sites with no submitted System registration in mWater")
+def _m_onb_sites():
+    return js("ENDURO")["disp"]["managed"] - _onb()["systems_registered"]
+
+
+@metric("smart_taps_unbound",
+        "installed smart taps not yet bound to their water point by a test dispense")
+def _m_onb_taps():
+    o = _onb()
+    return o["taps_unbound"] if o["taps_installed"] else None
+
+
+@metric("smart_meters_without_certificate",
+        "installed smart-tap meters with no calibration certificate on file")
+def _m_onb_cert():
+    o = _onb()
+    if not o["taps_installed"]:
+        return None
+    certs = json.load(open(d("data", "meter_calibration_certificates.json"),
+                           encoding="utf8"))["certificates"]
+    return max(0, o["taps_installed"] - len({c.get("device_id") for c in certs if c.get("device_id")}))
+
+
+@metric("managed_kiosk_wq_results",
+        "water-quality results bound to the managed kiosk's water point")
+def _m_onb_wq():
+    return _onb()["managed_kiosk_wq_results"]
+
+
 # --------------------------------------------------------------- remote ----
 def remote():
     """REMOTE: counts that can only come from mWater."""
@@ -371,6 +405,20 @@ def remote():
 
     out["marolinta_three_points_no_photograph"] = sum(
         1 for c in named if not (got.get(c, {}).get("photos") or []))
+
+    # Endur'O onboarding: the Tana enumerator team, and SDWS 27 records on
+    # the managed piped systems (both GET-only scripts through api.mjs)
+    def node_json(script, *args):
+        r = subprocess.run(["node", d("tools", "mwater", script), *args],
+                           capture_output=True, text=True, cwd=REPO)
+        return json.loads(r.stdout) if r.returncode == 0 and r.stdout.strip() else None
+    team = node_json("group_members.mjs", "58b57544a8f94313acd87ad79eae598d")
+    out["enduro_tana_enumerators"] = team["members"] if team else None
+    pw = json.load(open(d("data", "piped_wq.json"), encoding="utf8"))
+    managed = [c for c, v in pw["systems"].items() if v["status"] == "managed"]
+    codes = managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]
+    recs = node_json("piped_record_forms.mjs", ",".join(codes)) if codes else None
+    out["piped_sdws27_record_types_missing"] = recs["missing"] if recs else None
     return out
 
 
@@ -387,6 +435,11 @@ REMOTE_SAYS = {
         "point-of-use responses that actually answer the consent question A4",
     "marolinta_three_points_no_photograph":
         "of the three named Marolinta points, how many still have no photograph",
+    "enduro_tana_enumerators":
+        "members of the mWater team Enduro > EndurO Tana > Enumerators",
+    "piped_sdws27_record_types_missing":
+        "of maintenance, repair and days-not-operational, the record types with no final "
+        "piped record on a managed system in mWater",
 }
 
 
