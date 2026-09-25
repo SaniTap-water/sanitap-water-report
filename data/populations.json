@@ -7,7 +7,7 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "787 of 909 points",
+   "detail": "787 of 918 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
@@ -19,7 +19,7 @@
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "737 of 909 points",
+   "detail": "737 of 918 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
@@ -319,7 +319,7 @@
     ]
    ],
    "rule": "Water points with an identification survey on the live identification form - the first visit, before any works.",
-   "size": 45,
+   "size": 54,
    "unit": "points"
   },
   "located_register_points": {
@@ -339,7 +339,7 @@
     ]
    ],
    "rule": "Register records carrying a coordinate in mWater. This is the set every “nearest other point” distance is measured against: the whole register, not the managed fleet, because the nearest point to a dormant one is often a working point and sometimes another dormant one.",
-   "size": 909,
+   "size": 918,
    "unit": "points"
   },
   "managed_fleet": {
@@ -536,7 +536,7 @@
     ]
    ],
    "rule": "Every water-point record in the MadAvance group in mWater. This is everything MadAvance holds, most of which we do not maintain: surveys, points handed on, rope pumps, abandoned points.",
-   "size": 909,
+   "size": 918,
    "unit": "points"
   },
   "rehabilitated_successfully": {

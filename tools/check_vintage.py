@@ -50,7 +50,7 @@ def expected():
     """Every extract the build must have, from the puller's own declarations."""
     sys.path.insert(0, os.path.join(REPO, "tools"))
     import pull_extract as PE
-    return set(PE.FORMS) | set(PE.JSON_FORMS) | {"wp_madavance.csv"}
+    return set(PE.FORMS) | set(PE.JSON_FORMS) | set(PE.ENTITIES)
 
 
 def main():

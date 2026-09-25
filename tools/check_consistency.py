@@ -3430,7 +3430,7 @@ def main():
     # no build opens - is exactly what this catches.
     CANONICAL = {"pm.csv", "reparation_apres_panne.csv",
                  "appel_signalement_pannes.csv", "premiere_rehabilitation.csv",
-                 "forage_moramanga.csv", "wp_madavance.csv"}
+                 "forage_moramanga.csv", "wp_madavance.csv", "piped_systems.csv"}
     HISTORICAL = {"old_combined_reparation.csv", "wp_lookup.csv",
                   "suivi_gestion_pannes.csv"}
     exp_dir = os.path.expanduser("~/mwater-exports")

@@ -1,0 +1,61 @@
+{
+ "by_system": {
+  "1108783583": {
+   "complete": 1,
+   "fail": 38,
+   "first": "2026-03-26",
+   "km_from_antananarivo": 93,
+   "last": "2026-08-24",
+   "name": "Amboasary gara",
+   "no_result": 0,
+   "partial": 42,
+   "pass": 5,
+   "samples": 43
+  }
+ },
+ "chlorine_measured": 43,
+ "chlorine_zero": 42,
+ "complete": 1,
+ "excluded": {
+  "antananarivo": {
+   "codes": [],
+   "n": 0
+  },
+  "hand_pump_on_piped_form": {
+   "codes": [
+    "742895333"
+   ],
+   "n": 2
+  },
+  "no_site": {
+   "codes": [],
+   "n": 0
+  },
+  "not_an_operator_system": {
+   "codes": [],
+   "n": 0
+  },
+  "not_final": {
+   "codes": [],
+   "n": 0
+  }
+ },
+ "fail": 38,
+ "first": "2026-03-26",
+ "form": "0ac68d8274d24f54af0c28b29119b77d",
+ "in_portfolio": 43,
+ "last": "2026-08-24",
+ "max_cfu": 50,
+ "median_cfu": 3,
+ "no_result": 0,
+ "note": "Written by tools/rebuild_piped_wq.py from the piped SDWS 3 result form; the rule is data/build_config.json 'piped'.",
+ "operator_systems": 25,
+ "partial": 42,
+ "pass": 5,
+ "pass_pct": 11.6,
+ "pulled": "2026-09-25",
+ "responses": 45,
+ "rounds": 5,
+ "systems_sampled": 1,
+ "tap_recorded": 0
+}

@@ -68,6 +68,8 @@ SETS = {
     # the methodology-divergence register's machine-readable index: how many
     # divergences it carries and how many require action now
     "VMAP": ("docs", "methodology_version_map.md"),
+    # the piped water-quality figures (tools/rebuild_piped_wq.py)
+    "PIPEDWQ": ("data", "piped_wq.json"),
 }
 
 

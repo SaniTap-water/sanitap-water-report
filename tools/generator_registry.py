@@ -269,6 +269,8 @@ GENERATED = {
 WHOLE = {
     'PULLS': 'render_datasets',     # data/extract_manifest.json, one key per extract
     'ACTCOND': 'render_datasets',   # data-kind conditions, one key per action
+    # the piped water-quality figures, keyed by system code
+    'PIPEDWQ': ('rebuild_piped_wq', 'render_datasets'),
 }
 
 POPULATION = {

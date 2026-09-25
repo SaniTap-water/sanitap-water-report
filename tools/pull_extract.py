@@ -53,9 +53,25 @@ JSON_FORMS = {
     # the beneficiary roof count per water point - PUMPS.benef is computed
     # from it every build (tools/rebuild_pump_inputs.py)
     "roof_count.json": "8aa2dd78eb1f460f8f43db7935955846",
+    # the piped-scheme SDWS 3 result form (tap, kiosk or system samples); read
+    # by tools/rebuild_piped_wq.py for the piped water-quality figures
+    "wq_results_piped.json": "0ac68d8274d24f54af0c28b29119b77d",
 }
+# Pulled and counted, read by nothing yet. Moving a name out of this set is
+# the step that puts it into a figure.
+COUNTED_ONLY = set()
+# who reads each extract, where it is not populations.py
+READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
+           "piped_systems.csv": "rebuild_piped_wq.py"}
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
+# Entity extracts: name -> (entity type, managed-by group). The register is
+# MadAvance's; the piped systems are Endur'O's, which the piped water-quality
+# samples name as their site (tools/rebuild_piped_wq.py places each one).
+ENTITIES = {
+    "wp_madavance.csv": ("water_point", "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56"),
+    "piped_systems.csv": ("water_system", "group:c305b9b85f41417387b553d9a33c795b"),
+}
 
 
 def pull_json(name, form_id, tries=3):
@@ -260,45 +276,51 @@ def main():
                           "pull - the windows are overlapping")
         p = os.path.join(EXPORTS, name)
         files[name] = {"form_id": fid, "rows": n, "unique": uniq,
-                       "newest_submitted": new_, "read_by": "populations.py",
+                       "newest_submitted": new_,
+                       "read_by": ("nothing yet: pulled and counted only"
+                                   if name in COUNTED_ONLY
+                                   else READ_BY.get(name, "populations.py")),
                        "written": datetime.datetime.fromtimestamp(
                            os.path.getmtime(p)).isoformat(timespec="seconds")}
 
     # The register, filtered to the managed group. It used to sit outside this
     # tool because an UNFILTERED water_point export walks the whole global
     # mWater entity table. Filtered to the group it is one bounded query
-    # returning 908 rows in under two seconds, so the reason it was excluded
+    # (the row count is live - see the manifest - and returns in about two
+    # seconds), so the reason it was excluded
     # never applied to the filtered form of the query. While it was excluded it
     # set the page's vintage floor: every population sits on the register, so
     # an eleven-day-old register meant a pump rehabilitated last week was not
     # in the fleet and the page still said 736 with confidence.
-    p = os.path.join(EXPORTS, "wp_madavance.csv")
-    # Retried like the form pulls: the real build of 25 September died on one
-    # read ETIMEDOUT here, the only pull that had no retry. The walk writes
-    # nothing unless it completes and agrees with the single query, so a
-    # retry cannot leave a half-written register.
-    for attempt in range(3):
-        r = subprocess.run(["node", PULL_ENTITIES, p], capture_output=True,
-                           text=True, cwd=REPO)
-        if r.returncode == 0:
-            break
-        print(f"  wp_madavance.csv: attempt {attempt + 1} failed, retrying")
-        time.sleep(5)
-    if r.returncode != 0:
-        # the error's own message line, not the tail of a stack trace
-        out = (r.stderr or r.stdout or "").splitlines()
-        msg = next((l.strip() for l in out if re.match(r"\s*(\w*Error|MISMATCH)", l)),
-                   " ".join(" ".join(out).split())[-200:])
-        failed.append(f"wp_madavance.csv: 3 attempts failed; last: {msg[:200]}")
-    else:
+    for name, (etype, group) in ENTITIES.items():
+        p = os.path.join(EXPORTS, name)
+        # Retried like the form pulls: the real build of 25 September died on
+        # one read ETIMEDOUT in the register pull, the only pull that had no
+        # retry. The walk writes nothing unless it completes and agrees with
+        # the single query, so a retry cannot leave a half-written file.
+        for attempt in range(3):
+            r = subprocess.run(["node", PULL_ENTITIES, p, etype, group],
+                               capture_output=True, text=True, cwd=REPO)
+            if r.returncode == 0:
+                break
+            print(f"  {name}: attempt {attempt + 1} failed, retrying")
+            time.sleep(5)
+        if r.returncode != 0:
+            # the error's own message line, not the tail of a stack trace
+            out = (r.stderr or r.stdout or "").splitlines()
+            msg = next((l.strip() for l in out if re.match(r"\s*(\w*Error|MISMATCH)", l)),
+                       " ".join(" ".join(out).split())[-200:])
+            failed.append(f"{name}: 3 attempts failed; last: {msg[:200]}")
+            continue
         n = sum(1 for _ in io.open(p, encoding="utf8", errors="replace")) - 1
         codes = set()
         with io.open(p, encoding="utf8", errors="replace") as fh:
             for row in csv.DictReader(fh):
                 if row.get("code"):
                     codes.add(row["code"])
-        files["wp_madavance.csv"] = {
-            "entity_type": "water_point",
+        files[name] = {
+            "entity_type": etype, "group": group,
+            "read_by": READ_BY.get(name, "populations.py"),
             "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the "
                          "managed group and walked in 90-day windows",
             "rows": n, "unique": len(codes),
@@ -309,7 +331,7 @@ def main():
     # weeks: repairs.csv, written 21 September, was a correct export of the
     # repair form under a name no build has ever opened. Anything in the
     # exports directory that is not canonical is reported, not ignored.
-    known = set(FORMS) | {"wp_madavance.csv"}
+    known = set(FORMS) | set(ENTITIES)
     strays = sorted(f for f in os.listdir(EXPORTS)
                     if f.endswith(".csv") and f not in known
                     and os.path.getsize(os.path.join(EXPORTS, f)) > 1)

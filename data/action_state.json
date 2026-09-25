@@ -19,7 +19,7 @@
   "act-742896839": {
    "closed_since": "2026-09-21",
    "evaluated": "2026-09-25",
-   "evidence": "point_742896839_in_register = 0 (is water point 742896839 absent from the maintained register (1 = still absent)); target == 0",
+   "evidence": "point_742896839_in_register = 0 (is water point 742896839 absent from the maintained register (one while it is still absent, none once it is in)); target == 0",
    "kind": "data",
    "satisfied": true,
    "says": "closes when water point 742896839 appears in the maintained register",

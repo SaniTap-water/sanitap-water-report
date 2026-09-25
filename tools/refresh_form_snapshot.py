@@ -45,6 +45,7 @@ FORMS = {
     "old-combined-works":           "86cf66efdd3749dd8a121314bab3675a",
     "point-of-use-survey":          "db0bcbf2e7ea44b280aed653a715553e",
     "water-quality-result-sdws3":   "7b33c5d7e5074808a94915939a5a0783",
+    "water-quality-result-sdws3-piped": "0ac68d8274d24f54af0c28b29119b77d",
     "water-quality-sampling-sdws3": "43c96af4bc4240c0b5c4402383b9c539",
     "stroke-meter":                 "8be8e0384709433795d2d0197e98275f",
     "call-centre":                  "c08b3fe26d0f42c084074701f29eb75e",

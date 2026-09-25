@@ -3,7 +3,7 @@
  "built_edition": 11,
  "built_issue_date": "2026-09-21",
  "built_newest_record": "2026-09-14",
- "checked": "2026-09-25T06:08:12+00:00",
+ "checked": "2026-09-25T15:49:15+00:00",
  "drop_dir": "/mnt/c/Users/bushp/Downloads",
  "files": [
   {
@@ -17,7 +17,7 @@
    "written_utc": "2026-09-21T05:59:06+00:00"
   }
  ],
- "last_publish_utc": "2026-09-24T09:11:10+04:00",
+ "last_publish_utc": "2026-09-25T19:14:31+04:00",
  "note": "A build whose push is refused writes here and asks for a manual push. If these files are newer than the last publish, an edition was built and never went out.",
  "unpublished": false
 }

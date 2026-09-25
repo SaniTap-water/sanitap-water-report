@@ -95,6 +95,8 @@ STEPS = [
     ("tools/render_sdws26.py",       ["--write"],      True),
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
+    # the piped water-quality figures, from the piped SDWS 3 result form
+    ("tools/rebuild_piped_wq.py",    ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
     # the portfolio map page, from the report's own PUMPS and WPOP
     ("tools/render_portfolio.py",    ["--write"],      True),

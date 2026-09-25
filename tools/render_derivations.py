@@ -359,6 +359,12 @@ for _f, _m in sorted(_MANIFEST.items()):
         forms=[(_f, _m.get("form_id"), "pulled by tools/pull_extract.py; recorded in data/extract_manifest.json")],
         why="The date this extract was read out of mWater for this build. A table footnote states it so a reader "
             "knows how current the table's rows are.")
+    D[f"PULLS['{_f}'].rows"] = dict(
+        pop=None,
+        arith=f"`${{fmt(PULLS['{_f}'].rows)}} rows in {_f}, pulled from mWater on ${{PULLS['{_f}'].pulled}}`",
+        forms=[(_f, _m.get("form_id") or _m.get("group"), "pulled by tools/pull_extract.py; recorded in data/extract_manifest.json")],
+        why="Every record the build pulled into this extract, counted by the puller and de-duplicated on _id; a "
+            "footnote states it so the reader knows what the figures above were computed from.")
 
 # shares of one population in another, as the action list states them
 for _num, _den in (("pm_visits_calendar_photo", "pm_visits"), ("pm_visits_calendar_of_record", "pm_visits")):
@@ -522,6 +528,9 @@ RULES = [
  dict(re=r"^Object\.values\(RESP\)", pop="managed_fleet",
       what="water points with a record of that kind to open in mWater (RESP: the first-rehabilitation, last-visit and water-quality response behind each point)",
       forms=[_PM, _REP, ("Water Quality Testing_SDWS 3 — Result", "7b33c5d7e5074808a94915939a5a0783", None)], why=None),
+ dict(re=r"PIPEDWQ\.", pop=None,
+      what="from data/piped_wq.json, written every build by tools/rebuild_piped_wq.py: final responses on the piped SDWS 3 result form whose water system is one of Endur'O's in mWater and lies outside Antananarivo (build_config 'piped'); E. coli (question 1.4, CFU/100 ml) passes at or below the build's water-quality threshold",
+      forms=[("Piped Water || Water Quality Testing_SDWS 3__Result", "0ac68d8274d24f54af0c28b29119b77d", "1.2 water system, 1.4 E. coli, free residual chlorine")], why=None),
  dict(re=r"^VMAP\.", pop=None,
       what="counted from the machine-readable index of docs/methodology_version_map.md, the register of divergences between ERSDWS v1.0 and v2.0 that touch what we collect, compute or evidence: its rows, and those marked action_now = yes",
       forms=[], why=None),

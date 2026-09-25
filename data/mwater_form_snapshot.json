@@ -9828,6 +9828,282 @@
    "rev": 121,
    "state": "active"
   },
+  "water-quality-result-sdws3-piped": {
+   "deployments": [
+    {
+     "active": true,
+     "name": "Résultat des tests"
+    }
+   ],
+   "id": "0ac68d8274d24f54af0c28b29119b77d",
+   "locales": [
+    "en"
+   ],
+   "questions": [
+    {
+     "code": "1.1",
+     "conditions": [],
+     "en": "Which type of test are going to be done ?",
+     "fr": "",
+     "group": null,
+     "id": "10269a22f6e349cab94c12331b33f3ff",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
+     "code": "1.1b",
+     "conditions": [],
+     "en": "Where was this sample taken?",
+     "fr": "Où cet échantillon a-t-il été prélevé ?",
+     "group": null,
+     "id": "6a0f3dc25a38d87c1f44aae21033687f",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
+     "code": "1.2",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "6a0f3dc25a38d87c1f44aae21033687f"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "rsYxpZ5"
+       }
+      }
+     ],
+     "en": "Water System ID",
+     "fr": "",
+     "group": null,
+     "id": "a3390d2e97494b3da193e5c015a879d1",
+     "required": true,
+     "type": "SiteQuestion"
+    },
+    {
+     "code": "1.2b",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "6a0f3dc25a38d87c1f44aae21033687f"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "3Gkmk6W"
+       }
+      }
+     ],
+     "en": "Water point ID",
+     "fr": "ID du point d'eau",
+     "group": null,
+     "id": "7d0fce72f2b5eba64004b41c210566af",
+     "required": true,
+     "type": "SiteQuestion"
+    },
+    {
+     "code": "1.2.1",
+     "conditions": [],
+     "en": "Sampling record code",
+     "fr": "Code de la fiche d'échantillonnage",
+     "group": null,
+     "id": "680e7b715b5e4fc49bef6205be59301a",
+     "required": true,
+     "type": "TextQuestion"
+    },
+    {
+     "code": "1.2.2",
+     "conditions": [],
+     "en": "Sampling date & time (from the sampling record)",
+     "fr": "Date et heure de l'échantillonnage (selon la fiche d'échantillonnage)",
+     "group": null,
+     "id": "b25338d820d94639adb3bcf4c67e4c33",
+     "required": true,
+     "type": "DateQuestion"
+    },
+    {
+     "code": "1.2.3",
+     "conditions": [],
+     "en": "GPS of the sampling point",
+     "fr": "GPS du point de prélèvement",
+     "group": null,
+     "id": "d8d6ba9b457349db868b3bc07bfaabb9",
+     "required": false,
+     "type": "LocationQuestion"
+    },
+    {
+     "code": "1.3",
+     "conditions": [],
+     "en": "Result date & time",
+     "fr": "",
+     "group": null,
+     "id": "630ccd46f76f420692572e0db2d86ad8",
+     "required": true,
+     "type": "DateQuestion"
+    },
+    {
+     "code": "1.4",
+     "conditions": [],
+     "en": "E. coli",
+     "fr": "",
+     "group": null,
+     "id": "892f1d81bf1a4c4483e53271dda474a5",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.5",
+     "conditions": [],
+     "en": "E. coli Result",
+     "fr": "",
+     "group": null,
+     "id": "8195f5a34352454d951ed8f9a24c7650",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
+     "code": "1.6",
+     "conditions": [],
+     "en": "Turbidity",
+     "fr": "",
+     "group": null,
+     "id": "c70eb0f3cf764b04a26a2bc463a8ca2e",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": null,
+     "conditions": [],
+     "en": "Free Residual Chlorine",
+     "fr": "",
+     "group": null,
+     "id": "0594065a554d42b7ae23fba2848823e9",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.7",
+     "conditions": [],
+     "en": "Conductivity",
+     "fr": "",
+     "group": null,
+     "id": "64809a7fc4ff4cefa9c49087e74d9f97",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.8",
+     "conditions": [],
+     "en": "Temperature",
+     "fr": "",
+     "group": null,
+     "id": "efb47c052f5743dea0702cccdd1cb3fd",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.9",
+     "conditions": [],
+     "en": "pH",
+     "fr": "",
+     "group": null,
+     "id": "5eaf270dfe27443ebd33da195b9b89c9",
+     "required": true,
+     "type": "NumberQuestion"
+    },
+    {
+     "code": "1.10",
+     "conditions": [],
+     "en": "Arsenic",
+     "fr": "",
+     "group": null,
+     "id": "4b86e349e9bc418ea5a4868e7b383604",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.11",
+     "conditions": [],
+     "en": "Arsenic Result",
+     "fr": "",
+     "group": null,
+     "id": "01a2186bcbbb4ddb8fa34e915f30748f",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
+     "code": "1.12",
+     "conditions": [],
+     "en": "Fluoride",
+     "fr": "",
+     "group": null,
+     "id": "b4e94c2a5ca4497199bcde2856f2cd0c",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.13",
+     "conditions": [],
+     "en": "Fluoride Result",
+     "fr": "",
+     "group": null,
+     "id": "68fcd60d2bfe47c683b46bec38b06c5f",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
+     "code": "1.14",
+     "conditions": [],
+     "en": "Iron",
+     "fr": "",
+     "group": null,
+     "id": "3ba8917797a7429aa31b69023c7f3c1f",
+     "required": false,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.15",
+     "conditions": [],
+     "en": "Iron Result",
+     "fr": "",
+     "group": null,
+     "id": "a190116a65ca44308109a8854c775349",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
+     "code": "1.16",
+     "conditions": [],
+     "en": "Manganese",
+     "fr": "",
+     "group": null,
+     "id": "c0a900a9659e45c29acce3349e32f1fd",
+     "required": false,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "1.17",
+     "conditions": [],
+     "en": "Manganese Result",
+     "fr": "",
+     "group": null,
+     "id": "10ceadf5dc1e493588083f09a7d1879f",
+     "required": false,
+     "type": "ImagesQuestion"
+    },
+    {
+     "code": "1.18",
+     "conditions": [],
+     "en": "Additional comments/observations",
+     "fr": "",
+     "group": null,
+     "id": "aa36d204f17a4bcdb30ab992316ea569",
+     "required": false,
+     "type": "TextQuestion"
+    }
+   ],
+   "rev": 116,
+   "state": "active"
+  },
   "water-quality-sampling-sdws3": {
    "deployments": [
     {

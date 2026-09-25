@@ -7,13 +7,14 @@
   "combined_rehab.json": "2026-01-16",
   "forage_moramanga.csv": "2026-08-29",
   "hygiene.json": "2026-03-16",
-  "identification.json": "2026-06-16",
+  "identification.json": "2026-09-25",
   "marolinta_borehole.json": "2026-08-29",
   "pm.csv": "2026-09-23",
   "repair.json": "2026-09-22",
   "reparation_apres_panne.csv": "2026-09-22",
   "roof_count.json": "2025-08-21",
-  "wq_results.json": "2026-02-02"
+  "wq_results.json": "2026-02-02",
+  "wq_results_piped.json": "2026-08-24"
  },
  "newest_pull": "2026-09-25",
  "note": "data_to is the OLDEST pull across every extract - the vintage floor. Stating the newest would claim a currency no single source has. last_record_by_source is a different quantity: a quiet form has an old last record and is still perfectly current.",
@@ -26,13 +27,15 @@
   "hygiene.json",
   "identification.json",
   "marolinta_borehole.json",
+  "piped_systems.csv",
   "pm.csv",
   "premiere_rehabilitation.csv",
   "repair.json",
   "reparation_apres_panne.csv",
   "roof_count.json",
   "wp_madavance.csv",
-  "wq_results.json"
+  "wq_results.json",
+  "wq_results_piped.json"
  ],
  "per_extract": {
   "appel_signalement_pannes.csv": {
@@ -67,12 +70,17 @@
   },
   "identification.json": {
    "age_days": 0,
-   "data_to": "2026-06-16",
+   "data_to": "2026-09-25",
    "pulled": "2026-09-25"
   },
   "marolinta_borehole.json": {
    "age_days": 0,
    "data_to": "2026-08-29",
+   "pulled": "2026-09-25"
+  },
+  "piped_systems.csv": {
+   "age_days": 0,
+   "data_to": null,
    "pulled": "2026-09-25"
   },
   "pm.csv": {
@@ -108,6 +116,11 @@
   "wq_results.json": {
    "age_days": 0,
    "data_to": "2026-02-02",
+   "pulled": "2026-09-25"
+  },
+  "wq_results_piped.json": {
+   "age_days": 0,
+   "data_to": "2026-08-24",
    "pulled": "2026-09-25"
   }
  },

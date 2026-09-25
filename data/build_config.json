@@ -72,5 +72,15 @@
  "calendar": {
   "min_observed_days": 30,
   "note": "A point-year enters the calendar stratum only with at least this many observed days on its sheet."
+ },
+ "piped": {
+  "note": "The piped water-quality figures (tools/rebuild_piped_wq.py). A sample counts when the site it names is a water system in Endur'O's mWater group and lies outside Antananarivo: the page's scope keeps the Antananarivo kiosks out, as diagnosed and not under management, and keeps the Moramanga-axis systems in.",
+  "wq_form": "0ac68d8274d24f54af0c28b29119b77d",
+  "operator_group": "group:c305b9b85f41417387b553d9a33c795b",
+  "antananarivo_centre_lat_lon": [
+   -18.9137,
+   47.5361
+  ],
+  "antananarivo_radius_km": 30
  }
 }

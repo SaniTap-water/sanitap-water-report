@@ -6,15 +6,17 @@
   "first_rehab_current.json": 0,
   "forage_moramanga.csv": 20,
   "hygiene.json": 108,
-  "identification.json": 47,
+  "identification.json": 56,
   "marolinta_borehole.json": 20,
+  "piped_systems.csv": 25,
   "pm.csv": 761,
   "premiere_rehabilitation.csv": 0,
   "repair.json": 214,
   "reparation_apres_panne.csv": 214,
   "roof_count.json": 725,
-  "wp_madavance.csv": 909,
-  "wq_results.json": 736
+  "wp_madavance.csv": 918,
+  "wq_results.json": 736,
+  "wq_results_piped.json": 45
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
  "recorded": "2026-09-25"

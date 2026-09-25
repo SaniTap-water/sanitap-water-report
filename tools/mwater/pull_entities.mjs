@@ -2,9 +2,10 @@
 //
 // The register was pulled by a separate hand-run export because an UNFILTERED
 // water_point export walks the whole global mWater entity table. Filtered to
-// the managed group it is one bounded query returning 908 rows in under two
-// seconds - so the reason it sat outside the build never applied to the
-// filtered form of the query.
+// the managed group it is one bounded query that returns in about two seconds
+// - so the reason it sat outside the build never applied to the filtered form
+// of the query. The row count is live: each pull records it in
+// data/extract_manifest.json (wp_madavance.csv); no count is fixed here.
 //
 // It still walks _created_on windows and de-duplicates on _id rather than
 // trusting one request. A single request that comes back short looks exactly
