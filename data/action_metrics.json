@@ -1,5 +1,5 @@
 {
- "counted": "2026-09-23",
+ "counted": "2026-09-25",
  "metrics": {
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -24,7 +24,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 5
+   "value": 7
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -124,7 +124,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 454
+   "value": 459
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -159,7 +159,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 49
+   "value": 44
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

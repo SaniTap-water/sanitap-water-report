@@ -91,7 +91,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2813,
+   "size": 2816,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -140,7 +140,7 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 18,
+   "size": 20,
    "unit": "points"
   },
   "first_rehab_confirmed_out_of_order": {
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 454,
+   "size": 459,
    "unit": "points"
   },
   "pm_visits": {

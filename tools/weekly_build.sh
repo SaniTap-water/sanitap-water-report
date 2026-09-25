@@ -49,6 +49,26 @@ main() {
     echo "OUTCOME: $1"
   }
 
+  # AT LEAST 60 MINUTES BETWEEN RUNS (25 September 2026). A run pulls every
+  # form from mWater; two runs close together only double the load. The start
+  # of the last real run is recorded outside git; a run inside the window
+  # stops here, before any fetch or pull, and says so. A dry run is exempt.
+  local isdry="" x
+  for x in "$@"; do [ "$x" = "--dry-run" ] && isdry=1; done
+  if [ -z "${SANITAP_SYNCED:-}" ] && [ -z "$isdry" ]; then
+    local stamp="$build/logs/last_run_started" now last mins
+    now=$(date +%s)
+    if [ -f "$stamp" ]; then
+      last=$(cat "$stamp" 2>/dev/null || echo 0)
+      mins=$(( (now - last) / 60 ))
+      if [ "$mins" -ge 0 ] && [ "$mins" -lt 60 ]; then
+        outcome "Skipped: the last run started $mins minute(s) ago, and runs are at least 60 minutes apart."
+        return 0
+      fi
+    fi
+    mkdir -p "$build/logs" && echo "$now" > "$stamp"
+  fi
+
   if [ -z "${SANITAP_SYNCED:-}" ]; then
     # logs/publisher.log is untracked (23 September), so neither this reset
     # nor a rollback can touch it. The copy below covers the one reset that

@@ -4,10 +4,10 @@
   "appel_signalement_pannes.csv": {
    "form": "call-centre",
    "form_id": "c08b3fe26d0f42c084074701f29eb75e",
-   "newest_submitted": "2026-09-22",
-   "rows": 2826,
-   "unique": 2826,
-   "written": "2026-09-23T21:40:24"
+   "newest_submitted": "2026-09-24",
+   "rows": 2829,
+   "unique": 2829,
+   "written": "2026-09-25T09:56:42"
   },
   "cbn_gender.json": {
    "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
@@ -15,7 +15,7 @@
    "read_by": "populations.py",
    "rows": 414,
    "unique": 414,
-   "written": "2026-09-23T21:49:23"
+   "written": "2026-09-25T10:06:25"
   },
   "combined_rehab.json": {
    "form_id": "86cf66efdd3749dd8a121314bab3675a",
@@ -23,7 +23,7 @@
    "read_by": "populations.py",
    "rows": 1688,
    "unique": 1688,
-   "written": "2026-09-23T21:43:42"
+   "written": "2026-09-25T10:01:01"
   },
   "first_rehab_current.json": {
    "form_id": "63747997e70e478fbb2ebf71581ceeb0",
@@ -31,7 +31,7 @@
    "read_by": "populations.py",
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-23T21:48:36"
+   "written": "2026-09-25T10:05:38"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -39,7 +39,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-23T21:42:48"
+   "written": "2026-09-25T10:00:04"
   },
   "hygiene.json": {
    "form_id": "283c5670de82489d833e986cb76a67d8",
@@ -47,7 +47,7 @@
    "read_by": "populations.py",
    "rows": 108,
    "unique": 108,
-   "written": "2026-09-23T21:46:35"
+   "written": "2026-09-25T10:03:25"
   },
   "identification.json": {
    "form_id": "198b016d72af41baa2608a8c9c35f8cb",
@@ -55,7 +55,7 @@
    "read_by": "populations.py",
    "rows": 47,
    "unique": 47,
-   "written": "2026-09-23T21:47:14"
+   "written": "2026-09-25T10:04:07"
   },
   "marolinta_borehole.json": {
    "form_id": "8764843c94484f5b984078c68f13b2ca",
@@ -63,7 +63,7 @@
    "read_by": "populations.py",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-23T21:47:56"
+   "written": "2026-09-25T10:04:53"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
@@ -71,7 +71,7 @@
    "newest_submitted": "2026-09-23",
    "rows": 761,
    "unique": 761,
-   "written": "2026-09-23T21:36:58"
+   "written": "2026-09-25T09:51:49"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -79,7 +79,7 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-23T21:41:36"
+   "written": "2026-09-25T09:58:24"
   },
   "repair.json": {
    "form_id": "958b4763788348d699e7d8c5821f92ee",
@@ -87,7 +87,7 @@
    "read_by": "populations.py",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-23T21:44:17"
+   "written": "2026-09-25T10:01:50"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
@@ -95,7 +95,7 @@
    "newest_submitted": "2026-09-22",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-23T21:38:11"
+   "written": "2026-09-25T09:53:35"
   },
   "roof_count.json": {
    "form_id": "8aa2dd78eb1f460f8f43db7935955846",
@@ -103,14 +103,14 @@
    "read_by": "populations.py",
    "rows": 725,
    "unique": 725,
-   "written": "2026-09-23T21:50:05"
+   "written": "2026-09-25T10:07:10"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
    "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the managed group and walked in 90-day windows",
    "rows": 909,
    "unique": 909,
-   "written": "2026-09-23T21:50:35"
+   "written": "2026-09-25T10:07:43"
   },
   "wq_results.json": {
    "form_id": "7b33c5d7e5074808a94915939a5a0783",
@@ -118,12 +118,12 @@
    "read_by": "populations.py",
    "rows": 736,
    "unique": 736,
-   "written": "2026-09-23T21:45:48"
+   "written": "2026-09-25T10:02:39"
   }
  },
- "newest_in_files": "2026-09-23",
+ "newest_in_files": "2026-09-24",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-09-23T21:50:35",
+ "pulled_at": "2026-09-25T10:07:43",
  "strays": [
   "old_combined_reparation.csv",
   "wp_lookup.csv"

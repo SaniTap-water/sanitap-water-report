@@ -595,6 +595,25 @@ def main():
           else "MISSING",
           "the API accepts the PATCH and discards the field; that is a finding, "
           "not a silence")
+    # ---- the mWater tooling is read-only (2026-09-25) ----------------------
+    # mWater allows writes only via the portal or MCP proposals. The write
+    # scripts are in tools/mwater/retired/; nothing the build runs may call
+    # them, and the shared client may not grow a write helper again.
+    _callers = []
+    for _f in ("tools/weekly_build.sh", "tools/weekly_build.py", "tools/publish.sh",
+               "tools/publish_waiting.py", "tools/publish_waiting.sh"):
+        _fp = os.path.join(repo_root, _f)
+        if os.path.isfile(_fp) and re.search(r"mwater/retired|fix_admin_region", read(_fp)):
+            _callers.append(_f)
+    _api = read(os.path.join(repo_root, "tools", "mwater", "api.mjs"))
+    _ro = ("apiWrite" not in _api and "read-only: refusing" in _api
+           and not re.search(r"method:\s*\"(PUT|PATCH|DELETE)\"", _api))
+    check("the build calls nothing retired, and the mWater client is read-only",
+          not _callers and _ro, "read-only",
+          ("calls retired: " + ", ".join(_callers)) if _callers
+          else ("read-only" if _ro else "api.mjs can write"),
+          "tools/mwater/retired/README.md")
+
     # ---- the footnotes state what the build applies (2026-09-24) ----------
     # "How this is worked out" footnotes sit beside the figures they govern.
     # Every number in them is rendered from data/build_config.json, and that
@@ -2778,7 +2797,9 @@ def main():
     plain_b = re.sub(r"\s+", " ", plain_b.replace("&mdash;", "—"))
     naked = []
     for sent in re.split(r"(?<=[.!?])\s+", plain_b):
-        if not re.search(r"\b(308|295|309)\b", sent):
+        # "308 days ago" is an age, not a count of points; on 25 September
+        # a survey dated 21 November 2025 was exactly 308 days old
+        if not re.search(r"\b(308|295|309)\b(?!\s*days?\b)", sent):
             continue
         if any(b in sent for b in BASES):
             continue

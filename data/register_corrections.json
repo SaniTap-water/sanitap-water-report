@@ -2,7 +2,7 @@
  "admin_region_derived": {
   "cause_confirmed_on": "2026-09-23",
   "cause_evidence": "water_point schema, property admin_region: 'assigned automatically by mWater based on the GPS location'. tools/mwater/admin_polygon_test.mjs -> data/admin_polygon_test.json: each of the nine lies in no polygon at any level (country to fokontany), 1-91 m outside; the nearest fokontany polygon is in every case the value derived here, and every control neighbour lies inside.",
-  "derived_by": "tools/mwater/fix_admin_region.mjs",
+  "derived_by": "tools/mwater/retired/fix_admin_region.mjs (retired 25 Sep 2026)",
   "derived_on": "2026-09-22",
   "note": "Nine managed points carry complete admin_div1-5 text but no admin_region id, so every export that keys on admin_region shows them with no district. The value below is DERIVED, not read: for each point every coded water point sharing its commune and fokontany carries one admin_region value, and the eight nearest coded points by GPS all carry that same value. Two independent lines, unanimous on all nine.",
   "points": [

@@ -1,18 +1,18 @@
 {
  "blocking_lag_days": 0,
- "checked": "2026-09-23",
- "extract_newest": "2026-09-23",
- "files_age_days": 0,
- "files_newest": "2026-09-23",
+ "checked": "2026-09-25",
+ "extract_newest": "2026-09-24",
+ "files_age_days": 1,
+ "files_newest": "2026-09-24",
  "known_gaps": {},
  "lag_days": 0,
  "latest_in_extract": {
-  "call-centre": "2026-09-22",
+  "call-centre": "2026-09-24",
   "preventive-maintenance": "2026-09-23",
   "repair-after-breakdown": "2026-09-22"
  },
  "latest_in_extract_files": {
-  "appel_signalement_pannes.csv": "2026-09-22",
+  "appel_signalement_pannes.csv": "2026-09-24",
   "cbn_gender.json": "2025-11-21",
   "combined_rehab.json": "2026-01-16",
   "forage_moramanga.csv": "2026-08-29",
@@ -26,19 +26,19 @@
   "wq_results.json": "2026-02-02"
  },
  "latest_in_mwater": {
-  "call-centre": "2026-09-22",
+  "call-centre": "2026-09-24",
   "premiere-rehabilitation": null,
   "preventive-maintenance": "2026-09-23",
   "repair-after-breakdown": "2026-09-22"
  },
- "mwater_newest": "2026-09-23",
- "page_age_days": 0,
+ "mwater_newest": "2026-09-24",
+ "page_age_days": 1,
  "page_behind_files_days": 0,
  "per_source": {
   "call-centre": {
    "behind_days": 0,
-   "mwater": "2026-09-22",
-   "page": "2026-09-22"
+   "mwater": "2026-09-24",
+   "page": "2026-09-24"
   },
   "preventive-maintenance": {
    "behind_days": 0,

@@ -2,17 +2,17 @@
  "branches": {
   "call and works on the same day -> the call wins": 190,
   "held on the published value (unsettled)": 36,
-  "latest record is a call": 327,
-  "latest record is a maintenance": 124,
+  "latest record is a call": 329,
+  "latest record is a maintenance": 122,
   "latest record is a repair": 79,
   "no answered record at all -> unknown": 17
  },
- "built": "2026-09-23",
+ "built": "2026-09-25",
  "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
  "split": {
-  "down": 18,
-  "ok": 522,
-  "partial": 176,
+  "down": 20,
+  "ok": 519,
+  "partial": 177,
   "unknown": 21
  },
  "status": {
@@ -208,12 +208,14 @@
    "status": "ok"
   },
   "698771196": {
-   "date": "2026-03-24",
+   "date": "2026-09-24",
    "issue": null,
-   "problem": null,
-   "rid": "be6af101e132496fb0a04ffc3a92d940",
+   "problem": [
+    "ceFLdqs"
+   ],
+   "rid": "a8ca69738f364953b7028c5f20eaa706",
    "src": "call",
-   "status": "ok"
+   "status": "partial"
   },
   "698771206": {
    "date": "2026-03-20",
@@ -1074,12 +1076,12 @@
    "status": "ok"
   },
   "699596925": {
-   "date": "2026-05-19",
+   "date": "2026-09-24",
    "issue": null,
    "problem": null,
-   "rid": "62329b0b44fd4668ac2b54c2897b9154",
-   "src": "maintenance",
-   "status": "ok"
+   "rid": "7a4a6e2adf2846d99b47523e7c9e064e",
+   "src": "call",
+   "status": "down"
   },
   "699596932": {
    "date": "2026-03-10",
@@ -5214,12 +5216,12 @@
    "status": "partial"
   },
   "774001555": {
-   "date": "2026-07-20",
+   "date": "2026-09-24",
    "issue": null,
    "problem": null,
-   "rid": "9bdc5197eb6f46848a80bad29350b470",
-   "src": "maintenance",
-   "status": "ok"
+   "rid": "e1a8089fa2a74c3d9202786eb131ef70",
+   "src": "call",
+   "status": "down"
   },
   "774009687": {
    "date": "2026-06-05",

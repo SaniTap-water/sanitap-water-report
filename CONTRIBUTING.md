@@ -788,6 +788,24 @@ A rehearsal against unpublished work: add the interactive clone as a remote in
 the build clone, then run with `SANITAP_BUILD_FROM=<remote>
 SANITAP_BUILD_BRANCH=<branch>`.
 
+### The mWater tooling is read-only (since 25 September 2026)
+
+mWater allows writes only through the portal or MCP proposals. Nothing in this
+repository or in `~/mwater-mcp` writes to it. Both HTTP clients
+(`tools/mwater/api.mjs` and the MCP server's `mwaterFetch`) throw on any
+request other than a GET, except the login `POST /v3/clients`. The old write
+scripts are in `tools/mwater/retired/` and cannot run; their writes stay on
+record in `data/register_write_log.json`. `check_consistency.py` fails the
+build if anything the build runs calls a retired script, or if `api.mjs` grows
+a write path again. A correction to a register record is made in the portal
+and arrives with the next pull.
+
+**Runs are at least 60 minutes apart.** A real run of `weekly_build.sh`
+records its start in `logs/last_run_started` (untracked). A run that starts
+within 60 minutes of the last one stops before any fetch or pull, with the
+`OUTCOME:` line "Skipped: the last run started N minute(s) ago…". Dry runs
+are exempt.
+
 ### Updating mid-week
 
 A second run in the same ISO week pulls live mWater again and republishes

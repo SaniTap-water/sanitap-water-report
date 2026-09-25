@@ -80,6 +80,16 @@
   "file": "data/gardien_calendar_coverage.csv"
  },
  "evidenced_by": {
+  "first_recorded": {
+   "2024": {
+    "evidenced": 227,
+    "not": 359
+   },
+   "2025": {
+    "evidenced": 81,
+    "not": 69
+   }
+  },
   "photos": {
    "1-2": {
     "evidenced": 25,

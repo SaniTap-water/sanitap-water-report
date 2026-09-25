@@ -306,6 +306,11 @@ for _e in ("BUILDCFG.portfolio.pump_models.join(', ')",
               "build: ${" + _e + "}`",
         forms=[])
 
+D["CALS.evidenced_by.first_recorded['2024'].evidenced"] = dict(pop="managed_fleet",
+    arith="`managed points first recorded in the register in 2024 that the calendar stratum evidences: ${CALS.evidenced_by.first_recorded['2024'].evidenced}`",
+    forms=[("the calendar stratum, tools/calendar_stratum.py", None,
+            "data/gardien_calendar_coverage.csv against the register's _created_on year")])
+
 # the chain table's own cells: each is the reconciliation step it reports
 for _k in range(12):
     D[f"POPS.chain[{_k}].detail"] = dict(pop=None, chain=True,

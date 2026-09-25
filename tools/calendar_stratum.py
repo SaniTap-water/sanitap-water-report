@@ -101,6 +101,20 @@ def build():
             c = t.setdefault(key(r), {"evidenced": 0, "not": 0})
             c["evidenced" if code in ev else "not"] += 1
         dims[dim] = dict(sorted(t.items()))
+    # the year each point was first recorded in the register (its _created_on)
+    reg = {}
+    rp = os.path.expanduser("~/mwater-exports/wp_madavance.csv")
+    if os.path.isfile(rp):
+        reg = {r["code"]: (r.get("_created_on") or "")[:4]
+               for r in csv.DictReader(open(rp, encoding="utf8"))}
+    t = {}
+    for code in cov:
+        y = reg.get(code)
+        if not y:
+            continue
+        c = t.setdefault(y, {"evidenced": 0, "not": 0})
+        c["evidenced" if code in ev else "not"] += 1
+    dims["first_recorded"] = dict(sorted(t.items()))
     out["evidenced_by"] = dims
     # calendar custody by site: the table under "Calendar custody", from the
     # coverage file (a photograph older than 182 days is "older than 6 months")
