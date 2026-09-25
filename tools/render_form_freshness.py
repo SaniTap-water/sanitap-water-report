@@ -15,6 +15,10 @@ tools/refresh_form_snapshot.py. Nothing here talks to mWater.
 """
 import datetime, json, os, sys, difflib
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED form-freshness :: tools/render_form_freshness.py "
          ":: do not edit between these markers -->")
@@ -74,10 +78,10 @@ def main():
     if mode == "--write":
         open(os.path.join(REPO, "index.html"), "w", encoding="utf8").write(whole)
         print("index.html: form-freshness region %s"
-              % ("unchanged" if cur == want else "rewritten"))
+              % ("unchanged" if _same(cur, want) else "rewritten"))
         return 0
     if mode == "--check":
-        if cur == want:
+        if _same(cur, want):
             print("index.html form-freshness region matches its generator")
             return 0
         print("\n".join(list(difflib.unified_diff(

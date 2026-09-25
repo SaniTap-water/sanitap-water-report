@@ -106,11 +106,27 @@ say "running the render check ..."
 PW="${PLAYWRIGHT_BROWSERS_PATH:-$HOME/.cache/ms-playwright}"
 PYBIN="$HOME/sdws1/venv/bin/python"
 if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwright" 2>/dev/null; then
+  # Every figure's value is written into the static HTML, so a reader without
+  # JavaScript never sees an empty span. The generators above write their
+  # regions with empty spans; this fills them, after them and before any gate.
+  say "prerendering every figure into the static HTML ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --write
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a figure could not be prerendered into the static HTML (exit $RC)."
+    exit 1
+  fi
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/render_check.py
   RC=$?
   if [ "$RC" -ne 0 ]; then
     say "ABORT: the rendered page does not match the manifest (exit $RC)."
     say "Nothing committed. Inspect, fix, or re-record with --manifest if intended."
+    exit 1
+  fi
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --check
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a static figure value differs from what the page computes (exit $RC)."
     exit 1
   fi
 
@@ -169,6 +185,18 @@ fi
 
 # ---- 2. THE GATE -----------------------------------------------------------
 # Run it, capture the status on its own line, then branch. Nothing is chained.
+# No browser needed, so this runs even where the render gate is skipped: a
+# figure that is empty in the static HTML fails the build.
+say ""
+say "checking that no figure is empty without JavaScript ..."
+python3 tools/prerender_figures.py --gate
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: a figure renders empty in the static HTML (exit $RC)."
+  say "Run tools/prerender_figures.py --write (needs the headless browser)."
+  exit 1
+fi
+
 say ""
 say "checking extract vintages ..."
 python3 tools/check_vintage.py | tail -8

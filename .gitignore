@@ -5,3 +5,4 @@ logs/last_outcome.txt
 logs/.publisher.local
 logs/publisher.log
 logs/last_run_started
+.prerender.html

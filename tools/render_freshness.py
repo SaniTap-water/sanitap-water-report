@@ -9,6 +9,10 @@ maintenance-visit date dressed up as "activity logged in mWater".
 """
 import datetime, difflib, json, os, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED week-caption :: tools/render_freshness.py "
          ":: do not edit between these markers -->")
@@ -99,10 +103,10 @@ def main():
     if mode == "--write":
         open(os.path.join(REPO, "index.html"), "w", encoding="utf8").write(whole)
         print("index.html: week caption %s"
-              % ("unchanged" if cur == b else "rewritten"))
+              % ("unchanged" if _same(cur, b) else "rewritten"))
         return 0
     if mode == "--check":
-        if cur == b:
+        if _same(cur, b):
             print("index.html week caption matches its generator")
             return 0
         print("\n".join(list(difflib.unified_diff(

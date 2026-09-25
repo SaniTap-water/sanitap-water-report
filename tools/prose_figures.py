@@ -41,6 +41,10 @@ NOT_PROSE = [
     # withdrawn one or an artefact's output is typed by design; the census
     # holds each to its registry (and an artefact's value to its data).
     re.compile(r'<span\b[^>]*\bdata-(?:quote|retired|withdrawn|artefact)="[^"]*"[^>]*>[^<]*</span>'),
+    # A live figure or a declared parameter carries its value in the HTML
+    # since 25 September 2026 (tools/prerender_figures.py). That value is the
+    # page's own computation, not typing, and --check holds it to the live one.
+    re.compile(r'<(\w+)\b(?:[^>"]|"[^"]*")*\bdata-(?:fig|param)="[^"]*"(?:[^>"]|"[^"]*")*>[^<]*</\1>'),
     re.compile(r"<script\b[^>]*>.*?</script>", re.S),
     re.compile(r"<style\b[^>]*>.*?</style>", re.S),
     re.compile(r"<!--.*?-->", re.S),

@@ -20,6 +20,10 @@ own max_age_days.
 """
 import datetime, json, os, re, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 SRC = os.path.join(REPO, "data", "enduro_manual.json")
@@ -90,7 +94,7 @@ def apply(write):
         if not m:
             sys.exit("render_enduro: cannot find the ENDURO block to replace")
         i, j, cur = m.start(), m.end(), m.group(0)
-    if cur.strip() == new.strip():
+    if _same(cur, new):
         print("index.html Endur'O block matches its generator")
         return 0
     if not write:

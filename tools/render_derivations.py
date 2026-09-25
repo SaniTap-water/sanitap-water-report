@@ -14,6 +14,10 @@ tools/check_consistency.py says so.
 """
 import json, os, re, subprocess, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 OUT = os.path.join(REPO, "data", "derivations.json")
@@ -361,7 +365,7 @@ def apply(write):
         anchor = "/* BEGIN GENERATED datasets"
         i = j = page.index(anchor)
         new = new + "\n"
-    if page[i:j].strip() == new.strip():
+    if _same(page[i:j], new):
         print("index.html derivations match their generator")
         return 0
     if not write:

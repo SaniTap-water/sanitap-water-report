@@ -12,6 +12,10 @@ step of it that does not hold.
 """
 import json, os, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 BEGIN = ("<!-- BEGIN GENERATED definitions :: tools/render_definitions.py :: "
@@ -130,7 +134,7 @@ def apply(write):
             sys.exit("render_definitions: no anchor")
         i = j = page.index(anchor)
         new = new + "\n"
-    if page[i:j].strip() == new.strip():
+    if _same(page[i:j], new):
         print("index.html definitions match their generator")
         return 0
     if not write:

@@ -24,6 +24,10 @@ quarter rows are about the current process.
 """
 import difflib, json, math, os, statistics, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(REPO, "tools"))
 PAGE = os.path.join(REPO, "index.html")
@@ -96,9 +100,9 @@ def main():
         open(PAGE, "w", encoding="utf8").write(idx[:a] + want + idx[z:])
         open(DATA, "w", encoding="utf8").write(data)
         print("index.html: ttr-table "
-              + ("unchanged" if idx[a:z] == want else "rewritten"))
+              + ("unchanged" if _same(idx[a:z], want) else "rewritten"))
         return 0
-    ok = idx[a:z] == want and os.path.isfile(DATA) \
+    ok = _same(idx[a:z], want) and os.path.isfile(DATA) \
         and open(DATA, encoding="utf8").read() == data
     if ok:
         print("index.html ttr-table matches its generator")

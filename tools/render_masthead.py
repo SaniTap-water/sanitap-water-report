@@ -11,6 +11,10 @@ the gap between them is spelled out.
 """
 import datetime, difflib, json, os, re, subprocess, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = ("<!-- BEGIN GENERATED masthead :: tools/render_masthead.py "
          ":: do not edit between these markers -->")
@@ -124,10 +128,10 @@ def main():
     if mode == "--write":
         open(p, "w", encoding="utf8").write(idx[:a] + want + idx[z:])
         print("index.html: masthead %s"
-              % ("unchanged" if cur == want else "rewritten"))
+              % ("unchanged" if _same(cur, want) else "rewritten"))
         return 0
     if mode == "--check":
-        if cur == want:
+        if _same(cur, want):
             print("index.html masthead matches its generator")
             return 0
         print("\n".join(list(difflib.unified_diff(

@@ -614,6 +614,19 @@ def main():
           else ("read-only" if _ro else "api.mjs can write"),
           "tools/mwater/retired/README.md")
 
+    # ---- no figure is empty without JavaScript (2026-09-25) ---------------
+    # Every data-fig and data-param element carries its value in the static
+    # HTML (tools/prerender_figures.py). Until 25 September all 239 were empty
+    # to any reader that does not run the page's script.
+    sys.path.insert(0, os.path.join(repo_root, "tools"))
+    import prerender_figures as _pf
+    _sf = _pf.figures(idx)
+    _se = [k for _kind, k, t in _sf if not t.strip()]
+    check("every data-fig and data-param carries its value in the static HTML",
+          bool(_sf) and not _se, "none empty",
+          f"{len(_se)} of {len(_sf)} empty" if _se else f"{len(_sf)} filled",
+          "tools/prerender_figures.py --write; read without JavaScript")
+
     # ---- the footnotes state what the build applies (2026-09-24) ----------
     # "How this is worked out" footnotes sit beside the figures they govern.
     # Every number in them is rendered from data/build_config.json, and that
@@ -630,7 +643,8 @@ def main():
           "all six", ", ".join(_ids) or "none")
     _typed = []
     for _i, _b in _have:
-        _txt = re.sub(r'<span data-fig="[^"]*"></span>', "", _b)
+        # the value tools/prerender_figures.py writes into a span is rendered
+        _txt = re.sub(r'<span data-fig="[^"]*">[^<]*</span>', "", _b)
         _txt = re.sub(r"<[^>]+>", " ", _txt)
         _txt = re.sub(r"SDWS\s*\d+", "", _txt)
         # a unit is not a parameter: "CFU per 100 mL"
@@ -2231,7 +2245,7 @@ def main():
     # community-level notice is already signed.
     _cons_zero = re.search(r"no individual record exists for any of the\s*"
                            r'(?:<[^>]+>\s*)*(?:<span data-fig="CARBON\.'
-                           r'carbon_points"></span>)\s*active carbon points', idx)
+                           r'carbon_points">[^<]*</span>)\s*active carbon points', idx)
     check("the page carries the consent figure",
           bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
           "present", "present" if _cons_zero else "MISSING")

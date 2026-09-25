@@ -15,6 +15,10 @@ drift from the files it cites. The prose is fixed; only the figures move.
 """
 import csv, json, os, sys, collections, statistics, difflib
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BEGIN = "<!-- BEGIN GENERATED machine-extraction :: tools/render_block.py :: do not edit between these markers -->"
 END = "<!-- END GENERATED machine-extraction -->"
@@ -191,10 +195,10 @@ def main():
     if mode == "--write":
         open(os.path.join(REPO, "index.html"), "w", encoding="utf8").write(whole)
         print("index.html: generated region %s (%d bytes)"
-              % ("unchanged" if cur == want else "rewritten", len(B.strip())))
+              % ("unchanged" if _same(cur, want) else "rewritten", len(B.strip())))
         return 0
     if mode == "--check":
-        if cur == want:
+        if _same(cur, want):
             print("index.html generated region matches tools/render_block.py")
             return 0
         d = list(difflib.unified_diff(cur.splitlines(), want.splitlines(),

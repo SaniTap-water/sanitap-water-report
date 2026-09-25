@@ -15,6 +15,10 @@ sees the proportion sees the cluster shortfall beside it without scrolling.
 """
 import json, os, re, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# a region that differs only in prerendered figure values is not drift
+from prerender_figures import same as _same  # noqa: E402
+
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(REPO, "index.html")
 BEGIN = ("<!-- BEGIN GENERATED sdws26 :: tools/render_sdws26.py :: "
@@ -152,7 +156,7 @@ def apply(write):
     if BEGIN not in page:
         sys.exit("render_sdws26: markers not present; place them first")
     i, j = page.index(BEGIN), page.index(END) + len(END)
-    if page[i:j].strip() == new.strip():
+    if _same(page[i:j], new):
         print("index.html sdws26 matches its generator")
         return 0
     if not write:
