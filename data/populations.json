@@ -653,13 +653,14 @@
    "unit": "records"
   },
   "usage_served_both_seasons": {
-   "decided": "The seasonal rule is not settled; this is the conservative branch and the alternative is rendered beside it.",
+   "decided": "Not the SDWS 26 reading. James Walker ruled on 23 September 2026 (“Re: Water program dashboard & actions”) that the served share is the average of the dry-season and rainy-season shares. Carried only inside the derivation panel, as a sensitivity.",
    "decided_on": "2026-09-23",
    "derives_from": [
     "usage_survey_answered_both"
    ],
    "id": "usage_served_both_seasons",
-   "name": "Premises served, both seasons (SDWS 26, conservative)",
+   "internal": true,
+   "name": "Premises served, both seasons (SDWS 26 sensitivity, strictest)",
    "reads": [
     [
      "Clean Water || Project Cbn&Gender (annual monitoring survey)",
@@ -667,18 +668,38 @@
      "WS1.18 and WS1.39, both in the served choice set"
     ]
    ],
-   "rule": "Of the responses answering both seasons, those reporting use at least every two days in BOTH the dry and the rainy season - choice ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz (every two days). Matched BY CHOICE ID: the declared scale is not monotonic, because “more than once a day” sits second, so matching by position would be wrong. Requiring both seasons is the conservative reading.",
+   "rule": "Of the responses answering both seasons, those reporting use at least every two days in BOTH the dry and the rainy season - choice ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz (every two days). Matched BY CHOICE ID: the declared scale is not monotonic, because “more than once a day” sits second, so matching by position would be wrong. Requiring both seasons is the strictest reading.",
+   "size": 408,
+   "unit": "records"
+  },
+  "usage_served_dry_season": {
+   "decided": "James Walker, Carbon Lead, 23 September 2026, “Re: Water program dashboard & actions”: the SDWS 26 served share is the AVERAGE of the dry-season and rainy-season served shares (“Let's average it to prevent unnecessarily losing credits”), and the served set - every day, more than once a day, every two days, by choice id - is confirmed (“Correct.”).",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "usage_survey_answered_both"
+   ],
+   "id": "usage_served_dry_season",
+   "name": "Premises served in the dry season (SDWS 26)",
+   "reads": [
+    [
+     "Clean Water || Project Cbn&Gender (annual monitoring survey)",
+     "2eeb86824b4545eca33db9e7cf7dcbd4",
+     "WS1.18 (dry season) in the served choice set"
+    ]
+   ],
+   "rule": "Of the responses answering both seasons, those whose dry-season answer (WS1.18) is in the served set - choice ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz (every two days). Matched BY CHOICE ID: the declared scale is not monotonic, because “more than once a day” sits second. Its share of the denominator is one of the two terms the SDWS 26 served share averages.",
    "size": 408,
    "unit": "records"
   },
   "usage_served_either_season": {
-   "decided": "Rendered beside the conservative branch, not instead of it.",
+   "decided": "Not the SDWS 26 reading: the served share is the average of the two seasons (James Walker, 23 September 2026). Carried only inside the derivation panel, as a sensitivity.",
    "decided_on": "2026-09-23",
    "derives_from": [
     "usage_survey_answered_both"
    ],
    "id": "usage_served_either_season",
-   "name": "Premises served, either season (SDWS 26, permissive)",
+   "internal": true,
+   "name": "Premises served, either season (SDWS 26 sensitivity, most permissive)",
    "reads": [
     [
      "Clean Water || Project Cbn&Gender (annual monitoring survey)",
@@ -686,7 +707,26 @@
      "WS1.18 or WS1.39 in the served choice set"
     ]
    ],
-   "rule": "The same set on the permissive branch: served in EITHER season rather than both. Carried so the sensitivity of the parameter to the undecided seasonal rule is visible rather than asserted.",
+   "rule": "The same set on the most permissive reading: served in EITHER season rather than both. Carried so the sensitivity of the parameter to the seasonal rule stays visible.",
+   "size": 409,
+   "unit": "records"
+  },
+  "usage_served_rainy_season": {
+   "decided": "James Walker, Carbon Lead, 23 September 2026, “Re: Water program dashboard & actions”: the SDWS 26 served share is the AVERAGE of the dry-season and rainy-season served shares (“Let's average it to prevent unnecessarily losing credits”), and the served set - every day, more than once a day, every two days, by choice id - is confirmed (“Correct.”).",
+   "decided_on": "2026-09-23",
+   "derives_from": [
+    "usage_survey_answered_both"
+   ],
+   "id": "usage_served_rainy_season",
+   "name": "Premises served in the rainy season (SDWS 26)",
+   "reads": [
+    [
+     "Clean Water || Project Cbn&Gender (annual monitoring survey)",
+     "2eeb86824b4545eca33db9e7cf7dcbd4",
+     "WS1.39 (rainy season) in the served choice set"
+    ]
+   ],
+   "rule": "Of the responses answering both seasons, those whose rainy-season answer (WS1.39) is in the served set - choice ids J1qZUqA (every day), 6wqmK16 (more than once a day) and h4uZZBz (every two days), matched by choice id. Its share of the denominator is the other term the SDWS 26 served share averages.",
    "size": 409,
    "unit": "records"
   },

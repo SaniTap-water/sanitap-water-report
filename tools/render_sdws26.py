@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 """The SDWS 26 section: what the November 2025 round measured, and its limits.
 
+The headline is the seasonal average - the mean of the dry-season and
+rainy-season served shares - by James Walker's ruling of 23 September 2026.
+The both-seasons and either-season readings appear only in the derivation
+panel under each average (tools/render_derivations.py), never as figures.
+
 Every figure here is a span over SDWS26 or a population, so the section moves
 when the round does and cannot be edited into agreement with itself. The limits
 are rendered from the same data as the result, which is the point: a reader who
@@ -32,10 +37,20 @@ def fig(expr):
     return f'<span data-fig="{expr}"></span>'
 
 
+def avg(p):
+    """The SDWS 26 served share: the average of the dry-season and rainy-season
+    shares (James Walker, 23 September 2026), computed on the page."""
+    return (f"((100*{p}.served_dry/{p}.answered_both"
+            f"+100*{p}.served_rain/{p}.answered_both)/2).toFixed(1)")
+
+
 def block():
     src = open(PAGE, encoding="utf8").read()
     m = re.search(r"^const SDWS26\s*=\s*", src, re.M)
     S = json.loads(src[m.end():src.index("};", m.end()) + 1])
+
+    def pct(p, k):
+        return fig(f"(100*{p}.{k}/{p}.answered_both).toFixed(1)")
 
     rows = []
     for scen in sorted(S["scenarios"]):
@@ -47,20 +62,22 @@ def block():
         rows.append(
             f'<tr><td><b>{esc(scen)}</b></td>'
             f'<td class="num">{fig(p + ".answered_both")}</td>'
-            f'<td class="num"><b>{fig(p + ".served_both_seasons")}</b><br>'
-            f'<span class="muted">{fig("(100*" + p + ".served_both_seasons/" + p + ".answered_both).toFixed(1)")}%</span></td>'
-            f'<td class="num">{fig(p + ".served_either_season")}<br>'
-            f'<span class="muted">{fig("(100*" + p + ".served_either_season/" + p + ".answered_both).toFixed(1)")}%</span></td>'
+            f'<td class="num">{fig(p + ".served_dry")}<br>'
+            f'<span class="muted">{pct(p, "served_dry")}%</span></td>'
+            f'<td class="num">{fig(p + ".served_rain")}<br>'
+            f'<span class="muted">{pct(p, "served_rain")}%</span></td>'
+            f'<td class="num"><b>{fig(avg(p))}%</b></td>'
             f'<td class="num">{fig(p + ".water_points")}</td>'
             f'<td>{cl}</td>'
             f'<td class="num">{fig(p + ".hh_size_mean")}</td></tr>')
 
     total = ('<tr><td><b>Both scenarios</b></td>'
              f'<td class="num">{fig("SDWS26.answered_both")}</td>'
-             f'<td class="num"><b>{fig("SDWS26.served_both_seasons")}</b><br>'
-             f'<span class="muted">{fig("(100*SDWS26.served_both_seasons/SDWS26.answered_both).toFixed(1)")}%</span></td>'
-             f'<td class="num">{fig("SDWS26.served_either_season")}<br>'
-             f'<span class="muted">{fig("(100*SDWS26.served_either_season/SDWS26.answered_both).toFixed(1)")}%</span></td>'
+             f'<td class="num">{fig("SDWS26.served_dry")}<br>'
+             f'<span class="muted">{pct("SDWS26", "served_dry")}%</span></td>'
+             f'<td class="num">{fig("SDWS26.served_rain")}<br>'
+             f'<span class="muted">{pct("SDWS26", "served_rain")}%</span></td>'
+             f'<td class="num"><b>{fig(avg("SDWS26"))}%</b></td>'
              f'<td class="num">&mdash;</td><td>&mdash;</td><td class="num">&mdash;</td></tr>')
 
     return f"""{BEGIN}
@@ -68,26 +85,37 @@ def block():
   <div class="sechead"><div><h2>SDWS 26 &mdash; premises served, from the November 2025 round</h2>
   <p>The annual monitoring survey asks how often a household draws drinking water from the project
   water point, once for the dry season and once for the rainy season. A premises counts as served
-  when it reports use <b>at least every two days</b>. <span class="muted">Matched by choice id, not
-  by position: the declared scale is not monotonic &mdash; &ldquo;more than once a day&rdquo; sits
-  second, after &ldquo;every day&rdquo;. Every figure below expands to its population, rule,
-  form and arithmetic.</span></p></div>
-  <span class="count">{fig("(100*SDWS26.served_both_seasons/SDWS26.answered_both).toFixed(1)")}% served</span></div>
+  in a season when it reports use <b>at least every two days</b>, and <b>the served share is the
+  average of the dry-season and rainy-season shares</b>. <span class="muted">Every figure below
+  expands to its population, rule, form and arithmetic.</span></p></div>
+  <span class="count">{fig(avg("SDWS26"))}% served</span></div>
 
   <div class="tablewrap" style="max-height:none"><table class="ind" id="sdws26tbl">
   <thead><tr><th>Scenario</th><th class="num">Answered both seasons</th>
-  <th class="num">Served, both seasons<br><span class="muted" style="font-weight:400">conservative</span></th>
-  <th class="num">Served, either season<br><span class="muted" style="font-weight:400">permissive</span></th>
+  <th class="num">Served, dry season<br><span class="muted" style="font-weight:400">WS1.18</span></th>
+  <th class="num">Served, rainy season<br><span class="muted" style="font-weight:400">WS1.39</span></th>
+  <th class="num">Served share<br><span class="muted" style="font-weight:400">average of the two seasons</span></th>
   <th class="num">Water points</th><th>Clusters vs B.7.3</th>
   <th class="num">Mean household size</th></tr></thead>
   <tbody>{''.join(rows)}{total}</tbody></table></div>
 
-  <p class="note"><b>The seasonal rule does not move the parameter.</b> The two candidate readings
-  &mdash; served in both seasons, or served in either &mdash; differ by
-  <b>{fig("SDWS26.rule_difference")}</b> record out of <b>{fig("SDWS26.answered_both")}</b>.
-  The conservative reading is shown as the headline and the permissive one beside it, so the choice
-  is visible rather than buried. <span class="muted">The scale mapping is the same on both: the
-  served set is the three choice ids that mean every day, more than once a day, and every two days.</span></p>
+  <p class="note"><b>The headline is the seasonal average: {fig(avg("SDWS26"))}% across both
+  scenarios</b>, {fig(avg("SDWS26.scenarios['Fort-Dauphin']"))}% in Fort-Dauphin and
+  {fig(avg("SDWS26.scenarios['Maroantsetra']"))}% in Maroantsetra. <span class="muted">The
+  both-scenarios figure pools the responses of the two scenarios. Open any average for its working,
+  which also shows the both-seasons and either-season readings as a sensitivity.</span></p>
+
+  <p class="note" id="sdws26-rule"><b>The seasonal rule.</b> The served share is the average of two
+  shares: the premises served in the dry season (WS1.18) and the premises served in the rainy season
+  (WS1.39), each over the premises that answered both questions. It is <b>not</b> the share served in
+  both seasons. <b>The served set</b> is <i>Every day</i>, <i>More than 1 time per day</i> and
+  <i>Every 2 days</i>, matched by choice id (<span class="mono">J1qZUqA</span>,
+  <span class="mono">6wqmK16</span>, <span class="mono">h4uZZBz</span>), never by position: the
+  declared scale is not monotonic, because &ldquo;more than once a day&rdquo; sits second.
+  <span class="muted">Source for both: James Walker, Carbon Lead, email &ldquo;Re: Water program
+  dashboard &amp; actions&rdquo;, 23 September 2026 &mdash; <i>&ldquo;Let&rsquo;s average it to
+  prevent unnecessarily losing credits&rdquo;</i> on the seasonal rule, and <i>&ldquo;Correct&rdquo;</i>
+  on the served set. Recorded in <span class="mono">docs/decision_log.md</span>.</span></p>
 
   <div class="panel" style="margin-top:16px"><div class="eyebrow">What this round does not evidence</div>
   <ul class="note">

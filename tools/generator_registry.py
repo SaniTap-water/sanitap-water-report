@@ -78,7 +78,9 @@ GENERATED = {
     'SDWS26.scenarios': 'rebuild_sdws26',
     'SDWS26.served_both_seasons': 'rebuild_sdws26',
     'SDWS26.served_choices': 'rebuild_sdws26',
+    'SDWS26.served_dry': 'rebuild_sdws26',
     'SDWS26.served_either_season': 'rebuild_sdws26',
+    'SDWS26.served_rain': 'rebuild_sdws26',
     'SDWS26.statuses': 'rebuild_sdws26',
 
     'WPOPMETA.points_at_the_cap': 'check_wpopmeta (data/sdws1_summary_equal.json)',

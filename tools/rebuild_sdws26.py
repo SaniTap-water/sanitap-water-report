@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 """The SDWS 26 round, computed from the survey rather than stored.
 
-Everything the section renders comes from here: the per-scenario denominators
-and served counts on both candidate seasonal rules, the clusters actually
-reached against the VPA-DD B.7.3 minimum, the household-size means, the
-approval state and the round's date range.
+Everything the section renders comes from here: the per-scenario denominators,
+the served counts per season, the clusters actually reached against the VPA-DD
+B.7.3 minimum, the household-size means, the approval state and the round's
+date range.
 
 Nothing is asserted. The served set is matched BY CHOICE ID - the declared
-scale is not monotonic, "More than 1 time per day" sits second - and the
-seasonal rule is deliberately computed both ways so the sensitivity is visible
-rather than claimed.
+scale is not monotonic, "More than 1 time per day" sits second - and was
+confirmed by James Walker on 23 September 2026. The seasonal rule is his
+ruling of the same day: the served share is the AVERAGE of the dry-season
+(WS1.18) and rainy-season (WS1.39) shares, which the page computes from
+served_dry and served_rain. The both-seasons and either-season counts are
+still computed, for the derivation panel only.
 
     python3 tools/rebuild_sdws26.py            # show
     python3 tools/rebuild_sdws26.py --write
@@ -67,6 +70,8 @@ def compute():
     for scen in ("Fort-Dauphin", "Maroantsetra"):
         srows = [r for r in rows if P._cbn_scenario(r) == scen]
         sboth = [r for r in both if P._cbn_scenario(r) == scen]
+        sd = [r for r in sboth if P._answer(r, P.Q_USE_DRY) in P.SERVED_CHOICES]
+        sr = [r for r in sboth if P._answer(r, P.Q_USE_RAIN) in P.SERVED_CHOICES]
         sb = [r for r in sboth
               if P._answer(r, P.Q_USE_DRY) in P.SERVED_CHOICES
               and P._answer(r, P.Q_USE_RAIN) in P.SERVED_CHOICES]
@@ -81,6 +86,8 @@ def compute():
         out["scenarios"][scen] = {
             "responses": len(srows),
             "answered_both": len(sboth),
+            "served_dry": len(sd),
+            "served_rain": len(sr),
             "served_both_seasons": len(sb),
             "served_either_season": len(se),
             "water_points": len(pts),
@@ -92,6 +99,8 @@ def compute():
         }
     tot_both = sum(v["answered_both"] for v in out["scenarios"].values())
     out["answered_both"] = tot_both
+    out["served_dry"] = sum(v["served_dry"] for v in out["scenarios"].values())
+    out["served_rain"] = sum(v["served_rain"] for v in out["scenarios"].values())
     out["served_both_seasons"] = sum(v["served_both_seasons"] for v in out["scenarios"].values())
     out["served_either_season"] = sum(v["served_either_season"] for v in out["scenarios"].values())
     out["rule_difference"] = out["served_either_season"] - out["served_both_seasons"]

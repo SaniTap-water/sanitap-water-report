@@ -417,6 +417,10 @@
   "target": 0,
   "when_satisfied": "OK"
  },
+ "act-piped-usage-survey": {
+  "kind": "none",
+  "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run"
+ },
  "act-point-use-round-one": {
   "kind": "data",
   "metric": "usage_question_answers",

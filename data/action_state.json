@@ -5,7 +5,7 @@
   "data": 37,
   "decision": 38,
   "form": 7,
-  "none": 24
+  "none": 25
  },
  "state": {
   "act-2026-recovery": {
@@ -542,6 +542,14 @@
    "kind": "data",
    "satisfied": false,
    "says": "closes when no photograph filed on a calendar question is something else",
+   "when_satisfied": "OK"
+  },
+  "act-piped-usage-survey": {
+   "evaluated": "2026-09-25",
+   "evidence": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
    "when_satisfied": "OK"
   },
   "act-point-use-round-one": {

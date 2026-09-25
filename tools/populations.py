@@ -236,6 +236,8 @@ Q_HH_SIZE = "0dc5822718664528944408e6c8343f4e"      # WS1.12, household size (SD
 # Served = at least every two days, BY CHOICE ID. The declared scale is not
 # monotonic - "More than 1 time per day" sits SECOND, after "Every day" - so
 # anything that maps this scale by position is wrong. These are the ids.
+# Confirmed by James Walker, 23 September 2026 ("Re: Water program dashboard
+# & actions"): served = Every day, More than 1 time per day, Every 2 days.
 C_EVERY_DAY = "J1qZUqA"
 C_MORE_THAN_DAILY = "6wqmK16"
 C_EVERY_2_DAYS = "h4uZZBz"
@@ -656,8 +658,53 @@ def usage_survey_answered_both():
     return {r["_id"] for r in _cbn_answered_both()}
 
 
+_SEASONAL_RULE = ("James Walker, Carbon Lead, 23 September 2026, \u201cRe: Water "
+                  "program dashboard & actions\u201d: the SDWS 26 served share is the "
+                  "AVERAGE of the dry-season and rainy-season served shares (\u201cLet's "
+                  "average it to prevent unnecessarily losing credits\u201d), and the "
+                  "served set - every day, more than once a day, every two days, by "
+                  "choice id - is confirmed (\u201cCorrect.\u201d).")
+
+
 @population(
-    name="Premises served, both seasons (SDWS 26, conservative)",
+    name="Premises served in the dry season (SDWS 26)",
+    unit="records",
+    rule="Of the responses answering both seasons, those whose dry-season "
+         "answer (WS1.18) is in the served set - choice ids J1qZUqA (every "
+         "day), 6wqmK16 (more than once a day) and h4uZZBz (every two days). "
+         "Matched BY CHOICE ID: the declared scale is not monotonic, because "
+         "\u201cmore than once a day\u201d sits second. Its share of the "
+         "denominator is one of the two terms the SDWS 26 served share averages.",
+    reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+            F_CBN, "WS1.18 (dry season) in the served choice set")],
+    decided=_SEASONAL_RULE,
+    decided_on="2026-09-23",
+    derives_from=["usage_survey_answered_both"])
+def usage_served_dry_season():
+    return {r["_id"] for r in _cbn_answered_both()
+            if _answer(r, Q_USE_DRY) in SERVED_CHOICES}
+
+
+@population(
+    name="Premises served in the rainy season (SDWS 26)",
+    unit="records",
+    rule="Of the responses answering both seasons, those whose rainy-season "
+         "answer (WS1.39) is in the served set - choice ids J1qZUqA (every "
+         "day), 6wqmK16 (more than once a day) and h4uZZBz (every two days), "
+         "matched by choice id. Its share of the denominator is the other term "
+         "the SDWS 26 served share averages.",
+    reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+            F_CBN, "WS1.39 (rainy season) in the served choice set")],
+    decided=_SEASONAL_RULE,
+    decided_on="2026-09-23",
+    derives_from=["usage_survey_answered_both"])
+def usage_served_rainy_season():
+    return {r["_id"] for r in _cbn_answered_both()
+            if _answer(r, Q_USE_RAIN) in SERVED_CHOICES}
+
+
+@population(
+    name="Premises served, both seasons (SDWS 26 sensitivity, strictest)",
     unit="records",
     rule="Of the responses answering both seasons, those reporting use at "
          "least every two days in BOTH the dry and the rainy season - choice "
@@ -665,12 +712,17 @@ def usage_survey_answered_both():
          "(every two days). Matched BY CHOICE ID: the declared scale is not "
          "monotonic, because \u201cmore than once a day\u201d sits second, so "
          "matching by position would be wrong. Requiring both seasons is the "
-         "conservative reading.",
+         "strictest reading.",
     reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
             F_CBN, "WS1.18 and WS1.39, both in the served choice set")],
-    decided="The seasonal rule is not settled; this is the conservative branch "
-            "and the alternative is rendered beside it.",
+    decided="Not the SDWS 26 reading. James Walker ruled on 23 September 2026 "
+            "(\u201cRe: Water program dashboard & actions\u201d) that the served "
+            "share is the average of the dry-season and rainy-season shares. "
+            "Carried only inside the derivation panel, as a sensitivity.",
     decided_on="2026-09-23",
+    # a sensitivity reading only: shown inside the derivation panel, never as
+    # a figure or a definitions row (seasonal rule, James Walker, 2026-09-23)
+    internal=True,
     derives_from=["usage_survey_answered_both"])
 def usage_served_both_seasons():
     return {r["_id"] for r in _cbn_answered_both()
@@ -679,15 +731,18 @@ def usage_served_both_seasons():
 
 
 @population(
-    name="Premises served, either season (SDWS 26, permissive)",
+    name="Premises served, either season (SDWS 26 sensitivity, most permissive)",
     unit="records",
-    rule="The same set on the permissive branch: served in EITHER season "
-         "rather than both. Carried so the sensitivity of the parameter to the "
-         "undecided seasonal rule is visible rather than asserted.",
+    rule="The same set on the most permissive reading: served in EITHER "
+         "season rather than both. Carried so the sensitivity of the parameter "
+         "to the seasonal rule stays visible.",
     reads=[("Clean Water || Project Cbn&Gender (annual monitoring survey)",
             F_CBN, "WS1.18 or WS1.39 in the served choice set")],
-    decided="Rendered beside the conservative branch, not instead of it.",
+    decided="Not the SDWS 26 reading: the served share is the average of the "
+            "two seasons (James Walker, 23 September 2026). Carried only inside "
+            "the derivation panel, as a sensitivity.",
     decided_on="2026-09-23",
+    internal=True,
     derives_from=["usage_survey_answered_both"])
 def usage_served_either_season():
     return {r["_id"] for r in _cbn_answered_both()

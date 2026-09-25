@@ -851,3 +851,69 @@ E. coli Pass on 25 April 2025. Three neighbours within 2 km shared cells with it
 (742894071 973 → 602, 742894181 1,264 → 1,116, 742894552 432 → 429 allocated),
 all India Marks at their 300 cap before and after. People served 128,221 →
 128,721 (carbon portfolio 126,780 → 127,280); run `r2025a_barriers_20260923`.
+
+## 23 September 2026 — James Walker's rulings: SDWS 26 seasonal rule and scale mapping; a piped usage survey
+
+**From:** James Walker, Carbon Lead · **Sent:** 23 September 2026, 14:48 UTC ·
+**Subject:** "Re: Water program dashboard & actions" · a reply to Adriaan Mol's two questions of
+the same morning, plus the piped-systems point.
+
+1. **Seasonal rule.** *"We could average or lower of the two. Let's average it to prevent
+   unnecessarily losing credits."* The SDWS 26 served share is the **average** of the dry-season
+   (WS1.18) and rainy-season (WS1.39) served shares, over the premises that answered both. It is
+   no longer the both-seasons reading this report headlined on 23 September.
+2. **Scale mapping.** *"Correct."* Served = *Every day*, *More than 1 time per day*, *Every 2 days*,
+   matched by choice id (`J1qZUqA`, `6wqmK16`, `h4uZZBz`). Confirmed, not provisional.
+3. **Piped systems.** *"We will do the annual survey for the piped systems, and it will be a
+   separate project to the hand pumps. We are obliged to ask the JMP questions, HH size, usage,
+   SDGs etc."* and *"do not need to do so for some time (within 1 year of start date)"*. This
+   overturns the assumption in Adriaan's email that metered systems would not need the survey.
+
+**Applied to the report:**
+
+- `#sdws26` headlines the seasonal average, per scenario and across both scenarios (pooled), live
+  from new `SDWS26` fields `served_dry` and `served_rain` (`tools/rebuild_sdws26.py`) and new
+  populations `usage_served_dry_season` and `usage_served_rainy_season`. On the November 2025 round:
+  Fort-Dauphin 99.5%, Maroantsetra 99.8%, both scenarios 99.6% (was 99.5% on the both-seasons
+  reading).
+- The both-seasons and either-season readings survive **only in the derivation panel** under each
+  average, as a sensitivity. Their populations are now build-internal, so they are not a figure or
+  a definitions row.
+- The section's "How this is worked out" footnote states the rule, the served set and this email as
+  the source. `act-sdws26-annual-round` no longer calls the rule "settled in practice".
+- New action `act-piped-usage-survey`, owner James Walker, due within one year of the piped
+  programme's start date (not yet fixed; the piped VPA-DD is not registered).
+  `act-mor-households-people-served-per` no longer says smart taps answer SDWS 26 directly.
+
+## 23 September 2026 — James Walker's ruling: days operational on multi-outlet sites
+
+**From:** James Walker, Carbon Lead · **Sent:** 23 September 2026, 13:57 UTC ·
+**Subject:** "Re: Days operational: we are applying a hand-pump rule to multi-tap sites"
+
+- *"Uptime / functionality is at a per system level."* Days operational on piped systems and kiosks
+  is assessed per system, not per tap or device.
+- Distance basis: *"1km. Easier to define radius on a map and less subjective."* Outlets within
+  1 km of one another form one service unit. Declared on the page as the parameter
+  `service_unit_radius_km`, citing this email.
+- *"equation 4 takes the minimum of Qpop … and Qm … I imagine Qm will generally be smaller"*. On
+  metered sites the metered volume is expected to be the binding term in Q_y = min(Q_m, Q_pop).
+- The piped VPA-DD is not yet registered, so the method is ours to define and need not be fixed
+  until verification. **Hand pumps are unchanged.**
+
+**Applied to the report:** the smart-meter panel, `act-enduro-move-register-fully` and the Endur'O
+indicator row now state the per-system rule, the 1 km service unit and the binding metered term.
+
+## 23 September 2026 — James Walker's ruling: the Moramanga baseline
+
+**From:** James Walker, Carbon Lead · **Sent:** 23 September 2026, 08:44 UTC ·
+**Subject:** "Re: Moramanga carbon baseline: 331 households, and the boiling numbers"
+
+- *"The meth does not measure baseline fuel consumption. It works out the ERs based on the
+  theoretical amount of energy required to boil 1 litre of water for 5 mins based on the efficiency
+  of the cooking device."* Baseline fuel quantity does not need to be measured.
+- *"the presence of actually boiling does not increase the value of the credits"*. An
+  actual-boiling baseline does not raise credit value.
+
+**Applied to the report:** nothing had to change. The page carries no action or open question on
+measuring baseline fuel quantity, and nowhere says an actual-boiling baseline raises credit value.
+Both points were raised only in email. Checked on 25 September 2026.

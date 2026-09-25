@@ -30,24 +30,6 @@ REGQ = ("mWater register: entities/water_point where _managed_by = "
 # expression -> derivation. `arith` is a JS expression evaluated on the page so
 # the working shown is the working that produced the value on screen.
 D = {
- "(100*SDWS26.scenarios['Fort-Dauphin'].served_both_seasons/SDWS26.scenarios['Fort-Dauphin'].answered_both).toFixed(1)": dict(pop='usage_served_both_seasons',
-   arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].served_both_seasons)} of ${fmt(SDWS26.scenarios['Fort-Dauphin'].answered_both)} premises answering both seasons = ${(100*SDWS26.scenarios['Fort-Dauphin'].served_both_seasons/SDWS26.scenarios['Fort-Dauphin'].answered_both).toFixed(1)}% served on the both seasons (conservative) rule`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "(100*SDWS26.scenarios['Fort-Dauphin'].served_either_season/SDWS26.scenarios['Fort-Dauphin'].answered_both).toFixed(1)": dict(pop='usage_served_either_season',
-   arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].served_either_season)} of ${fmt(SDWS26.scenarios['Fort-Dauphin'].answered_both)} premises answering both seasons = ${(100*SDWS26.scenarios['Fort-Dauphin'].served_either_season/SDWS26.scenarios['Fort-Dauphin'].answered_both).toFixed(1)}% served on the either season (permissive) rule`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "(100*SDWS26.scenarios['Maroantsetra'].served_both_seasons/SDWS26.scenarios['Maroantsetra'].answered_both).toFixed(1)": dict(pop='usage_served_both_seasons',
-   arith="`${fmt(SDWS26.scenarios['Maroantsetra'].served_both_seasons)} of ${fmt(SDWS26.scenarios['Maroantsetra'].answered_both)} premises answering both seasons = ${(100*SDWS26.scenarios['Maroantsetra'].served_both_seasons/SDWS26.scenarios['Maroantsetra'].answered_both).toFixed(1)}% served on the both seasons (conservative) rule`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "(100*SDWS26.scenarios['Maroantsetra'].served_either_season/SDWS26.scenarios['Maroantsetra'].answered_both).toFixed(1)": dict(pop='usage_served_either_season',
-   arith="`${fmt(SDWS26.scenarios['Maroantsetra'].served_either_season)} of ${fmt(SDWS26.scenarios['Maroantsetra'].answered_both)} premises answering both seasons = ${(100*SDWS26.scenarios['Maroantsetra'].served_either_season/SDWS26.scenarios['Maroantsetra'].answered_both).toFixed(1)}% served on the either season (permissive) rule`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- '(100*SDWS26.served_both_seasons/SDWS26.answered_both).toFixed(1)': dict(pop='usage_served_both_seasons',
-   arith='`${fmt(SDWS26.served_both_seasons)} of ${fmt(SDWS26.answered_both)} premises answering both seasons = ${(100*SDWS26.served_both_seasons/SDWS26.answered_both).toFixed(1)}% served on the both seasons (conservative) rule`',
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- '(100*SDWS26.served_either_season/SDWS26.answered_both).toFixed(1)': dict(pop='usage_served_either_season',
-   arith='`${fmt(SDWS26.served_either_season)} of ${fmt(SDWS26.answered_both)} premises answering both seasons = ${(100*SDWS26.served_either_season/SDWS26.answered_both).toFixed(1)}% served on the either season (permissive) rule`',
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
  'SDWS26.answered_both': dict(pop='usage_survey_answered_both',
    arith='`${fmt(SDWS26.answered_both)}`',
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
@@ -60,9 +42,6 @@ D = {
  'SDWS26.responses_total': dict(pop='usage_survey_answered_both',
    arith='`${fmt(SDWS26.responses_total)}`',
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- 'SDWS26.rule_difference': dict(pop='usage_survey_answered_both',
-   arith='`${fmt(SDWS26.rule_difference)}`',
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
  "SDWS26.scenarios['Fort-Dauphin'].answered_both": dict(pop='usage_survey_answered_both',
    arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].answered_both)}`",
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
@@ -71,12 +50,6 @@ D = {
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
  "SDWS26.scenarios['Fort-Dauphin'].hh_size_mean": dict(pop='usage_survey_answered_both',
    arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].hh_size_mean)}`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "SDWS26.scenarios['Fort-Dauphin'].served_both_seasons": dict(pop='usage_served_both_seasons',
-   arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].served_both_seasons)}`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "SDWS26.scenarios['Fort-Dauphin'].served_either_season": dict(pop='usage_served_either_season',
-   arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].served_either_season)}`",
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
  "SDWS26.scenarios['Fort-Dauphin'].water_points": dict(pop='usage_survey_answered_both',
    arith="`${fmt(SDWS26.scenarios['Fort-Dauphin'].water_points)}`",
@@ -93,20 +66,8 @@ D = {
  "SDWS26.scenarios['Maroantsetra'].hh_size_mean": dict(pop='usage_survey_answered_both',
    arith="`${fmt(SDWS26.scenarios['Maroantsetra'].hh_size_mean)}`",
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "SDWS26.scenarios['Maroantsetra'].served_both_seasons": dict(pop='usage_served_both_seasons',
-   arith="`${fmt(SDWS26.scenarios['Maroantsetra'].served_both_seasons)}`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- "SDWS26.scenarios['Maroantsetra'].served_either_season": dict(pop='usage_served_either_season',
-   arith="`${fmt(SDWS26.scenarios['Maroantsetra'].served_either_season)}`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
  "SDWS26.scenarios['Maroantsetra'].water_points": dict(pop='usage_survey_answered_both',
    arith="`${fmt(SDWS26.scenarios['Maroantsetra'].water_points)}`",
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- 'SDWS26.served_both_seasons': dict(pop='usage_served_both_seasons',
-   arith='`${fmt(SDWS26.served_both_seasons)}`',
-   forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
- 'SDWS26.served_either_season': dict(pop='usage_served_either_season',
-   arith='`${fmt(SDWS26.served_either_season)}`',
    forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]),
 
  "S.n": dict(pop="managed_fleet",
@@ -331,6 +292,45 @@ for _pid in _json.load(open(_popfile, encoding="utf8"))["populations"]:
     # the same figure written with a dot, for text that sits inside a
     # single-quoted JavaScript string (the TRACE rows)
     D[f"POPS.populations.{_pid}.size"] = D[f"POPS.populations['{_pid}'].size"]
+
+# SDWS 26. The served share is the AVERAGE of the dry-season (WS1.18) and
+# rainy-season (WS1.39) served shares - James Walker's ruling of 23 September
+# 2026. The both-seasons and either-season readings appear here, in the
+# working under each average, and nowhere else on the page.
+_SDWS26_FORMS = [("Clean Water || Project Cbn&Gender (annual monitoring survey)",
+                  "2eeb86824b4545eca33db9e7cf7dcbd4",
+                  "WS1.18 dry season and WS1.39 rainy season, matched by choice id")]
+_SDWS26_RULE = ("SDWS 26 seasonal rule: the served share is the average of the "
+                "dry-season and rainy-season served shares, not the share served in "
+                "both seasons - James Walker, Carbon Lead, 23 September 2026, "
+                "\u201cRe: Water program dashboard & actions\u201d. Served = every "
+                "day, more than once a day or every two days, by choice id; "
+                "confirmed in the same email.")
+_AVG = ("`dry season ${fmt(§.served_dry)} of ${fmt(§.answered_both)} = "
+        "${(100*§.served_dry/§.answered_both).toFixed(1)}%; rainy season "
+        "${fmt(§.served_rain)} of ${fmt(§.answered_both)} = "
+        "${(100*§.served_rain/§.answered_both).toFixed(1)}%; average = "
+        "${((100*§.served_dry/§.answered_both+100*§.served_rain/§.answered_both)/2).toFixed(1)}%"
+        " \u2014 sensitivity only, not the reading: served in both seasons "
+        "${fmt(§.served_both_seasons)} = "
+        "${(100*§.served_both_seasons/§.answered_both).toFixed(1)}%, served in "
+        "either season ${fmt(§.served_either_season)} = "
+        "${(100*§.served_either_season/§.answered_both).toFixed(1)}%`")
+for _p in ("SDWS26", "SDWS26.scenarios['Fort-Dauphin']",
+           "SDWS26.scenarios['Maroantsetra']"):
+    D[f"((100*{_p}.served_dry/{_p}.answered_both+100*{_p}.served_rain/{_p}.answered_both)/2).toFixed(1)"] = dict(
+        pop='usage_survey_answered_both', arith=_AVG.replace("§", _p),
+        forms=_SDWS26_FORMS, why=_SDWS26_RULE)
+    for _k, _pid, _season in (("served_dry", "usage_served_dry_season", "dry season"),
+                              ("served_rain", "usage_served_rainy_season", "rainy season")):
+        D[f"{_p}.{_k}"] = dict(pop=_pid, arith=f"`${{fmt({_p}.{_k})}}`",
+                               forms=_SDWS26_FORMS)
+        D[f"(100*{_p}.{_k}/{_p}.answered_both).toFixed(1)"] = dict(
+            pop=_pid,
+            arith=(f"`${{fmt({_p}.{_k})}} of ${{fmt({_p}.answered_both)}} premises "
+                   f"answering both seasons = ${{(100*{_p}.{_k}/{_p}.answered_both)"
+                   f".toFixed(1)}}% served in the {_season}`"),
+            forms=_SDWS26_FORMS)
 
 for k in ("act", "watch", "closed", "rows", "nodate", "open"):
     D[f"ACTN.{k}"] = dict(pop=None, actions=True,
