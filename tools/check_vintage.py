@@ -61,6 +61,13 @@ def main():
                     help="a manifest copy, for the negative test")
     ap.add_argument("--no-write", action="store_true",
                     help="do not write data/extract_vintage.json")
+    # The day rule above cannot see a file left over from yesterday or from an
+    # earlier run the same day. A build that pulls sets SANITAP_RUN_STARTED
+    # (tools/weekly_build.py), and then every extract must have been written
+    # by THIS run. A publish that does not pull leaves it unset.
+    ap.add_argument("--since", default=os.environ.get("SANITAP_RUN_STARTED"),
+                    help="local ISO time the run started; any extract written "
+                         "before it fails")
     a = ap.parse_args()
     asof = datetime.date.fromisoformat(a.as_of)
 
@@ -112,6 +119,10 @@ def main():
         if age > limit:
             fails.append(f"{name}: pulled {written}, {age} days before this "
                          f"build ({a.as_of}); limit is {limit}")
+        elif a.since and info["written"][:19] < a.since[:19]:
+            fails.append(f"{name}: written {info['written'][:19]}, before this "
+                         f"run started at {a.since[:19]} - left over from an "
+                         f"earlier pull, not pulled by this run")
 
     pulls = [(n, w) for n, w, _v, _a, _l in rows if w]
     oldest = min(w for _n, w in pulls) if pulls else None

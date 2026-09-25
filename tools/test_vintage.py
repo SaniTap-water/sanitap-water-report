@@ -90,6 +90,31 @@ def main():
     if not followed:
         fails.append("the floor did not follow the oldest extract down")
 
+    # 5. the run-level rule: a file written the same day but before this run
+    # started passes the day rule and must still fail. Every extract is made
+    # current, then one is set a second before the run's start.
+    same = json.loads(json.dumps(man))
+    start = datetime.datetime.now().replace(microsecond=0)
+    for k in same["files"]:
+        same["files"][k]["written"] = (start + datetime.timedelta(seconds=5)).isoformat()
+    tmp3 = os.path.join(tempfile.gettempdir(), "vintage_negative3.json")
+    json.dump(same, open(tmp3, "w", encoding="utf8"))
+    since = ["--since", start.isoformat()]
+    r_ok = subprocess.run([sys.executable, CHECK, "--manifest", tmp3, "--as-of", asof,
+                           "--no-write"] + since, capture_output=True, text=True)
+    same["files"][victim]["written"] = (start - datetime.timedelta(seconds=1)).isoformat()
+    json.dump(same, open(tmp3, "w", encoding="utf8"))
+    r_bad = subprocess.run([sys.executable, CHECK, "--manifest", tmp3, "--as-of", asof,
+                            "--no-write"] + since, capture_output=True, text=True)
+    named5 = victim in r_bad.stdout and "before this run started" in r_bad.stdout
+    print(f"5. every extract written by this run -> exit {r_ok.returncode}; "
+          f"{victim} written 1 s before the run started -> exit {r_bad.returncode}, "
+          f"names it: {named5}")
+    if r_ok.returncode != 0:
+        fails.append("extracts all written by this run should pass the run rule")
+    if r_bad.returncode == 0 or not named5:
+        fails.append(f"an extract written before this run started did NOT fail and name {victim}")
+
     print()
     if fails:
         print("TEST FAILED:")

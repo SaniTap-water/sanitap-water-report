@@ -895,7 +895,10 @@ Three rules follow:
    files themselves and fails on any repeated `_id`.
 2. **Every extract carries its pull date, and no extract may predate the build it feeds.**
    `tools/check_vintage.py` enforces it. A file left over from a previous week fails the build and
-   is named.
+   is named. The day rule alone cannot see a file from yesterday or from an earlier run the same
+   day, so a build that pulls (`weekly_build.py`) sets `SANITAP_RUN_STARTED`, and every extract
+   must then have been written after that moment; one written before it fails and is named.
+   `tools/test_vintage.py` proves both rules fail.
 3. **The page states the OLDEST pull, never the newest.** One extract pulled today beside one left
    over from last week must not read as "data to today". A form's own last record is a different
    quantity — a quiet form has an old last record and is perfectly current — so the two are

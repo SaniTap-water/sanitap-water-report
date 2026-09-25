@@ -14,7 +14,7 @@ build reads, and the manifest records what each one holds.
     python3 tools/pull_extract.py --write   # pull, overwrite, write the manifest
     python3 tools/pull_extract.py --show
 """
-import csv, datetime, io, json, os, subprocess, sys, time
+import csv, datetime, io, json, os, re, subprocess, sys, time
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
@@ -121,8 +121,10 @@ def call(tool, args, tries=3):
             except json.JSONDecodeError as e:
                 last = f"unparseable reply: {e}"
         else:
+            # cli_call.mjs exits 0 and prints the tool's error on stdout (a
+            # failed login included); stderr carries only the server banner
             last = (f"exit {r.returncode}: "
-                    + " ".join((r.stderr or r.stdout or "").split())[-160:])
+                    + " ".join((r.stdout.strip() or r.stderr or "").split())[-160:])
         if attempt + 1 < tries:
             time.sleep(5)
     raise PullFailed(f"{tool} {json.dumps(args)[:90]}: {last}")
@@ -271,11 +273,23 @@ def main():
     # an eleven-day-old register meant a pump rehabilitated last week was not
     # in the fleet and the page still said 736 with confidence.
     p = os.path.join(EXPORTS, "wp_madavance.csv")
-    r = subprocess.run(["node", PULL_ENTITIES, p], capture_output=True,
-                       text=True, cwd=REPO)
+    # Retried like the form pulls: the real build of 25 September died on one
+    # read ETIMEDOUT here, the only pull that had no retry. The walk writes
+    # nothing unless it completes and agrees with the single query, so a
+    # retry cannot leave a half-written register.
+    for attempt in range(3):
+        r = subprocess.run(["node", PULL_ENTITIES, p], capture_output=True,
+                           text=True, cwd=REPO)
+        if r.returncode == 0:
+            break
+        print(f"  wp_madavance.csv: attempt {attempt + 1} failed, retrying")
+        time.sleep(5)
     if r.returncode != 0:
-        failed.append("wp_madavance.csv: " + " ".join(
-            (r.stderr or r.stdout or "").split())[-200:])
+        # the error's own message line, not the tail of a stack trace
+        out = (r.stderr or r.stdout or "").splitlines()
+        msg = next((l.strip() for l in out if re.match(r"\s*(\w*Error|MISMATCH)", l)),
+                   " ".join(" ".join(out).split())[-200:])
+        failed.append(f"wp_madavance.csv: 3 attempts failed; last: {msg[:200]}")
     else:
         n = sum(1 for _ in io.open(p, encoding="utf8", errors="replace")) - 1
         codes = set()

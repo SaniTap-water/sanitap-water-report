@@ -278,6 +278,11 @@ def main():
         # proof run exercise everything else against extracts already on disk.
         # The schedule never sets it.
         skip = os.environ.get("SANITAP_SKIP_PULL") == "1"
+        if not skip:
+            # every extract must be written by this run: check_vintage.py,
+            # called by publish.sh, fails any file older than this moment
+            os.environ["SANITAP_RUN_STARTED"] = \
+                datetime.datetime.now().isoformat(timespec="seconds")
         for script, args, required in STEPS:
             if skip and script.endswith("pull_extract.py"):
                 log(f"{tag}SKIPPING the extract pull (SANITAP_SKIP_PULL=1); "
