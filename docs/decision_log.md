@@ -917,3 +917,11 @@ indicator row now state the per-system rule, the 1 km service unit and the bindi
 **Applied to the report:** nothing had to change. The page carries no action or open question on
 measuring baseline fuel quantity, and nowhere says an actual-boiling baseline raises credit value.
 Both points were raised only in email. Checked on 25 September 2026.
+
+Re-checked on 25 September 2026 against the repository, every archived edition, git history and the
+live page: no published text ever referred to form `3ef4385a619244c7ad129169ac1ec71f` ("Piped Water
+|| Baseline Cbn"), called actual boiling a stronger baseline or "the core of the emission reduction
+case", or carried an action on Moramanga fuel quantity. Nothing to remove and no action to close.
+The ruling is now stated on the page as the collapsed footnote `piped-baseline-ruling` in the
+Endur'O smart-meter panel, quoted from the email (QUOTES `jw_2026_09_23_moramanga_baseline`). The
+boiling and stove counts from the survey are not on the page: the build does not pull that form.
