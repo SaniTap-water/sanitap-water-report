@@ -1028,3 +1028,21 @@ Adriaan Mol's instruction (it had deliberately held no VPA-DD).
 - **`act-sensor-sample` stays open.** The email "StrokeMeter: how many units, and how many for
   calibration" to ralf@curtech.nl is in Drafts (isDraft true, 26 Sep 2026 05:59 UTC), not Sent Items.
   Noted as "briefing drafted 26 Sep, awaiting send"; it closes, citing that email, once sent.
+
+## 26 September 2026 — Adriaan Mol: the calibration sample is 50 pump calibrations a year, not 50 per stratum
+
+The StrokeMeter calibration sample of 50 is **50 pump calibrations a year**: each a timed 5-minute discharge
+test (SDWS 28) against the meter installed on the pump, carried out with a small set of **about 5 portable
+calibration pods** (one of them a spare) moved from pump to pump. It is separate from the **at least 100
+permanently installed stroke meters** (50 per stratum, James Walker 21 Sep). Declared as `calib_pumps_per_year`
+and `calib_pods` in the page parameters.
+
+- Stroke-test SOP v2.1, French (`Work in Progress/SOP_SDWS27_StrokeTest_v2.1_Revise_2026.docx`) and English
+  (`SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx`), edited in place as unsigned drafts: the
+  revision note read "30 to 50 pumps per stratum" and chapter 10's calibration sample size read "at least 50
+  pumps per stratum"; both now say 50 pump calibrations a year, with the pods and the separation from the
+  installed meters. A change-log line was added under each revision note. The English chapter 10 calibration
+  frequency still read "at least 1 time per quarter" and is corrected to annual re-verification, as the French
+  text and the revision note already said.
+- On the page: `act-sensor-sample`, the stroke-test open question on quarterly calibration, and
+  `act-resolve-sdws-27-sdws` say the same.
