@@ -112,6 +112,43 @@ def status_problems(status, in_extract):
     return bad
 
 
+def dispensing_events():
+    """The Curtech dispensing-events extract, or None until the build writes it.
+    Each event: device_id, timestamp, litres, card, credits, shopkeeper."""
+    p = os.path.join(REPO, PIPED["dispensing_events"]["path"])
+    if not os.path.isfile(p):
+        return None
+    doc = json.load(open(p, encoding="utf8"))
+    return doc.get("events", doc) if isinstance(doc, dict) else doc
+
+
+def operational(e, events):
+    """(date, source, from_feed) for a system admitted by decision. Once the
+    dispensing-events feed exists, the date is the first dispense on one of the
+    system's devices that is not a test (test shopkeepers and test cards are
+    excluded); until then the recorded date stands."""
+    recorded = (e.get("works_complete"),
+                "the date of commissioning recorded on its mWater registration", False)
+    if events is None:
+        return recorded
+    cfg = PIPED["dispensing_events"]
+    devices = {str(x) for x in (e.get("devices") or [])}
+    test_sk = set(cfg.get("test_shopkeepers") or [])
+    test_cards = {str(x) for x in (cfg.get("test_cards") or [])}
+    real = sorted((str(ev.get("timestamp") or ""), str(ev.get("device_id")))
+                  for ev in events
+                  if str(ev.get("device_id")) in devices
+                  and ev.get("shopkeeper") not in test_sk
+                  and str(ev.get("card")) not in test_cards
+                  and str(ev.get("timestamp") or "")[:2] == "20")
+    if not real:
+        return (recorded[0], recorded[1] + "; the Curtech feed holds no non-test dispense on "
+                + ("its devices" if devices else "a device recorded for it"), False)
+    ts, dev = real[0]
+    return (ts[:10], f"its first non-test dispense, on device {dev} at {ts[:16].replace('T', ' ')}, "
+            "from the Curtech dispensing-events feed", True)
+
+
 def summary(results):
     cfu = sorted(q for q in (qty(r, Q_ECOLI) for _c, r, _d in results) if q is not None)
     chl = [qty(r, Q_CHLORINE) for _c, r, _d in results]
@@ -161,10 +198,14 @@ def build():
             continue
         by_sys.setdefault(code, []).append((code, r, result_date(r)))
 
+    events = dispensing_events()
     systems, managed_res, baseline_res, not_managed_res = {}, [], [], []
     for code, e in sorted(status.items()):
         res = by_sys.get(code, [])
         works = e.get("works_complete")
+        op_source, op_from_feed = None, False
+        if e.get("admitted_by_decision"):
+            works, op_source, op_from_feed = operational(e, events)
         post = [x for x in res if works and x[2] and x[2] > works]
         base = [x for x in res if x not in post]
         tested = bool(post) or bool(e.get("post_rehab_test"))
@@ -183,6 +224,8 @@ def build():
         systems[code] = {"name": e.get("name") or ext.get(code), "declared": e["status"],
                          "status": eff, "works_complete": works,
                          "admitted_by_decision": e.get("admitted_by_decision"),
+                         "operational_source": op_source,
+                         "operational_from_feed": op_from_feed,
                          "water_points": e.get("water_points") or [],
                          "wq_on_record": bool(post),
                          "post_rehab_first": (min(d for _c, _r, d in post) if post

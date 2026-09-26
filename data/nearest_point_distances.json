@@ -1,7 +1,7 @@
 {
  "note": "Nearest other located register point, per water point cited in the corrections log. Derived from the population located_register_points on every build.",
  "population": "located_register_points",
- "computed": "2026-09-25",
+ "computed": "2026-09-26",
  "distances": {
   "670401897": {
    "metres": 471,

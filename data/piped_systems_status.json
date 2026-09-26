@@ -176,7 +176,9 @@
    "water_points": [
     "1125843383"
    ],
-   "location": "Antsahakely, Fiombonana, Antananarivo Avaradrano, Analamanga; -18.89313, 47.47879"
+   "location": "Antsahakely, Fiombonana, Antananarivo Avaradrano, Analamanga; -18.89313, 47.47879",
+   "devices": [],
+   "devices_note": "Curtech device ids of this kiosk's meters, to be recorded when the dispensing-events feed arrives; the operational date is re-derived from the first non-test dispense on any of them."
   },
   "928174397": {
    "name": "Forage Andringitra",

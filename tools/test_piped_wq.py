@@ -100,6 +100,30 @@ def main():
             or s.get("results_baseline") != len(dates) - after:
         fails.append("a system admitted by decision counted results from before its operational date")
 
+    # 7. once the Curtech dispensing-events feed exists, a system admitted by
+    # decision takes its operational date from the first NON-TEST dispense on
+    # its device: a test shopkeeper and a test card are both skipped
+    kid = next((c for c, e in REAL["systems"].items() if e.get("admitted_by_decision")), None)
+    if kid:
+        feed = os.path.join(tempfile.gettempdir(), "dispensing_events_test.json")
+        json.dump({"events": [
+            {"device_id": "DEV-T", "timestamp": "2026-09-08T09:00:00", "shopkeeper": "SK01", "card": "C1", "litres": 20},
+            {"device_id": "DEV-T", "timestamp": "2026-09-09T10:00:00", "shopkeeper": "SK03", "card": "TESTCARD", "litres": 20},
+            {"device_id": "OTHER", "timestamp": "2026-09-05T08:00:00", "shopkeeper": "SK03", "card": "C9", "litres": 20},
+            {"device_id": "DEV-T", "timestamp": "2026-09-16T07:45:00", "shopkeeper": "SK03", "card": "C2", "litres": 20}]},
+            open(feed, "w", encoding="utf8"))
+        cfg = R.PIPED["dispensing_events"]
+        saved = (cfg["path"], list(cfg["test_cards"]))
+        cfg["path"], cfg["test_cards"] = feed, ["TESTCARD"]
+        doc = copy.deepcopy(REAL); doc["systems"][kid]["devices"] = ["DEV-T"]
+        out, err = run(doc)
+        cfg["path"], cfg["test_cards"] = saved
+        s = out["systems"][kid] if out else {}
+        print(f"7. feed present: {kid} operational {s.get('works_complete')} (expected 2026-09-16), "
+              f"from the feed: {s.get('operational_from_feed')}")
+        if err or s.get("works_complete") != "2026-09-16" or not s.get("operational_from_feed"):
+            fails.append("the operational date was not re-derived from the first non-test dispense")
+
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1
     print("\nthe join rule holds: baseline never counts, a system joins only after "

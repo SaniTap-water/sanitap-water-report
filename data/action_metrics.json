@@ -1,5 +1,5 @@
 {
- "counted": "2026-09-25",
+ "counted": "2026-09-26",
  "metrics": {
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -24,7 +24,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 7
+   "value": 8
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",

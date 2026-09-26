@@ -77,6 +77,15 @@
   "note": "The piped water-quality figures (tools/rebuild_piped_wq.py). Which systems are managed is data/piped_systems_status.json, not a rule here: a piped system joins the managed portfolio only when its rehabilitation works are complete and its post-rehabilitation water-quality tests are done (Adriaan Mol, 25 Sep 2026). A result dated on or before a system's works completion is baseline and never counts toward a managed figure.",
   "wq_form": "0ac68d8274d24f54af0c28b29119b77d",
   "operator_group": "group:c305b9b85f41417387b553d9a33c795b",
-  "status_file": "data/piped_systems_status.json"
+  "status_file": "data/piped_systems_status.json",
+  "dispensing_events": {
+   "note": "The Curtech dispensing-events extract (act-enduro-feed), once the build writes it. A system admitted by decision takes its operational date from the first dispense on one of its devices that is not a test: test shopkeepers and test cards are excluded. Until the extract exists, the recorded date in data/piped_systems_status.json stands.",
+   "path": "data/curtech_dispensing_events.json",
+   "test_shopkeepers": [
+    "SK01",
+    "SK02"
+   ],
+   "test_cards": []
+  }
  }
 }
