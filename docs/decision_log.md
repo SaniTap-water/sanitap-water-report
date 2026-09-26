@@ -1011,3 +1011,20 @@ into act-re-run-improved-cookstove. The India Mark question of 26 Sep is a **dra
 SOPs: calendar v1.7 and stroke-test v2.1 (French and English), each beside its original. The VPA-DD
 was copied into Methodology of record with its SHA-256, and that folder's README rewritten, on
 Adriaan Mol's instruction (it had deliberately held no VPA-DD).
+
+## 26 September 2026 — Adriaan Mol: sign-off of the new SOP versions; the Curtech briefing is still a draft
+
+- **Calendar SOP v1.7** gets its own sign-off action, `act-sop-calendar-v17-signoff` (Angelo Nahavitatsara /
+  MadAvance, proposed 10 Oct 2026): approve v1.7, brief every field team in French on the changes (347-day
+  cap, sensor pumps only above it, lost-calendar handling, photograph before replacing), then retire v1.6.
+  Evidence: the signed v1.7 filed in SOPs and a dated briefing note. No existing action was equivalent:
+  `act-adopt-consolidated-gardien-calendar` closed on 21 Sep on v1.5, and `act-calendar-custody` issues
+  one rule of the briefing, not the SOP.
+- **Stroke-test SOP v2.1** sign-off (proposed id `act-sop-stroke-test-v21-signoff`) is merged into
+  `act-move-stroke-test-sop`: same owner (Jan), same date (31 Oct 2026), same ask. It now covers v2.1 in
+  French and English, moving the French version from Work in Progress to SOPs, and retiring v2.0. Its
+  condition changes from a file matching "StrokeTest" in SOPs to a logged decision, because moving an
+  unsigned file would have closed it.
+- **`act-sensor-sample` stays open.** The email "StrokeMeter: how many units, and how many for
+  calibration" to ralf@curtech.nl is in Drafts (isDraft true, 26 Sep 2026 05:59 UTC), not Sent Items.
+  Noted as "briefing drafted 26 Sep, awaiting send"; it closes, citing that email, once sent.

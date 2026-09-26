@@ -1,10 +1,10 @@
 {
  "evaluated": "2026-09-26",
  "kinds": {
-  "artefact": 8,
+  "artefact": 7,
   "children": 1,
   "data": 46,
-  "decision": 42,
+  "decision": 44,
   "form": 7,
   "none": 22
  },
@@ -551,10 +551,10 @@
   },
   "act-move-stroke-test-sop": {
    "evaluated": "2026-09-26",
-   "evidence": "nothing matching \"StrokeTest\" in Water Documents/SOPs",
-   "kind": "artefact",
+   "evidence": "no answer logged",
+   "kind": "decision",
    "satisfied": false,
-   "says": "closes when the stroke-test SOP sits in the SOPs folder, signed",
+   "says": "closes when the signed v2.1 (French and English) in SOPs is logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-move-weekly-mwater-backup": {
@@ -908,6 +908,14 @@
    "kind": "decision",
    "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-sop-calendar-v17-signoff": {
+   "evaluated": "2026-09-26",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the signed v1.7 and the dated briefing note are logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-standardised-stroke-test-basis": {

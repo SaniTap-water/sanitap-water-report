@@ -436,14 +436,11 @@
   "when_satisfied": "OK"
  },
  "act-move-stroke-test-sop": {
-  "folder": "Water Documents/SOPs",
-  "kind": "artefact",
-  "name_contains": "StrokeTest",
-  "says": "closes when the stroke-test SOP sits in the SOPs folder, signed",
-  "version": "v2.0",
-  "where": "sharepoint",
+  "kind": "decision",
+  "question": "Are the French and English stroke-test SOP v2.1 signed, the French one moved from Work in Progress to SOPs, and v2.0 retired?",
+  "says": "closes when the signed v2.1 (French and English) in SOPs is logged in data/decisions.json",
   "closure": "evidence",
-  "closes_when": "the signed stroke-test SOP v2.0 is filed in Water Documents/SOPs"
+  "closes_when": "the signed stroke-test SOP v2.1, French and English, is filed in Water Documents/SOPs and v2.0 is retired"
  },
  "act-move-weekly-mwater-backup": {
   "kind": "none",
@@ -729,7 +726,7 @@
   "kind": "none",
   "says": "no closing condition: a briefing is delivered or it is not, and no system records it",
   "closure": "manual",
-  "closes_when": "Adriaan marks the Curtech briefing delivered"
+  "closes_when": "the email “StrokeMeter: how many units, and how many for calibration” to ralf@curtech.nl is in Adriaan's Sent Items"
  },
  "act-settle-baseline-boiling-device": {
   "kind": "decision",
@@ -952,5 +949,12 @@
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
   "closes_when": "James Walker's written confirmation of the fNRB in the piped VPA-DD as submitted"
+ },
+ "act-sop-calendar-v17-signoff": {
+  "kind": "decision",
+  "question": "Is calendar SOP v1.7 signed and filed in SOPs, and is there a dated note of the French briefing to every field team?",
+  "says": "closes when the signed v1.7 and the dated briefing note are logged in data/decisions.json",
+  "closure": "evidence",
+  "closes_when": "the signed calendar SOP v1.7 is filed in Water Documents/SOPs and a dated note of the French field-team briefing exists; v1.6 retired"
  }
 }

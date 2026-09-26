@@ -431,7 +431,7 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the workbook: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 56,
-   "evidence": 45,
+   "evidence": 46,
    "manual": 25
   },
   "actions": {
@@ -892,7 +892,7 @@
    },
    "act-move-stroke-test-sop": {
     "type": "evidence",
-    "closes_when": "the signed stroke-test SOP v2.0 is filed in Water Documents/SOPs",
+    "closes_when": "the signed stroke-test SOP v2.1, French and English, is filed in Water Documents/SOPs and v2.0 is retired",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1186,7 +1186,7 @@
    },
    "act-sensor-sample": {
     "type": "manual",
-    "closes_when": "Adriaan marks the Curtech briefing delivered",
+    "closes_when": "the email “StrokeMeter: how many units, and how many for calibration” to ralf@curtech.nl is in Adriaan's Sent Items",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
@@ -1197,6 +1197,13 @@
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-sop-calendar-v17-signoff": {
+    "type": "evidence",
+    "closes_when": "the signed calendar SOP v1.7 is filed in Water Documents/SOPs and a dated note of the French field-team briefing exists; v1.6 retired",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-26"
    },
    "act-standardised-stroke-test-basis": {
     "type": "evidence",
@@ -1452,6 +1459,12 @@
      "date": "2026-09-21",
      "subject": "Re: Water program dashboard & actions",
      "answer": "Sensors on a sample of 50 per stratum, to be safe; the actual days claimable for those 100, the cap on the rest."
+    },
+    {
+     "sender": "Adriaan Mol (draft, not sent)",
+     "date": "2026-09-26",
+     "subject": "StrokeMeter: how many units, and how many for calibration",
+     "answer": "Briefing drafted 26 Sep, awaiting send: at least 100 field units (50 per stratum), calibration sample 50 re-checked annually."
     }
    ],
    "act-calendar-custody": [
