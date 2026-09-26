@@ -25,6 +25,20 @@
   "systems": 1,
   "tap_recorded": 0
  },
+ "baseline_fuel": {
+  "answered": 331,
+  "counts": {
+   "agricultural_waste": 0,
+   "charcoal": 195,
+   "electricity": 1,
+   "lpg": 1,
+   "other": 0,
+   "wood": 134
+  },
+  "form": "3ef4385a619244c7ad129169ac1ec71f",
+  "question": "4.1.2.2.4.1",
+  "responses": 331
+ },
  "excluded": {
   "hand_pump_on_piped_form": {
    "codes": [
@@ -85,7 +99,7 @@
   "taps_installed": 1,
   "taps_unbound": 1
  },
- "pulled": "2026-09-25",
+ "pulled": "2026-09-26",
  "responses": 45,
  "status_counts": {
   "in_process": 4,

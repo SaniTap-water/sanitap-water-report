@@ -168,6 +168,12 @@
    "extracted": "Registered values do not change between runs. People served is live on this page; calendar custody is as at the date in its cell; the register was pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>.",
    "filter": "One row per input of the baseline-emissions equation above.",
    "columns": "<b>Value</b>: the registered or applied value, or the live figure it rests on. <b>Evidence status</b>: whether that value is sourced, and whether it is evidenced for the current monitoring period."
+  },
+  "fuelsplit": {
+   "source": "Hand pumps: the registered VPA-DD (GS12600_GS12601 VPA-1, VPA-DD V2), SDWS 6 on p.69 and SDWS 8 on p.71, declared as parameters. Moramanga: the piped-water carbon baseline survey <a href=\"https://portal.mwater.co/#/forms/3ef4385a619244c7ad129169ac1ec71f\" target=\"_blank\" rel=\"noopener\">Piped Water || Baseline Cbn</a> (<span class=\"mono\">3ef4385a619244c7ad129169ac1ec71f</span>), question <span class=\"mono\">4.1.2.2.4.1</span>. Antananarivo: Sustainable Energy for All (2024), &ldquo;Integrated Energy Access Planning&rdquo;, as quoted in the VPA-DD, p.72.",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['baseline_moramanga.json'].pulled\"></span> by the weekly build; the VPA-DD values are fixed at registration.",
+   "filter": "Hand pumps: the two carbon districts. Moramanga: every final response on the survey, the four piped systems in process. Antananarivo: the onboarded kiosk and the sites not yet onboarded alike, until they have a survey of their own.",
+   "columns": "<b>Wood</b>, <b>Charcoal</b>, <b>Other fuel</b>: the main fuel for boiling water. For Moramanga it is the dry-season answer, counted per household and divided by all responses (count in brackets). <b>Three-stone fire</b>, <b>Improved cookstove</b>: the share of premises by stove (SDWS 6); not computed for Moramanga."
   }
  }
 }

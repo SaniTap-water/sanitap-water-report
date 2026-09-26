@@ -1,6 +1,7 @@
 {
  "counts": {
   "appel_signalement_pannes.csv": 2829,
+  "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
   "first_rehab_current.json": 0,

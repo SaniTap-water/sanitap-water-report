@@ -54,6 +54,8 @@ SYS_REG_FORM, SR_SYSTEM = "44044e27c0f24cc4a432a38b09886684", "1c1893f3"
 PT_REG_FORM, PR_POINT, PR_SYSTEM, PR_TAPS, PR_TESTED = (
     "8a3af50ceec84cda85d454d96079991d", "8f174aec", "e5380235", "44faf0f2", "ebf4c6ec")
 TESTED_YES = "mXEQQFB"   # 3.1 commissioning test dispenses done: Yes
+# the Moramanga carbon baseline survey: main fuel for boiling, dry season
+BASELINE_FORM, Q_DRY_FUEL = "3ef4385a619244c7ad129169ac1ec71f", "7c45cdb3523e404b93c9d8c64a485393"
 
 
 class RuleBroken(Exception):
@@ -278,7 +280,26 @@ def build():
         "managed_kiosk_points": sorted(kiosk_points),
         "managed_kiosk_wq_results": len(on_point),
     }
+    # the baseline cooking-fuel split for the Moramanga piped systems (in
+    # process, not registered): the main fuel for boiling water in the dry
+    # season, question 4.1.2.2.4.1 of the carbon baseline survey, every response
+    bpath = os.path.join(EXPORTS, "baseline_moramanga.json")
+    FUEL = {"d37St9W": "wood", "9rRkPfv": "charcoal", "rQLUjXQ": "lpg",
+            "CUA2RaV": "electricity", "pZ19akx": "agricultural_waste", "aV9ZKFx": "other"}
+    baseline_fuel = None
+    if os.path.isfile(bpath):
+        brs = [r for r in json.load(open(bpath, encoding="utf8"))
+               if r.get("form") == BASELINE_FORM and r.get("status") == "final"]
+        fuel = {k: 0 for k in FUEL.values()}
+        for r in brs:
+            v = ((r.get("data") or {}).get(Q_DRY_FUEL) or {}).get("value")
+            if v in FUEL:
+                fuel[FUEL[v]] += 1
+        baseline_fuel = {"form": BASELINE_FORM, "question": "4.1.2.2.4.1",
+                         "responses": len(brs), "answered": sum(fuel.values()),
+                         "counts": fuel}
     return {
+        "baseline_fuel": baseline_fuel,
         "onboarding": onboarding,
         "note": "Written by tools/rebuild_piped_wq.py. Managed = post-rehabilitation results "
                 "of systems that met the join rule; baseline = results dated on or before a "

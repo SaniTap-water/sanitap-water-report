@@ -60,6 +60,9 @@ JSON_FORMS = {
     # read by tools/rebuild_piped_wq.py for the onboarding progress counts
     "piped_system_reg.json": "44044e27c0f24cc4a432a38b09886684",
     "piped_point_reg.json": "8a3af50ceec84cda85d454d96079991d",
+    # the Moramanga piped-water carbon baseline survey (331 households):
+    # the baseline cooking-fuel split for the piped systems in process
+    "baseline_moramanga.json": "3ef4385a619244c7ad129169ac1ec71f",
 }
 # Pulled and counted, read by nothing yet. Moving a name out of this set is
 # the step that puts it into a figure.
@@ -68,7 +71,8 @@ COUNTED_ONLY = set()
 READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
            "piped_systems.csv": "rebuild_piped_wq.py",
            "piped_system_reg.json": "rebuild_piped_wq.py",
-           "piped_point_reg.json": "rebuild_piped_wq.py"}
+           "piped_point_reg.json": "rebuild_piped_wq.py",
+           "baseline_moramanga.json": "rebuild_piped_wq.py"}
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
 # Entity extracts: name -> (entity type, managed-by group). The register is

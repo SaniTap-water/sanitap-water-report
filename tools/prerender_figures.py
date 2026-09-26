@@ -83,7 +83,7 @@ EVAL = r"""([figs, params]) => {
   }
   for (const k of params) {
     const P = PARAMS[k];
-    out.param[k] = P ? (typeof P.v === 'number' ? fmt(P.v) : String(P.v)) : null;
+    out.param[k] = P ? (typeof P.v === 'number' ? (P.dp != null ? P.v.toFixed(P.dp) : fmt(P.v)) : String(P.v)) : null;
   }
   return out;
 }"""
