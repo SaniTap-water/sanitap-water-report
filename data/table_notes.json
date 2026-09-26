@@ -134,10 +134,10 @@
    "columns": "<b>Median covered</b>: the median share of the point-year carrying photographic evidence, up to the day its latest photograph was taken. <b>At least nine in ten</b> and <b>under half covered</b>: counts of point-years in those bands."
   },
   "fnrb": {
-   "source": "The fNRB values in PARAMS (MoFuSS, Toliary provincial for Fort-Dauphin), and PUMPS with the WorldPop allocation for people served.",
+   "source": "The fNRB values in PARAMS: registered as in the VPA-DD, SDWS 21 p.76 (MoFuSS; Toliary provincial for Fort-Dauphin), and applied for Maroantsetra at <span data-fig=\"Math.round(PARAMS.fnrb_maroantsetra_applied.v*100)\"></span>% (James Walker, 21 Sep 2026); PUMPS with the WorldPop allocation for people served.",
    "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; allocation run of <span data-fig=\"WPOPMETA.run\"></span>.",
    "filter": "Carbon portfolio sites only; Marolinta is outside the carbon programme.",
-   "columns": "<b>People served</b>: the sum of the site&rsquo;s WorldPop allocations after caps, computed live."
+   "columns": "<b>fNRB registered</b>: SDWS 21 as registered. <b>fNRB applied</b>: the value the ex post figures use; for Maroantsetra the sub-national <span data-fig=\"Math.round(PARAMS.fnrb_maroantsetra_applied.v*100)\"></span>%, corrected at verification. <b>People served</b>: the sum of the site&rsquo;s WorldPop allocations after caps, computed live. The weighted row uses the applied values."
   },
   "icsdep": {
    "source": "SDWS26 on this page, recomputed each run by tools/rebuild_sdws26.py from the annual monitoring survey, form <span class=\"mono\">2eeb8682…</span>: questions WS1.31 (dry season) and WS1.52 (rainy season), the household&rsquo;s main cooking device.",

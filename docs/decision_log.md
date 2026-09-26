@@ -979,3 +979,35 @@ have (condition kind `children`). act-enduro-feed ("Obtain a feed or scheduled e
 Endur'O for the smart-meter figures") was merged into the dispensing-events step, keeping its id.
 The enumerator-team step was already done: the team Enduro › EndurO Tana › Enumerators has three
 members and is the enumerator group on both registration forms.
+
+## 18, 21 and 23 September 2026 — James Walker's written replies, applied 26 September 2026
+
+**From:** James Walker, Carbon Lead · email thread "Re: Water program dashboard & actions",
+replies of 18 Sep (09:45 UTC), 21 Sep (09:22 UTC) and 23 Sep (14:48 UTC). Each answer is recorded
+per action in `data/action_owners.json` (`sources`) and in the action's collapsed detail.
+
+- **fNRB, Maroantsetra** (21 Sep): *"It should be 36, so it is inline with what we have applied for
+  FD (sub national rather than commune). I will update that in the verification as a 'correction'."*
+  Registered 34% (VPA-DD SDWS 21, p.76) stays shown; 36% is applied. Every figure built on it is
+  recomputed from the registered EF_b inputs (VPA-DD pp.78-80): at 34% Equation 1 reproduces the
+  registered 0.00018 tCO2e/L; at 36% it gives 0.000189, and the per-CWS ER moves from 27.9 to 29.2.
+- **Version** (21 Sep): v2.0 from 1 Jan 2026 with some grandfathering; alignment at the verification
+  submission (Q1 2027), full alignment at renewal; v2.0 to be tried for 2025 via the design-change pathway.
+- **Sampling** (21 Sep): 50 per stratum, to be safe. **Days operational** (21 Sep): capped at 347
+  without a sensor; actual days only for sensor pumps (50 per stratum), cap on the rest; a lost or
+  damaged calendar is acceptable given the SOP, visits and call log; "premises p" should read
+  "CWS / CWT p". **Contracts** (21 Sep): "we are fine here". **Embodied emissions** (21 Sep): accounted
+  for at verification. **Machine reading** (21 Sep): fine, with a spot check.
+- **Stove adjustment** (18 Sep): ex post figures adjusted by the ICS share from the annual
+  monitoring; Fort-Dauphin 2025: 81%. **Stacking** (18 Sep): Impact Statements only, not credits.
+  **TOOL30** (18 Sep): James corrects it on the hub. **Stroke test** (18, 21 Sep): SDWS 28 is the
+  published ID and the 5-minute test the standard one; the quarterly validation is expected to be
+  withdrawn by Gold Standard. **Piped fNRB** (18 Sep): national 36% proposed, rather than Tana 26%.
+
+**Applied:** 7 actions closed on these answers (act-v2-nonclaiming converted from a data condition
+to the ruling); act-put-current-methodology-vpa and act-update-sops-portfolio-figures closed on files
+filed in the Central Data Hub; 7 annotated and kept open; 4 added; the ICS reporting item merged
+into act-re-run-improved-cookstove. The India Mark question of 26 Sep is a **draft**, not yet sent.
+SOPs: calendar v1.7 and stroke-test v2.1 (French and English), each beside its original. The VPA-DD
+was copied into Methodology of record with its SHA-256, and that folder's README rewritten, on
+Adriaan Mol's instruction (it had deliberately held no VPA-DD).

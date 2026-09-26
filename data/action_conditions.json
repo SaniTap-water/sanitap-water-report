@@ -545,13 +545,13 @@
   "closes_when": "the installation database (households per borehole, to a stated cut-off) is filed in Water Documents"
  },
  "act-put-current-methodology-vpa": {
-  "folder": "Water Documents",
   "kind": "artefact",
-  "name_contains": "ERSDWS",
-  "says": "closes when the methodology and the VPA-DD are in the Central Data Hub",
-  "where": "sharepoint",
+  "where": "hub",
+  "path": "Methodology of record/GS12600_GS12601_VPA-1_Safe_Water_Madagascar_VPA-DD_V2_CLEAN.pdf",
+  "says": "closes when the VPA-DD is filed in Water Documents/Methodology of record, beside ERSDWS v1.0 and v2.0",
+  "when_satisfied": "OK",
   "closure": "evidence",
-  "closes_when": "the current ERSDWS and the VPA-DD are filed in Water Documents"
+  "closes_when": "the VPA-DD is filed in Water Documents/Methodology of record with its SHA-256"
  },
  "act-put-usage-question-live": {
   "kind": "data",
@@ -777,13 +777,13 @@
   "closes_when": "the parameters workbook (Gold standard parameters.xlsx, cell E31) cites the applied basis"
  },
  "act-update-sops-portfolio-figures": {
-  "folder": "Water Documents/SOPs",
   "kind": "artefact",
-  "name_contains": "StrokeTest",
-  "says": "closes when the SOP carrying the portfolio figures is issued from the SOPs folder",
-  "where": "sharepoint",
+  "where": "hub",
+  "path": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx",
+  "says": "closes when a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",
+  "when_satisfied": "OK",
   "closure": "evidence",
-  "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs"
+  "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.1)"
  },
  "act-v2-adherence": {
   "kind": "none",
@@ -806,12 +806,13 @@
   "closes_when": "James Walker's written confirmation that commissioning year and technology category are recorded as a monitoring output"
  },
  "act-v2-nonclaiming": {
-  "kind": "data",
-  "metric": "consent_question_answers",
-  "op": ">",
-  "says": "closes when the household consent question A4 carries answers",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Do the community agreements discharge the non-claiming requirement?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written ruling that the contracts are sufficient (21 Sep 2026)",
+  "converted_from": "data",
+  "converted_on": "2026-09-26"
  },
  "act-v2-sample-size": {
   "kind": "decision",
@@ -924,5 +925,32 @@
   "target": 0,
   "says": "closes when maintenance, repair and days-not-operational records exist for the managed piped systems",
   "when_satisfied": "OK"
+ },
+ "act-verification-fnrb-correction": {
+  "kind": "decision",
+  "question": "Does the submitted monitoring report carry the Maroantsetra fNRB correction?",
+  "says": "closes when the submitted monitoring report is logged in data/decisions.json",
+  "closure": "evidence",
+  "closes_when": "the monitoring report submitted with the Q1 2027 verification carries the Maroantsetra fNRB correction from the registered to the applied value"
+ },
+ "act-design-change-q1-2027": {
+  "kind": "decision",
+  "question": "Is the design change submitted with the Q1 2027 verification?",
+  "says": "closes when the submitted design change is logged in data/decisions.json",
+  "closure": "evidence",
+  "closes_when": "the design change submitted with the Q1 2027 verification, applying v2.0 to 2025 and carrying the listed VPA-DD corrections"
+ },
+ "act-sensor-cost-benefit": {
+  "kind": "none",
+  "says": "no closing condition: a cost-benefit judgement is a decision a person makes",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the cost-benefit decision made"
+ },
+ "act-piped-fnrb": {
+  "kind": "decision",
+  "question": "Which fNRB does the piped VPA-DD apply?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written confirmation of the fNRB in the piped VPA-DD as submitted"
  }
 }

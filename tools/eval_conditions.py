@@ -102,7 +102,19 @@ def eval_form(c, snap):
     return True, " ".join(bits)
 
 
+HUB = os.environ.get("SANITAP_HUB",
+                     "/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documents")
+
+
 def eval_artefact(c, sp):
+    if c["where"] == "hub":
+        # the Central Data Hub as OneDrive syncs it to this machine; the SharePoint
+        # listing is not refreshed by the build, the synced folder is always current
+        if not os.path.isdir(HUB):
+            return None, "the Central Data Hub is not synced to this machine"
+        p = os.path.join(HUB, c["path"])
+        return os.path.exists(p), (f'{c["path"]} {"is" if os.path.exists(p) else "is not"} '
+                                   "in the Central Data Hub (Water Documents)")
     if c["where"] == "repo":
         p = d(c["path"])
         return os.path.exists(p), (f'{c["path"]} {"exists" if os.path.exists(p) else "does not exist"} '

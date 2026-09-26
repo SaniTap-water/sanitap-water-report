@@ -388,11 +388,17 @@ def main():
     check("A6.4-AMT-009 not claimed as the fNRB applied basis", not amt,
           "absent", f"{len(amt)} found" if amt else "absent",
           "the rule update does not name it; the registered source is MoFuSS")
-    check("the registered Maroantsetra fNRB value is applied",
-          "MoFuSS 0.34 Maroantsetra" in idx and "0.418" not in idx,
-          "0.34 applied, 0.418 gone",
-          "0.418 still present" if "0.418" in idx else "0.34 applied, 0.418 gone",
-          "registered SDWS 21: Anosy 54%, Maroantsetra 34%")
+    # James Walker, 21 Sep 2026: Maroantsetra is applied at 36% (sub-national,
+    # as for Fort-Dauphin), registered 34%; the page states both, with the source
+    _fr = re.search(r"\bfnrb_mofuss_maroantsetra:\{v:([0-9.]+)", idx_raw)
+    _fa = re.search(r"\bfnrb_maroantsetra_applied:\{v:([0-9.]+)", idx_raw)
+    _ok = (_fr and _fa and float(_fr.group(1)) == 0.34 and float(_fa.group(1)) == 0.36
+           and "PARAMS.fnrb_maroantsetra_applied.v)/PUMPS.filter" in idx_raw
+           and "It should be" in idx and "21 Sep 2026" in idx and "0.418" not in idx)
+    check("Maroantsetra fNRB: registered 34% and applied 36%, with its source",
+          bool(_ok), "registered 0.34, applied 0.36, weighted on applied",
+          "as expected" if _ok else "MISMATCH",
+          "VPA-DD SDWS 21 p.76; James Walker, 21 Sep 2026")
 
     stale = []
     for f, src in (("index.html", idx), ("portfolio.html", prt)):
@@ -1341,7 +1347,10 @@ def main():
     # the headroom every build; this recomputes it independently and fails if
     # the computed figure has passed the cap without the attention-list entry
     # that raises it, or if the machinery that computes it has been removed.
-    CAP_T, ER_ANOSY, ER_MARO = 60000.0, 31.3, 27.9
+    # Maroantsetra per-point ER at its applied fNRB, as the page computes it
+    sys.path.insert(0, os.path.join(repo_root, "tools"))
+    from action_metrics import er_maro_applied as _erma
+    CAP_T, ER_ANOSY, ER_MARO = 60000.0, 31.3, _erma(idx_raw)
     # The conditional attention entry became an action row with a stored
     # closing condition, so the ceiling is now raised and lowered by the
     # evaluator rather than by a branch in the page script.

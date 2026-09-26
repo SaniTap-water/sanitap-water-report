@@ -430,9 +430,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the workbook: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 57,
-   "evidence": 41,
-   "manual": 24
+   "auto": 56,
+   "evidence": 45,
+   "manual": 25
   },
   "actions": {
    "act-2026-recovery": {
@@ -522,14 +522,14 @@
    "act-confirm-maroantsetra-fnrb-value": {
     "type": "evidence",
     "closes_when": "James Walker's written confirmation of the Maroantsetra fNRB value",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
    "act-confirm-whether-ersdws-v2": {
     "type": "evidence",
     "closes_when": "James Walker's written ruling (or Gold Standard's) on whether v2.0 applies before renewal",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -560,6 +560,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-design-change-q1-2027": {
+    "type": "evidence",
+    "closes_when": "the design change submitted with the Q1 2027 verification, applying v2.0 to 2025 and carrying the listed VPA-DD corrections",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-26"
    },
    "act-down-no-repair": {
     "type": "auto",
@@ -946,6 +953,13 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-piped-fnrb": {
+    "type": "evidence",
+    "closes_when": "James Walker's written confirmation of the fNRB in the piped VPA-DD as submitted",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-26"
+   },
    "act-piped-usage-survey": {
     "type": "manual",
     "closes_when": "Adriaan marks the first annual piped usage round run",
@@ -990,8 +1004,8 @@
    },
    "act-put-current-methodology-vpa": {
     "type": "evidence",
-    "closes_when": "the current ERSDWS and the VPA-DD are filed in Water Documents",
-    "closed": false,
+    "closes_when": "the VPA-DD is filed in Water Documents/Methodology of record with its SHA-256",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1012,7 +1026,7 @@
    "act-reconcile-cookstove-water-programmes": {
     "type": "evidence",
     "closes_when": "James Walker's written method for the double-counting reconciliation, with the overlap quantified",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1145,7 +1159,7 @@
    "act-sdws27-basis": {
     "type": "evidence",
     "closes_when": "Gold Standard's written answer to the five SDWS 27 questions, forwarded by James Walker",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -1155,6 +1169,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-sensor-cost-benefit": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the cost-benefit decision made",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-26"
    },
    "act-sensor-definition": {
     "type": "evidence",
@@ -1173,7 +1194,7 @@
    "act-settle-baseline-boiling-device": {
     "type": "evidence",
     "closes_when": "James Walker's written ruling on the baseline boiling device for stove-holding households",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1214,8 +1235,8 @@
    },
    "act-update-sops-portfolio-figures": {
     "type": "evidence",
-    "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",
-    "closed": false,
+    "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.1)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1241,16 +1262,16 @@
     "first_seen": "2026-09-20"
    },
    "act-v2-nonclaiming": {
-    "type": "auto",
-    "closes_when": "closes when the household consent question A4 carries answers",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "James Walker's written ruling that the contracts are sufficient (21 Sep 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
    "act-v2-sample-size": {
     "type": "evidence",
     "closes_when": "James Walker's written re-scoping of each sample against the v2.0 minimum",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -1267,6 +1288,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
+   },
+   "act-verification-fnrb-correction": {
+    "type": "evidence",
+    "closes_when": "the monitoring report submitted with the Q1 2027 verification carries the Maroantsetra fNRB correction from the registered to the applied value",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-26"
    },
    "act-visit-collapse": {
     "type": "auto",
@@ -1289,6 +1317,191 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    }
+  }
+ },
+ "sources": {
+  "note": "Where each answer that closes or annotates an action came from: sender, date, subject, one-line answer. Rendered into the action's collapsed detail by tools/render_actions.py. Not part of the workbook: owner and deadline stay in 'owners'.",
+  "actions": {
+   "act-confirm-maroantsetra-fnrb-value": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Maroantsetra fNRB is 36%, not 34%, in line with the sub-national value applied for Fort-Dauphin; James corrects it at verification."
+    }
+   ],
+   "act-confirm-whether-ersdws-v2": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "v2.0 applies from 1 January 2026 with some grandfathering; alignment at the verification submission (Q1 2027), full alignment at the crediting-period renewal; v2.0 to be tried for 2025 through the design-change pathway."
+    }
+   ],
+   "act-v2-sample-size": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "50 per stratum for sampling, to be safe."
+    }
+   ],
+   "act-v2-nonclaiming": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Contracts: we are fine here."
+    }
+   ],
+   "act-sdws27-basis": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Capped at 347 days without a sensor; actual days claimable only for sensor-fitted pumps, sampled 50 per stratum, with the cap on the rest; a lost or damaged calendar is acceptable given the SOP, visits and call log. James Walker's ruling, not Gold Standard's."
+    }
+   ],
+   "act-settle-baseline-boiling-device": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%."
+    }
+   ],
+   "act-reconcile-cookstove-water-programmes": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "The methodology provides for cookstove and safe-water cross-effects; the stacking prohibition applies to Impact Statements only, not to credits."
+    }
+   ],
+   "act-put-current-methodology-vpa": [
+    {
+     "sender": "Adriaan Mol, COO SaniTap",
+     "date": "2026-09-26",
+     "subject": "instruction for the water report",
+     "answer": "The VPA-DD is filed in Water Documents/Methodology of record with its SHA-256, beside ERSDWS v1.0 and v2.0; the registered original on Carbon2 governs."
+    }
+   ],
+   "act-update-sops-portfolio-figures": [
+    {
+     "sender": "Adriaan Mol, COO SaniTap",
+     "date": "2026-09-26",
+     "subject": "instruction for the water report",
+     "answer": "Stroke-test SOP v2.1 carries the current portfolio figures (652 Canzee + 80 India Mark III = 732) from the weekly report."
+    }
+   ],
+   "act-resolve-sdws-27-sdws": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Numbering settled: SDWS 28 is the published ID, 27 was the consultation version."
+    },
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Gold Standard published the wrong version and were supposed to remove the part about validating the stroke test with another method."
+    },
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "The stroke-test validation requirement is expected to be removed; not confirmed until later this year."
+    }
+   ],
+   "act-indiamark-premises": [
+    {
+     "sender": "Adriaan Mol, COO SaniTap",
+     "date": "2026-09-26",
+     "subject": "RE: Water program dashboard & actions (draft)",
+     "answer": "Question drafted to James: apply 500 people per India Mark now on Carter's 200-500 range, or hold 300 until StrokeMeter volumes. Draft, not yet sent."
+    }
+   ],
+   "act-v2-embodied": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Embodied emissions will be accounted for at the verification."
+    }
+   ],
+   "act-update-parameters-workbook-cite": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Tool30 is dead, so James will correct that on the hub."
+    }
+   ],
+   "act-transcription-round": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Machine reading is fine; James wants a few verified, a spot check."
+    }
+   ],
+   "act-sensor-sample": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Sensors on a sample of 50 per stratum, to be safe; the actual days claimable for those 100, the cap on the rest."
+    }
+   ],
+   "act-calendar-custody": [
+    {
+     "sender": "Adriaan Mol, COO SaniTap",
+     "date": "2026-09-26",
+     "subject": "instruction for the water report",
+     "answer": "Stays open."
+    }
+   ],
+   "act-verification-fnrb-correction": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "James will update the Maroantsetra fNRB in the verification as a correction."
+    }
+   ],
+   "act-design-change-q1-2027": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "GS allow a design change pathway at verification to switch to v2.0; the premises wording should read 'CWS / CWT p'."
+    }
+   ],
+   "act-sensor-cost-benefit": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Cost benefit analysis: would a sensor on all show the functionality is above 95%?"
+    }
+   ],
+   "act-piped-fnrb": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "For the piped VPA, apply the national figure (36%) rather than taking the hit on Tana (26%); Moramanga is 37%."
+    }
+   ],
+   "act-re-run-improved-cookstove": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-18",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%."
+    }
+   ]
   }
  }
 }

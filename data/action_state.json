@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 8,
   "children": 1,
-  "data": 47,
-  "decision": 38,
+  "data": 46,
+  "decision": 42,
   "form": 7,
-  "none": 21
+  "none": 22
  },
  "state": {
   "act-2026-recovery": {
@@ -108,18 +108,20 @@
    "when_satisfied": "OK"
   },
   "act-confirm-maroantsetra-fnrb-value": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "possible answer received &mdash; confirm to close: James Walker, 18 Sep 2026: &ldquo;All the fNRBs are calculated using MoFuSS. The Article 6.4 tool which sets out the national and 6 subnational values&hellip;&rdquo; Names the source; does not yet state whether Maroantsetra stays at 34%.",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Maroantsetra fNRB is 36%, not 34%, in line with the sub-national value applied for Fort-Dauphin; James corrects it at verification.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-confirm-whether-ersdws-v2": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: v2.0 applies from 1 January 2026 with some grandfathering; alignment at the verification submission (Q1 2027), full alignment at the crediting-period renewal; v2.0 to be tried for 2025 through the design-change pathway.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -154,6 +156,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-design-change-q1-2027": {
+   "evaluated": "2026-09-26",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the submitted design change is logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-down-no-repair": {
@@ -612,6 +622,14 @@
    "says": "closes when no photograph filed on a calendar question is something else",
    "when_satisfied": "OK"
   },
+  "act-piped-fnrb": {
+   "evaluated": "2026-09-26",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
   "act-piped-usage-survey": {
    "evaluated": "2026-09-26",
    "evidence": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
@@ -661,11 +679,12 @@
    "when_satisfied": "OK"
   },
   "act-put-current-methodology-vpa": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "nothing matching \"ERSDWS\" in Water Documents",
+   "evidence": "Methodology of record/GS12600_GS12601_VPA-1_Safe_Water_Madagascar_VPA-DD_V2_CLEAN.pdf is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
-   "satisfied": false,
-   "says": "closes when the methodology and the VPA-DD are in the Central Data Hub",
+   "satisfied": true,
+   "says": "closes when the VPA-DD is filed in Water Documents/Methodology of record, beside ERSDWS v1.0 and v2.0",
    "when_satisfied": "OK"
   },
   "act-put-usage-question-live": {
@@ -685,10 +704,11 @@
    "when_satisfied": "OK"
   },
   "act-reconcile-cookstove-water-programmes": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-09-18 by James Walker, Carbon Lead: The methodology provides for cookstove and safe-water cross-effects; the stacking prohibition applies to Impact Statements only, not to credits.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -841,10 +861,11 @@
    "when_satisfied": "OK"
   },
   "act-sdws27-basis": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Capped at 347 days without a sensor; actual days claimable only for sensor-fitted pumps, sampled 50 per stratum, with the cap on the rest; a lost or damaged calendar is acceptable given the SOP, visits and call log. James Walker's ruling, not Gold Standard's.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -854,6 +875,14 @@
    "kind": "form",
    "satisfied": false,
    "says": "closes when the SDWS 3 sampling form carries an operating-status question",
+   "when_satisfied": "OK"
+  },
+  "act-sensor-cost-benefit": {
+   "evaluated": "2026-09-26",
+   "evidence": "no closing condition: a cost-benefit judgement is a decision a person makes",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition: a cost-benefit judgement is a decision a person makes",
    "when_satisfied": "OK"
   },
   "act-sensor-definition": {
@@ -873,10 +902,11 @@
    "when_satisfied": "OK"
   },
   "act-settle-baseline-boiling-device": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-09-18 by James Walker, Carbon Lead: The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -900,7 +930,7 @@
   "act-type3-cap": {
    "closed_since": "2026-09-21",
    "evaluated": "2026-09-26",
-   "evidence": "er_percent_of_type3_cap = 34.8 (annual emission reductions as a percentage of the 60,000 tCO2e cap); target < 80",
+   "evidence": "er_percent_of_type3_cap = 36.0 (annual emission reductions as a percentage of the 60,000 tCO2e cap); target < 80",
    "kind": "data",
    "satisfied": true,
    "says": "stands as a watch while annual reductions are under 80% of the 60,000 tCO2e cap",
@@ -923,11 +953,12 @@
    "when_satisfied": "OK"
   },
   "act-update-sops-portfolio-figures": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "nothing matching \"StrokeTest\" in Water Documents/SOPs",
+   "evidence": "SOPs/COP_STROKE TEST \u2014 STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
-   "satisfied": false,
-   "says": "closes when the SOP carrying the portfolio figures is issued from the SOPs folder",
+   "satisfied": true,
+   "says": "closes when a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",
    "when_satisfied": "OK"
   },
   "act-v2-adherence": {
@@ -955,18 +986,20 @@
    "when_satisfied": "OK"
   },
   "act-v2-nonclaiming": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "consent_question_answers = 0 (point-of-use responses that actually answer the consent question A4); target > 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when the household consent question A4 carries answers",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Contracts: we are fine here.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-v2-sample-size": {
+   "closed_since": "2026-09-26",
    "evaluated": "2026-09-26",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: 50 per stratum for sampling, to be safe.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -984,6 +1017,14 @@
    "kind": "artefact",
    "satisfied": false,
    "says": "closes when the stroke-test SOP, reconciled with v2.0, is in the SOPs folder",
+   "when_satisfied": "OK"
+  },
+  "act-verification-fnrb-correction": {
+   "evaluated": "2026-09-26",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the submitted monitoring report is logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-visit-collapse": {

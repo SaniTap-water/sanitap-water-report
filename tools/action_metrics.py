@@ -42,6 +42,20 @@ def rows(*p):
         return list(csv.DictReader(fh))
 
 
+def er_maro_applied(page):
+    """Maroantsetra per-point ER at the applied fNRB (James Walker, 21 Sep 2026):
+    the registered er_maro scaled by EF_b at the applied over the registered
+    fNRB (ERSDWS Equation 1; ER = BE, and BE is proportional to EF_b). Reads
+    the declared PARAMS on the page, so it cannot drift from it."""
+    def v(k):
+        return float(re.search(r"\b" + k + r":\{v:([0-9.]+)", page).group(1))
+    se = v("se_boil_default") / (v("eta_wb_baseline") / 100)
+    def efb(f):
+        return se * (v("xf_energy_wood_maroantsetra") / 100 * (v("ef_co2_wood") * f + v("ef_nonco2_wood"))
+                     + v("xf_energy_charcoal_maroantsetra") / 100 * (v("ef_co2_charcoal") * f + v("ef_nonco2_charcoal"))) / 1e9
+    return v("er_maro") * efb(v("fnrb_maroantsetra_applied")) / efb(v("fnrb_mofuss_maroantsetra"))
+
+
 ctx = {}
 
 # ---------------------------------------------------------------- local ----
@@ -269,7 +283,9 @@ def _m15():
         "annual emission reductions as a percentage of the 60,000 tCO2e cap")
 def _m17():
     s = js("S")["by_site"]
-    er = s.get("Fort-Dauphin", 0) * 31.3 + s.get("Maroantsetra", 0) * 27.9
+    # Anosy as registered; Maroantsetra at its applied fNRB (36%, 21 Sep 2026)
+    er = (s.get("Fort-Dauphin", 0) * 31.3
+          + s.get("Maroantsetra", 0) * er_maro_applied(ctx["idx"]))
     return round(100 * er / 60000.0, 1)
 
 

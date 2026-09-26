@@ -158,10 +158,10 @@ D = {
    arith="`hand-entered: ${ENDURO.systems} piped systems`",
    forms=[]),
 }
-D["((PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_toliary.v+PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_mofuss_maroantsetra.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)"] = dict(pop="carbon_fleet",
-    arith="`Fort-Dauphin ${fmt(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0))} people at fNRB ${PARAMS.fnrb_toliary.v} + Maroantsetra ${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0))} at ${PARAMS.fnrb_mofuss_maroantsetra.v}, over ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} people served`",
+D["((PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_toliary.v+PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_maroantsetra_applied.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)"] = dict(pop="carbon_fleet",
+    arith="`Fort-Dauphin ${fmt(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0))} people at fNRB ${PARAMS.fnrb_toliary.v} + Maroantsetra ${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0))} at ${PARAMS.fnrb_maroantsetra_applied.v} (applied; registered ${PARAMS.fnrb_mofuss_maroantsetra.v}), over ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} people served`",
     forms=[("the registered fNRB values, weighted by people served",
-            None, "PARAMS.fnrb_toliary and PARAMS.fnrb_mofuss_maroantsetra")])
+            None, "PARAMS.fnrb_toliary and PARAMS.fnrb_maroantsetra_applied (James Walker, 21 Sep 2026)")])
 
 # every "nearest other point" distance in the corrections log
 for _wp in json.load(open(os.path.join(REPO, "data", "nearest_point_distances.json"),
@@ -205,9 +205,9 @@ for _k, _pop, _what in (("h", "first_rehabilitated", "a first-rehabilitation rec
     D[f"Object.values(RESP).filter(e=>e.{_k}).length"] = dict(pop=_pop,
         arith=f"`water points with {_what}: ${{Object.values(RESP).filter(e=>e.{_k}).length}}`",
         forms=[])
-_ER = "S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v"
+_ER = "S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)"
 D[f"Math.round({_ER})"] = dict(pop="carbon_fleet",
-    arith="`${S.by_site['Fort-Dauphin']} Fort-Dauphin points × ${PARAMS.er_anosy.v} + ${S.by_site['Maroantsetra']} Maroantsetra points × ${PARAMS.er_maro.v} tCO2e = ${fmt(Math.round(" + _ER + "))} tCO2e a year`",
+    arith="`${S.by_site['Fort-Dauphin']} Fort-Dauphin points × ${PARAMS.er_anosy.v} + ${S.by_site['Maroantsetra']} Maroantsetra points × ${(PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)).toFixed(2)} tCO2e (registered ${PARAMS.er_maro.v}, at the applied fNRB) = ${fmt(Math.round(" + _ER + "))} tCO2e a year`",
     forms=[("the register and the registered per-point emission reductions", None, "PARAMS.er_anosy, PARAMS.er_maro")])
 D[f"Math.floor(PARAMS.cap_t.v/(({_ER})/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra'])))"] = dict(pop="carbon_fleet",
     arith="`${fmt(PARAMS.cap_t.v)} tCO2e cap ÷ the current mean per point = ${fmt(Math.floor(PARAMS.cap_t.v/((" + _ER + ")/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra']))))} points`",
@@ -262,7 +262,7 @@ for _e, _a in (("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_anosy.v).toFixed
                ("(PARAMS.people_per_cws_exante.v/PARAMS.hh_size_analanjirofo.v).toFixed(1)", "people per CWS ÷ Analanjirofo household size"),
                ("(PARAMS.premises_per_cws_maroantsetra.v*PARAMS.hh_size_analanjirofo.v).toFixed(1)", "Maroantsetra premises per CWS × Analanjirofo household size"),
                ("(PARAMS.premises_per_cws_anosy.v*PARAMS.hh_size_anosy.v).toFixed(1)", "Anosy premises per CWS × Anosy household size"),
-               ("(PARAMS.er_maro.v*(365/PARAMS.do_cap.v-1)).toFixed(2)", "Maroantsetra ER per point × (365 ÷ the 347-day cap − 1)")):
+               ("(PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)*(365/PARAMS.do_cap.v-1)).toFixed(2)", "Maroantsetra ER per point at the applied fNRB × (365 ÷ the 347-day cap − 1)")):
     D[_e] = dict(pop=None, arith=f"`{_a} = ${{{_e}}}`",
         forms=[("declared parameters, each with its VPA-DD citation", None, "see the parameters table")])
 
@@ -531,6 +531,9 @@ RULES = [
  dict(re=r"^ACTKIDS\[", pop=None,
       what="counted by tools/eval_conditions.py from data/action_conditions.json: a parent action's steps, and how many of them have closed on their own conditions this build",
       forms=[], why=None),
+ dict(re=r"efbMaro\(|fnrb_maroantsetra_applied", pop=None,
+      what="ERSDWS Equation 1 (EF_b = SE x sum over fuels of x_f (EF_CO2,f x fNRB + EF_nonCO2,f) / 10^9) with Equation 2 (SE = 360.83 / eta_wb), on the registered VPA-DD inputs (pp.78-80), for Maroantsetra at its applied fNRB of 36% (James Walker, 21 Sep 2026) against the registered 34%. At 34% it reproduces the registered 0.00018 tCO2e/L. Emission reductions scale with EF_b because ER = BE (project and leakage emissions are zero) and BE is proportional to EF_b",
+      forms=[], why="The Maroantsetra fNRB correction moves every figure built on EF_b; each is recomputed from the registered inputs rather than typed."),
  dict(re=r"PIPEDWQ\.", pop=None,
       what="from data/piped_wq.json, written every build by tools/rebuild_piped_wq.py: final responses on the piped SDWS 3 result form whose water system is one of Endur'O's in mWater and lies outside Antananarivo (build_config 'piped'); E. coli (question 1.4, CFU/100 ml) passes at or below the build's water-quality threshold",
       forms=[("Piped Water || Water Quality Testing_SDWS 3__Result", "0ac68d8274d24f54af0c28b29119b77d", "1.2 water system, 1.4 E. coli, free residual chlorine")], why=None),

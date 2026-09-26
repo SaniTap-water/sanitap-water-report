@@ -356,6 +356,8 @@ CONDS = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), enc
 # how each action closes: auto / evidence / manual (tools/closure_types.py)
 CLOSURE = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
            .get("closure", {}).get("actions", {}))
+SOURCES = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
+           .get("sources", {}).get("actions", {}))
 NUDGE_UNDATED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["nudge_undated_days"]
 CLOSURE_LABEL = {"auto": "auto &mdash; the build closes it",
                  "evidence": "evidence &mdash; closes when this exists",
@@ -462,6 +464,21 @@ def row(a, today, owner_cell=True):
                        f'closed since {c.get("was_closed_since") or "an earlier build"}'
                        '</div>')
     det = a.get("detail") or ""
+    # where the answer came from: sender, date, subject, one-line answer
+    # (data/action_owners.json "sources"); the answer is a quotation
+    srcs = SOURCES.get(a["id"]) or []
+    if srcs and det:
+        lines = []
+        for i, sr in enumerate(srcs):
+            key = f"source:{a['id']}:{i}"
+            QUOTES_EXTRA[key] = {"doc": f"{sr['sender']}, \u201c{sr['subject']}\u201d",
+                                 "version": sr["date"], "dated": sr["date"],
+                                 "says": strip(sr["answer"]),
+                                 "note": "Recorded in data/action_owners.json (sources)."}
+            lines.append(f'{sr["sender"]}, &ldquo;{sr["subject"]}&rdquo;, {sr["date"]}: '
+                         f'<span class="quoted" data-quote="{key}">{sr["answer"]}</span>')
+        det += ('<p class="sources muted" style="font-size:.85em;margin:8px 0 0"><b>Source</b>: '
+                + "; ".join(lines) + '</p>')
     cl = CLOSURE.get(a["id"])
     if cl and det:
         det += (f'<p class="closes-when muted" style="font-size:.85em;margin:8px 0 0">'

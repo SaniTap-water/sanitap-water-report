@@ -49,7 +49,7 @@
   "er_percent_of_type3_cap": {
    "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
    "source": "local",
-   "value": 34.8
+   "value": 36.0
   },
   "extract_lag_days": {
    "says": "days the extract on this page runs behind mWater",
