@@ -353,6 +353,13 @@ def slug(s):
 
 
 CONDS = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), encoding="utf8"))
+# how each action closes: auto / evidence / manual (tools/closure_types.py)
+CLOSURE = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
+           .get("closure", {}).get("actions", {}))
+NUDGE_UNDATED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["nudge_undated_days"]
+CLOSURE_LABEL = {"auto": "auto &mdash; the build closes it",
+                 "evidence": "evidence &mdash; closes when this exists",
+                 "manual": "manual &mdash; Adriaan marks it done"}
 DECISIONS = json.load(open(os.path.join(REPO, "data", "decisions.json"), encoding="utf8"))
 _cp = os.path.join(REPO, "data", "decision_candidates.json")
 CANDIDATES = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
@@ -392,6 +399,7 @@ def row(a, today, owner_cell=True):
            f'<span>{a["owner"]}</span></span></td>') if owner_cell else ""
     c = a.get("cond") or {}
     kind = c.get("kind", "none")
+    live_says = None
     if not c:
         closes = ('<span class="muted">no closing condition &mdash; a person has '
                   'to close this one</span>')
@@ -424,6 +432,7 @@ def row(a, today, owner_cell=True):
             says = _live(says)
         else:
             says = _live(says)
+        live_says = says
         if kind == "decision":
             dec = (DECISIONS.get("decisions") or {}).get(a["id"])
             cand = (CANDIDATES.get("candidates") or {}).get(a["id"])
@@ -453,6 +462,14 @@ def row(a, today, owner_cell=True):
                        f'closed since {c.get("was_closed_since") or "an earlier build"}'
                        '</div>')
     det = a.get("detail") or ""
+    cl = CLOSURE.get(a["id"])
+    if cl and det:
+        det += (f'<p class="closes-when muted" style="font-size:.85em;margin:8px 0 0">'
+                f'<b>Closes when</b> <span class="ckind">{CLOSURE_LABEL[cl["type"]]}</span>: '
+                f'{live_says if cl["type"] == "auto" and live_says else _live(cl["closes_when"])}'
+                + (f'; closed by the build on {cl["detected_closed_on"]}'
+                   if cl["type"] == "auto" and cl.get("detected_closed_on") else "")
+                + '.</p>')
     body = (f'<details class="act-detail" id="{a["id"]}">'
             f'<summary>{a["title_html"]}</summary>{det}</details>'
             if det else f'<b>{a["title_html"]}</b>')
@@ -507,9 +524,21 @@ def block(idx, today=None):
     # them to data/ so they are inlined as ACTN and rendered through data-fig
     # spans, instead of being typed into the generated markup - which is what
     # the prose figure gate objects to, correctly.
+    # Needs a nudge: evidence and manual items nobody's data will close -
+    # past their date, or undated and in the repository for over 30 days
+    nudge = []
+    for a in acts:
+        cl = CLOSURE.get(a["id"]) or {}
+        if cl.get("type") not in ("evidence", "manual") or a["state"] == "OK":
+            continue
+        seen = datetime.date.fromisoformat(cl["first_seen"]) if cl.get("first_seen") else today
+        if a["due"] and a["due"] < today:
+            nudge.append((a, f'past its date, {a["deadline"]}'))
+        elif not a["due"] and (today - seen).days > NUDGE_UNDATED_DAYS:
+            nudge.append((a, f'no date set, on the list since {seen.strftime("%-d %b %Y")}'))
     json.dump({"act": n_act, "watch": n_watch, "open": n_act + n_watch,
                "overdue": n_over, "closed": n_ok, "rows": len(acts),
-               "nodate": n_nodate},
+               "nodate": n_nodate, "nudge": len(nudge)},
               open(os.path.join(REPO, "data", "action_counts.json"), "w",
                    encoding="utf8"), indent=1, sort_keys=True)
     F = lambda k: f'<span data-fig="ACTN.{k}"></span>'   # noqa: E731
@@ -524,6 +553,16 @@ def block(idx, today=None):
         + (f', <b>{F("overdue")}</b> past their proposed date' if n_over else "")
         + f'. <b>{F("closed")}</b> closed this period.</p></div>'
         f'<span class="count">{F("rows")} rows</span></div>',
+        # --- evidence / manual items nobody's data will close ------------
+        '  <div class="nudge" style="margin:6px 0 10px;font-size:.9em">'
+        f'<b>Needs a nudge</b> ({F("nudge")}) '
+        '<span class="muted">&mdash; evidence and manual items past their date, '
+        f'or undated and on the list for more than <span data-fig="BUILDCFG.actions.nudge_undated_days">{NUDGE_UNDATED_DAYS}</span> days</span>'
+        + ('<ul style="margin:4px 0 0 18px;padding:0">' + "".join(
+            f'<li><a href="#{a["id"]}">{a["title_html"]}</a> &mdash; {a["owner"]} '
+            f'<span class="muted">&mdash; {why}</span></li>' for a, why in nudge) + '</ul>'
+           if nudge else ': <span class="muted">none today.</span>')
+        + '</div>',
         # --- the shape of the work, before anything is opened ------------
         '  <div class="actstats">',
         f'    <div class="stat"><b>{F("act")}</b><span>'

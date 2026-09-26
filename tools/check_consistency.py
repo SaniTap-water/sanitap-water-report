@@ -3642,6 +3642,30 @@ def main():
           "7 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
           "tools/test_piped_wq.py")
 
+    # ---- 7bc. every action says how it closes ------------------------------
+    # auto (the build closes it), evidence (a named document or answer) or
+    # manual (Adriaan marks it done); the list shows it on every row.
+    _ct = subprocess.run([sys.executable, os.path.join(repo_root, "tools", "closure_types.py"), "--check"],
+                         capture_output=True, text=True)
+    check("every action has a closure type and a 'closes when' sentence, current",
+          _ct.returncode == 0, "current", (_ct.stdout.strip() or _ct.stderr.strip())[-80:],
+          "tools/closure_types.py; data/action_owners.json closure block")
+    # the list renders each row in both its flat and its grouped view, so
+    # this counts distinct actions whose collapsed detail carries the line
+    _ids = set(json.load(open(os.path.join(repo_root, "data", "action_details.json"), encoding="utf8")))
+    # a detail may nest a table with its own rows and footnote, so each action
+    # is read up to the next action's detail
+    _starts = [(m.start(), m.group(1)) for m in re.finditer(
+        r'<details class="act-detail" id="(act-[a-z0-9-]+)">', idx_raw)]
+    _with = {aid for k, (i, aid) in enumerate(_starts)
+             if 'class="closes-when' in idx_raw[i:(_starts[k + 1][0] if k + 1 < len(_starts) else len(idx_raw))]}
+    check("every action row shows its closes-when line",
+          _ids <= _with, f"{len(_ids)}", f"{len(_ids & _with)}",
+          "collapsed with the action's detail" + (f"; missing {sorted(_ids - _with)[:3]}" if _ids - _with else ""))
+    check("the action list carries the Needs a nudge line",
+          'class="nudge"' in idx_raw and 'data-fig="ACTN.nudge"' in idx_raw, "present",
+          "present" if 'class="nudge"' in idx_raw else "MISSING")
+
     # ---- 7az. the list is grouped, filtered, and counts what it holds ---
     # 93 rows in one flat table is a wall. The generated list must carry the
     # controls that make it usable, and - the defect this check exists for -

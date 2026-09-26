@@ -315,6 +315,34 @@ def _m_piped_in_process():
         "status_counts"]["in_process"]
 
 
+EXPORTS = os.path.expanduser("~/mwater-exports")
+
+
+@metric("sdws26_2025_round_unapproved",
+        "final responses of the November 2025 usage round with no approval in mWater")
+def _m_sdws26_unapproved():
+    rs = json.load(open(os.path.join(EXPORTS, "cbn_gender.json"), encoding="utf8"))
+    return sum(1 for r in rs if r.get("status") == "final" and not r.get("approvals")
+               and "2025-11-11" <= str(r.get("submittedOn") or "")[:10] <= "2025-11-22")
+
+
+@metric("marolita_spelling_records",
+        "works-form records that spell the village Marolita")
+def _m_marolita():
+    rs = json.load(open(os.path.join(EXPORTS, "combined_rehab.json"), encoding="utf8"))
+    return sum(1 for r in rs if re.search(r"\bMarolita\b",
+                                          json.dumps(r.get("data"), ensure_ascii=False)))
+
+
+@metric("test_kiosks_in_register",
+        "of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk")
+def _m_test_kiosks():
+    reg = {r["code"]: r for r in csv.DictReader(open(os.path.join(EXPORTS, "wp_madavance.csv"),
+                                                     encoding="utf8"))}
+    return sum(1 for c in ("924119262", "927104201")
+               if c in reg and (reg[c].get("type") or "").lower() == "kiosk")
+
+
 def _onb():
     return json.load(open(d("data", "piped_wq.json"), encoding="utf8"))["onboarding"]
 

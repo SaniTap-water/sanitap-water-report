@@ -87,5 +87,9 @@
    ],
    "test_cards": []
   }
+ },
+ "actions": {
+  "note": "The action list's 'Needs a nudge' line: evidence and manual items past their date, or undated and on the list for longer than this.",
+  "nudge_undated_days": 30
  }
 }

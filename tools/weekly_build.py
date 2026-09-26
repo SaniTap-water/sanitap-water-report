@@ -75,6 +75,8 @@ STEPS = [
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),
     ("tools/action_metrics.py",      ["--write"],      False),
     ("tools/eval_conditions.py",     ["--write"],      True),
+    # how each action closes (auto / evidence / manual), into action_owners.json
+    ("tools/closure_types.py",       ["--write"],      True),
     ("tools/check_build_drop.py",    ["--write"],      False),
     ("tools/render_masthead.py",     ["--write"],      True),
     ("tools/render_freshness.py",    ["--write"],      True),

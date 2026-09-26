@@ -382,7 +382,7 @@ for _k in ("sample_min_v1", "sample_min_v2"):
         arith=f"`${{PARAMS.{_k}.v}} per district × the two carbon districts, Maroantsetra and Fort-Dauphin = ${{PARAMS.{_k}.v*2}}`",
         forms=[("declared parameters", None, "see the parameters table")])
 
-for k in ("act", "watch", "closed", "rows", "nodate", "open"):
+for k in ("act", "watch", "closed", "rows", "nodate", "open", "nudge"):
     D[f"ACTN.{k}"] = dict(pop=None, actions=True,
       arith=f"`counted from the action list every build: ${{ACTN.{k}}}`",
       forms=[])

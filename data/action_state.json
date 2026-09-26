@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 8,
   "children": 1,
-  "data": 44,
+  "data": 47,
   "decision": 38,
   "form": 7,
-  "none": 24
+  "none": 21
  },
  "state": {
   "act-2026-recovery": {
@@ -429,10 +429,10 @@
   },
   "act-marolita-spelling": {
    "evaluated": "2026-09-26",
-   "evidence": "no data predicate: closes when MadAvance corrects the nineteen records in mWater",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no data predicate: closes when MadAvance corrects the nineteen records in mWater",
+   "evidence": "marolita_spelling_records = 19 (works-form records that spell the village Marolita); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when no works-form record spells the village Marolita",
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
@@ -517,10 +517,10 @@
   },
   "act-mor-remove-reclassify-two-test": {
    "evaluated": "2026-09-26",
-   "evidence": "no closing condition: reclassification leaves the records in place, so nothing counts down",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: reclassification leaves the records in place, so nothing counts down",
+   "evidence": "test_kiosks_in_register = 2 (of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when neither test record (924119262, 927104201) sits in the MadAvance register as a kiosk",
    "when_satisfied": "OK"
   },
   "act-mor-submit-drafts": {
@@ -825,10 +825,10 @@
   },
   "act-sdws26-approve-2025": {
    "evaluated": "2026-09-26",
-   "evidence": "closes when the November 2025 usage responses carry approvals in mWater",
-   "kind": "none",
-   "satisfied": null,
-   "says": "closes when the November 2025 usage responses carry approvals in mWater",
+   "evidence": "sdws26_2025_round_unapproved = 413 (final responses of the November 2025 usage round with no approval in mWater); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every final response of the November 2025 usage round carries an approval in mWater",
    "when_satisfied": "OK"
   },
   "act-sdws26-instrument-review": {

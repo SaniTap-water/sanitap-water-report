@@ -426,5 +426,869 @@
   "library": "Water Documents",
   "site": "Central Data Hub",
   "webUrl": "https://sanitap.sharepoint.com/sites/CentralDataHub/_layouts/15/Doc.aspx?sourcedoc=%7B739A2C93-3A01-47BF-AFAC-B20557FD64BD%7D&file=Water%20report%20-%20action%20owners%20and%20deadlines.xlsx&action=default&mobileredirect=true"
+ },
+ "closure": {
+  "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the workbook: owner and deadline stay in 'owners'.",
+  "counts": {
+   "auto": 57,
+   "evidence": 41,
+   "manual": 24
+  },
+  "actions": {
+   "act-2026-recovery": {
+    "type": "auto",
+    "closes_when": "closes when every active carbon point has a readable dated 2026 calendar",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-742896839": {
+    "type": "auto",
+    "closes_when": "closes when water point 742896839 appears in the maintained register",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-18"
+   },
+   "act-adopt-consolidated-gardien-calendar": {
+    "type": "evidence",
+    "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.5 is filed in Water Documents/SOPs",
+    "closed": true,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-calendar-custody": {
+    "type": "manual",
+    "closes_when": "standing field rule: Adriaan marks it issued to every team",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-calendar-v13": {
+    "type": "manual",
+    "closes_when": "Adriaan marks v1.4 stock distributed to each district",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-call-service-visit": {
+    "type": "auto",
+    "closes_when": "closes when the call team has actually used the routine-service-visit choice at least once",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-carbon-year-basis": {
+    "type": "evidence",
+    "closes_when": "the per-year carbon activity basis is supplied as a file, or the per-year table is withdrawn in writing",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-22"
+   },
+   "act-close-eight-2-2": {
+    "type": "manual",
+    "closes_when": "Adriaan marks each of the eight records settled or removed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-close-out-6-5": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the residual closed out",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-close-s4-16-car-2": {
+    "type": "evidence",
+    "closes_when": "the corrected SDWS 3 evidence record and the commissioned parallel validation round, confirmed in writing by James Walker",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-complete-accuracy-assessment-calendar": {
+    "type": "auto",
+    "closes_when": "closes when the 50-calendar transcription round is complete",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-confirm-india-mark-capacity": {
+    "type": "evidence",
+    "closes_when": "the installed-depth and timed-yield records from a sample of India Mark points",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-confirm-maroantsetra-fnrb-value": {
+    "type": "evidence",
+    "closes_when": "James Walker's written confirmation of the Maroantsetra fNRB value",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-confirm-whether-ersdws-v2": {
+    "type": "evidence",
+    "closes_when": "James Walker's written ruling (or Gold Standard's) on whether v2.0 applies before renewal",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-dashboard-gap": {
+    "type": "auto",
+    "closes_when": "closes when the MadAvance dashboard and our two-district count agree",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-decide-how-treat-67": {
+    "type": "auto",
+    "closes_when": "closes when no point is left with photographs that cannot be read",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-decommission-inactivity-field": {
+    "type": "evidence",
+    "closes_when": "the decision of 21 September 2026, logged in data/decisions.json",
+    "closed": true,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-define-maintenance-record-becomes": {
+    "type": "manual",
+    "closes_when": "Adriaan defines the rule and marks it done",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-down-no-repair": {
+    "type": "auto",
+    "closes_when": "closes when every call-centre down report has a repair record or a closure note",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-duplicate-codes-sweep": {
+    "type": "auto",
+    "closes_when": "closes when no question code is reused inside a single mWater form",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-20"
+   },
+   "act-emergency-event-form": {
+    "type": "evidence",
+    "closes_when": "MadAvance's written answer on where SDWS 3 emergency-event evidence is recorded",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-enduro-feed": {
+    "type": "auto",
+    "closes_when": "closes when the build writes the Curtech dispensing-events extract",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-enduro-move-register-fully": {
+    "type": "auto",
+    "closes_when": "closes when every onboarding step below has closed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-enduro-onboard-1-enumerators": {
+    "type": "auto",
+    "closes_when": "closes when the Enduro > EndurO Tana > Enumerators team has members",
+    "closed": true,
+    "detected_closed_on": "2026-09-25",
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-onboard-2-register-sites": {
+    "type": "auto",
+    "closes_when": "closes when every managed Endur'O site carries a submitted System registration",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-onboard-3-bind-taps": {
+    "type": "auto",
+    "closes_when": "closes when every installed smart tap is bound by its test dispense",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-onboard-5-calibration": {
+    "type": "auto",
+    "closes_when": "closes when every installed meter has a calibration certificate on file",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-onboard-6-kiosk-wq": {
+    "type": "auto",
+    "closes_when": "closes when a water-quality result names the managed kiosk's water point",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-onboard-7-piped-sdws27": {
+    "type": "auto",
+    "closes_when": "closes when maintenance, repair and days-not-operational records exist for the managed piped systems",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-enduro-people-source": {
+    "type": "auto",
+    "closes_when": "closes when every hand-entered Endur'O figure names the document behind it",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-22"
+   },
+   "act-enduro-refresh": {
+    "type": "auto",
+    "closes_when": "closes while the hand-entered Endur'O figures are under 60 days old; reopens the day they are not",
+    "closed": true,
+    "detected_closed_on": "2026-09-22",
+    "first_seen": "2026-09-22"
+   },
+   "act-establish-renewal-dates-current": {
+    "type": "evidence",
+    "closes_when": "a note from James Walker giving the renewal date and current status of each of the four baseline parameters",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-establish-renewal-dates-four": {
+    "type": "evidence",
+    "closes_when": "a note from James Walker giving the renewal date of each of the four baseline parameters",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-figure-residue": {
+    "type": "auto",
+    "closes_when": "closes when no rendered figure is without a source",
+    "closed": true,
+    "detected_closed_on": "2026-09-23",
+    "first_seen": "2026-09-22"
+   },
+   "act-find-source-annual-independent": {
+    "type": "evidence",
+    "closes_when": "a named source for the annual independent cross-check of people per premises",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-fleet-growth": {
+    "type": "evidence",
+    "closes_when": "Jan de Graaf's written account of the pipeline: which points join, and when",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-form-consolidation": {
+    "type": "manual",
+    "closes_when": "Adriaan chooses option A or B and marks it done",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-22"
+   },
+   "act-freeze-estate-map-when": {
+    "type": "auto",
+    "closes_when": "closes when the build can freeze the estate map into an archived edition",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-gaps-doc": {
+    "type": "evidence",
+    "closes_when": "a corrected carbon-data-gaps source document is filed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-identify-count-institutional-premises": {
+    "type": "evidence",
+    "closes_when": "MadAvance's list and count of institutional premises inside the service areas",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-indiamark-premises": {
+    "type": "evidence",
+    "closes_when": "James Walker's written ruling on the India Mark premises figure, with its source",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-make-calendar-photograph-mandatory": {
+    "type": "auto",
+    "closes_when": "closes when the calendar photograph question is required on BOTH visit forms",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-admin-fields": {
+    "type": "auto",
+    "closes_when": "closes when every Marolinta record carries a district on the record itself",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-functional-status": {
+    "type": "auto",
+    "closes_when": "closes when no Marolinta record leaves the functional status blank",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-missing-boreholes": {
+    "type": "auto",
+    "closes_when": "closes when ten new-borehole records are on the progress form",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-missing-rehabs": {
+    "type": "auto",
+    "closes_when": "closes when final Réhabilitation records on the borehole form reach 10",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-new-construction-gap": {
+    "type": "auto",
+    "closes_when": "closes when final Nouvelle construction records on the Marolinta deployment reach 10",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-technical-values": {
+    "type": "evidence",
+    "closes_when": "the drilling supervisor's written confirmation or correction of the repeated technical values",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-water-quality": {
+    "type": "auto",
+    "closes_when": "closes when every Marolinta record has an E. coli result on file",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mar-which-form": {
+    "type": "manual",
+    "closes_when": "Adriaan confirms the field teams are on the current first-rehabilitation form",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-marolita-spelling": {
+    "type": "auto",
+    "closes_when": "closes when no works-form record spells the village Marolita",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-22"
+   },
+   "act-mor-1b-betanatanana-go-look": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the site visit done",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-bring-back-site-lists": {
+    "type": "evidence",
+    "closes_when": "site lists with coordinates for Andaingo and Fieferana / Manjakandriana",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-correct-two-sampling-records": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the two sampling records corrected",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-count-draw-off-point": {
+    "type": "evidence",
+    "closes_when": "Endur'O's count of every draw-off point on the system",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-fill-three-new-fields": {
+    "type": "auto",
+    "closes_when": "closes when the sampling-point GPS question is on the results form",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-fix-type-sampled-point": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the sampled-point types fixed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-have-those-five-records": {
+    "type": "evidence",
+    "closes_when": "Endur'O's confirmation that the five records are shared with SaniTap",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-households-people-served-per": {
+    "type": "evidence",
+    "closes_when": "Endur'O's households and people served per draw-off point",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-re-take-gps-fix": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the Amboasary Gara fix re-taken",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-record-what-community-drank": {
+    "type": "evidence",
+    "closes_when": "a recorded baseline water source for each community",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-remove-reclassify-two-test": {
+    "type": "auto",
+    "closes_when": "closes when neither test record (924119262, 927104201) sits in the MadAvance register as a kiosk",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mor-submit-drafts": {
+    "type": "auto",
+    "closes_when": "closes when all four Moramanga draft records reach status final",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-moramanga-post-rehab-wq": {
+    "type": "auto",
+    "closes_when": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-move-stroke-test-sop": {
+    "type": "evidence",
+    "closes_when": "the signed stroke-test SOP v2.0 is filed in Water Documents/SOPs",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-move-weekly-mwater-backup": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the backup moved to the server",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mwater-approval-policy": {
+    "type": "auto",
+    "closes_when": "closes when no submitted works record is left unapproved",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-mwater-mg-locale": {
+    "type": "auto",
+    "closes_when": "closes when the Malagasy locale is present on the preventive maintenance form",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-mwater-year-required": {
+    "type": "auto",
+    "closes_when": "closes when question 2.15.7 is present and required on the preventive maintenance form",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-no-works-record": {
+    "type": "auto",
+    "closes_when": "closes when every point in the register has a works record of some kind",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-per-diem": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the redesigned per-diem system adopted",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-photo-conditional-on-presence": {
+    "type": "auto",
+    "closes_when": "closes when the calendar photograph on the repair form is conditional on a calendar being present",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-20"
+   },
+   "act-photo-misfiled": {
+    "type": "auto",
+    "closes_when": "closes when no photograph filed on a calendar question is something else",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-piped-usage-survey": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the first annual piped usage round run",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-piped-wq-misfiled-742895333": {
+    "type": "auto",
+    "closes_when": "closes when the piped result form holds no hand-pump result",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-25"
+   },
+   "act-point-use-round-one": {
+    "type": "auto",
+    "closes_when": "closes when point-of-use round one has 100 answered usage questions",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-population-rerun": {
+    "type": "manual",
+    "closes_when": "standing: Adriaan marks each re-run done",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-printed-year-meaning": {
+    "type": "evidence",
+    "closes_when": "MadAvance's written answer on what the printed calendar year denotes",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-produce-s4-19-cl": {
+    "type": "evidence",
+    "closes_when": "the installation database (households per borehole, to a stated cut-off) is filed in Water Documents",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-put-current-methodology-vpa": {
+    "type": "evidence",
+    "closes_when": "the current ERSDWS and the VPA-DD are filed in Water Documents",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-put-usage-question-live": {
+    "type": "auto",
+    "closes_when": "closes when at least 100 households have answered the usage question A9",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-re-run-improved-cookstove": {
+    "type": "manual",
+    "closes_when": "recurring: Adriaan marks each year's round done",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-reconcile-cookstove-water-programmes": {
+    "type": "evidence",
+    "closes_when": "James Walker's written method for the double-counting reconciliation, with the overlap quantified",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-recreate-gardien-calendar-controlled": {
+    "type": "evidence",
+    "closes_when": "a controlled source file of the gardien calendar is filed in SharePoint",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-reduced-performance": {
+    "type": "auto",
+    "closes_when": "closes when no pump is left reported faulty with no repair logged since",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-refresh-extract": {
+    "type": "auto",
+    "closes_when": "closes when the extract on this page is level with mWater",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-21"
+   },
+   "act-rehab-recording": {
+    "type": "auto",
+    "closes_when": "closes when the form holds the ten new boreholes the minutes report",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-reissue-calendars-new-blank": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the reissue complete",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-repair-double-entry": {
+    "type": "evidence",
+    "closes_when": "MadAvance's written decision: one repair or two on 699597809",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-22"
+   },
+   "act-repair-time": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the call-centre response target set",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-repeat-breakdown": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the decision on the two repeat-breakdown pumps taken",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-resolve-sdws-27-sdws": {
+    "type": "evidence",
+    "closes_when": "James Walker's written answer on the SDWS 27 / SDWS 28 numbering and the calibration requirement",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-resolve-water-point-type": {
+    "type": "manual",
+    "closes_when": "Adriaan marks 987623517 resolved in mWater and the photograph refiled",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-restore-preventive-maintenance-visit": {
+    "type": "auto",
+    "closes_when": "closes when the last full month carries 80 or more preventive visits",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-retrain-field-teams-how": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the retraining delivered",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-route-plans": {
+    "type": "auto",
+    "closes_when": "closes when every site with overdue pumps has a route plan with stops",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-run-sdws-26-premises": {
+    "type": "evidence",
+    "closes_when": "the finding that the November 2025 round had already run, logged in data/decisions.json",
+    "closed": true,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-run-stroke-test-sdws": {
+    "type": "auto",
+    "closes_when": "closes when the stroke-test form carries results for the SDWS 23 sample",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-21"
+   },
+   "act-sdws26-annual-round": {
+    "type": "manual",
+    "closes_when": "recurring: Adriaan marks each year's round run with enough clusters",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-23"
+   },
+   "act-sdws26-approve-2025": {
+    "type": "auto",
+    "closes_when": "closes when every final response of the November 2025 usage round carries an approval in mWater",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-23"
+   },
+   "act-sdws26-instrument-review": {
+    "type": "evidence",
+    "closes_when": "the same finding, logged in data/decisions.json",
+    "closed": true,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-23"
+   },
+   "act-sdws27-basis": {
+    "type": "evidence",
+    "closes_when": "Gold Standard's written answer to the five SDWS 27 questions, forwarded by James Walker",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-sdws3-operating-status": {
+    "type": "auto",
+    "closes_when": "closes when the SDWS 3 sampling form carries an operating-status question",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-sensor-definition": {
+    "type": "evidence",
+    "closes_when": "Gold Standard's written answer on whether a stroke counter is an operation sensor",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-sensor-sample": {
+    "type": "manual",
+    "closes_when": "Adriaan marks the Curtech briefing delivered",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-settle-baseline-boiling-device": {
+    "type": "evidence",
+    "closes_when": "James Walker's written ruling on the baseline boiling device for stove-holding households",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-standardised-stroke-test-basis": {
+    "type": "evidence",
+    "closes_when": "the basis settled on 18 September 2026, logged in data/decisions.json",
+    "closed": true,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-transcription-round": {
+    "type": "auto",
+    "closes_when": "closes when 50 calendars have been transcribed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-type3-cap": {
+    "type": "auto",
+    "closes_when": "stands as a watch while annual reductions are under 80% of the 60,000 tCO2e cap",
+    "closed": true,
+    "detected_closed_on": "2026-09-21",
+    "first_seen": "2026-09-21"
+   },
+   "act-undatable": {
+    "type": "auto",
+    "closes_when": "closes when every point with calendar photographs has one that can be read",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-update-parameters-workbook-cite": {
+    "type": "evidence",
+    "closes_when": "the parameters workbook (Gold standard parameters.xlsx, cell E31) cites the applied basis",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-update-sops-portfolio-figures": {
+    "type": "evidence",
+    "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-v2-adherence": {
+    "type": "manual",
+    "closes_when": "standing: Adriaan closes it when the methodology version is settled",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-confidence-intervals": {
+    "type": "evidence",
+    "closes_when": "James Walker's written instruction adopting confidence intervals for every sampled parameter",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-embodied": {
+    "type": "evidence",
+    "closes_when": "James Walker's written confirmation that commissioning year and technology category are recorded as a monitoring output",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-nonclaiming": {
+    "type": "auto",
+    "closes_when": "closes when the household consent question A4 carries answers",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-sample-size": {
+    "type": "evidence",
+    "closes_when": "James Walker's written re-scoping of each sample against the v2.0 minimum",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-stove-stacking": {
+    "type": "auto",
+    "closes_when": "closes when the survey form carries a stove-stacking question",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-v2-stroke-test": {
+    "type": "evidence",
+    "closes_when": "a stroke-test SOP reconciled with v2.0 is filed in Water Documents/SOPs",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-visit-collapse": {
+    "type": "auto",
+    "closes_when": "closes when fewer than 50 points are more than six months without a visit",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-20"
+   },
+   "act-visit-three-marolinta-points": {
+    "type": "auto",
+    "closes_when": "closes when the three named Marolinta points each carry a photograph",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   },
+   "act-wq-retest": {
+    "type": "auto",
+    "closes_when": "closes when no point carries a failed E. coli result without a retest",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-21"
+   }
+  }
  }
 }

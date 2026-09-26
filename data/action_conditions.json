@@ -21,15 +21,21 @@
   "name_contains": "CalendrierGardien",
   "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder, not a draft",
   "version": "v1.5",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.5 is filed in Water Documents/SOPs"
  },
  "act-calendar-custody": {
   "kind": "none",
-  "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which"
+  "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
+  "closure": "manual",
+  "closes_when": "standing field rule: Adriaan marks it issued to every team"
  },
  "act-calendar-v13": {
   "kind": "none",
-  "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it"
+  "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
+  "closure": "manual",
+  "closes_when": "Adriaan marks v1.4 stock distributed to each district"
  },
  "act-call-service-visit": {
   "kind": "data",
@@ -41,21 +47,29 @@
  },
  "act-carbon-year-basis": {
   "kind": "none",
-  "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked"
+  "says": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked",
+  "closure": "evidence",
+  "closes_when": "the per-year carbon activity basis is supplied as a file, or the per-year table is withdrawn in writing"
  },
  "act-close-eight-2-2": {
   "kind": "none",
-  "says": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads"
+  "says": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads",
+  "closure": "manual",
+  "closes_when": "Adriaan marks each of the eight records settled or removed"
  },
  "act-close-out-6-5": {
   "kind": "decision",
   "question": "Are the January population figures reconciled or formally retired?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the residual closed out"
  },
  "act-close-s4-16-car-2": {
   "kind": "decision",
   "question": "Does Gold Standard accept the SDWS 3 evidence as corrected (CAR#7(b))?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the corrected SDWS 3 evidence record and the commissioned parallel validation round, confirmed in writing by James Walker"
  },
  "act-complete-accuracy-assessment-calendar": {
   "kind": "data",
@@ -68,17 +82,23 @@
  "act-confirm-india-mark-capacity": {
   "kind": "decision",
   "question": "What is the India Mark capacity cap, measured?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the installed-depth and timed-yield records from a sample of India Mark points"
  },
  "act-confirm-maroantsetra-fnrb-value": {
   "kind": "decision",
   "question": "Does the Maroantsetra fNRB stay at 34%?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written confirmation of the Maroantsetra fNRB value"
  },
  "act-confirm-whether-ersdws-v2": {
   "kind": "decision",
   "question": "Does ERSDWS v2.0 apply to this VPA before renewal?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written ruling (or Gold Standard's) on whether v2.0 applies before renewal"
  },
  "act-dashboard-gap": {
   "kind": "data",
@@ -99,12 +119,16 @@
  "act-decommission-inactivity-field": {
   "kind": "decision",
   "question": "Does SaniTap decommission or retire water points for inactivity?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the decision of 21 September 2026, logged in data/decisions.json"
  },
  "act-define-maintenance-record-becomes": {
   "kind": "decision",
   "question": "How does a maintenance record become a days-out-of-service count?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan defines the rule and marks it done"
  },
  "act-down-no-repair": {
   "kind": "data",
@@ -125,7 +149,9 @@
  "act-emergency-event-form": {
   "kind": "decision",
   "question": "Where is SDWS 3 emergency-event evidence recorded?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "MadAvance's written answer on where SDWS 3 emergency-event evidence is recorded"
  },
  "act-enduro-feed": {
   "kind": "artefact",
@@ -167,12 +193,16 @@
  "act-establish-renewal-dates-current": {
   "kind": "decision",
   "question": "What are the renewal dates and current status for SDWS 6, 8, 11 and 12?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "a note from James Walker giving the renewal date and current status of each of the four baseline parameters"
  },
  "act-establish-renewal-dates-four": {
   "kind": "decision",
   "question": "What are the renewal dates for the four baseline parameters?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "a note from James Walker giving the renewal date of each of the four baseline parameters"
  },
  "act-figure-residue": {
   "kind": "data",
@@ -185,16 +215,22 @@
  "act-find-source-annual-independent": {
   "kind": "decision",
   "question": "What is the source for the annual independent cross-check of people per premises?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "a named source for the annual independent cross-check of people per premises"
  },
  "act-fleet-growth": {
   "kind": "decision",
   "question": "What is the carbon fleet pipeline, and when does it grow?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Jan de Graaf's written account of the pipeline: which points join, and when"
  },
  "act-form-consolidation": {
   "kind": "decision",
-  "says": "closes on a logged decision in data/decisions.json choosing option A or B"
+  "says": "closes on a logged decision in data/decisions.json choosing option A or B",
+  "closure": "manual",
+  "closes_when": "Adriaan chooses option A or B and marks it done"
  },
  "act-freeze-estate-map-when": {
   "kind": "artefact",
@@ -205,17 +241,23 @@
  "act-gaps-doc": {
   "kind": "decision",
   "question": "Is the carbon-data-gaps source document corrected?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "a corrected carbon-data-gaps source document is filed"
  },
  "act-identify-count-institutional-premises": {
   "kind": "decision",
   "question": "How many institutional premises sit inside the service areas?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "MadAvance's list and count of institutional premises inside the service areas"
  },
  "act-indiamark-premises": {
   "kind": "decision",
   "question": "Is the India Mark premises figure 500 or 300?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written ruling on the India Mark premises figure, with its source"
  },
  "act-make-calendar-photograph-mandatory": {
   "all": [
@@ -280,7 +322,9 @@
  "act-mar-technical-values": {
   "kind": "decision",
   "question": "Are the repeated Marolinta technical values real, or copied between records?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the drilling supervisor's written confirmation or correction of the repeated technical values"
  },
  "act-mar-water-quality": {
   "kind": "data",
@@ -293,28 +337,44 @@
  "act-mar-which-form": {
   "kind": "decision",
   "question": "Which form is the record of truth for first rehabilitations?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan confirms the field teams are on the current first-rehabilitation form"
  },
  "act-marolita-spelling": {
-  "kind": "none",
-  "says": "no data predicate: closes when MadAvance corrects the nineteen records in mWater"
+  "kind": "data",
+  "metric": "marolita_spelling_records",
+  "op": "==",
+  "target": 0,
+  "says": "closes when no works-form record spells the village Marolita",
+  "when_satisfied": "OK",
+  "converted_from": "none",
+  "converted_on": "2026-09-26"
  },
  "act-mor-1b-betanatanana-go-look": {
   "kind": "none",
-  "says": "no closing condition: a site visit is not recorded anywhere this build can read"
+  "says": "no closing condition: a site visit is not recorded anywhere this build can read",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the site visit done"
  },
  "act-mor-bring-back-site-lists": {
   "kind": "none",
-  "says": "no closing condition: the two schemes have no records to count yet"
+  "says": "no closing condition: the two schemes have no records to count yet",
+  "closure": "evidence",
+  "closes_when": "site lists with coordinates for Andaingo and Fieferana / Manjakandriana"
  },
  "act-mor-correct-two-sampling-records": {
   "kind": "none",
-  "says": "no closing condition: the two records are corrected in place, leaving no count to fall"
+  "says": "no closing condition: the two records are corrected in place, leaving no count to fall",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the two sampling records corrected"
  },
  "act-mor-count-draw-off-point": {
   "kind": "decision",
   "question": "How many draw-off points are on the Moramanga system?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Endur'O's count of every draw-off point on the system"
  },
  "act-mor-fill-three-new-fields": {
   "form": "water-quality-result-sdws3",
@@ -326,30 +386,46 @@
  },
  "act-mor-fix-type-sampled-point": {
   "kind": "none",
-  "says": "no closing condition: the sampled-tap type contradiction spans rounds and has no single field to test"
+  "says": "no closing condition: the sampled-tap type contradiction spans rounds and has no single field to test",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the sampled-point types fixed"
  },
  "act-mor-have-those-five-records": {
   "kind": "decision",
   "question": "Are the five Moramanga borehole records shared with SaniTap?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Endur'O's confirmation that the five records are shared with SaniTap"
  },
  "act-mor-households-people-served-per": {
   "kind": "decision",
   "question": "How many households and people does each draw-off point serve?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Endur'O's households and people served per draw-off point"
  },
  "act-mor-re-take-gps-fix": {
   "kind": "none",
-  "says": "no closing condition: a re-taken fix replaces the old one and leaves no discrepancy to measure"
+  "says": "no closing condition: a re-taken fix replaces the old one and leaves no discrepancy to measure",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the Amboasary Gara fix re-taken"
  },
  "act-mor-record-what-community-drank": {
   "kind": "decision",
   "question": "What did each Moramanga community drink before the system?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "a recorded baseline water source for each community"
  },
  "act-mor-remove-reclassify-two-test": {
-  "kind": "none",
-  "says": "no closing condition: reclassification leaves the records in place, so nothing counts down"
+  "kind": "data",
+  "metric": "test_kiosks_in_register",
+  "op": "==",
+  "target": 0,
+  "says": "closes when neither test record (924119262, 927104201) sits in the MadAvance register as a kiosk",
+  "when_satisfied": "OK",
+  "converted_from": "none",
+  "converted_on": "2026-09-26"
  },
  "act-mor-submit-drafts": {
   "kind": "data",
@@ -365,11 +441,15 @@
   "name_contains": "StrokeTest",
   "says": "closes when the stroke-test SOP sits in the SOPs folder, signed",
   "version": "v2.0",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "the signed stroke-test SOP v2.0 is filed in Water Documents/SOPs"
  },
  "act-move-weekly-mwater-backup": {
   "kind": "none",
-  "says": "no closing condition: where the backup runs from is not visible to this build"
+  "says": "no closing condition: where the backup runs from is not visible to this build",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the backup moved to the server"
  },
  "act-mwater-approval-policy": {
   "kind": "data",
@@ -407,7 +487,9 @@
  "act-per-diem": {
   "kind": "decision",
   "question": "What replaces the per-diem system so it pays for pumps completed?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the redesigned per-diem system adopted"
  },
  "act-photo-conditional-on-presence": {
   "form": "repair-after-breakdown",
@@ -428,7 +510,9 @@
  },
  "act-piped-usage-survey": {
   "kind": "none",
-  "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run"
+  "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the first annual piped usage round run"
  },
  "act-point-use-round-one": {
   "kind": "data",
@@ -440,26 +524,34 @@
  },
  "act-population-rerun": {
   "kind": "none",
-  "says": "no closing condition: a standing item that recurs whenever the portfolio grows"
+  "says": "no closing condition: a standing item that recurs whenever the portfolio grows",
+  "closure": "manual",
+  "closes_when": "standing: Adriaan marks each re-run done"
  },
  "act-printed-year-meaning": {
   "kind": "decision",
   "question": "What does the year printed on a gardien calendar denote?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "MadAvance's written answer on what the printed calendar year denotes"
  },
  "act-produce-s4-19-cl": {
   "folder": "Water Documents",
   "kind": "artefact",
   "name_contains": "installation database",
   "says": "closes when the installation database file exists",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "the installation database (households per borehole, to a stated cut-off) is filed in Water Documents"
  },
  "act-put-current-methodology-vpa": {
   "folder": "Water Documents",
   "kind": "artefact",
   "name_contains": "ERSDWS",
   "says": "closes when the methodology and the VPA-DD are in the Central Data Hub",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "the current ERSDWS and the VPA-DD are filed in Water Documents"
  },
  "act-put-usage-question-live": {
   "kind": "data",
@@ -471,16 +563,22 @@
  },
  "act-re-run-improved-cookstove": {
   "kind": "none",
-  "says": "no closing condition: an annual recurrence, not a task that finishes"
+  "says": "no closing condition: an annual recurrence, not a task that finishes",
+  "closure": "manual",
+  "closes_when": "recurring: Adriaan marks each year's round done"
  },
  "act-reconcile-cookstove-water-programmes": {
   "kind": "decision",
   "question": "How are the cookstove and water programmes reconciled for double counting?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written method for the double-counting reconciliation, with the overlap quantified"
  },
  "act-recreate-gardien-calendar-controlled": {
   "kind": "none",
-  "says": "no closing condition: the controlled source file has no agreed location yet, so there is nothing to check for"
+  "says": "no closing condition: the controlled source file has no agreed location yet, so there is nothing to check for",
+  "closure": "evidence",
+  "closes_when": "a controlled source file of the gardien calendar is filed in SharePoint"
  },
  "act-reduced-performance": {
   "kind": "data",
@@ -508,30 +606,42 @@
  },
  "act-reissue-calendars-new-blank": {
   "kind": "none",
-  "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit"
+  "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the reissue complete"
  },
  "act-repair-double-entry": {
   "kind": "none",
-  "says": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two"
+  "says": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two",
+  "closure": "evidence",
+  "closes_when": "MadAvance's written decision: one repair or two on 699597809"
  },
  "act-repair-time": {
   "kind": "decision",
   "question": "What response and report-back time is the operational target?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the call-centre response target set"
  },
  "act-repeat-breakdown": {
   "kind": "decision",
   "question": "Do the two repeat-breakdown villages get a second water point?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the decision on the two repeat-breakdown pumps taken"
  },
  "act-resolve-sdws-27-sdws": {
   "kind": "decision",
   "question": "Is the standardised stroke test SDWS 27 Option 3 or SDWS 28, and does the quarterly calibration requirement stand?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written answer on the SDWS 27 / SDWS 28 numbering and the calibration requirement"
  },
  "act-resolve-water-point-type": {
   "kind": "none",
-  "says": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it"
+  "says": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it",
+  "closure": "manual",
+  "closes_when": "Adriaan marks 987623517 resolved in mWater and the photograph refiled"
  },
  "act-restore-preventive-maintenance-visit": {
   "kind": "data",
@@ -543,7 +653,9 @@
  },
  "act-retrain-field-teams-how": {
   "kind": "none",
-  "says": "no closing condition: training delivery is not recorded in any system we read"
+  "says": "no closing condition: training delivery is not recorded in any system we read",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the retraining delivered"
  },
  "act-route-plans": {
   "kind": "data",
@@ -556,7 +668,9 @@
  "act-run-sdws-26-premises": {
   "kind": "decision",
   "says": "closed by the finding that the round had already run: the November 2025 annual monitoring survey answers SDWS 26 for 2025",
-  "when_satisfied": "OK"
+  "when_satisfied": "OK",
+  "closure": "evidence",
+  "closes_when": "the finding that the November 2025 round had already run, logged in data/decisions.json"
  },
  "act-run-stroke-test-sdws": {
   "kind": "data",
@@ -568,21 +682,33 @@
  },
  "act-sdws26-annual-round": {
   "kind": "none",
-  "says": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period"
+  "says": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period",
+  "closure": "manual",
+  "closes_when": "recurring: Adriaan marks each year's round run with enough clusters"
  },
  "act-sdws26-approve-2025": {
-  "kind": "none",
-  "says": "closes when the November 2025 usage responses carry approvals in mWater"
+  "kind": "data",
+  "metric": "sdws26_2025_round_unapproved",
+  "op": "==",
+  "target": 0,
+  "says": "closes when every final response of the November 2025 usage round carries an approval in mWater",
+  "when_satisfied": "OK",
+  "converted_from": "none",
+  "converted_on": "2026-09-26"
  },
  "act-sdws26-instrument-review": {
   "kind": "decision",
   "says": "closed by the same finding: the review was scoped 'before the field round', and the round had already happened on a different instrument",
-  "when_satisfied": "OK"
+  "when_satisfied": "OK",
+  "closure": "evidence",
+  "closes_when": "the same finding, logged in data/decisions.json"
  },
  "act-sdws27-basis": {
   "kind": "decision",
   "question": "Does Gold Standard accept the SDWS 27 basis as set out in docs/sdws27_basis.md?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Gold Standard's written answer to the five SDWS 27 questions, forwarded by James Walker"
  },
  "act-sdws3-operating-status": {
   "form": "water-quality-sampling-sdws3",
@@ -595,21 +721,29 @@
  "act-sensor-definition": {
   "kind": "decision",
   "question": "Does a stroke counter constitute an operation sensor under the methodology?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Gold Standard's written answer on whether a stroke counter is an operation sensor"
  },
  "act-sensor-sample": {
   "kind": "none",
-  "says": "no closing condition: a briefing is delivered or it is not, and no system records it"
+  "says": "no closing condition: a briefing is delivered or it is not, and no system records it",
+  "closure": "manual",
+  "closes_when": "Adriaan marks the Curtech briefing delivered"
  },
  "act-settle-baseline-boiling-device": {
   "kind": "decision",
   "question": "What is the baseline boiling device for stove-holding households in Anosy?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written ruling on the baseline boiling device for stove-holding households"
  },
  "act-standardised-stroke-test-basis": {
   "kind": "decision",
   "question": "Is the five-minute stroke test the accepted basis pending the StrokeMeter?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the basis settled on 18 September 2026, logged in data/decisions.json"
  },
  "act-transcription-round": {
   "kind": "data",
@@ -638,28 +772,38 @@
  "act-update-parameters-workbook-cite": {
   "kind": "decision",
   "question": "Does the Gold Standard parameters workbook cite the applied basis for each parameter?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the parameters workbook (Gold standard parameters.xlsx, cell E31) cites the applied basis"
  },
  "act-update-sops-portfolio-figures": {
   "folder": "Water Documents/SOPs",
   "kind": "artefact",
   "name_contains": "StrokeTest",
   "says": "closes when the SOP carrying the portfolio figures is issued from the SOPs folder",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs"
  },
  "act-v2-adherence": {
   "kind": "none",
-  "says": "no closing condition: a standing item that runs until the methodology version is settled"
+  "says": "no closing condition: a standing item that runs until the methodology version is settled",
+  "closure": "manual",
+  "closes_when": "standing: Adriaan closes it when the methodology version is settled"
  },
  "act-v2-confidence-intervals": {
   "kind": "decision",
   "question": "Is a confidence interval retained on every sampled parameter from now on?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written instruction adopting confidence intervals for every sampled parameter"
  },
  "act-v2-embodied": {
   "kind": "decision",
   "question": "Are commissioning year and technology category recorded as monitoring outputs?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written confirmation that commissioning year and technology category are recorded as a monitoring output"
  },
  "act-v2-nonclaiming": {
   "kind": "data",
@@ -672,7 +816,9 @@
  "act-v2-sample-size": {
   "kind": "decision",
   "question": "Is every sample re-scoped against the v2.0 minimum of 50?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written re-scoping of each sample against the v2.0 minimum"
  },
  "act-v2-stove-stacking": {
   "form": "point-of-use-survey",
@@ -687,7 +833,9 @@
   "kind": "artefact",
   "name_contains": "StrokeTest",
   "says": "closes when the stroke-test SOP, reconciled with v2.0, is in the SOPs folder",
-  "where": "sharepoint"
+  "where": "sharepoint",
+  "closure": "evidence",
+  "closes_when": "a stroke-test SOP reconciled with v2.0 is filed in Water Documents/SOPs"
  },
  "act-visit-collapse": {
   "kind": "data",

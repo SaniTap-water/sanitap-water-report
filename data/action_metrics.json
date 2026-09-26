@@ -101,6 +101,11 @@
    "source": "mWater",
    "value": 3
   },
+  "marolita_spelling_records": {
+   "says": "works-form records that spell the village Marolita",
+   "source": "local",
+   "value": 19
+  },
   "moramanga_draft_records": {
    "says": "borehole-progress records on the Moramanga deployment never submitted",
    "source": "local",
@@ -171,6 +176,11 @@
    "source": "local",
    "value": 6
   },
+  "sdws26_2025_round_unapproved": {
+   "says": "final responses of the November 2025 usage round with no approval in mWater",
+   "source": "local",
+   "value": 413
+  },
   "sites_without_route_plan": {
    "says": "sites with overdue pumps and no catch-up route plan",
    "source": "local",
@@ -190,6 +200,11 @@
    "says": "results recorded on the stroke-meter form",
    "source": "mWater",
    "value": 40
+  },
+  "test_kiosks_in_register": {
+   "says": "of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk",
+   "source": "local",
+   "value": 2
   },
   "transcription_sheets_done": {
    "says": "calendars transcribed in the validation round",
