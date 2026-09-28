@@ -1113,3 +1113,24 @@ Recorded in the words given (it had not been written down before):
   is recorded under `merges` in `data/decisions.json`; a merge closes nothing on its own.
 - **Both v2.1 files**, unsigned drafts, edited in place: a change-log line "superseded by v2.2"
   under the v2.1 notes. Their content is otherwise unchanged.
+
+## 28 September 2026 — Adriaan Mol, 28 Sep 2026, workbook reconciliation
+
+The differences found between the retired SharePoint workbook and `data/action_owners.json`, settled:
+
+- **`act-adopt-consolidated-gardien-calendar`**: owner Jan → **Angelo Nahavitatsara / MadAvance**
+  (as the workbook had it). Deadline unchanged, 31 Oct 2026.
+- **`act-calendar-v13`**: no change. The instruction was to close it as superseded if
+  `act-calendar-print-v14` covered its scope. No such action exists, in the data or in the git history:
+  `act-calendar-v13` is itself the v1.4 print-and-distribute item (its title is "Print and distribute
+  calendar template v1.4 …"). It stays open, and its owner stays Adriaan Mol, which the record already
+  held; the workbook's Angelo Nahavitatsara / MadAvance is not applied.
+- **`act-chase-s4-16-car`, `act-close-s4-15-car`, `act-close-s4-16-car`, `act-resolve-s4-16-car`**:
+  **not restored.** They are Gold Standard design-review items (§4.16 CAR#8, §4.15 CAR#1, §4.16 CAR#5,
+  §4.16 CAR#4), removed on 23 September with the design review section ("The carbon section moved to
+  the right side of the line", above): the review is the Head of Carbon's. That scope, and consistency
+  check 7p, stand. Their workbook rows are left as they are, in the retired workbook.
+- **`act-mar-missing-rehabs`, `act-mar-new-construction-gap`, `act-mor-submit-drafts`**: found only in
+  the local OneDrive copy of the workbook; shown to Adriaan, not added.
+- **`act-read-district-commune-water`**: its owner row (Adriaan, no deadline) is deleted; it named no
+  action on the page. `orphan_rows` in `data/action_owners.json` is now empty.

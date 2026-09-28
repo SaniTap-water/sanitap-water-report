@@ -11,7 +11,7 @@
   },
   "act-adopt-consolidated-gardien-calendar": {
    "deadline": "2026-10-31",
-   "owner": "Jan"
+   "owner": "Angelo Nahavitatsara / MadAvance"
   },
   "act-calendar-custody": {
    "deadline": "2026-09-26",
@@ -257,10 +257,6 @@
    "deadline": null,
    "owner": "Angelo, tracked by Jan"
   },
-  "act-read-district-commune-water": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
   "act-reconcile-cookstove-water-programmes": {
    "deadline": null,
    "owner": "James Walker on method, Adriaan on data"
@@ -429,9 +425,7 @@
  "orphan_rows": {
   "recorded": "2026-09-28",
   "note": "Owner rows naming no action on the page. They render nothing. Shrink-only: tools/check_consistency.py fails on a new one, and on one still listed here after it is removed from 'owners'. Removing a row is Adriaan's call.",
-  "ids": [
-   "act-read-district-commune-water"
-  ]
+  "ids": []
  },
  "retired_source": {
   "retired_on": "2026-09-28",
