@@ -64,7 +64,7 @@
   "marolinta_blank_status": {
    "says": "Marolinta records leaving the functional status blank",
    "source": "local",
-   "value": 6
+   "value": 8
   },
   "marolinta_new_borehole_records": {
    "says": "new-borehole records on the Marolinta progress form",

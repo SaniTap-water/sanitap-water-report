@@ -73,6 +73,9 @@ STEPS = [
     # the piped water-quality figures and the join rule, before the metrics
     # that two actions close on
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),
+    # the Marolinta/Moramanga works, finals and drafts apart; four actions
+    # close on these counts, and until 28 Sep nothing refreshed them
+    ("tools/marolinta_works.py",     ["--write"],      True),
     ("tools/action_metrics.py",      ["--write"],      False),
     ("tools/eval_conditions.py",     ["--write"],      True),
     # how each action closes (auto / evidence / manual), into action_owners.json

@@ -36,10 +36,19 @@ REPORTED = {"Nouvelle construction": 10, "Réhabilitation": 10}
 
 
 def call(tool, args):
+    """One mWater call. A failed or empty call stops the tool: it used to
+    return [] and the counts were written as zero, which reads exactly like
+    "no records" (28 Sep 2026)."""
     r = subprocess.run(["node", CLI, tool, json.dumps(args)],
                        capture_output=True, text=True, cwd=os.path.dirname(CLI))
     s = r.stdout
-    return json.loads(s[s.index("["):]) if "[" in s else []
+    if r.returncode != 0 or "[" not in s:
+        sys.exit(f"marolinta_works: {tool} failed (exit {r.returncode}): "
+                 f"{(r.stderr or s).strip()[-200:]}")
+    rows = json.loads(s[s.index("["):])
+    if not rows:
+        sys.exit(f"marolinta_works: {tool} returned no responses for form {FORM}")
+    return rows
 
 
 def main():

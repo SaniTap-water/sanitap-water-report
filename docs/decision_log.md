@@ -1094,6 +1094,10 @@ Recorded in the words given (it had not been written down before):
 - **Checks.** The eleven workbook checks in `tools/check_consistency.py` block 7bb were replaced
   one for one by assertions on the record (list in the commit message). The boundary is unchanged:
   status and closure are computed, never set by hand.
+- **Archived and renamed, 28 Sep 2026.** The workbook was moved to `Water Documents/Archive` and renamed
+  "RETIRED 2026-09-28 - Water report - action owners and deadlines (see decision_log.md).xlsx" (item id
+  unchanged, 01LKVHFNETFSNHGAJ2X5D27LFSAVL72ZF5); `retired_source` in `data/action_owners.json` carries the
+  new name, folder and link.
 - **Differences not applied.** Before retiring it, the SharePoint copy was compared with
   `owners`. Owner differences on `act-adopt-consolidated-gardien-calendar` and `act-calendar-v13`,
   and four rows for the §4.15/§4.16 CAR items that are not actions on the page, were reported for
@@ -1134,3 +1138,31 @@ The differences found between the retired SharePoint workbook and `data/action_o
   the local OneDrive copy of the workbook; shown to Adriaan, not added.
 - **`act-read-district-commune-water`**: its owner row (Adriaan, no deadline) is deleted; it named no
   action on the page. `orphan_rows` in `data/action_owners.json` is now empty.
+
+### Adriaan Mol, 28 Sep 2026, workbook reconciliation (continued)
+
+The three rows found only in the local copy of the workbook are **already actions on the page**; each
+lacked only a row in `owners`.
+
+- **`act-mar-new-construction-gap`**: merged into `act-mar-missing-boreholes`. Both track the same
+  Marolinta new-borehole gap and both close automatically at ten records (now six). The survivor is
+  `act-mar-missing-boreholes`, whose count is a register population recomputed every build; the merged
+  item read `data/marolinta_works.json`, which the build had not refreshed since 21 Sep. The merged item
+  keeps its id and row as a child and closes with the survivor; the merge is under `merges` in
+  `data/decisions.json`. The survivor already had its owners row: Angelo Nahavitatsara / MadAvance, no
+  deadline.
+- **`act-mar-missing-rehabs`**: kept. `act-no-works-record` does **not** cover it: that item's figure is
+  a stored count of register points with no works record (57), with no list of points behind it, and it
+  can close by removing points from the register; the three rehabilitations have no record anywhere, so
+  nothing ties them to any point. Owners row added: Angelo Nahavitatsara / MadAvance, no deadline.
+- **`act-mor-submit-drafts`**: kept. mWater, read live on 28 Sep, holds 4 drafts and 1 final on the
+  Moramanga deployment (e8bbe3b1…) of the borehole-progress form; the item already closes automatically
+  when no drafts remain. Owners row added: Jan / Endur'O team, 17 Oct 2026.
+- **Marolinta drafts.** mWater also holds 2 drafts on the Marolinta deployment (2b408dd5…), both new
+  constructions, started 23 Sep: 1052525253 (Angelo Madavance) and 1052525284 (FRANTZ-EL MADAVANCE,
+  edited 25 Sep; that point already has a final record). The report showed none because
+  `data/marolinta_works.json` was stale (written 21 Sep, never refreshed), not because the build dropped
+  drafts. Refreshed; `tools/marolinta_works.py` is now a weekly build step and stops on a failed mWater
+  call instead of writing zeros; the Marolinta section states drafts apart from finals; two consistency
+  checks hold the file to one day and require finals + drafts = responses. Noted on
+  `act-rehab-recording`; its closing condition is unchanged.

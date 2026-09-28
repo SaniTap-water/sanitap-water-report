@@ -92,6 +92,14 @@
    "reason": "The reconciliation of the stroke-test SOP with methodology v2.0 is done in the v2.2 drafts (SDWS 28 / Option 3, 50 calibrations a year, annual re-verification, 5-minute test). What remains is the signature, which act-move-stroke-test-sop already asks for.",
    "closes_on": "the signed stroke-test SOP v2.2 logged for act-move-stroke-test-sop; act-v2-stroke-test is its child (kind children) and closes with it",
    "owner_and_deadline": "aligned to act-move-stroke-test-sop: Jan, 2026-10-31 (was James Walker, 2026-10-10)"
+  },
+  "act-mar-new-construction-gap": {
+   "merged_into": "act-mar-missing-boreholes",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-28",
+   "source": "Adriaan Mol, instruction for the water report, 2026-09-28 (workbook reconciliation)",
+   "reason": "Both tracked the same Marolinta new-borehole gap (records on the borehole-progress form against the ten reported), both closing automatically at ten. act-mar-missing-boreholes survives: its count is a register population recomputed every build; act-mar-new-construction-gap read data/marolinta_works.json, which the build had not refreshed since 21 Sep.",
+   "closes_on": "act-mar-missing-boreholes closing; act-mar-new-construction-gap is its child (kind children) and closes with it"
   }
  },
  "merges_note": "Actions merged into another. A merged action keeps its id and row and closes with the action it merged into (kind children in data/action_conditions.json); a merge never closes anything on its own."

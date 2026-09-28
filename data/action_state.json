@@ -2,8 +2,8 @@
  "evaluated": "2026-09-28",
  "kinds": {
   "artefact": 6,
-  "children": 2,
-  "data": 46,
+  "children": 3,
+  "data": 45,
   "decision": 45,
   "form": 7,
   "none": 23
@@ -391,7 +391,7 @@
   },
   "act-mar-functional-status": {
    "evaluated": "2026-09-28",
-   "evidence": "marolinta_blank_status = 6 (Marolinta records leaving the functional status blank); target == 0",
+   "evidence": "marolinta_blank_status = 8 (Marolinta records leaving the functional status blank); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no Marolinta record leaves the functional status blank",
@@ -414,11 +414,15 @@
    "when_satisfied": "OK"
   },
   "act-mar-new-construction-gap": {
+   "children": [
+    "act-mar-missing-boreholes"
+   ],
+   "children_closed": 0,
    "evaluated": "2026-09-28",
-   "evidence": "marolinta_new_final = 6 (final Nouvelle construction records on the Marolinta deployment); target >= 10",
-   "kind": "data",
+   "evidence": "0 of 1 steps closed",
+   "kind": "children",
    "satisfied": false,
-   "says": "closes when final Nouvelle construction records on the Marolinta deployment reach 10",
+   "says": "closes with the Marolinta new-borehole item: when the progress form holds ten new-borehole records",
    "when_satisfied": "OK"
   },
   "act-mar-technical-values": {

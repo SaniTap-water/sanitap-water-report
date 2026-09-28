@@ -3764,6 +3764,28 @@ def main():
           f"{want_nod}", str(nod) if nod is not None else "MISSING",
           "ACT rows with no proposed date - one decision for Jan")
 
+    # ---- 7bc. the Marolinta works count is as fresh as the extract ---------
+    # data/marolinta_works.json feeds four action closes and the Marolinta
+    # section. It was written on 21 Sep and never again, so on 28 Sep it showed
+    # no Marolinta drafts while mWater held two. It is a build step now; this
+    # holds it to the same one-day limit as every other extract.
+    _mw_p = os.path.join(repo_root, "data", "marolinta_works.json")
+    _mw = json.load(open(_mw_p, encoding="utf8")) if os.path.isfile(_mw_p) else {}
+    try:
+        _mw_age = (datetime.date.today() - datetime.date.fromisoformat(_mw.get("checked", ""))).days
+    except ValueError:
+        _mw_age = None
+    check("the Marolinta works count is no more than a day old",
+          _mw_age is not None and _mw_age <= 1, "<= 1 day",
+          f"{_mw_age} day(s)" if _mw_age is not None else "NO DATE",
+          "tools/marolinta_works.py --write; drafts counted apart from finals")
+    _mw_sum = sum((_mw.get(k) or {}).get("final", 0) + (_mw.get(k) or {}).get("draft", 0)
+                  for k in ("marolinta", "moramanga"))
+    check("the Marolinta works count accounts for every response, drafts included",
+          bool(_mw) and _mw_sum == _mw.get("responses"), "finals + drafts = responses",
+          f"{_mw_sum} of {_mw.get('responses')}",
+          "a draft is counted apart, never dropped")
+
     # ---- 7bb. owner and deadline come from the record, status does not ----
     # Until 28 September 2026 owner and deadline were read from a SharePoint
     # workbook, and this block asserted the workbook: seven Excel-repair

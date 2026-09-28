@@ -11,7 +11,7 @@ showing an empty pill.
 
     python3 tools/render_marolinta.py --write | --check
 """
-import difflib, json, os, re, sys
+import collections, difflib, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
@@ -77,12 +77,22 @@ def headline():
     reh = m["by_type_final"].get("Réhabilitation", 0)
     new = m["by_type_final"].get("Nouvelle construction", 0)
     sh = m["shortfall"]
+    # Drafts are counted apart from finals and never in them: a draft is not
+    # a delivered work. Until 28 Sep 2026 this text said "no drafts" as a
+    # constant, which went false the day two were started on the form.
+    dr = collections.Counter(r.get("type") for r in w.get("records", [])
+                             if r.get("deployment") == "Marolinta"
+                             and r.get("record_status") == "draft")
+    dr_new, dr_reh = dr.get("Nouvelle construction", 0), dr.get("Réhabilitation", 0)
+    drafts = (f'<b>{G.fig("marolinta_draft", m["draft"])}</b> draft record(s) not yet submitted '
+              f'({G.fig("draft_new", dr_new)} new, {G.fig("draft_rehab", dr_reh)} rehabilitations), '
+              'counted apart and in none of the figures')
     ben = json.load(open(os.path.join(REPO, "data", "marolinta_benef.json")))
     return (
       '<div class="actstats" style="margin-bottom:14px">\n'
       f'  <div class="stat"><b>{G.fig("points_final", m["points_final"])}</b><span>water points touched by '
-      'the borehole-progress form, <b>all records final</b> &mdash; no drafts'
-      '</span></div>\n'
+      'the borehole-progress form, <b>counted from final records only</b>; '
+      + drafts + '</span></div>\n'
       f'  <div class="stat"><b>{G.fig("new_final", new)} + {G.fig("rehab_final", reh)}</b><span>new constructions and '
       'rehabilitations recorded</span></div>\n'
       f'  <div class="stat"><b>{G.fig("short_total", sh["Nouvelle construction"] + sh["Réhabilitation"])}</b>'
@@ -102,12 +112,17 @@ def headline():
       'and the Marolinta scope button reports it on that basis.</p>\n'
       f'<p class="note"><b>Against what Jan reported in the SLT minutes of 14 September 2026: {Q(10)} new boreholes and {Q(10)} '
       f'rehabilitations to date.</b> The form holds <b>{G.fig("new_final", new)}</b> new constructions and '
-      f'<b>{G.fig("rehab_final", reh)}</b> rehabilitations, all final. So <b>{G.fig("short_new", sh["Nouvelle construction"])} new '
+      f'<b>{G.fig("rehab_final", reh)}</b> rehabilitations, counting final records only. So <b>{G.fig("short_new", sh["Nouvelle construction"])} new '
       f'boreholes and {G.fig("short_rehab", sh["Réhabilitation"])} rehabilitations have no record at all</b> '
-      '&mdash; not a draft, not an incomplete form, nothing. '
+      + ('&mdash; not a draft, not an incomplete form, nothing. ' if not m["draft"] else
+         f'&mdash; no final record. The form also holds {drafts}; a submitted new-construction '
+         'draft would narrow the new-borehole gap, and no draft is a rehabilitation. '
+         if not dr_reh else
+         f'&mdash; no final record. The form also holds {drafts}. ')
+      + 
       f'<span class="muted">An earlier note here assumed all {G.fig("responses_all", w["responses"])} responses on this form '
-      'were Marolinta. They are not: the form is deployed twice, and Marolinta has no '
-      'drafts at all.</span></p>\n'
+      'were Marolinta. They are not: the form is deployed twice, and Marolinta&rsquo;s '
+      'own drafts are counted separately above.</span></p>\n'
       '<p class="note"><b>The other deployment is Moramanga, and it is a different '
       f'picture.</b> It carries <b>{G.fig("moramanga_responses", mo["responses"])}</b> records, every one a '
       '<i>Nouvelle construction</i> and <b>not one a rehabilitation</b>: '

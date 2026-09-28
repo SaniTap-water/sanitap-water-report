@@ -1,17 +1,20 @@
 {
- "checked": "2026-09-21",
+ "checked": "2026-09-28",
  "deployments": {
   "2b408dd532e944ad91c0bb77cd6ad576": "Marolinta",
   "e8bbe3b104bb4b599132c435013ab219": "Moramanga"
  },
  "form": "8764843c94484f5b984078c68f13b2ca",
  "marolinta": {
-  "blank_functional_status": 6,
+  "blank_functional_status": 8,
   "by_type_final": {
    "Nouvelle construction": 6,
    "Réhabilitation": 7
   },
-  "codes_draft": [],
+  "codes_draft": [
+   "1052525253",
+   "1052525284"
+  ],
   "codes_final": [
    "1052525198",
    "1052525215",
@@ -27,11 +30,11 @@
    "987623304",
    "987623555"
   ],
-  "draft": 0,
+  "draft": 2,
   "final": 13,
-  "points_draft": 0,
+  "points_draft": 2,
   "points_final": 13,
-  "responses": 13,
+  "responses": 15,
   "shortfall": {
    "Nouvelle construction": 4,
    "Réhabilitation": 3
@@ -69,6 +72,15 @@
    "type": "Nouvelle construction"
   },
   {
+   "by": "Angelo Madavance",
+   "code": "1052525253",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  },
+  {
    "by": "FRANTZ-EL MADAVANCE",
    "code": "1052525260",
    "deployment": "Marolinta",
@@ -84,6 +96,15 @@
    "functional_status": null,
    "record_status": "final",
    "submitted": "2026-08-26",
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "FRANTZ-EL MADAVANCE",
+   "code": "1052525284",
+   "deployment": "Marolinta",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
    "type": "Nouvelle construction"
   },
   {
@@ -226,5 +247,5 @@
   "Nouvelle construction": 10,
   "Réhabilitation": 10
  },
- "responses": 18
+ "responses": 20
 }

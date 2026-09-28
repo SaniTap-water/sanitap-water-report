@@ -312,12 +312,13 @@
   "when_satisfied": "OK"
  },
  "act-mar-new-construction-gap": {
-  "kind": "data",
-  "metric": "marolinta_new_final",
-  "op": ">=",
-  "says": "closes when final Nouvelle construction records on the Marolinta deployment reach 10",
-  "target": 10,
-  "when_satisfied": "OK"
+  "kind": "children",
+  "children": [
+   "act-mar-missing-boreholes"
+  ],
+  "says": "closes with the Marolinta new-borehole item: when the progress form holds ten new-borehole records",
+  "when_satisfied": "OK",
+  "merged_into": "act-mar-missing-boreholes"
  },
  "act-mar-technical-values": {
   "kind": "decision",
