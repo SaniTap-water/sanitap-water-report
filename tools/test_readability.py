@@ -15,6 +15,12 @@ block and the by-owner view so every table is on screen, and asserts:
   * the page never scrolls sideways, at 1366 px or at 390 px;
   * header and body text keep a contrast of at least 4.5:1 in both themes.
 
+In PRINT (emulated at A4 width, from the dark theme with a filter active, after
+the page's own beforeprint handler) every table must print ALL its rows: no
+scroll box may clip it, it must fit the page width, its header must repeat
+(table-header-group) and not be sticky, the filter boxes and the
+"faites defiler" lines must be hidden, and the light theme must be in force.
+
 It lists every table with its narrowest text column, and writes a screenshot
 of each table in each theme to --shots (default: a temporary directory), so
 the themes are checked on real renders, not on CSS.
@@ -70,6 +76,74 @@ MEASURE = r"""(minText)=>{
   });
   return out;
 }"""
+
+
+PRINT = r"""()=>{
+  const out=[], W=document.documentElement.clientWidth;
+  const lum=c=>{const m=c.match(/[\d.]+/g); if(!m) return 1; const [r,g,b]=m.slice(0,3).map(Number).map(v=>{v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)}); return .2126*r+.7152*g+.0722*b;};
+  for(const [i,t] of [...document.querySelectorAll('table')].entries()){
+    const r=t.getBoundingClientRect(); if(!(r.width>0&&r.height>0)) continue;
+    const rows=[...t.tBodies].flatMap(b=>[...b.rows]);
+    const want=rows.filter(x=>getComputedStyle(x).display!=='none').length;
+    const shown=rows.filter(x=>x.getBoundingClientRect().height>0).length;
+    let clip=null;
+    for(let a=t.parentElement;a&&a!==document.body;a=a.parentElement){
+      const cs=getComputedStyle(a);
+      if((cs.overflowY!=='visible'||cs.maxHeight!=='none')&&a.scrollHeight>a.clientHeight+2){clip=(a.className||a.tagName)+` ${a.clientHeight}/${a.scrollHeight}px`;break;}
+    }
+    const th=t.querySelector('thead th');
+    out.push({i,id:t.id||t.dataset.table||'',section:(t.closest('section[id]')||{}).id||'',rows:rows.length,want,shown,clip,
+      right:Math.round(r.right),W,
+      headGroup:t.tHead?getComputedStyle(t.tHead).display:'-', sticky:th?getComputedStyle(th).position:'-'});
+  }
+  const chrome=[...document.querySelectorAll('.tfilter,.tcount')].filter(e=>getComputedStyle(e).display!=='none').length;
+  return {tables:out, chrome, bg:lum(getComputedStyle(document.body).backgroundColor),
+          ink:lum(getComputedStyle(document.body).color),
+          popsRows:[...document.querySelectorAll('#popstbl tbody tr')].filter(x=>x.getBoundingClientRect().height>0).length,
+          popsAll:document.querySelectorAll('#popstbl tbody tr').length};
+}"""
+
+
+def print_check(b, url, fails):
+    """Emulate print from the WORST starting point: dark theme, a filter on."""
+    pg = b.new_page(viewport={"width": 1366, "height": 900})
+    pg.emulate_media(color_scheme="dark")
+    pg.goto(url)
+    pg.wait_for_function("typeof layoutTables==='function'")
+    pg.wait_for_timeout(1500)
+    pg.evaluate("document.querySelectorAll('details').forEach(d=>d.open=true)")
+    if pg.locator("#popsfilter").count():
+        pg.fill("#popsfilter", "carbon")
+        pg.wait_for_timeout(200)
+    pg.evaluate("dispatchEvent(new Event('beforeprint'))")
+    pg.set_viewport_size({"width": 794, "height": 1123})       # A4 at 96 dpi
+    pg.emulate_media(media="print", color_scheme="dark")
+    pg.wait_for_timeout(800)
+    res = pg.evaluate(PRINT)
+    n = 0
+    for t in res["tables"]:
+        n += 1
+        name = t["id"] or f"#{t['i']} in {t['section'] or '?'}"
+        where = f"print: table {name}"
+        if t["shown"] < t["want"]:
+            fails.append(f"{where}: prints {t['shown']} of {t['want']} rows")
+        if t["clip"]:
+            fails.append(f"{where}: clipped by its box ({t['clip']})")
+        if t["right"] > t["W"] + 1:
+            fails.append(f"{where}: {t['right']} px wide on a {t['W']} px page")
+        if t["headGroup"] not in ("table-header-group", "-"):
+            fails.append(f"{where}: header does not repeat ({t['headGroup']})")
+        if t["sticky"] == "sticky":
+            fails.append(f"{where}: header still sticky")
+    if res["popsAll"] and res["popsRows"] != res["popsAll"]:
+        fails.append(f"print: #popstbl prints {res['popsRows']} of {res['popsAll']} rows with a filter set")
+    if res["chrome"]:
+        fails.append(f"print: {res['chrome']} filter box(es) or 'faites defiler' line(s) still shown")
+    if res["bg"] < 0.85 or res["ink"] > 0.2:
+        fails.append(f"print: the light theme is not forced (background luminance {res['bg']:.2f})")
+    pg.close()
+    print(f"  print: {n} tables checked at A4 width, from the dark theme with a filter set")
+    return n
 
 
 class Quiet(http.server.SimpleHTTPRequestHandler):
@@ -147,6 +221,7 @@ def run(args):
                     if errs:
                         fails.append(f"{tag}: page error {errs[0][:100]}")
                 pg.close()
+        print_check(b, url, fails)
         b.close()
     srv.shutdown()
     print(f"  {'table':34s} {'view':9s} {'rows':>5s} {'cols':>4s}  narrowest text column at 1366 px")
@@ -160,7 +235,7 @@ def run(args):
         for f in fails[:80]:
             print("   ", f)
         return 1
-    print("  readability rule: every table holds, in both themes, at 1366 px and 390 px")
+    print("  readability rule: every table holds, in both themes, at 1366 px and 390 px, and in print")
     return 0
 
 

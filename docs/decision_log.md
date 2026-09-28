@@ -1219,3 +1219,12 @@ long ids, mono strings and links break anywhere. Any table over 12 rows sits in 
   in `data/calendar_sheet_year_deduced.csv`, never written into `sheet_year`, and shown on the page as
   "année déduite du calendrier — à confirmer". Six of the twelve undated transcription sheets have an
   accepted deduction; details in `docs/transcription_round_notes.md`.
+
+## 28 September 2026 — Adriaan Mol: print styles under the readability rule
+
+On paper every scroll box expands to full height, headers repeat on each printed page instead of
+sticking, filter boxes and the "faites défiler" lines are hidden, and the light theme is forced.
+Column widths became percentages so a table fits the page width; a filter is cleared for printing and
+restored after. `tools/test_readability.py` emulates print and fails unless every table prints all its
+rows; run against the page before this change, it failed on filtered rows, printed chrome and tables
+wider than the page.

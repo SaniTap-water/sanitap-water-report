@@ -133,29 +133,6 @@ table td .mono,table td a,table td code{overflow-wrap:anywhere}
 .tcount{font-size:.78rem;color:var(--ink3);margin:10px 0 4px}
 .tfilter{display:flex;gap:10px;align-items:center;margin:10px 0 6px;font-size:.85rem;color:var(--ink3)}
 .tfilter input{max-width:320px;width:100%}
-/* PRINT (28 Sep 2026). On paper there is nothing to scroll: every scroll box
-   opens to its full height, headers stop being sticky and repeat at the top of
-   each printed page, the filter and the "faites defiler" line go, and the
-   light theme is forced whatever the screen uses. Column widths are written as
-   percentages, so a table fills the printed page width in its screen
-   proportions; the minimum widths that make a table scroll on screen are
-   dropped, since paper cannot scroll. */
-@media print{
-  :root,:root:not([data-theme="light"]),:root[data-theme]{
-    color-scheme:light;
-    --bg:#ffffff; --surface:#ffffff; --ink:#141a1f; --ink2:#4d5760; --ink3:#5f6a72; --line:#d9ddd9; --line2:#e9ebe8;
-    --accent:#1f5f8b; --accent-ink:#ffffff; --link:#1a5c86; --link-visited:#5b4a8a;
-    --mar:#2a78d6; --ftu:#eb6834; --unk:#9aa3a9;
-    --seq:#2a78d6; --good:#0ca30c; --warn:#fab219; --crit:#e34948;
-    --chip:#e8edf1; --focus:#2a78d6;
-  }
-  .tablewrap,.tablescroll,.tbox{max-height:none!important;overflow:visible!important}
-  table.tfix{width:100%!important;min-width:0!important}
-  thead{display:table-header-group}
-  th,.tbox thead th{position:static!important}
-  tr{break-inside:avoid}
-  .tfilter,.tcount{display:none!important}
-}
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 select,input[type=search]{font:inherit;font-size:.9rem;padding:6px 10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px}
 select:focus,input:focus,button:focus,th:focus{outline:2px solid var(--focus);outline-offset:1px}
@@ -2675,13 +2652,10 @@ function layoutTable(t){
   else { const k=room/Math.max(1,sumW); txt.forEach(i=>w[i]=Math.floor(want[i]*k)); }
   if(!txt.length && fixed<avail){ const k=avail/fixed; for(let i=0;i<n;i++) w[i]=Math.floor(w[i]*k); }
   const cg=document.createElement('colgroup'); cg.className='auto';
-  // percentages of the table's own width: identical on screen, and on paper
-  // the table fills the page in the same proportions
-  const tot=Math.max(avail,w.reduce((a,v)=>a+v,0)), sum=w.reduce((a,v)=>a+v,0);
-  cg.innerHTML=w.map(v=>`<col style="width:${(100*v/sum).toFixed(3)}%">`).join('');
+  cg.innerHTML=w.map(v=>`<col style="width:${v}px">`).join('');
   t.insertBefore(cg,t.firstChild);
   t.classList.add('tfix');
-  t.style.width=tot+'px';
+  t.style.width=Math.max(avail,w.reduce((a,v)=>a+v,0))+'px';
 }
 let _lt=null;
 function layoutTables(){ for(const t of document.querySelectorAll('table')) layoutTable(t); }
@@ -2699,12 +2673,6 @@ function layoutSoon(){ clearTimeout(_lt); _lt=setTimeout(layoutTables,60); }
       return !ch.length || !ch.every(ours);
     })) layoutSoon(); })
     .observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden']});
-  // a filtered table would print only the rows that match while its filter
-  // box is hidden on paper: clear the filters for printing, restore after
-  let saved=[];
-  addEventListener('beforeprint',()=>{ saved=[...document.querySelectorAll('[data-filter-for] input')].filter(i=>i.value)
-    .map(i=>[i,i.value]); saved.forEach(([i])=>{ i.value=''; i.dispatchEvent(new Event('input',{bubbles:true})); }); });
-  addEventListener('afterprint',()=>{ saved.forEach(([i,v])=>{ i.value=v; i.dispatchEvent(new Event('input',{bubbles:true})); }); saved=[]; });
   // a filter box above a table searches the first column of each row
   document.addEventListener('input',e=>{
     const f=e.target.closest&&e.target.closest('[data-filter-for]'); if(!f) return;

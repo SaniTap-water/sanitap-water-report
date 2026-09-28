@@ -209,6 +209,12 @@ table on the page, and `tools/test_readability.py` fails the publish if any part
   text falls below a 4.5:1 contrast.
 * The test prints every table on the page with its narrowest text column, so a regression names
   itself.
+* **Print** (`@media print`): every scroll box opens to its full height (no max-height, no
+  overflow), headers stop being sticky and repeat at the top of each printed page, the filter
+  boxes and the "faites défiler" lines are hidden, and the light theme is forced. Column widths
+  are percentages, so a table fills the paper width in its screen proportions; a filter is
+  cleared before printing and restored after. The test emulates print at A4 width, starting
+  from the dark theme with a filter set, and fails unless every table prints all its rows.
 
 ```
 ~/sdws1/venv/bin/python tools/test_readability.py --shots /tmp/readability
