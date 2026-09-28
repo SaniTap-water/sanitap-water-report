@@ -13,6 +13,9 @@ against the real extract.
   3. works complete after the last result: still in process, nothing counts;
   4. a system declared managed with no works date: the build fails;
   5. a system in the extract missing from the file: the build fails.
+  6-7. a system admitted by decision, and its date from the dispensing feed;
+  8. a result pairs with its sample on site and sampling day, and what does
+     not pair is flagged (made-up responses, not the extract).
 
     python3 tools/test_piped_wq.py
 """
@@ -123,6 +126,57 @@ def main():
               f"from the feed: {s.get('operational_from_feed')}")
         if err or s.get("works_complete") != "2026-09-16" or not s.get("operational_from_feed"):
             fails.append("the operational date was not re-derived from the first non-test dispense")
+
+    # 8. pairing (Adriaan Mol, 28 Sep 2026) on made-up responses: a result
+    # pairs with its sample on the same tap and sampling day and takes the
+    # sample's GPS, type and photo; the typed code is a cross-check only; a
+    # second sample on one day is flagged, not guessed; an old sample with no
+    # result is flagged, a recent one waits; a result with no 1.2.2 is flagged
+    def resp(form, code, data, _id=None):
+        return {"_id": _id or code, "code": code, "form": form, "status": "final",
+                "data": {k: {"value": v} for k, v in data.items()}}
+    W = R.PIPED["wq_form"]
+    Q = lambda pfx: next(k for k in (
+        "7d0fce72f2b5eba64004b41c210566af", "a3390d2e97494b3da193e5c015a879d1",
+        "b25338d820d94639adb3bcf4c67e4c33", "630ccd46f76f420692572e0db2d86ad8",
+        "680e7b715b5e4fc49bef6205be59301a") if k.startswith(pfx))
+    S = lambda pfx: next(k for k in (
+        "51eca87b7bbbe1ea541070490d4bc186", "a7f6f9e14497435f8601e26ecf4f59ab",
+        "630ccd46f76f420692572e0db2d86ad8", "b2875c48657f4173bb7f5783ef3add7c",
+        "bf966f97c48b4a4191a5e577be76054f", "e14d9d8b2d7f4acab6edfe6dec57d718",
+        "4e8d00a7547c73897fd05e985d236dcf") if k.startswith(pfx))
+    F = R.SAMPLING_FORM
+    samples = [
+        # 22:30 UTC on the 1st is the 2nd in Madagascar
+        resp(F, "S-TAP", {S("51eca87b"): {"code": "900"}, S("630ccd46"): "2026-10-01T22:30:00Z",
+                          S("b2875c48"): {"type": "Point", "coordinates": [48.4, -18.9]},
+                          S("bf966f97"): "YZhKDk3", S("e14d9d8b"): [{"id": "img1"}],
+                          S("4e8d00a7"): "Qqs6cuQ"}),
+        resp(F, "S-DUP1", {S("a7f6f9e1"): {"code": "800"}, S("630ccd46"): "2026-10-03T08:00:00Z"}),
+        resp(F, "S-DUP2", {S("a7f6f9e1"): {"code": "800"}, S("630ccd46"): "2026-10-03T09:00:00Z"}),
+        resp(F, "S-OLD", {S("51eca87b"): {"code": "901"}, S("630ccd46"): "2026-09-20T08:00:00Z"}),
+        resp(F, "S-NEW", {S("51eca87b"): {"code": "902"}, S("630ccd46"): "2026-10-08T08:00:00Z"})]
+    results = [
+        resp(W, "R-TAP", {Q("7d0fce72"): {"code": "900"}, Q("b25338d8"): "2026-10-02",
+                          Q("680e7b71"): "S-WRONG"}),
+        resp(W, "R-DUP", {Q("a3390d2e"): {"code": "800"}, Q("b25338d8"): "2026-10-03"}),
+        resp(W, "R-NODATE", {Q("a3390d2e"): {"code": "800"}, Q("630ccd46"): "2026-10-04T08:00:00Z"})]
+    pub, priv = R.pair(results, samples, "2026-10-10")
+    f = pub["flags"]
+    ok = (pub["paired"] == 1 and priv[0]["sample"] == "S-TAP" and priv[0]["gps"]
+          and priv[0]["photos"] == ["img1"] and priv[0]["point_type"] == "water kiosk"
+          and len(f["code_mismatch"]) == 1
+          and [x["samples"] for x in f["more_than_one"]] == [["S-DUP1", "S-DUP2"]]
+          and [x["sample"] for x in f["sample_without_result"]] == ["S-OLD"]
+          and pub["samples_pending"] == 1
+          and [x["result"] for x in f["result_without_sample"]] == ["R-NODATE"]
+          and f["result_without_sample"][0]["candidates"] == ["S-DUP1", "S-DUP2"]
+          and "coordinates" not in json.dumps(pub))
+    print(f"8. pairing on made-up responses: paired {pub['paired']} (expected 1), flags "
+          f"{pub['flagged']}, pending {pub['samples_pending']}, no coordinates published: "
+          f"{'coordinates' not in json.dumps(pub)}")
+    if not ok:
+        fails.append("the result-sample pairing did not pair, flag or withhold as the rule says")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

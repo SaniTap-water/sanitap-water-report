@@ -91,7 +91,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2817,
+   "size": 2818,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -140,7 +140,7 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 21,
+   "size": 22,
    "unit": "points"
   },
   "first_rehab_confirmed_out_of_order": {

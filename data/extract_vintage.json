@@ -16,7 +16,8 @@
   "reparation_apres_panne.csv": "2026-09-22",
   "roof_count.json": "2025-08-21",
   "wq_results.json": "2026-02-02",
-  "wq_results_piped.json": "2026-08-24"
+  "wq_results_piped.json": "2026-08-24",
+  "wq_sampling_piped.json": "2026-09-28"
  },
  "newest_pull": "2026-09-28",
  "note": "data_to is the OLDEST pull across every extract - the vintage floor. Stating the newest would claim a currency no single source has. last_record_by_source is a different quantity: a quiet form has an old last record and is still perfectly current.",
@@ -40,7 +41,8 @@
   "roof_count.json",
   "wp_madavance.csv",
   "wq_results.json",
-  "wq_results_piped.json"
+  "wq_results_piped.json",
+  "wq_sampling_piped.json"
  ],
  "per_extract": {
   "appel_signalement_pannes.csv": {
@@ -141,6 +143,11 @@
   "wq_results_piped.json": {
    "age_days": 0,
    "data_to": "2026-08-24",
+   "pulled": "2026-09-28"
+  },
+  "wq_sampling_piped.json": {
+   "age_days": 0,
+   "data_to": "2026-09-28",
    "pulled": "2026-09-28"
   }
  },

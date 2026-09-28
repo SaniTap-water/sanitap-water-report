@@ -19,7 +19,8 @@
   "roof_count.json": 725,
   "wp_madavance.csv": 918,
   "wq_results.json": 736,
-  "wq_results_piped.json": 45
+  "wq_results_piped.json": 45,
+  "wq_sampling_piped.json": 75
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
  "recorded": "2026-09-28"

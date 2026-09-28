@@ -3703,8 +3703,8 @@ def main():
     _t = subprocess.run([sys.executable, os.path.join(repo_root, "tools", "test_piped_wq.py")],
                         capture_output=True, text=True)
     check("the piped join rule is proved on doctored status files",
-          _t.returncode == 0, "7 cases hold",
-          "7 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
+          _t.returncode == 0, "8 cases hold",
+          "8 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
           "tools/test_piped_wq.py")
 
     # ---- 7bc. every action says how it closes ------------------------------

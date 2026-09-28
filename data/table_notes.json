@@ -174,6 +174,12 @@
    "extracted": "Survey pulled <span data-fig=\"PULLS['baseline_moramanga.json'].pulled\"></span> by the weekly build; the VPA-DD values are fixed at registration.",
    "filter": "Hand pumps: the two carbon districts. Moramanga: every final response on the survey, the four piped systems in process. Antananarivo: the onboarded kiosk and the sites not yet onboarded alike, until they have a survey of their own.",
    "columns": "<b>Wood</b>, <b>Charcoal</b>, <b>Other fuel</b>: the main fuel for boiling water. For Moramanga it is the dry-season answer, counted per household and divided by all responses (count in brackets). <b>Three-stone fire</b>, <b>Improved cookstove</b>: the share of premises by stove (SDWS 6); not computed for Moramanga."
+  },
+  "piped-pairing": {
+   "source": "PIPEDWQ.pairing on this page, from <span class=\"mono\">data/piped_wq.json</span>, computed each run by tools/rebuild_piped_wq.py from the piped result form <span class=\"mono\">0ac68d82…</span> (<span class=\"mono\">wq_results_piped.json</span>) and the piped sampling form <span class=\"mono\">ef8cf735…</span> (<span class=\"mono\">wq_sampling_piped.json</span>).",
+   "extracted": "Results pulled <span data-fig=\"PULLS['wq_results_piped.json'].pulled\"></span>; samples pulled <span data-fig=\"PULLS['wq_sampling_piped.json'].pulled\"></span>.",
+   "filter": "Final responses on both forms that did not pair on their own: a result with no sample on its site and day, a sample with no result after the waiting period, and every site and day holding more than one sample or result. Paired results are not listed.",
+   "columns": "<b>Site</b>: water point or water system code. <b>Sampling day</b>: result <span class=\"mono\">1.2.2</span>, or the sampling record&rsquo;s <span class=\"mono\">1.4</span> in Madagascar time; for a result with no <span class=\"mono\">1.2.2</span>, the day it was read (<span class=\"mono\">1.3</span>). <b>Sample</b>: the sampling record, or for an unpaired result the samples on its site taken in the waiting period before it was read."
   }
  }
 }

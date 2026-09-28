@@ -26,7 +26,8 @@
   "reparation_apres_panne.csv": "2026-09-22",
   "roof_count.json": "2025-08-21",
   "wq_results.json": "2026-02-02",
-  "wq_results_piped.json": "2026-08-24"
+  "wq_results_piped.json": "2026-08-24",
+  "wq_sampling_piped.json": "2026-09-28"
  },
  "latest_in_mwater": {
   "call-centre": "2026-09-28",

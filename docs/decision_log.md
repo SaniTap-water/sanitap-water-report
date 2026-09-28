@@ -1238,3 +1238,29 @@ served files to that record. Eleven sheet years set with their source; sheet 84 
 transcriber. Adriaan's full pass keeps every mark on its cell. Calendar 89 prints 2026 but carries
 late-2025 marks: kept at 2026 as printed, the conflict noted for `act-printed-year-meaning`.
 Detail in `docs/transcription_round_notes.md`.
+
+## 28 September 2026 — Adriaan Mol: piped results paired with their samples automatically
+
+The laboratory no longer copies the sampling code and GPS onto a piped result by hand. The build
+pairs each result on the piped result form (`0ac68d82`) with its record on the piped sampling form
+(`ef8cf735`). The key is the same water point (1.1b) or, for a system-level sample, the same water
+system (1.1), **and** the same sampling day (result 1.2.2 = the Madagascar day of sampling 1.4).
+The pair takes its GPS, sample type and photo from the sampling record. Result 1.2.1 (sampling
+code) is a cross-check only, and 1.2.3 (GPS) is ignored.
+
+- **Flagged, never failing the build:** a result with no sample, a sample with no result after 7
+  days, and a site and day with more than one sample or result. Response codes are listed in a
+  collapsed block in the piped panel, so Cathy can pair them by hand; `publish.sh` prints them as a
+  gate readout.
+- **The form change** (1.2.1 not required and disabled, 1.2.3 disabled) is written up in
+  `docs/mwater_form_change_0ac68d82.md` for the portal designer. The build does not change mWater.
+- **On the existing data:** 0 of the 45 results pair automatically. None carries 1.2.2 or a water
+  point, because all were filed before those questions existed. Every sampling round from March to
+  August 2026 was recorded against the system, 8 to 11 samples on one day, so the rounds are
+  flagged too. The samples from the week before each unpaired result are listed beside it.
+- **Coordinates are not published.** Some samples are household connections. The pairs with their
+  GPS are written to `~/mwater-exports/piped_wq_pairs.json`, beside the extracts; the page shows
+  only whether a pair has a GPS fix and a photo.
+- The piped sampling form is a new extract (`wq_sampling_piped.json`). It stays out of the form
+  snapshot until its duplicated code 1.7 is fixed in the portal, because the snapshot check fails
+  on a reused code. The fix is in the same form-change document.

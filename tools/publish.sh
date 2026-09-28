@@ -87,7 +87,8 @@ fi
 # named in its own marker in index.html; block 7af of the checker fails the
 # build if a region and its generator disagree.
 for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr_table.py \
-           tools/render_datasets.py tools/render_actions.py tools/render_portfolio.py; do
+           tools/render_datasets.py tools/render_actions.py tools/render_portfolio.py \
+           tools/render_piped_pairing.py; do
   python3 "$gen" --write
   RC=$?
   if [ "$RC" -ne 0 ]; then
@@ -254,6 +255,19 @@ RC=${PIPESTATUS[0]}
 if [ "$RC" -ne 0 ]; then
   say "ABORT: an extract the build reads carries a repeated _id."
   exit 1
+fi
+
+# Piped results paired with their samples (Adriaan Mol, 28 Sep 2026). A
+# readout, not a pass/fail: what did not pair is listed with its response
+# codes for Cathy to pair by hand and never stops the build. It stops only if
+# the pairing could not be computed at all (exit 2).
+say ""
+say "pairing piped water-quality results with their samples (counted, never failing) ..."
+python3 tools/rebuild_piped_wq.py --pairing | head -40
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the piped pairing could not be computed (exit $RC)."
+  exit 2
 fi
 
 say ""

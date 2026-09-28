@@ -56,6 +56,9 @@ JSON_FORMS = {
     # the piped-scheme SDWS 3 result form (tap, kiosk or system samples); read
     # by tools/rebuild_piped_wq.py for the piped water-quality figures
     "wq_results_piped.json": "0ac68d8274d24f54af0c28b29119b77d",
+    # its sampling form: each result is paired with its sample on site and
+    # sampling date, and takes the sample's GPS, type and photo from it
+    "wq_sampling_piped.json": "ef8cf7353a974cf984d34860dcf2952d",
     # Endur'O onboarding: the system and distribution-point registrations,
     # read by tools/rebuild_piped_wq.py for the onboarding progress counts
     "piped_system_reg.json": "44044e27c0f24cc4a432a38b09886684",
@@ -69,6 +72,7 @@ JSON_FORMS = {
 COUNTED_ONLY = set()
 # who reads each extract, where it is not populations.py
 READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
+           "wq_sampling_piped.json": "rebuild_piped_wq.py",
            "piped_systems.csv": "rebuild_piped_wq.py",
            "piped_system_reg.json": "rebuild_piped_wq.py",
            "piped_point_reg.json": "rebuild_piped_wq.py",

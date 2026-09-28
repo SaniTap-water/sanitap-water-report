@@ -73,6 +73,8 @@ STEPS = [
     # the piped water-quality figures and the join rule, before the metrics
     # that two actions close on
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),
+    # its pairing detail on the page (results paired with their samples)
+    ("tools/render_piped_pairing.py", ["--write"],     True),
     # the Marolinta/Moramanga works, finals and drafts apart; four actions
     # close on these counts, and until 28 Sep nothing refreshed them
     ("tools/marolinta_works.py",     ["--write"],      True),
