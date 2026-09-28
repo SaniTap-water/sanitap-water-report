@@ -102,996 +102,296 @@
  "pairing": {
   "after_days": 7,
   "as_of": "2026-09-28",
-  "flagged": {
-   "code_mismatch": 0,
-   "more_than_one": 5,
-   "result_without_sample": 45,
-   "sample_without_result": 12
-  },
-  "flagged_total": 62,
-  "flags": {
-   "code_mismatch": [],
-   "more_than_one": [
+  "baseline": {
+   "result_list": [
     {
-     "day": "2026-03-23",
-     "results": [],
-     "samples": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "site": "system 1108783583"
-    },
-    {
-     "day": "2026-04-30",
-     "results": [],
-     "samples": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "site": "system 1108783583"
-    },
-    {
-     "day": "2026-05-19",
-     "results": [],
-     "samples": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "site": "system 1108783583"
-    },
-    {
-     "day": "2026-06-24",
-     "results": [],
-     "samples": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "site": "system 1108783583"
-    },
-    {
-     "day": "2026-08-19",
-     "results": [],
-     "samples": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "site": "system 1108783583"
-    }
-   ],
-   "result_without_sample": [
-    {
-     "candidates": [],
-     "day": null,
      "result": "Cathy_MadAvance-DYQ4XM",
-     "result_day": "2026-03-19",
-     "site": "system 742895333",
-     "why": "no sampling date (1.2.2)"
+     "site": "742895333",
+     "submitted": "2026-03-19"
     },
     {
-     "candidates": [],
-     "day": null,
      "result": "Cathy_MadAvance-DYQ5UD",
-     "result_day": "2026-03-19",
-     "site": "system 742895333",
-     "why": "no sampling date (1.2.2)"
+     "site": "742895333",
+     "submitted": "2026-03-19"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZAB22",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZAB6X",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZAB9D",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZABG5",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZABL7",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZABM5",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "Cathy_MadAvance-DZ34FV",
-      "Cathy_MadAvance-DZ352C",
-      "Cathy_MadAvance-DZ36AJ",
-      "Cathy_MadAvance-DZ36TC",
-      "Cathy_MadAvance-DZ373Z",
-      "Cathy_MadAvance-DZ37DW",
-      "Cathy_MadAvance-DZ37TM",
-      "Cathy_MadAvance-DZ38BE",
-      "Cathy_MadAvance-DZ38R8",
-      "Cathy_MadAvance-DZ39BY"
-     ],
-     "day": null,
      "result": "Cathy_MadAvance-DZABNR",
-     "result_day": "2026-03-25",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-03-26"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NKJ2",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NKPJ",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NKWB",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NM3R",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NM86",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NMAW",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NMDB",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E46T87",
-      "WQ_Mandie-E46UHD",
-      "WQ_Mandie-E46UYV",
-      "WQ_Mandie-E46VG4",
-      "WQ_Mandie-E46W2B",
-      "WQ_Mandie-E46WZM",
-      "WQ_Mandie-E46XH5",
-      "WQ_Mandie-E46XPV"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E4NMKA",
-     "result_day": "2026-05-01",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-06"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJ5U",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJ99",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJAU",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJCM",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJET",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJGD",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJHU",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
-     "result": "WQ_Mandie-E6EJKC",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
-    },
-    {
-     "candidates": [
-      "WQ_Mandie-E5QW5A",
-      "WQ_Mandie-E5QWVA",
-      "WQ_Mandie-E5QXC8",
-      "WQ_Mandie-E5QY78",
-      "WQ_Mandie-E5QYYM",
-      "WQ_Mandie-E5QZHZ",
-      "WQ_Mandie-E5QZYQ",
-      "WQ_Mandie-E5R2GM",
-      "WQ_Mandie-E5R2SV",
-      "WQ_Mandie-E5R3DB"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E6EJL9",
-     "result_day": "2026-05-20",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-05-27"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
+     "result": "WQ_Mandie-E6EJKC",
+     "site": "1108783583",
+     "submitted": "2026-05-27"
+    },
+    {
      "result": "WQ_Mandie-E9CXBZ",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CXNH",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CXSH",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CXVA",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CXZ4",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CY2R",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CY44",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CY5M",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CY75",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CY8S",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-E8PS5Z",
-      "WQ_Mandie-E8PSFR",
-      "WQ_Mandie-E8PSRB",
-      "WQ_Mandie-E8PTHQ",
-      "WQ_Mandie-E8PUGQ",
-      "WQ_Mandie-E8PVE9",
-      "WQ_Mandie-E8PVQE",
-      "WQ_Mandie-E8PW5N",
-      "WQ_Mandie-E8PWFF",
-      "WQ_Mandie-E8PWW8",
-      "WQ_Mandie-E8PX8S"
-     ],
-     "day": null,
      "result": "WQ_Mandie-E9CYAB",
-     "result_day": "2026-06-26",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-07-02"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQFX4",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQG3V",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQG5R",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQG7A",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQG8P",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQGA7",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQGBV",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     },
     {
-     "candidates": [
-      "WQ_Mandie-EDBGGK",
-      "WQ_Mandie-EDBHBD",
-      "WQ_Mandie-EDBHPT",
-      "WQ_Mandie-EDBJ29",
-      "WQ_Mandie-EDBJEA",
-      "WQ_Mandie-EDBJXZ",
-      "WQ_Mandie-EDBLA3",
-      "WQ_Mandie-EDBLNU"
-     ],
-     "day": null,
      "result": "WQ_Mandie-EDQGDA",
-     "result_day": "2026-08-21",
-     "site": "system 1108783583",
-     "why": "no sampling date (1.2.2)"
+     "site": "1108783583",
+     "submitted": "2026-08-24"
     }
    ],
-   "sample_without_result": [
-    {
-     "day": "2026-03-12",
-     "sample": "IT Officer MadAvance-DY687E",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "Cathy_MadAvance-DYQ3GU",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "Cathy_MadAvance-DYQ4EP",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "Cathy_MadAvance-DYQ4V5",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "Cathy_MadAvance-DYQ57X",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "Cathy_MadAvance-DYQ5QK",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "IT Officer MadAvance-DYQ3LM",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "IT Officer MadAvance-DYQ4VP",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-03-19",
-     "sample": "IT Officer MadAvance-DYQ5KA",
-     "site": null,
-     "why": "no water point or water system"
-    },
-    {
-     "day": "2026-04-01",
-     "sample": "Cathy_MadAvance-DZSX63",
-     "site": "system 517790364"
-    },
-    {
-     "day": "2026-09-11",
-     "sample": "Cathy_MadAvance-EF8WZM",
-     "site": "system 1108783583"
-    },
-    {
-     "day": "2026-09-16",
-     "sample": "Cathy_MadAvance-EFMHJX",
-     "site": "system 1108783583"
-    }
-   ]
+   "results": 45,
+   "samples": 59
   },
+  "date_mismatch": 0,
+  "date_mismatch_days": 1,
+  "flagged": {
+   "date_mismatch": 0,
+   "outside_protocol": 1,
+   "result_without_sample": 0,
+   "sample_without_result": 0
+  },
+  "flagged_total": 1,
+  "flags": {
+   "date_mismatch": [],
+   "outside_protocol": [
+    {
+     "day": "2026-09-28",
+     "point": null,
+     "pre_completion": true,
+     "sample": "Cathy_MadAvance-EGKYJV",
+     "system": "1108783662",
+     "why": "sample at system level (no water point, 1.1b)"
+    }
+   ],
+   "result_without_sample": [],
+   "sample_without_result": []
+  },
+  "outside_protocol": 1,
   "paired": 0,
   "paired_with_gps": 0,
   "paired_with_photo": 0,
   "pairs": [],
-  "results": 45,
-  "results_without_sampling_date": 45,
-  "rule": "result 1.2b = sample 1.1b (tap or kiosk) or result 1.2 = sample 1.1 (system), and result 1.2.2 = the Madagascar day of sample 1.4",
-  "samples": 60,
-  "samples_pending": 1,
+  "pre_completion": {
+   "outside_protocol": 1,
+   "paired": 0,
+   "samples": 0
+  },
+  "protocol_live": "2026-09-22T15:58:39Z",
+  "protocol_live_day": "2026-09-22",
+  "results": 0,
+  "rule": "a result pairs with the most recent unpaired sample at the same water point (result 1.2b = sample 1.1b) taken within 72 h before the result was submitted; each sample pairs once",
+  "samples": 1,
+  "samples_pending": 0,
   "samples_pulled": "2026-09-28",
-  "sampling_form": "ef8cf7353a974cf984d34860dcf2952d"
+  "sampling_form": "ef8cf7353a974cf984d34860dcf2952d",
+  "window_hours": 72
+ },
+ "pre_completion": {
+  "chlorine_measured": 0,
+  "chlorine_zero": 0,
+  "exceeds": 0,
+  "first": null,
+  "last": null,
+  "max_cfu": null,
+  "median_cfu": null,
+  "meets": 0,
+  "meets_pct": null,
+  "no_result": 0,
+  "results": 0,
+  "rounds": 0,
+  "systems": 0,
+  "tap_recorded": 0
  },
  "pulled": "2026-09-28",
  "responses": 45,
@@ -1110,6 +410,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1124,6 +425,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1138,6 +440,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1152,6 +455,8 @@
    "post_rehab_first": null,
    "results_baseline": 43,
    "results_post": 0,
+   "results_pre_completion": 0,
+   "stage": "upgrade or new build under way",
    "status": "in_process",
    "water_points": [],
    "works_complete": null,
@@ -1166,6 +471,8 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "results_pre_completion": 0,
+   "stage": "upgrade or new build under way",
    "status": "in_process",
    "water_points": [],
    "works_complete": null,
@@ -1180,6 +487,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1194,6 +502,8 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "results_pre_completion": 0,
+   "stage": "upgrade or new build under way",
    "status": "in_process",
    "water_points": [],
    "works_complete": null,
@@ -1208,6 +518,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1222,6 +533,8 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "results_pre_completion": 0,
+   "stage": "upgrade or new build under way",
    "status": "in_process",
    "water_points": [],
    "works_complete": null,
@@ -1236,6 +549,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1250,6 +564,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1264,6 +579,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1278,6 +594,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1292,6 +609,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1306,6 +624,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1320,6 +639,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1334,6 +654,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1348,6 +669,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1362,6 +684,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1376,6 +699,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1390,6 +714,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "managed",
    "water_points": [
     "1125843383"
@@ -1406,6 +731,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1420,6 +746,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1434,6 +761,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,
@@ -1448,6 +776,7 @@
    "post_rehab_first": null,
    "results_baseline": 0,
    "results_post": 0,
+   "stage": null,
    "status": "not_managed",
    "water_points": [],
    "works_complete": null,

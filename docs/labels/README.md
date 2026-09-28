@@ -13,12 +13,17 @@ does not depend on it.
 **She copies the ID from the tap itself:** from the tap plate below, or from the ID painted or
 stencilled on the tap. That is the reference, not a list carried in the field.
 
-**A wrong ID is caught when the result is paired.** The build pairs each result with its
-sampling record on the same water point and the same sampling day
-(`tools/rebuild_piped_wq.py`). A result whose ID matches no sample that day is left unpaired and
-flagged, with its response code, in the collapsed pairing block of the piped water-quality panel
-and in the `publish.sh` readout. A sample with no result after 7 days is flagged the same way.
-Nothing is paired on a guess.
+**Only public standposts and kiosks are sampled**, for now: what comes out of the tap. No
+source, tank or household samples. A sample recorded against the system, or at a household, is
+flagged as outside protocol and never paired.
+
+**A wrong ID is caught when the result is paired.** The build pairs each result with the most
+recent unpaired sampling record at the **same water point**, taken within the **72 hours** before
+the result was submitted; each sample pairs once (`tools/rebuild_piped_wq.py`). A result whose ID
+matches no such sample is left unpaired and flagged, with its response code, in the collapsed
+pairing block of the piped water-quality panel and in the `publish.sh` readout. A sample with no
+result after 7 days is flagged the same way. The sampling date on the result is only a
+cross-check. Nothing is paired on a guess.
 
 ## The files
 
@@ -34,9 +39,9 @@ code encodes the ID and nothing else, so scanning it into the ID question fills 
 **On 28 September 2026 the list holds one water point:** the Antananarivo SmarTap kiosk
 `1125843383` (system `1125843376`). None of the four Moramanga systems (Amboasary gara
 `1108783583`, Ambohibola `1108783624`, Amboanjo `1108783648`, Andilanatoby `1108783662`) has a
-registered tap yet. They should be registered only once the duplicate system records around
-Amboasary are reconciled (action `act-moramanga-system-dedupe`). Then add the rows to the CSV and
-run:
+registered standpost yet. They are registered once the duplicate system records around Amboasary
+are reconciled (actions `act-moramanga-system-dedupe` and `act-moramanga-register-standposts`).
+Then add the rows to the CSV and run:
 
 ```
 ~/sdws1/venv/bin/python tools/make_wq_labels.py

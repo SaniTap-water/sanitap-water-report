@@ -33,7 +33,9 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it.",
+   "stage": "upgrade or new build under way",
+   "stage_source": "Adriaan Mol, 28 Sep 2026: some Moramanga systems are existing systems being upgraded (their taps exist and are in use), some are built from scratch"
   },
   "1108783624": {
    "name": "Ambohibola",
@@ -41,7 +43,9 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it.",
+   "stage": "upgrade or new build under way",
+   "stage_source": "Adriaan Mol, 28 Sep 2026: some Moramanga systems are existing systems being upgraded (their taps exist and are in use), some are built from scratch"
   },
   "1108783631": {
    "name": "Amboanjo",
@@ -57,7 +61,9 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it.",
+   "stage": "upgrade or new build under way",
+   "stage_source": "Adriaan Mol, 28 Sep 2026: some Moramanga systems are existing systems being upgraded (their taps exist and are in use), some are built from scratch"
   },
   "1108783655": {
    "name": "Andilanatoby",
@@ -73,7 +79,9 @@
    "works_complete": null,
    "post_rehab_test": null,
    "confirmed": true,
-   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it."
+   "basis": "One of the four Moramanga piped systems: named by the Moramanga carbon baseline survey (form 3ef4385a, deployment 'Baseline (Moramanga)') and by the Moramanga piped water-point identification (form a34cb66b). Deichmann-funded and in process per Adriaan Mol, 25 Sep 2026: works not complete, post-rehabilitation water-quality tests not done. mWater records no funder for it.",
+   "stage": "upgrade or new build under way",
+   "stage_source": "Adriaan Mol, 28 Sep 2026: some Moramanga systems are existing systems being upgraded (their taps exist and are in use), some are built from scratch"
   },
   "1108784120": {
    "name": "ECAR Saint Mathieu",

@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 """The collapsed pairing detail in the piped water-quality panel.
 
-Each piped result is paired with its sampling record by site and sampling day
+Each piped result is paired with its sampling record by the 72-hour rule
 (tools/rebuild_piped_wq.py, Adriaan Mol, 28 September 2026). What does not
 pair is listed here with its response codes, so Cathy can pair it by hand: a
-result with no sample, a sample with no result after 7 days, and a site and
-day with more than one of either. The build never fails on these; publish.sh
-prints the same list as a gate readout.
+result with no sample, a sample with no result after 7 days, a sample taken
+outside the standposts-only protocol, and a date that disagrees with its
+sample. Results filed before the protocol went live are listed apart as
+baseline, not paired. The build never fails on these; publish.sh prints the
+same list as a gate readout.
 
     python3 tools/render_piped_pairing.py --write
     python3 tools/render_piped_pairing.py --check
@@ -34,45 +36,52 @@ def codes(xs):
     return ", ".join(f'<span class="mono">{html.escape(x)}</span>' for x in xs) or "&mdash;"
 
 
-def site(x):
-    """'point 900' -> point <mono>900</mono>: an identifier, not a figure."""
-    if not x:
-        return "&mdash;"
-    kind, _, code = x.partition(" ")
-    return f'{kind} <span class="mono">{html.escape(code)}</span>'
+def mono(x):
+    return f'<span class="mono">{html.escape(x)}</span>' if x else "&mdash;"
 
 
 def block(p):
     rows = []
-    for x in p["flags"]["more_than_one"]:
-        rows.append(("more than one on this site and day", site(x["site"]), x["day"],
-                     codes(x["results"]), codes(x["samples"])))
     for x in p["flags"]["result_without_sample"]:
-        near = (f'<span class="muted">none paired; near: </span>{codes(x["candidates"])}'
+        near = (f'<span class="muted">near: </span>{codes(x["candidates"])}'
                 if x["candidates"] else "&mdash;")
-        why = "no sample on this site and day" if x.get("day") else x["why"]
-        rows.append((f"result with no sample: {why}", site(x["site"]),
-                     x.get("day") or x.get("result_day"), codes([x["result"]]), near))
+        rows.append((f"result with no sample: {html.escape(x['why'])}", mono(x["point"]),
+                     html.escape(x["submitted"]), codes([x["result"]]), near))
     for x in p["flags"]["sample_without_result"]:
-        why = f": {x['why']}" if x.get("why") else ""
-        rows.append((f"sample with no result after {p['after_days']} days{why}",
-                     site(x["site"]), x["day"] or "&mdash;", "&mdash;",
+        rows.append((f"sample with no result after {p['after_days']} days"
+                     + (" (pre-completion test)" if x.get("pre_completion") else ""),
+                     mono(x["point"]), x["day"], "&mdash;", codes([x["sample"]])))
+    for x in p["flags"]["outside_protocol"]:
+        where = (f'system {mono(x["system"])}' if not x.get("point") and x.get("system")
+                 else mono(x.get("point")))
+        rows.append((f"outside protocol &ndash; sample at a public standpost: "
+                     f"{html.escape(x['why'])}", where, x["day"] or "&mdash;", "&mdash;",
                      codes([x["sample"]])))
-    for x in p["flags"]["code_mismatch"]:
-        rows.append((f"typed sampling code {html.escape(x['typed'])} differs (paired anyway)",
-                     site(x["site"]), x["day"], codes([x["result"]]), codes([x["sample"]])))
+    for x in p["flags"]["date_mismatch"]:
+        rows.append((f"date mismatch (paired): result says {x['result_day']}, "
+                     f"sample taken {x['sample_day']}", mono(x["point"]), x["sample_day"],
+                     codes([x["result"]]), codes([x["sample"]])))
     body = "\n".join(f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td>{d}</td><td>{e}</td></tr>"
                      for a, b, c, d, e in rows)
     table = ("" if not rows else
              '<div class="tablewrap"><table data-table="piped-pairing" class="ind"><thead><tr>'
-             "<th>Flag</th><th>Site</th><th>Sampling day</th><th>Result (response code)</th>"
+             "<th>Flag</th><th>Water point</th><th>Day</th><th>Result (response code)</th>"
              f"<th>Sample (response code)</th></tr></thead><tbody>\n{body}\n</tbody></table></div>\n"
              + table_notes.render("piped-pairing") + "\n")
+    base = p["baseline"]["result_list"]
+    baseline = ("" if not base else
+                f'<p class="note"><b>Baseline, not paired.</b> <span data-fig="{F}.baseline.results">'
+                "</span> results were submitted before the tap-level sampling protocol went live "
+                f'(<span data-fig="{F}.protocol_live_day"></span>), with <span data-fig="'
+                f'{F}.baseline.samples"></span> samples from the same period. They are pre-project '
+                "baseline: not paired, not flagged, not counted above. Results: "
+                + ", ".join(f'{codes([x["result"]])} <span class="muted">({x["submitted"]})</span>'
+                            for x in base) + ".</p>\n")
     return f"""
 <details class="expl" id="piped-wq-pairing" style="margin-top:10px"><summary>Results paired with their samples: {fig(F + '.paired')} of {fig(F + '.results')}; {fig(F + '.flagged_total')} flagged for pairing by hand</summary>
-<p class="note" style="margin-top:0"><b>The rule.</b> Each result on the piped result form is paired with its record on the <a href="https://portal.mwater.co/#/forms/{p['sampling_form']}" target="_blank" rel="noopener">piped sampling form</a> by the same water point (sampling <span class="mono">1.1b</span>) or, for a sample taken at the source or in the system, the same water system (<span class="mono">1.1</span>), <i>and</i> the same sampling day (result <span class="mono">1.2.2</span> against the day of sampling <span class="mono">1.4</span>, Madagascar time). A pair takes its GPS, sample type and photo from the sampling record. The sampling code typed on the result (<span class="mono">1.2.1</span>) is only a cross-check, and the GPS copied onto the result (<span class="mono">1.2.3</span>) is not read. <span class="muted">Decision: Adriaan Mol, 28 Sep 2026.</span></p>
-<p class="note"><b>Now.</b> {fig(F + '.paired')} of the {fig(F + '.results')} results pair on their own ({fig(F + '.paired_with_gps')} with GPS, {fig(F + '.paired_with_photo')} with a photo, from {fig(F + '.samples')} sampling records). {fig(F + '.results_without_sampling_date')} results carry no sampling date: they were filed before question <span class="mono">1.2.2</span> existed, so they cannot pair on their own; the samples taken in the {fig('PIPEDWQ.pairing.after_days')} days before each one was read are listed beside it. {fig(F + '.flagged.more_than_one')} sites and days have more than one sample or result, {fig(F + '.flagged.sample_without_result')} samples have no result after {fig(F + '.after_days')} days, and {fig(F + '.samples_pending')} are within that window. <span class="muted">Coordinates are not shown on this page; the pairs with their GPS stay with the extracts. Flags never stop the build: each one is Cathy&rsquo;s to pair by hand.</span></p>
-{table}</details>
+<p class="note" style="margin-top:0"><b>The rule.</b> Piped water quality is sampled only at public standposts and kiosks: what comes out of the tap. No source, tank or household samples. A result on the piped result form pairs with the most recent <i>unpaired</i> record on the <a href="https://portal.mwater.co/#/forms/{p['sampling_form']}" target="_blank" rel="noopener">piped sampling form</a> at the same water point (sampling <span class="mono">1.1b</span>), taken within the {fig(F + '.window_hours')}&nbsp;hours before the result was submitted. Each sample pairs once. A pair takes its GPS, sample type and photo from the sampling record. The sampling date on the result (<span class="mono">1.2.2</span>) is a cross-check only: more than {fig(F + '.date_mismatch_days')} day from the sample keeps the pair and adds a date-mismatch note. The code and GPS copied onto the result (<span class="mono">1.2.1</span>, <span class="mono">1.2.3</span>) are not read. A sample with no water point, or at a household, is outside protocol and is flagged, never paired. <span class="muted">Decision: Adriaan Mol, 28 Sep 2026.</span></p>
+<p class="note"><b>Now.</b> {fig(F + '.paired')} of the {fig(F + '.results')} results since the protocol went live are paired ({fig(F + '.paired_with_gps')} with GPS, {fig(F + '.paired_with_photo')} with a photo, {fig(F + '.date_mismatch')} with a date mismatch), from {fig(F + '.samples')} sampling records. {fig(F + '.outside_protocol')} samples are outside protocol, {fig(F + '.flagged.sample_without_result')} have no result after {fig(F + '.after_days')} days and {fig(F + '.samples_pending')} are within that window. <b>Pre-completion tests</b> &mdash; samples on a system whose upgrade or new build is under way: {fig(F + '.pre_completion.samples')}, of which {fig(F + '.pre_completion.paired')} paired. They are shown here and enter no carbon or portfolio figure. <span class="muted">Coordinates are not shown on this page; the pairs with their GPS stay with the extracts. Flags never stop the build: each one is Cathy&rsquo;s to pair by hand.</span></p>
+{table}{baseline}</details>
 """
 
 

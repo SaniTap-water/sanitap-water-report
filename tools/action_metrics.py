@@ -331,7 +331,7 @@ def _m_piped_misfiled():
 
 
 @metric("piped_systems_in_process",
-        "piped systems in process: works or post-rehabilitation tests not yet done")
+        "piped systems whose upgrade or new build is under way: works or post-rehabilitation tests not yet done")
 def _m_piped_in_process():
     return json.load(open(d("data", "piped_wq.json"), encoding="utf8"))[
         "status_counts"]["in_process"]
@@ -373,6 +373,13 @@ def _onb():
         "managed Endur'O sites with no submitted System registration in mWater")
 def _m_onb_sites():
     return js("ENDURO")["disp"]["managed"] - _onb()["systems_registered"]
+
+
+@metric("moramanga_systems_without_standpost",
+        "of the four Moramanga systems, those with no public standpost registered as a Distribution Point on the scheme")
+def _m_moramanga_standposts():
+    return json.load(open(d("data", "moramanga_system_dedupe.json"), encoding="utf8"))[
+        "systems_without_standpost"]
 
 
 @metric("moramanga_duplicates_unresolved",

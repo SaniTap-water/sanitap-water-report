@@ -1,0 +1,500 @@
+{
+ "radius_m": 3000,
+ "read_on": "2026-09-28T17:30:05.769Z",
+ "systems": {
+  "1108783583": [
+   {
+    "code": "1108783583",
+    "name": "Amboasary gara",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T07:10:06.763Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -18.4434527,
+     48.2649121
+    ],
+    "responses": 201,
+    "responses_final": 201,
+    "responses_by_form": {
+     "ef8cf7353a974cf984d34860dcf2952d": 49,
+     "3ef4385a619244c7ad129169ac1ec71f": 108,
+     "0ac68d8274d24f54af0c28b29119b77d": 43,
+     "a34cb66b0dcd4a609086780b6f0c5c3f": 1
+    },
+    "last_response": "2026-09-16T09:03:44.206Z",
+    "points": [],
+    "created_by_name": "reneenduro"
+   },
+   {
+    "code": "1108784120",
+    "name": "ECAR Saint Mathieu",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T07:19:40.257Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4434901,
+     48.2649401
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1108784278",
+    "name": "ECAR AMBOASARY",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T12:35:36.248Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4436,
+     48.2648983
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1108784199",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T09:24:57.616Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4437651,
+     48.265259
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1108784175",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T09:25:02.920Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4437213,
+     48.2652981
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1108784223",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T10:58:58.634Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4422533,
+     48.2651149
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1108784216",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T09:25:04.829Z",
+    "created_by": "11d63fa149b14144a6e477bedea5a2c7",
+    "location": [
+     -18.4420692,
+     48.2651746
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Safidyenduro"
+   },
+   {
+    "code": "1110083543",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T12:53:26.554Z",
+    "created_by": "2a9b809348f640609c09c786d3be24d9",
+    "location": [
+     -18.4421307,
+     48.2654961
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Solangeenduro"
+   },
+   {
+    "code": "1110083574",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T13:26:14.248Z",
+    "created_by": "2a9b809348f640609c09c786d3be24d9",
+    "location": [
+     -18.442647,
+     48.2665501
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Solangeenduro"
+   },
+   {
+    "code": "1110083660",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T13:41:30.044Z",
+    "created_by": "2a9b809348f640609c09c786d3be24d9",
+    "location": [
+     -18.4428619,
+     48.2669646
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Solangeenduro"
+   },
+   {
+    "code": "1110083653",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T13:40:56.217Z",
+    "created_by": "2a9b809348f640609c09c786d3be24d9",
+    "location": [
+     -18.4428731,
+     48.2669748
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Solangeenduro"
+   },
+   {
+    "code": "1110083646",
+    "name": null,
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-02-27T13:40:55.783Z",
+    "created_by": "2a9b809348f640609c09c786d3be24d9",
+    "location": [
+     -18.4429189,
+     48.2670522
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "Solangeenduro"
+   },
+   {
+    "code": "929469247",
+    "name": "Forage Amboasary gare",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-06-30T17:46:36.115Z",
+    "created_by": "ce2563df8866486880e0899b39f4b7d7",
+    "location": [
+     -18.4419583,
+     48.2774967
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [
+     {
+      "code": "929469230",
+      "name": "Forage Amboasary gare"
+     }
+    ],
+    "created_by_name": null
+   },
+   {
+    "code": "929469223",
+    "name": "AEPP AMBOASARY GARE",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-06-30T17:46:37.798Z",
+    "created_by": "ce2563df8866486880e0899b39f4b7d7",
+    "location": [
+     -18.442022,
+     48.2775341
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [
+     {
+      "code": "928480351",
+      "name": "Mamboasary gare forage"
+     }
+    ],
+    "created_by_name": null
+   },
+   {
+    "code": "441839342",
+    "name": "AEPG AMBOASARY GARA",
+    "managed_by": "group:f9ffe5314a0e4fe39a1cd2859eec23f8",
+    "managed_by_name": "WaterAid",
+    "created_on": "2023-02-11T09:00:04.160Z",
+    "created_by": "720d8fa86fc94f23b813a5ad3b7bb1e7",
+    "location": [
+     -18.440937,
+     48.2788282
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [
+     {
+      "code": "441839476",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839359",
+      "name": "KIOSQUE BETANATANANA AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839469",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839366",
+      "name": "KIOSQUE2 BETANATANANA"
+     },
+     {
+      "code": "441839438",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839414",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "378659084",
+      "name": "KIOSQUE BETANATANANA AMBOASARY GARA AMBOASARY GARA"
+     },
+     {
+      "code": "441839445",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839452",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839517",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839421",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839531",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839548",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839397",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839407",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839524",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839483",
+      "name": "KIOSQUE AMPITANOMBY AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839490",
+      "name": "KIOSQUE BARRIÈRE AMBOASARY AMBOASARY GARA"
+     },
+     {
+      "code": "441839500",
+      "name": "KIOSQUE ANTSAPANANA AMBOASARY AMBOASARY GARA"
+     }
+    ],
+    "created_by_name": null
+   }
+  ],
+  "1108783624": [
+   {
+    "code": "1108783624",
+    "name": "Ambohibola",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-03-01T07:00:29.264Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -18.5142064,
+     48.2657908
+    ],
+    "responses": 45,
+    "responses_final": 45,
+    "responses_by_form": {
+     "3ef4385a619244c7ad129169ac1ec71f": 44,
+     "a34cb66b0dcd4a609086780b6f0c5c3f": 1
+    },
+    "last_response": "2026-03-06T06:54:18.206Z",
+    "points": [],
+    "created_by_name": "reneenduro"
+   },
+   {
+    "code": "928471757",
+    "name": "AEPP AMBOHIBOLA",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-06-30T17:46:36.911Z",
+    "created_by": "ce2563df8866486880e0899b39f4b7d7",
+    "location": [
+     -18.5181193,
+     48.2675365
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [
+     {
+      "code": "928346466",
+      "name": "Forage Ambohibola"
+     }
+    ],
+    "created_by_name": null
+   }
+  ],
+  "1108783648": [
+   {
+    "code": "1108783648",
+    "name": "Amboanjo",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-03-02T07:20:14.548Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -18.3879773,
+     48.2233921
+    ],
+    "responses": 69,
+    "responses_final": 69,
+    "responses_by_form": {
+     "3ef4385a619244c7ad129169ac1ec71f": 68,
+     "a34cb66b0dcd4a609086780b6f0c5c3f": 1
+    },
+    "last_response": "2026-03-09T06:39:05.127Z",
+    "points": [],
+    "created_by_name": "reneenduro"
+   },
+   {
+    "code": "1108783631",
+    "name": "Amboanjo",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-03-02T07:18:57.865Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -18.3878749,
+     48.2232292
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "reneenduro"
+   }
+  ],
+  "1108783662": [
+   {
+    "code": "1108783662",
+    "name": "Andilanatoby",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-03-04T07:09:54.406Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -17.9354444,
+     48.2380704
+    ],
+    "responses": 113,
+    "responses_final": 113,
+    "responses_by_form": {
+     "3ef4385a619244c7ad129169ac1ec71f": 111,
+     "ef8cf7353a974cf984d34860dcf2952d": 1,
+     "a34cb66b0dcd4a609086780b6f0c5c3f": 1
+    },
+    "last_response": "2026-09-28T07:27:56.548Z",
+    "points": [],
+    "created_by_name": "reneenduro"
+   },
+   {
+    "code": "1108783655",
+    "name": "Andilanatoby",
+    "managed_by": "group:c305b9b85f41417387b553d9a33c795b",
+    "managed_by_name": "Enduro",
+    "created_on": "2026-03-04T07:08:37.314Z",
+    "created_by": "c1a906b1b80648dea5ef1da778bffa34",
+    "location": [
+     -17.9354949,
+     48.238005
+    ],
+    "responses": 0,
+    "responses_final": 0,
+    "responses_by_form": {},
+    "last_response": null,
+    "points": [],
+    "created_by_name": "reneenduro"
+   }
+  ]
+ },
+ "note": "Written by tools/moramanga_dedupe.py --history through tools/mwater/system_history.mjs (GET only). A dated snapshot, refreshed by hand."
+}

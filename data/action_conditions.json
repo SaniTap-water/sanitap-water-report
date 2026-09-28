@@ -873,7 +873,7 @@
   "metric": "piped_systems_in_process",
   "op": "==",
   "target": 0,
-  "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+  "says": "closes when no piped system is left under way (upgrade or new build): each has completed works and a post-rehabilitation test",
   "when_satisfied": "OK"
  },
  "act-enduro-onboard-1-enumerators": {
@@ -997,6 +997,14 @@
   "op": "==",
   "target": 0,
   "says": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",
+  "when_satisfied": "OK"
+ },
+ "act-moramanga-register-standposts": {
+  "kind": "data",
+  "metric": "moramanga_systems_without_standpost",
+  "op": "==",
+  "target": 0,
+  "says": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point on its scheme",
   "when_satisfied": "OK"
  }
 }

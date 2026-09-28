@@ -14,8 +14,10 @@ against the real extract.
   4. a system declared managed with no works date: the build fails;
   5. a system in the extract missing from the file: the build fails.
   6-7. a system admitted by decision, and its date from the dispensing feed;
-  8. a result pairs with its sample on site and sampling day, and what does
-     not pair is flagged (made-up responses, not the extract).
+  8-14. pairing by the 72-hour rule, on made-up responses: the pair and what
+     it takes from the sample; the window; each sample once, most recent
+     first; the date cross-check; outside protocol; pre-completion; baseline
+     and the 7-day flag.
 
     python3 tools/test_piped_wq.py
 """
@@ -127,56 +129,136 @@ def main():
         if err or s.get("works_complete") != "2026-09-16" or not s.get("operational_from_feed"):
             fails.append("the operational date was not re-derived from the first non-test dispense")
 
-    # 8. pairing (Adriaan Mol, 28 Sep 2026) on made-up responses: a result
-    # pairs with its sample on the same tap and sampling day and takes the
-    # sample's GPS, type and photo; the typed code is a cross-check only; a
-    # second sample on one day is flagged, not guessed; an old sample with no
-    # result is flagged, a recent one waits; a result with no 1.2.2 is flagged
-    def resp(form, code, data, _id=None):
-        return {"_id": _id or code, "code": code, "form": form, "status": "final",
-                "data": {k: {"value": v} for k, v in data.items()}}
-    W = R.PIPED["wq_form"]
-    Q = lambda pfx: next(k for k in (
-        "7d0fce72f2b5eba64004b41c210566af", "a3390d2e97494b3da193e5c015a879d1",
-        "b25338d820d94639adb3bcf4c67e4c33", "630ccd46f76f420692572e0db2d86ad8",
-        "680e7b715b5e4fc49bef6205be59301a") if k.startswith(pfx))
-    S = lambda pfx: next(k for k in (
+    # 8-14. pairing by the 72-hour rule (Adriaan Mol, 28 Sep 2026), on made-up
+    # responses filed after the tap-level protocol went live
+    W, F = R.PIPED["wq_form"], R.SAMPLING_FORM
+    TAP, SYS, SAMPLED, RESDATE = ("7d0fce72f2b5eba64004b41c210566af",
+                                  "a3390d2e97494b3da193e5c015a879d1",
+                                  "b25338d820d94639adb3bcf4c67e4c33",
+                                  "630ccd46f76f420692572e0db2d86ad8")
+    S_PT, S_SYS, S_T, S_GPS, S_TYPE, S_PHOTO, S_WHERE = (
         "51eca87b7bbbe1ea541070490d4bc186", "a7f6f9e14497435f8601e26ecf4f59ab",
         "630ccd46f76f420692572e0db2d86ad8", "b2875c48657f4173bb7f5783ef3add7c",
         "bf966f97c48b4a4191a5e577be76054f", "e14d9d8b2d7f4acab6edfe6dec57d718",
-        "4e8d00a7547c73897fd05e985d236dcf") if k.startswith(pfx))
-    F = R.SAMPLING_FORM
-    samples = [
-        # 22:30 UTC on the 1st is the 2nd in Madagascar
-        resp(F, "S-TAP", {S("51eca87b"): {"code": "900"}, S("630ccd46"): "2026-10-01T22:30:00Z",
-                          S("b2875c48"): {"type": "Point", "coordinates": [48.4, -18.9]},
-                          S("bf966f97"): "YZhKDk3", S("e14d9d8b"): [{"id": "img1"}],
-                          S("4e8d00a7"): "Qqs6cuQ"}),
-        resp(F, "S-DUP1", {S("a7f6f9e1"): {"code": "800"}, S("630ccd46"): "2026-10-03T08:00:00Z"}),
-        resp(F, "S-DUP2", {S("a7f6f9e1"): {"code": "800"}, S("630ccd46"): "2026-10-03T09:00:00Z"}),
-        resp(F, "S-OLD", {S("51eca87b"): {"code": "901"}, S("630ccd46"): "2026-09-20T08:00:00Z"}),
-        resp(F, "S-NEW", {S("51eca87b"): {"code": "902"}, S("630ccd46"): "2026-10-08T08:00:00Z"})]
-    results = [
-        resp(W, "R-TAP", {Q("7d0fce72"): {"code": "900"}, Q("b25338d8"): "2026-10-02",
-                          Q("680e7b71"): "S-WRONG"}),
-        resp(W, "R-DUP", {Q("a3390d2e"): {"code": "800"}, Q("b25338d8"): "2026-10-03"}),
-        resp(W, "R-NODATE", {Q("a3390d2e"): {"code": "800"}, Q("630ccd46"): "2026-10-04T08:00:00Z"})]
-    pub, priv = R.pair(results, samples, "2026-10-10")
-    f = pub["flags"]
-    ok = (pub["paired"] == 1 and priv[0]["sample"] == "S-TAP" and priv[0]["gps"]
-          and priv[0]["photos"] == ["img1"] and priv[0]["point_type"] == "water kiosk"
-          and len(f["code_mismatch"]) == 1
-          and [x["samples"] for x in f["more_than_one"]] == [["S-DUP1", "S-DUP2"]]
-          and [x["sample"] for x in f["sample_without_result"]] == ["S-OLD"]
-          and pub["samples_pending"] == 1
-          and [x["result"] for x in f["result_without_sample"]] == ["R-NODATE"]
-          and f["result_without_sample"][0]["candidates"] == ["S-DUP1", "S-DUP2"]
-          and "coordinates" not in json.dumps(pub))
-    print(f"8. pairing on made-up responses: paired {pub['paired']} (expected 1), flags "
-          f"{pub['flagged']}, pending {pub['samples_pending']}, no coordinates published: "
-          f"{'coordinates' not in json.dumps(pub)}")
-    if not ok:
-        fails.append("the result-sample pairing did not pair, flag or withhold as the rule says")
+        "4e8d00a7547c73897fd05e985d236dcf")
+
+    def resp(form, code, data, submitted):
+        return {"_id": code, "code": code, "form": form, "status": "final",
+                "submittedOn": submitted,
+                "data": {k: {"value": v} for k, v in data.items()}}
+
+    def sample(code, point, taken, **extra):
+        d = {S_T: taken, S_WHERE: "Qqs6cuQ", S_TYPE: extra.pop("kind", "4hbaZYA")}
+        if point:
+            d[S_PT] = {"code": point}
+        d.update(extra.pop("data", {}))
+        return resp(F, code, d, taken)
+
+    def result(code, point, submitted, day=None):
+        d = {TAP: {"code": point}} if point else {}
+        if day:
+            d[SAMPLED] = day
+        return resp(W, code, d, submitted)
+
+    def check(n, label, ok, detail):
+        print(f"{n}. {label}: {detail}")
+        if not ok:
+            fails.append(f"case {n}: {label}")
+
+    # 8. a result pairs with its sample and takes GPS, type and photo from it;
+    # no coordinates are published
+    pub, priv = R.pair(
+        [result("R8", "900", "2026-10-02T09:00:00Z", "2026-10-02")],
+        [sample("S8", "900", "2026-10-02T06:00:00Z", kind="YZhKDk3",
+                data={S_GPS: {"type": "Point", "coordinates": [48.4, -18.9]},
+                      S_PHOTO: [{"id": "img1"}]})], "2026-10-03")
+    check(8, "pairs on the same water point and takes the sample's GPS, type and photo",
+          pub["paired"] == 1 and priv[0]["gps"] and priv[0]["photos"] == ["img1"]
+          and priv[0]["point_type"] == "water kiosk" and "coordinates" not in json.dumps(pub),
+          f"paired {pub['paired']}, coordinates published: {'coordinates' in json.dumps(pub)}")
+
+    # 9. the 72-hour window: 71 h before pairs, 73 h before does not, and a
+    # sample taken after the result was submitted never does
+    pub, priv = R.pair(
+        [result("R9a", "901", "2026-10-05T11:00:00Z"),
+         result("R9b", "902", "2026-10-05T13:00:00Z"),
+         result("R9c", "903", "2026-10-05T09:00:00Z")],
+        [sample("S9a", "901", "2026-10-02T12:00:00Z"),      # 71 h before
+         sample("S9b", "902", "2026-10-02T12:00:00Z"),      # 73 h before
+         sample("S9c", "903", "2026-10-05T10:00:00Z")],     # after submission
+        "2026-10-06")
+    got = sorted(p["result"] for p in priv)
+    check(9, f"{R.WINDOW_H} h window", got == ["R9a"]
+          and sorted(x["result"] for x in pub["flags"]["result_without_sample"]) == ["R9b", "R9c"],
+          f"paired {got}, unpaired {[x['result'] for x in pub['flags']['result_without_sample']]}")
+
+    # 10. each sample pairs once, and a result takes the MOST RECENT unpaired
+    # sample: two results and two samples at one tap pair one-to-one
+    pub, priv = R.pair(
+        [result("R10a", "904", "2026-10-06T08:00:00Z"),
+         result("R10b", "904", "2026-10-06T09:00:00Z"),
+         result("R10c", "904", "2026-10-06T10:00:00Z")],
+        [sample("S10old", "904", "2026-10-05T07:00:00Z"),
+         sample("S10new", "904", "2026-10-06T07:00:00Z")], "2026-10-07")
+    got = {p["result"]: p["sample"] for p in priv}
+    check(10, "each sample pairs once; the most recent unpaired one is taken",
+          got == {"R10a": "S10new", "R10b": "S10old"}
+          and [x["result"] for x in pub["flags"]["result_without_sample"]] == ["R10c"],
+          f"pairs {got}, unpaired {[x['result'] for x in pub['flags']['result_without_sample']]}")
+
+    # 11. result 1.2.2 is a cross-check: two days off keeps the pair with a
+    # note, one day off is no mismatch
+    pub, priv = R.pair(
+        [result("R11a", "905", "2026-10-07T08:00:00Z", "2026-10-04"),
+         result("R11b", "906", "2026-10-07T08:00:00Z", "2026-10-05")],
+        [sample("S11a", "905", "2026-10-06T08:00:00Z"),
+         sample("S11b", "906", "2026-10-06T08:00:00Z")], "2026-10-08")
+    check(11, "date mismatch kept as a note", pub["paired"] == 2 and pub["date_mismatch"] == 1
+          and pub["flags"]["date_mismatch"][0]["result"] == "R11a",
+          f"paired {pub['paired']}, date mismatch {pub['date_mismatch']}")
+
+    # 12. a sample at system level or at a household is flagged outside
+    # protocol and never paired, even with a result at the same point
+    pub, priv = R.pair(
+        [result("R12", "907", "2026-10-08T09:00:00Z")],
+        [sample("S12sys", None, "2026-10-08T07:00:00Z", data={S_SYS: {"code": "800"},
+                                                               S_WHERE: "kPcXJl9"}),
+         sample("S12hh", "907", "2026-10-08T08:00:00Z", kind="YLudYMc")], "2026-10-09")
+    check(12, "outside protocol: system-level and household samples",
+          pub["paired"] == 0 and sorted(x["sample"] for x in pub["flags"]["outside_protocol"])
+          == ["S12hh", "S12sys"],
+          f"paired {pub['paired']}, outside protocol {pub['outside_protocol']}")
+
+    # 13. a standpost on a system whose build is under way: a pre-completion
+    # test, counted apart
+    pub, priv = R.pair(
+        [result("R13", "908", "2026-10-09T09:00:00Z")],
+        [sample("S13", "908", "2026-10-09T07:00:00Z"),
+         sample("S13b", "909", "2026-10-09T07:00:00Z")], "2026-10-10",
+        {"908": "1108783583", "909": "1125843376"}, {"1108783583"})
+    check(13, "pre-completion classification",
+          priv[0]["pre_completion"] and pub["pre_completion"]["paired"] == 1
+          and pub["pre_completion"]["samples"] == 1,
+          f"pre-completion paired {pub['pre_completion']['paired']}, samples "
+          f"{pub['pre_completion']['samples']}")
+
+    # 14. results and samples submitted before the protocol went live are
+    # baseline: not paired, flagged or counted, and listed as baseline; a
+    # sample with no result after 7 days stays flagged, a recent one waits
+    pub, priv = R.pair(
+        [result("R14old", "910", "2026-09-01T09:00:00Z")],
+        [sample("S14old", "910", "2026-09-01T07:00:00Z"),
+         sample("S14late", "911", "2026-10-01T07:00:00Z"),
+         sample("S14new", "912", "2026-10-09T07:00:00Z")], "2026-10-10")
+    check(14, f"baseline before {R.PROTOCOL_LIVE[:10]}; no result after 7 days",
+          pub["results"] == 0 and pub["baseline"]["results"] == 1
+          and pub["baseline"]["samples"] == 1
+          and [x["result"] for x in pub["baseline"]["result_list"]] == ["R14old"]
+          and [x["sample"] for x in pub["flags"]["sample_without_result"]] == ["S14late"]
+          and pub["samples_pending"] == 1 and not pub["flags"]["result_without_sample"],
+          f"counted results {pub['results']}, baseline {pub['baseline']['results']} result(s) "
+          f"and {pub['baseline']['samples']} sample(s), flagged "
+          f"{[x['sample'] for x in pub['flags']['sample_without_result']]}")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

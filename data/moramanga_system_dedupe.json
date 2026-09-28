@@ -1,6 +1,8 @@
 {
- "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv (read only). Only 'resolutions' is edited by hand: {code: {resolution, date, source}}. A duplicate that leaves the extract is resolved in mWater.",
+ "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, ~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot data/moramanga_system_history.json (all read only). Only 'resolutions' is edited by hand: {code: {resolution, date, source}}. A duplicate that leaves the extract is resolved in mWater.",
  "nearby_m": 250,
+ "history_m": 3000,
+ "history_read": "2026-09-28",
  "resolutions": {},
  "systems": [
   {
@@ -13,6 +15,7 @@
      "name": "Amboasary gara",
      "distance_m": 93702,
      "status": "not_managed",
+     "group": null,
      "resolution": null
     },
     {
@@ -20,6 +23,7 @@
      "name": "AEPP AMBOASARY GARE",
      "distance_m": 1341,
      "status": "not_managed",
+     "group": null,
      "resolution": null
     },
     {
@@ -27,6 +31,15 @@
      "name": "Forage Amboasary gare",
      "distance_m": 1338,
      "status": "not_managed",
+     "group": null,
+     "resolution": null
+    },
+    {
+     "code": "441839342",
+     "name": "AEPG AMBOASARY GARA",
+     "distance_m": 1494,
+     "status": null,
+     "group": "WaterAid",
      "resolution": null
     }
    ],
@@ -35,69 +48,339 @@
      "code": "1108784120",
      "name": "ECAR Saint Mathieu",
      "distance_m": 5,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1108784278",
      "name": "ECAR AMBOASARY",
      "distance_m": 16,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1108784175",
      "name": null,
      "distance_m": 50,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1108784199",
      "name": null,
      "distance_m": 50,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1108784223",
      "name": null,
      "distance_m": 135,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1108784216",
      "name": null,
      "distance_m": 156,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1110083543",
      "name": null,
      "distance_m": 159,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1110083574",
      "name": null,
      "distance_m": 195,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1110083660",
      "name": null,
      "distance_m": 226,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1110083653",
      "name": null,
      "distance_m": 227,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     },
     {
      "code": "1110083646",
      "name": null,
      "distance_m": 233,
-     "status": "not_managed"
+     "status": "not_managed",
+     "group": null
     }
-   ]
+   ],
+   "within": [
+    {
+     "code": "1108783583",
+     "name": "Amboasary gara",
+     "distance_m": 0,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 201,
+     "responses_final": 201,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": true
+    },
+    {
+     "code": "1108784120",
+     "name": "ECAR Saint Mathieu",
+     "distance_m": 5,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1108784278",
+     "name": "ECAR AMBOASARY",
+     "distance_m": 16,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1108784199",
+     "name": null,
+     "distance_m": 50,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1108784175",
+     "name": null,
+     "distance_m": 50,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1108784223",
+     "name": null,
+     "distance_m": 135,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1108784216",
+     "name": null,
+     "distance_m": 156,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Safidyenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1110083543",
+     "name": null,
+     "distance_m": 159,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Solangeenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1110083574",
+     "name": null,
+     "distance_m": 195,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Solangeenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1110083660",
+     "name": null,
+     "distance_m": 226,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Solangeenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1110083653",
+     "name": null,
+     "distance_m": 227,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Solangeenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "1110083646",
+     "name": null,
+     "distance_m": 233,
+     "group": "Enduro",
+     "created_on": "2026-02-27",
+     "created_by": "Solangeenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": false,
+     "original": false
+    },
+    {
+     "code": "929469247",
+     "name": "Forage Amboasary gare",
+     "distance_m": 1338,
+     "group": "Enduro",
+     "created_on": "2026-06-30",
+     "created_by": "ce2563df",
+     "points": [
+      "929469230"
+     ],
+     "points_n": 1,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    },
+    {
+     "code": "929469223",
+     "name": "AEPP AMBOASARY GARE",
+     "distance_m": 1341,
+     "group": "Enduro",
+     "created_on": "2026-06-30",
+     "created_by": "ce2563df",
+     "points": [
+      "928480351"
+     ],
+     "points_n": 1,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    },
+    {
+     "code": "441839342",
+     "name": "AEPG AMBOASARY GARA",
+     "distance_m": 1494,
+     "group": "WaterAid",
+     "created_on": "2023-02-11",
+     "created_by": "720d8fa8",
+     "points": [
+      "441839476",
+      "441839359",
+      "441839469",
+      "441839366",
+      "441839438",
+      "441839414",
+      "378659084",
+      "441839445",
+      "441839452",
+      "441839517",
+      "441839421",
+      "441839531",
+      "441839548",
+      "441839397",
+      "441839407",
+      "441839524",
+      "441839483",
+      "441839490",
+      "441839500"
+     ],
+     "points_n": 19,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    }
+   ],
+   "record_of_record": {
+    "code": "1108783583",
+    "name": "Amboasary gara",
+    "group": "Enduro",
+    "reason": "most attached form responses (201 against 0 for 441839342); but 441839342 (WaterAid) carries 19 linked water points, which move to the record of record or keep a link to it"
+   },
+   "standposts": [],
+   "standposts_n": 0
   },
   {
    "code": "1108783624",
@@ -109,10 +392,53 @@
      "name": "AEPP AMBOHIBOLA",
      "distance_m": 472,
      "status": "not_managed",
+     "group": null,
      "resolution": null
     }
    ],
-   "nearby": []
+   "nearby": [],
+   "within": [
+    {
+     "code": "1108783624",
+     "name": "Ambohibola",
+     "distance_m": 0,
+     "group": "Enduro",
+     "created_on": "2026-03-01",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 45,
+     "responses_final": 45,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": true
+    },
+    {
+     "code": "928471757",
+     "name": "AEPP AMBOHIBOLA",
+     "distance_m": 472,
+     "group": "Enduro",
+     "created_on": "2026-06-30",
+     "created_by": "ce2563df",
+     "points": [
+      "928346466"
+     ],
+     "points_n": 1,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    }
+   ],
+   "record_of_record": {
+    "code": "1108783624",
+    "name": "Ambohibola",
+    "group": "Enduro",
+    "reason": "most attached form responses (45 against 0 for 928471757); but 928471757 (Enduro) carries 1 linked water points, which move to the record of record or keep a link to it"
+   },
+   "standposts": [],
+   "standposts_n": 0
   },
   {
    "code": "1108783648",
@@ -124,10 +450,51 @@
      "name": "Amboanjo",
      "distance_m": 21,
      "status": "not_managed",
+     "group": null,
      "resolution": null
     }
    ],
-   "nearby": []
+   "nearby": [],
+   "within": [
+    {
+     "code": "1108783648",
+     "name": "Amboanjo",
+     "distance_m": 0,
+     "group": "Enduro",
+     "created_on": "2026-03-02",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 69,
+     "responses_final": 69,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": true
+    },
+    {
+     "code": "1108783631",
+     "name": "Amboanjo",
+     "distance_m": 21,
+     "group": "Enduro",
+     "created_on": "2026-03-02",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    }
+   ],
+   "record_of_record": {
+    "code": "1108783648",
+    "name": "Amboanjo",
+    "group": "Enduro",
+    "reason": "most attached form responses (69 against 0 for 1108783631)"
+   },
+   "standposts": [],
+   "standposts_n": 0
   },
   {
    "code": "1108783662",
@@ -139,22 +506,66 @@
      "name": "Andilanatoby",
      "distance_m": 9,
      "status": "not_managed",
+     "group": null,
      "resolution": null
     }
    ],
-   "nearby": []
+   "nearby": [],
+   "within": [
+    {
+     "code": "1108783662",
+     "name": "Andilanatoby",
+     "distance_m": 0,
+     "group": "Enduro",
+     "created_on": "2026-03-04",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 113,
+     "responses_final": 113,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": true
+    },
+    {
+     "code": "1108783655",
+     "name": "Andilanatoby",
+     "distance_m": 9,
+     "group": "Enduro",
+     "created_on": "2026-03-04",
+     "created_by": "reneenduro",
+     "points": [],
+     "points_n": 0,
+     "responses": 0,
+     "responses_final": 0,
+     "registration_uses": 0,
+     "same_name": true,
+     "original": false
+    }
+   ],
+   "record_of_record": {
+    "code": "1108783662",
+    "name": "Andilanatoby",
+    "group": "Enduro",
+    "reason": "most attached form responses (113 against 0 for 1108783655)"
+   },
+   "standposts": [],
+   "standposts_n": 0
   }
  ],
- "duplicates": 6,
- "unresolved": 6,
+ "duplicates": 7,
+ "unresolved": 7,
  "unresolved_codes": [
   "1108783569",
   "1108783631",
   "1108783655",
+  "441839342",
   "928471757",
   "929469223",
   "929469247"
  ],
  "nearby": 11,
- "resolved_by_absence": []
+ "resolved_by_absence": [],
+ "standposts": 0,
+ "systems_without_standpost": 4
 }

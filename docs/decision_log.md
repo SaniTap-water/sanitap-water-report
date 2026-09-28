@@ -1407,3 +1407,30 @@ A sixth reader's pass found nothing material and 7 minor points, all fixed:
 - Carbon gap 8's wording.
 - The stored tables named in the "no hand-entered number" claim.
 - The joined pump in the 297-of-732 calendar share.
+
+## 28 September 2026 — Adriaan Mol: the piped system model, standposts only, and the 72-hour pairing rule
+
+- **What a Moramanga system is:** a spring augmented by solar-pumped boreholes, header tank(s),
+  chlorination, and piped distribution to public standposts and private connections. Some of the
+  four systems are existing systems being upgraded (their taps exist and are in use); some are
+  built from scratch. On the page their status reads **"upgrade or new build under way"** wherever
+  it said "in process" (the status key stays `in_process`). They stay out of every carbon and
+  portfolio figure until complete. See `docs/piped_system_model.md`.
+- **Sampling scope, for now:** public standposts and kiosks only, what comes out of the tap. No
+  source, tank or household samples.
+- **Pairing, replacing the same-day rule of the morning:**
+  - A result pairs with the most recent unpaired sample at the same water point taken within
+    72 h before the result was submitted, and each sample pairs once.
+  - 1.2.2 is a cross-check only: a difference of more than 1 day adds a date-mismatch note.
+  - A sample at system level or at a household is flagged outside protocol.
+  - Samples on systems under way are pre-completion tests.
+  - Results and samples submitted before the protocol went live (22 Sep 2026 15:58 UTC,
+    sampling form revision 75) are baseline, not paired. Applying the cutoff to samples as well
+    as results is ours: the brief named results only.
+- **Actions:**
+  - `act-moramanga-system-dedupe` now lists every system record within 3 km in any group, with
+    history, from a dated snapshot (`tools/moramanga_dedupe.py --history`). It recommends a
+    record of record per scheme and names WaterAid's `441839342` "AEPG AMBOASARY GARA" (19
+    linked kiosks) as a duplicate.
+  - `act-moramanga-register-standposts` is new and depends on the dedupe action.
+- Nothing in mWater was changed.

@@ -239,6 +239,7 @@ GENERATED = {
     'METRICS.enduro_points_total': 'render_datasets',
     'METRICS.enduro_points_without_system': 'render_datasets',
     'METRICS.moramanga_duplicates_unresolved': 'render_datasets',
+    'METRICS.moramanga_systems_without_standpost': 'render_datasets',
     'METRICS.smart_taps_unbound': 'render_datasets',
     'METRICS.smart_meters_without_certificate': 'render_datasets',
     'METRICS.managed_kiosk_wq_results': 'render_datasets',

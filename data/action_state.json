@@ -3,7 +3,7 @@
  "kinds": {
   "artefact": 6,
   "children": 3,
-  "data": 47,
+  "data": 48,
   "decision": 45,
   "form": 7,
   "none": 25
@@ -11,7 +11,7 @@
  "state": {
   "act-2026-recovery": {
    "evaluated": "2026-09-28",
-   "evidence": "points_no_2026_calendar = 434 (active carbon points with no readable dated 2026 calendar); target == 0",
+   "evidence": "points_no_2026_calendar = 434 (carbon points with no readable dated 2026 calendar); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every active carbon point has a readable dated 2026 calendar",
@@ -579,15 +579,23 @@
   },
   "act-moramanga-post-rehab-wq": {
    "evaluated": "2026-09-28",
-   "evidence": "piped_systems_in_process = 4 (piped systems in process: works or post-rehabilitation tests not yet done); target == 0",
+   "evidence": "piped_systems_in_process = 4 (piped systems whose upgrade or new build is under way: works or post-rehabilitation tests not yet done); target == 0",
    "kind": "data",
    "satisfied": false,
-   "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+   "says": "closes when no piped system is left under way (upgrade or new build): each has completed works and a post-rehabilitation test",
+   "when_satisfied": "OK"
+  },
+  "act-moramanga-register-standposts": {
+   "evaluated": "2026-09-28",
+   "evidence": "moramanga_systems_without_standpost = 4 (of the four Moramanga systems, those with no public standpost registered as a Distribution Point on the scheme); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point on its scheme",
    "when_satisfied": "OK"
   },
   "act-moramanga-system-dedupe": {
    "evaluated": "2026-09-28",
-   "evidence": "moramanga_duplicates_unresolved = 6 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
+   "evidence": "moramanga_duplicates_unresolved = 7 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",

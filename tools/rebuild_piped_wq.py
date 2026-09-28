@@ -29,19 +29,34 @@ A result's date is its sampling date (question 1.2.2), else its result date
 Everything outside the managed and baseline sets is counted and named: a site
 that is a MadAvance hand pump is a result filed on the wrong form.
 
-PAIRING (Adriaan Mol, 28 September 2026). Each result is paired with its record
-on the piped sampling form (ef8cf735) by site and sampling date, and nothing
-else: the same water point (result 1.2b = sample 1.1b) or, for a system-level
-sample, the same water system (result 1.2 = sample 1.1), AND the same day
-(result 1.2.2 = the date of sample 1.4, in Madagascar time). A pair takes the
-GPS, sample type and photo from the sampling record. The sampling code (1.2.1)
-is a cross-check only and the GPS copied onto the result (1.2.3) is ignored.
-Flagged for pairing by hand, never failing the build: a result with no sample;
-a sample with no result 7 days after it was taken; a site and day with more
-than one sample or more than one result. Coordinates are not published (some
-samples are household connections): the pairs with their GPS go to
-~/mwater-exports/piped_wq_pairs.json, and the page says only whether a pair
-has one.
+PAIRING (Adriaan Mol, 28 September 2026; the 72-hour rule replaced the
+same-day rule the same evening). Piped water quality is sampled only at public
+standposts and kiosks - what comes out of the tap. A result on the piped result
+form (0ac68d82) pairs with the most recent UNPAIRED final record on the piped
+sampling form (ef8cf735) at the SAME water point (result 1.2b = sample 1.1b),
+taken within the 72 hours before the result was submitted. Results are taken
+in submission order and each sample pairs at most once. A pair takes the GPS,
+sample type and photo from the sampling record.
+
+  cross-check  result 1.2.2 is a cross-check only: more than 1 day from the
+               paired sample's day keeps the pair and adds a "date mismatch"
+               note. 1.2.1 and 1.2.3 are not read.
+  outside      a sample with no water point (taken at system level) or at a
+               household connection is flagged "outside protocol - sample at a
+               public standpost" and never paired.
+  under way    a sample or pair on a system whose upgrade or new build is under
+               way (status in_process) is a pre-completion test: shown, counted
+               apart, never in a carbon or portfolio figure.
+  baseline     a result or sample submitted before the tap-level sampling
+               protocol went live (build_config piped.pairing.protocol_live) is
+               pre-project baseline: not paired, not flagged, not counted; the
+               results are listed in the method notes as "baseline, not paired".
+  flagged      a result with no sample, a sample with no result after 7 days,
+               and every outside-protocol sample. Flags never fail the build.
+
+Coordinates are not published: the pairs with their GPS go to
+~/mwater-exports/piped_wq_pairs.json, and the page says only whether a pair has
+one.
 
     python3 tools/rebuild_piped_wq.py --pairing   # print the flags (exit 0)
 
@@ -73,13 +88,17 @@ PT_REG_FORM, PR_POINT, PR_SYSTEM, PR_TAPS, PR_TESTED = (
 SAMPLING_FORM = "ef8cf7353a974cf984d34860dcf2952d"
 S_WHERE, S_SYSTEM, S_POINT, S_GPS, S_TYPE, S_SAMPLED, S_PHOTO = (
     "4e8d00a7", "a7f6f9e1", "51eca87b", "b2875c48", "bf966f97", "630ccd46", "e14d9d8b")
-Q_CODE = "680e7b71"      # 1.2.1 sampling record code: a cross-check only
 S_WHERE_LABEL = {"kPcXJl9": "source or system", "Qqs6cuQ": "tap or kiosk"}
 S_TYPE_LABEL = {"4hbaZYA": "public tapstand", "YZhKDk3": "water kiosk",
                 "YLudYMc": "household connection", "zevJvCr": "institutional connection",
                 "KMB99ey": "other"}
 LOCAL_UTC_OFFSET_H = 3   # Madagascar (EAT, no daylight saving): the field's day
-NO_RESULT_AFTER_DAYS = 7
+PAIRING = PIPED["pairing"]
+WINDOW_H = PAIRING["window_hours"]
+MISMATCH_DAYS = PAIRING["date_mismatch_days"]
+NO_RESULT_AFTER_DAYS = PAIRING["no_result_after_days"]
+PROTOCOL_LIVE = PAIRING["protocol_live"]
+HOUSEHOLD = "YLudYMc"    # sampling 1.3: household connection
 PAIRS_OUT = os.path.join(EXPORTS, "piped_wq_pairs.json")
 TESTED_YES = "mXEQQFB"   # 3.1 commissioning test dispenses done: Yes
 # the Moramanga carbon baseline survey: main fuel for boiling, dry season
@@ -126,113 +145,129 @@ def local_day(v):
     return (t + datetime.timedelta(hours=LOCAL_UTC_OFFSET_H)).date().isoformat()
 
 
-def result_site(r):
-    tap = site_code(answer(r, Q_TAP))
-    return ("point", tap) if tap else (("system", site_code(answer(r, Q_SYSTEM)))
-                                       if site_code(answer(r, Q_SYSTEM)) else None)
+def when(v):
+    """A stored ISO datetime as an aware UTC datetime, or None."""
+    if not isinstance(v, str) or v[:2] != "20":
+        return None
+    t = datetime.datetime.fromisoformat(v.replace("Z", "+00:00"))
+    return t if t.tzinfo else t.replace(tzinfo=datetime.timezone.utc)
 
 
-def sample_site(s):
-    pt = site_code(answer(s, S_POINT))
-    return ("point", pt) if pt else (("system", site_code(answer(s, S_SYSTEM)))
-                                     if site_code(answer(s, S_SYSTEM)) else None)
-
-
-def pair(results, samples, as_of):
-    """Pair results with samples on (site, sampling day). Returns the published
+def pair(results, samples, as_of, point_system=None, under_way=()):
+    """Pair results with samples by the 72-hour rule. Returns the published
     summary and the private pairs (with coordinates). as_of is the day the
-    results were pulled: a sample older than NO_RESULT_AFTER_DAYS by then with
-    no result is flagged."""
+    results were pulled; point_system maps a water point to its system;
+    under_way is the set of systems whose upgrade or new build is under way."""
+    point_system, under_way = point_system or {}, set(under_way)
+    live = when(PROTOCOL_LIVE)
     res = [r for r in results if r.get("status") == "final"]
     smp = [s for s in samples if s.get("form") == SAMPLING_FORM and s.get("status") == "final"]
-    r_by, s_by, r_nokey, s_nokey = {}, {}, [], []
-    for r in res:
-        site, day = result_site(r), local_day(answer(r, Q_SAMPLED))
-        (r_by.setdefault((site, day), []).append(r) if site and day
-         else r_nokey.append((r, site, "no sampling date (1.2.2)" if site
-                              else "no water point or water system")))
+    filed = lambda x: when(x.get("submittedOn")) or when(x.get("startedOn"))
+    base_r = [r for r in res if filed(r) and filed(r) < live]
+    base_s = [s for s in smp if filed(s) and filed(s) < live]
+    res = sorted((r for r in res if r not in base_r), key=lambda r: (filed(r), r["code"]))
+    smp = [s for s in smp if s not in base_s]
+    flags = {"result_without_sample": [], "sample_without_result": [],
+             "outside_protocol": [], "date_mismatch": []}
+
+    def sys_of(point):
+        return point_system.get(point)
+
+    eligible = []
     for s in smp:
-        site, day = sample_site(s), local_day(answer(s, S_SAMPLED))
-        (s_by.setdefault((site, day), []).append(s) if site and day
-         else s_nokey.append((s, site, "no water point or water system" if not site
-                              else "no sampling date (1.4)")))
-
-    def lbl(site):
-        return f"{site[0]} {site[1]}" if site else None
-
-    def cands(site, before):
-        """Samples a person might pair by hand: same site, taken in the
-        NO_RESULT_AFTER_DAYS days up to the result's reading."""
-        if not site or not before:
-            return []
-        lo = (datetime.date.fromisoformat(before)
-              - datetime.timedelta(days=NO_RESULT_AFTER_DAYS)).isoformat()
-        return sorted(s["code"] for (st, d), ss in s_by.items() if st == site
-                      and lo <= d <= before for s in ss)
-
-    pairs, flags = [], {"result_without_sample": [], "sample_without_result": [],
-                        "more_than_one": [], "code_mismatch": []}
-    pending = 0
-    for key in sorted(set(r_by) | set(s_by), key=lambda k: (k[1], lbl(k[0]))):
-        rs, ss = r_by.get(key, []), s_by.get(key, [])
-        site, day = key
-        if len(rs) > 1 or len(ss) > 1:
-            flags["more_than_one"].append({
-                "site": lbl(site), "day": day,
-                "results": sorted(r["code"] for r in rs),
-                "samples": sorted(s["code"] for s in ss)})
-        elif rs and ss:
-            r, s = rs[0], ss[0]
-            gps = answer(s, S_GPS) if isinstance(answer(s, S_GPS), dict) else None
-            photos = [p.get("id") for p in (answer(s, S_PHOTO) or []) if isinstance(p, dict)]
-            typed = str(answer(r, Q_CODE) or "").strip()
-            pairs.append({"result": r["code"], "result_id": r["_id"], "sample": s["code"],
-                          "sample_id": s["_id"], "site": lbl(site), "day": day,
-                          "where": S_WHERE_LABEL.get(answer(s, S_WHERE)),
-                          "point_type": S_TYPE_LABEL.get(answer(s, S_TYPE)),
-                          "photos": photos, "gps": gps})
-            if typed and typed.upper() != str(s["code"]).upper():
-                flags["code_mismatch"].append({"site": lbl(site), "day": day,
-                                               "result": r["code"], "typed": typed,
-                                               "sample": s["code"]})
-        elif rs:
-            rd = local_day(answer(rs[0], Q_RESULT))
-            flags["result_without_sample"].append({
-                "result": rs[0]["code"], "site": lbl(site), "day": day,
-                "why": "no sample at this site on this day",
-                "candidates": cands(site, rd or day)})
+        pt = site_code(answer(s, S_POINT))
+        t = when(answer(s, S_SAMPLED)) or filed(s)
+        why = ("sample at system level (no water point, 1.1b)"
+               if not pt or answer(s, S_WHERE) == "kPcXJl9"
+               else "sample at a household connection" if answer(s, S_TYPE) == HOUSEHOLD
+               else None)
+        if why:
+            sy = site_code(answer(s, S_SYSTEM)) or sys_of(pt)
+            flags["outside_protocol"].append({
+                "sample": s["code"], "point": pt, "system": sy,
+                "day": local_day(answer(s, S_SAMPLED)), "why": why,
+                "pre_completion": sy in under_way})
         else:
-            if (datetime.date.fromisoformat(as_of) - datetime.date.fromisoformat(day)).days \
-                    > NO_RESULT_AFTER_DAYS:
-                flags["sample_without_result"].append({"sample": ss[0]["code"],
-                                                       "site": lbl(site), "day": day})
-            else:
-                pending += 1
-    for r, site, why in r_nokey:
-        rd = local_day(answer(r, Q_RESULT))
-        flags["result_without_sample"].append({"result": r["code"], "site": lbl(site),
-                                               "day": None, "result_day": rd, "why": why,
-                                               "candidates": cands(site, rd)})
-    for s, site, why in s_nokey:
-        flags["sample_without_result"].append({"sample": s["code"], "site": lbl(site),
-                                               "day": local_day(answer(s, S_SAMPLED)),
-                                               "why": why})
-    for k in ("result_without_sample", "sample_without_result"):
-        flags[k].sort(key=lambda x: (x.get("day") or x.get("result_day") or "",
-                                     x.get("result") or x.get("sample")))
+            eligible.append({"s": s, "point": pt, "t": t, "used": False,
+                             "pre_completion": sys_of(pt) in under_way})
+
+    pairs, window = [], datetime.timedelta(hours=WINDOW_H)
+    for r in res:
+        pt, sub = site_code(answer(r, Q_TAP)), filed(r)
+        cands = [e for e in eligible if not e["used"] and pt and e["point"] == pt
+                 and e["t"] and sub - window <= e["t"] <= sub]
+        if not cands:
+            near = sorted(e["s"]["code"] for e in eligible if pt and e["point"] == pt
+                          and e["t"] and sub - datetime.timedelta(days=NO_RESULT_AFTER_DAYS)
+                          <= e["t"] <= sub)
+            flags["result_without_sample"].append({
+                "result": r["code"], "point": pt,
+                "submitted": sub.isoformat()[:16].replace("T", " "),
+                "why": (f"no unpaired sample at this water point in the {WINDOW_H} h "
+                        "before it was submitted") if pt else "no water point (1.2b)",
+                "candidates": near})
+            continue
+        e = max(cands, key=lambda x: (x["t"], x["s"]["code"]))
+        e["used"] = True
+        s = e["s"]
+        sday, rday = local_day(answer(s, S_SAMPLED)), local_day(answer(r, Q_SAMPLED))
+        mismatch = bool(sday and rday and abs((datetime.date.fromisoformat(rday)
+                        - datetime.date.fromisoformat(sday)).days) > MISMATCH_DAYS)
+        gps = answer(s, S_GPS) if isinstance(answer(s, S_GPS), dict) else None
+        photos = [p.get("id") for p in (answer(s, S_PHOTO) or []) if isinstance(p, dict)]
+        p = {"result": r["code"], "result_id": r["_id"], "sample": s["code"],
+             "sample_id": s["_id"], "point": pt, "system": sys_of(pt),
+             "sampled": e["t"].isoformat()[:16].replace("T", " "),
+             "submitted": sub.isoformat()[:16].replace("T", " "),
+             "hours": round((sub - e["t"]).total_seconds() / 3600, 1),
+             "where": S_WHERE_LABEL.get(answer(s, S_WHERE)),
+             "point_type": S_TYPE_LABEL.get(answer(s, S_TYPE)),
+             "pre_completion": e["pre_completion"], "date_mismatch": mismatch,
+             "photos": photos, "gps": gps}
+        pairs.append(p)
+        if mismatch:
+            flags["date_mismatch"].append({"result": r["code"], "sample": s["code"],
+                                           "point": pt, "result_day": rday, "sample_day": sday})
+    pending = 0
+    for e in eligible:
+        if e["used"]:
+            continue
+        day = local_day(answer(e["s"], S_SAMPLED)) or e["t"].date().isoformat()
+        if (datetime.date.fromisoformat(as_of) - datetime.date.fromisoformat(day)).days \
+                > NO_RESULT_AFTER_DAYS:
+            flags["sample_without_result"].append({
+                "sample": e["s"]["code"], "point": e["point"], "day": day,
+                "pre_completion": e["pre_completion"]})
+        else:
+            pending += 1
     published = {
-        "rule": "result 1.2b = sample 1.1b (tap or kiosk) or result 1.2 = sample 1.1 "
-                "(system), and result 1.2.2 = the Madagascar day of sample 1.4",
-        "sampling_form": SAMPLING_FORM,
-        "as_of": as_of, "after_days": NO_RESULT_AFTER_DAYS,
+        "rule": (f"a result pairs with the most recent unpaired sample at the same water point "
+                 f"(result 1.2b = sample 1.1b) taken within {WINDOW_H} h before the result was "
+                 "submitted; each sample pairs once"),
+        "sampling_form": SAMPLING_FORM, "as_of": as_of,
+        "window_hours": WINDOW_H, "after_days": NO_RESULT_AFTER_DAYS,
+        "date_mismatch_days": MISMATCH_DAYS,
+        "protocol_live": PROTOCOL_LIVE, "protocol_live_day": PROTOCOL_LIVE[:10],
         "results": len(res), "samples": len(smp),
         "paired": len(pairs),
         "paired_with_gps": sum(1 for p in pairs if p["gps"]),
         "paired_with_photo": sum(1 for p in pairs if p["photos"]),
+        "date_mismatch": len(flags["date_mismatch"]),
+        "outside_protocol": len(flags["outside_protocol"]),
+        "pre_completion": {
+            "paired": sum(1 for p in pairs if p["pre_completion"]),
+            "samples": sum(1 for e in eligible if e["pre_completion"]),
+            "outside_protocol": sum(1 for x in flags["outside_protocol"] if x["pre_completion"])},
         "samples_pending": pending,
-        "results_without_sampling_date": sum(1 for _r, _s, w in r_nokey if "1.2.2" in w),
+        "baseline": {"results": len(base_r), "samples": len(base_s),
+                     "result_list": [{"result": r["code"],
+                                      "site": site_code(answer(r, Q_TAP))
+                                      or site_code(answer(r, Q_SYSTEM)),
+                                      "submitted": str(r.get("submittedOn") or "")[:10]}
+                                     for r in sorted(base_r, key=lambda r: (filed(r), r["code"]))]},
         "flagged": {k: len(v) for k, v in flags.items()},
-        "flagged_total": sum(len(v) for k, v in flags.items() if k != "code_mismatch"),
+        "flagged_total": sum(len(flags[k]) for k in
+                             ("result_without_sample", "sample_without_result", "outside_protocol")),
         "flags": flags,
         "pairs": [{k: v for k, v in p.items() if k not in ("gps", "result_id", "sample_id")}
                   | {"gps": bool(p["gps"])} for p in pairs],
@@ -243,6 +278,28 @@ def pair(results, samples, as_of):
 def sampling_rows():
     p = os.path.join(EXPORTS, "wq_sampling_piped.json")
     return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else None
+
+
+def point_systems(status):
+    """water point -> system code: the kiosk points in the status file, then
+    every final Distribution Point registration's parent (question 1.3), with
+    a parent that duplicates one of the Moramanga systems (the dedupe file)
+    mapped to that system."""
+    out = {wp: c for c, e in status.items() for wp in (e.get("water_points") or [])}
+    dup = {}
+    dp = os.path.join(REPO, "data", "moramanga_system_dedupe.json")
+    if os.path.isfile(dp):
+        for sy in json.load(open(dp, encoding="utf8")).get("systems") or []:
+            for x in sy.get("duplicates") or []:
+                dup[x["code"]] = sy["code"]
+    p = os.path.join(EXPORTS, "piped_point_reg.json")
+    for r in (json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []):
+        if r.get("form") != PT_REG_FORM or r.get("status") != "final":
+            continue
+        wp, sy = site_code(answer(r, PR_POINT)), site_code(answer(r, PR_SYSTEM))
+        if wp and sy:
+            out.setdefault(wp, dup.get(sy, sy))
+    return out
 
 
 def extract_systems():
@@ -340,15 +397,18 @@ def build():
     with io.open(os.path.join(EXPORTS, "wp_madavance.csv"), encoding="utf8") as fh:
         reg = {r["code"] for r in csv.DictReader(fh) if r.get("code")}
 
-    # a result may name a kiosk's water point rather than its system
-    point_of = {wp: c for c, e in status.items() for wp in (e.get("water_points") or [])}
+    # a result may name a kiosk's water point rather than its system; a
+    # standpost takes its system from its Distribution Point registration
+    # (question 1.3), since mWater's own water_system link is mostly unset;
+    # a registration on a duplicate record counts for the scheme it duplicates
+    point_of = point_systems(status)
     by_sys, excl = {}, {"not_final": [], "no_site": [], "hand_pump_on_piped_form": [],
                         "not_an_operator_system": []}
     for r in rows:
         if r.get("form") != PIPED["wq_form"]:
             continue
         code = site_code(answer(r, Q_SYSTEM))
-        code = point_of.get(code, code)
+        code = point_of.get(code, code) or point_of.get(site_code(answer(r, Q_TAP)))
         if r.get("status") != "final":
             excl["not_final"].append(r["_id"]); continue
         if not code:
@@ -361,6 +421,10 @@ def build():
 
     events = dispensing_events()
     systems, managed_res, baseline_res, not_managed_res = {}, [], [], []
+    # a result on a system still under way, filed once the tap-level protocol
+    # was live, is a pre-completion test: shown apart, never managed or baseline
+    live, precomp_res = when(PROTOCOL_LIVE), []
+    filed = lambda r: when(r.get("submittedOn"))
     for code, e in sorted(status.items()):
         res = by_sys.get(code, [])
         works = e.get("works_complete")
@@ -391,12 +455,17 @@ def build():
                          "wq_on_record": bool(post),
                          "post_rehab_first": (min(d for _c, _r, d in post) if post
                                               else e.get("post_rehab_test")),
-                         "results_post": len(post), "results_baseline": len(base)}
+                         "results_post": len(post), "results_baseline": len(base),
+                         "stage": e.get("stage")}
         if eff == "managed":
             managed_res += post
             baseline_res += base          # the system's own baseline stays baseline
         elif eff == "in_process":
-            baseline_res += base
+            pre = [x for x in base if filed(x[1]) and filed(x[1]) >= live]
+            precomp_res += pre
+            baseline_res += [x for x in base if x not in pre]
+            systems[code]["results_baseline"] -= len(pre)
+            systems[code]["results_pre_completion"] = len(pre)
         else:
             not_managed_res += res
 
@@ -465,12 +534,14 @@ def build():
                          "tools/pull_extract.py --write")
     as_of = str((man.get("wq_results_piped.json") or {}).get("written") or "")[:10]
     pairing, private_pairs = pair([r for r in rows if r.get("form") == PIPED["wq_form"]],
-                                  samples, as_of)
+                                  samples, as_of, point_of,
+                                  {c for c, v in systems.items() if v["status"] == "in_process"})
     pairing["samples_pulled"] = str((man.get("wq_sampling_piped.json") or {})
                                     .get("written") or "")[:10] or None
     build.private_pairs = private_pairs
     return {
         "pairing": pairing,
+        "pre_completion": summary(precomp_res),
         "baseline_fuel": baseline_fuel,
         "onboarding": onboarding,
         "note": "Written by tools/rebuild_piped_wq.py. Managed = post-rehabilitation results "
@@ -501,24 +572,27 @@ def build():
 def show_pairing(p):
     """The pairing gate's readout: counts, then every flag with its codes.
     Never fails the build: the flags are Cathy's to pair by hand."""
-    f = p["flagged"]
-    print(f"piped results paired with their samples: {p['paired']} of {p['results']} "
-          f"({p['samples']} samples); flagged {p['flagged_total']}: "
-          f"{f['result_without_sample']} result(s) with no sample, "
-          f"{f['sample_without_result']} sample(s) with no result after {p['after_days']} days, "
-          f"{f['more_than_one']} site-day(s) with more than one; "
-          f"{f['code_mismatch']} typed sampling code(s) disagree")
-    for x in p["flags"]["more_than_one"]:
-        print(f"  more than one  {x['site']} {x['day']}: results {', '.join(x['results']) or '-'}"
-              f" | samples {', '.join(x['samples']) or '-'}")
+    f, pc, b = p["flagged"], p["pre_completion"], p["baseline"]
+    print(f"piped pairing ({p['window_hours']} h rule; protocol live {p['protocol_live']}): "
+          f"paired {p['paired']} of {p['results']} result(s) from {p['samples']} sample(s); "
+          f"date mismatch {p['date_mismatch']}; outside protocol {p['outside_protocol']}; "
+          f"pre-completion {pc['paired']} paired / {pc['samples']} sample(s); "
+          f"baseline, not paired: {b['results']} result(s) and {b['samples']} sample(s); "
+          f"results with no sample {f['result_without_sample']}; "
+          f"samples with no result after {p['after_days']} days {f['sample_without_result']}; "
+          f"{p['samples_pending']} still within {p['after_days']} days")
+    for x in p["flags"]["outside_protocol"]:
+        print(f"  outside protocol  {x['sample']} ({x['why']}"
+              f"{', system ' + x['system'] if x.get('system') else ''}, {x['day']})")
     for x in p["flags"]["result_without_sample"]:
-        print(f"  no sample      {x['result']} ({x['site']}, {x['day'] or x.get('result_day')}: "
-              f"{x['why']}){' - near: ' + ', '.join(x['candidates']) if x['candidates'] else ''}")
+        print(f"  no sample         {x['result']} (point {x['point'] or '-'}, submitted "
+              f"{x['submitted']}: {x['why']})"
+              f"{' - near: ' + ', '.join(x['candidates']) if x['candidates'] else ''}")
     for x in p["flags"]["sample_without_result"]:
-        print(f"  no result      {x['sample']} ({x['site']}, {x['day']}"
-              f"{': ' + x['why'] if x.get('why') else ''})")
-    for x in p["flags"]["code_mismatch"]:
-        print(f"  code differs   {x['result']} typed {x['typed']}, paired with {x['sample']}")
+        print(f"  no result         {x['sample']} (point {x['point']}, {x['day']})")
+    for x in p["flags"]["date_mismatch"]:
+        print(f"  date mismatch     {x['result']} says {x['result_day']}, paired with "
+              f"{x['sample']} taken {x['sample_day']}")
 
 
 def main():

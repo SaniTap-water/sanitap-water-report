@@ -444,6 +444,10 @@
   "act-moramanga-system-dedupe": {
    "deadline": null,
    "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits"
+  },
+  "act-moramanga-register-standposts": {
+   "deadline": null,
+   "owner": "Endur’O (Coddy), with Lanja Randriamanantena (MadAvance IT) for mWater"
   }
  },
  "orphan_rows": {
@@ -470,7 +474,7 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 59,
+   "auto": 60,
    "evidence": 46,
    "manual": 28
   },
@@ -953,10 +957,17 @@
    },
    "act-moramanga-post-rehab-wq": {
     "type": "auto",
-    "closes_when": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+    "closes_when": "closes when no piped system is left under way (upgrade or new build): each has completed works and a post-rehabilitation test",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-25"
+   },
+   "act-moramanga-register-standposts": {
+    "type": "auto",
+    "closes_when": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point on its scheme",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
    },
    "act-moramanga-system-dedupe": {
     "type": "auto",

@@ -70,6 +70,10 @@ STEPS = [
     ("tools/rebuild_summary.py",     ["--write"],      True),
     ("tools/marolinta_admin.py",     ["--write"],      False),
     ("tools/check_freshness.py",     ["--write"],      True),
+    # duplicate system records beside the four Moramanga systems and their
+    # registered standposts; two actions close on these counts, and the piped
+    # pairing maps a standpost on a duplicate to its scheme, so this runs first
+    ("tools/moramanga_dedupe.py",    ["--write"],      True),
     # the piped water-quality figures and the join rule, before the metrics
     # that two actions close on
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),
@@ -78,9 +82,6 @@ STEPS = [
     # the Marolinta/Moramanga works, finals and drafts apart; four actions
     # close on these counts, and until 28 Sep nothing refreshed them
     ("tools/marolinta_works.py",     ["--write"],      True),
-    # duplicate system records beside the four Moramanga systems; one action
-    # closes on the count (act-moramanga-system-dedupe)
-    ("tools/moramanga_dedupe.py",    ["--write"],      True),
     ("tools/action_metrics.py",      ["--write"],      False),
     ("tools/eval_conditions.py",     ["--write"],      True),
     # how each action closes (auto / evidence / manual), into action_owners.json
