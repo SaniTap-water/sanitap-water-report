@@ -3764,102 +3764,131 @@ def main():
           f"{want_nod}", str(nod) if nod is not None else "MISSING",
           "ACT rows with no proposed date - one decision for Jan")
 
-    # ---- 7bb. owner and deadline come from the workbook, status does not --
-    # The page is static and rebuilt weekly, so the two fields a person sets
-    # live in one SharePoint workbook. The thing to guard is the boundary: if
-    # status could be set there, an item could be marked done that the data
-    # says is not.
+    # ---- 7bb. owner and deadline come from the record, status does not ----
+    # Until 28 September 2026 owner and deadline were read from a SharePoint
+    # workbook, and this block asserted the workbook: seven Excel-repair
+    # invariants on build/action_owners.xlsx, that the owners were read from
+    # it, that it held nothing computable, that a stale read said so on the
+    # page, and that it was documented. The workbook is retired (decision of
+    # 28 September 2026, confirming 26 September; docs/decision_log.md):
+    # data/action_owners.json "owners" is the source of record, edited only in
+    # this repository. Every one of those checks has a replacement below that
+    # asserts the same property of the record instead - the boundary it
+    # guarded (status is never set by hand) is unchanged.
     own_p = os.path.join(repo_root, "data", "action_owners.json")
-    own_doc = json.load(open(own_p)) if os.path.isfile(own_p) else {}
-    # The workbook opened READ-ONLY because Excel repaired it, and a repaired
-    # workbook is always read-only. The cause was cells carrying an explicit
-    # type with an empty body - 40 of them, one per row with no deadline.
-    #
-    # Two earlier assertions here were WRONG and are gone: that no zip member
-    # starts with "[trash]", and that every member is declared in
-    # [Content_Types].xml. [trash]/NNNN.dat is SharePoint's document-property
-    # promotion filler; names containing [ or ] are not legal OPC part names,
-    # so the packaging layer never sees them and Excel is unaffected. Almost
-    # every file in a SharePoint library has them. Those checks failed on any
-    # file that had round-tripped, which is every published copy.
-    #
-    # What is asserted instead are the invariants that actually predict a
-    # repair, delegated to the generator's own verifier so there is one
-    # definition of "well formed".
-    def _XI_NAMES():
-        sys.path.insert(0, os.path.join(repo_root, "tools"))
-        import xlsx_invariants as _x
-        return _x.INVARIANTS
+    try:
+        own_doc = json.load(open(own_p, encoding="utf8")) if os.path.isfile(own_p) else {}
+        own_err = None if own_doc else "missing"
+    except ValueError as e:
+        own_doc, own_err = {}, f"does not parse: {e}"
+    own_rows = own_doc.get("owners") or {}
+    _ad_ids = set(json.loads(read(os.path.join(repo_root, "data", "action_details.json"))))
+    _orph_now = sorted(set(own_rows) - _ad_ids)
+    _orph_rec = sorted((own_doc.get("orphan_rows") or {}).get("ids") or [])
+    _flat = idx[idx.find('<div id="act-flat"'):idx.find('<div id="act-owner"')]
 
-    wbp = os.path.join(repo_root, "build", "action_owners.xlsx")
-    wb_fault, wb_detail = None, []
-    if not os.path.isfile(wbp):
-        wb_fault = "not built"
-    else:
+    def _row_html(aid):
+        k = _flat.find(f'id="{aid}"')
+        if k < 0:
+            return None
+        e = _flat.find("\n    <tr", k)
+        return _flat[k:e if e > 0 else _flat.find("</tbody>", k)]
+
+    # replaces "owner workbook: every legal OPC part is declared in [Content_Types].xml"
+    want_blocks = {"owners", "orphan_rows", "retired_source", "closure", "sources"}
+    check("owners record: parses, with its five blocks",
+          own_err is None and want_blocks <= set(own_doc), "parses, 5 blocks",
+          own_err or ("missing " + ", ".join(sorted(want_blocks - set(own_doc)))
+                      if want_blocks - set(own_doc) else "parses, 5 blocks"),
+          "data/action_owners.json")
+    # replaces "owner workbook: no cell carries a type with an empty body"
+    blank = [k for k, r in own_rows.items()
+             if any(isinstance(r.get(f), str) and not r.get(f).strip()
+                    for f in ("owner", "deadline"))]
+    check("owners record: no owner or deadline is an empty string",
+          not blank, "none", ", ".join(blank[:3]) or "none",
+          "absent is null, never an empty value")
+    # replaces "owner workbook: the dimension ref matches the real used range"
+    check("owners record: every row names an action on the page, bar the recorded orphans",
+          set(_orph_now) <= set(_orph_rec), "none new",
+          ", ".join(sorted(set(_orph_now) - set(_orph_rec))[:3]) or "none new",
+          f"{len(_orph_rec)} recorded orphan row(s)")
+    # replaces "owner workbook: both data validations cover the real row range"
+    check("owners record: the orphan list only shrinks",
+          set(_orph_rec) <= set(_orph_now), "shrink-only",
+          ", ".join(sorted(set(_orph_rec) - set(_orph_now))[:3]) + " no longer orphan - delete from orphan_rows"
+          if set(_orph_rec) - set(_orph_now) else "shrink-only",
+          "a worklist with a date on it, never an exemption list")
+    # replaces "owner workbook: deadlines are absent or numeric with a date format"
+    bad_dl = []
+    for k, r in own_rows.items():
+        v = r.get("deadline")
+        if v is None:
+            continue
         try:
-            # xlsx_invariants carries no openpyxl dependency, so this runs
-            # under the system python3 that publish.sh uses
-            sys.path.insert(0, os.path.join(repo_root, "tools"))
-            import xlsx_invariants as _xi
-            import io as _io
-            import contextlib as _ctx
-            owners = set(re.findall(r'"([^"]+)"', re.search(
-                r"OWNERS = \[(.*?)\]",
-                read(os.path.join(repo_root, "tools", "make_owner_workbook.py")),
-                re.S).group(1)))
-            buf = _io.StringIO()
-            with _ctx.redirect_stdout(buf):
-                _ad = json.loads(read(os.path.join(
-                    repo_root, "data", "action_details.json")))
-                wb_detail = _xi.verify_detail(
-                    wbp, expect_ids=list(_ad.keys()), expect_owners=owners)
-        except Exception as e:                                 # noqa: BLE001
-            wb_fault = f"verifier failed: {e}"
-
-    # One check per invariant. The tally is the number of things asserted, so
-    # six invariants behind one check() made the gate read 530 where it had
-    # read 532 - two assertions deleted, six added, and the six invisible.
-    # A tally that undercounts is worse than a big one.
-    if wb_fault:
-        for _k, _name in _XI_NAMES():
-            check(f"owner workbook: {_name}", False, "ok", wb_fault[:60],
-                  "the workbook could not be verified at all")
-    else:
-        for _k, _name, _f in wb_detail:
-            check(f"owner workbook: {_name}",
-                  _f == [], "ok",
-                  "NOT EXERCISED" if _f is None else ("ok" if not _f else _f[0][:80]),
-                  "an invariant that predicts an Excel repair")
-
-    check("owner and deadline are read from the SharePoint workbook",
-          bool(own_doc.get("owners")) and "action owners and deadlines" in
-          own_doc.get("source", {}).get("file", ""),
-          "read", "read" if own_doc.get("owners") else "MISSING",
-          f'{len(own_doc.get("owners", {}))} rows from '
-          f'{own_doc.get("source", {}).get("library", "?")}')
-    stray = [k for r in own_doc.get("owners", {}).values() for k in r
+            datetime.date.fromisoformat(v)
+        except (TypeError, ValueError):
+            bad_dl.append(k)
+    check("owners record: deadlines are absent or ISO dates",
+          not bad_dl, "ok", ", ".join(bad_dl[:3]) or "ok")
+    # replaces "owner workbook: the dropdown offers only owners the report can render"
+    bad_own = [k for k, r in own_rows.items() if k in _ad_ids and r.get("owner")
+               and (_row_html(k) is None or f"<span>{r['owner']}</span></span></td>" not in _row_html(k))]
+    check("owners record: the page shows each recorded owner on its row",
+          not bad_own, "all shown", ", ".join(bad_own[:3]) or "all shown")
+    # replaces "owner workbook: the id column is exactly what the generator wrote"
+    bad_dd = []
+    for k, r in own_rows.items():
+        if k not in _ad_ids or not r.get("deadline"):
+            continue
+        try:
+            want = datetime.date.fromisoformat(r["deadline"]).strftime("%-d %b %Y")
+        except (TypeError, ValueError):
+            continue
+        h = _row_html(k) or ""
+        cell = re.search(r'<td class="num">(.*?)</td>', h, re.S)
+        if not cell or want not in cell.group(1):
+            bad_dd.append(k)
+    check("owners record: the page shows each recorded deadline on its row",
+          not bad_dd, "all shown", ", ".join(bad_dd[:3]) or "all shown")
+    # replaces "owner and deadline are read from the SharePoint workbook"
+    _ret = own_doc.get("retired_source") or {}
+    check("owner and deadline come from the record, data/action_owners.json",
+          bool(own_rows) and "source" not in own_doc and "read_on" not in own_doc
+          and bool(_ret.get("retired_on")), "record",
+          "record" if own_rows and "source" not in own_doc else "NOT THE RECORD",
+          f"{len(own_rows)} rows; SharePoint workbook retired {_ret.get('retired_on', '?')}")
+    # replaces "the workbook carries nothing the build can compute"
+    stray = [k for r in own_rows.values() for k in r
              if k not in ("owner", "deadline")]
-    check("the workbook carries nothing the build can compute",
+    check("the owners record carries nothing the build can compute",
           not stray, "owner + deadline only",
           f"also {', '.join(sorted(set(stray))[:3])}" if stray
           else "owner + deadline only",
-          "status and closure are computed, never taken from the workbook")
-    check("a workbook that cannot be read says so on the page",
-          "MAX_WORKBOOK_AGE_DAYS" in read(os.path.join(repo_root, "tools",
-                                                       "render_actions.py"))
-          and ("owner and deadline workbook" in idx
-               or "could not be read" in idx), "notice wired",
-          "notice wired" if "owner and deadline workbook" in idx
-          or "could not be read" in idx else "SILENT FALLBACK",
-          "stale values are never shown silently")
+          "status and closure are computed, never set by hand")
+    # replaces "a workbook that cannot be read says so on the page"
+    _ra = read(os.path.join(repo_root, "tools", "render_actions.py"))
+    _build = _ra + read(os.path.join(repo_root, "tools", "publish.sh")) + \
+        read(os.path.join(repo_root, "tools", "weekly_build.py"))
+    _wb_refs = [t for t in ("action_owners.xlsx", "make_owner_workbook",
+                            "verify_published_workbook", "MAX_WORKBOOK_AGE_DAYS")
+                if t in _build]
+    check("a missing owners record stops the build; no workbook is read",
+          "refusing to render" in _ra and not _wb_refs
+          and "owner and deadline workbook" not in idx, "fails loudly",
+          "fails loudly" if not _wb_refs and "refusing to render" in _ra
+          else ("reads " + ", ".join(_wb_refs) if _wb_refs else "SILENT FALLBACK"),
+          "stale or missing values are never shown silently")
     contrib = os.path.join(repo_root, "CONTRIBUTING.md")
     ctext2 = read(contrib) if os.path.isfile(contrib) else ""
-    check("the workbook and the preserved list are documented",
-          "owner-and-deadline workbook" in ctext2
-          and "What the weekly task must preserve" in ctext2,
+    _dlog = read(os.path.join(repo_root, "docs", "decision_log.md"))
+    # replaces "the workbook and the preserved list are documented"
+    check("the owners record, its retired workbook and the preserved list are documented",
+          "source of record" in ctext2 and "What the weekly task must preserve" in ctext2
+          and "SharePoint workbook" in _dlog and "is retired" in _dlog,
           "documented",
-          "documented" if "What the weekly task must preserve" in ctext2
-          else "MISSING", "CONTRIBUTING.md")
+          "documented" if "source of record" in ctext2 and "is retired" in _dlog
+          else "MISSING", "CONTRIBUTING.md; docs/decision_log.md")
     check("a named owner shows a headshot or their initials, never a hot-link",
           'class="face' in idx
           and "assets/headshots" in read(os.path.join(repo_root, "tools",

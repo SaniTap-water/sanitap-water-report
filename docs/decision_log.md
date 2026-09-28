@@ -1075,3 +1075,41 @@ Logged in `data/decisions.json` on Adriaan Mol's instruction.
   and revision the form Lanja restored from backup (mWater support replies of 26 and 27 Sep, the
   "Fer > 0.2 mg/l" calculation) and confirm that the later edits are present: the Malagasy locale on
   Entretien préventif, and the SDWS 3 operating-status question if it had already been added.
+
+## 28 September 2026 — Adriaan Mol: the owner workbook is retired; `data/action_owners.json` is the record
+
+Recorded in the words given (it had not been written down before):
+
+> Adriaan Mol, 28 Sep 2026 (confirming a verbal decision of 26 Sep 2026): data/action_owners.json
+> 'owners' is the source of record for action owners and deadlines, edited only in the repo. The
+> SharePoint workbook 'Water report - action owners and deadlines.xlsx' is retired; it was last read
+> on 21 Sep and last modified on 22 Sep. The build no longer reads it.
+
+- **Applied.** `tools/render_actions.py` reads owners from the record and refuses to render without
+  it. The ten-day staleness notice and the publisher.log line asking for rows to be deleted from the
+  shared workbook are gone. The workbook's location moved to `retired_source` in
+  `data/action_owners.json`. Its one row naming no action on the page,
+  `act-read-district-commune-water`, is listed under `orphan_rows` (dated, shrink-only) and not
+  removed: that is Adriaan's call. The workbook itself was neither edited nor deleted.
+- **Checks.** The eleven workbook checks in `tools/check_consistency.py` block 7bb were replaced
+  one for one by assertions on the record (list in the commit message). The boundary is unchanged:
+  status and closure are computed, never set by hand.
+- **Differences not applied.** Before retiring it, the SharePoint copy was compared with
+  `owners`. Owner differences on `act-adopt-consolidated-gardien-calendar` and `act-calendar-v13`,
+  and four rows for the §4.15/§4.16 CAR items that are not actions on the page, were reported for
+  decision. The record was not changed to match.
+
+## 28 September 2026 — Adriaan Mol: the stroke-test SOP actions after v2.2
+
+- **`act-move-stroke-test-sop`** now asks for the **v2.2** drafts to be signed:
+  `Work in Progress/SOP_SDWS27_StrokeTest_v2.2_Revise_2026.docx` (French) and
+  `SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.2.docx` (English). v2.1 is superseded and is
+  retired together with v2.0 on sign-off. Its logged-decision condition now names v2.2.
+- **`act-v2-stroke-test` merged into it.** The reconciliation with methodology v2.0 is done in the
+  v2.2 drafts (SDWS 28 / Option 3, 50 calibrations a year, annual re-verification, the 5-minute
+  test). The item keeps its id and row and becomes a child of `act-move-stroke-test-sop` (condition
+  kind `children`), so it closes when the signed v2.2 is logged there and not before. Owner and
+  proposed date aligned to that item: Jan, 31 Oct 2026 (were James Walker, 10 Oct 2026). The merge
+  is recorded under `merges` in `data/decisions.json`; a merge closes nothing on its own.
+- **Both v2.1 files**, unsigned drafts, edited in place: a change-log line "superseded by v2.2"
+  under the v2.1 notes. Their content is otherwise unchanged.

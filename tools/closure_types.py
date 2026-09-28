@@ -75,7 +75,7 @@ def build():
             problems.append(f"{aid}: no 'closes when' sentence")
     counts = {t: sum(1 for r in rows.values() if r["type"] == t) for t in TYPES}
     return {"note": "Written by tools/closure_types.py from data/action_conditions.json and "
-                    "data/action_state.json. Not part of the workbook: owner and deadline "
+                    "data/action_state.json. Not part of the owners record: owner and deadline "
                     "stay in 'owners'.",
             "counts": counts, "actions": rows}, problems
 

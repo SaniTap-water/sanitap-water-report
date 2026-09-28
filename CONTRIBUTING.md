@@ -445,45 +445,42 @@ The gardien calendar SOP, its template and its generator live in SharePoint at
 of record for the template; `sdws1/calendar_extract/make_calendar.py` is a
 tombstone pointing at it.
 
-## Who owns an action, and by when — the SharePoint workbook
+## Who owns an action, and by when — `data/action_owners.json`
 
 The page is static and rebuilt every Monday, so an owner or a date typed into the
 browser would live in one person's browser and be gone by Tuesday. The two fields
-that are genuinely a person's call therefore live outside the page:
+that are genuinely a person's call therefore live in one file in this repository:
 
-**`Water report - action owners and deadlines.xlsx`** — Central Data Hub →
-`Water Documents`. One row per action: `id`, `owner` (a dropdown of known owners),
-`deadline` (a date column), and a read-only copy of the title. Adriaan and Jan edit
-it in Excel Online.
+**`data/action_owners.json`, block `owners`, is the source of record** for owner and
+deadline: one entry per action id, `owner` and `deadline` (an ISO date or `null`), and
+nothing else. It is edited only here, in a commit that goes through `publish.sh`.
+`tools/render_actions.py` renders owner and deadline from it, and refuses to render
+if the file is missing — there is no silent fallback to the owners typed in the
+detail rows.
 
-The build reads it through the Microsoft 365 connector into
-`data/action_owners.json` and renders owner and deadline from there. If that cache
-is missing or older than ten days, the page falls back to the owner and deadline
-written in the body row **and prints a WATCH notice above the list saying so** — it
-never shows stale values silently.
+A row naming an action that no longer exists renders nothing. Such rows are held in
+`orphan_rows` in the same file, dated and **shrink-only**: the checker fails on a new
+one, and on a listed one that has since been removed. Removing a row is Adriaan's call.
 
-**Status, the counts and closure are never read from the workbook.** They are
-computed every build by `tools/eval_conditions.py` from the closing conditions in
-`data/action_conditions.json`. If a person could set status in the workbook, an item
-could be marked done that the data says is not — which is the failure this whole
-arrangement exists to prevent.
+**Status, the counts and closure are never stored there.** They are computed every
+build by `tools/eval_conditions.py` from the closing conditions in
+`data/action_conditions.json`. If a person could set status by hand, an item could be
+marked done that the data says is not — which is the failure this whole arrangement
+exists to prevent.
 
-To rebuild and republish the workbook:
+### The SharePoint workbook is retired
 
-```
-python3 tools/make_owner_workbook.py        # builds and self-verifies
-cp build/action_owners.xlsx "/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documents/Water report - action owners and deadlines.xlsx"
-python3 tools/verify_published_workbook.py  # reads the published copy back
-```
-
-**Copy into the synced OneDrive folder — that is the supported path.** Do not
-upload this file through Microsoft Graph or the Microsoft 365 connector.
-
-It once opened read-only because Excel repaired it, and the cause was 40 cells
-carrying a type with no value. `[trash]/NNNN.dat` members are SharePoint's
-property-promotion filler with illegal OPC part names, invisible to Excel and
-harmless. See `docs/owner_workbook_diagnosis.md` — including two theories that
-were wrong and should not be revisited.
+Until 28 September 2026 owner and deadline were read from
+**`Water report - action owners and deadlines.xlsx`** (Central Data Hub → `Water
+Documents`) through the Microsoft 365 connector. That workbook is retired (decision of
+28 September 2026, confirming a verbal decision of 26 September; `docs/decision_log.md`).
+It was last read on 21 September and last modified on 22 September. The build does not
+read it, does not report it as a to-do, and does not rebuild it. Its location is kept
+under `retired_source` in `data/action_owners.json`.
+`tools/make_owner_workbook.py`, `tools/verify_published_workbook.py`,
+`tools/synthesise_sharepoint_roundtrip.py`, `tools/xlsx_invariants.py`,
+`build/action_owners.xlsx` and `docs/owner_workbook_diagnosis.md` are no longer part of
+the build; the checker asserts that nothing in the build path calls them.
 
 ## Self-closing actions
 
@@ -522,9 +519,9 @@ Carried forward every edition. `tools/check_consistency.py` asserts each of them
 2. the maintenance clock rule
 3. the Marolinta exclusion
 4. the collapsed "Management notes — internal, remove before sharing with a VVB" block
-5. **the owner-and-deadline workbook** — owner and deadline come from SharePoint,
-   status and closure are computed, and the fallback notice appears when the cache
-   cannot be read
+5. **the owners record** — owner and deadline come from `data/action_owners.json`,
+   the source of record, edited only in this repository; status and closure are
+   computed; a missing record stops the build
 6. **one to-do list** — the consolidated action list is the only one on the page
 7. **the extract is pulled and the page rebuilt from it, every edition** — run
    `tools/pull_extract.py --write`, then `tools/rebuild_activity.py --write`

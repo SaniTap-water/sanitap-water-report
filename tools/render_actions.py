@@ -177,18 +177,16 @@ def actions(idx):
                         nodate=(not dl_raw) and state == "ACT",
                         criterion=crit))
     st = load_state()
-    wb, _wb_problem = load_owners()
-    WB_PROBLEM.append(_wb_problem)
-    # A workbook row for an action that no longer exists renders nothing and
-    # fails nothing. The shared workbook is people's file and is not edited
-    # from here, so the stale row is reported to us, not to readers.
-    log_orphan_rows(sorted(set(wb) - set(det)))
+    # Owner and deadline, from the record (data/action_owners.json). A row for
+    # an action that no longer exists renders nothing; check_consistency holds
+    # such rows to a dated, shrink-only list ("orphan_rows" in the same file).
+    wb = load_owners()
     for a in out:
         w = wb.get(a["id"])
         if w:
             if w.get("owner"):
                 a["owner"] = w["owner"]
-                a["from_workbook"] = True
+                a["from_record"] = True
             if w.get("deadline"):
                 try:
                     a["due"] = datetime.date.fromisoformat(w["deadline"])
@@ -244,7 +242,6 @@ def actions(idx):
     return out
 
 
-WB_PROBLEM = []
 
 
 def load_state():
@@ -259,7 +256,6 @@ def load_state():
     return (json.load(open(p)) if os.path.isfile(p) else {}).get("state", {})
 
 
-MAX_WORKBOOK_AGE_DAYS = 10
 HEADSHOTS = os.path.join(REPO, "assets", "headshots")
 
 
@@ -287,65 +283,28 @@ def face(lead, size=20):
             f'{initials(lead)}</span>')
 
 
-def log_orphan_rows(ids):
-    """Record each ignored workbook row in logs/publisher.log, once a day.
-
-    render_actions runs several times in one build, so a line already
-    written today is not written again.
-    """
-    if not ids:
-        return
-    p = os.path.join(REPO, "logs", "publisher.log")
-    today = datetime.date.today().isoformat()
-    try:
-        seen = open(p, encoding="utf8").read()
-    except OSError:
-        seen = ""
-    os.makedirs(os.path.dirname(p), exist_ok=True)
-    with open(p, "a", encoding="utf8") as fh:
-        for aid in ids:
-            msg = (f"owner workbook: row {aid} ignored - no such action on the "
-                   "page; the row can be deleted from the shared workbook")
-            if any(l.startswith(today) and l.endswith(msg)
-                   for l in seen.splitlines()):
-                continue
-            stamp = datetime.datetime.now(datetime.timezone.utc).isoformat(
-                timespec="seconds")
-            fh.write(f"{stamp}  {msg}\n")
-            print(msg)
-
-
 def load_owners():
-    """Owner and deadline, as people set them, from the SharePoint workbook.
+    """Owner and deadline for each action, from data/action_owners.json.
 
-    The page is static and rebuilt weekly, so an owner or a date typed into
-    the browser would be one person's private copy and gone by Tuesday. Those
-    two fields therefore live in one workbook on SharePoint, read into
-    data/action_owners.json through the Microsoft 365 connector each build.
+    That file's "owners" block is the source of record for the two fields a
+    person sets, edited only in this repository (decision of 28 September
+    2026, confirming 26 September; docs/decision_log.md). Until then they were
+    read from a SharePoint workbook, which is retired: nothing here reads it,
+    and nothing reports it as a to-do.
 
-    Status and closure are deliberately NOT in that workbook: if a person
-    could set status there, an item could be marked done that the data says
-    is not. Those stay computed.
+    Status and closure are deliberately NOT in this file: if a person could set
+    status by hand, an item could be marked done that the data says is not.
+    Those stay computed.
 
-    Returns (rows, problem) - problem is None when the cache is fresh, and a
-    sentence to print on the page when it is not.
+    A missing file stops the build. The old fallback - the owners typed into
+    the body rows, with a notice - is gone with the workbook: the record is in
+    the repository, so its absence is a fault, not a stale read.
     """
     p = os.path.join(REPO, "data", "action_owners.json")
     if not os.path.isfile(p):
-        return {}, ("The owner and deadline workbook could not be read, so the "
-                    "owners and dates below are the ones written into the page.")
-    doc = json.load(open(p))
-    read = doc.get("read_on")
-    try:
-        age = (datetime.date.today() - datetime.date.fromisoformat(read)).days
-    except (TypeError, ValueError):
-        age = None
-    if age is None or age > MAX_WORKBOOK_AGE_DAYS:
-        return doc.get("owners", {}), (
-            f"The owner and deadline workbook was last read {read or 'never'}, "
-            f"which is {'unknown' if age is None else str(age) + ' days'} ago. "
-            "Owners and dates below may be behind what is in the workbook.")
-    return doc.get("owners", {}), None
+        sys.exit("render_actions: data/action_owners.json is missing - it is the "
+                 "source of record for owner and deadline; refusing to render")
+    return json.load(open(p, encoding="utf8")).get("owners", {})
 
 
 def slug(s):
@@ -622,19 +581,10 @@ def block(idx, today=None):
         'aria-pressed="false">By owner</button>',
         '  </div>',
         '  <p class="note" id="act-count" style="margin:8px 0 0"></p>',
-        ('  <p class="note" style="margin:8px 0 0"><span class="pill warn">'
-         'WATCH</span> ' + WB_PROBLEM[0] + '</p>') if WB_PROBLEM and WB_PROBLEM[0]
-        else ('  <p class="note" style="margin:8px 0 0"><span class="muted">'
-              'Owner and deadline are read from the '
-              '<a href="' + (json.load(open(os.path.join(REPO, "data",
-                                                         "action_owners.json")))
-                             ["source"]["webUrl"]
-                             if os.path.isfile(os.path.join(REPO, "data",
-                                                            "action_owners.json"))
-                             else "#") + '" target="_blank" rel="noopener">owner '
-              'and deadline workbook</a> on SharePoint, which Adriaan and Jan edit '
-              'in Excel Online. Status and closure are computed here and are not in '
-              'that workbook.</span></p>'),
+        ('  <p class="note" style="margin:8px 0 0"><span class="muted">'
+         'Owner and deadline are kept in the report&rsquo;s own record of actions, '
+         'edited only where the report is built. Status and closure are computed '
+         'here and are never set by hand.</span></p>'),
         # --- the rows, once ----------------------------------------------
         '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
         '<table class="ind" data-prose-table>' + head + '<tbody>',

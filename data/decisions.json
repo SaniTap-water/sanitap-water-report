@@ -82,5 +82,17 @@
    "logged_by": "Adriaan Mol"
   }
  },
- "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision."
+ "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
+ "merges": {
+  "act-v2-stroke-test": {
+   "merged_into": "act-move-stroke-test-sop",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-28",
+   "source": "Adriaan Mol, instruction for the water report, 2026-09-28",
+   "reason": "The reconciliation of the stroke-test SOP with methodology v2.0 is done in the v2.2 drafts (SDWS 28 / Option 3, 50 calibrations a year, annual re-verification, 5-minute test). What remains is the signature, which act-move-stroke-test-sop already asks for.",
+   "closes_on": "the signed stroke-test SOP v2.2 logged for act-move-stroke-test-sop; act-v2-stroke-test is its child (kind children) and closes with it",
+   "owner_and_deadline": "aligned to act-move-stroke-test-sop: Jan, 2026-10-31 (was James Walker, 2026-10-10)"
+  }
+ },
+ "merges_note": "Actions merged into another. A merged action keeps its id and row and closes with the action it merged into (kind children in data/action_conditions.json); a merge never closes anything on its own."
 }

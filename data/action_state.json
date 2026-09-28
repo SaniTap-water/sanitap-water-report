@@ -1,8 +1,8 @@
 {
  "evaluated": "2026-09-28",
  "kinds": {
-  "artefact": 7,
-  "children": 1,
+  "artefact": 6,
+  "children": 2,
   "data": 46,
   "decision": 45,
   "form": 7,
@@ -562,7 +562,7 @@
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
-   "says": "closes when the signed v2.1 (French and English) in SOPs is logged in data/decisions.json",
+   "says": "closes when the signed v2.2 (French and English) in SOPs is logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-move-weekly-mwater-backup": {
@@ -1037,11 +1037,15 @@
    "when_satisfied": "OK"
   },
   "act-v2-stroke-test": {
+   "children": [
+    "act-move-stroke-test-sop"
+   ],
+   "children_closed": 0,
    "evaluated": "2026-09-28",
-   "evidence": "nothing matching \"StrokeTest\" in Water Documents/SOPs",
-   "kind": "artefact",
+   "evidence": "0 of 1 steps closed",
+   "kind": "children",
    "satisfied": false,
-   "says": "closes when the stroke-test SOP, reconciled with v2.0, is in the SOPs folder",
+   "says": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
    "when_satisfied": "OK"
   },
   "act-verification-fnrb-correction": {

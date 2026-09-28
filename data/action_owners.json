@@ -1,5 +1,5 @@
 {
- "note": "Owner and deadline are the two fields a person sets. They live in the workbook above and are read into the build through the Microsoft 365 connector. Status, counts and closure are NEVER read from it - they are computed from data/action_conditions.json every build. If this file is missing or stale the page falls back to the values written in the body rows and says so.",
+ "note": "Source of record for the two fields a person sets, owner and deadline, edited only in this repository (decision of 28 September 2026, confirming 26 September; docs/decision_log.md). Status, counts and closure are NEVER stored here - they are computed from data/action_conditions.json every build.",
  "owners": {
   "act-2026-recovery": {
    "deadline": "2027-01-31",
@@ -402,8 +402,8 @@
    "owner": "James Walker"
   },
   "act-v2-stroke-test": {
-   "deadline": "2026-10-10",
-   "owner": "James Walker"
+   "deadline": "2026-10-31",
+   "owner": "Jan"
   },
   "act-visit-collapse": {
    "deadline": "2026-09-30",
@@ -426,8 +426,19 @@
    "owner": "Adriaan Mol"
   }
  },
- "read_on": "2026-09-21",
- "source": {
+ "orphan_rows": {
+  "recorded": "2026-09-28",
+  "note": "Owner rows naming no action on the page. They render nothing. Shrink-only: tools/check_consistency.py fails on a new one, and on one still listed here after it is removed from 'owners'. Removing a row is Adriaan's call.",
+  "ids": [
+   "act-read-district-commune-water"
+  ]
+ },
+ "retired_source": {
+  "retired_on": "2026-09-28",
+  "decision": "docs/decision_log.md, 28 September 2026 (confirming a verbal decision of 26 September 2026)",
+  "last_read": "2026-09-21",
+  "last_modified": "2026-09-22",
+  "note": "The SharePoint workbook this file used to be read from. No longer read by the build; kept so its location is on record.",
   "driveId": "b!xlGV2Nxr7kW7alcGXe-A4AFcR9LXT7xAgqcVmzKUaxER1YctH8moTbFRY4wSwJIZ",
   "file": "Water report - action owners and deadlines.xlsx",
   "itemId": "01LKVHFNETFSNHGAJ2X5D27LFSAVL72ZF5",
@@ -436,10 +447,10 @@
   "webUrl": "https://sanitap.sharepoint.com/sites/CentralDataHub/_layouts/15/Doc.aspx?sourcedoc=%7B739A2C93-3A01-47BF-AFAC-B20557FD64BD%7D&file=Water%20report%20-%20action%20owners%20and%20deadlines.xlsx&action=default&mobileredirect=true"
  },
  "closure": {
-  "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the workbook: owner and deadline stay in 'owners'.",
+  "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 56,
-   "evidence": 47,
+   "auto": 57,
+   "evidence": 46,
    "manual": 26
   },
   "actions": {
@@ -907,7 +918,7 @@
    },
    "act-move-stroke-test-sop": {
     "type": "evidence",
-    "closes_when": "the signed stroke-test SOP v2.1, French and English, is filed in Water Documents/SOPs and v2.0 is retired",
+    "closes_when": "the signed stroke-test SOP v2.2, French and English, is filed in Water Documents/SOPs and v2.1 and v2.0 are retired",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1312,8 +1323,8 @@
     "first_seen": "2026-09-20"
    },
    "act-v2-stroke-test": {
-    "type": "evidence",
-    "closes_when": "a stroke-test SOP reconciled with v2.0 is filed in Water Documents/SOPs",
+    "type": "auto",
+    "closes_when": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
@@ -1349,7 +1360,7 @@
   }
  },
  "sources": {
-  "note": "Where each answer that closes or annotates an action came from: sender, date, subject, one-line answer. Rendered into the action's collapsed detail by tools/render_actions.py. Not part of the workbook: owner and deadline stay in 'owners'.",
+  "note": "Where each answer that closes or annotates an action came from: sender, date, subject, one-line answer. Rendered into the action's collapsed detail by tools/render_actions.py. Not part of the owners record: owner and deadline stay in 'owners'.",
   "actions": {
    "act-confirm-maroantsetra-fnrb-value": [
     {

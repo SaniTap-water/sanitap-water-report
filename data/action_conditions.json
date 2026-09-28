@@ -437,10 +437,10 @@
  },
  "act-move-stroke-test-sop": {
   "kind": "decision",
-  "question": "Are the French and English stroke-test SOP v2.1 signed, the French one moved from Work in Progress to SOPs, and v2.0 retired?",
-  "says": "closes when the signed v2.1 (French and English) in SOPs is logged in data/decisions.json",
+  "question": "Are the French and English stroke-test SOP v2.2 signed, the French one moved from Work in Progress to SOPs, and v2.1 and v2.0 retired?",
+  "says": "closes when the signed v2.2 (French and English) in SOPs is logged in data/decisions.json",
   "closure": "evidence",
-  "closes_when": "the signed stroke-test SOP v2.1, French and English, is filed in Water Documents/SOPs and v2.0 is retired"
+  "closes_when": "the signed stroke-test SOP v2.2, French and English, is filed in Water Documents/SOPs and v2.1 and v2.0 are retired"
  },
  "act-move-weekly-mwater-backup": {
   "kind": "none",
@@ -827,13 +827,13 @@
   "says": "closes when the survey form carries a stove-stacking question"
  },
  "act-v2-stroke-test": {
-  "folder": "Water Documents/SOPs",
-  "kind": "artefact",
-  "name_contains": "StrokeTest",
-  "says": "closes when the stroke-test SOP, reconciled with v2.0, is in the SOPs folder",
-  "where": "sharepoint",
-  "closure": "evidence",
-  "closes_when": "a stroke-test SOP reconciled with v2.0 is filed in Water Documents/SOPs"
+  "kind": "children",
+  "children": [
+   "act-move-stroke-test-sop"
+  ],
+  "says": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
+  "when_satisfied": "OK",
+  "merged_into": "act-move-stroke-test-sop"
  },
  "act-visit-collapse": {
   "kind": "data",
