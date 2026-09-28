@@ -1166,3 +1166,24 @@ lacked only a row in `owners`.
   call instead of writing zeros; the Marolinta section states drafts apart from finals; two consistency
   checks hold the file to one day and require finals + drafts = responses. Noted on
   `act-rehab-recording`; its closing condition is unchanged.
+
+## 28 September 2026 — Adriaan Mol: transcription page, first pass exported 22 of 83
+
+- **Root cause.** A calendar viewed and left empty was neither counted nor exported. The page now has
+  an explicit status per calendar — *Vérifié — aucune croix* by a button or by answering Oui when
+  *Suivant* asks — and exports every answered calendar with `statut` (`marque`, `exclu`,
+  `vide_verifie`, and `vu_sans_confirmation` for a calendar only seen). The header reads
+  "vérifiés N / 83". Storage key and format unchanged; fields added only. A browser test
+  (`tools/test_transcription_page.py`) runs in `publish.sh`; the export-header check now includes
+  `statut`.
+- **Recovery.** Calendars with time recorded but no answer are exported as `vu_sans_confirmation`,
+  never as checked-empty, and a review mode walks them for confirmation. A JSON backup button was
+  added; the number seen but never confirmed is not known until Adriaan sends that backup.
+- **Comparison tool corrected.** `tools/compare_transcriptions.py` joined the machine on water
+  point; 15 of the 22 first-pass sheets have several photographs on their water point in the machine
+  file. It now joins on the image via `transcription/validation_selection.csv`. First-pass results
+  (11 machine-comparable calendars; not the validation round) are in
+  `docs/transcription_round_notes.md` and nowhere on the page.
+- **Two open items added**, owner Adriaan Mol, no date: `act-cal-working-day-ticks` (sheets where
+  the gardien may have ticked working days) and `act-cal-handwritten-year` (a sheet year written by
+  hand, which the year reader cannot see).

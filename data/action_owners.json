@@ -13,6 +13,14 @@
    "deadline": "2026-10-31",
    "owner": "Angelo Nahavitatsara / MadAvance"
   },
+  "act-cal-handwritten-year": {
+   "deadline": null,
+   "owner": "Adriaan Mol"
+  },
+  "act-cal-working-day-ticks": {
+   "deadline": null,
+   "owner": "Adriaan Mol"
+  },
   "act-calendar-custody": {
    "deadline": "2026-09-26",
    "owner": "Angelo Nahavitatsara / MadAvance"
@@ -456,7 +464,7 @@
   "counts": {
    "auto": 57,
    "evidence": 46,
-   "manual": 26
+   "manual": 28
   },
   "actions": {
    "act-2026-recovery": {
@@ -479,6 +487,20 @@
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-cal-handwritten-year": {
+    "type": "manual",
+    "closes_when": "the year reader falls back on the printed weekday layout where it finds no printed year, and this sheet reads 2024",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
+   },
+   "act-cal-working-day-ticks": {
+    "type": "manual",
+    "closes_when": "every sheet listed in docs/transcription_round_notes.md checked against its photograph and recorded there as breakdown marks or as a working-day tick convention",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
    },
    "act-calendar-custody": {
     "type": "manual",

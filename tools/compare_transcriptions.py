@@ -19,6 +19,19 @@ exporte_le. One file may hold several transcribers; they are separated on
 marked -> X, illegible -> ?, clear -> blank, which is the same three-way
 vocabulary the page offers.
 
+The machine is joined to a sheet on the IMAGE, through --selection
+(transcription/validation_selection.csv: calendrier -> image_id). Until
+28 Sep 2026 the join was on water point, and 15 of the first 22 sheets
+transcribed sit on a water point with two to five photographs in the machine
+file: their cells were overwritten by whichever photograph was read last, so
+a human was scored against a different photograph. Without the selection
+file the tool refuses to compare with the machine.
+
+Exports from 28 Sep 2026 carry a "statut" column. Only vide_verifie, marque
+and exclu are transcriptions. vu_sans_confirmation (seen, never confirmed)
+and non_vu are skipped: a calendar nobody confirmed is not a reading of
+"no marks".
+
 What is compared
 ----------------
 Human-to-human and human-to-machine are reported SEPARATELY and never
@@ -87,6 +100,9 @@ def read_human(path):
             if not who[0]:
                 sys.exit(f"{path}: a row has no transcripteur; refusing to guess who made it")
             sheet = r["calendrier"]
+            stt = (r.get("statut") or "").strip()
+            if stt in ("vu_sans_confirmation", "non_vu"):
+                continue
             rec = out[who][sheet]
             rec["wp"] = r.get("point_eau", "")
             try:
@@ -115,23 +131,23 @@ def read_human(path):
     return {k: dict(v) for k, v in out.items()}
 
 
-def read_machine(path, wanted_sheets_by_wp):
+def read_machine(path, wanted_images):
     # NOTE the machine file is per-cell for the whole printed grid. Only the
     # cells the humans kept are compared, so restricting the humans to the
     # observed window restricts the machine to it too, automatically.
-    """The reader keys on image, the page keys on sheet number, so the join is
-    on water point. Only sheets the humans actually transcribed are loaded."""
-    want = set(wanted_sheets_by_wp)
+    """The reader keys on image, and so does this join: one sheet is one
+    photograph. Only the images the humans actually transcribed are loaded."""
+    want = set(wanted_images)
     cells = collections.defaultdict(dict)
     with open(path, encoding="utf-8-sig", newline="") as f:
         for r in csv.DictReader(f):
-            wp = r["water_point"]
-            if wp not in want:
+            im = r["image_id"]
+            if im not in want:
                 continue
             call = MACHINE_MAP.get(r["call"])
             if call is None:
                 continue
-            cells[wp][(int(r["month"]), int(r["day"]))] = call
+            cells[im][(int(r["month"]), int(r["day"]))] = call
     return cells
 
 
@@ -151,6 +167,10 @@ def main():
     ap.add_argument("--machine", default=None,
                     help="per-cell reader output (extraction_days2.csv)")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--selection", default=os.path.join(
+                        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "transcription", "validation_selection.csv"),
+                    help="calendrier -> image_id; the machine join is on the image")
     ap.add_argument("--figures", default=None,
                     help="data/calendar_extraction_figures.json, so the coverage "
                          "the agreement applies to is printed alongside it")
@@ -195,10 +215,16 @@ def main():
 
     machine = {}
     if a.machine:
-        by_wp = read_machine(a.machine, set(wp_of.values()))
-        for s, wp in wp_of.items():
-            if wp in by_wp:
-                machine[s] = by_wp[wp]
+        if not os.path.isfile(a.selection):
+            sys.exit(f"{a.selection} not found: the machine is joined on the image, "
+                     "and without calendrier -> image_id there is no safe join")
+        img_of = {r["calendrier"].strip(): r["image_id"].strip()
+                  for r in csv.DictReader(open(a.selection, encoding="utf-8-sig"))}
+        by_img = read_machine(a.machine, {img_of[s] for s in wp_of if s in img_of})
+        for s in wp_of:
+            im = img_of.get(s)
+            if im and im in by_img:
+                machine[s] = by_img[im]
 
     rows = []
 

@@ -130,6 +130,19 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
     exit 1
   fi
 
+  # The transcription page is where the human round is done. On 28 Sep 2026 a
+  # full pass exported 22 of 83 calendars because an empty calendar was never
+  # recorded as checked. This drives the page and fails the build if an
+  # answered calendar can again go missing from the export.
+  say ""
+  say "testing the transcription page in the browser ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_transcription_page.py | tail -4
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the transcription page fails its browser test (exit $RC)."
+    exit 1
+  fi
+
   # Every number on the page must be live, declared in PARAMS with its
   # citation, or from a dated manual file. These two gates enforce it from
   # both sides: the census reads the rendered page and asks whether each

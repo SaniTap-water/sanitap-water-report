@@ -80,6 +80,12 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
 .modal .en{color:var(--ink3);font-size:.88rem}
 .expwarn{margin:10px 14px 0;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;font-size:.9rem;color:#78350f}
 .expwarn[hidden]{display:none}
+.okrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
+.okrow button.on{background:#15803d;border-color:#15803d;color:#fff;font-weight:600}
+.okrow .st{font-size:.86rem;color:var(--ink2)}
+.review{margin:10px 14px 0;background:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;padding:8px 12px;font-size:.9rem;color:#312e81;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.review[hidden]{display:none}
+@media (prefers-color-scheme:dark){.review{background:#1e1b4b;border-color:#3730a3;color:#e0e7ff}}
 /* dark variants of the callouts, so their text keeps its contrast */
 @media (prefers-color-scheme:dark){
  .win{background:#082f3a;border-color:#155e75;color:#cffafe}.win b{color:#ecfeff}
@@ -100,8 +106,11 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   <button id="chgwho">Changer de nom</button>
   <button id="newset">Nouvelle série</button>
   <span class="counts" id="counts"></span>
+  <button id="revbtn" hidden>Revoir les calendriers vus sans confirmation</button>
+  <button id="backup" title="Télécharger une copie complète de votre travail enregistré dans ce navigateur">Sauvegarde (JSON)</button>
   <button id="exp" class="primary">Exporter mes relevés (CSV)</button>
 </header>
+<div class="review" id="reviewbar" hidden><span id="reviewtxt"></span><span class="sp"></span><button id="reviewquit">Quitter la revue</button></div>
 
 <div class="expwarn" id="expwarn" hidden></div>
 
@@ -119,6 +128,7 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <p style="margin:.4em 0"><b>N’en discutez avec personne ayant vu un résultat automatique.</b> Ce relevé ne sert que s’il est fait indépendamment.</p>
     <p style="margin:.4em 0">Cliquez une case pour faire défiler <b>vide → X → ?</b>. Au clavier : flèches pour se déplacer, <span class="key">X</span> pour marquer, <span class="key">?</span> ou <span class="key">/</span> pour illisible, <span class="key">Espace</span> pour faire défiler, <span class="key">Retour arrière</span> pour effacer.</p>
     <p style="margin:.4em 0">Votre travail est enregistré dans ce navigateur au fur et à mesure. Vous pouvez fermer la page et reprendre plus tard. Quand vous avez terminé, cliquez sur <b>Exporter mes relevés</b> et envoyez le fichier au superviseur. <b>Exportez souvent</b> : le nombre de calendriers marqués depuis le dernier export est affiché en haut, et un rappel apparaît au-delà de 10.</p>
+    <p style="margin:.4em 0"><b>Un calendrier sans aucune croix doit être confirmé.</b> Si la pompe n’a eu aucune panne, il n’y a rien à marquer : cliquez sur <b>Vérifié — aucune croix</b> sous la grille. Si vous cliquez sur <b>Suivant</b> sans croix, la page vous demande de confirmer. Un calendrier confirmé vide est exporté comme <b>vide vérifié</b> ; un calendrier seulement regardé, jamais confirmé, est exporté comme <b>vu sans confirmation</b>, et le bouton <b>Revoir les calendriers vus sans confirmation</b> vous les présente un par un.</p>
     <p style="margin:.4em 0"><b>Calendrier à l’envers ou de côté ?</b> Utilisez <b>↻ 90°</b> ou <b>↻ 180°</b> sous la photo. La rotation est gardée pour ce calendrier. Les boutons <b>Zoom −</b>, <b>Zoom +</b> et <b>Ajuster le zoom</b> ne changent que l’agrandissement.</p>
     <p style="margin:.4em 0"><b>Après le dernier calendrier</b>, la série est terminée : exportez vos résultats, puis commencez éventuellement une <b>série suivante</b>. Une série terminée n’est jamais effacée ; chaque série garde son numéro dans le fichier exporté.</p>
     <p style="margin:.4em 0"><b>Les cases grisées et hachurées ne sont pas à remplir.</b> Une photographie ne peut montrer que les jours déjà passés au moment où elle a été prise : les jours postérieurs étaient vides parce qu’ils n’étaient pas encore arrivés, pas parce que la pompe fonctionnait. Ces cases sont verrouillées, et la fenêtre observable est rappelée au-dessus de la grille.</p>
@@ -137,6 +147,17 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <p style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
       <button id="whocancel">Annuler</button>
       <button id="whook" class="primary">Enregistrer</button>
+    </p>
+  </div>
+</div>
+
+<div class="modal" id="okmodal" hidden>
+  <div class="box">
+    <h2>Aucune croix sur ce calendrier : confirmer comme vérifié ?</h2>
+    <p class="en">No marks on this calendar: confirm it as checked?</p>
+    <p style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button id="okback">Revenir</button>
+      <button id="okyes" class="primary">Oui</button>
     </p>
   </div>
 </div>
@@ -170,6 +191,7 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <div style="padding:10px 12px 0"><div class="win" id="win"></div></div>
     <div class="gridwrap"><table class="cal" id="grid"></table></div>
     <div class="foot">
+      <div class="okrow"><button id="okbtn">Vérifié — aucune croix</button><span class="st" id="okst"></span></div>
       <label for="notes">Notes de travail (par exemple : « tiers inférieur illisible »)</label>
       <textarea id="notes" placeholder="Ce que vous voulez signaler sur cette photographie…"></textarea>
       <div class="excl">
@@ -260,6 +282,28 @@ function load(){
   save();
 }
 function nextSerie(){ let top=0; for(const s of Object.values(store.sets)) if((+s.serie||0)>top) top=+s.serie; return top+1; }
+/* Per-calendar status (28 Sep 2026). A calendar left empty used to be neither
+   "started" nor exported, so a pump with no breakdown - the commonest case -
+   vanished from the export: a first full pass exported 22 of 83. Empty is now
+   an explicit answer, "vérifié - aucune croix", stored as rec.ok = 'vide'.
+     marque                a mark (X or ?) is on the sheet
+     exclu                 not a calendar
+     vide_verifie          confirmed: no marks
+     vu_sans_confirmation  shown on screen (time recorded) but never confirmed;
+                           exported as such, never as checked-empty
+     non_vu                never shown; not exported */
+function statut(n){
+  const r=st[n];
+  if(!r) return 'non_vu';
+  if(r.exclu) return 'exclu';
+  if(Object.keys(r.cells||{}).length) return 'marque';
+  if(r.ok==='vide') return 'vide_verifie';
+  if((r.secs||0)>0 || r.vu || (r.notes||'').trim()) return 'vu_sans_confirmation';
+  return 'non_vu';
+}
+const DONE_ST=new Set(['marque','exclu','vide_verifie']);
+function verified(){ return CAL.filter(c=>DONE_ST.has(statut(c.n))).length; }
+function unconfirmed(){ return CAL.map((c,i)=>i).filter(i=>statut(CAL[i].n)==='vu_sans_confirmation'); }
 function unexported(){ return (setInfo().non_exportes||[]).length; }
 function touched(n){
   const s=setInfo(); if(!Array.isArray(s.non_exportes)) s.non_exportes=[];
@@ -272,7 +316,7 @@ function newSet(name){
   store.active=id; st=store.sets[id].cal; save(); return id;
 }
 function setInfo(){ return store.sets[store.active]; }
-function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:'',rot:0}; 
+function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:'',rot:0,ok:''}; 
                  const r=st[n]; if(r.exclu===undefined){r.exclu='';r.motif='';} return r; }
 function isExcluded(n){ return !!rec(n).exclu; }
 
@@ -281,14 +325,6 @@ let tick=null;
 function startTimer(){ stopTimer(); tick=setInterval(()=>{ if(!document.hidden){ rec(CAL[cur].n).secs++; save(); paintCounts(); } },1000); }
 function stopTimer(){ if(tick) clearInterval(tick); tick=null; }
 
-function started(){
-  let n=0;
-  for(const k of Object.keys(st)){
-    const r=st[k]||{};
-    if(r.exclu || Object.keys(r.cells||{}).length) n++;
-  }
-  return n;
-}
 function paintCounts(){
   const r=rec(CAL[cur].n); let x=0,q=0;
   for(const v of Object.values(r.cells)){ if(v==='X')x++; else if(v==='?')q++; }
@@ -307,10 +343,11 @@ function paintCounts(){
   const blank=days-x-q;
   $('#gcount').textContent = r.exclu ? 'feuille exclue — pas un calendrier'
     : `${x} X · ${q} ? · ${blank} vides` + (kept?` · ${kept} hors fenêtre`:'');
-  const doneCal=started();
+  const doneCal=verified();
   const mm=Math.floor(r.secs/60), ss=r.secs%60;
   const ue=unexported();
-  $('#counts').innerHTML=`Calendrier <b>${cur+1}</b> / <b>${CAL.length}</b> — série <b>${setInfo().serie}</b> · commencés <b>${doneCal}</b> · marqués depuis le dernier export <b>${ue}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
+  $('#counts').innerHTML=`Calendrier <b>${cur+1}</b> / <b>${CAL.length}</b> — série <b>${setInfo().serie}</b> · vérifiés <b>${doneCal}</b> / <b>${CAL.length}</b> · marqués depuis le dernier export <b>${ue}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
+  paintOk(); paintReview();
   const w2=$('#expwarn');
   if(ue>10){
     w2.hidden=false;
@@ -379,8 +416,54 @@ function startNextSeries(keepName){
   show(0); return true;
 }
 $('#newset').onclick=()=>{
-  if(started() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur sous son propre numéro de série ; la grille repart à zéro.')) return;
+  if(verified() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur sous son propre numéro de série ; la grille repart à zéro.')) return;
   startNextSeries(false);
+};
+
+/* ---- checked, no marks ---- */
+function paintOk(){
+  if(!CAL.length) return;
+  const n=CAL[cur].n, s=statut(n), b=$('#okbtn');
+  b.classList.toggle('on', s==='vide_verifie');
+  b.disabled = (s==='marque'||s==='exclu');
+  b.textContent = s==='vide_verifie' ? '✓ Vérifié — aucune croix' : 'Vérifié — aucune croix';
+  $('#okst').textContent = {marque:'Calendrier marqué : exporté avec ses croix.', exclu:'Feuille exclue.',
+    vide_verifie:'Confirmé : aucune croix. Cliquez à nouveau pour annuler.',
+    vu_sans_confirmation:'Pas encore confirmé.', non_vu:'Pas encore confirmé.'}[s];
+}
+function setOk(v){ const n=CAL[cur].n, r=rec(n); r.ok=v?'vide':''; touched(n); save(); paintCounts(); }
+$('#okbtn').onclick=()=>{ const s=statut(CAL[cur].n); if(s==='marque'||s==='exclu') return; setOk(s!=='vide_verifie'); };
+let okThen=null;
+function needsConfirm(){ const s=statut(CAL[cur].n); return s==='vu_sans_confirmation'||s==='non_vu'; }
+function askOk(then){ okThen=then; $('#okmodal').hidden=false; $('#okyes').focus(); }
+$('#okyes').onclick=()=>{ $('#okmodal').hidden=true; setOk(true); const t=okThen; okThen=null; if(t) t(); };
+$('#okback').onclick=()=>{ $('#okmodal').hidden=true; okThen=null; };
+
+/* ---- review: only the calendars seen but never confirmed ---- */
+let REVIEW=false;
+function paintReview(){
+  const k=unconfirmed().length, b=$('#revbtn');
+  b.hidden = REVIEW || k===0;
+  b.textContent=`Revoir les calendriers vus sans confirmation (${k})`;
+  $('#reviewbar').hidden=!REVIEW;
+  if(REVIEW) $('#reviewtxt').innerHTML=`<b>Revue</b> des calendriers vus sans confirmation : <b>${k}</b> restant(s). Confirmez chacun (<b>Suivant</b> puis <b>Oui</b>) ou marquez ses croix.`;
+}
+function reviewStep(dir){
+  const list=unconfirmed();
+  if(!list.length){ REVIEW=false; paintCounts(); alert('Tous les calendriers vus ont été confirmés. / Every calendar seen has been confirmed.'); return; }
+  const nxt = dir>0 ? (list.find(i=>i>cur) ?? list[0]) : ([...list].reverse().find(i=>i<cur) ?? list[list.length-1]);
+  show(nxt);
+}
+$('#revbtn').onclick=()=>{ REVIEW=true; const l=unconfirmed(); if(l.length) show(l.includes(cur)?cur:l[0]); paintCounts(); };
+$('#reviewquit').onclick=()=>{ REVIEW=false; paintCounts(); };
+
+/* ---- a full copy of what this browser holds, for the supervisor ---- */
+$('#backup').onclick=()=>{
+  const blob=new Blob([localStorage.getItem(KEY)||JSON.stringify(store)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  const who=(setInfo().transcripteur||'anonyme').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  a.download=`sauvegarde_${KEY}_${who}_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
 };
 
 /* ---- not a calendar ---- */
@@ -430,6 +513,7 @@ function buildGrid(){
 function setCell(el,v){
   const r=rec(CAL[cur].n), k=el.dataset.m+'-'+el.dataset.d;
   if(v) r.cells[k]=v; else delete r.cells[k];
+  if(v) r.ok='';          // a mark replaces "checked, no marks"; removing every mark later asks again
   touched(CAL[cur].n);
   el.className='c '+(v==='X'?'x':(v==='?'?'q':''));
   el.textContent=v||'·';
@@ -485,6 +569,7 @@ window.addEventListener('resize',fit);
 /* ---- keyboard ---- */
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT'||e.target.tagName==='INPUT') return;
+  if(!$('#okmodal').hidden){ if(e.key==='Enter'){e.preventDefault();$('#okyes').click();} else if(e.key==='Escape'){e.preventDefault();$('#okback').click();} return; }
   if(!$('#whomodal').hidden || !$('#donemodal').hidden) return;
   if(isExcluded(CAL[cur].n)) return;
   let {m,d}=curCell, handled=true;
@@ -505,6 +590,7 @@ function show(i){
   stopTimer();
   cur=Math.max(0,Math.min(CAL.length-1,i));
   const c=CAL[cur], r=rec(c.n);
+  if(!r.vu){ r.vu=new Date().toISOString(); save(); }
   rot=+r.rot||0; $('#rotv').textContent=`Rotation ${rot}°`;
   DIM=dim(c.y?+c.y:2026);
   WIN=windowFor(c);
@@ -522,12 +608,20 @@ function showDone(){
   const n=CAL.length, s=setInfo().serie, ue=unexported();
   $('#donefr').textContent=`Merci ! Série terminée (${n}/${n}). Voulez-vous commencer une série suivante ?`;
   $('#doneen').textContent=`Thanks! Series complete (${n}/${n}). Do you want to start a next series?`;
-  $('#donewarn').textContent = ue>0 ? `Série ${s} : ${ue} calendrier(s) pas encore exporté(s). Exportez d’abord. / Series ${s}: ${ue} calendar(s) not yet exported. Export first.` : '';
+  const nu=unconfirmed().length, nv=CAL.filter(c=>statut(c.n)==='non_vu').length;
+  $('#donewarn').textContent = [
+    ue>0 ? `Série ${s} : ${ue} calendrier(s) pas encore exporté(s). Exportez d’abord. / Series ${s}: ${ue} calendar(s) not yet exported. Export first.` : '',
+    nu>0 ? `${nu} calendrier(s) vu(s) sans confirmation — « Revoir les calendriers vus sans confirmation ». / ${nu} seen but never confirmed.` : '',
+    nv>0 ? `${nv} calendrier(s) jamais affiché(s). / ${nv} never shown.` : ''].filter(Boolean).join(' ');
   $('#donemodal').hidden=false;
 }
-$('#prev').onclick=()=>show(cur-1);
+$('#prev').onclick=()=>{ if(REVIEW) reviewStep(-1); else show(cur-1); };
 /* the end of a series is an end: no wrap back to the first calendar */
-$('#next').onclick=()=>{ if(cur>=CAL.length-1) showDone(); else show(cur+1); };
+function goNext(){
+  if(REVIEW) return reviewStep(+1);
+  if(cur>=CAL.length-1) showDone(); else show(cur+1);
+}
+$('#next').onclick=()=>{ if(needsConfirm()) askOk(goNext); else goNext(); };
 $('#doneclose').onclick=()=>{ $('#donemodal').hidden=true; };
 $('#doneexp').onclick=()=>{ if(exportCsv()) showDone(); };
 $('#donenext').onclick=()=>{ startNextSeries(true); };
@@ -542,21 +636,23 @@ function exportCsv(){
     alert('Indiquez votre nom avant d’exporter : chaque ligne du fichier doit porter le nom de la personne qui a fait le relevé.');
     askWho(true); return false;
   }
-  const n0=started();
-  if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return false;
+  const n0=verified(), nu0=unconfirmed().length;
+  if(n0<CAL.length && !confirm(`Vous avez vérifié ${n0} calendriers sur ${CAL.length}`+(nu0?` (${nu0} vu(s) sans confirmation, exportés comme tels)`:'')+`. Exporter quand même ce relevé incomplet ?`)) return false;
   /* serie and rotation_deg are appended, so every earlier column keeps its
      place and older exports still read the same way */
-  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le','serie','rotation_deg']];
+  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le','serie','rotation_deg','statut']];
   const serie=info.serie;
   const now=new Date().toISOString();
   const who=info.transcripteur.trim(), sid=info.session_id;
   for(const c of CAL){
-    const r=st[c.n];
-    if(!r || (!r.exclu && !Object.keys(r.cells||{}).length && !(r.notes||'').trim())) continue;
+    const r=st[c.n], stt0=statut(c.n);
+    /* every calendar with an answer is exported, the empty ones included; a
+       calendar only seen is exported as seen, never as checked-empty */
+    if(stt0==='non_vu') continue;
     if(r.exclu){
       /* one row for the whole sheet: excluded is not the same as all-blank,
          and the comparison must never read it as a sheet of zeroes */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0]);
       continue;
     }
     const D2=dim(c.y?+c.y:2026), W2=windowFor(c);
@@ -572,7 +668,7 @@ function exportCsv(){
       /* an unobserved cell is exported as unobserved, with any mark made on it
          before the window was known kept and visible - never dropped, and
          never pooled with the observed cells */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0]);
     }
   }
   if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return false; }

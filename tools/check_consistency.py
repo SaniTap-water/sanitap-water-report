@@ -1874,7 +1874,11 @@ def main():
                      # appended 28 Sep 2026, after every earlier column, so an
                      # older export still reads the same way: the series a row
                      # belongs to, and the photo's rotation when it was read
-                     "serie", "rotation_deg"]
+                     "serie", "rotation_deg",
+                     # appended 28 Sep 2026: marque / exclu / vide_verifie /
+                     # vu_sans_confirmation, so an empty calendar is exported
+                     # as an answer and a merely seen one is never read as one
+                     "statut"]
         hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
         check("transcription export header carries every column, in order",
               hdr in tr2.replace(" ", ""), ",".join(want_cols),

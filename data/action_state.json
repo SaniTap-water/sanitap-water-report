@@ -6,7 +6,7 @@
   "data": 45,
   "decision": 45,
   "form": 7,
-  "none": 23
+  "none": 25
  },
  "state": {
   "act-2026-recovery": {
@@ -33,6 +33,22 @@
    "kind": "artefact",
    "satisfied": true,
    "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder, not a draft",
+   "when_satisfied": "OK"
+  },
+  "act-cal-handwritten-year": {
+   "evaluated": "2026-09-28",
+   "evidence": "no closing condition: a photograph is looked at by a person, or it is not",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition: a photograph is looked at by a person, or it is not",
+   "when_satisfied": "OK"
+  },
+  "act-cal-working-day-ticks": {
+   "evaluated": "2026-09-28",
+   "evidence": "no closing condition: a photograph is looked at by a person, or it is not",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition: a photograph is looked at by a person, or it is not",
    "when_satisfied": "OK"
   },
   "act-calendar-custody": {
