@@ -65,6 +65,21 @@
    "decided_by": "James Walker, Carbon Lead",
    "decided_on": "2026-09-18",
    "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-18"
+  },
+  "act-resolve-sdws-27-sdws": {
+   "answer": "Numbering: SDWS 28 is the published ID of the v2.0 stroke-test parameter; SDWS 27 was its ID in the consultation version. Calibration: Gold Standard is expected to remove the stroke-test validation requirement, which was published in error; not confirmed until later this year, watched as act-gs-validation-withdrawal-watch.",
+   "decided_by": "James Walker, Carbon Lead",
+   "decided_on": "2026-09-21",
+   "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-21",
+   "sender": "James Walker, Carbon Lead",
+   "subject": "Re: Water program dashboard & actions",
+   "quotes": [
+    "27 was the parameter ID in the consultation version, 28 is the published. So 28 is correct.",
+    "I believe they are removing the validation requirement all together, but this won't be confirmed until later this year",
+    "Apparently this will published in error and they will update later this year."
+   ],
+   "logged_on": "2026-09-28",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision."

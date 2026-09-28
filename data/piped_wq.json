@@ -91,15 +91,15 @@
    "1125843383"
   ],
   "managed_kiosk_wq_results": 0,
-  "points_registered": 0,
-  "points_registered_draft": 1,
+  "points_registered": 1,
+  "points_registered_draft": 0,
   "systems_registered": 0,
   "systems_registered_draft": 1,
   "taps_bound": 0,
   "taps_installed": 1,
   "taps_unbound": 1
  },
- "pulled": "2026-09-26",
+ "pulled": "2026-09-28",
  "responses": 45,
  "status_counts": {
   "in_process": 4,

@@ -1,5 +1,5 @@
 {
- "counted": "2026-09-26",
+ "counted": "2026-09-28",
  "metrics": {
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -24,7 +24,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 8
+   "value": 10
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -159,7 +159,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 459
+   "value": 475
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -169,7 +169,7 @@
   "pumps_reduced_performance": {
    "says": "pumps reported with a mechanical or yield fault, still counted working",
    "source": "local",
-   "value": 53
+   "value": 52
   },
   "register_dashboard_gap": {
    "says": "points the MadAvance dashboard counts that our register does not",
@@ -214,7 +214,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 44
+   "value": 41
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

@@ -1,6 +1,6 @@
 {
  "counts": {
-  "appel_signalement_pannes.csv": 2829,
+  "appel_signalement_pannes.csv": 2831,
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
@@ -22,5 +22,5 @@
   "wq_results_piped.json": 45
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-09-26"
+ "recorded": "2026-09-28"
 }

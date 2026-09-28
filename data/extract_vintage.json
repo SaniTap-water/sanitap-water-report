@@ -1,8 +1,8 @@
 {
- "checked": "2026-09-26",
- "data_to": "2026-09-26",
+ "checked": "2026-09-28",
+ "data_to": "2026-09-28",
  "last_record_by_source": {
-  "appel_signalement_pannes.csv": "2026-09-24",
+  "appel_signalement_pannes.csv": "2026-09-28",
   "baseline_moramanga.json": "2026-03-10",
   "cbn_gender.json": "2025-11-21",
   "combined_rehab.json": "2026-01-16",
@@ -10,14 +10,15 @@
   "hygiene.json": "2026-03-16",
   "identification.json": "2026-09-25",
   "marolinta_borehole.json": "2026-08-29",
-  "pm.csv": "2026-09-23",
+  "piped_point_reg.json": "2026-09-26",
+  "pm.csv": "2026-09-28",
   "repair.json": "2026-09-22",
   "reparation_apres_panne.csv": "2026-09-22",
   "roof_count.json": "2025-08-21",
   "wq_results.json": "2026-02-02",
   "wq_results_piped.json": "2026-08-24"
  },
- "newest_pull": "2026-09-26",
+ "newest_pull": "2026-09-28",
  "note": "data_to is the OLDEST pull across every extract - the vintage floor. Stating the newest would claim a currency no single source has. last_record_by_source is a different quantity: a quiet form has an old last record and is still perfectly current.",
  "oldest_sources": [
   "appel_signalement_pannes.csv",
@@ -44,103 +45,103 @@
  "per_extract": {
   "appel_signalement_pannes.csv": {
    "age_days": 0,
-   "data_to": "2026-09-24",
-   "pulled": "2026-09-26"
+   "data_to": "2026-09-28",
+   "pulled": "2026-09-28"
   },
   "baseline_moramanga.json": {
    "age_days": 0,
    "data_to": "2026-03-10",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "cbn_gender.json": {
    "age_days": 0,
    "data_to": "2025-11-21",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "combined_rehab.json": {
    "age_days": 0,
    "data_to": "2026-01-16",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "first_rehab_current.json": {
    "age_days": 0,
    "data_to": null,
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "forage_moramanga.csv": {
    "age_days": 0,
    "data_to": "2026-08-29",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "hygiene.json": {
    "age_days": 0,
    "data_to": "2026-03-16",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "identification.json": {
    "age_days": 0,
    "data_to": "2026-09-25",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "marolinta_borehole.json": {
    "age_days": 0,
    "data_to": "2026-08-29",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "piped_point_reg.json": {
    "age_days": 0,
-   "data_to": null,
-   "pulled": "2026-09-26"
+   "data_to": "2026-09-26",
+   "pulled": "2026-09-28"
   },
   "piped_system_reg.json": {
    "age_days": 0,
    "data_to": null,
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "piped_systems.csv": {
    "age_days": 0,
    "data_to": null,
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "pm.csv": {
    "age_days": 0,
-   "data_to": "2026-09-23",
-   "pulled": "2026-09-26"
+   "data_to": "2026-09-28",
+   "pulled": "2026-09-28"
   },
   "premiere_rehabilitation.csv": {
    "age_days": 0,
    "data_to": null,
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "repair.json": {
    "age_days": 0,
    "data_to": "2026-09-22",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "reparation_apres_panne.csv": {
    "age_days": 0,
    "data_to": "2026-09-22",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "roof_count.json": {
    "age_days": 0,
    "data_to": "2025-08-21",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "wp_madavance.csv": {
    "age_days": 0,
    "data_to": null,
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "wq_results.json": {
    "age_days": 0,
    "data_to": "2026-02-02",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   },
   "wq_results_piped.json": {
    "age_days": 0,
    "data_to": "2026-08-24",
-   "pulled": "2026-09-26"
+   "pulled": "2026-09-28"
   }
  },
  "spread_days": 0

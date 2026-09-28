@@ -416,6 +416,14 @@
   "act-wq-retest": {
    "deadline": null,
    "owner": "Lanja Randriamanantena / MadAvance"
+  },
+  "act-gs-validation-withdrawal-watch": {
+   "deadline": "2026-12-31",
+   "owner": "James Walker"
+  },
+  "act-mwater-backup-restore-check": {
+   "deadline": "2026-10-02",
+   "owner": "Adriaan Mol"
   }
  },
  "read_on": "2026-09-21",
@@ -431,8 +439,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the workbook: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 56,
-   "evidence": 46,
-   "manual": 25
+   "evidence": 47,
+   "manual": 26
   },
   "actions": {
    "act-2026-recovery": {
@@ -715,6 +723,13 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-gs-validation-withdrawal-watch": {
+    "type": "evidence",
+    "closes_when": "Gold Standard publishes a correction, or answers in writing, confirming the v2.0 quarterly Option 3 validation is withdrawn or clarified",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
+   },
    "act-identify-count-institutional-premises": {
     "type": "evidence",
     "closes_when": "MadAvance's list and count of institutional premises inside the service areas",
@@ -911,6 +926,13 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-mwater-backup-restore-check": {
+    "type": "manual",
+    "closes_when": "the mWater form Lanja restored from backup (the iron “Fer” threshold calculation) is identified by id and revision, and the later edits are confirmed present: the Malagasy locale on Entretien préventif, and the SDWS 3 operating-status question if it had already been added",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
+   },
    "act-mwater-mg-locale": {
     "type": "auto",
     "closes_when": "closes when the Malagasy locale is present on the preventive maintenance form",
@@ -1089,7 +1111,7 @@
    "act-resolve-sdws-27-sdws": {
     "type": "evidence",
     "closes_when": "James Walker's written answer on the SDWS 27 / SDWS 28 numbering and the calibration requirement",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1419,6 +1441,12 @@
      "date": "2026-09-21",
      "subject": "Re: Water program dashboard & actions",
      "answer": "The stroke-test validation requirement is expected to be removed; not confirmed until later this year."
+    },
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "“27 was the parameter ID in the consultation version, 28 is the published. So 28 is correct.” “I believe they are removing the validation requirement all together, but this won't be confirmed until later this year” “Apparently this will published in error and they will update later this year.”"
     }
    ],
    "act-indiamark-premises": [
@@ -1513,6 +1541,38 @@
      "date": "2026-09-18",
      "subject": "Re: Water program dashboard & actions",
      "answer": "The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%."
+    }
+   ],
+   "act-v2-confidence-intervals": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "Sample size only: “50 in each to be safe”. No instruction on confidence intervals; stays open (noted 2026-09-28)."
+    }
+   ],
+   "act-enduro-onboard-5-calibration": [
+    {
+     "sender": "Ralf van Veenendaal, Curtech",
+     "date": "2026-09-22",
+     "subject": "RE: Zoho endpoint: works, and what else we need alongside it",
+     "answer": "Device identity only: an EEPROM carrying a unique hard-coded id, unchanged by firmware updates. Nothing on calibration and no certificate; stays open (noted 2026-09-28)."
+    }
+   ],
+   "act-gs-validation-withdrawal-watch": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-21",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "“I believe they are removing the validation requirement all together, but this won't be confirmed until later this year”; “Apparently this will published in error and they will update later this year.”"
+    }
+   ],
+   "act-mwater-backup-restore-check": [
+    {
+     "sender": "mWater support (notification to Adriaan Mol)",
+     "date": "2026-09-27",
+     "subject": "You have a reply from mWater support",
+     "answer": "Replies of 26 and 27 Sep in the support conversation opened by Lanja Randriamanantena: the form carrying the “Fer &gt; 0.2 mg/l” calculation was restored from backup."
     }
    ]
   }

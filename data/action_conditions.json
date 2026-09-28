@@ -956,5 +956,18 @@
   "says": "closes when the signed v1.7 and the dated briefing note are logged in data/decisions.json",
   "closure": "evidence",
   "closes_when": "the signed calendar SOP v1.7 is filed in Water Documents/SOPs and a dated note of the French field-team briefing exists; v1.6 retired"
+ },
+ "act-gs-validation-withdrawal-watch": {
+  "kind": "decision",
+  "question": "Has Gold Standard published a correction, or answered in writing, confirming that the ERSDWS v2.0 quarterly validation of the Option 3 proxy is withdrawn or clarified?",
+  "says": "closes when Gold Standard's correction or written answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Gold Standard publishes a correction, or answers in writing, confirming the v2.0 quarterly Option 3 validation is withdrawn or clarified"
+ },
+ "act-mwater-backup-restore-check": {
+  "kind": "none",
+  "says": "no closing condition: which form revision was restored, and whether later edits survived it, is read by a person in the portal",
+  "closure": "manual",
+  "closes_when": "the mWater form Lanja restored from backup (the iron “Fer” threshold calculation) is identified by id and revision, and the later edits are confirmed present: the Malagasy locale on Entretien préventif, and the SDWS 3 operating-status question if it had already been added"
  }
 }

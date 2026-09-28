@@ -1,16 +1,16 @@
 {
- "evaluated": "2026-09-26",
+ "evaluated": "2026-09-28",
  "kinds": {
   "artefact": 7,
   "children": 1,
   "data": 46,
-  "decision": 44,
+  "decision": 45,
   "form": 7,
-  "none": 22
+  "none": 23
  },
  "state": {
   "act-2026-recovery": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "points_no_2026_calendar = 434 (active carbon points with no readable dated 2026 calendar); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -19,7 +19,7 @@
   },
   "act-742896839": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "point_742896839_in_register = 0 (is water point 742896839 absent from the maintained register (one while it is still absent, none once it is in)); target == 0",
    "kind": "data",
    "satisfied": true,
@@ -28,7 +28,7 @@
   },
   "act-adopt-consolidated-gardien-calendar": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx is in Water Documents/SOPs",
    "kind": "artefact",
    "satisfied": true,
@@ -36,7 +36,7 @@
    "when_satisfied": "OK"
   },
   "act-calendar-custody": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
    "kind": "none",
    "satisfied": null,
@@ -44,7 +44,7 @@
    "when_satisfied": "OK"
   },
   "act-calendar-v13": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
    "kind": "none",
    "satisfied": null,
@@ -52,7 +52,7 @@
    "when_satisfied": "OK"
   },
   "act-call-service-visit": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "calls_using_service_visit_choice = 0 (calls recorded with the routine-service-visit choice); target >= 1",
    "kind": "data",
    "satisfied": false,
@@ -60,7 +60,7 @@
    "when_satisfied": "OK"
   },
   "act-carbon-year-basis": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no data predicate: the per-year activity basis does not exist in this repository and must be supplied before it can be checked",
    "kind": "none",
    "satisfied": null,
@@ -68,7 +68,7 @@
    "when_satisfied": "OK"
   },
   "act-close-eight-2-2": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads",
    "kind": "none",
    "satisfied": null,
@@ -76,7 +76,7 @@
    "when_satisfied": "OK"
   },
   "act-close-out-6-5": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -84,7 +84,7 @@
    "when_satisfied": "OK"
   },
   "act-close-s4-16-car-2": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -92,7 +92,7 @@
    "when_satisfied": "OK"
   },
   "act-complete-accuracy-assessment-calendar": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "transcription_sheets_done = 0 (calendars transcribed in the validation round); target >= 50",
    "kind": "data",
    "satisfied": false,
@@ -100,7 +100,7 @@
    "when_satisfied": "OK"
   },
   "act-confirm-india-mark-capacity": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -109,7 +109,7 @@
   },
   "act-confirm-maroantsetra-fnrb-value": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Maroantsetra fNRB is 36%, not 34%, in line with the sub-national value applied for Fort-Dauphin; James corrects it at verification.",
    "kind": "decision",
    "satisfied": true,
@@ -118,7 +118,7 @@
   },
   "act-confirm-whether-ersdws-v2": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: v2.0 applies from 1 January 2026 with some grandfathering; alignment at the verification submission (Q1 2027), full alignment at the crediting-period renewal; v2.0 to be tried for 2025 through the design-change pathway.",
    "kind": "decision",
    "satisfied": true,
@@ -126,7 +126,7 @@
    "when_satisfied": "OK"
   },
   "act-dashboard-gap": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "register_dashboard_gap = 6 (points the MadAvance dashboard counts that our register does not); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -134,7 +134,7 @@
    "when_satisfied": "OK"
   },
   "act-decide-how-treat-67": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "points_without_readable_calendar = 84 (points whose calendar photographs cannot be read); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -143,7 +143,7 @@
   },
   "act-decommission-inactivity-field": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by Adriaan Mol, COO SaniTap: No. SaniTap will not decommission or retire water points for inactivity. A pump with no recent activity is a maintenance question, not a register question.",
    "kind": "decision",
    "satisfied": true,
@@ -151,7 +151,7 @@
    "when_satisfied": "OK"
   },
   "act-define-maintenance-record-becomes": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -159,7 +159,7 @@
    "when_satisfied": "OK"
   },
   "act-design-change-q1-2027": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -167,7 +167,7 @@
    "when_satisfied": "OK"
   },
   "act-down-no-repair": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "downs_without_repair = 30 (call-centre down reports with no repair record); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -176,7 +176,7 @@
   },
   "act-duplicate-codes-sweep": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "duplicate_question_codes = 0 (question codes reused inside a single mWater form); target == 0",
    "kind": "data",
    "satisfied": true,
@@ -184,7 +184,7 @@
    "when_satisfied": "OK"
   },
   "act-emergency-event-form": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -192,7 +192,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-feed": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "data/curtech_dispensing_events.json does not exist in the repository",
    "kind": "artefact",
    "satisfied": false,
@@ -210,7 +210,7 @@
     "act-enduro-onboard-7-piped-sdws27"
    ],
    "children_closed": 1,
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "1 of 7 steps closed",
    "kind": "children",
    "satisfied": false,
@@ -219,7 +219,7 @@
   },
   "act-enduro-onboard-1-enumerators": {
    "closed_since": "2026-09-25",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "enduro_tana_enumerators = 3 (members of the mWater team Enduro > EndurO Tana > Enumerators); target >= 1",
    "kind": "data",
    "satisfied": true,
@@ -227,7 +227,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-onboard-2-register-sites": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "enduro_sites_unregistered = 131 (managed Endur'O sites with no submitted System registration in mWater); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -235,7 +235,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-onboard-3-bind-taps": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "smart_taps_unbound = 1 (installed smart taps not yet bound to their water point by a test dispense); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -243,7 +243,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-onboard-5-calibration": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "smart_meters_without_certificate = 1 (installed smart-tap meters with no calibration certificate on file); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -251,7 +251,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-onboard-6-kiosk-wq": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "managed_kiosk_wq_results = 0 (water-quality results bound to the managed kiosk's water point); target >= 1",
    "kind": "data",
    "satisfied": false,
@@ -259,7 +259,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-onboard-7-piped-sdws27": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "piped_sdws27_record_types_missing = 3 (of maintenance, repair and days-not-operational, the record types with no final piped record on a managed system in mWater); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -267,7 +267,7 @@
    "when_satisfied": "OK"
   },
   "act-enduro-people-source": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "enduro_figures_unattributed = 1 (hand-entered Endur'O figures with no document recorded behind them); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -276,15 +276,15 @@
   },
   "act-enduro-refresh": {
    "closed_since": "2026-09-22",
-   "evaluated": "2026-09-26",
-   "evidence": "enduro_figures_age_days = 8 (days since the hand-entered Endur'O figures were last confirmed); target <= 60",
+   "evaluated": "2026-09-28",
+   "evidence": "enduro_figures_age_days = 10 (days since the hand-entered Endur'O figures were last confirmed); target <= 60",
    "kind": "data",
    "satisfied": true,
    "says": "closes while the hand-entered Endur'O figures are under 60 days old; reopens the day they are not",
    "when_satisfied": "OK"
   },
   "act-establish-renewal-dates-current": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -292,7 +292,7 @@
    "when_satisfied": "OK"
   },
   "act-establish-renewal-dates-four": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -301,7 +301,7 @@
   },
   "act-figure-residue": {
    "closed_since": "2026-09-23",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "unsourced_figures = 0 (rendered figures with no source of any kind); target == 0",
    "kind": "data",
    "satisfied": true,
@@ -309,7 +309,7 @@
    "when_satisfied": "OK"
   },
   "act-find-source-annual-independent": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -317,7 +317,7 @@
    "when_satisfied": "OK"
   },
   "act-fleet-growth": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -325,7 +325,7 @@
    "when_satisfied": "OK"
   },
   "act-form-consolidation": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -333,7 +333,7 @@
    "when_satisfied": "OK"
   },
   "act-freeze-estate-map-when": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "tools/freeze_map.py does not exist in the repository",
    "kind": "artefact",
    "satisfied": false,
@@ -341,15 +341,23 @@
    "when_satisfied": "OK"
   },
   "act-gaps-doc": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
+  "act-gs-validation-withdrawal-watch": {
+   "evaluated": "2026-09-28",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when Gold Standard's correction or written answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
   "act-identify-count-institutional-premises": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -357,7 +365,7 @@
    "when_satisfied": "OK"
   },
   "act-indiamark-premises": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "possible answer received &mdash; confirm to close: James Walker, 15 Sep 2026: &ldquo;WorldPop 100%. Rigorous and all of the claims and data is supported. There are references for higher numbers on handpumps. In Richard Carter&rsquo;s book he states 200 to&hellip;&rdquo; Bears on the premises figure but does not settle 500 against 300.",
    "kind": "decision",
    "satisfied": false,
@@ -366,7 +374,7 @@
   },
   "act-make-calendar-photograph-mandatory": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "question code 2.15.6 is on the form and required; question code 1.3.1.3 is on the form and required",
    "kind": "form",
    "satisfied": true,
@@ -374,7 +382,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-admin-fields": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_points_no_admin = 1 (Marolinta records carrying no district or commune); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -382,7 +390,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-functional-status": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_blank_status = 6 (Marolinta records leaving the functional status blank); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -390,7 +398,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-missing-boreholes": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_new_borehole_records = 6 (new-borehole records on the Marolinta progress form); target >= 10",
    "kind": "data",
    "satisfied": false,
@@ -398,7 +406,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-missing-rehabs": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_rehabs_final = 7 (final R\u00e9habilitation records on the Marolinta deployment); target >= 10",
    "kind": "data",
    "satisfied": false,
@@ -406,7 +414,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-new-construction-gap": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_new_final = 6 (final Nouvelle construction records on the Marolinta deployment); target >= 10",
    "kind": "data",
    "satisfied": false,
@@ -414,7 +422,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-technical-values": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -422,7 +430,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-water-quality": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_points_without_wq = 13 (Marolinta records with no E. coli result on file); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -430,7 +438,7 @@
    "when_satisfied": "OK"
   },
   "act-mar-which-form": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -438,7 +446,7 @@
    "when_satisfied": "OK"
   },
   "act-marolita-spelling": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolita_spelling_records = 19 (works-form records that spell the village Marolita); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -446,7 +454,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a site visit is not recorded anywhere this build can read",
    "kind": "none",
    "satisfied": null,
@@ -454,7 +462,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-bring-back-site-lists": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: the two schemes have no records to count yet",
    "kind": "none",
    "satisfied": null,
@@ -462,7 +470,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-correct-two-sampling-records": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: the two records are corrected in place, leaving no count to fall",
    "kind": "none",
    "satisfied": null,
@@ -470,7 +478,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-count-draw-off-point": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -478,7 +486,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-fill-three-new-fields": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "question code 1.2.3 is not on the water-quality-result-sdws3 form",
    "kind": "form",
    "satisfied": false,
@@ -486,7 +494,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-fix-type-sampled-point": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: the sampled-tap type contradiction spans rounds and has no single field to test",
    "kind": "none",
    "satisfied": null,
@@ -494,7 +502,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-have-those-five-records": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -502,7 +510,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-households-people-served-per": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -510,7 +518,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-re-take-gps-fix": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a re-taken fix replaces the old one and leaves no discrepancy to measure",
    "kind": "none",
    "satisfied": null,
@@ -518,7 +526,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-record-what-community-drank": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -526,7 +534,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-remove-reclassify-two-test": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "test_kiosks_in_register = 2 (of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -534,7 +542,7 @@
    "when_satisfied": "OK"
   },
   "act-mor-submit-drafts": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "moramanga_draft_records = 4 (borehole-progress records on the Moramanga deployment never submitted); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -542,7 +550,7 @@
    "when_satisfied": "OK"
   },
   "act-moramanga-post-rehab-wq": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "piped_systems_in_process = 4 (piped systems in process: works or post-rehabilitation tests not yet done); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -550,7 +558,7 @@
    "when_satisfied": "OK"
   },
   "act-move-stroke-test-sop": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -558,7 +566,7 @@
    "when_satisfied": "OK"
   },
   "act-move-weekly-mwater-backup": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: where the backup runs from is not visible to this build",
    "kind": "none",
    "satisfied": null,
@@ -566,15 +574,23 @@
    "when_satisfied": "OK"
   },
   "act-mwater-approval-policy": {
-   "evaluated": "2026-09-26",
-   "evidence": "unapproved_works_records = 44 (submitted works records with no approval, last 180 days); target == 0",
+   "evaluated": "2026-09-28",
+   "evidence": "unapproved_works_records = 41 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
    "when_satisfied": "OK"
   },
+  "act-mwater-backup-restore-check": {
+   "evaluated": "2026-09-28",
+   "evidence": "no closing condition: which form revision was restored, and whether later edits survived it, is read by a person in the portal",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition: which form revision was restored, and whether later edits survived it, is read by a person in the portal",
+   "when_satisfied": "OK"
+  },
   "act-mwater-mg-locale": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "preventive-maintenance locales = en, fr; needs mg",
    "kind": "form",
    "satisfied": false,
@@ -582,7 +598,7 @@
    "when_satisfied": "OK"
   },
   "act-mwater-year-required": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "question code 2.15.7 is on the form but is not required",
    "kind": "form",
    "satisfied": false,
@@ -590,7 +606,7 @@
    "when_satisfied": "OK"
   },
   "act-no-works-record": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "points_no_works_record = 57 (water points with no rehabilitation, construction, visit or repair); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -598,7 +614,7 @@
    "when_satisfied": "OK"
   },
   "act-per-diem": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -607,7 +623,7 @@
   },
   "act-photo-conditional-on-presence": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "question code 1.3.1.3 is on the form and conditional",
    "kind": "form",
    "satisfied": true,
@@ -615,7 +631,7 @@
    "when_satisfied": "OK"
   },
   "act-photo-misfiled": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "photographs_misfiled = 206 (photographs filed on a calendar question that are not calendars); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -623,7 +639,7 @@
    "when_satisfied": "OK"
   },
   "act-piped-fnrb": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -631,7 +647,7 @@
    "when_satisfied": "OK"
   },
   "act-piped-usage-survey": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
    "kind": "none",
    "satisfied": null,
@@ -639,7 +655,7 @@
    "when_satisfied": "OK"
   },
   "act-piped-wq-misfiled-742895333": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "piped_form_hand_pump_results = 2 (hand-pump water-quality results filed on the piped result form 0ac68d82); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -647,7 +663,7 @@
    "when_satisfied": "OK"
   },
   "act-point-use-round-one": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "usage_question_answers = 0 (point-of-use responses that actually answer the usage question A9); target >= 100",
    "kind": "data",
    "satisfied": false,
@@ -655,7 +671,7 @@
    "when_satisfied": "OK"
   },
   "act-population-rerun": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a standing item that recurs whenever the portfolio grows",
    "kind": "none",
    "satisfied": null,
@@ -663,7 +679,7 @@
    "when_satisfied": "OK"
   },
   "act-printed-year-meaning": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -671,7 +687,7 @@
    "when_satisfied": "OK"
   },
   "act-produce-s4-19-cl": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "nothing matching \"installation database\" in Water Documents",
    "kind": "artefact",
    "satisfied": false,
@@ -680,7 +696,7 @@
   },
   "act-put-current-methodology-vpa": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "Methodology of record/GS12600_GS12601_VPA-1_Safe_Water_Madagascar_VPA-DD_V2_CLEAN.pdf is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
    "satisfied": true,
@@ -688,7 +704,7 @@
    "when_satisfied": "OK"
   },
   "act-put-usage-question-live": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "usage_question_answers = 0 (point-of-use responses that actually answer the usage question A9); target >= 100",
    "kind": "data",
    "satisfied": false,
@@ -696,7 +712,7 @@
    "when_satisfied": "OK"
   },
   "act-re-run-improved-cookstove": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: an annual recurrence, not a task that finishes",
    "kind": "none",
    "satisfied": null,
@@ -705,7 +721,7 @@
   },
   "act-reconcile-cookstove-water-programmes": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-18 by James Walker, Carbon Lead: The methodology provides for cookstove and safe-water cross-effects; the stacking prohibition applies to Impact Statements only, not to credits.",
    "kind": "decision",
    "satisfied": true,
@@ -713,7 +729,7 @@
    "when_satisfied": "OK"
   },
   "act-recreate-gardien-calendar-controlled": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: the controlled source file has no agreed location yet, so there is nothing to check for",
    "kind": "none",
    "satisfied": null,
@@ -721,8 +737,8 @@
    "when_satisfied": "OK"
   },
   "act-reduced-performance": {
-   "evaluated": "2026-09-26",
-   "evidence": "pumps_reduced_performance = 53 (pumps reported with a mechanical or yield fault, still counted working); target == 0",
+   "evaluated": "2026-09-28",
+   "evidence": "pumps_reduced_performance = 52 (pumps reported with a mechanical or yield fault, still counted working); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no pump is left reported faulty with no repair logged since",
@@ -730,7 +746,7 @@
   },
   "act-refresh-extract": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "extract_lag_days = 0 (days the extract on this page runs behind mWater); target == 0",
    "kind": "data",
    "satisfied": true,
@@ -738,7 +754,7 @@
    "when_satisfied": "OK"
   },
   "act-rehab-recording": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_new_borehole_records = 6 (new-borehole records on the Marolinta progress form); target >= 10",
    "kind": "data",
    "satisfied": false,
@@ -746,7 +762,7 @@
    "when_satisfied": "OK"
   },
   "act-reissue-calendars-new-blank": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
    "kind": "none",
    "satisfied": null,
@@ -754,7 +770,7 @@
    "when_satisfied": "OK"
   },
   "act-repair-double-entry": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no data predicate: closes when MadAvance decides whether the duplicate repair on 699597809 is one repair or two",
    "kind": "none",
    "satisfied": null,
@@ -762,7 +778,7 @@
    "when_satisfied": "OK"
   },
   "act-repair-time": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -770,7 +786,7 @@
    "when_satisfied": "OK"
   },
   "act-repeat-breakdown": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -778,15 +794,16 @@
    "when_satisfied": "OK"
   },
   "act-resolve-sdws-27-sdws": {
-   "evaluated": "2026-09-26",
-   "evidence": "possible answer received &mdash; confirm to close: James Walker, 21 Sep 2026: &ldquo;Stroke test validation: I believe they are removing the validation requirement all together, but this won&rsquo;t be confirmed until later this year.&rdquo; That answers the calibration half and leaves the numbering half open.",
+   "closed_since": "2026-09-28",
+   "evaluated": "2026-09-28",
+   "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Numbering: SDWS 28 is the published ID of the v2.0 stroke-test parameter; SDWS 27 was its ID in the consultation version. Calibration: Gold Standard is expected to remove the stroke-test validation requirement, which was published in error; not confirmed until later this year, watched as act-gs-validation-withdrawal-watch.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-resolve-water-point-type": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it",
    "kind": "none",
    "satisfied": null,
@@ -794,7 +811,7 @@
    "when_satisfied": "OK"
   },
   "act-restore-preventive-maintenance-visit": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "pm_visits_last_full_month = 10 (preventive maintenance visits in the last full month); target >= 80",
    "kind": "data",
    "satisfied": false,
@@ -802,7 +819,7 @@
    "when_satisfied": "OK"
   },
   "act-retrain-field-teams-how": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: training delivery is not recorded in any system we read",
    "kind": "none",
    "satisfied": null,
@@ -810,7 +827,7 @@
    "when_satisfied": "OK"
   },
   "act-route-plans": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "sites_without_route_plan = 1 (sites with overdue pumps and no catch-up route plan); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -819,7 +836,7 @@
   },
   "act-run-sdws-26-premises": {
    "closed_since": "2026-09-23",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-23 by Adriaan Mol, COO SaniTap: Superseded, not abandoned. The premise was that SDWS 26 had no field instrument and no data until a new round ran. Both were false: the annual monitoring survey (form 2eeb8682) already carried the usage question in both seasons and had been run 11-21 November 2025, giving 410 responses that answered both seasons. The parameter is measured for the 2025 monitoring period. Replaced by act-sdws26-annual-round, which makes it a recurring annual obligation rather than a one-off, and by act-sdws26-approve-2025 for the approval state.",
    "kind": "decision",
    "satisfied": true,
@@ -828,7 +845,7 @@
   },
   "act-run-stroke-test-sdws": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "stroke_test_responses = 40 (results recorded on the stroke-meter form); target >= 30",
    "kind": "data",
    "satisfied": true,
@@ -836,7 +853,7 @@
    "when_satisfied": "OK"
   },
   "act-sdws26-annual-round": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period",
    "kind": "none",
    "satisfied": null,
@@ -844,7 +861,7 @@
    "when_satisfied": "OK"
   },
   "act-sdws26-approve-2025": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "sdws26_2025_round_unapproved = 413 (final responses of the November 2025 usage round with no approval in mWater); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -853,7 +870,7 @@
   },
   "act-sdws26-instrument-review": {
    "closed_since": "2026-09-23",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-23 by Adriaan Mol, COO SaniTap: Superseded. The review was scoped to sign an instrument off BEFORE round one, and round one had already run - on the annual monitoring survey, not on the point-of-use form the review was written against. The substance is not lost: which form is the standing SDWS 26 instrument, and whether it must also carry SDWS 22 boiling, the JMP core questions, the enumerator's identity and the household-versus-institution split, is carried into act-sdws26-annual-round as the question to settle before the 2026 round.",
    "kind": "decision",
    "satisfied": true,
@@ -862,7 +879,7 @@
   },
   "act-sdws27-basis": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Capped at 347 days without a sensor; actual days claimable only for sensor-fitted pumps, sampled 50 per stratum, with the cap on the rest; a lost or damaged calendar is acceptable given the SOP, visits and call log. James Walker's ruling, not Gold Standard's.",
    "kind": "decision",
    "satisfied": true,
@@ -870,7 +887,7 @@
    "when_satisfied": "OK"
   },
   "act-sdws3-operating-status": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "a question mentioning \"operating\" is not on the water-quality-sampling-sdws3 form",
    "kind": "form",
    "satisfied": false,
@@ -878,7 +895,7 @@
    "when_satisfied": "OK"
   },
   "act-sensor-cost-benefit": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a cost-benefit judgement is a decision a person makes",
    "kind": "none",
    "satisfied": null,
@@ -886,7 +903,7 @@
    "when_satisfied": "OK"
   },
   "act-sensor-definition": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -894,7 +911,7 @@
    "when_satisfied": "OK"
   },
   "act-sensor-sample": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a briefing is delivered or it is not, and no system records it",
    "kind": "none",
    "satisfied": null,
@@ -903,7 +920,7 @@
   },
   "act-settle-baseline-boiling-device": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-18 by James Walker, Carbon Lead: The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%.",
    "kind": "decision",
    "satisfied": true,
@@ -911,7 +928,7 @@
    "when_satisfied": "OK"
   },
   "act-sop-calendar-v17-signoff": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -920,7 +937,7 @@
   },
   "act-standardised-stroke-test-basis": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-18 by James Walker, Head of Carbon: Yes. The standardised stroke test is SDWS 28 of ERSDWS V2, and the five-minute test is the accepted method pending the StrokeMeter.",
    "kind": "decision",
    "satisfied": true,
@@ -928,7 +945,7 @@
    "when_satisfied": "OK"
   },
   "act-transcription-round": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "transcription_sheets_done = 0 (calendars transcribed in the validation round); target >= 50",
    "kind": "data",
    "satisfied": false,
@@ -937,7 +954,7 @@
   },
   "act-type3-cap": {
    "closed_since": "2026-09-21",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "er_percent_of_type3_cap = 36.0 (annual emission reductions as a percentage of the 60,000 tCO2e cap); target < 80",
    "kind": "data",
    "satisfied": true,
@@ -945,7 +962,7 @@
    "when_satisfied": "WATCH"
   },
   "act-undatable": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "points_without_readable_calendar = 84 (points whose calendar photographs cannot be read); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -953,7 +970,7 @@
    "when_satisfied": "OK"
   },
   "act-update-parameters-workbook-cite": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -962,7 +979,7 @@
   },
   "act-update-sops-portfolio-figures": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "SOPs/COP_STROKE TEST \u2014 STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
    "satisfied": true,
@@ -970,7 +987,7 @@
    "when_satisfied": "OK"
   },
   "act-v2-adherence": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no closing condition: a standing item that runs until the methodology version is settled",
    "kind": "none",
    "satisfied": null,
@@ -978,7 +995,7 @@
    "when_satisfied": "OK"
   },
   "act-v2-confidence-intervals": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -986,7 +1003,7 @@
    "when_satisfied": "OK"
   },
   "act-v2-embodied": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -995,7 +1012,7 @@
   },
   "act-v2-nonclaiming": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: Contracts: we are fine here.",
    "kind": "decision",
    "satisfied": true,
@@ -1004,7 +1021,7 @@
   },
   "act-v2-sample-size": {
    "closed_since": "2026-09-26",
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "decided 2026-09-21 by James Walker, Carbon Lead: 50 per stratum for sampling, to be safe.",
    "kind": "decision",
    "satisfied": true,
@@ -1012,7 +1029,7 @@
    "when_satisfied": "OK"
   },
   "act-v2-stove-stacking": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "a question mentioning \"stove\" is not on the point-of-use-survey form",
    "kind": "form",
    "satisfied": false,
@@ -1020,7 +1037,7 @@
    "when_satisfied": "OK"
   },
   "act-v2-stroke-test": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "nothing matching \"StrokeTest\" in Water Documents/SOPs",
    "kind": "artefact",
    "satisfied": false,
@@ -1028,7 +1045,7 @@
    "when_satisfied": "OK"
   },
   "act-verification-fnrb-correction": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
@@ -1036,15 +1053,15 @@
    "when_satisfied": "OK"
   },
   "act-visit-collapse": {
-   "evaluated": "2026-09-26",
-   "evidence": "points_over_6_months = 459 (points with no maintenance visit for more than six months); target <= 50",
+   "evaluated": "2026-09-28",
+   "evidence": "points_over_6_months = 475 (points with no maintenance visit for more than six months); target <= 50",
    "kind": "data",
    "satisfied": false,
    "says": "closes when fewer than 50 points are more than six months without a visit",
    "when_satisfied": "WATCH"
   },
   "act-visit-three-marolinta-points": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "marolinta_three_points_no_photograph = 3 (of the three named Marolinta points, how many still have no photograph); target == 0",
    "kind": "data",
    "satisfied": false,
@@ -1052,7 +1069,7 @@
    "when_satisfied": "OK"
   },
   "act-wq-retest": {
-   "evaluated": "2026-09-26",
+   "evaluated": "2026-09-28",
    "evidence": "water_quality_failures_unretested = 1 (pumps with a failed E. coli result and no retest on file); target == 0",
    "kind": "data",
    "satisfied": false,

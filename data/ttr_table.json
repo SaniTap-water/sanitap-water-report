@@ -3,7 +3,7 @@
   "max": 55,
   "mean": 4.8,
   "median": 1,
-  "n": 187,
+  "n": 189,
   "p90": 16
  },
  "by_quarter": {
@@ -30,9 +30,9 @@
   },
   "2026 Q3": {
    "max": 30,
-   "mean": 4.9,
+   "mean": 4.8,
    "median": 3,
-   "n": 27,
+   "n": 29,
    "p90": 9
   }
  },
@@ -48,14 +48,14 @@
    "max": 49,
    "mean": 3.9,
    "median": 1,
-   "n": 132,
+   "n": 134,
    "p90": 9
   }
  },
  "facts": {
-  "completed_on_submission": 143,
+  "completed_on_submission": 145,
   "points": 145,
-  "same_day_notification_pct": 71,
+  "same_day_notification_pct": 70,
   "zero_or_one_day_pct": 61
  },
  "note": "Time to repair on the live repair form, final responses with both dates; written by tools/render_ttr_table.py."

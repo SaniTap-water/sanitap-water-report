@@ -1046,3 +1046,32 @@ and `calib_pods` in the page parameters.
   text and the revision note already said.
 - On the page: `act-sensor-sample`, the stroke-test open question on quarterly calibration, and
   `act-resolve-sdws-27-sdws` say the same.
+
+## 28 September 2026 — James Walker, 21 Sep 2026: the SDWS 27 / SDWS 28 numbering and the calibration requirement
+
+Source: James Walker, Carbon Lead, email "Re: Water program dashboard & actions", 21 September 2026.
+Logged in `data/decisions.json` on Adriaan Mol's instruction.
+
+- **Numbering.** *"27 was the parameter ID in the consultation version, 28 is the published. So 28 is
+  correct."* The v2.0 stroke-test parameter is SDWS 28 (Option 3). v1.0 SDWS 27, days operational, is a
+  different parameter and is untouched.
+- **Calibration.** *"I believe they are removing the validation requirement all together, but this won't
+  be confirmed until later this year"* and *"Apparently this will published in error and they will update
+  later this year."* The quarterly validation attaches to the Option 3 proxy only; the StrokeMeter annual
+  re-verification stands.
+- **Applied:** `act-resolve-sdws-27-sdws` closes on the logged decision (status computed OK; the row is
+  kept, not deleted). Gold Standard's confirmation is not yet in writing, so
+  `act-gs-validation-withdrawal-watch` (James Walker, proposed 31 Dec 2026, evidence) stays open until
+  Gold Standard publishes a correction or answers in writing.
+- **Stroke-test SOP v2.2** (French and English), unsigned drafts, each beside its v2.1: cites SDWS 28
+  Option 3 where v2.1 cited SDWS 27 Option 3, with a change-log line giving both points above. The
+  document reference `SOP-MAD-SDWS27-StrokeTest` and the file-name pattern are kept, as identifiers.
+  v2.0 and v2.1 are unchanged.
+- **Stays open, noted:** `act-v2-confidence-intervals` — James's 21 Sep reply gave the sample size only
+  ("50 in each to be safe"), not the confidence-interval instruction. `act-enduro-onboard-5-calibration` —
+  Ralf van Veenendaal's 22 Sep reply ("RE: Zoho endpoint: works, and what else we need alongside it")
+  covers device identity (EEPROM id), not calibration; no certificate.
+- **Added:** `act-mwater-backup-restore-check` (Adriaan Mol, proposed 2 Oct 2026, manual): identify by id
+  and revision the form Lanja restored from backup (mWater support replies of 26 and 27 Sep, the
+  "Fer > 0.2 mg/l" calculation) and confirm that the later edits are present: the Malagasy locale on
+  Entretien préventif, and the SDWS 3 operating-status question if it had already been added.

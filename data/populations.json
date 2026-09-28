@@ -91,7 +91,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2816,
+   "size": 2817,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -140,7 +140,7 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 20,
+   "size": 21,
    "unit": "points"
   },
   "first_rehab_confirmed_out_of_order": {
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 459,
+   "size": 475,
    "unit": "points"
   },
   "pm_visits": {
@@ -499,7 +499,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
-   "size": 721,
+   "size": 718,
    "unit": "records"
   },
   "pm_visits_calendar_photo": {
@@ -518,7 +518,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
-   "size": 759,
+   "size": 756,
    "unit": "records"
   },
   "register_records": {
