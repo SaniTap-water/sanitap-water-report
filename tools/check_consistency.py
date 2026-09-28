@@ -1534,7 +1534,10 @@ def main():
         # layout on a sheet with no printed year: an identity fact like "y",
         # read from the sheet's printing, never from a mark; the page offers it
         # only as "a confirmer".
-        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y", "cmp", "yd"}
+        # "rot" (28 Sep 2026) is the rotation built into the served image and
+        # "ysrc" who read a year the reader could not: both describe the
+        # photograph or the sheet's printing, never a mark on it.
+        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y", "cmp", "yd", "rot", "ysrc"}
         extra = sorted({k for r in man for k in r} - allowed)
         check("transcription manifest carries no derived field",
               not extra, "only identity fields",
@@ -1545,6 +1548,42 @@ def main():
         check("every selected calendar has its image bundled",
               n_img == len(man), len(man), n_img,
               "the page must work without reaching mWater")
+        # ---- 7qa. no calendar is ever served sideways (28 Sep 2026) ----------
+        # 26 of the 83 photographs were served sideways or upside down, and the
+        # images carry no EXIF orientation to correct it. A sheet's aspect
+        # cannot settle it - a landscape sheet photographed in portrait is
+        # upright, and an upside-down one is still landscape - so what is held
+        # is the REVIEW: every calendar has a reviewed rotation, the served
+        # file is exactly the one that review produced, a turned calendar keeps
+        # its original, and the manifest carries the served size. A newly
+        # bundled image fails until someone has looked at it.
+        import hashlib as _hl, csv as _csvo
+        orp = os.path.join(here, "data", "transcription_orientation.csv")
+        orient = {int(r["calendrier"]): r for r in _csvo.DictReader(open(orp))} if os.path.exists(orp) else {}
+        unreviewed = sorted(c["n"] for c in man if c["n"] not in orient)
+        check("every calendar on the transcription page has a reviewed orientation",
+              not unreviewed, "all reviewed", f"unreviewed: {unreviewed[:6]}" if unreviewed else "all reviewed",
+              "data/transcription_orientation.csv, from tools/bundle_new_sheets.py --orientation")
+        bad_or = []
+        for c in man:
+            r = orient.get(c["n"])
+            if not r:
+                continue
+            fp = os.path.join(tr_dir, c["f"])
+            if not os.path.exists(fp) or _hl.sha256(open(fp, "rb").read()).hexdigest() != r["served_sha256"]:
+                bad_or.append(f"{c['n']}: served file is not the reviewed one"); continue
+            if f"{c['w']}x{c['h']}" != r["served_size"]:
+                bad_or.append(f"{c['n']}: manifest size {c['w']}x{c['h']} != {r['served_size']}")
+            deg = int(r["rotation_cw"])
+            if deg != int(c.get("rot") or 0):
+                bad_or.append(f"{c['n']}: manifest rot {c.get('rot') or 0} != reviewed {deg}")
+            if deg:
+                op = os.path.join(here, r["original"])
+                if not os.path.exists(op) or _hl.sha256(open(op, "rb").read()).hexdigest() != r["original_sha256"]:
+                    bad_or.append(f"{c['n']}: original not kept")
+        check("every calendar is served as reviewed: upright file, original kept, size recorded",
+              not bad_or, "as reviewed", "; ".join(bad_or[:3]) if bad_or else "as reviewed",
+              "no image in the calendar list is served sideways")
         # no extraction figure may appear anywhere in the shipped page
         figp2 = os.path.join(here, "data", "calendar_extraction_figures.json")
         leaked = []

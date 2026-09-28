@@ -174,3 +174,40 @@ sheets with no year read:
 
 Sheet 6 agrees with the handwritten 2024; sheet 30 was checked by eye (same template, "2024"
 handwritten). Sheet 6 is **not** set to 2024 in anyone's data: Adriaan confirms it on the page.
+
+## Full first pass — Adriaan Mol, series 1, exported 28 Sep 2026 17:13
+
+File `releves_calendriers_mol-adriaan_serie1_2026-09-28 (1).csv`: **all 83 calendars**, 63
+confirmed empty (`vide_verifie`) and 20 marked; no photo was rotated on the page.
+
+**Against the machine** (`tools/compare_transcriptions.py`, image join): **42 calendars** compared —
+the machine-comparable ones with overlapping cells; 8 more in the frame have no overlapping cells.
+Mean agreement over calendars **0.921** (sd 0.082, min 0.531; pooled-cell 0.938). Lowest: 58
+(0.53) and 56 (0.71), both photographed sideways, where the machine returns "?" on cells the human
+reads blank. Still not the validation round: one transcriber, who had seen the aggregate statistics.
+
+**The days 1–5 over-count holds.** The machine calls X where Adriaan saw nothing on **394** cells, and
+**366 of them (93%) fall on days 1–5** of a month (283 on days 1–3), on **36 of the 42** calendars.
+By day: 1: 103, 2: 98, 3: 82, 4: 51, 5: 32, then 3 or fewer per day. The other way round, Adriaan's
+X that the machine missed: 18 cells. The over-count runs in the direction of more downtime and is
+the first thing to fix in the reader before the validation round is scored.
+
+## Orientation and sheet years — before Angelo's team starts (28 Sep 2026)
+
+- **26 photographs are now served upright**; the other 57 already were. Rotation per image, the
+  original's and the served file's SHA-256, and who reviewed it: `data/transcription_orientation.csv`
+  (from `data/transcription_orientation_review.csv`, via `tools/bundle_new_sheets.py --orientation`).
+  Originals are kept in `transcription/img_original/`. The images carry no EXIF orientation.
+- **Marks map to the same cells.** Adriaan's full pass, replayed through the new page and exported
+  again: all 51 marks on the same calendar, month and day, including the 7 on turned photographs; no
+  statut changed. A rotation a transcriber saved on the page before this is converted once, so it
+  cannot turn an upright photo.
+- **Sheet years set with their source** (`data/transcription_sheet_years.csv`, read by Claude): printed
+  89, 91, 92, 99 = 2026; handwritten 6, 30 = 2024; weekday layout 34, 46, 50 = 2024 and 38, 97 = 2025.
+  Shown on the page as "lue par Claude — …", editable, exported as `annee_source` `claude_imprime` /
+  `claude_manuscrit` / `claude_calendrier`. **84** is unreadable and left for the transcriber.
+- **Calendar 89 conflicts with its printed year.** The sheet prints "2026", its weekday layout is
+  2026, but it was photographed on 18 Dec 2025 and carries marks on 22 Oct, 12 Nov and 17 Dec:
+  the gardien was marking a 2026 sheet through late 2025. With 2026 every day is outside the
+  observable window, so those three marks are kept but exported as `non_observe`. This is the
+  question open as `act-printed-year-meaning`; the year stays editable.

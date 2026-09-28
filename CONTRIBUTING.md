@@ -224,6 +224,17 @@ A new table needs nothing extra: it is laid out and checked like the others. A t
 needs particular proportions carries its own `<colgroup>` and `data-cols="set"`, and is still
 checked.
 
+## Transcription photographs are served upright
+
+Every calendar on the transcription page has a reviewed orientation in
+`data/transcription_orientation_review.csv` (degrees clockwise to upright, who looked).
+`tools/bundle_new_sheets.py --orientation` writes the upright copy into `transcription/img/`
+from the original kept in `transcription/img_original/`, never from an already-turned file, and
+records both SHA-256s in `data/transcription_orientation.csv`. The checker fails if a calendar
+has no review, or if the served file, its size or its kept original differs from that record, so
+an image cannot be served sideways or un-reviewed. Aspect ratio is not the test: an upright
+sheet can be photographed in portrait, and an upside-down one is still landscape.
+
 ## The two-copies rule
 
 **Every generated artefact is edited only at its generator, and no script

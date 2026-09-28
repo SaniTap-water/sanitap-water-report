@@ -38,6 +38,107 @@ def carry_deduced(a, tr, cals):
     return 0
 
 
+def sha(p):
+    import hashlib
+    return hashlib.sha256(open(p, "rb").read()).hexdigest()
+
+
+def apply_orientation(a, tr, cals):
+    """Serve every photograph upright (28 Sep 2026).
+
+    The images carry no EXIF orientation, so a sheet photographed sideways or
+    upside down was shown that way and the transcriber had to turn it. The
+    reviewed rotation for each calendar is in --orientation (degrees clockwise
+    to upright, one row per calendar, with who reviewed it). For a rotated
+    calendar the original is kept in img_original/ and the upright copy is
+    written to img/ FROM THAT ORIGINAL, so running this twice never rotates
+    twice. The manifest records the applied rotation as "rot" and the upright
+    size; data/transcription_orientation.csv records, per calendar, the
+    rotation and the SHA-256 of the original and of the served file, which
+    tools/check_consistency.py holds the served images to.
+    """
+    from PIL import Image
+    TURN = {90: Image.Transpose.ROTATE_270, 180: Image.Transpose.ROTATE_180,
+            270: Image.Transpose.ROTATE_90}          # PIL turns counter-clockwise
+    rev = {int(r["calendrier"]): r for r in csv.DictReader(open(a.orientation))}
+    miss = sorted(c["n"] for c in cals if c["n"] not in rev)
+    if miss:
+        sys.exit(f"no orientation review for calendar(s) {miss}: review them before bundling")
+    os.makedirs(os.path.join(tr, "img_original"), exist_ok=True)
+    rec, turned = [], 0
+    for c in cals:
+        r = rev[c["n"]]
+        deg = int(r["rotation_cw"]) % 360
+        if deg not in (0, 90, 180, 270):
+            sys.exit(f"calendar {c['n']}: rotation {deg} is not a quarter turn")
+        served = os.path.join(tr, c["f"])
+        orig = os.path.join(tr, "img_original", os.path.basename(c["f"]))
+        if deg:
+            if not os.path.isfile(orig):                     # first time: keep it
+                import shutil
+                shutil.copy2(served, orig)
+            im = Image.open(orig)
+            im.load()
+            up = im.transpose(TURN[deg])
+            up.save(served, "JPEG", quality=95, optimize=True)
+            turned += 1
+        elif os.path.isfile(orig):
+            sys.exit(f"calendar {c['n']}: an original is kept but the review says 0 degrees")
+        src = orig if deg else served
+        ow, oh = Image.open(src).size
+        w, h = Image.open(served).size
+        c["w"], c["h"] = w, h
+        if deg:
+            c["rot"] = deg
+        else:
+            c.pop("rot", None)
+        rec.append([c["n"], c["f"], deg,
+                    os.path.relpath(src, a.repo), sha(src), f"{ow}x{oh}",
+                    sha(served), f"{w}x{h}", r["reviewed_by"], r["reviewed_on"]])
+    out = os.path.join(a.repo, "data", "transcription_orientation.csv")
+    with open(out, "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["calendrier", "served", "rotation_cw", "original", "original_sha256",
+                    "original_size", "served_sha256", "served_size", "reviewed_by", "reviewed_on"])
+        w.writerows(sorted(rec))
+    json.dump(sorted(cals, key=lambda c: c["n"]), open(os.path.join(tr, "calendars.json"), "w"),
+              separators=(",", ":"))
+    print(f"  {turned} calendar(s) served upright from a kept original; "
+          f"{len(cals) - turned} already upright; record in {os.path.relpath(out, a.repo)}")
+    return 0
+
+
+# year sources, as the page shows and exports them
+YEAR_SRC = {"imprime": "claude_imprime", "manuscrit": "claude_manuscrit",
+            "calendrier": "claude_calendrier"}
+
+
+def apply_years(a, tr, cals):
+    """Sheet years read by a person where the reader read none (28 Sep 2026).
+
+    --years lists calendrier, year and how it was read: printed on the sheet,
+    handwritten on it, or deduced from the printed weekday layout. The year
+    becomes the sheet's "y" with its source in "ysrc", so the page shows who
+    read it and exports it as annee_source; the transcriber can still change
+    it. A deduced-but-unconfirmed "yd" is cleared where a year is now set."""
+    by_n = {c["n"]: c for c in cals}
+    n = 0
+    for r in csv.DictReader(open(a.years)):
+        c = by_n.get(int(r["calendrier"]))
+        if c is None:
+            sys.exit(f"calendar {r['calendrier']} is not in calendars.json")
+        if c.get("y") and not c.get("ysrc") and int(c["y"]) != int(r["year"]):
+            sys.exit(f"calendar {c['n']}: the reader read {c['y']}, the list says {r['year']}")
+        c["y"], c["ysrc"] = int(r["year"]), YEAR_SRC[r["source"]]
+        c.pop("yd", None)
+        n += 1
+    json.dump(sorted(cals, key=lambda c: c["n"]), open(os.path.join(tr, "calendars.json"), "w"),
+              separators=(",", ":"))
+    print(f"  {n} sheet year(s) set with their source; "
+          f"{sum(1 for c in cals if not c.get('y'))} calendar(s) still without a year")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--selection", required=True)
@@ -49,12 +150,24 @@ def main():
                          "no year read. It is shown on the page as 'a confirmer', never as y.")
     ap.add_argument("--deduced-only", action="store_true",
                     help="only set or clear 'yd' from --deduced; bundle nothing")
+    ap.add_argument("--orientation", default=None,
+                    help="data/transcription_orientation_review.csv: serve every "
+                         "calendar upright; bundle nothing")
+    ap.add_argument("--years", default=None,
+                    help="data/transcription_sheet_years.csv: set sheet years read by a "
+                         "person, with their source; bundle nothing")
     a = ap.parse_args()
 
     tr = os.path.join(a.repo, "transcription")
     cals = json.load(open(os.path.join(tr, "calendars.json")))
     if a.deduced_only:
         return carry_deduced(a, tr, cals)
+    if a.orientation or a.years:
+        if a.orientation:
+            apply_orientation(a, tr, cals)
+        if a.years:
+            apply_years(a, tr, cals)
+        return 0
     have = {r["image_id"]: r["sheet"] for r in csv.DictReader(open(a.map))}
     by_n = {c["n"]: c for c in cals}
     nxt = max(by_n) + 1

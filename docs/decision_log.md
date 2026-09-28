@@ -1228,3 +1228,13 @@ Column widths became percentages so a table fits the page width; a filter is cle
 restored after. `tools/test_readability.py` emulates print and fails unless every table prints all its
 rows; run against the page before this change, it failed on filtered rows, printed chrome and tables
 wider than the page.
+
+## 28 September 2026 — Adriaan Mol: transcription photographs upright, sheet years set
+
+Before Angelo's team starts, every calendar shows upright and carries a year, with no action from the
+transcriber. 26 photographs turned (reviewed by Claude: OCR in four orientations, each result checked
+by eye), originals kept, rotation and hashes recorded, a check in `check_consistency.py` holding the
+served files to that record. Eleven sheet years set with their source; sheet 84 left for the
+transcriber. Adriaan's full pass keeps every mark on its cell. Calendar 89 prints 2026 but carries
+late-2025 marks: kept at 2026 as printed, the conflict noted for `act-printed-year-meaning`.
+Detail in `docs/transcription_round_notes.md`.

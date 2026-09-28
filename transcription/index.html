@@ -250,7 +250,9 @@ let WIN={y:null,last:null};
 function yearOf(c){
   const r=(typeof st!=='undefined'&&st[c.n])||{};
   if(+r.annee) return {y:+r.annee, src:'transcripteur'};
-  if(+c.y) return {y:+c.y, src:'lecteur'};
+  // c.ysrc (28 Sep 2026): a year a person read where the reader read none -
+  // printed, handwritten, or from the printed weekday layout
+  if(+c.y) return {y:+c.y, src:c.ysrc||'lecteur'};
   return {y:null, src:''};
 }
 function windowFor(c){
@@ -289,6 +291,17 @@ function migrate(){
     const s=store.sets[id];
     if(!s.cal) s.cal={};
     if(!(+s.serie)) s.serie=++top;
+    /* The photos are served upright since 28 Sep 2026 (c.rot = the rotation
+       built into the image). A rotation the transcriber saved before that was
+       relative to the original photo, so it is converted once, or it would
+       now turn an upright image. rotb marks a rotation as relative to the
+       served image. */
+    for(const [k,r] of Object.entries(s.cal)){
+      if(!r || r.rotb) continue;
+      const c=(typeof CAL!=='undefined'?CAL:[]).find(x=>String(x.n)===String(k));
+      if(+r.rot && c && +c.rot) r.rot=(((+r.rot - +c.rot)%360)+360)%360;
+      r.rotb=1;
+    }
     if(!Array.isArray(s.non_exportes)){
       s.non_exportes=Object.keys(s.cal).filter(k=>{ const r=s.cal[k]||{}; return r.exclu||Object.keys(r.cells||{}).length||(r.notes||'').trim(); });
     }
@@ -338,7 +351,7 @@ function newSet(name){
   store.active=id; st=store.sets[id].cal; save(); return id;
 }
 function setInfo(){ return store.sets[store.active]; }
-function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:'',rot:0,ok:''}; 
+function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:'',rot:0,ok:'',rotb:1}; 
                  const r=st[n]; if(r.exclu===undefined){r.exclu='';r.motif='';} return r; }
 function isExcluded(n){ return !!rec(n).exclu; }
 
@@ -447,8 +460,11 @@ function paintYear(c){
   const r=rec(c.n), Y=yearOf(c), inp=$('#yearin');
   if(document.activeElement!==inp) inp.value = Y.y || '';
   inp.placeholder = 'aaaa';
-  $('#yearsrc').textContent = Y.src==='transcripteur' ? 'saisie par vous' + (+c.y&&+c.y!==Y.y?` (lecteur : ${c.y})`:'')
-                             : Y.src==='lecteur' ? 'lue par le lecteur' : 'non lue';
+  const SRC={lecteur:'lue par le lecteur', claude_imprime:'lue par Claude — imprimée sur la feuille',
+    claude_manuscrit:'lue par Claude — écrite à la main sur la feuille',
+    claude_calendrier:'lue par Claude — déduite de la disposition des jours'};
+  $('#yearsrc').textContent = Y.src==='transcripteur' ? 'saisie par vous' + (+c.y&&+c.y!==Y.y?` (${SRC[c.ysrc||'lecteur']} : ${c.y})`:'')
+                             : Y.src ? SRC[Y.src] : 'non lue';
   const ded=$('#yearded');
   if(!Y.y && +c.yd){
     ded.innerHTML=`<span class="ded">année déduite du calendrier — à confirmer : <b>${c.yd}</b></span> <button id="yearok">Confirmer ${c.yd}</button>`;

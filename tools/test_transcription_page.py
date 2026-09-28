@@ -175,8 +175,11 @@ def main():
         pg.goto(url)
         pg.wait_for_function("typeof CAL!=='undefined' && CAL.length>0")
         pg.fill("#whoname", "Year Tester"); pg.click("#whook")
-        check("sheet 6 carries no hard-coded year",
-              not pg.evaluate("(CAL.find(c=>c.n===6)||{}).y"))
+        # sheet 6: its handwritten 2024 was read by Claude on 28 Sep 2026 and is
+        # carried WITH that source (data/transcription_sheet_years.csv), never
+        # as the reader's own reading
+        check("sheet 6's year carries its source, not the reader's",
+              pg.evaluate("(()=>{const c=CAL.find(c=>c.n===6)||{}; return [c.y, c.ysrc]})()") == [2024, "claude_manuscrit"])
         i = pg.evaluate("CAL.findIndex(c=>+c.y===2026 && windowFor(c).last!==-1)")
         pg.select_option("#pick", str(i))
         check("the year field is prefilled from the reader",
@@ -210,6 +213,40 @@ def main():
         pg.click("#yearok")
         check("confirming it makes it the transcriber's year",
               pg.evaluate(f"yearOf(CAL[{j}]).src") == "transcripteur" and pg.evaluate(f"yearOf(CAL[{j}]).y") == 2024)
+        ctx.close()
+
+        # ---- 4. upright photos, and years read by Claude ---------------------
+        ctx = b.new_context(accept_downloads=True)
+        pg = ctx.new_page()
+        pg.on("dialog", lambda d: d.accept())
+        pg.goto(url)
+        pg.wait_for_function("typeof CAL!=='undefined' && CAL.length>0")
+        # a rotation saved by the earlier page on calendar 22 was relative to
+        # the sideways original (served 270 degrees turned since 28 Sep): the
+        # transcriber had turned it upright, so it must now read 0, not 270
+        old = {"sets": {"s22": {"session_id": "s22", "transcripteur": "Rotator",
+                                 "cree_le": "2026-09-27T08:00:00.000Z", "cal": {
+            "22": {"cells": {}, "notes": "", "secs": 5, "exclu": "", "motif": "", "rot": 270},
+            "46": {"cells": {}, "notes": "", "secs": 5, "exclu": "", "motif": "", "rot": 0}}}},
+               "active": "s22"}
+        pg.evaluate("s=>localStorage.setItem('%s',s)" % KEY, json.dumps(old))
+        pg.reload(); pg.wait_for_function("typeof CAL!=='undefined' && CAL.length>0")
+        i22 = pg.evaluate("CAL.findIndex(c=>c.n===22)")
+        pg.select_option("#pick", str(i22))
+        check("a rotation saved against the sideways original is converted, not doubled",
+              pg.evaluate("rot") == 0 and pg.inner_text("#rotv") == "Rotation 0°", pg.evaluate("rot"))
+        check("calendar 22 is served in its upright (landscape) size",
+              pg.evaluate("[document.querySelector('#ph').naturalWidth, document.querySelector('#ph').naturalHeight]") == [1600, 1200])
+        i46 = pg.evaluate("CAL.findIndex(c=>c.n===46)")
+        pg.select_option("#pick", str(i46))
+        check("a year read by Claude shows with its source and stays editable",
+              pg.input_value("#yearin") == "2024" and "Claude" in pg.inner_text("#yearsrc")
+              and pg.is_editable("#yearin"), pg.inner_text("#yearsrc"))
+        pg.click("#okbtn")
+        rows, by = export(pg)
+        r46 = {(r["annee_feuille"], r["annee_source"]) for r in rows if r["calendrier"] == "46"}
+        check("export: its year and source (claude_calendrier)", r46 == {("2024", "claude_calendrier")}, r46)
+        check("calendar 84 is left for the transcriber", not pg.evaluate("(CAL.find(c=>c.n===84)||{}).y"))
         ctx.close()
         b.close()
     srv.shutdown()
