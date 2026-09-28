@@ -80,6 +80,11 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
 .modal .en{color:var(--ink3);font-size:.88rem}
 .expwarn{margin:10px 14px 0;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;font-size:.9rem;color:#78350f}
 .expwarn[hidden]{display:none}
+.yearrow{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px;font-size:.88rem;color:var(--ink2)}
+.yearrow input{width:6.2em;font:inherit;padding:4px 6px;border:1px solid var(--rule);border-radius:6px;background:var(--card);color:var(--ink)}
+.yearrow .src{font-size:.82rem;color:var(--ink3)}
+.yearrow .ded{font-size:.84rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:3px 8px}
+@media (prefers-color-scheme:dark){.yearrow .ded{color:#fde68a;background:#3a2a0a;border-color:#92400e}}
 .okrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 10px}
 .okrow button.on{background:#15803d;border-color:#15803d;color:#fff;font-weight:600}
 .okrow .st{font-size:.86rem;color:var(--ink2)}
@@ -188,7 +193,11 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   </div>
   <div class="card">
     <div class="meta"><span>Grille — <b id="gtitle"></b></span><span class="sp"></span><span id="gcount"></span></div>
-    <div style="padding:10px 12px 0"><div class="win" id="win"></div></div>
+    <div style="padding:10px 12px 0">
+      <div class="yearrow"><label for="yearin">Année de la feuille</label>
+        <input type="number" id="yearin" min="2020" max="2030" step="1" inputmode="numeric">
+        <span class="src" id="yearsrc"></span><span id="yearded"></span></div>
+      <div class="win" id="win"></div></div>
     <div class="gridwrap"><table class="cal" id="grid"></table></div>
     <div class="foot">
       <div class="okrow"><button id="okbtn">Vérifié — aucune croix</button><span class="st" id="okst"></span></div>
@@ -231,8 +240,21 @@ const MOISFR=['janvier','f\u00e9vrier','mars','avril','mai','juin','juillet',
    locked: a transcriber must not spend time on them, and the machine must be
    compared with the human on exactly the same cells. */
 let WIN={y:null,last:null};
+/* The sheet year (28 Sep 2026). The reader's year (c.y) prefills it; a
+   transcriber who reads a different year on the sheet types it, and that
+   entry (rec.annee) wins and is exported with annee_source "transcripteur".
+   Where the reader found no printed year it may have deduced one from the
+   printed weekday layout (c.yd): that is only ever OFFERED, labelled
+   "annee deduite du calendrier - a confirmer", and used once the transcriber
+   confirms it. */
+function yearOf(c){
+  const r=(typeof st!=='undefined'&&st[c.n])||{};
+  if(+r.annee) return {y:+r.annee, src:'transcripteur'};
+  if(+c.y) return {y:+c.y, src:'lecteur'};
+  return {y:null, src:''};
+}
 function windowFor(c){
-  const y=c.y?+c.y:null;
+  const y=yearOf(c).y;
   if(!y||!c.date) return {y:y,last:null};
   const p=new Date(c.date+'T00:00:00');
   const end=new Date(y,11,31), start=new Date(y,0,1);
@@ -364,27 +386,27 @@ function frDate(iso){
   return `${d}/${m}/${y}`;
 }
 function paintWindow(c){
-  const el=$('#win');
-  if(!c.y){
+  const el=$('#win'); const Y=yearOf(c).y;
+  if(!Y){
     el.className='win none';
     el.innerHTML=`<b>Année de la feuille non lue.</b> Toutes les cases sont ouvertes. `+
-      `Si vous voyez l’année imprimée en haut de la feuille, notez-la dans les notes.`;
+      `Si vous voyez l’année sur la feuille, imprimée ou écrite à la main, saisissez-la dans <b>Année de la feuille</b> ci-dessus.`;
     return;
   }
   el.className='win';
   if(WIN.last===-1){
     el.className='win none';
-    el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+    el.innerHTML=`Feuille <b>${Y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
       `<b>avant le début de l’année</b>. Aucun jour n’était observable : la feuille devrait être vierge.`;
     return;
   }
   if(WIN.last===null){
-    el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+    el.innerHTML=`Feuille <b>${Y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
       `année entièrement écoulée, <b>les 12 mois sont observables</b>.`;
     return;
   }
   const m=MOISFR[WIN.last.getMonth()], d=WIN.last.getDate();
-  el.innerHTML=`Feuille <b>${c.y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
+  el.innerHTML=`Feuille <b>${Y}</b>, photographiée le <b>${frDate(c.date)}</b> — `+
     `<b>jours observables jusqu’au ${d} ${m}</b>. Les cases postérieures sont grisées et verrouillées : `+
     `elles étaient vides parce que le jour n’était pas encore arrivé, et non parce que la pompe fonctionnait.`;
 }
@@ -419,6 +441,31 @@ $('#newset').onclick=()=>{
   if(verified() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur sous son propre numéro de série ; la grille repart à zéro.')) return;
   startNextSeries(false);
 };
+
+/* ---- the sheet year ---- */
+function paintYear(c){
+  const r=rec(c.n), Y=yearOf(c), inp=$('#yearin');
+  if(document.activeElement!==inp) inp.value = Y.y || '';
+  inp.placeholder = 'aaaa';
+  $('#yearsrc').textContent = Y.src==='transcripteur' ? 'saisie par vous' + (+c.y&&+c.y!==Y.y?` (lecteur : ${c.y})`:'')
+                             : Y.src==='lecteur' ? 'lue par le lecteur' : 'non lue';
+  const ded=$('#yearded');
+  if(!Y.y && +c.yd){
+    ded.innerHTML=`<span class="ded">année déduite du calendrier — à confirmer : <b>${c.yd}</b></span> <button id="yearok">Confirmer ${c.yd}</button>`;
+    $('#yearok').onclick=()=>setYear(c.yd);
+  } else ded.innerHTML='';
+}
+function setYear(v){
+  const c=CAL[cur], r=rec(c.n), y=parseInt(v,10);
+  if(v===''||v==null){ r.annee=''; }
+  else if(!(y>=2020&&y<=2030)){ paintYear(c); return; }
+  else r.annee = (+c.y===y) ? '' : y;     // typing the reader's own year is no correction
+  touched(c.n); save();
+  DIM=dim(yearOf(c).y||2026); WIN=windowFor(c);
+  paintWindow(c); buildGrid(); paintExcl(); paintCounts(); paintYear(c);
+  $('#meta').querySelectorAll('span')[5].innerHTML=`Année feuille <b>${yearOf(c).y||'?'}</b>`;
+}
+$('#yearin').addEventListener('change',e=>setYear(e.target.value.trim()));
 
 /* ---- checked, no marks ---- */
 function paintOk(){
@@ -592,9 +639,10 @@ function show(i){
   const c=CAL[cur], r=rec(c.n);
   if(!r.vu){ r.vu=new Date().toISOString(); save(); }
   rot=+r.rot||0; $('#rotv').textContent=`Rotation ${rot}°`;
-  DIM=dim(c.y?+c.y:2026);
+  DIM=dim(yearOf(c).y||2026);
   WIN=windowFor(c);
-  $('#meta').innerHTML=`<span>Feuille <b>${c.n}</b></span><span><b>${cur+1}</b> sur ${CAL.length}</span><span>Point d’eau <b>${c.wp}</b></span><span>Site <b>${c.site}</b></span><span>Photo du <b>${c.date||'—'}</b></span><span>Année feuille <b>${c.y||'?'}</b></span>`;
+  paintYear(c);
+  $('#meta').innerHTML=`<span>Feuille <b>${c.n}</b></span><span><b>${cur+1}</b> sur ${CAL.length}</span><span>Point d’eau <b>${c.wp}</b></span><span>Site <b>${c.site}</b></span><span>Photo du <b>${c.date||'—'}</b></span><span>Année feuille <b>${yearOf(c).y||'?'}</b></span>`;
   $('#gtitle').textContent=`point d’eau ${c.wp}`;
   $('#notes').value=r.notes||'';
   natW=c.w; natH=c.h;
@@ -640,7 +688,7 @@ function exportCsv(){
   if(n0<CAL.length && !confirm(`Vous avez vérifié ${n0} calendriers sur ${CAL.length}`+(nu0?` (${nu0} vu(s) sans confirmation, exportés comme tels)`:'')+`. Exporter quand même ce relevé incomplet ?`)) return false;
   /* serie and rotation_deg are appended, so every earlier column keeps its
      place and older exports still read the same way */
-  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le','serie','rotation_deg','statut']];
+  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le','serie','rotation_deg','statut','annee_source']];
   const serie=info.serie;
   const now=new Date().toISOString();
   const who=info.transcripteur.trim(), sid=info.session_id;
@@ -652,10 +700,10 @@ function exportCsv(){
     if(r.exclu){
       /* one row for the whole sheet: excluded is not the same as all-blank,
          and the comparison must never read it as a sheet of zeroes */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0]);
+      out.push([c.n,c.wp,c.date,yearOf(c).y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0,yearOf(c).src]);
       continue;
     }
-    const D2=dim(c.y?+c.y:2026), W2=windowFor(c);
+    const D2=dim(yearOf(c).y||2026), W2=windowFor(c);
     const obs=(m,d)=>{
       if(d+1>D2[m]) return false;
       if(W2.last===null) return true;
@@ -668,7 +716,7 @@ function exportCsv(){
       /* an unobserved cell is exported as unobserved, with any mark made on it
          before the window was known kept and visible - never dropped, and
          never pooled with the observed cells */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0]);
+      out.push([c.n,c.wp,c.date,yearOf(c).y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0,stt0,yearOf(c).src]);
     }
   }
   if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return false; }

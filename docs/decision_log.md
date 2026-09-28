@@ -1187,3 +1187,35 @@ lacked only a row in `owners`.
 - **Two open items added**, owner Adriaan Mol, no date: `act-cal-working-day-ticks` (sheets where
   the gardien may have ticked working days) and `act-cal-handwritten-year` (a sheet year written by
   hand, which the year reader cannot see).
+
+## 28 September 2026 — Adriaan Mol: v2.1 stroke-test SOP traceability not pursued
+
+"Adriaan Mol, 28 Sep 2026: not pursued. v2.1 was never signed and is superseded by v2.2; the unedited
+originals remain in SharePoint version history for both files."
+
+## 28 September 2026 — Adriaan Mol: standing formatting and readability rule
+
+Every table: fixed column widths (table-layout fixed plus a colgroup) sized to their content;
+numbers right-aligned and never wrapped; no text column narrower than about 110 px at 1366 px;
+long ids, mono strings and links break anywhere. Any table over 12 rows sits in a scroll box
+(about 60vh, sticky header, "N lignes — faites défiler"). No horizontal page scroll at 1366 px or
+390 px. Light and dark themes checked on real screenshots. Written into `CONTRIBUTING.md`
+("Formatting and readability") and enforced by `tools/test_readability.py` in `publish.sh`.
+
+- **Applied.** `layoutTables()` lays out every table on the page; `#popstbl` ("What every figure is
+  over") carries its own widths — Population 18%, Records 8%, The rule 29%, What it reads 15%, The
+  decision that set it 19%, Derives from 11% (the suggested 8% for Derives from fell below 110 px)
+  — sits in the scroll box and has a filter on population names. Table headers moved from the
+  lightest grey to the secondary ink: at 3.66:1 they failed the contrast check.
+
+## 28 September 2026 — Adriaan Mol: the sheet year on the transcription page
+
+- An editable **Année de la feuille** per calendar, prefilled from the reader. It rebuilds the grid
+  (month lengths, leap years, the observable window) and is exported as `annee_feuille` with a new
+  column `annee_source` (`lecteur` / `transcripteur`). Storage: one field added per calendar.
+- **Sheet 6 (742895508)** is not hard-coded: the handwritten 2024 becomes a transcriber correction only
+  when Adriaan confirms it on the page.
+- **Weekday-layout fallback** built in `tools/read_year_ocr.py`. Its result is a deduction, kept apart
+  in `data/calendar_sheet_year_deduced.csv`, never written into `sheet_year`, and shown on the page as
+  "année déduite du calendrier — à confirmer". Six of the twelve undated transcription sheets have an
+  accepted deduction; details in `docs/transcription_round_notes.md`.

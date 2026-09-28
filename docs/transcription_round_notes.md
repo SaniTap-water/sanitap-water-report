@@ -150,6 +150,27 @@ SaniTap logo. The reader anchors on the printed "202" and OCRs the region around
 so it found no year. The page therefore opened every cell on a 2026 grid (no 29 February).
 
 The printed layout settles it: 1 January is a Monday and February has a 29th — 2024,
-and no other year in 2023–2028. Proposed fix: where no printed year is found, fall back
-on the weekday of 1 January and the presence of 29 February. Not yet implemented; the
-manifest (`transcription/calendars.json`) is unchanged until the reader is.
+and no other year in 2023–2028.
+
+**Built 28 Sep 2026.** `tools/read_year_ocr.py --weekday-fallback` OCRs the printed grid
+("01 LUN", "02 MAR" …), assigns each label to its month by column position and scores every
+year in 2023–2028 (accepted only with 8+ pairs, 85%+ agreement and a 0.25 margin over the next
+year). Result in `data/calendar_sheet_year_deduced.csv`; it **never** fills `sheet_year`.
+`tools/bundle_new_sheets.py --deduced-only` carries an accepted year to the page as `yd`, which
+the page offers as "année déduite du calendrier — à confirmer" and uses only once the
+transcriber confirms it (exported as `annee_source` = `transcripteur`). On the 12 transcription
+sheets with no year read:
+
+| sheet | image | deduced | agreement | margin | label pairs |
+|---|---|---|---|---|---|
+| 6 | 11c8b502 | **2024** | 0.94 | 0.93 | 241 |
+| 30 | 0ef11769 | **2024** | 0.98 | 0.97 | 289 |
+| 34 | 68f48ea9 | **2024** | 0.92 | 0.89 | 74 |
+| 46 | fd6a0f27 | **2024** (photo upside down) | 0.95 | 0.93 | 276 |
+| 50 | 491177a6 | **2024** | 0.92 | 0.30 (narrow) | 60 |
+| 97 | 41ccd1d2 | **2025** | 0.92 | 0.90 | 146 |
+| 38, 89 | c268070e, bd2ad55a | not clear enough | | | |
+| 84, 91, 92, 99 | | too few weekday labels read | | | |
+
+Sheet 6 agrees with the handwritten 2024; sheet 30 was checked by eye (same template, "2024"
+handwritten). Sheet 6 is **not** set to 2024 in anyone's data: Adriaan confirms it on the page.

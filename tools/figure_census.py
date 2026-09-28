@@ -211,7 +211,10 @@ TEXT = r"""() => {
       cls: (el.className || '').toString().slice(0, 40),
       mono: !!el.closest('.mono,code,pre'),
       // which table, if any, and whether it is a declared data table
-      control: !!el.closest('button,select,option,svg .grid,svg .axislab'),
+      // .tcount is the "N lignes - faites defiler" line over a scroll box
+      // (readability rule, 28 Sep 2026): it labels the box below it, like a
+      // button labels a view, and asserts no quantity about the programme
+      control: !!el.closest('button,select,option,svg .grid,svg .axislab,.tcount'),
       // a subscript straight after letters is part of a formula: CO<sub>2</sub>
       formula: el.tagName === 'SUB' && /[A-Za-z]$/.test((n.previousSibling && n.previousSibling.textContent) || (el.previousSibling && el.previousSibling.textContent) || ''),
       table: (() => { const t = el.closest('table'); if (!t) return null;

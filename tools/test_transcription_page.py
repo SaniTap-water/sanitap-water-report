@@ -167,6 +167,50 @@ def main():
         check("the earlier marks are untouched",
               json.loads(pg.evaluate("localStorage.getItem('%s')" % KEY))["sets"]["sold"]["cal"][str(ns[0])]["cells"] == {"0-0": "X"})
         ctx.close()
+
+        # ---- 3. the sheet year ----------------------------------------------
+        ctx = b.new_context(accept_downloads=True)
+        pg = ctx.new_page()
+        pg.on("dialog", lambda d: d.accept())
+        pg.goto(url)
+        pg.wait_for_function("typeof CAL!=='undefined' && CAL.length>0")
+        pg.fill("#whoname", "Year Tester"); pg.click("#whook")
+        check("sheet 6 carries no hard-coded year",
+              not pg.evaluate("(CAL.find(c=>c.n===6)||{}).y"))
+        i = pg.evaluate("CAL.findIndex(c=>+c.y===2026 && windowFor(c).last!==-1)")
+        pg.select_option("#pick", str(i))
+        check("the year field is prefilled from the reader",
+              pg.input_value("#yearin") == "2026" and "lecteur" in pg.inner_text("#yearsrc"))
+        check("a 2026 grid has no 29 February", pg.locator('.c[data-m="1"][data-d="28"]').count() == 0)
+        pg.fill("#yearin", "2024"); pg.press("#yearin", "Enter"); pg.locator("#yearin").blur()
+        pg.wait_for_timeout(200)
+        check("typing 2024 rebuilds the grid with 29 February",
+              pg.locator('.c.na[data-m="1"][data-d="28"]').count() == 0
+              and pg.evaluate("DIM[1]") == 29)
+        pg.locator("#grid .c:not(.na):not(.unobs)").first.click()
+        pg.reload(); pg.wait_for_function("typeof CAL!=='undefined' && CAL.length>0")
+        pg.select_option("#pick", str(i))
+        check("the typed year survives a reload", pg.input_value("#yearin") == "2024"
+              and "saisie par vous" in pg.inner_text("#yearsrc"))
+        rows, by = export(pg)
+        n_i = str(pg.evaluate(f"CAL[{i}].n"))
+        mine = [r for r in rows if r["calendrier"] == n_i]
+        check("export: annee_feuille 2024, annee_source transcripteur",
+              mine and all(r["annee_feuille"] == "2024" and r["annee_source"] == "transcripteur" for r in mine),
+              {(r["annee_feuille"], r["annee_source"]) for r in mine})
+        check("export: a leap-year grid exports 29 February",
+              any(r["mois"] == "2" and r["jour"] == "29" for r in mine))
+        # a deduced year is offered, never used until confirmed
+        j = pg.evaluate("CAL.findIndex(c=>!c.y)")
+        pg.evaluate(f"CAL[{j}].yd=2024")
+        pg.select_option("#pick", str(j))
+        check("a deduced year is shown as 'a confirmer', not used",
+              "année déduite du calendrier — à confirmer" in pg.inner_text("#yearded")
+              and pg.evaluate(f"yearOf(CAL[{j}]).y") is None and pg.input_value("#yearin") == "")
+        pg.click("#yearok")
+        check("confirming it makes it the transcriber's year",
+              pg.evaluate(f"yearOf(CAL[{j}]).src") == "transcripteur" and pg.evaluate(f"yearOf(CAL[{j}]).y") == 2024)
+        ctx.close()
         b.close()
     srv.shutdown()
     print(f"\n  {len(FAIL)} failure(s)" if FAIL else "\n  transcription page: every assertion holds")

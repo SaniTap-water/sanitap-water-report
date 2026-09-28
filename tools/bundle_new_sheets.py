@@ -18,15 +18,43 @@ STORE = ("/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documen
 LONG_EDGE, QUALITY = 1600, 82
 
 
+def carry_deduced(a, tr, cals):
+    """Set 'yd' where the reader read no year and the weekday layout gave an
+    accepted deduction; clear it everywhere else. The join is the selection
+    file's calendrier -> image_id."""
+    img = {r["calendrier"].strip(): r["image_id"].strip()
+           for r in csv.DictReader(open(a.selection, encoding="utf-8-sig")) if r.get("calendrier")}
+    ded = {r["image_id"]: int(r["deduced_year"])
+           for r in csv.DictReader(open(a.deduced)) if r.get("accepted") == "yes" and r.get("deduced_year")}
+    n = 0
+    for c in cals:
+        yd = None if c.get("y") else ded.get(img.get(str(c["n"]), ""))
+        if yd:
+            c["yd"] = yd; n += 1
+        else:
+            c.pop("yd", None)
+    json.dump(cals, open(os.path.join(tr, "calendars.json"), "w"), separators=(",", ":"))
+    print(f"  deduced year carried on {n} sheet(s), shown as 'a confirmer'")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--selection", required=True)
     ap.add_argument("--repo", default="/home/bushp/sanitap-water-report")
     ap.add_argument("--map", default=os.path.join(HERE, "transcription_sheet_map.csv"))
+    ap.add_argument("--deduced", default=None,
+                    help="data/calendar_sheet_year_deduced.csv: carry an ACCEPTED year "
+                         "deduced from the printed weekday layout as 'yd' on a sheet with "
+                         "no year read. It is shown on the page as 'a confirmer', never as y.")
+    ap.add_argument("--deduced-only", action="store_true",
+                    help="only set or clear 'yd' from --deduced; bundle nothing")
     a = ap.parse_args()
 
     tr = os.path.join(a.repo, "transcription")
     cals = json.load(open(os.path.join(tr, "calendars.json")))
+    if a.deduced_only:
+        return carry_deduced(a, tr, cals)
     have = {r["image_id"]: r["sheet"] for r in csv.DictReader(open(a.map))}
     by_n = {c["n"]: c for c in cals}
     nxt = max(by_n) + 1
@@ -82,4 +110,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

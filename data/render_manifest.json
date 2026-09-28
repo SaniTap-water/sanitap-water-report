@@ -224,7 +224,7 @@
   "Marolinta only",
   "Endur'O"
  ],
- "group_count": 909,
+ "group_count": 918,
  "group_count_seen": [],
  "headings": [
   "The fleet at a glance",
@@ -250,14 +250,16 @@
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
   "Register corrections and exclusions",
+  "SDWS 26 — premises served, from the November 2025 round",
   "Data the carbon programme needs from us",
+  "Baseline cooking fuel and stoves",
   "Cookstoves and water: the overlap, measured",
   "Carbon data gaps — the list Jan drives",
   "Impact",
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 35008,
+ "height": 26717,
  "measure": 1132,
  "missing_ids": [],
  "mobile": {
@@ -265,20 +267,20 @@
   "vw": 390,
   "wide": [
    "TABLE#ptable",
-   "THEAD",
-   "TR",
-   "TH"
+   "COLGROUP",
+   "COL",
+   "COL"
   ]
  },
  "off_measure": [],
  "page_errors": [],
  "partner": {
   "all": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 in process — by status in data/piped_systems_status.jsonregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
    "tot": "868"
   },
   "enduro": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csvregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 in process — by status in data/piped_systems_status.jsonregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
    "tot": "131"
   },
   "mad": {
@@ -301,7 +303,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 32,
+ "sections": 33,
  "tables": {
   "chaintbl": {
    "hidden": false,
@@ -317,14 +319,14 @@
   },
   "downtbl": {
    "hidden": false,
-   "rows": 20
+   "rows": 21
   },
   "exctbl": {
    "hidden": false,
    "rows": 15
   },
   "itin": {
-   "hidden": true,
+   "hidden": false,
    "rows": 365
   },
   "opentbl": {
@@ -333,15 +335,15 @@
   },
   "over6": {
    "hidden": false,
-   "rows": 459
+   "rows": 475
   },
   "paramstbl": {
-   "hidden": true,
-   "rows": 75
+   "hidden": false,
+   "rows": 93
   },
   "parttbl": {
    "hidden": false,
-   "rows": 53
+   "rows": 52
   },
   "popstbl": {
    "hidden": false,
@@ -356,7 +358,7 @@
    "rows": 9
   },
   "recontbl": {
-   "hidden": true,
+   "hidden": false,
    "rows": 16
   },
   "rettbl": {
@@ -390,12 +392,12 @@
   },
   {
    "h": 131,
-   "l": "20hand pumps reported down",
+   "l": "21hand pumps reported down",
    "v": 34
   },
   {
    "h": 131,
-   "l": "459hand pumps with no visit in 6+ months",
+   "l": "475hand pumps with no visit in 6+ months",
    "v": 34
   },
   {

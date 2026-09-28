@@ -187,6 +187,37 @@ audit until 23 September. Its nine population fields are now written each
 build by `tools/sync_reg_populations.py`; the other twelve are group D of the
 backlog, each classed *declared* or *neither*.
 
+## Formatting and readability
+
+Standing rule, Adriaan Mol, 28 September 2026 (`docs/decision_log.md`). It applies to every
+table on the page, and `tools/test_readability.py` fails the publish if any part of it breaks.
+
+* **Fixed, content-sized columns.** Every table is `table-layout: fixed` with a `<colgroup>`
+  sized to what the columns hold. `layoutTables()` in the page measures each table and writes
+  the colgroup; a table whose source already carries one sets `data-cols="set"` and keeps its
+  own widths (`#popstbl`).
+* **Numbers** are right-aligned and never wrap (`td.num`).
+* **No text column narrower than about 110 px at 1366 px width.** A table that cannot fit at
+  that width scrolls inside its own box.
+* **Long ids, mono strings and links** use `overflow-wrap: anywhere`, so they cannot force odd
+  widths on their neighbours.
+* **Any table over 12 rows sits in a scroll box**: at most 60vh high, sticky header, and the
+  line "N lignes — faites défiler" above it. It must not push the rest of the report down.
+* **No horizontal page scroll** at 1366 px or at 390 px. Wide tables scroll inside their own box.
+* **Both themes are checked on real screenshots.** The test renders every table in the light
+  and the dark theme, writes a screenshot of each (`--shots DIR`), and fails if header or body
+  text falls below a 4.5:1 contrast.
+* The test prints every table on the page with its narrowest text column, so a regression names
+  itself.
+
+```
+~/sdws1/venv/bin/python tools/test_readability.py --shots /tmp/readability
+```
+
+A new table needs nothing extra: it is laid out and checked like the others. A table that
+needs particular proportions carries its own `<colgroup>` and `data-cols="set"`, and is still
+checked.
+
 ## The two-copies rule
 
 **Every generated artefact is edited only at its generator, and no script

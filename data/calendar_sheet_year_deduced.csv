@@ -1,0 +1,13 @@
+image_id,deduced_year,agreement,margin,pairs,orientation,accepted,note
+11c8b50200784ddc918ce8e5c02d6f92,2024,0.942,0.929,241,0,yes,deduced from the printed weekday layout - to be confirmed
+0ef117690af0487b9667bae6358e79f2,2024,0.976,0.969,289,0,yes,deduced from the printed weekday layout - to be confirmed
+68f48ea9293e4686993895f0fa7ae5f0,2024,0.919,0.892,74,0,yes,deduced from the printed weekday layout - to be confirmed
+c268070e02d6418ea4c88d91ffdad435,,0.333,0.111,9,0,no,best 2025 not clear enough
+fd6a0f27f66d4176a9b96a515b6957d7,2024,0.949,0.935,276,180,yes,deduced from the printed weekday layout - to be confirmed
+491177a672354d6395fc59a82c654ff5,2024,0.917,0.300,60,0,yes,deduced from the printed weekday layout - to be confirmed
+f565aa35760d4b26af5ffef991841487,,,,,,no,too few weekday labels read
+bd2ad55a043a413292739f34f233be80,,0.769,0.514,52,0,no,best 2026 not clear enough
+a2b4809e509540dea0c5831bbaa5ed22,,,,,,no,too few weekday labels read
+ffa7f793e48346da842ba53edf718d33,,,,,,no,too few weekday labels read
+41ccd1d2f69a44afba6afadccdfc7e48,2025,0.918,0.897,146,0,yes,deduced from the printed weekday layout - to be confirmed
+ef838393590645baa475f8e54a894c9b,,,,,,no,too few weekday labels read

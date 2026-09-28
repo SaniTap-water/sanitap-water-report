@@ -1530,7 +1530,11 @@ def main():
         # It is written into the export so the comparison can separate the two
         # populations without a second file; it is NOT shown on the page, so the
         # transcriber still cannot tell what the machine made of any sheet.
-        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y", "cmp"}
+        # "yd" (28 Sep 2026) is a year DEDUCED from the printed weekday
+        # layout on a sheet with no printed year: an identity fact like "y",
+        # read from the sheet's printing, never from a mark; the page offers it
+        # only as "a confirmer".
+        allowed = {"n", "f", "wp", "site", "date", "w", "h", "y", "cmp", "yd"}
         extra = sorted({k for r in man for k in r} - allowed)
         check("transcription manifest carries no derived field",
               not extra, "only identity fields",
@@ -1878,7 +1882,10 @@ def main():
                      # appended 28 Sep 2026: marque / exclu / vide_verifie /
                      # vu_sans_confirmation, so an empty calendar is exported
                      # as an answer and a merely seen one is never read as one
-                     "statut"]
+                     "statut",
+                     # appended 28 Sep 2026: whose sheet year annee_feuille is,
+                     # "lecteur" (read off the sheet) or "transcripteur" (typed)
+                     "annee_source"]
         hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
         check("transcription export header carries every column, in order",
               hdr in tr2.replace(" ", ""), ",".join(want_cols),
@@ -1887,7 +1894,9 @@ def main():
         for frag, why in (
                 ("Ce n\u2019est pas un calendrier", "the not-a-calendar control exists"),
                 ("EXCLU", "an excluded sheet exports as excluded, not as blanks"),
-                ("out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU'",
+                # the year became the transcriber-correctable yearOf(c) on
+                # 28 Sep 2026; the excluded row still carries no month or day
+                ("out.push([c.n,c.wp,c.date,yearOf(c).y||'',c.cmp?'oui':'non','','','EXCLU'",
                  "the excluded row has no day cells")):
             check(f"transcription page: {why}", frag in tr2, "present",
                   "present" if frag in tr2 else "MISSING")

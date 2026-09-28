@@ -135,6 +135,14 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   # recorded as checked. This drives the page and fails the build if an
   # answered calendar can again go missing from the export.
   say ""
+  say "checking the formatting and readability rule on every table ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_readability.py --no-shots | tail -12
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a table breaks the formatting and readability rule (exit $RC)."
+    exit 1
+  fi
+  say ""
   say "testing the transcription page in the browser ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_transcription_page.py | tail -4
   RC=${PIPESTATUS[0]}

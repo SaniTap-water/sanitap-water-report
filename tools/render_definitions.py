@@ -93,7 +93,14 @@ def block():
   a figure cannot drift from the thing it counts. Every number on this page expands to name one of
   these. Written by <span class="mono">tools/populations.py</span>; nothing here is typed.</p>
   </div></div>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl">
+  <div class="tfilter" data-filter-for="popstbl"><label for="popsfilter">Find a population</label>
+  <input type="search" id="popsfilter" placeholder="name or id" autocomplete="off"></div>
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl" data-cols="set" style="min-width:1020px">
+  <!-- widths under the readability rule (28 Sep 2026): the rule text is the
+       longest column, the derivation chain the shortest that still carries words;
+       below 1020 px the table scrolls inside its box rather than squeezing them -->
+  <colgroup><col style="width:18%"><col style="width:8%"><col style="width:29%">
+  <col style="width:15%"><col style="width:19%"><col style="width:11%"></colgroup>
   <thead><tr><th>Population</th><th class="num">Records</th><th>The rule</th>
   <th>What it reads</th><th>The decision that set it</th><th>Derives from</th></tr></thead>
   <tbody>{''.join(rows)}</tbody></table></div>

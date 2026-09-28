@@ -94,6 +94,130 @@ def pick(items):
     return best
 
 
+# ---------------------------------------------------------------------------
+# Weekday-layout fallback (28 Sep 2026). Some sheets carry no printed year:
+# an older template has only "ID:" in its header and the year, if any, is
+# written by hand, which the anchor above never sees. Every template does
+# print the weekday beside each day ("01 LUN", "02 MAR" ...), one column per
+# month, and that layout fixes the year: only one year in PLAUSIBLE puts each
+# weekday where the sheet has it. The result is a DEDUCTION, written to its
+# own file and shown on the transcription page as "a confirmer"; it never
+# fills sheet_year, which stays the year read off the sheet.
+# ---------------------------------------------------------------------------
+WD = {"LUN": 0, "MAR": 1, "MER": 2, "JEU": 3, "VEN": 4, "SAM": 5, "DIM": 6,
+      "LUIN": 0, "VEND": 4}
+WD_RE = re.compile(r"(\d{1,2})?\s*(LUIN|VEND|LUN|MAR|MER|JEU|VEN|SAM|DIM)\b")
+NUM_RE = re.compile(r"^\s*(\d{1,2})\s*$")
+
+
+def weekday_pairs(items):
+    """items: [(box, text)] -> [(x, day, weekday)] from the printed grid"""
+    toks, nums = [], []
+    for box, txt in items:
+        cx = sum(p[0] for p in box) / 4.0
+        cy = sum(p[1] for p in box) / 4.0
+        h = max(p[1] for p in box) - min(p[1] for p in box)
+        t = txt.upper().replace("O", "0") if NUM_RE.match(txt.upper().replace("O", "0")) else txt.upper()
+        m = NUM_RE.match(t)
+        if m:
+            nums.append((cx, cy, h, int(m.group(1))))
+            continue
+        for m in WD_RE.finditer(txt.upper()):
+            toks.append((cx, cy, h, int(m.group(1)) if m.group(1) else None, WD[m.group(2)]))
+    pairs = []
+    for cx, cy, h, d, w in toks:
+        if d is None:
+            near = [n for n in nums if abs(n[1] - cy) < 0.6 * max(h, n[2], 1)
+                    and 0 < cx - n[0] < 6 * max(h, 1)]
+            if not near:
+                continue
+            d = min(near, key=lambda n: cx - n[0])[3]
+        if 1 <= d <= 31:
+            pairs.append((cx, d, w))
+    return pairs
+
+
+def weekday_year(pairs):
+    """-> (year, agreement, margin, n) or None. Months come from column
+    position: x is clustered into columns, the column pitch is the median
+    spacing of adjacent clusters, and every offset that keeps twelve columns
+    on the sheet is tried, so a missing first column cannot shift a month."""
+    import datetime, statistics
+    if len(pairs) < 8:
+        return None
+    xs = sorted(p[0] for p in pairs)
+    span = xs[-1] - xs[0]
+    if span <= 0:
+        return None
+    cl = [[xs[0]]]
+    for x in xs[1:]:
+        (cl[-1].append(x) if x - cl[-1][-1] < span / 30.0 else cl.append([x]))
+    cent = [sum(c) / len(c) for c in cl]
+    gaps = [b - a for a, b in zip(cent, cent[1:])]
+    if not gaps:
+        return None
+    pitch = statistics.median(gaps)
+    idx = [round((p[0] - cent[0]) / pitch) for p in pairs]
+    top = max(idx)
+    if top > 11:
+        return None
+    scores = {}
+    for y in sorted(int(v) for v in PLAUSIBLE):
+        best = 0.0
+        for shift in range(0, 12 - top):
+            ok = n = 0
+            for (x, d, w), k in zip(pairs, idx):
+                m = k + shift + 1
+                try:
+                    wd = datetime.date(y, m, d).weekday()
+                except ValueError:
+                    continue
+                n += 1
+                ok += (wd == w)
+            if n:
+                best = max(best, ok / n)
+        scores[y] = best
+    ranked = sorted(scores.items(), key=lambda kv: -kv[1])
+    (y1, s1), (_, s2) = ranked[0], ranked[1]
+    return y1, s1, s1 - s2, len(pairs)
+
+
+def weekday_fallback(ocr, a):
+    """--weekday-fallback LIST.csv (image_id,path) -> --out CSV"""
+    rows = list(csv.DictReader(open(a.weekday_fallback)))
+    out = open(a.out, "w", newline="")
+    w = csv.writer(out)
+    w.writerow(["image_id", "deduced_year", "agreement", "margin", "pairs",
+                "orientation", "accepted", "note"])
+    for r in rows:
+        im = cv2.imread(r["path"])
+        best = None
+        for k in (0, 180):
+            g = im if k == 0 else cv2.rotate(im, cv2.ROTATE_180)
+            try:
+                res, _ = ocr(g)
+            except Exception:
+                res = []
+            got = weekday_year(weekday_pairs([(t[0], t[1]) for t in (res or [])]))
+            if got and (best is None or (got[1], got[3]) > (best[1][1], best[1][3])):
+                best = (k, got)
+        if best is None:
+            w.writerow([r["image_id"], "", "", "", "", "", "no", "too few weekday labels read"])
+            print(f"  {r['image_id'][:8]}  no deduction")
+            continue
+        k, (y, s1, mg, n) = best
+        ok = n >= 8 and s1 >= 0.85 and mg >= 0.25
+        w.writerow([r["image_id"], y if ok else "", f"{s1:.3f}", f"{mg:.3f}", n, k,
+                    "yes" if ok else "no",
+                    "deduced from the printed weekday layout - to be confirmed" if ok
+                    else f"best {y} not clear enough"])
+        print(f"  {r['image_id'][:8]}  {y}  agreement {s1:.2f}  margin {mg:.2f}  pairs {n}  "
+              f"{'ACCEPTED' if ok else 'rejected'}")
+        out.flush()
+    out.close()
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", default="extracted")
@@ -102,10 +226,15 @@ def main():
     ap.add_argument("--only", default=None,
                     help="file of image_ids, one per line: re-read just these")
     ap.add_argument("--out", default=os.path.join(HERE, "sheet_year_ocr.csv"))
+    ap.add_argument("--weekday-fallback", default=None,
+                    help="CSV of image_id,path for sheets with no printed year: deduce "
+                         "the year from the printed weekday layout, to --out")
     a = ap.parse_args()
 
     from rapidocr_onnxruntime import RapidOCR
     ocr = RapidOCR()
+    if a.weekday_fallback:
+        return weekday_fallback(ocr, a)
     tmpl = cv2.imread(TMPL, cv2.IMREAD_GRAYSCALE)
 
     rows = list(csv.DictReader(open(os.path.join(HERE, "legibility2.csv"))))
