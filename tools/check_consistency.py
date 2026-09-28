@@ -1870,7 +1870,11 @@ def main():
                      "comparable_machine", "mois", "jour", "releve",
                      "etat_cellule", "exclu", "exclu_motif", "transcripteur",
                      "session_id", "secondes_sur_calendrier", "notes",
-                     "exporte_le"]
+                     "exporte_le",
+                     # appended 28 Sep 2026, after every earlier column, so an
+                     # older export still reads the same way: the series a row
+                     # belongs to, and the photo's rotation when it was read
+                     "serie", "rotation_deg"]
         hdr = "[" + ",".join(f"'{c}'" for c in want_cols) + "]"
         check("transcription export header carries every column, in order",
               hdr in tr2.replace(" ", ""), ",".join(want_cols),

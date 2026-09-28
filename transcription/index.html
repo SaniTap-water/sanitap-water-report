@@ -6,14 +6,19 @@
 <meta name="robots" content="noindex">
 <title>Relevé manuel des calendriers — SaniTap</title>
 <style>
-:root{--ink:#0f172a;--ink2:#334155;--ink3:#64748b;--rule:#e2e8f0;--bg:#f8fafc;--acc:#0e7490;--mark:#b91c1c;--ill:#a16207}
+:root{color-scheme:light dark;--ink:#0f172a;--ink2:#334155;--ink3:#64748b;--rule:#e2e8f0;--bg:#f8fafc;--card:#fff;--acc:#0e7490;--mark:#b91c1c;--ill:#a16207;
+ --cell:#fff;--zebra:#f2f4f7;--hover:#ecfeff;--xbg:#fef2f2;--qbg:#fefce8;--na:#e8ecf1;--hatch1:#e8edf3;--hatch2:#dde4ec}
+/* dark: the same roles, darker values. The alternate-row tint stays neutral and
+   well below the X and ? fills, so a mark is never harder to see on a shaded row. */
+@media (prefers-color-scheme:dark){:root{--ink:#e5e7eb;--ink2:#cbd5e1;--ink3:#94a3b8;--rule:#334155;--bg:#0b1220;--card:#111827;--acc:#22d3ee;--mark:#f87171;--ill:#facc15;
+ --cell:#111827;--zebra:#1b2433;--hover:#0c3a47;--xbg:#431417;--qbg:#3d3208;--na:#0b1220;--hatch1:#1e293b;--hatch2:#273449}}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
 body{font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
-header{background:#fff;border-bottom:1px solid var(--rule);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+header{background:var(--card);border-bottom:1px solid var(--rule);padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:20}
 h1{font-size:1.02rem;margin:0;font-weight:700}
 .sp{flex:1}
-button,select{font:inherit;padding:6px 11px;border:1px solid var(--rule);border-radius:7px;background:#fff;color:var(--ink);cursor:pointer}
+button,select{font:inherit;padding:6px 11px;border:1px solid var(--rule);border-radius:7px;background:var(--card);color:var(--ink);cursor:pointer}
 button:hover{border-color:var(--acc);color:var(--acc)}
 button.primary{background:var(--acc);color:#fff;border-color:var(--acc);font-weight:600}
 button.primary:hover{background:#0b5f74;color:#fff}
@@ -21,35 +26,38 @@ button.primary:hover{background:#0b5f74;color:#fff}
 .counts b{color:var(--ink)}
 main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:14px;padding:14px;align-items:start}
 @media(max-width:1000px){main{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
 .pane{position:relative;height:calc(100vh - 150px);min-height:420px;overflow:hidden;background:#0f172a;cursor:grab;touch-action:none}
 .pane.drag{cursor:grabbing}
 .pane img{position:absolute;transform-origin:0 0;user-select:none;-webkit-user-drag:none;image-rendering:auto}
-.zoombar{position:absolute;right:10px;bottom:10px;display:flex;gap:6px;z-index:5}
-.zoombar button{background:rgba(255,255,255,.94);padding:5px 10px}
+.zoombar{position:absolute;right:10px;bottom:10px;display:flex;gap:6px;z-index:5;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.zoombar .zl{font-size:.78rem;color:#fff;background:rgba(15,23,42,.72);padding:3px 7px;border-radius:5px}
+.zoombar button{background:rgba(255,255,255,.94);color:#0f172a;padding:5px 10px}
 .meta{padding:8px 12px;border-bottom:1px solid var(--rule);font-size:.87rem;color:var(--ink2);display:flex;gap:16px;flex-wrap:wrap}
 .meta b{color:var(--ink)}
 .gridwrap{padding:10px 12px 14px;overflow:auto;max-height:calc(100vh - 210px)}
 table.cal{border-collapse:collapse;font-size:11px;width:100%}
-table.cal th{font-weight:700;color:var(--ink2);padding:3px 2px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:#fff;font-size:10.5px}
+table.cal th{font-weight:700;color:var(--ink2);padding:3px 2px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--card);font-size:10.5px}
 table.cal td{border:1px solid var(--rule);padding:0;text-align:center}
 table.cal td.dn{border:none;color:var(--ink3);padding-right:5px;text-align:right;font-variant-numeric:tabular-nums;width:22px}
-.c{width:100%;height:21px;line-height:21px;cursor:pointer;font-weight:700;font-size:12px;color:transparent;background:#fff}
-.c:hover{background:#ecfeff;outline:1px solid var(--acc)}
-.c.x{color:var(--mark);background:#fef2f2}
-.c.q{color:var(--ill);background:#fefce8}
-.c.na{background:#f1f5f9;cursor:default}
-.c.unobs{background:repeating-linear-gradient(45deg,#e8edf3,#e8edf3 3px,#dde4ec 3px,#dde4ec 6px);cursor:not-allowed;color:transparent}
-.c.unobs:hover{background:repeating-linear-gradient(45deg,#e8edf3,#e8edf3 3px,#dde4ec 3px,#dde4ec 6px);outline:none}
+.c{width:100%;height:21px;line-height:21px;cursor:pointer;font-weight:700;font-size:12px;color:transparent;background:var(--cell)}
+/* alternate rows, lightly shaded; X, ?, locked and absent cells keep their own fill */
+table.cal tbody tr:nth-child(even) .c:not(.x):not(.q):not(.na):not(.unobs){background:var(--zebra)}
+table.cal .c:hover:not(.na):not(.unobs){background:var(--hover);outline:1px solid var(--acc)}
+.c.x{color:var(--mark);background:var(--xbg)}
+.c.q{color:var(--ill);background:var(--qbg)}
+.c.na{background:var(--na);cursor:default}
+.c.unobs{background:repeating-linear-gradient(45deg,var(--hatch1),var(--hatch1) 3px,var(--hatch2) 3px,var(--hatch2) 6px);cursor:not-allowed;color:transparent}
+.c.unobs:hover{background:repeating-linear-gradient(45deg,var(--hatch1),var(--hatch1) 3px,var(--hatch2) 3px,var(--hatch2) 6px);outline:none}
 .c.unobs.keep{color:#b45309;background:#fff7ed;outline:1px dashed #f59e0b}
 .c.cur{outline:2px solid var(--acc);outline-offset:-2px}
 .foot{padding:10px 12px;border-top:1px solid var(--rule)}
-textarea{width:100%;font:inherit;font-size:.9rem;padding:8px;border:1px solid var(--rule);border-radius:7px;resize:vertical;min-height:52px}
+textarea{width:100%;font:inherit;background:var(--card);color:var(--ink);font-size:.9rem;padding:8px;border:1px solid var(--rule);border-radius:7px;resize:vertical;min-height:52px}
 label{display:block;font-size:.84rem;color:var(--ink2);margin:0 0 4px}
-details.help{background:#fff;border:1px solid var(--rule);border-radius:10px;margin:0 14px}
+details.help{background:var(--card);border:1px solid var(--rule);border-radius:10px;margin:0 14px}
 details.help>summary{cursor:pointer;font-weight:600;padding:10px 14px}
 details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-width:none}
-.key{display:inline-block;border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.82rem;background:#fff;color:var(--ink)}
+.key{display:inline-block;border:1px solid var(--rule);border-bottom-width:2px;border-radius:4px;padding:0 5px;font-size:.82rem;background:var(--card);color:var(--ink)}
 .win{background:#ecfeff;border:1px solid #a5f3fc;border-radius:8px;padding:8px 11px;margin:0 0 10px;font-size:.89rem;color:#164e63}
 .win b{color:#083344}
 .win.none{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
@@ -64,11 +72,21 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
 .gridwrap.off{opacity:.32;pointer-events:none;filter:grayscale(1)}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:60;padding:16px}
 .modal[hidden]{display:none}
-.modal .box{background:#fff;border-radius:12px;max-width:440px;width:100%;padding:18px 20px}
+.modal .box{background:var(--card);color:var(--ink);border-radius:12px;max-width:440px;width:100%;padding:18px 20px}
 .modal h2{margin:0 0 6px;font-size:1.05rem}
 .modal p{margin:.4em 0;font-size:.9rem;color:var(--ink2)}
-.modal input[type=text]{width:100%;font:inherit;padding:8px 10px;border:1px solid var(--rule);border-radius:7px;margin-top:8px}
+.modal input[type=text]{width:100%;font:inherit;background:var(--card);color:var(--ink);padding:8px 10px;border:1px solid var(--rule);border-radius:7px;margin-top:8px}
 .modal .err{color:#b91c1c;font-size:.86rem;min-height:1.1em}
+.modal .en{color:var(--ink3);font-size:.88rem}
+.expwarn{margin:10px 14px 0;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:8px 12px;font-size:.9rem;color:#78350f}
+.expwarn[hidden]{display:none}
+/* dark variants of the callouts, so their text keeps its contrast */
+@media (prefers-color-scheme:dark){
+ .win{background:#082f3a;border-color:#155e75;color:#cffafe}.win b{color:#ecfeff}
+ .win.none,.warn,.expwarn{background:#3a2a0a;border-color:#92400e;color:#fde68a}
+ .excl{background:#2a1215;border-color:#7f1d1d;border-top-color:#ef4444}.excl .t{color:#fca5a5}.excl .hint{color:#fecaca}
+ .c.unobs.keep{color:#fbbf24;background:#3a2410;outline-color:#b45309}
+}
 </style>
 </head>
 <body>
@@ -85,6 +103,8 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   <button id="exp" class="primary">Exporter mes relevés (CSV)</button>
 </header>
 
+<div class="expwarn" id="expwarn" hidden></div>
+
 <details class="help" open>
   <summary>Consignes — à lire une fois</summary>
   <div class="body">
@@ -98,7 +118,9 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
     <p style="margin:.4em 0"><b>Utilisez <b style="color:var(--ill)">?</b> sans hésiter.</b> Si la case est illisible — floue, à l’ombre, coupée, effacée — mettez <b style="color:var(--ill)">?</b>. Un <b style="color:var(--ill)">?</b> honnête vaut mieux qu’une supposition.</p>
     <p style="margin:.4em 0"><b>N’en discutez avec personne ayant vu un résultat automatique.</b> Ce relevé ne sert que s’il est fait indépendamment.</p>
     <p style="margin:.4em 0">Cliquez une case pour faire défiler <b>vide → X → ?</b>. Au clavier : flèches pour se déplacer, <span class="key">X</span> pour marquer, <span class="key">?</span> ou <span class="key">/</span> pour illisible, <span class="key">Espace</span> pour faire défiler, <span class="key">Retour arrière</span> pour effacer.</p>
-    <p style="margin:.4em 0">Votre travail est enregistré dans ce navigateur au fur et à mesure. Vous pouvez fermer la page et reprendre plus tard. Quand vous avez terminé, cliquez sur <b>Exporter mes relevés</b> et envoyez le fichier au superviseur.</p>
+    <p style="margin:.4em 0">Votre travail est enregistré dans ce navigateur au fur et à mesure. Vous pouvez fermer la page et reprendre plus tard. Quand vous avez terminé, cliquez sur <b>Exporter mes relevés</b> et envoyez le fichier au superviseur. <b>Exportez souvent</b> : le nombre de calendriers marqués depuis le dernier export est affiché en haut, et un rappel apparaît au-delà de 10.</p>
+    <p style="margin:.4em 0"><b>Calendrier à l’envers ou de côté ?</b> Utilisez <b>↻ 90°</b> ou <b>↻ 180°</b> sous la photo. La rotation est gardée pour ce calendrier. Les boutons <b>Zoom −</b>, <b>Zoom +</b> et <b>Ajuster le zoom</b> ne changent que l’agrandissement.</p>
+    <p style="margin:.4em 0"><b>Après le dernier calendrier</b>, la série est terminée : exportez vos résultats, puis commencez éventuellement une <b>série suivante</b>. Une série terminée n’est jamais effacée ; chaque série garde son numéro dans le fichier exporté.</p>
     <p style="margin:.4em 0"><b>Les cases grisées et hachurées ne sont pas à remplir.</b> Une photographie ne peut montrer que les jours déjà passés au moment où elle a été prise : les jours postérieurs étaient vides parce qu’ils n’étaient pas encore arrivés, pas parce que la pompe fonctionnait. Ces cases sont verrouillées, et la fenêtre observable est rappelée au-dessus de la grille.</p>
     <p style="margin:.4em 0"><b>Si la photographie ne montre pas un calendrier</b> — un panneau, une pompe, un autre document, un portrait — cochez <b style="color:#b91c1c">Ce n’est pas un calendrier</b> sous la grille et indiquez le motif. La feuille est alors comptée comme <b>exclue</b>, et non comme un calendrier entièrement vide. <b>Ne cochez pas</b> pour une photographie simplement floue ou mal cadrée : dans ce cas mettez <b style="color:var(--ill)">?</b> dans les cases concernées.</p>
     <p style="margin:.4em 0"><b>Votre nom est demandé au premier lancement.</b> Il est enregistré avec votre travail et figure dans chaque ligne du fichier exporté, avec un identifiant de série. Si plusieurs personnes utilisent le même navigateur, chacune démarre sa propre série avec <b>Nouvelle série</b>.</p>
@@ -119,13 +141,27 @@ details.help .body{padding:0 14px 14px;font-size:.92rem;color:var(--ink2);max-wi
   </div>
 </div>
 
+<div class="modal" id="donemodal" hidden>
+  <div class="box">
+    <h2 id="donefr"></h2>
+    <p class="en" id="doneen"></p>
+    <p id="donewarn" class="err"></p>
+    <p style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px">
+      <button id="doneclose">Revenir au calendrier</button>
+      <button id="doneexp" class="primary">Exporter mes résultats</button>
+      <button id="donenext">Série suivante</button>
+    </p>
+  </div>
+</div>
+
 <main>
   <div class="card">
     <div class="meta" id="meta"></div>
     <div class="pane" id="pane">
       <img id="ph" alt="Photographie du calendrier">
       <div class="zoombar">
-        <button id="zo">−</button><button id="zi">+</button><button id="zr">Ajuster</button>
+        <span class="zl">Zoom</span><button id="zo" title="Zoom arrière" aria-label="Zoom arrière">Zoom −</button><button id="zi" title="Zoom avant" aria-label="Zoom avant">Zoom +</button><button id="zr" title="Ajuster le zoom à la fenêtre">Ajuster le zoom</button>
+        <span class="zl" id="rotv">Rotation 0°</span><button id="rot90" title="Tourner la photo de 90° (sens horaire)">↻ 90°</button><button id="rot180" title="Retourner la photo (calendrier à l’envers)">↻ 180°</button>
       </div>
     </div>
   </div>
@@ -193,21 +229,50 @@ let CAL=[], cur=0, store={sets:{},active:''}, st={}, curCell={m:0,d:0};
 const $=s=>document.querySelector(s);
 
 function newId(){ return 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+/* Storage stays under the same key and shape as before (28 Sep 2026), so a run
+   already under way is kept. New fields are added, never renamed:
+     set.serie          series number, 1, 2, 3 ... in the order sets were created
+     set.non_exportes   calendars marked since the last export
+     set.exporte_le     time of the last export
+     rec.rot            rotation of that calendar's photo, 0 / 90 / 180 / 270
+   A set saved before these existed has not been seen exporting, so every
+   calendar already started in it counts as not exported: the reminder errs on
+   the side of exporting once too often. */
+function migrate(){
+  const ids=Object.keys(store.sets).sort((a,b)=>String(store.sets[a].cree_le||'').localeCompare(String(store.sets[b].cree_le||'')));
+  let top=0; for(const id of ids){ const n=+store.sets[id].serie||0; if(n>top) top=n; }
+  for(const id of ids){
+    const s=store.sets[id];
+    if(!s.cal) s.cal={};
+    if(!(+s.serie)) s.serie=++top;
+    if(!Array.isArray(s.non_exportes)){
+      s.non_exportes=Object.keys(s.cal).filter(k=>{ const r=s.cal[k]||{}; return r.exclu||Object.keys(r.cells||{}).length||(r.notes||'').trim(); });
+    }
+  }
+}
 function load(){
   try{ store=JSON.parse(localStorage.getItem(KEY)||'null') || {sets:{},active:''}; }
   catch(e){ store={sets:{},active:''}; }
   if(!store.sets) store.sets={};
+  migrate();
   if(!store.active || !store.sets[store.active]) newSet('');
   st=store.sets[store.active].cal;
+  save();
+}
+function nextSerie(){ let top=0; for(const s of Object.values(store.sets)) if((+s.serie||0)>top) top=+s.serie; return top+1; }
+function unexported(){ return (setInfo().non_exportes||[]).length; }
+function touched(n){
+  const s=setInfo(); if(!Array.isArray(s.non_exportes)) s.non_exportes=[];
+  const k=String(n); if(!s.non_exportes.includes(k)) s.non_exportes.push(k);
 }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(store)); }catch(e){} }
 function newSet(name){
   const id=newId();
-  store.sets[id]={session_id:id, transcripteur:name||'', cree_le:new Date().toISOString(), cal:{}};
+  store.sets[id]={session_id:id, transcripteur:name||'', cree_le:new Date().toISOString(), cal:{}, serie:nextSerie(), non_exportes:[]};
   store.active=id; st=store.sets[id].cal; save(); return id;
 }
 function setInfo(){ return store.sets[store.active]; }
-function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:''}; 
+function rec(n){ if(!st[n]) st[n]={cells:{},notes:'',secs:0,exclu:'',motif:'',rot:0}; 
                  const r=st[n]; if(r.exclu===undefined){r.exclu='';r.motif='';} return r; }
 function isExcluded(n){ return !!rec(n).exclu; }
 
@@ -244,7 +309,13 @@ function paintCounts(){
     : `${x} X · ${q} ? · ${blank} vides` + (kept?` · ${kept} hors fenêtre`:'');
   const doneCal=started();
   const mm=Math.floor(r.secs/60), ss=r.secs%60;
-  $('#counts').innerHTML=`Calendrier <b>${cur+1}</b>/<b>${CAL.length}</b> · commencés <b>${doneCal}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
+  const ue=unexported();
+  $('#counts').innerHTML=`Calendrier <b>${cur+1}</b> / <b>${CAL.length}</b> — série <b>${setInfo().serie}</b> · commencés <b>${doneCal}</b> · marqués depuis le dernier export <b>${ue}</b> · temps sur ce calendrier <b>${mm}:${String(ss).padStart(2,'0')}</b>`;
+  const w2=$('#expwarn');
+  if(ue>10){
+    w2.hidden=false;
+    w2.innerHTML=`<b>Pensez à exporter.</b> ${ue} calendriers ont été marqués depuis le dernier export. Cliquez sur <b>Exporter mes relevés (CSV)</b> et envoyez le fichier au superviseur. <span lang="en" style="opacity:.8">&mdash; Please export: ${ue} calendars marked since your last export.</span>`;
+  } else w2.hidden=true;
   const w=setInfo().transcripteur;
   $('#who').innerHTML = w ? `Relevé par <b>${w.replace(/[<>&]/g,'')}</b>` : '<b style="color:#b91c1c">Nom non renseigné</b>';
 }
@@ -297,9 +368,19 @@ $('#whook').onclick=()=>{
 $('#whocancel').onclick=()=>{ $('#whomodal').hidden=true; };
 $('#whoname').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#whook').click(); });
 $('#chgwho').onclick=()=>askWho(true);
+/* A new series never overwrites the one before: each is its own set in the
+   store, with its own number. Unexported work gets a warning first. */
+function startNextSeries(keepName){
+  const ue=unexported();
+  if(ue>0 && !confirm(`Vous n’avez pas exporté ${ue} calendrier(s) de la série ${setInfo().serie}. Ils restent enregistrés dans ce navigateur, mais exportez-les d’abord si ce n’est pas fait.\n\nYou have not exported ${ue} calendar(s) from series ${setInfo().serie}. They stay saved in this browser, but export them first.\n\nCommencer quand même la série suivante ? / Start the next series anyway?`)) return false;
+  const name=keepName ? (setInfo().transcripteur||'') : '';
+  newSet(name); $('#donemodal').hidden=true;
+  if(!name) askWho(false);
+  show(0); return true;
+}
 $('#newset').onclick=()=>{
-  if(started() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur, mais la grille repart à zéro. Exportez-le d’abord si ce n’est pas fait.')) return;
-  newSet(''); askWho(false); show(0);
+  if(started() && !confirm('Commencer une nouvelle série ? Le relevé en cours reste enregistré dans ce navigateur sous son propre numéro de série ; la grille repart à zéro.')) return;
+  startNextSeries(false);
 };
 
 /* ---- not a calendar ---- */
@@ -314,9 +395,9 @@ $('#exclchk').onchange=e=>{
   const r=rec(CAL[cur].n);
   r.exclu = e.target.checked ? 'oui' : '';
   if(!r.exclu) r.motif='';
-  save(); paintExcl(); paintCounts();
+  touched(CAL[cur].n); save(); paintExcl(); paintCounts();
 };
-$('#exclwhy').onchange=e=>{ rec(CAL[cur].n).motif=e.target.value; save(); };
+$('#exclwhy').onchange=e=>{ rec(CAL[cur].n).motif=e.target.value; touched(CAL[cur].n); save(); paintCounts(); };
 
 function buildGrid(){
   const t=$('#grid'); const r=rec(CAL[cur].n);
@@ -349,6 +430,7 @@ function buildGrid(){
 function setCell(el,v){
   const r=rec(CAL[cur].n), k=el.dataset.m+'-'+el.dataset.d;
   if(v) r.cells[k]=v; else delete r.cells[k];
+  touched(CAL[cur].n);
   el.className='c '+(v==='X'?'x':(v==='?'?'q':''));
   el.textContent=v||'·';
   save(); paintCounts(); markCur();
@@ -364,12 +446,21 @@ function markCur(){
 }
 
 /* ---- image zoom / pan ---- */
-let zoom=1, ox=0, oy=0, natW=0, natH=0;
-function applyT(){ const i=$('#ph'); i.style.transform=`translate(${ox}px,${oy}px) scale(${zoom})`; }
+let zoom=1, ox=0, oy=0, natW=0, natH=0, rot=0;
+/* rotation turns the photo about its own centre; zoom and pan act on the
+   result, so zooming at a point keeps that point under the pointer at any
+   rotation */
+function applyT(){ const i=$('#ph');
+  i.style.transform=`translate(${ox}px,${oy}px) scale(${zoom}) translate(${natW/2}px,${natH/2}px) rotate(${rot}deg) translate(${-natW/2}px,${-natH/2}px)`; }
 function fit(){
   const p=$('#pane'); if(!natW) return;
-  zoom=Math.min(p.clientWidth/natW, p.clientHeight/natH);
-  ox=(p.clientWidth-natW*zoom)/2; oy=(p.clientHeight-natH*zoom)/2; applyT();
+  const side=rot%180!==0, w=side?natH:natW, h=side?natW:natH;
+  zoom=Math.min(p.clientWidth/w, p.clientHeight/h);
+  ox=p.clientWidth/2-natW*zoom/2; oy=p.clientHeight/2-natH*zoom/2; applyT();
+}
+function setRot(r){
+  rot=((r%360)+360)%360; rec(CAL[cur].n).rot=rot; save();
+  $('#rotv').textContent=`Rotation ${rot}°`; fit();
 }
 function zoomAt(f,cx,cy){
   const p=$('#pane').getBoundingClientRect();
@@ -379,18 +470,22 @@ function zoomAt(f,cx,cy){
 }
 $('#pane').addEventListener('wheel',e=>{ e.preventDefault(); zoomAt(e.deltaY<0?1.15:1/1.15, e.clientX, e.clientY); },{passive:false});
 let dragging=false,lx=0,ly=0;
-$('#pane').addEventListener('pointerdown',e=>{ dragging=true;lx=e.clientX;ly=e.clientY;$('#pane').classList.add('drag');$('#pane').setPointerCapture(e.pointerId); });
+/* a press on the zoom/rotation buttons is a button press, not a pan: capturing
+   the pointer here would swallow the button's click */
+$('#pane').addEventListener('pointerdown',e=>{ if(e.target.closest('.zoombar')) return; dragging=true;lx=e.clientX;ly=e.clientY;$('#pane').classList.add('drag');$('#pane').setPointerCapture(e.pointerId); });
 $('#pane').addEventListener('pointermove',e=>{ if(!dragging)return; ox+=e.clientX-lx; oy+=e.clientY-ly; lx=e.clientX; ly=e.clientY; applyT(); });
 $('#pane').addEventListener('pointerup',e=>{ dragging=false;$('#pane').classList.remove('drag'); });
 $('#zi').onclick=()=>{const p=$('#pane').getBoundingClientRect();zoomAt(1.3,p.left+p.width/2,p.top+p.height/2);};
 $('#zo').onclick=()=>{const p=$('#pane').getBoundingClientRect();zoomAt(1/1.3,p.left+p.width/2,p.top+p.height/2);};
 $('#zr').onclick=fit;
+$('#rot90').onclick=()=>setRot(rot+90);
+$('#rot180').onclick=()=>setRot(rot+180);
 window.addEventListener('resize',fit);
 
 /* ---- keyboard ---- */
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT'||e.target.tagName==='INPUT') return;
-  if(!$('#whomodal').hidden) return;
+  if(!$('#whomodal').hidden || !$('#donemodal').hidden) return;
   if(isExcluded(CAL[cur].n)) return;
   let {m,d}=curCell, handled=true;
   if(e.key==='ArrowRight') m=Math.min(11,m+1);
@@ -408,8 +503,9 @@ document.addEventListener('keydown',e=>{
 /* ---- navigation ---- */
 function show(i){
   stopTimer();
-  cur=(i+CAL.length)%CAL.length;
+  cur=Math.max(0,Math.min(CAL.length-1,i));
   const c=CAL[cur], r=rec(c.n);
+  rot=+r.rot||0; $('#rotv').textContent=`Rotation ${rot}°`;
   DIM=dim(c.y?+c.y:2026);
   WIN=windowFor(c);
   $('#meta').innerHTML=`<span>Feuille <b>${c.n}</b></span><span><b>${cur+1}</b> sur ${CAL.length}</span><span>Point d’eau <b>${c.wp}</b></span><span>Site <b>${c.site}</b></span><span>Photo du <b>${c.date||'—'}</b></span><span>Année feuille <b>${c.y||'?'}</b></span>`;
@@ -422,22 +518,36 @@ function show(i){
   paintWindow(c);
   buildGrid(); paintExcl(); paintCounts(); startTimer();
 }
+function showDone(){
+  const n=CAL.length, s=setInfo().serie, ue=unexported();
+  $('#donefr').textContent=`Merci ! Série terminée (${n}/${n}). Voulez-vous commencer une série suivante ?`;
+  $('#doneen').textContent=`Thanks! Series complete (${n}/${n}). Do you want to start a next series?`;
+  $('#donewarn').textContent = ue>0 ? `Série ${s} : ${ue} calendrier(s) pas encore exporté(s). Exportez d’abord. / Series ${s}: ${ue} calendar(s) not yet exported. Export first.` : '';
+  $('#donemodal').hidden=false;
+}
 $('#prev').onclick=()=>show(cur-1);
-$('#next').onclick=()=>show(cur+1);
+/* the end of a series is an end: no wrap back to the first calendar */
+$('#next').onclick=()=>{ if(cur>=CAL.length-1) showDone(); else show(cur+1); };
+$('#doneclose').onclick=()=>{ $('#donemodal').hidden=true; };
+$('#doneexp').onclick=()=>{ if(exportCsv()) showDone(); };
+$('#donenext').onclick=()=>{ startNextSeries(true); };
 $('#pick').onchange=e=>show(+e.target.value);
-$('#notes').addEventListener('input',e=>{ rec(CAL[cur].n).notes=e.target.value; save(); });
+$('#notes').addEventListener('input',e=>{ rec(CAL[cur].n).notes=e.target.value; touched(CAL[cur].n); save(); paintCounts(); });
 
 /* ---- export ---- */
 function csvEsc(v){ v=String(v==null?'':v); return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }
-$('#exp').onclick=()=>{
+function exportCsv(){
   const info=setInfo();
   if(!(info.transcripteur||'').trim()){
     alert('Indiquez votre nom avant d’exporter : chaque ligne du fichier doit porter le nom de la personne qui a fait le relevé.');
-    askWho(true); return;
+    askWho(true); return false;
   }
   const n0=started();
-  if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return;
-  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le']];
+  if(n0<CAL.length && !confirm(`Vous avez commencé ${n0} feuilles sur ${CAL.length}. Exporter quand même ce relevé incomplet ?`)) return false;
+  /* serie and rotation_deg are appended, so every earlier column keeps its
+     place and older exports still read the same way */
+  const out=[['calendrier','point_eau','date_photo','annee_feuille','comparable_machine','mois','jour','releve','etat_cellule','exclu','exclu_motif','transcripteur','session_id','secondes_sur_calendrier','notes','exporte_le','serie','rotation_deg']];
+  const serie=info.serie;
   const now=new Date().toISOString();
   const who=info.transcripteur.trim(), sid=info.session_id;
   for(const c of CAL){
@@ -446,7 +556,7 @@ $('#exp').onclick=()=>{
     if(r.exclu){
       /* one row for the whole sheet: excluded is not the same as all-blank,
          and the comparison must never read it as a sheet of zeroes */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non','','','EXCLU','exclu','oui',r.motif||'autre',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0]);
       continue;
     }
     const D2=dim(c.y?+c.y:2026), W2=windowFor(c);
@@ -462,16 +572,19 @@ $('#exp').onclick=()=>{
       /* an unobserved cell is exported as unobserved, with any mark made on it
          before the window was known kept and visible - never dropped, and
          never pooled with the observed cells */
-      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now]);
+      out.push([c.n,c.wp,c.date,c.y||'',c.cmp?'oui':'non',m+1,d+1,v,stt,'non','',who,sid,r.secs||0,r.notes||'',now,serie,+r.rot||0]);
     }
   }
-  if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return; }
+  if(out.length===1){ alert('Aucun relevé à exporter pour le moment.'); return false; }
   const blob=new Blob(['﻿'+out.map(r=>r.map(csvEsc).join(',')).join('\n')],{type:'text/csv;charset=utf-8'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
-  a.download='releves_calendriers_'+who.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'_'+now.slice(0,10)+'.csv';
+  a.download='releves_calendriers_'+who.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'_serie'+serie+'_'+now.slice(0,10)+'.csv';
   document.body.appendChild(a); a.click(); a.remove();
-};
+  info.non_exportes=[]; info.exporte_le=now; save(); paintCounts();
+  return true;
+}
+$('#exp').onclick=()=>{ exportCsv(); };
 
 fetch('calendars.json').then(r=>r.json()).then(j=>{
   CAL=j.sort((a,b)=>a.n-b.n);
