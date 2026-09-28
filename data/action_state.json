@@ -3,7 +3,7 @@
  "kinds": {
   "artefact": 6,
   "children": 3,
-  "data": 45,
+  "data": 47,
   "decision": 45,
   "form": 7,
   "none": 25
@@ -213,6 +213,14 @@
    "kind": "artefact",
    "satisfied": false,
    "says": "closes when the build writes the Curtech dispensing-events extract",
+   "when_satisfied": "OK"
+  },
+  "act-enduro-link-wp-systems": {
+   "evaluated": "2026-09-28",
+   "evidence": "enduro_points_without_system = 178 (water points in Endur'O's mWater group with no parent water system set); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every water point in Endur'O's mWater group has its parent water system set, read live from mWater at each build",
    "when_satisfied": "OK"
   },
   "act-enduro-move-register-fully": {
@@ -575,6 +583,14 @@
    "kind": "data",
    "satisfied": false,
    "says": "closes when no piped system is left in process: each has completed works and a post-rehabilitation test",
+   "when_satisfied": "OK"
+  },
+  "act-moramanga-system-dedupe": {
+   "evaluated": "2026-09-28",
+   "evidence": "moramanga_duplicates_unresolved = 6 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",
    "when_satisfied": "OK"
   },
   "act-move-stroke-test-sop": {

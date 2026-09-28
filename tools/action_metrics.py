@@ -369,6 +369,12 @@ def _m_onb_sites():
     return js("ENDURO")["disp"]["managed"] - _onb()["systems_registered"]
 
 
+@metric("moramanga_duplicates_unresolved",
+        "duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note")
+def _m_moramanga_dupes():
+    return json.load(open(d("data", "moramanga_system_dedupe.json"), encoding="utf8"))["unresolved"]
+
+
 @metric("smart_taps_unbound",
         "installed smart taps not yet bound to their water point by a test dispense")
 def _m_onb_taps():
@@ -463,6 +469,15 @@ def remote():
     codes = managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]
     recs = node_json("piped_record_forms.mjs", ",".join(codes)) if codes else None
     out["piped_sdws27_record_types_missing"] = recs["missing"] if recs else None
+
+    # Endur'O water points with no parent water system (act-enduro-link-wp-systems),
+    # read live; None rather than a count if the query did not come back
+    ents = call("mwater_query_entities",
+                {"entity_type": "water_point", "limit": 5000,
+                 "filter_json": json.dumps({"_managed_by": "group:c305b9b85f41417387b553d9a33c795b"})})
+    out["enduro_points_total"] = len(ents) or None
+    out["enduro_points_without_system"] = (sum(1 for e in ents if not e.get("water_system"))
+                                           if ents else None)
     return out
 
 
@@ -481,6 +496,10 @@ REMOTE_SAYS = {
         "of the three named Marolinta points, how many still have no photograph",
     "enduro_tana_enumerators":
         "members of the mWater team Enduro > EndurO Tana > Enumerators",
+    "enduro_points_total":
+        "water points in Endur'O's mWater group",
+    "enduro_points_without_system":
+        "water points in Endur'O's mWater group with no parent water system set",
     "piped_sdws27_record_types_missing":
         "of maintenance, repair and days-not-operational, the record types with no final "
         "piped record on a managed system in mWater",

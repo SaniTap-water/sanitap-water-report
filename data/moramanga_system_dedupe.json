@@ -1,0 +1,160 @@
+{
+ "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv (read only). Only 'resolutions' is edited by hand: {code: {resolution, date, source}}. A duplicate that leaves the extract is resolved in mWater.",
+ "nearby_m": 250,
+ "resolutions": {},
+ "systems": [
+  {
+   "code": "1108783583",
+   "name": "Amboasary gara",
+   "in_extract": true,
+   "duplicates": [
+    {
+     "code": "1108783569",
+     "name": "Amboasary gara",
+     "distance_m": 93702,
+     "status": "not_managed",
+     "resolution": null
+    },
+    {
+     "code": "929469223",
+     "name": "AEPP AMBOASARY GARE",
+     "distance_m": 1341,
+     "status": "not_managed",
+     "resolution": null
+    },
+    {
+     "code": "929469247",
+     "name": "Forage Amboasary gare",
+     "distance_m": 1338,
+     "status": "not_managed",
+     "resolution": null
+    }
+   ],
+   "nearby": [
+    {
+     "code": "1108784120",
+     "name": "ECAR Saint Mathieu",
+     "distance_m": 5,
+     "status": "not_managed"
+    },
+    {
+     "code": "1108784278",
+     "name": "ECAR AMBOASARY",
+     "distance_m": 16,
+     "status": "not_managed"
+    },
+    {
+     "code": "1108784175",
+     "name": null,
+     "distance_m": 50,
+     "status": "not_managed"
+    },
+    {
+     "code": "1108784199",
+     "name": null,
+     "distance_m": 50,
+     "status": "not_managed"
+    },
+    {
+     "code": "1108784223",
+     "name": null,
+     "distance_m": 135,
+     "status": "not_managed"
+    },
+    {
+     "code": "1108784216",
+     "name": null,
+     "distance_m": 156,
+     "status": "not_managed"
+    },
+    {
+     "code": "1110083543",
+     "name": null,
+     "distance_m": 159,
+     "status": "not_managed"
+    },
+    {
+     "code": "1110083574",
+     "name": null,
+     "distance_m": 195,
+     "status": "not_managed"
+    },
+    {
+     "code": "1110083660",
+     "name": null,
+     "distance_m": 226,
+     "status": "not_managed"
+    },
+    {
+     "code": "1110083653",
+     "name": null,
+     "distance_m": 227,
+     "status": "not_managed"
+    },
+    {
+     "code": "1110083646",
+     "name": null,
+     "distance_m": 233,
+     "status": "not_managed"
+    }
+   ]
+  },
+  {
+   "code": "1108783624",
+   "name": "Ambohibola",
+   "in_extract": true,
+   "duplicates": [
+    {
+     "code": "928471757",
+     "name": "AEPP AMBOHIBOLA",
+     "distance_m": 472,
+     "status": "not_managed",
+     "resolution": null
+    }
+   ],
+   "nearby": []
+  },
+  {
+   "code": "1108783648",
+   "name": "Amboanjo",
+   "in_extract": true,
+   "duplicates": [
+    {
+     "code": "1108783631",
+     "name": "Amboanjo",
+     "distance_m": 21,
+     "status": "not_managed",
+     "resolution": null
+    }
+   ],
+   "nearby": []
+  },
+  {
+   "code": "1108783662",
+   "name": "Andilanatoby",
+   "in_extract": true,
+   "duplicates": [
+    {
+     "code": "1108783655",
+     "name": "Andilanatoby",
+     "distance_m": 9,
+     "status": "not_managed",
+     "resolution": null
+    }
+   ],
+   "nearby": []
+  }
+ ],
+ "duplicates": 6,
+ "unresolved": 6,
+ "unresolved_codes": [
+  "1108783569",
+  "1108783631",
+  "1108783655",
+  "928471757",
+  "929469223",
+  "929469247"
+ ],
+ "nearby": 11,
+ "resolved_by_absence": []
+}

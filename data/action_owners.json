@@ -436,6 +436,14 @@
   "act-wq-retest": {
    "deadline": null,
    "owner": "Lanja Randriamanantena / MadAvance"
+  },
+  "act-enduro-link-wp-systems": {
+   "deadline": null,
+   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits"
+  },
+  "act-moramanga-system-dedupe": {
+   "deadline": null,
+   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits"
   }
  },
  "orphan_rows": {
@@ -462,7 +470,7 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 57,
+   "auto": 59,
    "evidence": 46,
    "manual": 28
   },
@@ -641,6 +649,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-enduro-link-wp-systems": {
+    "type": "auto",
+    "closes_when": "closes when every water point in Endur'O's mWater group has its parent water system set, read live from mWater at each build",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
    },
    "act-enduro-move-register-fully": {
     "type": "auto",
@@ -942,6 +957,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-25"
+   },
+   "act-moramanga-system-dedupe": {
+    "type": "auto",
+    "closes_when": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-28"
    },
    "act-move-stroke-test-sop": {
     "type": "evidence",

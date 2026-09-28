@@ -227,6 +227,9 @@ GENERATED = {
     'METRICS.marolita_spelling_records': 'render_datasets',
     'METRICS.test_kiosks_in_register': 'render_datasets',
     'METRICS.enduro_sites_unregistered': 'render_datasets',
+    'METRICS.enduro_points_total': 'render_datasets',
+    'METRICS.enduro_points_without_system': 'render_datasets',
+    'METRICS.moramanga_duplicates_unresolved': 'render_datasets',
     'METRICS.smart_taps_unbound': 'render_datasets',
     'METRICS.smart_meters_without_certificate': 'render_datasets',
     'METRICS.managed_kiosk_wq_results': 'render_datasets',
@@ -283,6 +286,8 @@ WHOLE = {
     'ACTCOND': 'render_datasets',   # data-kind conditions, one key per action
     # the piped water-quality figures, keyed by system code
     'PIPEDWQ': ('rebuild_piped_wq', 'render_datasets'),
+    # duplicate system records beside the four Moramanga systems
+    'MORADUP': ('moramanga_dedupe', 'render_datasets'),
     # parent actions' closed steps, keyed by action id
     'ACTKIDS': ('eval_conditions', 'render_datasets'),
 }

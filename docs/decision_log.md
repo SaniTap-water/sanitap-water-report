@@ -1264,3 +1264,20 @@ code) is a cross-check only, and 1.2.3 (GPS) is ignored.
 - The piped sampling form is a new extract (`wq_sampling_piped.json`). It stays out of the form
   snapshot until its duplicated code 1.7 is fixed in the portal, because the snapshot check fails
   on a reused code. The fix is in the same form-change document.
+
+## 28 September 2026 — Adriaan Mol: bottle IDs by hand; Endur'O system links and Moramanga duplicates
+
+- **Cathy writes the water point ID on each bottle by hand.** Pre-printed stickers are hard to get
+  in Antananarivo, so the bottle-label sheet is optional. The tap plate, or the ID painted or
+  stencilled on the tap, is the reference she copies from. A wrong ID is caught by the pairing:
+  the result is left unpaired and flagged (`docs/labels/README.md`). The tap plates, the list and
+  the README are also in OneDrive, `Clean Water - Documents/General/Water Technical/Water Quality
+  Testing/Piped WQ labels/`; the bottle-label PDF is not.
+- **Two new actions, owner Endur'O with MadAvance IT (Lanja) for the mWater edits.** Both close on
+  a count read each build, so their closure type is *auto*:
+  - `act-enduro-link-wp-systems` closes when every water point in Endur'O's mWater group has its
+    parent system set, read live from mWater;
+  - `act-moramanga-system-dedupe` closes when every same-name duplicate system record beside the
+    four Moramanga systems has left mWater or carries a note under `resolutions` in
+    `data/moramanga_system_dedupe.json` (`tools/moramanga_dedupe.py`).
+- Nothing in mWater was changed.

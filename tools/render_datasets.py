@@ -70,6 +70,8 @@ SETS = {
     "VMAP": ("docs", "methodology_version_map.md"),
     # the piped water-quality figures (tools/rebuild_piped_wq.py)
     "PIPEDWQ": ("data", "piped_wq.json"),
+    # duplicate system records beside the Moramanga systems (tools/moramanga_dedupe.py)
+    "MORADUP": ("data", "moramanga_system_dedupe.json"),
     # parent actions: how many of their steps have closed (tools/eval_conditions.py)
     "ACTKIDS": ("data", "action_state.json"),
 }

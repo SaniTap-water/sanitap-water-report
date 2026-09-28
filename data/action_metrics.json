@@ -31,6 +31,16 @@
    "source": "local",
    "value": 1
   },
+  "enduro_points_total": {
+   "says": "water points in Endur'O's mWater group",
+   "source": "mWater",
+   "value": 182
+  },
+  "enduro_points_without_system": {
+   "says": "water points in Endur'O's mWater group with no parent water system set",
+   "source": "mWater",
+   "value": 178
+  },
   "enduro_sites_outside_mwater": {
    "says": "Endur'O managed sites not yet represented in mWater (not computable: 'NoneType' object has no attribute 'group')",
    "source": "local",
@@ -110,6 +120,11 @@
    "says": "borehole-progress records on the Moramanga deployment never submitted",
    "source": "local",
    "value": 4
+  },
+  "moramanga_duplicates_unresolved": {
+   "says": "duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note",
+   "source": "local",
+   "value": 6
   },
   "photographs_misfiled": {
    "says": "photographs filed on a calendar question that are not calendars",
