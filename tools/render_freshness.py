@@ -54,8 +54,11 @@ def caption():
         if not v.get("page"):
             continue
         tag = (f' &mdash; <b><span data-fig="FRESH.per_source[\'{k}\'].behind_days">{v["behind_days"]}</span> days behind</b>'
-               if v.get("behind_days") else " &mdash; current")
-        bits.append(f'{NAMES.get(k, k)} to {nice(v["page"])}{tag}')
+               if v.get("behind_days") else ", nothing newer in mWater")
+        # the date is the NEWEST RECORD, not the date it was pulled: saying
+        # "repairs to 22 September - current" beside a pull dated the 28th read
+        # as a contradiction (28 Sep 2026)
+        bits.append(f'{NAMES.get(k, k)}: newest record {nice(v["page"])}{tag}')
     body = "; ".join(bits)
     import build_config as _bc
     act = _bc.load()["activity"]

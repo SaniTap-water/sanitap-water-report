@@ -3,8 +3,8 @@
  "tables": {
   "over6": {
    "source": "PUMPS on this page, built each run from the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>), the preventive-maintenance form <span class=\"mono\">de26d89a…</span> (<span class=\"mono\">pm.csv</span>), the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>), the call-centre form <span class=\"mono\">c08b3fe2…</span> (<span class=\"mono\">appel_signalement_pannes.csv</span>), the water-quality results form <span class=\"mono\">7b33c5d7…</span> (<span class=\"mono\">wq_results.json</span>) and the WorldPop allocation run (SDWS 1).",
-   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>. Water quality <span data-fig=\"PULLS['wq_results.json'].pulled\"></span>.",
-   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose last maintenance visit or repair is more than six months before the newest activity date in the extracts. Pumps never visited are counted separately, not listed here.",
+   "extracted": "Pulled from mWater on these dates &mdash; the newest record in each can be earlier: register <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>. Water quality <span data-fig=\"PULLS['wq_results.json'].pulled\"></span>.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose maintenance clock is more than six months old at the newest activity date in the extracts: it runs from the last maintenance visit or repair, or, for a pump never visited, from its rehabilitation or construction date (shown as &ldquo;never&rdquo; in Last visit). Pumps with no works record of any kind have no clock; they are counted separately, not listed here.",
    "columns": "<b>Last visit</b>: the later of the last preventive visit and the last repair. <b>Days</b>: from that visit to the newest activity date in the extracts. <b>Last status</b>: the latest answered status by date across call, visit and repair records, the call winning a same-day tie (tools/build_call_tables.py). <b>People</b>: the pump&rsquo;s WorldPop allocation after its capacity cap. <b>Last WQ</b>: the date of the latest SDWS 3 result, marked fail when E. coli was above the pass threshold."
   },
   "itin": {
@@ -15,21 +15,21 @@
   },
   "downtbl": {
    "source": "DOWN on this page, written each run by tools/build_call_tables.py from the call-centre form <span class=\"mono\">c08b3fe2…</span> (<span class=\"mono\">appel_signalement_pannes.csv</span>), the preventive-maintenance form <span class=\"mono\">de26d89a…</span> (<span class=\"mono\">pm.csv</span>) and the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>), joined to the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>).",
-   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
+   "extracted": "Pulled from mWater on these dates &mdash; the newest record in each can be earlier: register <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
    "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose latest answered status is &ldquo;down&rdquo;.",
    "columns": "<b>Reported</b>: the date of the record that set the status. <b>Days down</b>: from that date to the build&rsquo;s cut-off date. <b>Via</b>: which kind of record set it. <b>People</b>: the pump&rsquo;s WorldPop allocation after its cap."
   },
   "parttbl": {
    "source": "PARTIAL on this page, written each run by tools/build_call_tables.py from the same three activity forms as the down list, joined to the mWater water-point register, MadAvance group <span class=\"mono\">aaaf0a14…</span> (<span class=\"mono\">wp_madavance.csv</span>).",
-   "extracted": "Register pulled <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
+   "extracted": "Pulled from mWater on these dates &mdash; the newest record in each can be earlier: register <span data-fig=\"PULLS['wp_madavance.csv'].pulled\"></span>; maintenance <span data-fig=\"PULLS['pm.csv'].pulled\"></span>; repairs <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; call centre <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>.",
    "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is a pump whose latest answered status is &ldquo;partially working&rdquo;; the buttons above split service requests from reduced performance.",
    "columns": "<b>Reported</b>: the date of the record that set the status. <b>Status</b>: service request or reduced performance, from the call&rsquo;s issue question where it was answered, otherwise carried forward, never invented. <b>Comment</b>: the caller&rsquo;s own words."
   },
   "opentbl": {
-   "source": "OPENREP on this page: breakdown reports from the call centre with no repair recorded since. It is stored in the page; no build step recomputes its rows, and it is on the recorded ungenerated backlog.",
-   "extracted": "The call-centre and repair extracts were pulled <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span> and <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; the rows are as stored.",
-   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is an open down-report with no later repair record.",
-   "columns": "<b>Days open</b>: from the report to the date the list was built. <b>Latest status</b>: the pump&rsquo;s latest recorded status."
+   "source": "OPENREP on this page, rebuilt every build by tools/build_call_tables.py from the call-centre and repair extracts: a managed pump reported down to the call centre since 1 March 2026 with no repair record, on either repair source, dated on or after that report.",
+   "extracted": "The call-centre and repair extracts were pulled <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span> and <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>; the rows are rebuilt from them.",
+   "filter": "The actively managed portfolio only &mdash; pumps we maintain and that serve people, broken ones included &mdash; filtered to the scope selected at the top of the page. A row is an open down-report with no repair record dated on or after it. A repair record dated the same day as the report closes it here, although the status rule lets a call win over a repair on a shared date, so a pump can be down in the list above and not open here (a repair was recorded that day, so it is not waiting for one).",
+   "columns": "<b>Reported down</b>: the earliest such report. <b>Days open</b>: from that report to the build date. <b>Latest status</b>: the pump&rsquo;s current status, by the same rule as the down list above."
   },
   "poptbl": {
    "source": "PUMPS and the WorldPop allocation (SDWS 1) on this page, run on WorldPop R2025A with the barrier clip and capacity caps; the roof-count census from roof-count form <span class=\"mono\">8aa2dd78…</span> (<span class=\"mono\">roof_count.json</span>).",
@@ -46,7 +46,7 @@
   "rettbl": {
    "source": "REG.retired on this page: functionality reports marking points retired, copied from a form this build does not pull. No build step recomputes it; it is on the recorded ungenerated backlog.",
    "extracted": "As copied; the form is not in the build&rsquo;s extract set.",
-   "filter": "Retired-point reports on MadAvance-managed points, filtered by scope.",
+   "filter": "Functionality reports on points in MadAvance&rsquo;s districts, filtered by scope. They include points outside the managed portfolio, such as abandoned points and rope pumps: this table shows what the report says, not what this page counts.",
    "columns": "Every column is the report&rsquo;s own field; nothing is computed."
   },
   "corrtbl": {
@@ -100,7 +100,7 @@
   "ttr": {
    "source": "TTRQ on this page, from <span class=\"mono\">data/ttr_table.json</span>, computed each run by tools/render_ttr_table.py from the repair-after-breakdown form <span class=\"mono\">958b4763…</span> (<span class=\"mono\">reparation_apres_panne.csv</span>).",
    "extracted": "Repairs pulled <span data-fig=\"PULLS['reparation_apres_panne.csv'].pulled\"></span>.",
-   "filter": "Final repair records on actively managed pumps that carry both a notification date and a completion date.",
+   "filter": "Final repair records that carry both a notification date and a completion date, on any water point: rows by the managed pump&rsquo;s site, and one row for repairs on points outside the managed register, so the rows add up to the total.",
    "columns": "<b>Median</b>, <b>p90</b>, <b>Mean</b>, <b>Max</b>: days from breakdown notified to repair completed, over the row&rsquo;s records."
   },
   "sdws25": {
@@ -112,19 +112,19 @@
   "calcov": {
    "source": "The gardien-calendar photograph inventory from mWater, machine-read by tools/read_year_ocr.py into <span class=\"mono\">data/calendar_extraction_figures.json</span> and <span class=\"mono\">data/gardien_calendar_coverage.csv</span>.",
    "extracted": "Reader run of 2026-09-20 over the photographs then on file.",
-   "filter": "Actively managed points in the two carbon sites, one row per site.",
+   "filter": "Points in the managed register on the custody date, one row per site, Marolinta included; the register has gained a point since, so the total can be one short of today&rsquo;s fleet.",
    "columns": "<b>With a calendar</b>: points with at least one calendar photograph. <b>None ever</b>: points with none. <b>Older than six months</b>: points whose latest calendar photograph is more than six months old. <b>Coverage</b>: with a calendar &divide; points."
   },
   "calstrata": {
    "source": "<span class=\"mono\">data/calendar_stratum_figures.json</span>, computed by tools/calendar_stratum.py from the calendar reader&rsquo;s outputs.",
    "extracted": "Reader outputs of 2026-09-18 to 2026-09-20; stratum computed 2026-09-23.",
-   "filter": "Point-years on the day-call basis with at least the minimum observed window stated above the table.",
+   "filter": "Point-years on the day-call basis with at least the minimum observed window stated above the table. The portfolio row is every such point-year, including the few on points not in the managed register, which have their own row.",
    "columns": "<b>Mean implied DO</b> and <b>Median</b>: implied days operational per point-year, after subtracting the false-positive floor. <b>Before the floor</b>: the same mean without that subtraction."
   },
   "caldim": {
    "source": "<span class=\"mono\">data/calendar_stratum_figures.json</span>, computed by tools/calendar_stratum.py.",
    "extracted": "Stratum computed 2026-09-23 from reader outputs of 2026-09-18 to 2026-09-20.",
-   "filter": "Actively managed points in the carbon sites, split by each dimension in turn.",
+   "filter": "Points in the managed register on the custody date, Marolinta included, split by each dimension in turn into those with day calls on the day-call basis and those without. Points, not point-years.",
    "columns": "<b>Evidenced</b>: points with day calls on the day-call basis. <b>Not</b>: the rest. <b>% evidenced</b>: evidenced &divide; (evidenced + not)."
   },
   "calyear": {

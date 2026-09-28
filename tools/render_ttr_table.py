@@ -47,6 +47,9 @@ def stats(v):
             "max": v[-1]}
 
 
+OTHER = "Points outside the managed register"
+
+
 def compute():
     import populations as P
     site = {p["wp"]: p["site"] for p in P._page_pumps()}
@@ -75,9 +78,12 @@ def compute():
     out = {"note": "Time to repair on the live repair form, final responses "
                    "with both dates; written by tools/render_ttr_table.py.",
            "all": stats([d for d, _s, _q in rows]),
-           "by_site": {s: stats([d for d, ss, _q in rows if ss == s])
-                       for s in ("Maroantsetra", "Fort-Dauphin")
-                       if any(ss == s for _d, ss, _q in rows)},
+           # every repair lands in a row, so the site rows add up to the total:
+           # a repair on a point outside the two districts has its own row
+           # (it was dropped, and the rows summed one short, until 28 Sep 2026)
+           "by_site": {s: stats([d for d, ss, _q in rows if (ss if ss in ("Maroantsetra", "Fort-Dauphin") else OTHER) == s])
+                       for s in ("Maroantsetra", "Fort-Dauphin", OTHER)
+                       if any((ss if ss in ("Maroantsetra", "Fort-Dauphin") else OTHER) == s for _d, ss, _q in rows)},
            "by_quarter": {q: stats([d for d, _s, qq in rows if qq == q])
                           for q in sorted({q for *_x, q in rows})},
            "facts": facts}
@@ -91,7 +97,7 @@ def block(t):
         return (f"      <tr>{lab}<td{c}>{s['n']}</td><td{c}>{s['median']}</td>"
                 f"<td{c}>{s['p90']}</td><td{c}>{s['mean']}</td><td{c}>{s['max']}</td></tr>")
     a = t["all"]
-    lines = [f"      <tr><td><b>All recorded repairs</b></td><td class=\"num\"><b>{a['n']}</b></td>"
+    lines = [f"      <tr><td><b>Live repair form, final responses</b></td><td class=\"num\"><b>{a['n']}</b></td>"
              f"<td class=\"num\"><b>{a['median']}</b></td><td class=\"num\"><b>{a['p90']}</b></td>"
              f"<td class=\"num\">{a['mean']}</td><td class=\"num\">{a['max']}</td></tr>"]
     lines += [row(s, v) for s, v in t["by_site"].items()]

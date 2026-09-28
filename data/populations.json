@@ -49,7 +49,7 @@
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
   },
   {
-   "detail": "6 never rehabilitated = 5 Marolinta (works on the borehole form) + 1 recorded + 0 unexplained",
+   "detail": "6 never rehabilitated = 5 Marolinta (works on the borehole-progress form, which has no success answer, or none yet) + 1 recorded + 0 unexplained",
    "holds": true,
    "internal": false,
    "step": "POINTS: every fleet point with no successful rehabilitation is accounted for"
@@ -244,7 +244,7 @@
      "the Marolinta works, which are recorded only here"
     ]
    ],
-   "rule": "Water points with a first-rehabilitation record on the works form, whatever the outcome. One point can carry more than one such record; the point is counted once.",
+   "rule": "Water points with a first-rehabilitation record on any of the three forms below - the retired combined works form, the current first-rehabilitation form, and the borehole-progress form, whose works include new constructions - whatever the outcome. One point can carry more than one such record; the point is counted once.",
    "size": 787,
    "unit": "points"
   },
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 475,
+   "size": 476,
    "unit": "points"
   },
   "pm_visits": {
@@ -557,11 +557,6 @@
      "Clean Water || Première réhabilitation (current form)",
      "63747997e70e478fbb2ebf71581ceeb0",
      "the live successor"
-    ],
-    [
-     "Clean Water || Suivi avancement nouveau forage et réhabilitation",
-     "8764843c94484f5b984078c68f13b2ca",
-     "the Marolinta works, which are recorded only here"
     ]
    ],
    "rule": "Of the first-rehabilitated points, those whose record answers Yes to “Verify: did the repair or maintenance succeed?”. A point with any successful first-rehabilitation record counts as successful.",

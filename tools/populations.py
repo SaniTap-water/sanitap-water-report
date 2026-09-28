@@ -328,9 +328,11 @@ def register_records():
 @population(
     name="First-rehabilitated points",
     unit="points",
-    rule="Water points with a first-rehabilitation record on the works form, "
-         "whatever the outcome. One point can carry more than one such record; "
-         "the point is counted once.",
+    rule="Water points with a first-rehabilitation record on any of the three "
+         "forms below - the retired combined works form, the current "
+         "first-rehabilitation form, and the borehole-progress form, whose works "
+         "include new constructions - whatever the outcome. One point can carry "
+         "more than one such record; the point is counted once.",
     reads=[("Clean Water || Première réhabilitation / Entretien préventif / "
             "Réparation après panne", F_RETIRED_COMBINED,
             'question "Type de travaux" = "Première réhabilitation"'),
@@ -365,17 +367,19 @@ def first_rehabilitated():
             'question "Vérifier : La réparation ou la maintenance a réussi ?" '
             '= Oui'),
            ("Clean Water || Première réhabilitation (current form)",
-            F_FIRST_REHAB, "the live successor"),
-           ("Clean Water || Suivi avancement nouveau forage et réhabilitation",
-            F_MAR, "the Marolinta works, which are recorded only here")],
+            F_FIRST_REHAB, "the live successor")],
+    # The borehole-progress form (Marolinta) is NOT read here: it records
+    # completion differently and carries no success answer. Until 28 Sep 2026
+    # this declaration listed it, and the page said a Marolinta point with a
+    # rehabilitation on that form was "not rehabilitated" without saying why.
     decided="A rehabilitation that did not succeed does not put a point into "
             "the maintained fleet.",
     decided_on="methodology 2.2.1(d)",
     derives_from=["first_rehabilitated"])
 def rehabilitated_successfully():
-    """Same three sources. The successor form carries the same success
-    question; the Marolinta borehole form records completion differently and
-    is unioned on the point, not on that answer."""
+    """The retired combined form and its successor, which carry the success
+    question. The Marolinta borehole form records completion differently and
+    has no success answer, so it is not read."""
     reg = register_records()
     pts = {_point_of(r) for r in _combined()
            if _answer(r, Q_TYPE) == C_FIRST_REHAB
@@ -1068,8 +1072,8 @@ def chain():
     # a point already reported as missing from the register would otherwise be
     # counted twice - once as an orphan and again as never rehabilitated
     # Points in the fleet with no successful first-rehabilitation record.
-    # Marolinta's works are on the borehole-progress form, so they are
-    # expected here; 782134540 is the Maroantsetra Canzee that was never
+    # Marolinta's points are new boreholes, never rehabilitations, so they are
+    # expected here (only some of them appear on the borehole-progress form yet); 782134540 is the Maroantsetra Canzee that was never
     # first-rehabilitated and is recorded as such. Anything else is a finding.
     never = (fleet - ok) - orphan
     KNOWN_NEVER = {"782134540"}
@@ -1079,7 +1083,7 @@ def chain():
         "accounted for",
         not unexplained,
         f"{len(never)} never rehabilitated = {len(never & mar)} Marolinta "
-        f"(works on the borehole form) + {len(never & KNOWN_NEVER)} recorded "
+        f"(works on the borehole-progress form, which has no success answer, or none yet) + {len(never & KNOWN_NEVER)} recorded "
         f"+ {len(unexplained)} unexplained"))
     if unexplained:
         gaps.append({

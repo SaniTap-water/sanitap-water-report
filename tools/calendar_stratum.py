@@ -50,8 +50,14 @@ def mtime(p):
 
 
 def band(n):
+    # a point with no photograph is its own band: until 28 Sep 2026 it fell
+    # into "1-2", and the page added a separate "none" row on top, so the
+    # points with no calendar photograph were counted twice
     n = int(n or 0)
-    return "1-2" if n <= 2 else "3-5" if n <= 5 else "6+"
+    return "none" if n == 0 else "1-2" if n <= 2 else "3-5" if n <= 5 else "6+"
+
+
+NOT_REG = "not in the managed register"
 
 
 def build():
@@ -65,7 +71,11 @@ def build():
         if obs < _bc.load()["calendar"]["min_observed_days"]:
             continue
         rate = int(r["days_not_operational"]) / obs
-        rows.append({"wp": r["water_point"], "site": r["site"], "year": y,
+        # the site is the REGISTER's, as for every other figure on the page; a
+        # point the reader read that is not in the managed register is its
+        # own row, so the site rows add up to the portfolio (28 Sep 2026)
+        site = cov[r["water_point"]]["site"] if r["water_point"] in cov else NOT_REG
+        rows.append({"wp": r["water_point"], "site": site, "year": y,
                      "do": n * (1 - max(rate - floor, 0)), "raw": n * (1 - rate)})
 
     def stratum(rs):

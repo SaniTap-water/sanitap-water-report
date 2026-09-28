@@ -127,7 +127,7 @@ def load(fn, qs):
                    if e.get("entityType") == "water_point" and e.get("value")), None)
         if not wp:
             continue
-        out[str(wp)].append(dict(rid=r["_id"], ts=ts, date=ts[:10],
+        out[str(wp)].append(dict(rid=r["_id"], ts=ts, date=ts[:10], rstatus=r.get("status"),
                                  **{q: (data.get(q) or {}).get("value") for q in qs}))
     for k in out:
         out[k].sort(key=lambda x: x["ts"])
@@ -203,6 +203,48 @@ def pumps_from_page():
     return json.loads(t[m.end():t.index("];", m.end()) + 1])
 
 
+OPEN_SINCE = "2026-03-01"
+
+
+def open_reports(pumps, today):
+    """Open breakdown reports, rebuilt from the extracts every build.
+
+    A managed pump is open when a call-centre contact since OPEN_SINCE said it
+    was NOT working ("Is the pump currently working?" = No) and no repair
+    record, on either repair source, is dated on or after that report. The row
+    carries the earliest such report and the pump's CURRENT status from the
+    same rule as the down list, so the two tables cannot disagree about a
+    pump. Until 28 Sep 2026 the rows were stored and never rebuilt: four of
+    them showed "down" for pumps the down list no longer held, and a carried
+    "32 of 122" beside them came from no rule anyone could reproduce."""
+    import populations as P
+    managed = {q["wp"]: q for q in pumps}
+    calls = load("appel_signalement_pannes.csv", [Q_CALL])
+    rep = collections.defaultdict(list)
+    for _src, r in P._repair_records():
+        if (r.get("status") or "final") in ("final", "pending"):
+            rep[P._point_of(r)].append(str(r.get("submittedOn") or "")[:10])
+    reports, reported, first_open = 0, set(), {}
+    for wp, rs in calls.items():
+        if wp not in managed:
+            continue
+        for r in rs:
+            if (r["date"] >= OPEN_SINCE and M_CALL.get(r[Q_CALL]) == "down"
+                    and (r.get("rstatus") or "final") in ("final", "pending")):
+                reports += 1
+                reported.add(wp)
+                if not any(d >= r["date"] for d in rep.get(wp, [])):
+                    first_open[wp] = min(first_open.get(wp, "9999"), r["date"])
+    rows = []
+    for wp, d in sorted(first_open.items(), key=lambda kv: kv[1]):
+        q = managed[wp]
+        rows.append({"wp": wp, "date": d, "site": q["site"], "commune": q.get("commune"),
+                     "age": (today - datetime.date.fromisoformat(d)).days,
+                     "status": q["status"]})
+    return rows, {"since": OPEN_SINCE, "reports": reports, "pumps": len(reported),
+                  "open": len(rows)}
+
+
 def apply_to_page(rows, cut):
     """Write the four tables into index.html's inlined data.
 
@@ -261,15 +303,19 @@ def apply_to_page(rows, cut):
                             "comments": c or "",
                             "rid": rows[q["wp"]].get("rid"),
                             "status": st or "not classified"})
+    openrep, calldown = open_reports(pumps, today)
     out = idx
     for m, val, close in ((mp, pumps, "];"), (ms, S, "};")):
         mm = re.search(r"\bconst %s\s*=\s*" % ("PUMPS" if close == "];" and val is pumps else "S"), out)
         out = (out[:mm.end()] + json.dumps(val, separators=(", ", ": "))
                + out[out.index(close, mm.end()) + 1:])
-    for name, val in (("DOWN", down), ("PARTIAL", partial)):
+    for name, val in (("DOWN", down), ("PARTIAL", partial), ("OPENREP", openrep)):
         mm = re.search(r"\bconst %s\s*=\s*" % name, out)
         out = (out[:mm.end()] + json.dumps(val, separators=(", ", ": "))
                + out[out.index("];", mm.end()) + 1:])
+    mm = re.search(r"\bconst CALLDOWN\s*=\s*", out)
+    out = (out[:mm.end()] + json.dumps(calldown, separators=(", ", ": "))
+           + out[out.index("};", mm.end()) + 1:])
     io.open(p, "w", encoding="utf8").write(out)
     return len(down), len(partial)
 

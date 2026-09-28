@@ -1009,7 +1009,7 @@
    },
    "act-no-works-record": {
     "type": "auto",
-    "closes_when": "closes when every point in the register has a works record of some kind",
+    "closes_when": "closes when every managed pump has a works record of some kind",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1199,8 +1199,8 @@
    "act-route-plans": {
     "type": "auto",
     "closes_when": "closes when every site with overdue pumps has a route plan with stops",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-09-28",
     "first_seen": "2026-09-21"
    },
    "act-run-sdws-26-premises": {

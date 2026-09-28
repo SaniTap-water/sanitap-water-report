@@ -478,7 +478,7 @@
   "kind": "data",
   "metric": "points_no_works_record",
   "op": "==",
-  "says": "closes when every point in the register has a works record of some kind",
+  "says": "closes when every managed pump has a works record of some kind",
   "target": 0,
   "when_satisfied": "OK"
  },

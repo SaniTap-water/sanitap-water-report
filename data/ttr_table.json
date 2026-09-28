@@ -50,6 +50,13 @@
    "median": 1,
    "n": 134,
    "p90": 9
+  },
+  "Points outside the managed register": {
+   "max": 2,
+   "mean": 2,
+   "median": 2,
+   "n": 1,
+   "p90": 2
   }
  },
  "facts": {

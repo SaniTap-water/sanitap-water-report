@@ -187,6 +187,36 @@ audit until 23 September. Its nine population fields are now written each
 build by `tools/sync_reg_populations.py`; the other twelve are group D of the
 backlog, each classed *declared* or *neither*.
 
+## Every number means what its label says
+
+Standing rule, Adriaan Mol, 28 September 2026 (`docs/decision_log.md`). It was written after
+"Pumps reported down or reduced: 5" sat beside "21 hand pumps reported down": the 5 was the
+call-centre contact count, copied into another key (`breakdown_reports = calls`) and rendered under
+a meaning it did not have.
+
+* **No figure is copied or aliased from another.** Each figure is computed from its own records.
+  `check_consistency.py` (block 7bd) fails the build if a build tool assigns one stored figure to
+  another key, or if the page's own script does; the handful of assignments that are not figures
+  are named there with their reason. A value typed into prose must never be bound to a live figure
+  because the numbers happened to match (a "732 chemical test results" was once bound to the
+  corrected rehabilitation count that way).
+* **A windowed count and a current total are labelled as such.** A tile that counts events in a
+  window says so and names the window; a current total says what state it counts ("down now, by
+  the last record on each pump"). Where both sit together, the page reconciles them in words.
+* **Say which set a figure is over.** Records or points; submitted or final; this form or both
+  forms; the carbon fleet or the maintained fleet; per image or per pump-period; on file in mWater
+  or in the backup. Two figures over different sets that could be read as the same thing carry the
+  distinction beside them.
+* **A dated figure stays dated.** A figure measured on a day (an overlap, a reconciliation, a
+  census) is shown with its date or as a retired value, never re-bound to today's live count.
+* **Parts add up to their total, or the page says why not.** A table's rows sum to its total row;
+  a split names every part, including "not classified" and "not in the managed register".
+* **Nothing stored stands in for something computable.** A figure the build can compute is
+  computed every build; a stored one goes on the dated, shrink-only backlog and says so on the page.
+* **Checked by a reader.** Before a release that changes figures, the rendered page is read by a
+  reviewer with no build context, looking for unexplained contradictions; what they find is fixed
+  or explained on the page.
+
 ## Formatting and readability
 
 Standing rule, Adriaan Mol, 28 September 2026 (`docs/decision_log.md`). It applies to every

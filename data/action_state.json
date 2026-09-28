@@ -184,7 +184,7 @@
   },
   "act-down-no-repair": {
    "evaluated": "2026-09-28",
-   "evidence": "downs_without_repair = 30 (call-centre down reports with no repair record); target == 0",
+   "evidence": "downs_without_repair = 31 (managed pumps reported down to the call centre since 1 March with no repair record since); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every call-centre down report has a repair record or a closure note",
@@ -643,10 +643,10 @@
   },
   "act-no-works-record": {
    "evaluated": "2026-09-28",
-   "evidence": "points_no_works_record = 57 (water points with no rehabilitation, construction, visit or repair); target == 0",
+   "evidence": "points_no_works_record = 6 (managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date); target == 0",
    "kind": "data",
    "satisfied": false,
-   "says": "closes when every point in the register has a works record of some kind",
+   "says": "closes when every managed pump has a works record of some kind",
    "when_satisfied": "OK"
   },
   "act-per-diem": {
@@ -863,10 +863,11 @@
    "when_satisfied": "OK"
   },
   "act-route-plans": {
+   "closed_since": "2026-09-28",
    "evaluated": "2026-09-28",
-   "evidence": "sites_without_route_plan = 1 (sites with overdue pumps and no catch-up route plan); target == 0",
+   "evidence": "sites_without_route_plan = 0 (sites with overdue pumps and no catch-up route plan); target == 0",
    "kind": "data",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when every site with overdue pumps has a route plan with stops",
    "when_satisfied": "OK"
   },
@@ -1094,7 +1095,7 @@
   },
   "act-visit-collapse": {
    "evaluated": "2026-09-28",
-   "evidence": "points_over_6_months = 475 (points with no maintenance visit for more than six months); target <= 50",
+   "evidence": "points_over_6_months = 476 (points with no maintenance visit for more than six months); target <= 50",
    "kind": "data",
    "satisfied": false,
    "says": "closes when fewer than 50 points are more than six months without a visit",

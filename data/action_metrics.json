@@ -12,9 +12,9 @@
    "value": 0
   },
   "downs_without_repair": {
-   "says": "call-centre down reports with no repair record",
+   "says": "managed pumps reported down to the call centre since 1 March with no repair record since",
    "source": "local",
-   "value": 30
+   "value": 31
   },
   "duplicate_question_codes": {
    "says": "question codes reused inside a single mWater form",
@@ -167,14 +167,14 @@
    "value": 62
   },
   "points_no_works_record": {
-   "says": "water points with no rehabilitation, construction, visit or repair",
+   "says": "managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date",
    "source": "local",
-   "value": 57
+   "value": 6
   },
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 475
+   "value": 476
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -199,7 +199,7 @@
   "sites_without_route_plan": {
    "says": "sites with overdue pumps and no catch-up route plan",
    "source": "local",
-   "value": 1
+   "value": 0
   },
   "smart_meters_without_certificate": {
    "says": "installed smart-tap meters with no calibration certificate on file",

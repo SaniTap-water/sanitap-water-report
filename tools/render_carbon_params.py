@@ -50,6 +50,19 @@ FORM_EXTRACT = {
 }
 
 
+
+def pct_text(cov):
+    """A share as a reader should see it: whole where it is whole, one decimal
+    otherwise, and never rounded up to 100 when it is below it (408 of 410
+    read "100%" until 28 Sep 2026). Rounded to the nearest
+    tenth like every other share on the page, so one fraction never shows
+    two values (297 of 732 read 40.5% here and 40.6% elsewhere)."""
+    import math
+    if abs(cov - round(cov)) < 1e-9:
+        return f"{cov:.0f}"
+    t = f"{cov:.1f}"
+    return "99.9" if cov < 100 and t == "100.0" else t
+
 def esc(x):
     return (str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
 
@@ -112,14 +125,16 @@ def block():
             covcell = (f'<b><span data-fig="POPS.populations[\'{p["population"]}\'].size">'
                        f'</span></b> of <span data-fig="POPS.populations'
                        f'[\'{p["relevant"]}\'].size"></span>'
-                       f'<br><span class="muted">{cov:.0f}%</span>')
+                       f'<br><span class="muted"><span data-fig="(Math.min(Math.round(1000*POPS.populations[\'{p["population"]}\'].size/POPS.populations[\'{p["relevant"]}\'].size),POPS.populations[\'{p["population"]}\'].size<POPS.populations[\'{p["relevant"]}\'].size?999:1000)/10).toFixed(1)">{pct_text(cov)}</span>%</span>')
 
         also = p.get("also_from") or []
         alt = [(k, man.get(FORM_EXTRACT.get(k), {}).get("newest_submitted"))
                for k in also]
         alt = [(k, d) for k, d in alt if d]
         if not p.get("form"):
-            frcell = (f'<span class="muted">{esc(p.get("freshness_note") or "not collected")}'
+            # the note is repo-authored and may carry a live figure span
+            # (WPOPMETA.run): escaping it printed the span as text until 28 Sep 2026
+            frcell = (f'<span class="muted">{p.get("freshness_note") or "not collected"}'
                       f'</span>')
         elif not pulled:
             frcell = ('<span class="muted">the build does not pull this form, '
@@ -129,11 +144,14 @@ def block():
             frcell = (f'{esc(nice(newest))}<br><span class="muted">'
                       f'{age} {d} ago</span>')
         else:
-            frcell = '<span class="muted">no records on this form yet</span>'
+            frcell = ('<span class="muted">no records yet on the first form named'
+                      + (' (the others named do have records)' if alt else '')
+                      + '</span>')
         if alt:
             best = max(d for _k, d in alt)
             frcell += (f'<br><span class="muted" style="font-size:.86em">the evidence '
-                       f'behind the coverage is historic, newest {esc(nice(best))}</span>')
+                       f'behind the coverage is historic; the newest response of any kind on its '
+                       f'source form, not necessarily one of these records, is {esc(nice(best))}</span>')
 
         gap = (f'{esc(p["gap"])}' if p.get("gap")
                else '<span class="muted">&mdash;</span>')

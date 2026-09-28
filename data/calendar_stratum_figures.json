@@ -9,17 +9,17 @@
   },
   "Maroantsetra": {
    "mean_do": 353.6,
-   "mean_do_before_floor": 347.2,
+   "mean_do_before_floor": 347.3,
    "median_do": 356.7,
-   "point_years": 360,
-   "points": 259
+   "point_years": 361,
+   "points": 260
   },
-  "unmapped": {
-   "mean_do": 356.9,
-   "mean_do_before_floor": 351.5,
-   "median_do": 359.4,
-   "point_years": 4,
-   "points": 3
+  "not in the managed register": {
+   "mean_do": 354.2,
+   "mean_do_before_floor": 349.1,
+   "median_do": 353.7,
+   "point_years": 3,
+   "points": 2
   }
  },
  "by_year": {
@@ -93,7 +93,7 @@
   "photos": {
    "1-2": {
     "evidenced": 25,
-    "not": 163
+    "not": 101
    },
    "3-5": {
     "evidenced": 235,
@@ -102,6 +102,10 @@
    "6+": {
     "evidenced": 48,
     "not": 25
+   },
+   "none": {
+    "evidenced": 0,
+    "not": 62
    }
   },
   "pump": {

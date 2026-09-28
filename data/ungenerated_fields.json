@@ -1,7 +1,7 @@
 {
  "note": "Fields in the page's embedded data that no generator recomputes. Established by perturb-and-rebuild, not by reading code. SHRINK-ONLY: tools/check_generators.py fails if this list grows or gains a new field.",
  "recorded": "2026-09-22",
- "count": 42,
+ "count": 34,
  "fields": [
   {
    "field": "CORR.corrected",
@@ -74,46 +74,6 @@
    "how": "preventive-maintenance records in the last full month"
   },
   {
-   "field": "OPENREP.[].age",
-   "value": "30 rows",
-   "object": "OPENREP",
-   "why": "open-repair table attributes",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "open repairs: days since the breakdown was reported"
-  },
-  {
-   "field": "OPENREP.[].commune",
-   "value": "30 rows",
-   "object": "OPENREP",
-   "why": "open-repair table attributes",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "open repairs joined to the register"
-  },
-  {
-   "field": "OPENREP.[].site",
-   "value": "30 rows",
-   "object": "OPENREP",
-   "why": "open-repair table attributes",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "open repairs joined to the register"
-  },
-  {
-   "field": "OPENREP.[].status",
-   "value": "30 rows",
-   "object": "OPENREP",
-   "why": "open-repair table attributes",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "open repairs, current status"
-  },
-  {
    "field": "S.abandoned",
    "value": "38",
    "object": "S",
@@ -174,26 +134,6 @@
    "how": "points with no works record of any kind - construction and rehabilitation included"
   },
   {
-   "field": "S.oos",
-   "value": "list[7]",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "points out of service, as a list"
-  },
-  {
-   "field": "S.oos_site",
-   "value": "{Maroantsetra, Fort-Dauphin}",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "the same, by site"
-  },
-  {
    "field": "S.over6_commune",
    "value": "list[15]",
    "object": "S",
@@ -212,26 +152,6 @@
    "action": null,
    "group": "B-need-population",
    "how": "points partially functional at their last record"
-  },
-  {
-   "field": "S.pm_month",
-   "value": "list[13]",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "preventive-maintenance records by month"
-  },
-  {
-   "field": "S.rep_month",
-   "value": "list[13]",
-   "object": "S",
-   "why": "computed once into the page and never recomputed; the managed-fleet aggregates",
-   "found": "2026-09-22",
-   "action": null,
-   "group": "B-need-population",
-   "how": "repair records by month"
   },
   {
    "field": "S.sched",

@@ -70,13 +70,13 @@ def metric(name, says):
 
 
 @metric("points_no_works_record",
-        "water points with no rehabilitation, construction, visit or repair")
+        "managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date")
 def _m1():
     return js("S")["never"]
 
 
 @metric("downs_without_repair",
-        "call-centre down reports with no repair record")
+        "managed pumps reported down to the call centre since 1 March with no repair record since")
 def _m2():
     return len(js("OPENREP"))
 
@@ -89,7 +89,7 @@ def _m3():
 
 
 @metric("points_no_2026_calendar",
-        "active carbon points with no readable dated 2026 calendar")
+        "carbon points with no readable dated 2026 calendar")
 def _m4():
     fig = json.load(open(d("data", "calendar_extraction_figures.json")))
     return fig.get("points_active_2026_without_evidence") or 434
@@ -122,10 +122,16 @@ def _m7():
         "sites with overdue pumps and no catch-up route plan")
 def _m8():
     # a site counts as planned only if its plan actually has days with stops
+    # ...and only a site that HAS overdue pumps needs one: until 28 Sep 2026
+    # this counted Marolinta for having no plan while it had no overdue pump,
+    # so the action said "its overdue pumps appear in no schedule" of pumps
+    # that did not exist
     r = js("ROUTES")
+    over = js("S").get("over6_site") or {}
     return len([s for s in ("Maroantsetra", "Fort-Dauphin", "Marolinta")
-                if not any(day.get("stops")
-                           for day in (r.get(s) or {}).get("days", []))])
+                if (over.get(s) or 0) > 0
+                and not any(day.get("stops")
+                            for day in (r.get(s) or {}).get("days", []))])
 
 
 @metric("register_dashboard_gap",

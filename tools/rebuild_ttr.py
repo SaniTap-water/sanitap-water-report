@@ -67,6 +67,26 @@ def compute():
     return out, rows
 
 
+# The "time out of service" histogram and its per-site chips (S.oos, S.oos_site)
+# were stored figures no step recomputed: they summed to 607 while the tiles
+# above them were over 619, and the chips gave medians of 2 and 3 days against
+# the tiles' 1 and 2. They are computed here from the SAME timed repairs as the
+# tiles, so the section describes one set of repairs (28 Sep 2026).
+BANDS = [("Same day", 0, 0), ("1–2 d", 1, 2), ("3–7 d", 3, 7), ("8–14 d", 8, 14),
+         ("15–30 d", 15, 30), ("31–60 d", 31, 60), ("> 60 d", 61, 10 ** 9)]
+
+
+def oos(rows):
+    days = [d for d, _s, _y in rows]
+    bands = [[lab, sum(1 for d in days if lo <= d <= hi)] for lab, lo, hi in BANDS]
+    site = {}
+    for s in ("Maroantsetra", "Fort-Dauphin"):
+        v = [d for d, st, _y in rows if st == s]
+        site[s] = {"median": float(round(statistics.median(v), 1)) if v else None,
+                   "over7": sum(1 for d in v if d > 7)}
+    return bands, site
+
+
 def main():
     write = "--write" in sys.argv
     new, rows = compute()
@@ -95,6 +115,13 @@ def main():
     cur.update(new)
     out = (src[:m.end()] + json.dumps(cur, separators=(", ", ": "))
            + src[j + 1:])
+    bands, site = oos(rows)
+    ms = re.search(r"\bconst S\s*=\s*", out)
+    js_ = out.index("};", ms.end())
+    S = json.loads(out[ms.end():js_ + 1])
+    S["oos"], S["oos_site"] = bands, site
+    out = out[:ms.end()] + json.dumps(S, separators=(", ", ": ")) + out[js_ + 1:]
+    print(f"S.oos from the same {sum(n for _l, n in bands)} timed repairs: {bands}; by site {site}")
     open(PAGE, "w", encoding="utf8").write(out)
     print(f"\nindex.html: TTR rewritten, {len(OWNED)} fields computed")
     return 0

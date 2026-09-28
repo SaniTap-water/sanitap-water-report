@@ -24,6 +24,7 @@ OVERDUE_DAYS = _bc.load()["maintenance"]["overdue_after_days"]
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXPORTS = os.path.expanduser("~/mwater-exports")
+SUBMITTED = ("final", "pending")        # mWater: approved, or submitted and awaiting approval
 FORMS = {"pm": "pm.csv", "repair": "reparation_apres_panne.csv",
          "call": "appel_signalement_pannes.csv"}
 
@@ -36,12 +37,17 @@ def rows(name):
         return list(csv.DictReader(fh))
 
 
+LATEST_ID = {}     # code -> (date, response id) of its latest submitted visit
+
+
 def by_point(name):
-    """code -> sorted list of submission dates."""
+    """code -> sorted list of submission dates, submitted records only (a draft
+    or a rejected record is not a visit). The latest record's response id is
+    kept in LATEST_ID, so the last-visit date links to the record it came from."""
     out = {}
     for r in rows(name):
         d = str(r.get("submittedOn") or "")[:10]
-        if d[:2] != "20":
+        if d[:2] != "20" or (r.get("status") or "final") not in SUBMITTED:
             continue
         ents = r.get("entities") or ""
         try:
@@ -50,12 +56,22 @@ def by_point(name):
             ents = []
         for e in ents:
             if e.get("entityType") == "water_point" and e.get("value"):
-                out.setdefault(str(e["value"]), []).append(d)
+                code = str(e["value"])
+                out.setdefault(code, []).append(d)
+                ts = str(r.get("submittedOn") or "")
+                if r.get("_id") and ts >= LATEST_ID.get(code, ("", ""))[0]:
+                    LATEST_ID[code] = (ts, r["_id"])
     return {k: sorted(v) for k, v in out.items()}
 
 
 def counts(name, asof):
-    ds = [str(r.get("submittedOn") or "")[:10] for r in rows(name)]
+    # SUBMITTED records: final (approved) and pending (submitted, awaiting
+    # approval in mWater). A draft is not yet submitted and a rejected record
+    # was refused, so neither is counted. The tiles say "submitted"; the
+    # time-to-repair table, which counts approved records only, says so too
+    # (28 Sep 2026: the two used to sit side by side unlabelled).
+    ds = [str(r.get("submittedOn") or "")[:10] for r in rows(name)
+          if (r.get("status") or "final") in SUBMITTED]
     ds = [d for d in ds if d[:2] == "20"]
     def win(a, b):
         lo = (asof - datetime.timedelta(days=a)).isoformat()
@@ -63,6 +79,57 @@ def counts(name, asof):
         return sum(1 for d in ds if hi < d <= lo)
     wk, win_n = _bc.load()["activity"]["week_days"], _bc.load()["activity"]["window_days"]
     return [win(0, wk), win(wk, 2 * wk), win(0, win_n)]
+
+
+def monthly(since="2025-09"):
+    """[[YYYY-MM, submitted records], ...] for preventive visits and repairs."""
+    import collections
+    import populations as P
+    pm = collections.Counter(str(r.get("submittedOn") or "")[:7] for r in rows(FORMS["pm"])
+                             if (r.get("status") or "final") in SUBMITTED)
+    rp = collections.Counter(str(r.get("submittedOn") or "")[:7] for _src, r in P._repair_records()
+                             if (r.get("status") or "final") in SUBMITTED)
+    months = sorted(m for m in set(pm) | set(rp) if m >= since and m[:2] == "20")
+    return [[m, pm.get(m, 0)] for m in months], [[m, rp.get(m, 0)] for m in months]
+
+
+def down_reports(managed, asof):
+    """Distinct managed pumps that a call-centre contact reported NOT fully
+    working - "Is the pump currently working?" answered No or Partially - in
+    each window: [this week, previous week, last window_days].
+
+    This is a count of new reports in a window, not the pumps down now: a pump
+    reported down on Monday and repaired on Tuesday is in it, and a pump down
+    since June and not called about is not. The current total is S.status.down
+    (the last answered record on each pump). A "Partially" whose only reported
+    problem is a routine service request says the pump works, and is left out,
+    exactly as the status rule in build_call_tables.py leaves it out."""
+    import build_call_tables as B
+    calls = B.load(FORMS["call"], [B.Q_CALL, B.Q_PROBLEM])
+    wk, win_n = _bc.load()["activity"]["week_days"], _bc.load()["activity"]["window_days"]
+
+    def not_working(r):
+        s = B.M_CALL.get(r[B.Q_CALL])
+        if s == "down":
+            return True
+        if s != "partial":
+            return False
+        pr = r.get(B.Q_PROBLEM)
+        pr = pr if isinstance(pr, list) else ([pr] if pr else [])
+        return not (pr and all(x == B.C_SERVICE_REQUEST for x in pr))
+
+    def pumps(a, b, want=None):
+        lo = (asof - datetime.timedelta(days=a)).isoformat()
+        hi = (asof - datetime.timedelta(days=b)).isoformat()
+        return {wp for wp, rs in calls.items() if wp in managed
+                for r in rs if hi < r["date"] <= lo and not_working(r)
+                and (r.get("rstatus") or "final") in SUBMITTED
+                and (want is None or B.M_CALL.get(r[B.Q_CALL]) == want)}
+    this_wk = pumps(0, wk)
+    down = pumps(0, wk, "down")
+    return ([len(this_wk), len(pumps(wk, 2 * wk)), len(pumps(0, win_n))],
+            # this week, split: reported down / reported partially working only
+            [len(down), len(this_wk - down)])
 
 
 def main():
@@ -115,8 +182,15 @@ def main():
     week_old = dict(S.get("week") or {})
     week_new = {"pm": counts(FORMS["pm"], asof),
                 "repairs": counts(FORMS["repair"], asof),
-                "calls": counts(FORMS["call"], asof)}
-    week_new["breakdown_reports"] = week_new["calls"]
+                "calls": counts(FORMS["call"], asof),
+                }
+    week_new["down_reports"], week_new["down_reports_split"] = \
+        down_reports({p["wp"] for p in pumps}, asof)
+    # Until 28 Sep 2026 a fourth counter, breakdown_reports, was set to the
+    # call counts above and shown as "Pumps reported down or reduced": the same
+    # numbers as "Call-centre contacts" under a meaning they do not have. It is
+    # gone; down_reports counts what that label promised, and
+    # check_consistency.py fails if any stored figure is a copy of another.
 
     print(f"as-of date from the extract: {asof}")
     print(f"pumps whose activity dates move: {len(moved)} of {len(pumps)}")
@@ -125,11 +199,9 @@ def main():
     if len(moved) > 12:
         print(f"   ... and {len(moved) - 12} more")
     print(f"\npumps more than 6 months without a visit: {over6_old} -> {over6}")
-    print(f"pumps with no visit or repair on record:  {never} "
-          f"(S.never stays {never_old}: it counts works records too, which this "
-          f"tool does not pull)")
+    print(f"pumps with no visit or repair on record:  {never_old} -> {never}")
     print("\nweek counters (7 days / previous 7 / 28 days):")
-    for k in ("pm", "repairs", "calls"):
+    for k in ("pm", "repairs", "calls", "down_reports"):
         print(f"   {k:9s} {week_old.get(k)} -> {week_new[k]}")
     if unseen:
         print(f"\n{len(unseen)} point(s) have activity but are not in the "
@@ -139,14 +211,48 @@ def main():
         return 0
 
     S["week"] = week_new
-    # over6 is purely visit-derived, so it is rebuilt. never is NOT: it counts
-    # points with no works record of any kind - rehabilitation and construction
-    # included - and this tool pulls neither, so overwriting it with the
-    # visit-only count would narrow the figure silently.
+    # over6 and never are rebuilt by the rule the page itself applies in agg():
+    # a pump with no preventive visit and no repair on record has no clock
+    # (days is null). never used to be left alone here, on the grounds that it
+    # also counted rehabilitation and construction records; in fact it was a
+    # frozen 57 while the page's own count of the same pumps was 6, and an
+    # action closed on the frozen one (28 Sep 2026).
     S["over6"] = over6
+    S["never"] = never
+    # the monthly series, from SUBMITTED records (final + pending): they were
+    # stored and written by nothing, and the repair series matched neither
+    # repair source (28 Sep 2026). Repairs are the two sources the
+    # time-to-repair figures use.
+    S["pm_month"], S["rep_month"] = monthly()
     S["over6_site"] = {k: by_site.get(k, 0) for k in (S.get("over6_site") or by_site)}
     out = (idx[:mp.end()] + json.dumps(pumps, separators=(", ", ": "))
            + idx[idx.index("];", mp.end()) + 1:])
+    # RESP.v: the response behind each pump's last-visit date. It was a stored
+    # map no step refreshed, so 41 pumps with a visit on record had no link to
+    # it (28 Sep 2026).
+    mr = re.search(r"\bconst RESP\s*=\s*", out)
+    if mr:
+        je = out.index("};", mr.end())
+        RESP = json.loads(out[mr.end():je + 1])
+        # a last repair on the retired combined form is linked only where that
+        # record's own date IS the pump's last-repair date: a link must open
+        # the record the date came from, never a neighbour of it
+        import populations as P
+        retired = {}
+        for src, r in P._repair_records():
+            if src == "retired" and (r.get("status") or "final") in SUBMITTED:
+                retired.setdefault(P._point_of(r), {})[str(r.get("submittedOn") or "")[:10]] = r["_id"]
+        for p in pumps:
+            e = RESP.setdefault(p["wp"], {})
+            e.pop("v", None)                     # a link is the matching record or nothing
+            if not (p.get("last_visit") and (p.get("last_pm") or p.get("last_repair"))):
+                continue
+            hit = LATEST_ID.get(p["wp"])
+            if hit and hit[0][:10] == p["last_visit"]:
+                e["v"] = hit[1]
+            elif (retired.get(p["wp"]) or {}).get(p.get("last_repair") or ""):
+                e["v"] = retired[p["wp"]][p["last_repair"]]
+        out = out[:mr.end()] + json.dumps(RESP, separators=(",", ":")) + out[je + 1:]
     ms2 = re.search(r"\bconst S\s*=\s*", out)
     out = (out[:ms2.end()] + json.dumps(S, separators=(", ", ": "))
            + out[out.index("};", ms2.end()) + 1:])

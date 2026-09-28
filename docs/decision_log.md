@@ -1281,3 +1281,129 @@ code) is a cross-check only, and 1.2.3 (GPS) is ignored.
     four Moramanga systems has left mWater or carries a note under `resolutions` in
     `data/moramanga_system_dedupe.json` (`tools/moramanga_dedupe.py`).
 - Nothing in mWater was changed.
+## 28 September 2026 — Adriaan Mol: every number means what its label says
+
+Trigger: "Pumps reported down or reduced: 5" beside "21 hand pumps reported down". The 5 was the
+call-centre contact count, copied by `rebuild_activity.py` into another key and shown under a
+different meaning; the 21 is a current total. Rule written into `CONTRIBUTING.md`; a check in
+`check_consistency.py` (7bd) fails the build on a figure copied into another key, and was shown
+failing on the published build tool (`rebuild_activity.py:119`).
+
+A reader's pass on the rendered page by a reviewer with no build context found 37 apparent
+contradictions. Fixed or explained on the page, at the generator or data file where there is one:
+
+- **The tile**: now distinct pumps a call reported not working in the window (split down /
+  partially), reconciled in words with the pumps down now. Weekly and monthly visit and repair
+  counts are submitted records (final or pending) and say so; the time-to-repair table counts final
+  records and says so.
+- **Stored figures that no step computed, now computed every build**: `S.never` (a frozen 57; the
+  page's own count is 6), `S.pm_month` and `S.rep_month`, `S.oos` and `S.oos_site` (a histogram of
+  607 beside tiles over 619), the open down-reports list and its "32 of 122" (no rule reproduced
+  them; 31 of 113 now, the carried values shown as retired), the visit and water-quality links.
+- **Wrong or double-counting formulas**: `SUCC_CORRECTED` added corrections already written back
+  to mWater (740; now 732); the calendar stratum counted points with no photograph twice and dropped
+  the points outside the register; the route-plan metric counted a site with no overdue pumps.
+- **A figure bound to the wrong quantity by an old value match**: "732 chemical test results" had
+  been bound to the corrected rehabilitation count; now the water-quality population, worded as
+  what it counts. The footprint "128 of 128" used today's count for a 22-September measurement.
+- **Labels and dates**: the reconciliation audit trail, the carbon versus maintained fleet, the
+  calendar headline (stratum average versus pooled cells), per-image versus per-pump-period cells,
+  dated versus day-call sheet counts, the WorldPop run dates, carbon-district people served, the
+  Maroantsetra fNRB (registered 34%, applied 36%), Endur'O systems in its register versus mWater,
+  the UNICEF list reconciliation, the methodology divergences, the SOP sweep, photographs on file
+  versus in the backup, the SDWS 26 share (99.5%, not 100%), the Marolinta records and dates, the
+  unclassified partially-working pumps, and a status definition that said "in 2026".
+
+A second reader's pass on the fixed page found 23 more. Fixed or explained on the page:
+
+- **Labels and bases**:
+  - Status is the last record in any year, not "in 2026". The "No status record" count includes 9 pumps held on their published "unknown", and the page now says so.
+  - The 731 successful rehabilitations all sit inside the fleet; the page used to say they were neither a subset nor a superset of it.
+  - 731 is today's count, and 723 was the count on 17 July.
+  - The Marolinta points are new boreholes, not "works on the borehole form".
+  - 127,280 covers the two carbon districts, not MadAvance.
+  - "385 with nothing in six months" now reads "last photographed over six months ago", with the 62 never photographed stated beside it.
+  - Calendar figures over the register of 19 September (736) are dated.
+  - The "never" bar is relabelled "No works record".
+  - Routes carry the pumps overdue on the day they were drawn, shown beside the count overdue today.
+  - The time-to-repair "other" row is points outside the managed register.
+  - The SDWS 26 parameter row is the both-seasons reading.
+  - The functionality-report table is described as retirement records, not the only record of a breakdown.
+  - Managed pumps that appear on that table are named.
+  - The Endur'O southern sites are distinguished from the managed piped systems.
+  - Marolinta's maintenance wording is reconciled.
+  - The Type 3 ceiling check is distinguished from the withdrawn tonnage.
+- **Computation**:
+  - The down table's People column was empty on every row; its rows never carried the allocation.
+  - The carbon-parameter shares now round like every other share, so one fraction no longer shows two values.
+- **Explained**:
+  - The contact and reported-not-working tiles match because every contact in the window reported a different pump down; the repairs figure matching them is a coincidence.
+  - A repair recorded on the day of a down-report closes it on the open list, while the call still sets the status.
+- **Markup**: a figure span was printed as text. A new check (7be) fails the build on any escaped figure span.
+
+A third reader's pass found 13 more, all fixed or explained on the page:
+
+- **Open tickets**: the 21 September backlog of 44 and today's open list count by different rules, and the page now says so.
+- **Held statuses**: the 17 pumps with no dated record are split into the 12 counted as "No status record" and 5 held on a published status.
+- **Endur'O water-quality cell**: now names the pre-project baseline results.
+- **SDWS 25 row**: no longer says the survey form is not pulled.
+- **Marolinta flagged codes**: the statement about how they relate to the table rows is corrected.
+- **Partially working**:
+  - The open list says "partially working", not "reduced".
+  - The partial table says its class is carried forward and can disagree with the latest reason.
+- **Calendar tables and statistics**:
+  - The representativeness table counts points, not point-years.
+  - The year statistics state the first-pass basis (749 sheets) against the later run (1,014).
+  - The 2024 sheet count is labelled as the day-call subset.
+- **SDWS 2 freshness date**: labelled as the newest response of any kind on the form.
+- **Endur'O's 131**: called sites throughout.
+- **The 6-point dashboard gap**: accounted for.
+- **Retired-points table**: its row note now matches its rows.
+- **189**: the equal field-day and timed-repair counts are marked as a coincidence.
+
+A fourth reader's pass found 12 more, all fixed or explained on the page:
+
+- **Successful rehabilitations and Marolinta**:
+  - The successful-rehabilitation population declared that it read the Marolinta form, but it does not (that form has no success answer). The declaration and the register-chain wording now say so.
+  - The 787 is labelled as including Marolinta new constructions.
+- **Map**: the map draws Endur'O's own mWater points, not the 131 reconciled sites. Both pages now say where the 131 comes from.
+- **Carbon points**: "active carbon points" is renamed to carbon points, because the denominator is the register less Marolinta, not the SDWS 3 "active" rule.
+- **Operator rule**: the one pump counted despite its "all" tag is stated with the rule.
+- **Calendar reading**: the stratum average is the reading everywhere, and the pooled figure is labelled as pooled.
+- **fNRB**: the 36% called "national" (18 Sep) and "sub-national" (21 Sep) is shown to be one value.
+- **Time to repair**: the 145 repaired points are no longer described as all carbon points.
+- **Freshness cell**: a form with no records is no longer read as all of its sources.
+- **Household size**: INSTAT versus the registered household sizes is explained.
+- **2027 sheets**: sheets are tied to point-years.
+- **ER inputs**:
+  - Mq,y is partly evidenced.
+  - EFb's row shows its fNRB input, and is labelled as such.
+- **Smaller wording**:
+  - The partially-working tile basis.
+  - All 39 holds accounted for.
+  - The photo-pool count.
+  - A stale divergence number.
+
+A fifth reader's pass found 9 more (2 material), all fixed or explained on the page:
+
+- **Material**:
+  - The Qpop,y input quoted the people figure with Marolinta included; it now quotes the carbon points only.
+  - "People with safe water" is relabelled "people served": it is an allocation, not a count of people whose water has passed a test.
+- **Minor**:
+  - The 42 pumps with no visit or repair are on any form, not "the current forms".
+  - The 385 barrier sensitivity is tied to its own run.
+  - Functionality reports are not all on managed points.
+  - The withdrawn Endur'O 111 is distinguished from the UNICEF list of the same size.
+  - "Eight green rows" is conditioned on all four open inputs.
+  - The partner note no longer says every figure is a carbon figure.
+  - The two 145s are marked as a coincidence.
+
+A sixth reader's pass found nothing material and 7 minor points, all fixed:
+
+- A wrongly worded barrier-sensitivity sentence.
+- The overdue table's note on never-visited pumps.
+- The cookstove overlap's two dates, and the unchecked pump in its people share.
+- C_b's evidence status.
+- Carbon gap 8's wording.
+- The stored tables named in the "no hand-entered number" claim.
+- The joined pump in the 297-of-732 calendar share.

@@ -886,12 +886,14 @@ def main():
                   "a reconciliation list with a duplicate counts a point twice")
     _CORR = js_const(idx, "CORR") or {}
     if _CORR:
-        check("SUCC_CORRECTED equals REG.succ plus the corrections CORR lists",
-              f"const SUCC_CORRECTED=REG.succ+CORR.corrected.length" in idx,
-              "computed",
-              "computed" if "SUCC_CORRECTED=REG.succ+CORR.corrected.length" in idx
-              else "STORED",
-              "it was a stored 732 sitting beside the data it duplicated")
+        # REG.succ is read from the records; a correction already written back
+        # into mWater is in it, so only the ones not yet written back are added
+        # (it counted eight twice, 740, until 28 Sep 2026)
+        _sc = "const SUCC_CORRECTED=REG.succ+CORR.corrected.filter(c=>!/^written back/i.test(c.written_back||'')).length"
+        check("SUCC_CORRECTED is REG.succ plus the corrections not yet written back",
+              _sc in idx, "computed",
+              "computed" if _sc in idx else "STORED OR DOUBLE-COUNTING",
+              "it was a stored 732, then a sum that counted written-back corrections twice")
 
     # ---- 7c-1. sensitivity figures are computed, never stored -------------
     # WPOP_C250 was a stored constant captioned "Canzee 250 and India Mark
@@ -2334,7 +2336,7 @@ def main():
     # community-level notice is already signed.
     _cons_zero = re.search(r"no individual record exists for any of the\s*"
                            r'(?:<[^>]+>\s*)*(?:<span data-fig="CARBON\.'
-                           r'carbon_points">[^<]*</span>)\s*active carbon points', idx_raw)
+                           r'carbon_points">[^<]*</span>)\s*carbon points', idx_raw)
     check("the page carries the consent figure",
           bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
           "present", "present" if _cons_zero else "MISSING")
@@ -3819,6 +3821,49 @@ def main():
           nod is not None and int(nod) == want_nod,
           f"{want_nod}", str(nod) if nod is not None else "MISSING",
           "ACT rows with no proposed date - one decision for Jan")
+
+    # ---- 7bd. no figure is a copy of another (28 Sep 2026) -----------------
+    # "Pumps reported down or reduced: 5" sat next to "21 hand pumps reported
+    # down". The 5 was the call-centre contact count, copied by
+    # rebuild_activity.py into another key (breakdown_reports = calls) and
+    # rendered under a meaning it did not have. Every build step and the page's
+    # own script are scanned for an assignment of one stored figure to another
+    # key; the only ones allowed are named here with the reason they are not
+    # a figure being given a second meaning.
+    NOT_A_FIGURE = {
+        ("build_call_tables.py", "status_src"): "a record-type label (call / maintenance / repair), not a count",
+        ("render_actions.py", "owner"): "an owner's name from the owners record, not a figure",
+        ("recompute_figures.py", "real_cells"): "written only under the retired all-cells basis, to reproduce an "
+                                               "archived edition; absent from the current figures file",
+    }
+    COPY_PY = re.compile(r'^\s*(\w+)\[["\'](\w+)["\']\]\s*=\s*(\w+)\[["\'](\w+)["\']\]\s*$')
+    copies = []
+    for f in sorted(_glob.glob(os.path.join(repo_root, "tools", "*.py"))):
+        base = os.path.basename(f)
+        if base.startswith("test_") or base == "check_consistency.py":
+            continue
+        for ln, line in enumerate(read(f).splitlines(), 1):
+            m = COPY_PY.match(line)
+            if m and (m.group(2) != m.group(4) or m.group(1) == m.group(3)) \
+                    and (base, m.group(2)) not in NOT_A_FIGURE:
+                copies.append(f"{base}:{ln} {m.group(1)}[{m.group(2)!r}] = {m.group(3)}[{m.group(4)!r}]")
+    # the page's own script: DATA.a = DATA.b on an inlined data object
+    data_objs = set(re.findall(r"^const ([A-Z][A-Z0-9_]*)\s*=", idx, re.M))
+    for m in re.finditer(r"\b([A-Z][A-Z0-9_]*)\.([\w.]+)\s*=\s*([A-Z][A-Z0-9_]*)\.([\w.\[\]]+)\s*[;,\n]", idx):
+        if m.group(1) in data_objs and m.group(3) in data_objs and m.group(2) != m.group(4):
+            copies.append(f"index.html: {m.group(0).strip()}")
+    check("no stored figure is a copy of another under a different key",
+          not copies, "none", "; ".join(copies[:3]) if copies else "none",
+          "a copy renders one count under two meanings; compute each figure from its own records")
+
+    # ---- 7be. no figure span is printed as text (28 Sep 2026) --------------
+    # A generator escaped a note carrying <span data-fig="WPOPMETA.run">, so
+    # the reader saw the markup where the run date should have been. An
+    # escaped figure span is a figure the page claims to show and does not.
+    _esc_spans = re.findall(r"&lt;span[^&]{0,40}data-(?:fig|param|quote)", idx)
+    check("no figure span is printed as text", not _esc_spans, "none",
+          f"{len(_esc_spans)}: {_esc_spans[0][:60]}" if _esc_spans else "none",
+          "a generator escaped repo-authored markup that carries a live figure")
 
     # ---- 7bc. the Marolinta works count is as fresh as the extract ---------
     # data/marolinta_works.json feeds four action closes and the Marolinta

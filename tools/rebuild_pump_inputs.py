@@ -51,7 +51,7 @@ def compute():
         if r.get("status") in ("draft", "rejected"):
             continue
         d = str(P._answer(r, Q_WQ_DATE) or r.get("submittedOn") or "")[:10]
-        wq[P._point_of(r)].append((d, P._answer(r, Q_WQ_ECOLI)))
+        wq[P._point_of(r)].append((d, P._answer(r, Q_WQ_ECOLI), r.get("_id")))
     p = os.path.join(EXPORTS, "roof_count.json")
     if not os.path.isfile(p):
         sys.exit("The roof-count extract (roof_count.json) is missing, so the "
@@ -69,8 +69,9 @@ def compute():
     for code in set(wq) | set(roofs):
         v = {}
         if wq.get(code):
-            date, ec = sorted(wq[code])[-1]
+            date, ec, rid = sorted(wq[code], key=lambda t: (t[0], t[2] or ""))[-1]
             v["wq_date"] = date or None
+            v["wq_rid"] = rid
             v["wq"] = ("Pass" if ec is not None and ec <= ECOLI_PASS_MAX
                        else ("Fail" if ec is not None else None))
         if roofs.get(code):
@@ -115,6 +116,23 @@ def main():
           + (f"; wq_status set on every row" if any(x[2] == "wq_status" for x in moved_all) else ""))
     for x in real[:12]:
         print(f"  {x[0]} {x[1]} {x[2]}: {x[3]!r} -> {x[4]!r}")
+    # RESP.q: the result behind each pump's water-quality date, from the same
+    # record the date came from. It was a stored map, so a pump that joined
+    # after it was drawn had a result and no link to it (28 Sep 2026).
+    m = re.search(r"\bconst RESP\s*=\s*", src)
+    if m:
+        je = src.index("};", m.end())
+        resp = json.loads(src[m.end():je + 1])
+        mp = re.search(r"\bconst PUMPS\s*=\s*", src)
+        pumps = json.loads(src[mp.end():src.index("];", mp.end()) + 1])
+        for row in pumps:
+            e = resp.setdefault(row["wp"], {})
+            rid = (got.get(row["wp"]) or {}).get("wq_rid")
+            if rid and row.get("wq"):
+                e["q"] = rid
+            else:
+                e.pop("q", None)
+        src = src[:m.end()] + json.dumps(resp, separators=(",", ":")) + src[je + 1:]
     if "--write" in sys.argv:
         open(PAGE, "w", encoding="utf8").write(src)
     return 0
