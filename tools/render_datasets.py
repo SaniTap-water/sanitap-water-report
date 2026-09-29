@@ -72,6 +72,8 @@ SETS = {
     "PIPEDWQ": ("data", "piped_wq.json"),
     # duplicate system records beside the Moramanga systems (tools/moramanga_dedupe.py)
     "MORADUP": ("data", "moramanga_system_dedupe.json"),
+    # the Moramanga crosswalk, old earlier-project point -> new Endur'O point
+    "MORACW": ("data", "moramanga_wp_crosswalk.json"),
     # parent actions: how many of their steps have closed (tools/eval_conditions.py)
     "ACTKIDS": ("data", "action_state.json"),
 }

@@ -303,6 +303,8 @@ WHOLE = {
     'PIPEDWQ': ('rebuild_piped_wq', 'render_datasets'),
     # duplicate system records beside the four Moramanga systems
     'MORADUP': ('moramanga_dedupe', 'render_datasets'),
+    # the Moramanga water-point crosswalk
+    'MORACW': ('moramanga_dedupe', 'render_datasets'),
     # parent actions' closed steps, keyed by action id
     'ACTKIDS': ('eval_conditions', 'render_datasets'),
 }

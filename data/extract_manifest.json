@@ -7,7 +7,7 @@
    "newest_submitted": "2026-09-28",
    "rows": 2831,
    "unique": 2831,
-   "written": "2026-09-29T07:34:24"
+   "written": "2026-09-29T08:19:33"
   },
   "baseline_moramanga.json": {
    "form_id": "3ef4385a619244c7ad129169ac1ec71f",
@@ -15,7 +15,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 331,
    "unique": 331,
-   "written": "2026-09-29T07:48:35"
+   "written": "2026-09-29T08:35:10"
   },
   "cbn_gender.json": {
    "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
@@ -23,7 +23,7 @@
    "read_by": "populations.py",
    "rows": 414,
    "unique": 414,
-   "written": "2026-09-29T07:43:49"
+   "written": "2026-09-29T08:30:16"
   },
   "combined_rehab.json": {
    "form_id": "86cf66efdd3749dd8a121314bab3675a",
@@ -31,7 +31,16 @@
    "read_by": "populations.py",
    "rows": 1688,
    "unique": 1688,
-   "written": "2026-09-29T07:38:28"
+   "written": "2026-09-29T08:24:06"
+  },
+  "enduro_points.csv": {
+   "entity_type": "water_point",
+   "group": "group:c305b9b85f41417387b553d9a33c795b",
+   "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the managed group and walked in 90-day windows",
+   "read_by": "moramanga_dedupe.py",
+   "rows": 182,
+   "unique": 182,
+   "written": "2026-09-29T08:36:43"
   },
   "first_rehab_current.json": {
    "form_id": "63747997e70e478fbb2ebf71581ceeb0",
@@ -39,7 +48,7 @@
    "read_by": "populations.py",
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-29T07:43:04"
+   "written": "2026-09-29T08:29:22"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -47,7 +56,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-29T07:37:28"
+   "written": "2026-09-29T08:23:11"
   },
   "hygiene.json": {
    "form_id": "283c5670de82489d833e986cb76a67d8",
@@ -55,7 +64,7 @@
    "read_by": "populations.py",
    "rows": 108,
    "unique": 108,
-   "written": "2026-09-29T07:40:57"
+   "written": "2026-09-29T08:26:48"
   },
   "identification.json": {
    "form_id": "198b016d72af41baa2608a8c9c35f8cb",
@@ -63,7 +72,7 @@
    "read_by": "populations.py",
    "rows": 56,
    "unique": 56,
-   "written": "2026-09-29T07:41:40"
+   "written": "2026-09-29T08:27:37"
   },
   "marolinta_borehole.json": {
    "form_id": "8764843c94484f5b984078c68f13b2ca",
@@ -71,7 +80,7 @@
    "read_by": "populations.py",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-29T07:42:23"
+   "written": "2026-09-29T08:28:29"
   },
   "piped_point_reg.json": {
    "form_id": "8a3af50ceec84cda85d454d96079991d",
@@ -79,7 +88,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 1,
    "unique": 1,
-   "written": "2026-09-29T07:47:44"
+   "written": "2026-09-29T08:34:17"
   },
   "piped_system_reg.json": {
    "form_id": "44044e27c0f24cc4a432a38b09886684",
@@ -87,7 +96,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 1,
    "unique": 1,
-   "written": "2026-09-29T07:47:00"
+   "written": "2026-09-29T08:33:26"
   },
   "piped_systems.csv": {
    "entity_type": "water_system",
@@ -96,7 +105,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 25,
    "unique": 25,
-   "written": "2026-09-29T07:49:33"
+   "written": "2026-09-29T08:36:09"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
@@ -104,7 +113,7 @@
    "newest_submitted": "2026-09-28",
    "rows": 761,
    "unique": 761,
-   "written": "2026-09-29T07:30:06"
+   "written": "2026-09-29T08:14:25"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -112,7 +121,7 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-29T07:35:54"
+   "written": "2026-09-29T08:21:18"
   },
   "repair.json": {
    "form_id": "958b4763788348d699e7d8c5821f92ee",
@@ -120,7 +129,7 @@
    "read_by": "populations.py",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-29T07:39:16"
+   "written": "2026-09-29T08:24:56"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
@@ -128,7 +137,7 @@
    "newest_submitted": "2026-09-22",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-29T07:31:37"
+   "written": "2026-09-29T08:16:11"
   },
   "roof_count.json": {
    "form_id": "8aa2dd78eb1f460f8f43db7935955846",
@@ -136,7 +145,7 @@
    "read_by": "populations.py",
    "rows": 725,
    "unique": 725,
-   "written": "2026-09-29T07:44:38"
+   "written": "2026-09-29T08:31:08"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
@@ -145,7 +154,7 @@
    "read_by": "populations.py",
    "rows": 918,
    "unique": 918,
-   "written": "2026-09-29T07:49:10"
+   "written": "2026-09-29T08:35:41"
   },
   "wq_results.json": {
    "form_id": "7b33c5d7e5074808a94915939a5a0783",
@@ -153,7 +162,7 @@
    "read_by": "populations.py",
    "rows": 736,
    "unique": 736,
-   "written": "2026-09-29T07:40:12"
+   "written": "2026-09-29T08:25:57"
   },
   "wq_results_piped.json": {
    "form_id": "0ac68d8274d24f54af0c28b29119b77d",
@@ -161,7 +170,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 45,
    "unique": 45,
-   "written": "2026-09-29T07:45:30"
+   "written": "2026-09-29T08:31:57"
   },
   "wq_sampling_piped.json": {
    "form_id": "ef8cf7353a974cf984d34860dcf2952d",
@@ -169,12 +178,12 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 75,
    "unique": 75,
-   "written": "2026-09-29T07:46:16"
+   "written": "2026-09-29T08:32:45"
   }
  },
  "newest_in_files": "2026-09-28",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-09-29T07:49:33",
+ "pulled_at": "2026-09-29T08:36:43",
  "strays": [
   "old_combined_reparation.csv",
   "wp_lookup.csv"

@@ -52,6 +52,29 @@ act-moramanga-register-standposts, which needs a submitted Distribution Point
 registration whose parent is the record of record itself. "permissions" is a
 dated read of who can edit those records.
 
+OTHER ORGANISATIONS' RECORDS (Adriaan Mol, 29 Sep 2026). The management
+contract for the Moramanga systems is with Endur'O/NatuRano. Records owned by
+another organisation (WaterAid, MG MERL and others) are historical: never
+edited, relinked, deleted or asked to be transferred. Such a duplicate carries
+a resolution note of kind "other_organisation" and counts as resolved.
+Endur'O's own duplicates stay open until Endur'O retires them or notes them.
+
+CROSSWALK (data/moramanga_wp_crosswalk.json, written every build). Endur'O
+registers every public standpost as a NEW Distribution Point under its own
+system record, quoting the old mWater ID in the new point's description where
+the standpost exists from an earlier project. Each new point (a final
+Distribution Point registration whose parent is a record of record) is matched
+to an earlier-project point (data/moramanga_earlier_points.json):
+
+  confirmed   the old ID is quoted in the new point's description
+              (~/mwater-exports/enduro_points.csv);
+  suggested   failing that, the nearest old point within MATCH_M metres with
+              a similar name.
+
+Each old point matches at most one new point. The pairing uses the crosswalk so
+that a sample at an old record counts for the new point, and physical
+standposts = new points + unmatched old points, so none is counted twice.
+
 A duplicate is RESOLVED when it no longer appears in the extract (merged or
 retired in mWater, which the build sees on its own) or when data/
 moramanga_system_dedupe.json carries a note for it under "resolutions"
@@ -61,7 +84,8 @@ rest of the file is output. The action closes when no duplicate is unresolved.
 
     python3 tools/moramanga_dedupe.py --write
     python3 tools/moramanga_dedupe.py --check
-    python3 tools/moramanga_dedupe.py --history   # re-read the 3 km snapshot (slow)
+    python3 tools/moramanga_dedupe.py --history   # re-read the 3 km snapshot and the
+                                                  # earlier-project points (slow)
 """
 import csv, datetime, io, json, math, os, re, subprocess, sys, unicodedata
 
@@ -73,6 +97,13 @@ FOUR = ("1108783583", "1108783624", "1108783648", "1108783662")
 NEARBY_M = 250
 HISTORY_M = 3000
 HISTORY = os.path.join(REPO, "data", "moramanga_system_history.json")
+EARLIER = os.path.join(REPO, "data", "moramanga_earlier_points.json")
+CROSSWALK = os.path.join(REPO, "data", "moramanga_wp_crosswalk.json")
+ENDURO_POINTS = os.path.expanduser("~/mwater-exports/enduro_points.csv")
+MATCH_M = 30
+NAME_NOISE = {"kiosque", "kiosk", "kiosky", "borne", "fontaine", "bf", "bp", "point", "d", "eau",
+              "de", "du", "la", "le", "aepp", "aepg", "amboasary", "gara", "gare", "ambohibola",
+              "amboanjo", "andilanatoby", "tap", "robinet", "public", "publique"}
 POINT_REG = os.path.expanduser("~/mwater-exports/piped_point_reg.json")
 PT_REG_FORM, PR_POINT, PR_SYSTEM, PR_TYPE = (
     "8a3af50ceec84cda85d454d96079991d", "8f174aec", "e5380235", "59fa54b3")
@@ -145,6 +176,87 @@ def recommend(cands):
         why.append(f"but {m['code']} ({m['group']}) carries {m['points_n']} linked water points, "
                    "which move to the record of record or keep a link to it")
     return top, "; ".join(why)
+
+
+def name_tokens(n):
+    s = unicodedata.normalize("NFKD", n or "").encode("ascii", "ignore").decode().lower()
+    return {t for t in re.findall(r"[a-z]+|\d+", s) if t not in NAME_NOISE and len(t) > 1}
+
+
+def similar(a, b):
+    """Two point names share a meaningful word, or read alike overall."""
+    import difflib
+    ta, tb = name_tokens(a), name_tokens(b)
+    if ta & tb:
+        return True
+    return difflib.SequenceMatcher(None, " ".join(sorted(ta)), " ".join(sorted(tb))).ratio() >= 0.6 \
+        if ta and tb else False
+
+
+def crosswalk(new_points, old_points):
+    """Match Endur'O's new points to earlier-project points. new_points and
+    old_points are lists of {code, name, desc?, location?}. Returns the
+    crosswalk document (without the build's own note)."""
+    old_by = {o["code"]: o for o in old_points}
+    taken_old, links = set(), {}
+    # confirmed: the old ID quoted in the new point's description
+    for n in sorted(new_points, key=lambda x: x["code"]):
+        for c in re.findall(r"\b(\d{6,12})\b", n.get("desc") or ""):
+            if c in old_by and c not in taken_old:
+                links[n["code"]] = (c, "confirmed", "old ID quoted in the new point's description",
+                                    metres(tuple(n["location"]) if n.get("location") else None,
+                                           tuple(old_by[c]["location"]) if old_by[c].get("location") else None))
+                taken_old.add(c)
+                break
+    # suggested: nearest old point within MATCH_M with a similar name
+    cands = []
+    for n in new_points:
+        if n["code"] in links or not n.get("location"):
+            continue
+        for o in old_points:
+            if o["code"] in taken_old or not o.get("location"):
+                continue
+            m = metres(tuple(n["location"]), tuple(o["location"]))
+            if m is not None and m <= MATCH_M and similar(n.get("name"), o.get("name")):
+                cands.append((m, n["code"], o["code"]))
+    for m, nc, oc in sorted(cands):
+        if nc in links or oc in taken_old:
+            continue
+        links[nc] = (oc, "suggested", f"GPS within {MATCH_M} m and a similar name", m)
+        taken_old.add(oc)
+    rows = [{"old": oc, "old_name": old_by[oc].get("name"), "old_owner": old_by[oc].get("owner"),
+             "new": nc, "new_name": next((n.get("name") for n in new_points if n["code"] == nc), None),
+             "status": st, "method": how, "distance_m": m}
+            for nc, (oc, st, how, m) in sorted(links.items(), key=lambda kv: kv[1][0])]
+    unmatched = [{"code": o["code"], "name": o.get("name"), "owner": o.get("owner")}
+                 for o in sorted(old_points, key=lambda x: x["code"]) if o["code"] not in taken_old]
+    return {"match_m": MATCH_M, "crosswalk": rows,
+            "old_to_new": {r["old"]: r["new"] for r in rows},
+            "unmatched_old": unmatched,
+            "new_unmatched": sorted(n["code"] for n in new_points if n["code"] not in links),
+            "counts": {"old": len(old_points), "new": len(new_points),
+                       "confirmed": sum(1 for r in rows if r["status"] == "confirmed"),
+                       "suggested": sum(1 for r in rows if r["status"] == "suggested"),
+                       "unmatched_old": len(unmatched),
+                       "physical_standposts": len(new_points) + len(unmatched)}}
+
+
+def new_endur_points(systems):
+    """Endur'O's new points: final Distribution Point registrations whose
+    parent is a record of record, with name, description and GPS from the
+    Endur'O water-point extract."""
+    ror = {(s.get("record_of_record") or {}).get("code") or s["code"] for s in systems}
+    regs = json.load(open(POINT_REG, encoding="utf8")) if os.path.isfile(POINT_REG) else []
+    codes = {code_of(answer(r, PR_POINT)) for r in regs
+             if r.get("form") == PT_REG_FORM and r.get("status") == "final"
+             and code_of(answer(r, PR_SYSTEM)) in ror} - {None}
+    ents = {}
+    if os.path.isfile(ENDURO_POINTS):
+        with io.open(ENDURO_POINTS, encoding="utf8") as fh:
+            ents = {r["code"]: r for r in csv.DictReader(fh) if r.get("code")}
+    return [{"code": c, "name": (ents.get(c, {}).get("name") or "").strip() or None,
+             "desc": ents.get(c, {}).get("desc") or "", "location": latlon(ents[c]) if c in ents else None}
+            for c in sorted(codes)]
 
 
 def build(old):
@@ -255,7 +367,10 @@ def build(old):
         "unresolved": len(unresolved),
         "unresolved_codes": unresolved,
         "nearby": sum(len(s["nearby"]) for s in systems),
-        "resolved_by_absence": sorted(c for c in res if c not in rows),
+        "resolved_by_absence": sorted(c for c, v in res.items() if c not in rows
+                                      and (v or {}).get("kind") != "other_organisation"),
+        "resolved_other_organisation": sorted(c for c in dup_codes
+                                              if (res.get(c) or {}).get("kind") == "other_organisation"),
         "standposts": sum(s.get("standposts_n", 0) for s in systems),
         "systems_without_standpost": sum(1 for s in systems if not s.get("standposts_n")),
     }
@@ -274,6 +389,18 @@ def refresh_history():
     json.dump(doc, open(HISTORY, "w", encoding="utf8"), indent=1, ensure_ascii=False)
     open(HISTORY, "a", encoding="utf8").write("\n")
     print(f"data/moramanga_system_history.json: read {doc['read_on'][:16]}")
+    codes = [p["code"] for m in (json.load(open(OUT, encoding="utf8")).get("interim_points") or {}).values()
+             for p in m.get("points") or []]
+    if codes:
+        r = subprocess.run(["node", os.path.join(REPO, "tools", "mwater", "earlier_points.mjs"),
+                            ",".join(codes)], capture_output=True, text=True, cwd=REPO)
+        if r.returncode == 0 and r.stdout.strip():
+            ep = json.loads(r.stdout)
+            prev = json.load(open(EARLIER, encoding="utf8")) if os.path.isfile(EARLIER) else {}
+            ep["note"] = prev.get("note", "Earlier-project water points (GET only).")
+            ep["points"] = sorted(ep["points"], key=lambda p: p["code"])
+            json.dump(ep, open(EARLIER, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+            open(EARLIER, "a", encoding="utf8").write("\n")
 
 
 def main():
@@ -283,8 +410,25 @@ def main():
         mode = "--write"
     old = json.load(open(OUT, encoding="utf8")) if os.path.isfile(OUT) else {}
     doc = build(old)
+    old_pts = (json.load(open(EARLIER, encoding="utf8")) if os.path.isfile(EARLIER) else {}).get("points") or []
+    cw = {"note": "Written every build by tools/moramanga_dedupe.py: Endur'O's new Distribution "
+                  "Points on the Moramanga records of record, matched to earlier-project points "
+                  "(data/moramanga_earlier_points.json). confirmed = the old ID is quoted in the new "
+                  "point's description; suggested = GPS within match_m and a similar name. Old "
+                  "records are other organisations' history and are never edited in mWater.",
+          **crosswalk(new_endur_points(doc["systems"]), old_pts)}
+    cw_new = json.dumps(cw, indent=1, ensure_ascii=False) + "\n"
+    cw_cur = open(CROSSWALK, encoding="utf8").read() if os.path.isfile(CROSSWALK) else ""
     new = json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
     cur = open(OUT, encoding="utf8").read() if os.path.isfile(OUT) else ""
+    if cw_new != cw_cur:
+        if mode != "--write":
+            print("data/moramanga_wp_crosswalk.json DIFFERS from the extract")
+            return 1
+        open(CROSSWALK, "w", encoding="utf8").write(cw_new)
+        c = cw["counts"]
+        print(f"data/moramanga_wp_crosswalk.json: {c['new']} new point(s), {c['old']} earlier-project; "
+              f"{c['confirmed']} confirmed, {c['suggested']} suggested, {c['unmatched_old']} old unmatched")
     if new == cur:
         print("data/moramanga_system_dedupe.json unchanged")
         return 0

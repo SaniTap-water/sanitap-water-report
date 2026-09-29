@@ -3,7 +3,23 @@
  "nearby_m": 250,
  "history_m": 3000,
  "history_read": "2026-09-28",
- "resolutions": {},
+ "resolutions": {
+  "441839342": {
+   "resolution": "superseded – other organisation's historical record; Endur'O record of record used (Adriaan, 29 Sep 2026)",
+   "kind": "other_organisation",
+   "owner": "WaterAid",
+   "date": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026"
+  },
+  "378659084": {
+   "resolution": "superseded – other organisation's historical record; Endur'O record of record used (Adriaan, 29 Sep 2026)",
+   "kind": "other_organisation",
+   "owner": "MGMERL",
+   "date": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "note": "a kiosk water point linked to 441839342, not a system record"
+  }
+ },
  "decisions": {
   "1108783583": {
    "record_of_record": "1108783583",
@@ -16,7 +32,7 @@
  "interim_points": {
   "1108783583": {
    "from_system": "441839342",
-   "source": "Adriaan Mol, 29 Sep 2026: interim mapping until the kiosks are relinked in mWater; used for piped water-quality classification only, never for closure",
+   "source": "Adriaan Mol, 29 Sep 2026: earlier-project kiosks (WaterAid, MG MERL), historical records never edited; mapped to 1108783583 for piped water-quality classification only, so a stray sample at one still pairs and counts; never counts toward closure",
    "points": [
     {
      "code": "378659084",
@@ -176,7 +192,13 @@
      "distance_m": 1494,
      "status": null,
      "group": "WaterAid",
-     "resolution": null
+     "resolution": {
+      "resolution": "superseded – other organisation's historical record; Endur'O record of record used (Adriaan, 29 Sep 2026)",
+      "kind": "other_organisation",
+      "owner": "WaterAid",
+      "date": "2026-09-29",
+      "source": "Adriaan Mol, 29 Sep 2026"
+     }
     }
    ],
    "nearby": [
@@ -518,7 +540,7 @@
    },
    "interim": {
     "from_system": "441839342",
-    "source": "Adriaan Mol, 29 Sep 2026: interim mapping until the kiosks are relinked in mWater; used for piped water-quality classification only, never for closure",
+    "source": "Adriaan Mol, 29 Sep 2026: earlier-project kiosks (WaterAid, MG MERL), historical records never edited; mapped to 1108783583 for piped water-quality classification only, so a stray sample at one still pairs and counts; never counts toward closure",
     "points": [
      {
       "code": "378659084",
@@ -793,18 +815,20 @@
   }
  ],
  "duplicates": 7,
- "unresolved": 7,
+ "unresolved": 6,
  "unresolved_codes": [
   "1108783569",
   "1108783631",
   "1108783655",
-  "441839342",
   "928471757",
   "929469223",
   "929469247"
  ],
  "nearby": 11,
  "resolved_by_absence": [],
+ "resolved_other_organisation": [
+  "441839342"
+ ],
  "standposts": 0,
  "systems_without_standpost": 4
 }

@@ -335,8 +335,10 @@
   },
   "date_mismatch": 0,
   "date_mismatch_days": 1,
+  "earlier_project_samples": 0,
   "flagged": {
    "date_mismatch": 0,
+   "earlier_project_record": 0,
    "outside_protocol": 1,
    "result_without_sample": 0,
    "sample_without_result": 0
@@ -344,6 +346,7 @@
   "flagged_total": 1,
   "flags": {
    "date_mismatch": [],
+   "earlier_project_record": [],
    "outside_protocol": [
     {
      "day": "2026-09-28",

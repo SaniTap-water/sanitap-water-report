@@ -59,13 +59,35 @@ the tap.** No source, tank or household samples.
 Private connections and the sources are **not in scope for now**, for sampling or for
 registration (`act-moramanga-register-standposts`).
 
+## Rehabilitated systems built by other NGOs
+
+**Rehabilitated systems built by other NGOs: Endur'O registers its own records; earlier records are
+kept as history and cross-referenced, never edited.** (Adriaan Mol, 29 Sep 2026.)
+
+- The management contract for the Moramanga systems is with **Endur'O/NatuRano**. Endur'O
+  registers its own new water points under its own system records: `1108783583`, `1108783624`,
+  `1108783648`, `1108783662`.
+- Some rehabilitated systems were built by other NGOs and already appear in mWater (WaterAid, MG
+  MERL and others). Those records are historical. They are **never edited, relinked, deleted or
+  asked to be transferred**. A duplicate system record owned by another organisation is resolved
+  with a note: "superseded – other organisation's historical record; Endur'O record of record
+  used".
+- Where a standpost already exists from an earlier project, the new Endur'O Distribution Point
+  quotes the old mWater ID in its description. `data/moramanga_wp_crosswalk.json` records old ID
+  → new ID every build: *confirmed* from the quoted ID, or *suggested* from GPS within 30 m and a
+  similar name. It is used so that no physical standpost is counted twice.
+- The 19 earlier-project kiosks on Amboasary gara (WaterAid's `441839342`, one of them MG MERL's)
+  are mapped to `1108783583` in the water-quality classification only. A stray sample taken at
+  one still pairs and counts, flagged "sampled at an earlier-project record; use the Endur'O
+  point".
+
 ## Getting the standposts into mWater
 
-1. **One system record per scheme** (`act-moramanga-system-dedupe`). Endur'O's group holds
-   duplicate system records beside the four ("AEPP …", "Forage …", twin records). Another group's
-   record, `441839342` "AEPG AMBOASARY GARA", sits about 1.5 km from Amboasary gara. The record of
-   record is decided first.
-2. **Register every public standpost** as a Distribution Point linked to that record
-   (`act-moramanga-register-standposts`). Existing systems are registered now; new systems at
-   commissioning. Cathy samples a standpost as soon as it appears in the list
-   (`docs/labels/piped_water_points.csv`).
+1. **One system record per scheme** (`act-moramanga-system-dedupe`). The four Endur'O records are
+   the records of record. Other organisations' duplicates are resolved by note. Endur'O's own
+   duplicates ("AEPP …", "Forage …", twin records) stay open until Endur'O retires them or notes
+   them.
+2. **Register every public standpost as a new Distribution Point** under the Endur'O record
+   (`act-moramanga-register-standposts`), quoting the old mWater ID in the description where there
+   is one. Existing systems are registered now; new systems at commissioning. Cathy samples a
+   standpost as soon as it appears in the list (`docs/labels/piped_water_points.csv`).

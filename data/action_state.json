@@ -595,7 +595,7 @@
   },
   "act-moramanga-system-dedupe": {
    "evaluated": "2026-09-29",
-   "evidence": "moramanga_duplicates_unresolved = 7 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
+   "evidence": "moramanga_duplicates_unresolved = 6 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",

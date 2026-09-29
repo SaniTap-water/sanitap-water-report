@@ -51,8 +51,16 @@ sample type and photo from the sampling record.
                protocol went live (build_config piped.pairing.protocol_live) is
                pre-project baseline: not paired, not flagged, not counted; the
                results are listed in the method notes as "baseline, not paired".
+  earlier      a sample or result at an earlier-project record (another
+               organisation's kiosk, never edited) is mapped through the
+               Moramanga crosswalk to the Endur'O point that replaces it, so one
+               physical standpost is one water point; the old kiosks map to their
+               scheme meanwhile (the interim mapping). Such a sample pairs and
+               counts, flagged "sampled at an earlier-project record; use the
+               Endur'O point".
   flagged      a result with no sample, a sample with no result after 7 days,
-               and every outside-protocol sample. Flags never fail the build.
+               every outside-protocol sample and every sample at an
+               earlier-project record. Flags never fail the build.
 
 Coordinates are not published: the pairs with their GPS go to
 ~/mwater-exports/piped_wq_pairs.json, and the page says only whether a pair has
@@ -153,12 +161,15 @@ def when(v):
     return t if t.tzinfo else t.replace(tzinfo=datetime.timezone.utc)
 
 
-def pair(results, samples, as_of, point_system=None, under_way=()):
+def pair(results, samples, as_of, point_system=None, under_way=(), canon=None, earlier=()):
     """Pair results with samples by the 72-hour rule. Returns the published
     summary and the private pairs (with coordinates). as_of is the day the
     results were pulled; point_system maps a water point to its system;
-    under_way is the set of systems whose upgrade or new build is under way."""
-    point_system, under_way = point_system or {}, set(under_way)
+    under_way is the set of systems whose upgrade or new build is under way;
+    canon maps an earlier-project point to the Endur'O point that replaces it
+    (the Moramanga crosswalk), so one physical standpost is one water point;
+    earlier is the set of earlier-project point codes."""
+    point_system, under_way, canon, earlier = point_system or {}, set(under_way), canon or {}, set(earlier)
     live = when(PROTOCOL_LIVE)
     res = [r for r in results if r.get("status") == "final"]
     smp = [s for s in samples if s.get("form") == SAMPLING_FORM and s.get("status") == "final"]
@@ -168,14 +179,15 @@ def pair(results, samples, as_of, point_system=None, under_way=()):
     res = sorted((r for r in res if r not in base_r), key=lambda r: (filed(r), r["code"]))
     smp = [s for s in smp if s not in base_s]
     flags = {"result_without_sample": [], "sample_without_result": [],
-             "outside_protocol": [], "date_mismatch": []}
+             "outside_protocol": [], "date_mismatch": [], "earlier_project_record": []}
 
     def sys_of(point):
         return point_system.get(point)
 
     eligible = []
     for s in smp:
-        pt = site_code(answer(s, S_POINT))
+        raw = site_code(answer(s, S_POINT))
+        pt = canon.get(raw, raw)
         t = when(answer(s, S_SAMPLED)) or filed(s)
         why = ("sample at system level (no water point, 1.1b)"
                if not pt or answer(s, S_WHERE) == "kPcXJl9"
@@ -189,11 +201,19 @@ def pair(results, samples, as_of, point_system=None, under_way=()):
                 "pre_completion": sy in under_way})
         else:
             eligible.append({"s": s, "point": pt, "t": t, "used": False,
-                             "pre_completion": sys_of(pt) in under_way})
+                             "pre_completion": (sys_of(pt) or sys_of(raw)) in under_way})
+            # a stray sample at an earlier-project record still pairs and
+            # counts, with a note to use the Endur'O point next time
+            if raw in earlier:
+                flags["earlier_project_record"].append({
+                    "sample": s["code"], "point": raw, "endur_o_point": canon.get(raw),
+                    "day": local_day(answer(s, S_SAMPLED)),
+                    "why": "sampled at an earlier-project record; use the Endur'O point"})
 
     pairs, window = [], datetime.timedelta(hours=WINDOW_H)
     for r in res:
         pt, sub = site_code(answer(r, Q_TAP)), filed(r)
+        pt = canon.get(pt, pt)
         cands = [e for e in eligible if not e["used"] and pt and e["point"] == pt
                  and e["t"] and sub - window <= e["t"] <= sub]
         if not cands:
@@ -267,7 +287,9 @@ def pair(results, samples, as_of, point_system=None, under_way=()):
                                      for r in sorted(base_r, key=lambda r: (filed(r), r["code"]))]},
         "flagged": {k: len(v) for k, v in flags.items()},
         "flagged_total": sum(len(flags[k]) for k in
-                             ("result_without_sample", "sample_without_result", "outside_protocol")),
+                             ("result_without_sample", "sample_without_result", "outside_protocol",
+                              "earlier_project_record")),
+        "earlier_project_samples": len(flags["earlier_project_record"]),
         "flags": flags,
         "pairs": [{k: v for k, v in p.items() if k not in ("gps", "result_id", "sample_id")}
                   | {"gps": bool(p["gps"])} for p in pairs],
@@ -541,9 +563,14 @@ def build():
         raise RuleBroken("no ~/mwater-exports/wq_sampling_piped.json: run "
                          "tools/pull_extract.py --write")
     as_of = str((man.get("wq_results_piped.json") or {}).get("written") or "")[:10]
+    cwp = os.path.join(REPO, "data", "moramanga_wp_crosswalk.json")
+    cw = json.load(open(cwp, encoding="utf8")) if os.path.isfile(cwp) else {}
+    earlier = {r["old"] for r in cw.get("crosswalk") or []} | {
+        x["code"] for x in cw.get("unmatched_old") or []}
     pairing, private_pairs = pair([r for r in rows if r.get("form") == PIPED["wq_form"]],
                                   samples, as_of, point_of,
-                                  {c for c, v in systems.items() if v["status"] == "in_process"})
+                                  {c for c, v in systems.items() if v["status"] == "in_process"},
+                                  cw.get("old_to_new") or {}, earlier)
     pairing["samples_pulled"] = str((man.get("wq_sampling_piped.json") or {})
                                     .get("written") or "")[:10] or None
     build.private_pairs = private_pairs
@@ -587,6 +614,7 @@ def show_pairing(p):
           f"pre-completion {pc['paired']} paired / {pc['samples']} sample(s); "
           f"baseline, not paired: {b['results']} result(s) and {b['samples']} sample(s); "
           f"results with no sample {f['result_without_sample']}; "
+          f"sampled at an earlier-project record {f['earlier_project_record']}; "
           f"samples with no result after {p['after_days']} days {f['sample_without_result']}; "
           f"{p['samples_pending']} still within {p['after_days']} days")
     for x in p["flags"]["outside_protocol"]:
@@ -598,6 +626,9 @@ def show_pairing(p):
               f"{' - near: ' + ', '.join(x['candidates']) if x['candidates'] else ''}")
     for x in p["flags"]["sample_without_result"]:
         print(f"  no result         {x['sample']} (point {x['point']}, {x['day']})")
+    for x in p["flags"]["earlier_project_record"]:
+        print(f"  earlier record    {x['sample']} (point {x['point']}, {x['day']}): {x['why']}"
+              f"{' - ' + x['endur_o_point'] if x.get('endur_o_point') else ''}")
     for x in p["flags"]["date_mismatch"]:
         print(f"  date mismatch     {x['result']} says {x['result_day']}, paired with "
               f"{x['sample']} taken {x['sample_day']}")

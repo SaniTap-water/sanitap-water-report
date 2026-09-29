@@ -3497,7 +3497,9 @@ def main():
     # no build opens - is exactly what this catches.
     CANONICAL = {"pm.csv", "reparation_apres_panne.csv",
                  "appel_signalement_pannes.csv", "premiere_rehabilitation.csv",
-                 "forage_moramanga.csv", "wp_madavance.csv", "piped_systems.csv"}
+                 "forage_moramanga.csv", "wp_madavance.csv", "piped_systems.csv",
+                 # Endur'O's water points, read by tools/moramanga_dedupe.py (crosswalk)
+                 "enduro_points.csv"}
     HISTORICAL = {"old_combined_reparation.csv", "wp_lookup.csv",
                   "suivi_gestion_pannes.csv"}
     exp_dir = os.path.expanduser("~/mwater-exports")
@@ -3705,8 +3707,8 @@ def main():
     _t = subprocess.run([sys.executable, os.path.join(repo_root, "tools", "test_piped_wq.py")],
                         capture_output=True, text=True)
     check("the piped join rule is proved on doctored status files",
-          _t.returncode == 0, "15 cases hold",
-          "15 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
+          _t.returncode == 0, "17 cases hold",
+          "17 cases hold" if _t.returncode == 0 else (_t.stdout.strip().splitlines() or ["no output"])[-1][:80],
           "tools/test_piped_wq.py")
 
     # ---- 7bc. every action says how it closes ------------------------------

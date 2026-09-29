@@ -73,6 +73,7 @@ COUNTED_ONLY = set()
 # who reads each extract, where it is not populations.py
 READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
            "wq_sampling_piped.json": "rebuild_piped_wq.py",
+           "enduro_points.csv": "moramanga_dedupe.py",
            "piped_systems.csv": "rebuild_piped_wq.py",
            "piped_system_reg.json": "rebuild_piped_wq.py",
            "piped_point_reg.json": "rebuild_piped_wq.py",
@@ -85,6 +86,9 @@ PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
 ENTITIES = {
     "wp_madavance.csv": ("water_point", "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56"),
     "piped_systems.csv": ("water_system", "group:c305b9b85f41417387b553d9a33c795b"),
+    # Endur'O's water points, with name, description and GPS: the Moramanga
+    # crosswalk reads the old mWater ID quoted in a new point's description
+    "enduro_points.csv": ("water_point", "group:c305b9b85f41417387b553d9a33c795b"),
 }
 
 

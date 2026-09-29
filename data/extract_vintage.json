@@ -26,6 +26,7 @@
   "baseline_moramanga.json",
   "cbn_gender.json",
   "combined_rehab.json",
+  "enduro_points.csv",
   "first_rehab_current.json",
   "forage_moramanga.csv",
   "hygiene.json",
@@ -63,6 +64,11 @@
   "combined_rehab.json": {
    "age_days": 0,
    "data_to": "2026-01-16",
+   "pulled": "2026-09-29"
+  },
+  "enduro_points.csv": {
+   "age_days": 0,
+   "data_to": null,
    "pulled": "2026-09-29"
   },
   "first_rehab_current.json": {

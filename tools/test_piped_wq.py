@@ -18,7 +18,10 @@ against the real extract.
      it takes from the sample; the window; each sample once, most recent
      first; the date cross-check; outside protocol; pre-completion; baseline
      and the 7-day flag;
-  15. the interim kiosk mapping: pre-completion, never closure.
+  15. the interim kiosk mapping: pre-completion, never closure, flagged as
+      an earlier-project record;
+  16. the crosswalk: confirmed, suggested, unmatched;
+  17. a sample at an old kiosk pairs with the result at its Endur'O point.
 
     python3 tools/test_piped_wq.py
 """
@@ -272,14 +275,54 @@ def main():
     k = kiosks[0]
     pub, priv = R.pair([result("R15", k, "2026-10-12T09:00:00Z")],
                        [sample("S15", k, "2026-10-11T08:00:00Z")], "2026-10-13",
-                       ps, {c for c, e in REAL["systems"].items() if e["status"] == "in_process"})
+                       ps, {c for c, e in REAL["systems"].items() if e["status"] == "in_process"},
+                       {}, set(kiosks))
     sy = next(x for x in dd["systems"] if x["code"] == "1108783583")
     check(15, f"interim kiosk {k} on Amboasary gara",
           all(ps.get(c) == "1108783583" for c in kiosks) and pub["paired"] == 1
-          and priv[0]["pre_completion"] and sy["standposts_n"] == 0,
+          and priv[0]["pre_completion"] and sy["standposts_n"] == 0
+          and [x["sample"] for x in pub["flags"]["earlier_project_record"]] == ["S15"],
           f"{sum(1 for c in kiosks if ps.get(c) == '1108783583')} of {len(kiosks)} kiosks mapped, "
           f"paired {pub['paired']}, pre-completion {priv[0]['pre_completion'] if priv else None}, "
           f"counted toward closure {sy['standposts_n']}")
+
+    # 16. the crosswalk (Adriaan Mol, 29 Sep 2026): an old ID quoted in the new
+    # point's description is confirmed; failing that, GPS within 30 m and a
+    # similar name is suggested; a far or unlike point stays unmatched; an old
+    # point matches once
+    import moramanga_dedupe as D
+    old = [{"code": "441839397", "name": "KIOSQUE TERRAIN AMBOASARY", "location": [-18.44, 48.27]},
+           {"code": "441839483", "name": "KIOSQUE AMPITANOMBY AMBOASARY", "location": [-18.45, 48.28]},
+           {"code": "441839490", "name": "KIOSQUE BARRIERE AMBOASARY", "location": [-18.46, 48.29]},
+           {"code": "441839500", "name": "KIOSQUE ANTSAPANANA", "location": [-18.47, 48.30]}]
+    new = [{"code": "1300000001", "name": "BF Terrain", "desc": "ancien ID mWater 441839397",
+            "location": [-18.4403, 48.27]},                      # quoted, 33 m away
+           {"code": "1300000002", "name": "Borne fontaine Ampitanomby",
+            "desc": "", "location": [-18.45015, 48.28]},        # 17 m, similar name
+           {"code": "1300000003", "name": "BF Marché", "desc": "",
+            "location": [-18.46010, 48.29]},                    # 11 m, unlike name
+           {"code": "1300000004", "name": "BF Antsapanana", "desc": "",
+            "location": [-18.4710, 48.30]}]                     # like name, 111 m
+    cw = D.crosswalk(new, old)
+    got = {r["new"]: (r["old"], r["status"]) for r in cw["crosswalk"]}
+    check(16, "crosswalk: quoted ID confirmed, GPS + name suggested, others unmatched",
+          got == {"1300000001": ("441839397", "confirmed"), "1300000002": ("441839483", "suggested")}
+          and [x["code"] for x in cw["unmatched_old"]] == ["441839490", "441839500"]
+          and cw["counts"]["physical_standposts"] == 6,
+          f"links {got}, unmatched old {[x['code'] for x in cw['unmatched_old']]}, "
+          f"physical standposts {cw['counts']['physical_standposts']}")
+
+    # 17. one physical standpost is one water point: a stray sample at the old
+    # kiosk pairs with a result filed at the new Endur'O point, flagged
+    pub, priv = R.pair([result("R17", "1300000001", "2026-10-15T09:00:00Z")],
+                       [sample("S17", "441839397", "2026-10-15T07:00:00Z")], "2026-10-16",
+                       {"1300000001": "1108783583", "441839397": "1108783583"}, {"1108783583"},
+                       {"441839397": "1300000001"}, {"441839397"})
+    check(17, "a sample at an old kiosk pairs with the result at its Endur'O point",
+          pub["paired"] == 1 and priv[0]["point"] == "1300000001" and priv[0]["pre_completion"]
+          and pub["flags"]["earlier_project_record"][0]["endur_o_point"] == "1300000001",
+          f"paired {pub['paired']} on {priv[0]['point'] if priv else None}, "
+          f"flag {pub['flags']['earlier_project_record'][0]['why'] if pub['flags']['earlier_project_record'] else None}")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

@@ -1456,3 +1456,22 @@ A sixth reader's pass found nothing material and 7 minor points, all fixed:
     18 kiosks and on `441839342`, and ask the MG MERL coordination team the same for
     `378659084`.
 - `441839342` is not marked resolved: it still holds the kiosks. Nothing in mWater was changed.
+
+## 29 September 2026 — Adriaan Mol: other organisations' records are history; Endur'O registers its own
+
+- The management contract for the Moramanga systems is with Endur'O/NatuRano. Endur'O registers
+  its own new water points under its own system records (`1108783583`, `1108783624`,
+  `1108783648`, `1108783662`).
+- Other organisations' records (WaterAid, MG MERL and others) are historical: never edited,
+  relinked, deleted or asked to be transferred. This **replaces** the steps added earlier today:
+  asking WaterAid and MG MERL for edit rights, and relinking the 19 kiosks.
+- `441839342` (WaterAid) and `378659084` (MG MERL) carry the resolution note "superseded – other
+  organisation's historical record; Endur'O record of record used" and count as resolved.
+  Endur'O's own duplicates stay open: `1108783569`, `1108783631`, `1108783655` and the three
+  records `928471757`, `929469223`, `929469247`. The last three are in Endur'O's group and were
+  created on 30 June 2026 by the same account as the boreholes.
+- New: `data/moramanga_wp_crosswalk.json` (old ID → new Endur'O ID), filled every build by
+  `tools/moramanga_dedupe.py`. The pairing uses it, and a sample at an old kiosk is flagged "use
+  the Endur'O point". There is a new extract of Endur'O's water points, `enduro_points.csv`, for
+  the descriptions and GPS.
+- Nothing in mWater was changed.

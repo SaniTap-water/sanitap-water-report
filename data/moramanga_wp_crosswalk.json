@@ -1,0 +1,112 @@
+{
+ "note": "Written every build by tools/moramanga_dedupe.py: Endur'O's new Distribution Points on the Moramanga records of record, matched to earlier-project points (data/moramanga_earlier_points.json). confirmed = the old ID is quoted in the new point's description; suggested = GPS within match_m and a similar name. Old records are other organisations' history and are never edited in mWater.",
+ "match_m": 30,
+ "crosswalk": [],
+ "old_to_new": {},
+ "unmatched_old": [
+  {
+   "code": "378659084",
+   "name": "KIOSQUE BETANATANANA AMBOASARY GARA AMBOASARY GARA",
+   "owner": "MGMERL"
+  },
+  {
+   "code": "441839359",
+   "name": "KIOSQUE BETANATANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839366",
+   "name": "KIOSQUE2 BETANATANANA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839397",
+   "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839407",
+   "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839414",
+   "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839421",
+   "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839438",
+   "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839445",
+   "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839452",
+   "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839469",
+   "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839476",
+   "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839483",
+   "name": "KIOSQUE AMPITANOMBY AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839490",
+   "name": "KIOSQUE BARRIÈRE AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839500",
+   "name": "KIOSQUE ANTSAPANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839517",
+   "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839524",
+   "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839531",
+   "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  },
+  {
+   "code": "441839548",
+   "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+   "owner": "WaterAid"
+  }
+ ],
+ "new_unmatched": [],
+ "counts": {
+  "old": 19,
+  "new": 0,
+  "confirmed": 0,
+  "suggested": 0,
+  "unmatched_old": 19,
+  "physical_standposts": 19
+ }
+}
