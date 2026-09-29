@@ -1,4 +1,17 @@
 {
+ "retired_in_mwater": [],
+ "accidental": [
+  "1108783569",
+  "1108783631",
+  "1108783655"
+ ],
+ "accidental_open": [
+  "1108783569",
+  "1108783631",
+  "1108783655"
+ ],
+ "wrong_parent": [],
+ "wrong_parent_n": 0,
  "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, ~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot data/moramanga_system_history.json (all read only). Only 'resolutions' is edited by hand: resolutions {code: {resolution, date, source}}, decisions, interim_points and the dated permissions read. A duplicate that leaves the extract is resolved in mWater.",
  "nearby_m": 250,
  "history_m": 3000,
@@ -18,6 +31,24 @@
    "date": "2026-09-29",
    "source": "Adriaan Mol, 29 Sep 2026",
    "note": "a kiosk water point linked to 441839342, not a system record"
+  },
+  "928471757": {
+   "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+   "kind": "endur_o_history",
+   "date": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026"
+  },
+  "929469223": {
+   "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+   "kind": "endur_o_history",
+   "date": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026"
+  },
+  "929469247": {
+   "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+   "kind": "endur_o_history",
+   "date": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026"
   }
  },
  "decisions": {
@@ -176,7 +207,12 @@
      "distance_m": 1341,
      "status": "not_managed",
      "group": null,
-     "resolution": null
+     "resolution": {
+      "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+      "kind": "endur_o_history",
+      "date": "2026-09-29",
+      "source": "Adriaan Mol, 29 Sep 2026"
+     }
     },
     {
      "code": "929469247",
@@ -184,7 +220,12 @@
      "distance_m": 1338,
      "status": "not_managed",
      "group": null,
-     "resolution": null
+     "resolution": {
+      "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+      "kind": "endur_o_history",
+      "date": "2026-09-29",
+      "source": "Adriaan Mol, 29 Sep 2026"
+     }
     },
     {
      "code": "441839342",
@@ -654,7 +695,12 @@
      "distance_m": 472,
      "status": "not_managed",
      "group": null,
-     "resolution": null
+     "resolution": {
+      "resolution": "kept as history – holds existing borehole links; sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of record (Adriaan, 29 Sep 2026)",
+      "kind": "endur_o_history",
+      "date": "2026-09-29",
+      "source": "Adriaan Mol, 29 Sep 2026"
+     }
     }
    ],
    "nearby": [],
@@ -815,19 +861,21 @@
   }
  ],
  "duplicates": 7,
- "unresolved": 6,
+ "unresolved": 3,
  "unresolved_codes": [
   "1108783569",
   "1108783631",
-  "1108783655",
-  "928471757",
-  "929469223",
-  "929469247"
+  "1108783655"
  ],
  "nearby": 11,
  "resolved_by_absence": [],
  "resolved_other_organisation": [
   "441839342"
+ ],
+ "resolved_endur_o_history": [
+  "928471757",
+  "929469223",
+  "929469247"
  ],
  "standposts": 0,
  "systems_without_standpost": 4

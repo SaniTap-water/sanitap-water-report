@@ -21,7 +21,8 @@ against the real extract.
   15. the interim kiosk mapping: pre-completion, never closure, flagged as
       an earlier-project record;
   16. the crosswalk: confirmed, suggested, unmatched;
-  17. a sample at an old kiosk pairs with the result at its Endur'O point.
+  17. a sample at an old kiosk pairs with the result at its Endur'O point;
+  18. a new point on a duplicate system record is flagged.
 
     python3 tools/test_piped_wq.py
 """
@@ -323,6 +324,26 @@ def main():
           and pub["flags"]["earlier_project_record"][0]["endur_o_point"] == "1300000001",
           f"paired {pub['paired']} on {priv[0]['point'] if priv else None}, "
           f"flag {pub['flags']['earlier_project_record'][0]['why'] if pub['flags']['earlier_project_record'] else None}")
+
+    # 18. wrong parent (Adriaan Mol, 29 Sep 2026): a Distribution Point on a
+    # duplicate, or a borehole created since the decision on one, is flagged;
+    # an older borehole link to an AEPP record is history and is not
+    regs = [{"form": D.PT_REG_FORM, "code": "REG1", "status": "final",
+             "submittedOn": "2026-10-01T08:00:00Z",
+             "data": {"8f174aec00": {"value": {"code": "1300000010"}},
+                      "e538023500": {"value": {"code": "1108783631"}}}},
+            {"form": D.PT_REG_FORM, "code": "REG2", "status": "final",
+             "submittedOn": "2026-10-01T08:00:00Z",
+             "data": {"8f174aec00": {"value": {"code": "1300000011"}},
+                      "e538023500": {"value": {"code": "1108783648"}}}}]
+    pts = [{"code": "928346466", "type": "Borehole or tubewell", "water_system": "id-aepp",
+            "_created_on": "2026-06-30T17:46:40Z"},
+           {"code": "1300000012", "type": "Borehole or tubewell", "water_system": "id-aepp",
+            "_created_on": "2026-10-02T08:00:00Z"}]
+    w = D.wrong_parent(regs, pts, {"1108783631": "id-twin", "928471757": "id-aepp"})
+    check(18, "wrong parent: new points on a duplicate flagged, older borehole links not",
+          sorted(x["point"] for x in w) == ["1300000010", "1300000012"],
+          f"flagged {sorted(x['point'] for x in w)}")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

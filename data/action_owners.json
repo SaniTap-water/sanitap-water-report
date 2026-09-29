@@ -443,7 +443,7 @@
   },
   "act-moramanga-system-dedupe": {
    "deadline": null,
-   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits"
+   "owner": "Coddy (Endur’O), with Lanja Randriamanantena (MadAvance IT)"
   },
   "act-moramanga-register-standposts": {
    "deadline": null,
@@ -971,7 +971,7 @@
    },
    "act-moramanga-system-dedupe": {
     "type": "auto",
-    "closes_when": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",
+    "closes_when": "closes when Endur'O's three accidental duplicates are gone from mWater or marked decommissioned or disposed, and every other duplicate carries a resolution note",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-28"

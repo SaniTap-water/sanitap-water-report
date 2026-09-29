@@ -75,6 +75,19 @@ Each old point matches at most one new point. The pairing uses the crosswalk so
 that a sample at an old record counts for the new point, and physical
 standposts = new points + unmatched old points, so none is counted twice.
 
+ENDUR'O'S OWN DUPLICATES (Adriaan Mol, 29 Sep 2026). The "AEPP"/"Forage"
+records that hold the existing borehole links are kept as history (note of kind
+"endur_o_history"). The three accidental duplicates created alongside the
+records of record (ACCIDENTAL) are for Endur'O to retire in mWater; each counts
+as resolved once it is gone from the extract or its status is decommissioned
+or disposed.
+
+WRONG PARENT (a readout in publish.sh, never failing the build): any
+Distribution Point registration whose parent (1.3) is one of Endur'O's six
+duplicates, and any Endur'O water point created on or after DECIDED whose
+water_system is one of them, rather than the record of record. The borehole
+links that existed before the decision are history and are not flagged.
+
 A duplicate is RESOLVED when it no longer appears in the extract (merged or
 retired in mWater, which the build sees on its own) or when data/
 moramanga_system_dedupe.json carries a note for it under "resolutions"
@@ -101,6 +114,9 @@ EARLIER = os.path.join(REPO, "data", "moramanga_earlier_points.json")
 CROSSWALK = os.path.join(REPO, "data", "moramanga_wp_crosswalk.json")
 ENDURO_POINTS = os.path.expanduser("~/mwater-exports/enduro_points.csv")
 MATCH_M = 30
+ACCIDENTAL = ("1108783569", "1108783631", "1108783655")
+RETIRED_STATUS = {"decommissioned", "disposed"}   # water_system.status
+DECIDED = "2026-09-29"
 NAME_NOISE = {"kiosque", "kiosk", "kiosky", "borne", "fontaine", "bf", "bp", "point", "d", "eau",
               "de", "du", "la", "le", "aepp", "aepg", "amboasary", "gara", "gare", "ambohibola",
               "amboanjo", "andilanatoby", "tap", "robinet", "public", "publique"}
@@ -259,6 +275,31 @@ def new_endur_points(systems):
             for c in sorted(codes)]
 
 
+def wrong_parent(regs, points, dups):
+    """New Moramanga points hung on a duplicate system record rather than the
+    record of record. regs: Distribution Point registrations; points: rows of
+    the Endur'O water-point extract; dups: {duplicate code: its mWater _id}."""
+    by_id = {i: c for c, i in dups.items() if i}
+    wrong = []
+    for r in regs:
+        if r.get("form") != PT_REG_FORM:
+            continue
+        par = code_of(answer(r, PR_SYSTEM))
+        if par in dups:
+            wrong.append({"kind": "Distribution Point registration", "record": r.get("code"),
+                          "point": code_of(answer(r, PR_POINT)), "parent": par,
+                          "status": r.get("status"),
+                          "on": str(r.get("submittedOn") or r.get("startedOn") or "")[:10]})
+    for p in points:
+        par = by_id.get(p.get("water_system") or "")
+        # the borehole links that existed before the decision are history
+        if par and (p.get("_created_on") or "")[:10] >= DECIDED:
+            wrong.append({"kind": (p.get("type") or "").strip() or "water point",
+                          "record": None, "point": p.get("code"), "parent": par,
+                          "status": None, "on": (p.get("_created_on") or "")[:10]})
+    return wrong
+
+
 def build(old):
     with io.open(EXTRACT, encoding="utf8") as fh:
         rows = {r["code"]: r for r in csv.DictReader(fh) if r.get("code")}
@@ -336,7 +377,10 @@ def build(old):
             sysrec["interim"] = {"from_system": interim["from_system"], "source": interim["source"],
                                  "points": interim["points"], "n": len(interim["points"])}
         systems.append(sysrec)
-    unresolved = sorted(c for c in dup_codes if not res.get(c))
+    retired = sorted(c for c in dup_codes if c in rows
+                     and (rows[c].get("status") or "").strip() in RETIRED_STATUS)
+    unresolved = sorted(c for c in dup_codes if not res.get(c) and c not in retired
+                        and not (c in ACCIDENTAL and c not in rows))
 
     # standposts: public tap stands and kiosks registered on each scheme
     regs = json.load(open(POINT_REG, encoding="utf8")) if os.path.isfile(POINT_REG) else []
@@ -348,7 +392,19 @@ def build(old):
                       and answer(r, PR_TYPE) in PUBLIC_TYPES} - {None})
         sy["standposts"] = pts
         sy["standposts_n"] = len(pts)
+    # wrong parent: a new point hung on one of Endur'O's own duplicates
+    own_dups = sorted(c for c in dup_codes if c in rows)
+    pts = []
+    if os.path.isfile(ENDURO_POINTS):
+        with io.open(ENDURO_POINTS, encoding="utf8") as fh:
+            pts = list(csv.DictReader(fh))
+    wrong = wrong_parent(regs, pts, {c: rows[c].get("_id") for c in own_dups})
     return {
+        "retired_in_mwater": retired,
+        "accidental": list(ACCIDENTAL),
+        "accidental_open": [c for c in ACCIDENTAL if c in unresolved],
+        "wrong_parent": wrong,
+        "wrong_parent_n": len(wrong),
         "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, "
                 "~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot "
                 "data/moramanga_system_history.json (all read only). Only 'resolutions' is edited "
@@ -371,6 +427,8 @@ def build(old):
                                       and (v or {}).get("kind") != "other_organisation"),
         "resolved_other_organisation": sorted(c for c in dup_codes
                                               if (res.get(c) or {}).get("kind") == "other_organisation"),
+        "resolved_endur_o_history": sorted(c for c in dup_codes
+                                           if (res.get(c) or {}).get("kind") == "endur_o_history"),
         "standposts": sum(s.get("standposts_n", 0) for s in systems),
         "systems_without_standpost": sum(1 for s in systems if not s.get("standposts_n")),
     }
@@ -405,6 +463,14 @@ def refresh_history():
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--check"
+    if mode == "--wrong-parent":
+        d = json.load(open(OUT, encoding="utf8"))
+        print(f"Moramanga points on a duplicate system record instead of the record of record "
+              f"(counted, never failing): {d.get('wrong_parent_n', 0)}")
+        for x in d.get("wrong_parent") or []:
+            print(f"  {x['kind']} {x['point'] or '-'} ({x['record'] or 'entity'}, {x['on']}) "
+                  f"on {x['parent']}")
+        return 0
     if mode == "--history":
         refresh_history()
         mode = "--write"

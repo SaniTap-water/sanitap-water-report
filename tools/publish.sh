@@ -270,6 +270,17 @@ if [ "$RC" -ne 0 ]; then
   exit 2
 fi
 
+# A new Moramanga point hung on a duplicate system record instead of the
+# record of record (Adriaan Mol, 29 Sep 2026). A readout, never failing.
+say ""
+say "checking Moramanga points for a duplicate parent (counted, never failing) ..."
+python3 tools/moramanga_dedupe.py --wrong-parent | head -20
+RC=${PIPESTATUS[0]}
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the wrong-parent check could not run (exit $RC)."
+  exit 2
+fi
+
 say ""
 say "recomputing the corrections-log distances ..."
 python3 tools/check_distances.py | tail -4

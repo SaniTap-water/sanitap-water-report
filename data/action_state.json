@@ -595,10 +595,10 @@
   },
   "act-moramanga-system-dedupe": {
    "evaluated": "2026-09-29",
-   "evidence": "moramanga_duplicates_unresolved = 6 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
+   "evidence": "moramanga_duplicates_unresolved = 3 (duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note); target == 0",
    "kind": "data",
    "satisfied": false,
-   "says": "closes when every duplicate system record beside the four Moramanga systems has left mWater (merged or retired) or carries a merge or retire note in data/moramanga_system_dedupe.json",
+   "says": "closes when Endur'O's three accidental duplicates are gone from mWater or marked decommissioned or disposed, and every other duplicate carries a resolution note",
    "when_satisfied": "OK"
   },
   "act-move-stroke-test-sop": {

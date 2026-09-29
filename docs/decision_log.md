@@ -1475,3 +1475,19 @@ A sixth reader's pass found nothing material and 7 minor points, all fixed:
   the Endur'O point". There is a new extract of Endur'O's water points, `enduro_points.csv`, for
   the descriptions and GPS.
 - Nothing in mWater was changed.
+
+## 29 September 2026 — Adriaan Mol: the six open Moramanga duplicates
+
+- **Kept as history, resolved:** `928471757` AEPP AMBOHIBOLA, `929469223` AEPP AMBOASARY GARE and
+  `929469247` Forage Amboasary gare. Note: "kept as history – holds existing borehole links;
+  sources not in sampling scope; new boreholes and all standposts go under the Endur'O record of
+  record".
+- **Open:** the three accidental duplicates `1108783569`, `1108783631` and `1108783655`, for
+  Endur'O to retire in mWater so they don't appear in the pick list. Owner of
+  `act-moramanga-system-dedupe`: Coddy (Endur'O), with Lanja (MadAvance IT). Each closes on its
+  own once it is gone from the extract or its `status` is decommissioned or disposed.
+- **Wrong-parent check** (`tools/moramanga_dedupe.py --wrong-parent`, a `publish.sh` readout that
+  never fails the build): any Distribution Point registration with a duplicate as parent, and any
+  Endur'O water point created from 29 Sep 2026 whose system is a duplicate. The borehole links
+  from before the decision are history and are not flagged.
+- Nothing in mWater was changed.
