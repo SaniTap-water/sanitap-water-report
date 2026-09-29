@@ -1434,3 +1434,25 @@ A sixth reader's pass found nothing material and 7 minor points, all fixed:
     linked kiosks) as a duplicate.
   - `act-moramanga-register-standposts` is new and depends on the dedupe action.
 - Nothing in mWater was changed.
+
+## 29 September 2026 — Adriaan Mol: 1108783583 is Amboasary gara's record of record; the WaterAid kiosks
+
+- **`1108783583` stays the record of record for Amboasary gara.** WaterAid's 2023 record
+  `441839342` "AEPG AMBOASARY GARA" is a duplicate. This is recorded under `decisions` in
+  `data/moramanga_system_dedupe.json`.
+- **The 19 "KIOSQUE … AMBOASARY GARA" water points linked to `441839342`** are recorded under
+  `interim_points` as belonging to `1108783583`. The mapping is used only for piped water-quality
+  classification: a sample at one of these kiosks pairs by water point and is a pre-completion
+  test on Amboasary gara. It does **not** count toward closing
+  `act-moramanga-register-standposts`. That action now counts only a Distribution Point
+  registration whose parent is the record of record itself; a registration on a duplicate no
+  longer counts.
+- **Permissions, read only, 29 Sep 2026:**
+  - WaterAid owns `441839342` and 18 of the kiosks; MGMERL owns `378659084`.
+  - Each record gives admin to its owning group only and view to everyone.
+  - The Enduro and MadAvance groups are members of no other group, so neither can edit these
+    records.
+  - Steps added to the action: ask WaterAid Madagascar to transfer or share edit rights on its
+    18 kiosks and on `441839342`, and ask the MG MERL coordination team the same for
+    `378659084`.
+- `441839342` is not marked resolved: it still holds the kiosks. Nothing in mWater was changed.

@@ -1004,7 +1004,7 @@
   "metric": "moramanga_systems_without_standpost",
   "op": "==",
   "target": 0,
-  "says": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point on its scheme",
+  "says": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point whose parent is the system's record of record; the interim kiosk mapping does not count",
   "when_satisfied": "OK"
  }
 }

@@ -37,10 +37,20 @@ then the original of the four.
 
 STANDPOSTS. For each scheme, the public standposts and kiosks (Distribution
 Point registration 1.5 = public tap stand or urban kiosk) registered final
-with a parent (1.3) that is the system, one of its duplicates or its record of
-record, from ~/mwater-exports/piped_point_reg.json every build
+with a parent (1.3) that is the scheme's record of record (a registration on a
+duplicate does not count: it has to be moved), from ~/mwater-exports/piped_point_reg.json every build
 (act-moramanga-register-standposts). Private connections and sources are not
 counted.
+
+DECISIONS AND THE INTERIM MAPPING (hand-edited, like "resolutions"):
+"decisions" fixes a scheme's record of record whatever the recommendation
+says; "interim_points" maps water points still linked in mWater to a duplicate
+onto the record of record (Adriaan Mol, 29 Sep 2026: the 19 kiosks on WaterAid's
+441839342 belong to 1108783583). The mapping is used by tools/rebuild_piped_wq.py
+to classify piped water quality and NEVER counts toward closing
+act-moramanga-register-standposts, which needs a submitted Distribution Point
+registration whose parent is the record of record itself. "permissions" is a
+dated read of who can edit those records.
 
 A duplicate is RESOLVED when it no longer appears in the extract (merged or
 retired in mWater, which the build sees on its own) or when data/
@@ -197,14 +207,29 @@ def build(old):
                 top, why = recommend(cands)
                 sysrec["record_of_record"] = {"code": top["code"], "name": top["name"],
                                               "group": top["group"], "reason": why}
+        dec = (old.get("decisions") or {}).get(code)
+        if dec:
+            ror = dec["record_of_record"]
+            w = next((x for x in sysrec.get("within") or [] if x["code"] == ror), None)
+            sysrec["record_of_record"] = {
+                "code": ror, "name": (w or {}).get("name") or sysrec["name"],
+                "group": (w or {}).get("group"),
+                "reason": "decided: " + dec["source"]
+                          + ("" if not sysrec.get("record_of_record")
+                             or sysrec["record_of_record"]["code"] == ror
+                             else f" (the rule would have picked {sysrec['record_of_record']['code']})"),
+                "decided": True}
+        interim = (old.get("interim_points") or {}).get(code)
+        if interim:
+            sysrec["interim"] = {"from_system": interim["from_system"], "source": interim["source"],
+                                 "points": interim["points"], "n": len(interim["points"])}
         systems.append(sysrec)
     unresolved = sorted(c for c in dup_codes if not res.get(c))
 
     # standposts: public tap stands and kiosks registered on each scheme
     regs = json.load(open(POINT_REG, encoding="utf8")) if os.path.isfile(POINT_REG) else []
     for sy in systems:
-        scheme = {sy["code"]} | {d["code"] for d in sy["duplicates"]} \
-            | ({sy["record_of_record"]["code"]} if sy.get("record_of_record") else set())
+        scheme = {(sy.get("record_of_record") or {}).get("code") or sy["code"]}
         pts = sorted({code_of(answer(r, PR_POINT)) for r in regs
                       if r.get("form") == PT_REG_FORM and r.get("status") == "final"
                       and code_of(answer(r, PR_SYSTEM)) in scheme
@@ -215,12 +240,16 @@ def build(old):
         "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, "
                 "~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot "
                 "data/moramanga_system_history.json (all read only). Only 'resolutions' is edited "
-                "by hand: {code: {resolution, date, source}}. A duplicate that leaves the extract "
-                "is resolved in mWater.",
+                "by hand: resolutions {code: {resolution, date, source}}, decisions, interim_points "
+                "and the dated permissions read. A duplicate that leaves the extract is resolved "
+                "in mWater.",
         "nearby_m": NEARBY_M,
         "history_m": HISTORY_M,
         "history_read": (hist or {}).get("read_on", "")[:10] or None,
         "resolutions": res,
+        "decisions": old.get("decisions") or {},
+        "interim_points": old.get("interim_points") or {},
+        "permissions": old.get("permissions") or {},
         "systems": systems,
         "duplicates": len(dup_codes),
         "unresolved": len(unresolved),

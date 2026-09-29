@@ -1,8 +1,8 @@
 {
  "blocking_lag_days": 0,
- "checked": "2026-09-28",
+ "checked": "2026-09-29",
  "extract_newest": "2026-09-28",
- "files_age_days": 0,
+ "files_age_days": 1,
  "files_newest": "2026-09-28",
  "known_gaps": {},
  "lag_days": 0,
@@ -36,7 +36,7 @@
   "repair-after-breakdown": "2026-09-22"
  },
  "mwater_newest": "2026-09-28",
- "page_age_days": 0,
+ "page_age_days": 1,
  "page_behind_files_days": 0,
  "per_source": {
   "call-centre": {

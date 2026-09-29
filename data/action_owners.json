@@ -964,7 +964,7 @@
    },
    "act-moramanga-register-standposts": {
     "type": "auto",
-    "closes_when": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point on its scheme",
+    "closes_when": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point whose parent is the system's record of record; the interim kiosk mapping does not count",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-28"

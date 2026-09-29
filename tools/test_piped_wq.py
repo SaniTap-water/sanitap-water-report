@@ -17,7 +17,8 @@ against the real extract.
   8-14. pairing by the 72-hour rule, on made-up responses: the pair and what
      it takes from the sample; the window; each sample once, most recent
      first; the date cross-check; outside protocol; pre-completion; baseline
-     and the 7-day flag.
+     and the 7-day flag;
+  15. the interim kiosk mapping: pre-completion, never closure.
 
     python3 tools/test_piped_wq.py
 """
@@ -259,6 +260,26 @@ def main():
           f"counted results {pub['results']}, baseline {pub['baseline']['results']} result(s) "
           f"and {pub['baseline']['samples']} sample(s), flagged "
           f"{[x['sample'] for x in pub['flags']['sample_without_result']]}")
+
+    # 15. the interim mapping (Adriaan Mol, 29 Sep 2026): a kiosk still linked
+    # in mWater to WaterAid's duplicate 441839342 counts for Amboasary gara, so
+    # a sample there pairs by water point and is a pre-completion test; the
+    # mapping never counts toward registering the standposts
+    ps = R.point_systems(REAL["systems"])
+    dd = json.load(open(os.path.join(R.REPO, "data", "moramanga_system_dedupe.json"),
+                        encoding="utf8"))
+    kiosks = [x["code"] for x in dd["interim_points"]["1108783583"]["points"]]
+    k = kiosks[0]
+    pub, priv = R.pair([result("R15", k, "2026-10-12T09:00:00Z")],
+                       [sample("S15", k, "2026-10-11T08:00:00Z")], "2026-10-13",
+                       ps, {c for c, e in REAL["systems"].items() if e["status"] == "in_process"})
+    sy = next(x for x in dd["systems"] if x["code"] == "1108783583")
+    check(15, f"interim kiosk {k} on Amboasary gara",
+          all(ps.get(c) == "1108783583" for c in kiosks) and pub["paired"] == 1
+          and priv[0]["pre_completion"] and sy["standposts_n"] == 0,
+          f"{sum(1 for c in kiosks if ps.get(c) == '1108783583')} of {len(kiosks)} kiosks mapped, "
+          f"paired {pub['paired']}, pre-completion {priv[0]['pre_completion'] if priv else None}, "
+          f"counted toward closure {sy['standposts_n']}")
 
     if fails:
         print("\nTEST FAILED:\n  " + "\n  ".join(fails)); return 1

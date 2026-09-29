@@ -1,9 +1,145 @@
 {
- "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, ~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot data/moramanga_system_history.json (all read only). Only 'resolutions' is edited by hand: {code: {resolution, date, source}}. A duplicate that leaves the extract is resolved in mWater.",
+ "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, ~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot data/moramanga_system_history.json (all read only). Only 'resolutions' is edited by hand: resolutions {code: {resolution, date, source}}, decisions, interim_points and the dated permissions read. A duplicate that leaves the extract is resolved in mWater.",
  "nearby_m": 250,
  "history_m": 3000,
  "history_read": "2026-09-28",
  "resolutions": {},
+ "decisions": {
+  "1108783583": {
+   "record_of_record": "1108783583",
+   "duplicate": [
+    "441839342"
+   ],
+   "source": "Adriaan Mol, 29 Sep 2026: 1108783583 stays the record of record for Amboasary gara; WaterAid's 2023 record 441839342 is a duplicate"
+  }
+ },
+ "interim_points": {
+  "1108783583": {
+   "from_system": "441839342",
+   "source": "Adriaan Mol, 29 Sep 2026: interim mapping until the kiosks are relinked in mWater; used for piped water-quality classification only, never for closure",
+   "points": [
+    {
+     "code": "378659084",
+     "name": "KIOSQUE BETANATANANA AMBOASARY GARA AMBOASARY GARA",
+     "owner": "MGMERL"
+    },
+    {
+     "code": "441839359",
+     "name": "KIOSQUE BETANATANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839366",
+     "name": "KIOSQUE2 BETANATANANA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839397",
+     "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839407",
+     "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839414",
+     "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839421",
+     "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839438",
+     "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839445",
+     "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839452",
+     "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839469",
+     "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839476",
+     "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839483",
+     "name": "KIOSQUE AMPITANOMBY AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839490",
+     "name": "KIOSQUE BARRIÈRE AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839500",
+     "name": "KIOSQUE ANTSAPANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839517",
+     "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839524",
+     "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839531",
+     "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    },
+    {
+     "code": "441839548",
+     "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+     "owner": "WaterAid"
+    }
+   ]
+  }
+ },
+ "permissions": {
+  "read_on": "2026-09-29",
+  "how": "read only: _managed_by and _roles on each record, group names, and the groups the Endur'O and MadAvance groups belong to (none)",
+  "441839342": {
+   "owner": "WaterAid",
+   "roles": [
+    "WaterAid: admin",
+    "all: view"
+   ]
+  },
+  "kiosks": {
+   "WaterAid": 18,
+   "MGMERL": [
+    "378659084"
+   ],
+   "roles": [
+    "MGMERL: admin; all: view",
+    "WaterAid: admin; all: view"
+   ]
+  },
+  "enduro_can_edit": false,
+  "madavance_can_edit": false,
+  "why": "each record grants admin only to its owning group (WaterAid, or MGMERL for 378659084) and view to everyone; the Enduro and MadAvance groups are not members of WaterAid, MGMERL or any other group"
+ },
  "systems": [
   {
    "code": "1108783583",
@@ -377,7 +513,110 @@
     "code": "1108783583",
     "name": "Amboasary gara",
     "group": "Enduro",
-    "reason": "most attached form responses (201 against 0 for 441839342); but 441839342 (WaterAid) carries 19 linked water points, which move to the record of record or keep a link to it"
+    "reason": "decided: Adriaan Mol, 29 Sep 2026: 1108783583 stays the record of record for Amboasary gara; WaterAid's 2023 record 441839342 is a duplicate",
+    "decided": true
+   },
+   "interim": {
+    "from_system": "441839342",
+    "source": "Adriaan Mol, 29 Sep 2026: interim mapping until the kiosks are relinked in mWater; used for piped water-quality classification only, never for closure",
+    "points": [
+     {
+      "code": "378659084",
+      "name": "KIOSQUE BETANATANANA AMBOASARY GARA AMBOASARY GARA",
+      "owner": "MGMERL"
+     },
+     {
+      "code": "441839359",
+      "name": "KIOSQUE BETANATANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839366",
+      "name": "KIOSQUE2 BETANATANANA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839397",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839407",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839414",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839421",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839438",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839445",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839452",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839469",
+      "name": "KIOSQUE TERRAIN AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839476",
+      "name": "KIOSQUE COMMUNE AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839483",
+      "name": "KIOSQUE AMPITANOMBY AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839490",
+      "name": "KIOSQUE BARRIÈRE AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839500",
+      "name": "KIOSQUE ANTSAPANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839517",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839524",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839531",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     },
+     {
+      "code": "441839548",
+      "name": "KIOSQUE ANTSAMPANANA AMBOASARY AMBOASARY GARA",
+      "owner": "WaterAid"
+     }
+    ],
+    "n": 19
    },
    "standposts": [],
    "standposts_n": 0

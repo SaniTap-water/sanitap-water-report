@@ -284,14 +284,20 @@ def point_systems(status):
     """water point -> system code: the kiosk points in the status file, then
     every final Distribution Point registration's parent (question 1.3), with
     a parent that duplicates one of the Moramanga systems (the dedupe file)
-    mapped to that system."""
+    mapped to that system, then the interim mapping in the dedupe file."""
     out = {wp: c for c, e in status.items() for wp in (e.get("water_points") or [])}
-    dup = {}
+    dup, interim = {}, {}
     dp = os.path.join(REPO, "data", "moramanga_system_dedupe.json")
     if os.path.isfile(dp):
-        for sy in json.load(open(dp, encoding="utf8")).get("systems") or []:
+        dd = json.load(open(dp, encoding="utf8"))
+        for sy in dd.get("systems") or []:
             for x in sy.get("duplicates") or []:
                 dup[x["code"]] = sy["code"]
+        # points still linked to a duplicate in mWater, mapped by decision to
+        # the record of record until they are relinked (Adriaan Mol, 29 Sep 2026)
+        for sy_code, m in (dd.get("interim_points") or {}).items():
+            for pt in m.get("points") or []:
+                interim[pt["code"]] = sy_code
     p = os.path.join(EXPORTS, "piped_point_reg.json")
     for r in (json.load(open(p, encoding="utf8")) if os.path.isfile(p) else []):
         if r.get("form") != PT_REG_FORM or r.get("status") != "final":
@@ -299,6 +305,8 @@ def point_systems(status):
         wp, sy = site_code(answer(r, PR_POINT)), site_code(answer(r, PR_SYSTEM))
         if wp and sy:
             out.setdefault(wp, dup.get(sy, sy))
+    for wp, sy in interim.items():
+        out.setdefault(wp, sy)
     return out
 
 
