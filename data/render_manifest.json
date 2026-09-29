@@ -1,24 +1,24 @@
 {
  "basis": {
   "all": {
-   "headline": "864",
-   "note": "864 water points in scope, the actively managed portfolio: 733 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 southern piped si",
+   "headline": "876",
+   "note": "876 water points in scope, the actively managed portfolio: 745 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 southern piped si",
    "note_bold": [
-    "864"
+    "876"
    ],
    "q": {
     "people": [
      {
       "l": "people served (allocated, not tested)",
-      "v": "273,580"
+      "v": "274,634"
      },
      {
       "l": "People served",
-      "v": "273,580"
+      "v": "274,634"
      },
      {
       "l": "people served today (allocated, not tested)",
-      "v": "273,580"
+      "v": "274,634"
      }
     ],
     "people-per-pump": [
@@ -30,15 +30,15 @@
     "points": [
      {
       "l": "water points in scope",
-      "v": "864"
+      "v": "876"
      },
      {
       "l": "Water points under maintenance",
-      "v": "864"
+      "v": "876"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "864"
+      "v": "876"
      }
     ]
    }
@@ -87,24 +87,24 @@
    }
   },
   "mad": {
-   "headline": "733",
-   "note": "733 water points in scope: the 733 MadAvance hand pumps we maintain, broken ones included, Marolinta among them.",
+   "headline": "745",
+   "note": "745 water points in scope: the 745 MadAvance hand pumps we maintain, broken ones included, Marolinta among them.",
    "note_bold": [
-    "733"
+    "745"
    ],
    "q": {
     "people": [
      {
       "l": "people served (allocated, not tested)",
-      "v": "127,580"
+      "v": "128,634"
      },
      {
       "l": "People served",
-      "v": "127,580"
+      "v": "128,634"
      },
      {
       "l": "people served today (allocated, not tested)",
-      "v": "127,580"
+      "v": "128,634"
      }
     ],
     "people-per-pump": [
@@ -116,15 +116,15 @@
     "points": [
      {
       "l": "water points in scope",
-      "v": "733"
+      "v": "745"
      },
      {
       "l": "Water points under maintenance",
-      "v": "733"
+      "v": "745"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "733"
+      "v": "745"
      }
     ]
    }
@@ -174,16 +174,16 @@
   },
   "mar": {
    "headline": "13",
-   "note": "The basis of this scope is the work, not the register. 13 water points carry a 2026 works record on the borehole-progress form; 1 of them is in the maintained r",
+   "note": "The basis of this scope is the work, not the register. 13 water points carry a 2026 works record on the borehole-progress form; 13 of them is in the maintained ",
    "note_bold": [
     "The basis of this scope is the work, not the register.",
     "13",
-    "1",
-    "12",
-    "The register is a different population:",
-    "1",
+    "13",
     "0",
-    "1"
+    "The register is a different population:",
+    "13",
+    "0",
+    "13"
    ],
    "q": {
     "people": [
@@ -202,7 +202,7 @@
     ],
     "points": [
      {
-      "l": "water points with a 2026 works record — 1 in the maintained register, ",
+      "l": "water points with a 2026 works record — 13 in the maintained register,",
       "v": "13"
      },
      {
@@ -210,7 +210,7 @@
       "v": "13"
      },
      {
-      "l": "water points with a 2026 works record — 1 of them in the maintained re",
+      "l": "water points with a 2026 works record — 13 of them in the maintained r",
       "v": "13"
      }
     ]
@@ -229,7 +229,7 @@
  "headings": [
   "The fleet at a glance",
   "This week",
-  "What every figure is over",
+  "What each figure counts",
   "Actions — the one list",
   "Portfolio by partner",
   "How the people-served figure is built",
@@ -259,7 +259,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 29730,
+ "height": 28708,
  "measure": 1132,
  "missing_ids": [],
  "mobile": {
@@ -277,7 +277,7 @@
  "partner": {
   "all": {
    "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
-   "tot": "864"
+   "tot": "876"
   },
   "enduro": {
    "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
@@ -285,7 +285,7 @@
   },
   "mad": {
    "end": "not in this scope — “MadAvance — all” does not cover it",
-   "tot": "733"
+   "tot": "745"
   },
   "madx": {
    "end": "not in this scope — “MadAvance excl. Marolinta” does not cover it",
@@ -323,7 +323,7 @@
   },
   "exctbl": {
    "hidden": false,
-   "rows": 15
+   "rows": 19
   },
   "imcaptbl": {
    "hidden": false,
@@ -369,6 +369,10 @@
    "hidden": false,
    "rows": 5
   },
+  "sdws18rec": {
+   "hidden": false,
+   "rows": 140
+  },
   "sdws18tbl": {
    "hidden": false,
    "rows": 2
@@ -385,12 +389,12 @@
  "tile_heights": [
   {
    "h": 110,
-   "l": "864water points in scope",
+   "l": "876water points in scope",
    "v": 34
   },
   {
    "h": 110,
-   "l": "273,580people served (allocated, not tes",
+   "l": "274,634people served (allocated, not tes",
    "v": 34
   },
   {
@@ -410,7 +414,7 @@
   },
   {
    "h": 131,
-   "l": "99%hand pumps with a passed E. coli test",
+   "l": "98%hand pumps with a passed E. coli test",
    "v": 34
   },
   {

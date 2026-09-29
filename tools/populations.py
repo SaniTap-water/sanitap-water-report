@@ -1096,11 +1096,7 @@ def chain():
         ("POINTS: carbon fleet + Marolinta = managed fleet",
          carbon | mar == fleet and not (carbon & mar),
          f"{len(carbon)} + {len(mar)} = {len(fleet)} points"),
-        ("POINTS: the fleet is the successfully rehabilitated plus those never "
-         "rehabilitated",
-         (fleet - ok) == (mar | (fleet - ok - mar)),
-         f"{len(ok & fleet)} rehabilitated + {len(fleet - ok)} never = "
-         f"{len(fleet)} points"),
+        _fleet_works_step(fleet, ok),
         ("POINTS: calendar-evidenced \u2286 carbon fleet",
          cal <= carbon, f"{len(cal)} of {len(carbon)} points"),
     ]
@@ -1114,31 +1110,55 @@ def chain():
                      f"export: {', '.join(sorted(orphan))}"),
             "known": ("already tracked as act-742896839"
                       if orphan == {"742896839"} else None)})
-    # a point already reported as missing from the register would otherwise be
-    # counted twice - once as an orphan and again as never rehabilitated
-    # Points in the fleet with no successful first-rehabilitation record.
-    # Marolinta's points are new boreholes, never rehabilitations, so they are
-    # expected here (only some of them appear on the borehole-progress form yet); 782134540 is the Maroantsetra Canzee that was never
-    # first-rehabilitated and is recorded as such. Anything else is a finding.
-    never = (fleet - ok) - orphan
-    KNOWN_NEVER = {"782134540"}
-    unexplained = never - mar - KNOWN_NEVER
+    # Every fleet point must be accounted for by a final programme works
+    # record (the fleet-entry rule, 29 Sep 2026); 782134540 is the one
+    # recorded exception, held by its correction until 31 Oct 2026.
+    import classify_register as _CR
+    _cp = os.path.join(REPO, "data", "register_corrections.json")
+    _c = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
+    works = _CR.works_points(sys.modules[__name__], {e["wp"] for e in _c.get("corrected", [])})
+    unexplained = (fleet - works) - orphan
     steps.append((
-        "POINTS: every fleet point with no successful rehabilitation is "
-        "accounted for",
+        "POINTS: every fleet point has a final works record or a recorded exception",
         not unexplained,
-        f"{len(never)} never rehabilitated = {len(never & mar)} Marolinta "
-        f"(works on the borehole-progress form, which has no success answer, or none yet) + {len(never & KNOWN_NEVER)} recorded "
-        f"+ {len(unexplained)} unexplained"))
+        f"{len(fleet - unexplained - orphan)} of {len(fleet)} points; "
+        f"{len(unexplained)} without"))
     if unexplained:
         gaps.append({
-            "step": "points in the fleet with no successful rehabilitation",
+            "step": "points in the fleet with no final works record",
             "n": len(unexplained),
-            "what": (f"{len(unexplained)} managed point(s) have no successful "
-                     f"first-rehabilitation record on either form and no "
-                     f"recorded reason: {', '.join(sorted(unexplained)[:8])}"),
+            "what": (f"{len(unexplained)} managed point(s) have no successful rehabilitation, "
+                     f"no completed new construction and no recorded exception: "
+                     f"{', '.join(sorted(unexplained)[:8])}"),
             "known": None})
     return steps, gaps
+
+
+def _fleet_works_step(fleet, ok):
+    """The fleet definition, as a checked chain step: the successfully
+    rehabilitated plus completed new constructions (29 Sep 2026)."""
+    import classify_register as CR
+    rehab_bh, new_bh = set(), set()
+    for r in _borehole():
+        if (r.get("status") or "final") != "final":
+            continue
+        t = _answer(r, CR.BH_TYPE)
+        if t == CR.BH_REHAB and _answer(r, CR.BH_STATUS) == CR.BH_FUNCTIONAL:
+            rehab_bh.add(_point_of(r))
+        elif t == CR.BH_NEW and _answer(r, CR.BH_PUMP_MODEL):
+            new_bh.add(_point_of(r))
+    _cp = os.path.join(REPO, "data", "register_corrections.json")
+    c = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
+    exc = {e["wp"] for e in c.get("corrected", []) if e.get("exception")}
+    a = ok & fleet
+    b = (rehab_bh - ok) & fleet
+    n = (new_bh - ok - rehab_bh) & fleet
+    x = (exc & fleet) - a - b - n
+    return ("POINTS: the fleet is the successfully rehabilitated plus completed new constructions",
+            a | b | n | x == fleet,
+            f"{len(a)} successfully rehabilitated + {len(b)} rehabilitated and working "
+            f"(Marolinta works form) + {len(n)} completed new constructions + {len(x)} recorded "
+            f"exception = {len(fleet)} points")
 
 
 def migration_watch():

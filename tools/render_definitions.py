@@ -87,12 +87,14 @@ def block():
 
     return f"""{BEGIN}
 <section data-scopes="all mad madx mar enduro" id="definitions">
-  <div class="sechead"><div><h2>What every figure is over</h2>
-  <p>Figures used to move because no file said what a population <i>is</i>. These are the
+  <div class="sechead"><div><h2>What each figure counts</h2>
+  <p><b>Each figure on this page counts a named set of records; this table says which set, and how it is selected.</b></p>
+  </div></div>
+  <details class="expl" id="definitions-body"><summary>Show the sets and how each is selected</summary>
+  <p class="note">Figures used to move because no file said what a population <i>is</i>. These are the
   definitions the whole page is built on, each one a set of records rather than a stored count, so
   a figure cannot drift from the thing it counts. Every number on this page expands to name one of
   these. Written by <span class="mono">tools/populations.py</span>; nothing here is typed.</p>
-  </div></div>
   <div class="tfilter" data-filter-for="popstbl"><label for="popsfilter">Find a population</label>
   <input type="search" id="popsfilter" placeholder="name or id" autocomplete="off"></div>
   <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl" data-cols="set" style="min-width:1020px">
@@ -125,6 +127,7 @@ def block():
   <thead><tr><th>Parameter</th><th class="num">Value</th><th>Citation</th><th>Set</th></tr></thead>
   <tbody></tbody></table></div>
   {_tablenote('paramstbl')}</div></details>
+</details>
 </section>
 {END}"""
 

@@ -49,6 +49,12 @@ def register(fleet):
     """
     import csv
     out = {}
+    # repository-only attributes for points whose mWater record carries no
+    # district and no pump model (29 Sep 2026: the Marolinta works points);
+    # the works record is the evidence, and nothing is written to mWater
+    _corr = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                        "data", "register_corrections.json"), encoding="utf8"))
+    assigned = (_corr.get("attributes_assigned") or {}).get("points") or {}
     p = os.path.expanduser("~/mwater-exports/wp_madavance.csv")
     with open(p, encoding="utf8", errors="replace") as fh:
         for r in csv.DictReader(fh):
@@ -61,7 +67,8 @@ def register(fleet):
                 lat, lon = round(c[1], 6), round(c[0], 6)
             except Exception:
                 pass
-            d2 = r.get("admin_div2") or None
+            ov = assigned.get(str(code)) or {}
+            d2 = r.get("admin_div2") or ov.get("site_district") or None
             if str(code) in fleet and d2 and d2 not in DISTRICT_TO_SITE:
                 raise SystemExit(
                     f"rebuild_summary: register district {d2!r} on point "
@@ -69,9 +76,9 @@ def register(fleet):
                     f"deliberately; do not let the site be guessed.")
             out[str(code)] = {
                 "site": DISTRICT_TO_SITE.get(d2),
-                "commune": r.get("admin_div3") or None,
+                "commune": r.get("admin_div3") or ov.get("commune") or None,
                 "fkt": r.get("admin_div4") or None,
-                "pump": (r.get("name") or None),
+                "pump": ov.get("pump") or (r.get("name") or None),
                 "lat": lat, "lon": lon,
             }
     return out

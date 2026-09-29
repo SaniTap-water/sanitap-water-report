@@ -3,18 +3,66 @@
  "checked": "2026-09-29",
  "group_records": 918,
  "counts": {
-  "excluded": 16,
+  "excluded": 19,
   "in_fleet": 733,
-  "leaves": 4,
-  "no_first_rehab": 127,
+  "joins": 12,
+  "no_first_rehab": 116,
   "rehab_not_successful": 38
  },
  "review": {},
  "fleet_points_not_in_group": [],
  "joined": {
+  "1052525198": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "1052525215": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "1052525222": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "1052525246": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "1052525260": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "1052525284": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
   "742894057": {
    "on": "2026-09-23",
    "why": "successful first rehabilitation, not excluded, Fort-Dauphin, Canzee, located (register name corrected in mWater the same day; data/register_write_log.json)"
+  },
+  "893673000": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "893673024": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "893673079": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "893673127": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "893673158": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
+  },
+  "987623304": {
+   "on": "2026-09-29",
+   "why": "final works record (rehabilitation or new construction), not excluded, Marolinta, Canzee, located"
   }
  },
  "left": {
@@ -41,15 +89,15 @@
   "1052525167": "no_first_rehab",
   "1052525174": "no_first_rehab",
   "1052525181": "no_first_rehab",
-  "1052525198": "no_first_rehab",
-  "1052525215": "no_first_rehab",
-  "1052525222": "no_first_rehab",
+  "1052525198": "joins",
+  "1052525215": "joins",
+  "1052525222": "joins",
   "1052525239": "no_first_rehab",
-  "1052525246": "no_first_rehab",
+  "1052525246": "joins",
   "1052525253": "no_first_rehab",
-  "1052525260": "no_first_rehab",
+  "1052525260": "joins",
   "1052525277": "no_first_rehab",
-  "1052525284": "no_first_rehab",
+  "1052525284": "joins",
   "1052525291": "no_first_rehab",
   "1084985542": "no_first_rehab",
   "670401615": "in_fleet",
@@ -857,20 +905,20 @@
   "893672975": "no_first_rehab",
   "893672982": "no_first_rehab",
   "893672999": "no_first_rehab",
-  "893673000": "no_first_rehab",
-  "893673024": "no_first_rehab",
+  "893673000": "joins",
+  "893673024": "joins",
   "893673031": "no_first_rehab",
   "893673048": "no_first_rehab",
   "893673055": "no_first_rehab",
   "893673062": "no_first_rehab",
-  "893673079": "no_first_rehab",
+  "893673079": "joins",
   "893673086": "no_first_rehab",
   "893673093": "no_first_rehab",
   "893673103": "no_first_rehab",
   "893673110": "no_first_rehab",
-  "893673127": "no_first_rehab",
+  "893673127": "joins",
   "893673141": "no_first_rehab",
-  "893673158": "no_first_rehab",
+  "893673158": "joins",
   "893673172": "no_first_rehab",
   "897922492": "in_fleet",
   "897922519": "in_fleet",
@@ -912,18 +960,18 @@
   "987623074": "excluded",
   "987623098": "no_first_rehab",
   "987623108": "no_first_rehab",
-  "987623115": "leaves",
+  "987623115": "excluded",
   "987623122": "no_first_rehab",
   "987623146": "excluded",
   "987623153": "excluded",
   "987623160": "no_first_rehab",
   "987623184": "excluded",
-  "987623256": "leaves",
+  "987623256": "excluded",
   "987623263": "excluded",
-  "987623270": "leaves",
+  "987623270": "excluded",
   "987623287": "excluded",
   "987623294": "excluded",
-  "987623304": "excluded",
+  "987623304": "joins",
   "987623335": "no_first_rehab",
   "987623342": "no_first_rehab",
   "987623380": "no_first_rehab",
@@ -931,7 +979,7 @@
   "987623414": "no_first_rehab",
   "987623421": "no_first_rehab",
   "987623490": "no_first_rehab",
-  "987623517": "leaves",
+  "987623517": "excluded",
   "987623524": "no_first_rehab",
   "987623555": "in_fleet",
   "988432109": "no_first_rehab",

@@ -19,28 +19,28 @@
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "733 of 918 points",
+   "detail": "745 of 918 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
   {
-   "detail": "1 of 733 points",
+   "detail": "13 of 745 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
-   "detail": "732 + 1 = 733 points",
+   "detail": "732 + 13 = 745 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
-   "detail": "731 rehabilitated + 2 never = 733 points",
+   "detail": "731 successfully rehabilitated + 7 rehabilitated and working (Marolinta works form) + 6 completed new constructions + 1 recorded exception = 745 points",
    "holds": true,
    "internal": false,
-   "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
+   "step": "POINTS: the fleet is the successfully rehabilitated plus completed new constructions"
   },
   {
    "detail": "297 of 732 points",
@@ -49,10 +49,10 @@
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
   },
   {
-   "detail": "2 never rehabilitated = 1 Marolinta (works on the borehole-progress form, which has no success answer, or none yet) + 1 recorded + 0 unexplained",
+   "detail": "745 of 745 points; 0 without",
    "holds": true,
    "internal": false,
-   "step": "POINTS: every fleet point with no successful rehabilitation is accounted for"
+   "step": "POINTS: every fleet point has a final works record or a recorded exception"
   }
  ],
  "form_base": "https://portal.mwater.co/#/forms/",
@@ -358,7 +358,7 @@
     ]
    ],
    "rule": "The water points MadAvance actively maintains today - the fleet this report is about. Every one has a maintenance history: it is visited, repaired and called about. This is the population behind “water points in scope”.",
-   "size": 733,
+   "size": 745,
    "unit": "points"
   },
   "marolinta": {
@@ -377,7 +377,7 @@
     ]
    ],
    "rule": "The Marolinta boreholes. Deichmann-funded, and outside the carbon programme entirely - they enter no carbon figure.",
-   "size": 1,
+   "size": 13,
    "unit": "points"
   },
   "marolinta_new_constructions": {

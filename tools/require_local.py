@@ -48,7 +48,7 @@ ONEDRIVE = ("/mnt/c/Users/bushp/OneDrive - SaniTap/"
 # Sense dehydrates a folder wholesale rather than a file at a time.
 REQUIRED_FILES = [
     f"{ONEDRIVE}/SOPs/SOP-MAD-SDWS27-CalendrierGardien-Generator-v1.4.py",
-    f"{ONEDRIVE}/SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx",
+    f"{ONEDRIVE}/SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx",
     f"{ONEDRIVE}/SOPs/SOP-MAD-SDWS27-CalendrierGardien-Template-v1.4-2026.svg",
     f"{ONEDRIVE}/SOPs/SOP-MAD-SDWS27-CalendrierGardien-Template-v1.4-2027.svg",
     f"{ONEDRIVE}/Methodology of record/"

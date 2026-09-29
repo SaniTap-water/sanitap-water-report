@@ -789,7 +789,8 @@ def main():
         if sp: eds.append((os.path.basename(f), sp))
     cur_set = _pumps(idx)
     if eds and cur_set:
-        excluded = {x["wp"] for x in (rc.get("excluded") or [])}
+        excluded = ({x["wp"] for x in (rc.get("excluded") or [])}
+                    | {x["wp"] for x in (rc.get("exclusions_superseded") or [])})
         # a join is explained by the classification ledger: the pump met the
         # rule in tools/classify_register.py on a recorded date
         _clsp = os.path.join(repo_root, "data", "register_classification.json")
@@ -860,10 +861,15 @@ def main():
         # checked for conflating them.
         want_nv = sum(1 for p in _P if p.get("days") is None)
         _M = js_const(idx, "METRICS") or {}
-        check("agg().never - points with no visit - matches PUMPS",
-              want_nv == len([p for p in _P if not p.get("last_visit")]),
-              want_nv, len([p for p in _P if not p.get("last_visit")]),
-              "days is null exactly when last_visit is null")
+        # (29 Sep 2026) a pump that joined on a borehole-form works record and
+        # has not been visited yet has a clock from its works date: days is
+        # set, last_visit is not. days is null only with neither.
+        import rebuild_activity as _RA
+        _wd = _RA.borehole_works_dates()
+        _nv = len([p for p in _P if not p.get("last_visit") and p["wp"] not in _wd])
+        check("agg().never - points with no visit and no works date - matches PUMPS",
+              want_nv == _nv, want_nv, _nv,
+              "days is null exactly when there is neither a visit nor a borehole-form works date")
         check("S.never is the works-record count, and matches its metric",
               _S.get("never") == _M.get("points_no_works_record"),
               _M.get("points_no_works_record"), _S.get("never"),
@@ -2102,11 +2108,14 @@ def main():
         check(f"{aid}: carries a schedule pill", has_pill, "pill",
               "pill" if has_pill else "MISSING",
               "house format: pill, date, proposed-note, completion criterion")
-        check(f"{aid}: marked as proposed for Jan to confirm",
-              "proposed &mdash; Jan to confirm or move" in row, "proposed",
-              "proposed" if "proposed &mdash; Jan to confirm or move" in row
-              else "MISSING",
-              "deadlines are proposals until Jan confirms them")
+        # (29 Sep 2026) the "proposed - Jan to confirm or move" marker is gone:
+        # deadlines were proposals for Jan to confirm when the list was first
+        # dated (18 Sep 2026); since 28 Sep they live in data/action_owners.json,
+        # the record Adriaan and Claude update, so the marker no longer meant
+        # anything and it was removed from every action.
+        check(f"{aid}: carries no stale 'Jan to confirm or move' marker",
+              "Jan to confirm or move" not in row, "absent",
+              "absent" if "Jan to confirm or move" not in row else "PRESENT")
 
     # ---- 7x. 356.2 is a reading, never a claim -----------------------------
     # DO = min(347, days demonstrated by the log). The observed-window reading
@@ -2223,9 +2232,9 @@ def main():
             check(f"{aid}: deadline is {date}", f"<b>{date}</b>" in m2.group(1),
                   date, date if f"<b>{date}</b>" in m2.group(1) else "WRONG DATE")
     check("the calendar-custody rule is stated as replace-only-after-photograph",
-          "NO CALENDAR MAY BE REPLACED UNTIL THE PREVIOUS ONE HAS BEEN PHOTOGRAPHED"
-          in idx, "stated", "stated" if "NO CALENDAR MAY BE REPLACED" in idx
-          else "MISSING", "the precondition for the recovery round")
+          "no calendar may be replaced until the previous one has been photographed"
+          in idx.lower(), "stated", "stated" if "no calendar may be replaced" in idx.lower()
+          else "MISSING", "the precondition for the recovery round (sentence case since 29 Sep 2026)")
     check("the recovery round is whole-portfolio against the 727 denominator",
           "whole portfolio &mdash; not a sample" in idx, "stated",
           "stated" if "whole portfolio &mdash; not a sample" in idx else "MISSING")
@@ -2471,13 +2480,16 @@ def main():
     # From the January round the period is written on the sheet by the
     # technician and captured as an mWater field, so attribution never
     # depends on reading a printed header.
-    check("the page links the SOP at v1.5",
-          "CalendrierGardien-v1.5-2026" in idx
+    # (29 Sep 2026) v1.7 approved; v1.0-v1.6 moved to SOPs/Archive, so a
+    # link to v1.5 in SOPs would now be broken
+    check("the page links the SOP at v1.7",
+          "CalendrierGardien-v1.7-2026.docx" in idx
+          and "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx" not in idx
           and "CalendrierGardien-v1.4-2026.docx" not in idx
           and "CalendrierGardien-v1.3-2026.docx" not in idx
-          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.5",
-          "v1.5" if "CalendrierGardien-v1.5-2026" in idx else "NOT UPDATED",
-          "photograph mandatory where a calendar exists, at v1.5")
+          and "CalendrierGardien-v1.2-2026.docx" not in idx, "v1.7",
+          "v1.7" if "CalendrierGardien-v1.7-2026.docx" in idx else "NOT UPDATED",
+          "the approved issue, 29 Sep 2026")
     check("the page names the template at v1.4",
           "Template-v1.4" in idx and "Template-v1.3.svg" not in idx, "v1.4",
           "v1.4" if "Template-v1.4" in idx else "NOT UPDATED",
@@ -3221,16 +3233,18 @@ def main():
     check("the register note states the managed points match their records",
           _regok, "corrected", "corrected" if _regok else "OLD NOTE BACK",
           "the page does not read district from form answers; it matches the record")
+    # (29 Sep 2026) the three flagged codes have since joined the fleet on
+    # their works records; the settled statement is now their history
     check("the duplicate-registration item is settled, not open",
-          "are not in the managed portfolio at all" in idx,
+          "were checked as flagged duplicate registrations" in idx,
           "settled", "settled"
-          if "are not in the managed portfolio at all" in idx else "STILL OPEN",
-          "3 of the 4 flagged codes are not portfolio points")
+          if "were checked as flagged duplicate registrations" in idx else "STILL OPEN",
+          "the flagged codes each have a works record and joined the fleet")
     check("the Marolinta section states its purpose and its scope",
-          "pre-portfolio view of the Marolinta works" in idx
-          and "not part of the portfolio" in idx, "stated",
-          "stated" if "pre-portfolio view" in idx else "MISSING",
-          "1 of 13 rows is a managed point")
+          "this is the works view of Marolinta" in idx
+          and "only way a point enters the fleet" in idx, "stated",
+          "stated" if "this is the works view of Marolinta" in idx else "MISSING",
+          "every row with a works record is a managed point (29 Sep 2026)")
     check("both rehabilitation forms are described with their real usage",
           "never received a single response" in idx, "stated",
           "stated" if "never received a single response" in idx else "MISSING",

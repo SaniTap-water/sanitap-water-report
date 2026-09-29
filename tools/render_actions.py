@@ -456,8 +456,11 @@ def row(a, today, owner_cell=True):
             + own
             + f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
               f'{badge}{label}</td>'
-              f'<td class="num">{dl}</td>'
-              f'<td class="closes">{closes}</td></tr>')
+              # a date is a number and never wraps; a deadline written as words
+              # ("before the piped VPA-DD is submitted") is text and wraps
+              + (f'<td class="num">{dl}</td>' if a.get("due") or not a.get("deadline")
+                 else f'<td class="dltext">{dl}</td>')
+              + f'<td class="closes">{closes}</td></tr>')
 
 
 def block(idx, today=None):
@@ -489,10 +492,18 @@ def block(idx, today=None):
                                          a["due"] or datetime.date(2099, 1, 1))):
         by_lead.setdefault(a["lead"], []).append(a)
 
-    head = ('<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
+    # Column widths are set, not measured (29 Sep 2026): measured widths gave
+    # the Item column a sliver and Status a wide empty band. Item carries the
+    # text, so it is widest; data-cols="set" keeps layoutTables() from
+    # re-measuring. Percentages, so print keeps the proportions.
+    head = ('<colgroup><col style="width:40%"><col style="width:15%"><col style="width:10%">'
+            '<col style="width:10%"><col style="width:25%"></colgroup>'
+            '<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
             '<th class="num">Deadline</th><th>What would close it</th>'
             '</tr></thead>')
-    head_no_owner = ('<thead><tr><th>Item</th><th>Status</th>'
+    head_no_owner = ('<colgroup><col style="width:47%"><col style="width:11%">'
+                     '<col style="width:12%"><col style="width:30%"></colgroup>'
+                     '<thead><tr><th>Item</th><th>Status</th>'
                      '<th class="num">Deadline</th><th>What would close it</th>'
                      '</tr></thead>')
 
@@ -587,7 +598,7 @@ def block(idx, today=None):
          'here and are never set by hand.</span></p>'),
         # --- the rows, once ----------------------------------------------
         '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
-        '<table class="ind" data-prose-table>' + head + '<tbody>',
+        '<table class="ind tfix acttbl" data-prose-table data-cols="set" style="min-width:1000px">' + head + '<tbody>',
     ]
     out += ["    " + row(a, today) for a in acts]
     out += ['  </tbody></table></div>',
@@ -602,7 +613,7 @@ def block(idx, today=None):
                    f'<summary>{face(lead, 22)}{lead} &mdash; {len(rows)} item(s) '
                    f'<span class="muted">({bits})</span></summary>'
                    '<div class="tablewrap" style="margin-top:8px">'
-                   '<table class="ind" data-prose-table>' + head_no_owner + '<tbody>')
+                   '<table class="ind tfix acttbl" data-prose-table data-cols="set" style="min-width:840px">' + head_no_owner + '<tbody>')
         out += ["    " + row(a, today, owner_cell=False) for a in rows]
         out.append("  </tbody></table></div></details>")
     out += ['  </div>',

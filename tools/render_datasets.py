@@ -74,6 +74,9 @@ SETS = {
     "MORADUP": ("data", "moramanga_system_dedupe.json"),
     # the Moramanga crosswalk, old earlier-project point -> new Endur'O point
     "MORACW": ("data", "moramanga_wp_crosswalk.json"),
+    # the calendar-extraction accuracy: Adriaan Mol's full transcription against the
+    # machine (tools/compare_transcriptions.py --summary-json)
+    "TACC": ("data", "transcription_accuracy.json"),
     # the 2025 household water-quality round, SDWS 18 (tools/rebuild_sdws18.py)
     "SDWS18": ("data", "sdws18.json"),
     # the PROPOSED India Mark cap per pump (tools/india_mark_cap.py): shown

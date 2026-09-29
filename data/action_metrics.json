@@ -86,6 +86,11 @@
    "source": "local",
    "value": 6
   },
+  "marolinta_new_without_drilling_result": {
+   "says": "final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'R\u00e9sultat de la foration'",
+   "source": "local",
+   "value": 6
+  },
   "marolinta_points_no_admin": {
    "says": "Marolinta records carrying no district or commune",
    "source": "local",
@@ -190,6 +195,11 @@
    "says": "points the MadAvance dashboard counts that our register does not",
    "source": "local",
    "value": 6
+  },
+  "rehab_records_782134540": {
+   "says": "final first-rehabilitation records filed for 782134540 (the recorded exception to the fleet-entry rule)",
+   "source": "local",
+   "value": 0
   },
   "sdws26_2025_round_unapproved": {
    "says": "final responses of the November 2025 usage round with no approval in mWater",

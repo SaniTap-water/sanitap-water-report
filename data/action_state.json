@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 6,
   "children": 3,
-  "data": 46,
-  "decision": 49,
+  "data": 47,
+  "decision": 51,
   "form": 7,
-  "none": 25
+  "none": 24
  },
  "state": {
   "act-2026-recovery": {
@@ -26,13 +26,21 @@
    "says": "closes when water point 742896839 appears in the maintained register",
    "when_satisfied": "OK"
   },
+  "act-782134540-rehab-record": {
+   "evaluated": "2026-09-29",
+   "evidence": "rehab_records_782134540 = 0 (final first-rehabilitation records filed for 782134540 (the recorded exception to the fleet-entry rule)); target >= 1",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when a final rehabilitation record for 782134540 is in mWater",
+   "when_satisfied": "OK"
+  },
   "act-adopt-consolidated-gardien-calendar": {
    "closed_since": "2026-09-21",
    "evaluated": "2026-09-29",
-   "evidence": "SOP-MAD-SDWS27-CalendrierGardien-v1.5-2026.docx is in Water Documents/SOPs",
+   "evidence": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
    "satisfied": true,
-   "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder, not a draft",
+   "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder (v1.7, approved 29 Sep 2026)",
    "when_satisfied": "OK"
   },
   "act-cal-handwritten-year": {
@@ -108,11 +116,12 @@
    "when_satisfied": "OK"
   },
   "act-complete-accuracy-assessment-calendar": {
+   "closed_since": "2026-09-29",
    "evaluated": "2026-09-29",
-   "evidence": "transcription_sheets_done = 0 (calendars transcribed in the validation round); target >= 50",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when the 50-calendar transcription round is complete",
+   "evidence": "decided 2026-09-29 by Adriaan Mol, COO SaniTap: Closed with the accuracy measure: Adriaan Mol's transcription of all 83 calendars (series 1, 28 Sep 2026; data/transcriptions/releves_calendriers_mol-adriaan_serie1_2026-09-28.csv) against the machine (extraction_days2.csv): 42 calendars compared, agreement 0.9205 mean over calendars (0.9383 over 9780 days); false X 394 (366 on days 1-5), missed X 18, machine unreadable 191; 33 of 83 sheets outside the machine frame, 8 with no overlapping cells. Published in the calendar section (data/transcription_accuracy.json).",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-confirm-india-mark-capacity": {
@@ -479,6 +488,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-marolinta-drilling-result": {
+   "evaluated": "2026-09-29",
+   "evidence": "marolinta_new_without_drilling_result = 6 (final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'R\u00e9sultat de la foration'); target == 0",
+   "kind": "data",
+   "satisfied": false,
+   "says": "closes when all six Marolinta new-construction records carry a drilling result",
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
@@ -973,11 +990,12 @@
    "when_satisfied": "OK"
   },
   "act-sensor-sample": {
+   "closed_since": "2026-09-29",
    "evaluated": "2026-09-29",
-   "evidence": "no closing condition: a briefing is delivered or it is not, and no system records it",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: a briefing is delivered or it is not, and no system records it",
+   "evidence": "decided 2026-09-29 by Adriaan Mol, COO SaniTap: Done: Ralf van Veenendaal (Curtech) was briefed on the fleet-wide unit count and the calibration sample by WhatsApp.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-settle-baseline-boiling-device": {
@@ -994,7 +1012,7 @@
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
-   "says": "closes when the signed v1.7 and the dated briefing note are logged in data/decisions.json",
+   "says": "closes when Angelo's written confirmation for every field team is logged in data/decisions.json",
    "when_satisfied": "OK"
   },
   "act-standardised-stroke-test-basis": {

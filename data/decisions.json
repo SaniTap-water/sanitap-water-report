@@ -138,6 +138,76 @@
    "logged_on": "2026-09-29",
    "logged_by": "Adriaan Mol",
    "answer": "Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). All three points it names - 987623517, 987623256 and 987623115 - were excluded on 29 Sep 2026; none is in the fleet, so no visit is owed."
+  },
+  "register-marolinta-works-join": {
+   "answer": "The fleet-entry rule applied to Marolinta: the 12 points with a final works record on the borehole-progress form join the managed fleet - 6 final new constructions (893673000, 893673127, 893673158, 1052525198, 1052525260, 1052525284; 29 Jul-3 Aug 2026, hand pump Canzee recorded; the drilling-result question is blank because it was added later, act-marolinta-drilling-result) and 6 final rehabilitations marked Fonctionnel (1052525215, 893673079, 1052525246, 1052525222, 893673024, 987623304). They had fallen out of the fleet because their mWater records carry no district; the district (Beloha, site Marolinta) and pump model (Canzee, from the works record) are set in the repository only (register_corrections attributes_assigned), not in mWater. Duplicate check: none lies within 30 m of a fleet point or of another joiner. Marolinta 1 -> 13; Marolinta stays outside every carbon figure. The fleet definition is reworded: the successfully rehabilitated plus completed new constructions.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "points": [
+    "893673000",
+    "893673127",
+    "893673158",
+    "1052525198",
+    "1052525260",
+    "1052525284",
+    "1052525215",
+    "893673079",
+    "1052525246",
+    "1052525222",
+    "893673024",
+    "987623304"
+   ],
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "register-987623304-exclusion-superseded": {
+   "answer": "987623304 joins on its final rehabilitation of 29 Aug 2026 (Fonctionnel). The exclusion of 15 Sep 2026 as a rope-pump survey entry is superseded: the survey recorded the pump before rehabilitation. The record gives the hand pump model as Canzee (not India Mark), and its photographs ('Pompe installee', 'Tete de pompe', rehabilitation record f21f3cbd) show a Canzee-type PVC direct-action pump, not a rope pump: confirmed by photo, so no pump-type action is needed. As a Marolinta point it stays outside all carbon figures.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "register-782134540-exception": {
+   "answer": "782134540 (Maroantsetra, Canzee) has no rehabilitation or new-construction record - only a repair (28 Jun 2025), an E. coli pass (11 Jul 2025) and call-centre records. It stays in the fleet as the one recorded exception to the fleet-entry rule, under the correction of 15 Sep 2026, until 31 Oct 2026: act-782134540-rehab-record (Angelo) closes when a final rehabilitation record for it appears in mWater; if none has by then, the point leaves the fleet and the carbon fleet (732 -> 731) at the next build, enforced by tools/classify_register.py.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-complete-accuracy-assessment-calendar": {
+   "answer": "Closed with the accuracy measure: Adriaan Mol's transcription of all 83 calendars (series 1, 28 Sep 2026; data/transcriptions/releves_calendriers_mol-adriaan_serie1_2026-09-28.csv) against the machine (extraction_days2.csv): 42 calendars compared, agreement 0.9205 mean over calendars (0.9383 over 9780 days); false X 394 (366 on days 1-5), missed X 18, machine unreadable 191; 33 of 83 sheets outside the machine frame, 8 with no overlapping cells. Published in the calendar section (data/transcription_accuracy.json).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026; tools/compare_transcriptions.py --summary-json",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-sensor-sample": {
+   "answer": "Done: Ralf van Veenendaal (Curtech) was briefed on the fleet-wide unit count and the calibration sample by WhatsApp.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026 (WhatsApp)",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "sop-calendar-v17-approval": {
+   "answer": "Calendar SOP v1.7 (SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx) approved. Its status line was changed in SharePoint to 'Statut: Approuvée — Adriaan Mol, COO SaniTap, 29 septembre 2026' (that line only). Moved unchanged to SOPs/Archive: v1.0, v1.1, v1.2, v1.5, v1.6 and Template v1.0 and v1.1 (pdf and svg). Kept in SOPs: v1.7 and Template-v1.4-2027.pdf.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
+  },
+  "owners-2026-09-29": {
+   "answer": "Owner changes: act-calendar-v13 (print and distribute calendar template v1.4) and act-route-plans (catch-up route plan for Marolinta, keep Fort-Dauphin's current) to Angelo Nahavitatsara; act-sop-calendar-v17-signoff reworded as the French field-team briefing on SOP v1.7, owner Angelo.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "Adriaan Mol, 29 Sep 2026",
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

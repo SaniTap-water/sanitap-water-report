@@ -1620,3 +1620,91 @@ the closed list.
 - The visit action named only excluded points, so it closes whole rather than dropping one point.
 - The type action also carried a misfiled photograph on 742896114. That photograph is one of those
   tracked by `act-photo-misfiled`, which stays open.
+
+## 29 September 2026 — Adriaan Mol: the fleet is the successfully rehabilitated plus completed new constructions
+
+**Checked before changing.** Two fleet points had no successful rehabilitation (not six: four had
+been excluded as survey records earlier the same day).
+- **782134540** (Maroantsetra, Canzee) has a repair (28 Jun 2025), an *E. coli* pass (11 Jul 2025) and
+  call-centre records, and no rehabilitation or new-construction record. It was in the fleet under
+  the correction of 15 Sep 2026.
+- **987623555** (Marolinta) has a final rehabilitation on the borehole-progress form, 26 Aug 2026.
+
+The Marolinta borehole-progress form holds 13 final works records, but only 987623555 was in the
+fleet; the other 12 carry no district in mWater and fell out of the join.
+- **6 new constructions** (29 Jul–3 Aug 2026): 893673000, 893673127, 893673158, 1052525198,
+  1052525260, 1052525284.
+- **7 rehabilitations marked "Fonctionnel"** (5–29 Aug 2026), including 987623555 and 987623304.
+- **Pump model:** every one records Canzee. The register names 987623555 "IndiaMark"; it is left as
+  it is, and flagged.
+- **Elsewhere:** Fort-Dauphin and Maroantsetra have no new-construction record on any works form, and
+  the retired combined form has no new-construction type.
+
+**Applied** (rule of 29 Sep 2026; decisions `register-marolinta-works-join`,
+`register-987623304-exclusion-superseded`, `register-782134540-exception`):
+- **The 12 join the fleet.** District (Beloha → Marolinta) and pump model (Canzee, from the works
+  record) are set in the repository only (`register_corrections.attributes_assigned`), not in
+  mWater. None is within 30 m of a fleet point or of another joiner.
+- **987623304's exclusion is superseded.** It was excluded on 15 Sep 2026 as a rope-pump survey entry.
+  Its rehabilitation photographs show a Canzee-type PVC direct-action pump, so it is confirmed by
+  photo.
+- **782134540 stays as the one recorded exception** until 31 Oct 2026
+  (`act-782134540-rehab-record`, Angelo). If no final rehabilitation record for it has appeared by
+  then, `classify_register.py` removes it and the carbon fleet goes from 732 to 731.
+- **New action** `act-marolinta-drilling-result` (Angelo): answer the drilling-result question on
+  the six new-construction records.
+
+**Resulting counts:**
+
+| | Maroantsetra | Fort-Dauphin | Marolinta | Total | Carbon fleet |
+|---|---|---|---|---|---|
+| Before | 604 | 128 | 1 | 733 | 732 |
+| After | 604 | 128 | 13 | 745 | 732 (unchanged) |
+
+- The WorldPop allocation was rerun: only the 13 Marolinta pumps changed.
+- The joiners' maintenance clocks start from their works dates, so they are no longer counted as
+  "no works record".
+- The chain step now reads "the fleet is the successfully rehabilitated plus completed new
+  constructions".
+
+## 29 September 2026 — Adriaan Mol: action list and calendar SOP
+
+**Wording and layout:**
+- "What every figure is over" is renamed "What each figure counts", with a one-line explanation.
+  The rest of the section is collapsed by default; it had been fully open.
+- The action list has fixed column widths: Item 40%, Owner 15%, Status 10%, Deadline 10%, "What would
+  close it" 25%. The owner tables use 47/11/12/30. One action text typed in capitals is now in
+  sentence case.
+
+**"proposed — Jan to confirm or move" removed from all 68 actions.** It dates from 18 Sep 2026
+(commit 2a410b3), when every deadline was a proposal awaiting Jan's confirmation. Since 28 Sep,
+deadlines live in `data/action_owners.json`. It marked no open question about an owner.
+
+**Calendar SOP v1.7:**
+- **Approved** by Adriaan: its status line in SharePoint now reads "Statut: Approuvée — Adriaan Mol,
+  COO SaniTap, 29 septembre 2026".
+- **Moved unchanged to SOPs/Archive:** v1.0, v1.1, v1.2, v1.5 and v1.6, and Template v1.0 and v1.1
+  (pdf and svg).
+- **Kept in SOPs:** v1.7 and Template-v1.4-2027.pdf. Template-v1.4-2026 (pdf/svg), the v1.4-2027 svg
+  and Generators v1.0/v1.4 are also still there, left for a decision.
+
+**Actions:**
+
+| Action | Change |
+|---|---|
+| `act-sop-calendar-v17-signoff` | Now "Brief every field team in French on SOP v1.7" (Angelo); closes on his written confirmation per team |
+| `act-calendar-v13` | Owner Angelo; links to the template and v1.7 |
+| `act-route-plans` | Owner Angelo |
+| `act-sensor-sample` (the Curtech brief) | Closed: done by WhatsApp |
+| `act-complete-accuracy-assessment-calendar` | Closed on the measured accuracy (below) |
+
+**Accuracy of the calendar extraction.** Adriaan's transcription of all 83 calendars (series 1, 28 Sep
+2026) is copied into `data/transcriptions/` and compared with the machine
+(`tools/compare_transcriptions.py --summary-json` → `data/transcription_accuracy.json`).
+- **Coverage:** the machine reads 50 of the 83 sheets; 42 have overlapping cells.
+- **Agreement:** 92.1% mean over calendars, 93.8% over 9,780 days.
+- **False X:** 394, of which 366 fall on days 1–5.
+- **Missed X:** 18.
+- **Machine unreadable:** 191 days.
+
+This is published in the calendar section. The independent validation round stays open.

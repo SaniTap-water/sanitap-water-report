@@ -81,6 +81,25 @@ def counts(name, asof):
     return [win(0, wk), win(wk, 2 * wk), win(0, win_n)]
 
 
+def borehole_works_dates():
+    """Each point's latest FINAL works date on the borehole-progress form
+    (question 1.2, date of works), for the rehabilitations and new
+    constructions that put Marolinta points in the fleet."""
+    import populations as P
+    out = {}
+    for r in P._borehole():
+        if (r.get("status") or "final") != "final":
+            continue
+        w = P._point_of(r)
+        d = None
+        for k, v in (r.get("data") or {}).items():
+            if k.startswith("86fc2a6da162"):
+                d = str((v.get("value") if isinstance(v, dict) else v) or "")[:10]
+        if w and d and d > out.get(w, ""):
+            out[w] = d
+    return out
+
+
 def monthly(since="2025-09"):
     """[[YYYY-MM, submitted records], ...] for preventive visits and repairs."""
     import collections
@@ -146,12 +165,23 @@ def main():
     asof = datetime.date.fromisoformat(max(d for d in all_d if d[:2] == "20"))
 
     moved, unseen = [], []
+    works_date = borehole_works_dates()
     for p in pumps:
         c = p["wp"]
         new_pm = max(pm.get(c, []) or [""]) or None
         new_rp = max(rep.get(c, []) or [""]) or None
         new_lv = max([x for x in (new_pm, new_rp) if x] or [""]) or None
         if not new_lv:
+            # no visit or repair yet: the maintenance clock runs from the works
+            # record that put the pump in the fleet. A pump that joined through
+            # the borehole-progress form (rehabilitation or new construction)
+            # had no clock at all and was counted as "no works record" - the
+            # opposite of why it is in the fleet (29 Sep 2026).
+            if p.get("days") is None and c in works_date:
+                days = (asof - datetime.date.fromisoformat(works_date[c])).days
+                moved.append((c, (None, None, None, None), (None, None, None, days)))
+                if mode == "--write":
+                    p["days"] = days
             continue
         old = (p.get("last_pm"), p.get("last_repair"), p.get("last_visit"),
                p.get("days"))

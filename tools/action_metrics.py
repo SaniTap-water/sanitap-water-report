@@ -348,6 +348,28 @@ def _m_sdws26_unapproved():
                and "2025-11-11" <= str(r.get("submittedOn") or "")[:10] <= "2025-11-22")
 
 
+@metric("rehab_records_782134540",
+        "final first-rehabilitation records filed for 782134540 (the recorded exception to the fleet-entry rule)")
+def _m_rehab_782134540():
+    import populations as P
+    return sum(1 for r in P._combined() if P._point_of(r) == "782134540"
+               and (r.get("status") or "final") == "final"
+               and P._answer(r, P.Q_TYPE) == P.C_FIRST_REHAB) + \
+        sum(1 for r in P._first_rehab_current() if P._point_of(r) == "782134540"
+            and (r.get("status") or "final") == "final")
+
+
+@metric("marolinta_new_without_drilling_result",
+        "final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'Résultat de la foration'")
+def _m_marolinta_drilling():
+    import populations as P, classify_register as CR
+    return sum(1 for r in P._borehole()
+               if (r.get("status") or "final") == "final"
+               and P._answer(r, CR.BH_TYPE) == CR.BH_NEW
+               and r.get("deployment") == "2b408dd532e944ad91c0bb77cd6ad576"
+               and not P._answer(r, "841feee6c2814a6391a791a062da3061"))
+
+
 @metric("test_kiosks_in_register",
         "of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk")
 def _m_test_kiosks():

@@ -27,7 +27,7 @@
   },
   "act-calendar-v13": {
    "deadline": "2026-10-10",
-   "owner": "Adriaan Mol"
+   "owner": "Angelo Nahavitatsara"
   },
   "act-call-service-visit": {
    "deadline": "2026-10-31",
@@ -331,7 +331,7 @@
   },
   "act-route-plans": {
    "deadline": "2026-10-17",
-   "owner": "Jan de Graaf"
+   "owner": "Angelo Nahavitatsara"
   },
   "act-run-sdws-26-premises": {
    "deadline": "2026-10-31",
@@ -460,6 +460,18 @@
   "act-pou-form-threshold": {
    "deadline": null,
    "owner": "Lanja Randriamanantena"
+  },
+  "act-782134540-rehab-record": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo Nahavitatsara"
+  },
+  "act-marolinta-drilling-result": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara"
+  },
+  "act-sop-calendar-v17-signoff": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara"
   }
  },
  "orphan_rows": {
@@ -486,9 +498,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 58,
-   "evidence": 50,
-   "manual": 28
+   "auto": 59,
+   "evidence": 52,
+   "manual": 27
   },
   "actions": {
    "act-2026-recovery": {
@@ -505,9 +517,16 @@
     "detected_closed_on": "2026-09-21",
     "first_seen": "2026-09-18"
    },
+   "act-782134540-rehab-record": {
+    "type": "auto",
+    "closes_when": "closes when a final rehabilitation record for 782134540 is in mWater",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-29"
+   },
    "act-adopt-consolidated-gardien-calendar": {
     "type": "evidence",
-    "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.5 is filed in Water Documents/SOPs",
+    "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.7 is filed in Water Documents/SOPs",
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -535,7 +554,7 @@
    },
    "act-calendar-v13": {
     "type": "manual",
-    "closes_when": "Adriaan marks v1.4 stock distributed to each district",
+    "closes_when": "Angelo marks v1.4 stock distributed to each district",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
@@ -576,9 +595,9 @@
     "first_seen": "2026-09-21"
    },
    "act-complete-accuracy-assessment-calendar": {
-    "type": "auto",
-    "closes_when": "closes when the 50-calendar transcription round is complete",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "the human-to-machine comparison of the full transcription, published in the calendar section",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -882,6 +901,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-marolinta-drilling-result": {
+    "type": "auto",
+    "closes_when": "closes when all six Marolinta new-construction records carry a drilling result",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-29"
    },
    "act-mor-1b-betanatanana-go-look": {
     "type": "manual",
@@ -1304,9 +1330,9 @@
     "first_seen": "2026-09-20"
    },
    "act-sensor-sample": {
-    "type": "manual",
-    "closes_when": "the email “StrokeMeter: how many units, and how many for calibration” to ralf@curtech.nl is in Adriaan's Sent Items",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "Adriaan's confirmation that the brief was given",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -1319,7 +1345,7 @@
    },
    "act-sop-calendar-v17-signoff": {
     "type": "evidence",
-    "closes_when": "the signed calendar SOP v1.7 is filed in Water Documents/SOPs and a dated note of the French field-team briefing exists; v1.6 retired",
+    "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-26"

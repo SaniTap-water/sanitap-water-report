@@ -100,6 +100,8 @@ GENERATED = {
     'DOWN.[].pump': 'rebuild_summary',
     'DOWN.[].site': 'rebuild_summary',
     'METRICS.points_no_works_record': 'rebuild_summary',
+    'METRICS.marolinta_new_without_drilling_result': 'rebuild_summary',
+    'METRICS.rehab_records_782134540': 'rebuild_summary',
     'METRICS.points_over_6_months': 'rebuild_summary',
     'PUMPS.[].commune': 'rebuild_summary',
     'PUMPS.[].fkt': 'rebuild_summary',
@@ -304,6 +306,8 @@ WHOLE = {
     'MORADUP': ('moramanga_dedupe', 'render_datasets'),
     # the Moramanga water-point crosswalk
     'MORACW': ('moramanga_dedupe', 'render_datasets'),
+    # the calendar-extraction accuracy (human transcription against the machine)
+    'TACC': ('compare_transcriptions', 'render_datasets'),
     # the 2025 household water-quality round, SDWS 18
     'SDWS18': ('rebuild_sdws18', 'render_datasets'),
     # the PROPOSED India Mark cap per pump (not applied; act-india-mark-cap-james)

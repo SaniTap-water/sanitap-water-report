@@ -58,13 +58,43 @@ def log(line):
         fh.write(f"{ts}  {line}\n")
 
 
-def works_points(P, corrected):
-    """Points with a programme works record: a successful first
-    rehabilitation (retired combined form or its successor), a recorded
-    correction to one, or a final record on the borehole-progress form (new
-    construction or rehabilitation). The fleet-entry rule of 29 Sep 2026."""
-    bh = {P._point_of(r) for r in P._borehole() if (r.get("status") or "final") == "final"}
-    return set(P.rehabilitated_successfully()) | set(corrected) | bh
+BH_TYPE, BH_NEW, BH_REHAB = "660d59b922d843b1a6f51676ad2ccd14", "xl1VJVT", "TFTjqNm"
+BH_STATUS, BH_FUNCTIONAL = "0a46051cee394b46ad1e7478dd40117a", "56EZb1R"
+BH_PUMP_MODEL = "1e8f9bf782144b3ab2a703ccc8823ec9"
+
+
+def works_points(P, corrected, today=None):
+    """Points with a final programme works record - the fleet-entry rule
+    (decision register-fleet-entry-rule, 29 Sep 2026): a point is in the
+    managed fleet only through a successful rehabilitation or a completed new
+    construction, never through a survey record.
+
+      * a successful first rehabilitation (retired combined form or successor);
+      * on the borehole-progress form, a FINAL rehabilitation whose status is
+        "Fonctionnel", or a FINAL new construction with its hand-pump model
+        recorded (the "drilling result" question was added after the 2026
+        Marolinta records were filed; act-marolinta-drilling-result);
+      * a recorded correction (register_corrections "corrected"). A correction
+        that carries "expires_on" lapses on that date unless a final
+        rehabilitation record for the point has appeared by then
+        (782134540, the one recorded exception, 31 Oct 2026).
+    """
+    import datetime as _dt
+    today = today or _dt.date.today().isoformat()
+    bh = set()
+    for r in P._borehole():
+        if (r.get("status") or "final") != "final":
+            continue
+        t = P._answer(r, BH_TYPE)
+        if (t == BH_REHAB and P._answer(r, BH_STATUS) == BH_FUNCTIONAL) or \
+           (t == BH_NEW and P._answer(r, BH_PUMP_MODEL)):
+            bh.add(P._point_of(r))
+    succ = set(P.rehabilitated_successfully())
+    _cp = os.path.join(REPO, "data", "register_corrections.json")
+    c = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
+    lapsed = {e["wp"] for e in c.get("corrected", [])
+              if e.get("expires_on") and today > e["expires_on"] and e["wp"] not in succ | bh}
+    return succ | (set(corrected) - lapsed) | bh
 
 
 def classify():
@@ -89,7 +119,9 @@ def classify():
 
     cls, why = {}, {}
     for code in rows:
-        if code in fleet and code in excluded:
+        if code in fleet and (code in excluded or (code in corrected and code not in works)):
+            # excluded by decision, or a recorded exception whose deadline has
+            # passed with no rehabilitation record (register_corrections expires_on)
             cls[code] = "leaves"
         elif code in fleet and code not in works:
             cls[code] = "no_works_record"
@@ -98,7 +130,7 @@ def classify():
             cls[code] = "in_fleet"
         elif code in excluded:
             cls[code] = "excluded"
-        elif code in succ or code in corrected:
+        elif code in works:
             a = reg.get(code) or {}
             missing = [k for k, ok in (
                 ("its district does not map to a site", a.get("site")),
@@ -107,7 +139,7 @@ def classify():
                  f"({', '.join(sorted(models))})", a.get("pump") in models)) if not ok]
             if missing:
                 cls[code] = "review"
-                why[code] = ("successful first rehabilitation, but it cannot join "
+                why[code] = ("a final works record, but it cannot join "
                              "automatically: " + "; ".join(missing))
             else:
                 cls[code] = "joins"
@@ -178,7 +210,7 @@ def main():
     joined = dict(prev.get("joined") or {})
     for k in joins:
         joined.setdefault(k, {"on": datetime.date.today().isoformat(),
-                              "why": "successful first rehabilitation, not excluded, "
+                              "why": "final works record (rehabilitation or new construction), not excluded, "
                                      f"{reg[k]['site']}, {reg[k]['pump']}, located"})
     left = dict(prev.get("left") or {})
     for k in leaves:

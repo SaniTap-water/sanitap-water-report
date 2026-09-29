@@ -60,7 +60,7 @@ One CSV. Rows of kind "calendar" carry per-sheet agreement for one pair;
 rows of kind "pair" carry that pair's summary over calendars. Nothing is
 written to the report page.
 """
-import argparse, collections, csv, itertools, json, math, os, statistics, sys
+import argparse, collections, csv, itertools, json, math, os, re, statistics, sys
 
 MACHINE_MAP = {"marked": "X", "illegible": "?", "clear": ""}
 
@@ -105,6 +105,7 @@ def read_human(path):
                 continue
             rec = out[who][sheet]
             rec["wp"] = r.get("point_eau", "")
+            rec["statut"] = stt or rec.get("statut")
             try:
                 rec["secs"] = max(rec["secs"], int(r.get("secondes_sur_calendrier") or 0))
             except ValueError:
@@ -158,7 +159,24 @@ def agree(a, b):
         return None
     same = sum(1 for k in keys if a[k] == b[k])
     conf = collections.Counter((a[k] or "-", b[k] or "-") for k in keys if a[k] != b[k])
+    # the day of the month each disagreement falls on, for the summary
+    # (the machine's over-count sits on days 1-5)
+    for k in keys:
+        if a[k] != b[k]:
+            DAYS[(a[k] or "-", b[k] or "-")][_day(k)] += 1
     return len(keys), same, conf
+
+
+DAYS = collections.defaultdict(collections.Counter)
+POOLED = {}
+
+
+def _day(k):
+    """The day of the month of a cell key, whatever its shape."""
+    if isinstance(k, tuple):
+        return int(k[-1])
+    m = re.findall(r"\d+", str(k))
+    return int(m[-1]) if m else 0
 
 
 def main():
@@ -167,6 +185,9 @@ def main():
     ap.add_argument("--machine", default=None,
                     help="per-cell reader output (extraction_days2.csv)")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--summary-json", default=None,
+                    help="write the pooled human-to-machine summary (confusion counts, "
+                         "days of the month, sheets not compared) for the report")
     ap.add_argument("--selection", default=os.path.join(
                         os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                         "transcription", "validation_selection.csv"),
@@ -249,9 +270,14 @@ def main():
                              "b": name_b, "calendrier": s, "point_eau": wp_of.get(s, ""),
                              "cells_compared": 0, "cells_agreeing": 0, "agreement": "",
                              "status": "no overlapping cells", "detail": ""})
+                POOLED.setdefault((kind, name_a, name_b), {"confusion": collections.Counter(),
+                                  "no_overlap": [], "excluded": []})["no_overlap"].append(s)
                 continue
             n, same, conf = res
             per_cal.append(same / n)
+            pc = POOLED.setdefault((kind, name_a, name_b), {"confusion": collections.Counter(),
+                                                            "no_overlap": [], "excluded": []})
+            pc["confusion"].update(conf)
             top = "; ".join(f"{x or 'vide'}->{y or 'vide'} x{c}"
                             for (x, y), c in conf.most_common(3))
             rows.append({"kind": "calendar", "comparison": kind, "a": name_a,
@@ -330,6 +356,47 @@ def main():
         for line in COVERAGE:
             print(f"  {line}")
     print(f"  -> {a.out}")
+
+    if a.summary_json:
+        out = {"note": "Written by tools/compare_transcriptions.py --summary-json: human against "
+                       "machine, pooled over the calendars with overlapping cells. Cell values: "
+                       "X marked (not operational), ? unreadable, - blank.",
+               "inputs": [os.path.relpath(f_, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+                          if os.path.isabs(f_) else f_ for f_ in a.files],
+               "machine": os.path.basename(a.machine) if a.machine else None,
+               "transcribed": {n: {"calendars": len(people[w]),
+                                   "empty_confirmed": sum(1 for r in people[w].values()
+                                                          if r.get("statut") == "vide_verifie"),
+                                   "excluded": sum(1 for r in people[w].values() if r["excluded"])}
+                               for w, n in names.items()},
+               "machine_frame": len(frame) if frame is not None else None,
+               "outside_machine_frame": (sorted({s_ for sh in people.values() for s_ in sh} - set(frame), key=int)
+                                         if frame is not None else None),
+               "pairs": []}
+        for r in rows:
+            if r["kind"] != "pair" or r["comparison"] != "human-machine":
+                continue
+            pc = POOLED.get((r["comparison"], r["a"], r["b"]), {"confusion": {}, "no_overlap": []})
+            conf = pc["confusion"]
+            fx = DAYS.get(("-", "X"), collections.Counter())
+            out["pairs"].append({
+                "human": r["a"], "calendars_compared": int(r["status"].split()[0]),
+                "mean_agreement": r["agreement"], "detail": r["detail"],
+                "cells_compared": r["cells_compared"], "cells_agreeing": r["cells_agreeing"],
+                "pooled_agreement": round(r["cells_agreeing"] / r["cells_compared"], 4)
+                                    if r["cells_compared"] else None,
+                "false_x": conf.get(("-", "X"), 0),          # human blank, machine X
+                "missed_x": conf.get(("X", "-"), 0),         # human X, machine blank
+                "machine_unreadable": conf.get(("-", "?"), 0) + conf.get(("X", "?"), 0),
+                "human_unreadable": sum(c for (x, y), c in conf.items() if x == "?"),
+                "other": {f"{x}->{y}": c for (x, y), c in conf.items()
+                          if (x, y) not in (("-", "X"), ("X", "-"), ("-", "?"), ("X", "?")) and x != "?"},
+                "false_x_days_1_5": sum(c for d, c in fx.items() if 1 <= d <= 5),
+                "false_x_by_day": {str(d): c for d, c in sorted(fx.items())},
+                "no_overlap": sorted(pc["no_overlap"], key=int),
+            })
+        json.dump(out, open(a.summary_json, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+        print(f"  -> {a.summary_json}")
 
 
 if __name__ == "__main__":

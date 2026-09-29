@@ -212,7 +212,9 @@
    "now": "successful - record to be created",
    "was": "no first-rehabilitation record exists",
    "wp": "782134540",
-   "written_back": "NOT written back. There is no first-rehabilitation response to correct, and one has not been created: writing a rehabilitation record with no date, no technician and no photographs would be manufacturing evidence rather than correcting it. The point stays in the portfolio on the strength of its repair, water-quality and call-centre records; MadAvance to file a proper rehabilitation record if the paperwork exists."
+   "written_back": "NOT written back. There is no first-rehabilitation response to correct, and one has not been created: writing a rehabilitation record with no date, no technician and no photographs would be manufacturing evidence rather than correcting it. The point stays in the portfolio on the strength of its repair, water-quality and call-centre records; MadAvance to file a proper rehabilitation record if the paperwork exists.",
+   "expires_on": "2026-10-31",
+   "exception": "The one recorded exception to the fleet-entry rule (29 Sep 2026): kept on its repair, water-quality and call-centre records until 31 Oct 2026. act-782134540-rehab-record closes when a final rehabilitation record for it appears in mWater; if none has by then, the point leaves the fleet (and the carbon fleet) at the next build."
   }
  ],
  "decided_by": "Adriaan Mol, COO SaniTap",
@@ -360,13 +362,6 @@
   },
   {
    "decided_on": "2026-09-15",
-   "evidence": "as 987623146, but carries a 2026 borehole-progress record - anomaly, check whether the pump type is wrong rather than the entry",
-   "reason": "survey entry, not a managed asset",
-   "was": "in the register as a rope pump",
-   "wp": "987623304"
-  },
-  {
-   "decided_on": "2026-09-15",
    "evidence": "as 987623146",
    "reason": "survey entry, not a managed asset",
    "was": "in the register as a rope pump",
@@ -416,5 +411,95 @@
   "note": "The brief expected these nine to need better names because the import left them as bare 'Canzee'. They do not. 'Canzee' is the house convention across the register - 663 of the 908 managed entities carry it, and 104 carry 'IndiaMark'. There is no better name in any form response. No name was changed."
  },
  "note": "Standing record of corrections and exclusions applied to the mWater register when this report is built. Nothing is deleted in mWater. Each entry states what the record said, what it should say, and the evidence that settled it. A water point listed here as excluded can never re-enter the actively managed portfolio without an entry being removed from this file.",
- "version": "2026-09-15"
+ "version": "2026-09-15",
+ "attributes_assigned": {
+  "note": "Repository-only register attributes for points whose mWater record carries no district (and whose register name is not a pump model), so the build can place them. Nothing is written to mWater. Decided by Adriaan Mol, 29 Sep 2026 (data/decisions.json, register-marolinta-works-join).",
+  "decided_on": "2026-09-29",
+  "decided_by": "Adriaan Mol, COO SaniTap",
+  "points": {
+   "893673000": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "893673127": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "893673158": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "1052525198": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "1052525260": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "1052525284": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final new construction on the Marolinta borehole-progress form (8764843c), 29 Jul-3 Aug 2026, hand pump model Canzee"
+   },
+   "1052525215": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee"
+   },
+   "893673079": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee"
+   },
+   "1052525246": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee"
+   },
+   "1052525222": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee"
+   },
+   "893673024": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee"
+   },
+   "987623304": {
+    "site_district": "Beloha",
+    "commune": "Marolinta",
+    "pump": "Canzee",
+    "evidence": "final rehabilitation on the Marolinta borehole-progress form (8764843c), Aug 2026, status Fonctionnel, hand pump model Canzee; pump confirmed by photo (Canzee-type PVC direct-action pump, rehabilitation record f21f3cbd, 'Pompe installee' and 'Tete de pompe'), not the rope pump the 2025 survey recorded"
+   }
+  }
+ },
+ "exclusions_superseded": [
+  {
+   "decided_on": "2026-09-15",
+   "evidence": "as 987623146, but carries a 2026 borehole-progress record - anomaly, check whether the pump type is wrong rather than the entry",
+   "reason": "survey entry, not a managed asset",
+   "was": "in the register as a rope pump",
+   "wp": "987623304",
+   "superseded_on": "2026-09-29",
+   "superseded_by": "final rehabilitation on the Marolinta borehole-progress form, 29 Aug 2026, Fonctionnel, Canzee (confirmed by photo); the 2025 survey recorded the pump before rehabilitation. Decision register-marolinta-works-join."
+  }
+ ]
 }

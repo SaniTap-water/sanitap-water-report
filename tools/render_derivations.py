@@ -442,6 +442,9 @@ _REGF = (REGQ, None, None)
 RULES = [
  # before every other rule: a figure under the PROPOSED India Mark cap must
  # never be read as the applied one
+ dict(re=r"^\(?TACC\.", pop=None,
+      what="the accuracy of the calendar extraction: Adriaan Mol's transcription of all 83 calendars (series 1, 28 Sep 2026, data/transcriptions/) against the machine reading, cell by cell, over the calendars where both have observed cells; computed by tools/compare_transcriptions.py into data/transcription_accuracy.json. X is a day marked not operational; a false X is one the machine marked and the human saw blank",
+      forms=[("Gardien-calendar photographs, transcribed on the transcription page", None, "data/transcriptions/releves_calendriers_mol-adriaan_serie1_2026-09-28.csv")], why=None),
  dict(re=r"^SDWS18\.|SDWS18\.districts", pop="sdws18_pou_samples",
       what="the 2025 household water-quality round (SDWS 18): final records on the Fort-Dauphin and Maroantsetra deployments of the household survey, computed every build by tools/rebuild_sdws18.py; a household sample passes at fewer than 10 E. coli per 100 ml; intervals exact (Clopper-Pearson), two-sided 90%",
       forms=[("Clean Water || project SDWS18 || Survey || Active", "db0bcbf2e7ea44b280aed653a715553e", None)], why=None),
@@ -642,7 +645,7 @@ def block():
     pops = json.load(open(os.path.join(REPO, "data", "populations.json"),
                           encoding="utf8"))
     return (f"{BEGIN}\n"
-            "// What every figure is over, in plain English, with its working.\n"
+            "// What each figure counts, in plain English, with its working.\n"
             f"const POPS={json.dumps(pops, separators=(',', ':'), ensure_ascii=False)};\n"
             f"const DERIV={json.dumps(D, separators=(',', ':'), ensure_ascii=False)};\n"
             f"const DERIV_RULES={json.dumps(RULES, separators=(',', ':'), ensure_ascii=False)};\n"

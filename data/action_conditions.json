@@ -16,14 +16,12 @@
   "when_satisfied": "OK"
  },
  "act-adopt-consolidated-gardien-calendar": {
-  "folder": "Water Documents/SOPs",
   "kind": "artefact",
-  "name_contains": "CalendrierGardien",
-  "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder, not a draft",
-  "version": "v1.5",
-  "where": "sharepoint",
+  "where": "hub",
+  "path": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx",
+  "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder (v1.7, approved 29 Sep 2026)",
   "closure": "evidence",
-  "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.5 is filed in Water Documents/SOPs"
+  "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.7 is filed in Water Documents/SOPs"
  },
  "act-calendar-custody": {
   "kind": "none",
@@ -35,7 +33,7 @@
   "kind": "none",
   "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
   "closure": "manual",
-  "closes_when": "Adriaan marks v1.4 stock distributed to each district"
+  "closes_when": "Angelo marks v1.4 stock distributed to each district"
  },
  "act-call-service-visit": {
   "kind": "data",
@@ -72,12 +70,11 @@
   "closes_when": "the corrected SDWS 3 evidence record and the commissioned parallel validation round, confirmed in writing by James Walker"
  },
  "act-complete-accuracy-assessment-calendar": {
-  "kind": "data",
-  "metric": "transcription_sheets_done",
-  "op": ">=",
-  "says": "closes when the 50-calendar transcription round is complete",
-  "target": 50,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Is the accuracy of the calendar extraction measured and published?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the human-to-machine comparison of the full transcription, published in the calendar section"
  },
  "act-confirm-india-mark-capacity": {
   "kind": "decision",
@@ -715,10 +712,11 @@
   "closes_when": "Gold Standard's written answer on whether a stroke counter is an operation sensor"
  },
  "act-sensor-sample": {
-  "kind": "none",
-  "says": "no closing condition: a briefing is delivered or it is not, and no system records it",
-  "closure": "manual",
-  "closes_when": "the email “StrokeMeter: how many units, and how many for calibration” to ralf@curtech.nl is in Adriaan's Sent Items"
+  "kind": "decision",
+  "question": "Has Ralf van Veenendaal been briefed on the fleet-wide unit count and the calibration sample?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "Adriaan's confirmation that the brief was given"
  },
  "act-settle-baseline-boiling-device": {
   "kind": "decision",
@@ -943,10 +941,10 @@
  },
  "act-sop-calendar-v17-signoff": {
   "kind": "decision",
-  "question": "Is calendar SOP v1.7 signed and filed in SOPs, and is there a dated note of the French briefing to every field team?",
-  "says": "closes when the signed v1.7 and the dated briefing note are logged in data/decisions.json",
+  "question": "Has every field team been briefed in French on calendar SOP v1.7?",
+  "says": "closes when Angelo's written confirmation for every field team is logged in data/decisions.json",
   "closure": "evidence",
-  "closes_when": "the signed calendar SOP v1.7 is filed in Water Documents/SOPs and a dated note of the French field-team briefing exists; v1.6 retired"
+  "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given"
  },
  "act-gs-validation-withdrawal-watch": {
   "kind": "decision",
@@ -1016,5 +1014,25 @@
   "says": "no closing condition the build can read: the pass field's threshold lives in the form's choice conditions, which the build does not evaluate",
   "closure": "manual",
   "closes_when": "Adriaan marks it done once the form's pass field uses the household threshold for household samples"
+ },
+ "act-782134540-rehab-record": {
+  "kind": "data",
+  "metric": "rehab_records_782134540",
+  "op": ">=",
+  "target": 1,
+  "says": "closes when a final rehabilitation record for 782134540 is in mWater",
+  "when_satisfied": "OK",
+  "closure": "evidence",
+  "closes_when": "a final rehabilitation record for 782134540 appears in mWater (read every build)"
+ },
+ "act-marolinta-drilling-result": {
+  "kind": "data",
+  "metric": "marolinta_new_without_drilling_result",
+  "op": "==",
+  "target": 0,
+  "says": "closes when all six Marolinta new-construction records carry a drilling result",
+  "when_satisfied": "OK",
+  "closure": "evidence",
+  "closes_when": "all six new-construction records answer 'Résultat de la foration' (read every build)"
  }
 }

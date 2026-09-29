@@ -1,0 +1,101 @@
+{
+ "note": "Written by tools/compare_transcriptions.py --summary-json: human against machine, pooled over the calendars with overlapping cells. Cell values: X marked (not operational), ? unreadable, - blank.",
+ "inputs": [
+  "data/transcriptions/releves_calendriers_mol-adriaan_serie1_2026-09-28.csv"
+ ],
+ "machine": "extraction_days2.csv",
+ "transcribed": {
+  "Mol Adriaan [smue15]": {
+   "calendars": 83,
+   "empty_confirmed": 63,
+   "excluded": 0
+  }
+ },
+ "machine_frame": 50,
+ "outside_machine_frame": [
+  "3",
+  "6",
+  "7",
+  "11",
+  "12",
+  "23",
+  "26",
+  "30",
+  "33",
+  "34",
+  "35",
+  "36",
+  "38",
+  "39",
+  "44",
+  "46",
+  "50",
+  "84",
+  "85",
+  "86",
+  "87",
+  "88",
+  "89",
+  "90",
+  "91",
+  "92",
+  "93",
+  "94",
+  "95",
+  "96",
+  "97",
+  "98",
+  "99"
+ ],
+ "pairs": [
+  {
+   "human": "Mol Adriaan [smue15]",
+   "calendars_compared": 42,
+   "mean_agreement": 0.9205,
+   "detail": "mean over calendars; sd 0.0823; min 0.5312; pooled-cell 0.9383",
+   "cells_compared": 9780,
+   "cells_agreeing": 9177,
+   "pooled_agreement": 0.9383,
+   "false_x": 394,
+   "missed_x": 18,
+   "machine_unreadable": 191,
+   "human_unreadable": 0,
+   "other": {},
+   "false_x_days_1_5": 366,
+   "false_x_by_day": {
+    "1": 103,
+    "2": 98,
+    "3": 82,
+    "4": 51,
+    "5": 32,
+    "6": 3,
+    "7": 3,
+    "9": 2,
+    "10": 2,
+    "11": 2,
+    "12": 2,
+    "18": 1,
+    "20": 1,
+    "21": 1,
+    "24": 1,
+    "25": 1,
+    "26": 2,
+    "27": 1,
+    "28": 1,
+    "29": 1,
+    "30": 2,
+    "31": 2
+   },
+   "no_overlap": [
+    "10",
+    "31",
+    "32",
+    "55",
+    "61",
+    "71",
+    "76",
+    "81"
+   ]
+  }
+ ]
+}
