@@ -626,10 +626,11 @@
   "closes_when": "James Walker's written answer on the SDWS 27 / SDWS 28 numbering and the calibration requirement"
  },
  "act-resolve-water-point-type": {
-  "kind": "none",
-  "says": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it",
-  "closure": "manual",
-  "closes_when": "Adriaan marks 987623517 resolved in mWater and the photograph refiled"
+  "kind": "decision",
+  "question": "Is the action still owed now its point(s) are excluded from the fleet?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)"
  },
  "act-restore-preventive-maintenance-visit": {
   "kind": "data",
@@ -835,12 +836,11 @@
   "when_satisfied": "WATCH"
  },
  "act-visit-three-marolinta-points": {
-  "kind": "data",
-  "metric": "marolinta_three_points_no_photograph",
-  "op": "==",
-  "says": "closes when the three named Marolinta points each carry a photograph",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Is the action still owed now its point(s) are excluded from the fleet?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)"
  },
  "act-wq-retest": {
   "kind": "data",

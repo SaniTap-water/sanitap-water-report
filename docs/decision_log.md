@@ -1595,3 +1595,28 @@ to one. Enforcement:
 
 **Removed:** `act-marolita-spelling` (19 records spelling the village "Marolita"). It is not needed:
 those are survey records, not managed water points.
+
+## 29 September 2026 — Adriaan Mol: every SDWS 18 figure traced to mWater; two survey-point actions closed
+
+**Traced to mWater.** The SDWS 18 section now opens with its source:
+- the form "Clean Water || project SDWS18 || Survey || Active" (`db0bcbf2…`) and both deployments;
+- the population rule (final records only, drafts excluded);
+- the date of the mWater extract;
+- a plain statement that the Excel workbook of the round is not a source.
+
+Each figure carries its own derivation, a count over the population `sdws18_pou_samples` (or
+`sdws18_pou_passing`). A record table (`tools/render_sdws18.py`) lists all 140 records:
+- one row each, with district, water point, household, date, *E. coli*, result and comment;
+- each row linked to its mWater response;
+- the three samples with *E. coli* and the two households far from their pump are marked.
+
+`check_consistency.py` 7bh fails the build if the table's rows differ from the tests tile, or if
+any row lacks its mWater link.
+
+**Closed:** `act-resolve-water-point-type` (987623517) and `act-visit-three-marolinta-points`
+(987623517, 987623256, 987623115). Reason: "point excluded from the managed fleet: survey record only
+(decision 29 Sep 2026, Angelo Nahavitatsara)". Both are logged in `data/decisions.json` and stay in
+the closed list.
+- The visit action named only excluded points, so it closes whole rather than dropping one point.
+- The type action also carried a misfiled photograph on 742896114. That photograph is one of those
+  tracked by `act-photo-misfiled`, which stays open.

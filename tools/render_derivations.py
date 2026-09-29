@@ -191,6 +191,45 @@ D["PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict
     forms=[("WorldPop R2025A run, capped per pump type", None,
             "SDWS 1 barrier clip applied; Marolinta excluded")])
 
+# ---- SDWS 18, the 2025 household round: each figure is a count over the
+# population sdws18_pou_samples (final records on the two deployments) --------
+_S18F = [("Clean Water || project SDWS18 || Survey || Active",
+          "db0bcbf2e7ea44b280aed653a715553e",
+          "final records on deployments SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra); drafts excluded")]
+for _s in ("Fort-Dauphin", "Maroantsetra"):
+    _d = f"SDWS18.districts['{_s}']"
+    _n = f"${{{_d}.tests}} final records on deployment SDWS18 ({_s})"
+    for _f, _pop, _txt in (
+        ("tests", "sdws18_pou_samples", f"count of the population on deployment SDWS18 ({_s}): {_n}"),
+        ("water_points", "sdws18_pou_samples", f"distinct water points linked from the {_n}: ${{{_d}.water_points}}"),
+        ("households", "sdws18_pou_samples", f"distinct households linked from the {_n}: ${{{_d}.households}}"),
+        ("first", "sdws18_pou_samples", f"earliest sampling date among the {_n}"),
+        ("last", "sdws18_pou_samples", f"latest sampling date among the {_n}"),
+        ("ecoli['0']", "sdws18_pou_samples", f"records with no E. coli: ${{{_d}.ecoli['0']}} of the {_n}"),
+        ("ecoli['1-9']", "sdws18_pou_samples", f"records with 1 to 9 E. coli per 100 ml: ${{{_d}.ecoli['1-9']}} of the {_n}"),
+        ("ecoli['10+']", "sdws18_pou_samples", f"records with 10 or more E. coli per 100 ml: ${{{_d}.ecoli['10+']}} of the {_n}"),
+        ("pass_pct.toFixed(1)", "sdws18_pou_passing", f"records below 10 E. coli per 100 ml (the household pass rule): ${{{_d}.pass}} of the {_n} = ${{{_d}.pass_pct.toFixed(1)}}%"),
+        ("pass_ci90[0].toFixed(1)", "sdws18_pou_passing", f"exact (Clopper-Pearson) two-sided 90% interval, lower bound, for ${{{_d}.pass}} passing of the {_n}"),
+        ("pass_ci90[1].toFixed(1)", "sdws18_pou_passing", f"exact (Clopper-Pearson) two-sided 90% interval, upper bound, for ${{{_d}.pass}} passing of the {_n}"),
+        ("zero_pct.toFixed(1)", "sdws18_pou_samples", f"information only, not the pass rule: records with no E. coli, ${{{_d}.zero}} of the {_n} = ${{{_d}.zero_pct.toFixed(1)}}%"),
+        ("zero_ci90[0].toFixed(1)", "sdws18_pou_samples", f"exact two-sided 90% interval, lower bound, for ${{{_d}.zero}} with no E. coli of the {_n}"),
+        ("zero_ci90[1].toFixed(1)", "sdws18_pou_samples", f"exact two-sided 90% interval, upper bound, for ${{{_d}.zero}} with no E. coli of the {_n}"),
+        ("six_months_per_pump", "sdws18_pou_samples", f"of the ${{{_d}.water_points}} water points sampled, those whose first household sample falls at least six months after their first passing SDWS 3 result"),
+    ):
+        D[f"{_d}.{_f}"] = dict(pop=_pop, arith="`" + _txt + "`", forms=_S18F)
+D["SDWS18.total.tests"] = dict(pop="sdws18_pou_samples", forms=_S18F,
+    arith="`count of the population: ${SDWS18.districts['Fort-Dauphin'].tests} (SDWS18 (Fort-Dauphin)) + ${SDWS18.districts['Maroantsetra'].tests} (SDWS18 (Maroantsetra)) = ${SDWS18.total.tests} final records`")
+D["SDWS18.total.pass_pct.toFixed(1)"] = dict(pop="sdws18_pou_passing", forms=_S18F,
+    arith="`records below 10 E. coli per 100 ml: ${SDWS18.total.pass} of ${SDWS18.total.tests} final records = ${SDWS18.total.pass_pct.toFixed(1)}%`")
+D["SDWS18.total.zero_pct.toFixed(1)"] = dict(pop="sdws18_pou_samples", forms=_S18F,
+    arith="`information only: records with no E. coli, ${SDWS18.total.zero} of ${SDWS18.total.tests} final records = ${SDWS18.total.zero_pct.toFixed(1)}%`")
+D["SDWS18.districts['Fort-Dauphin'].water_points+SDWS18.districts['Maroantsetra'].water_points"] = dict(
+    pop="sdws18_pou_samples", forms=_S18F,
+    arith="`distinct water points linked from the population: ${SDWS18.districts['Fort-Dauphin'].water_points} + ${SDWS18.districts['Maroantsetra'].water_points}`")
+D["SDWS18.districts['Fort-Dauphin'].households/SDWS18.districts['Fort-Dauphin'].water_points"] = dict(
+    pop="sdws18_pou_samples", forms=_S18F,
+    arith="`households per water point: ${SDWS18.districts['Fort-Dauphin'].households} households over ${SDWS18.districts['Fort-Dauphin'].water_points} water points in SDWS18 (Fort-Dauphin); the same in SDWS18 (Maroantsetra), ${SDWS18.districts['Maroantsetra'].households} over ${SDWS18.districts['Maroantsetra'].water_points}`")
+
 # ---- figures converted from typed prose on 2026-09-23 ----------------------
 _PPWHY = "Drives maintenance cost per credit: cost scales with pumps, credits with people."
 _WBASIS = ("WorldPop R2025A 100 m, 1 km service area, SDWS 1 barrier clip, "

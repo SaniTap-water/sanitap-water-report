@@ -125,6 +125,16 @@ def six_months_after(d):
     return datetime.date(y, m, min(d.day, 28))
 
 
+def pulled_on():
+    """The date the survey extract was pulled, from the extract manifest."""
+    try:
+        m = json.load(open(os.path.join(REPO, "data", "extract_manifest.json"), encoding="utf8"))
+        e = (m.get("files") or {}).get("pou_survey.json") or {}
+        return str(e.get("written") or "")[:10] or None
+    except (OSError, ValueError, AttributeError):
+        return None
+
+
 def records():
     return [r for r in json.load(open(SRC, encoding="utf8"))
             if r.get("status") == "final" and r.get("deployment") in DEPLOY]
@@ -196,6 +206,22 @@ def build():
                 six_months_after(datetime.date.fromisoformat(programme_start)),
             "pumps": per_pump,
         }
+    rec_rows = []
+    for site in ("Fort-Dauphin", "Maroantsetra"):
+        far_ids = {f["rid"] for f in out[site]["far_households"]}
+        far_km = {f["rid"]: f["km"] for f in out[site]["far_households"]}
+        for r in by.get(site, []):
+            e = val(r, Q_ECOLI)
+            rec_rows.append({"district": site, "rid": r.get("_id"), "code": r.get("code"),
+                             "water_point": entity(r, "water_point"),
+                             "household": entity(r, "household"),
+                             "date": str(val(r, Q_DATE) or "")[:10] or None,
+                             "ecoli": e,
+                             "pass": isinstance(e, (int, float)) and e < POU_PASS_LT,
+                             "positive": isinstance(e, (int, float)) and e > 0,
+                             "gps_flag": r.get("_id") in far_ids,
+                             "km": far_km.get(r.get("_id")),
+                             "comment": val(r, Q_COMMENT)})
     tot_n = sum(v["tests"] for v in out.values())
     tot_pass = sum(v["pass"] for v in out.values())
     tot_zero = sum(v["zero"] for v in out.values())
@@ -213,6 +239,10 @@ def build():
                   "pass_pct": round(100 * tot_pass / tot_n, 1) if tot_n else None,
                   "pass_ci90": ci90(tot_pass, tot_n) if tot_n else None,
                   "zero": tot_zero, "zero_pct": round(100 * tot_zero / tot_n, 1) if tot_n else None},
+        # every record of the round, for the record table: one row per response,
+        # linked to it in mWater. No coordinates, no respondent names.
+        "records": sorted(rec_rows, key=lambda x: (x["district"], x["date"] or "", x["water_point"] or "", x["household"] or "")),
+        "extract_pulled": pulled_on(),
         "not_recorded": ["kit and lot", "test method", "sample source (stored container or not)",
                          "a paired pump (point-of-collection) sample", "field blanks", "duplicates"],
     }

@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 6,
   "children": 3,
-  "data": 47,
-  "decision": 47,
+  "data": 46,
+  "decision": 49,
   "form": 7,
-  "none": 26
+  "none": 25
  },
  "state": {
   "act-2026-recovery": {
@@ -855,11 +855,12 @@
    "when_satisfied": "OK"
   },
   "act-resolve-water-point-type": {
+   "closed_since": "2026-09-29",
    "evaluated": "2026-09-29",
-   "evidence": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: the contradiction is between a survey answer and a register field, and correcting either removes the evidence of it",
+   "evidence": "decided 2026-09-29 by Adriaan Mol, COO SaniTap: Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). 987623517 was excluded on 29 Sep 2026, so its water-point type no longer bears on any figure. The misfiled photograph on 742896114 (image 4fbe6247) that this action also carried is one of the misfiled photographs tracked by act-photo-misfiled, which stays open.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-restore-preventive-maintenance-visit": {
@@ -1126,11 +1127,12 @@
    "when_satisfied": "WATCH"
   },
   "act-visit-three-marolinta-points": {
+   "closed_since": "2026-09-29",
    "evaluated": "2026-09-29",
-   "evidence": "marolinta_three_points_no_photograph = 3 (of the three named Marolinta points, how many still have no photograph); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when the three named Marolinta points each carry a photograph",
+   "evidence": "decided 2026-09-29 by Adriaan Mol, COO SaniTap: Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). All three points it names - 987623517, 987623256 and 987623115 - were excluded on 29 Sep 2026; none is in the fleet, so no visit is owed.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-wq-retest": {

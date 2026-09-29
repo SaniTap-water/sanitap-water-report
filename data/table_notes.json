@@ -192,6 +192,12 @@
    "extracted": "Survey pulled <span data-fig=\"PULLS['pou_survey.json'].pulled\"></span>.",
    "filter": "The 2025 round: final records on the deployments SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra); drafts left out. Every record is a household (point-of-use) sample. The whole round, whatever scope is selected.",
    "columns": "<b>The three <i>E. coli</i> columns</b>: samples by <i>E. coli</i> per 100 ml, in the bands shown in their headings. <b>Pass</b>: fewer than <span data-fig=\"SDWS18.pass_rule.pou_lt_per_100ml\"></span> per 100 ml, the household rule (Water Quality Protocol v2.1 section 5.1; methodology v2.0 &sect;3.2.3.2), with its exact <span data-fig=\"SDWS18.ci_level_pct\"></span>% confidence interval. <b>No E. coli</b>: the stricter zero count, information only &mdash; it is the rule for a pump or tap sample, not for a household one."
+  },
+  "sdws18rec": {
+   "source": "Form <span class=\"mono\">db0bcbf2&hellip;</span> (&ldquo;Clean Water || project SDWS18 || Survey || Active&rdquo;), through <span class=\"mono\">data/sdws18.json</span>; written each build by tools/render_sdws18.py.",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['pou_survey.json'].pulled\"></span>.",
+   "filter": "Every final record on the deployments SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra), one row each; drafts excluded. The whole round, whatever scope is selected. The row count equals the tests in the tiles above, and the build fails if it does not.",
+   "columns": "<b>Water point</b> and <b>Household</b>: the mWater codes the record is linked to. <b>Result</b>: pass below <span data-fig=\"SDWS18.pass_rule.pou_lt_per_100ml\"></span> per 100 ml, the household rule; a row with any <i>E. coli</i>, or a household recorded more than <span data-fig=\"SDWS18.far_km\"></span>&nbsp;km from its pump (a probable GPS or linking error, kept in the counts), is marked. <b>mWater record</b>: the response, opened in the mWater portal."
   }
  }
 }

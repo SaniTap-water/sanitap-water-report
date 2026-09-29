@@ -114,6 +114,30 @@
    ],
    "logged_on": "2026-09-29",
    "logged_by": "Adriaan Mol"
+  },
+  "act-resolve-water-point-type": {
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "decision register-fleet-entry-rule, 29 Sep 2026 (Angelo Nahavitatsara's statement, as relayed by Adriaan Mol)",
+   "sender": "Adriaan Mol",
+   "quotes": [
+    "point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)"
+   ],
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol",
+   "answer": "Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). 987623517 was excluded on 29 Sep 2026, so its water-point type no longer bears on any figure. The misfiled photograph on 742896114 (image 4fbe6247) that this action also carried is one of the misfiled photographs tracked by act-photo-misfiled, which stays open."
+  },
+  "act-visit-three-marolinta-points": {
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-29",
+   "source": "decision register-fleet-entry-rule, 29 Sep 2026 (Angelo Nahavitatsara's statement, as relayed by Adriaan Mol)",
+   "sender": "Adriaan Mol",
+   "quotes": [
+    "point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)"
+   ],
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol",
+   "answer": "Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). All three points it names - 987623517, 987623256 and 987623115 - were excluded on 29 Sep 2026; none is in the fleet, so no visit is owed."
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

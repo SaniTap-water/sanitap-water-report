@@ -486,9 +486,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 59,
-   "evidence": 48,
-   "manual": 29
+   "auto": 58,
+   "evidence": 50,
+   "manual": 28
   },
   "actions": {
    "act-2026-recovery": {
@@ -1206,9 +1206,9 @@
     "first_seen": "2026-09-21"
    },
    "act-resolve-water-point-type": {
-    "type": "manual",
-    "closes_when": "Adriaan marks 987623517 resolved in mWater and the photograph refiled",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1430,9 +1430,9 @@
     "first_seen": "2026-09-20"
    },
    "act-visit-three-marolinta-points": {
-    "type": "auto",
-    "closes_when": "closes when the three named Marolinta points each carry a photograph",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },

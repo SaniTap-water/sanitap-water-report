@@ -3858,6 +3858,28 @@ def main():
           not copies, "none", "; ".join(copies[:3]) if copies else "none",
           "a copy renders one count under two meanings; compute each figure from its own records")
 
+    # ---- 7bh. the SDWS 18 record table accounts for the tests tile --------
+    # (29 Sep 2026) Every figure in the SDWS 18 section is a count over the
+    # 2025 household round; the record table lists that round. Its rows must
+    # be exactly the tests the tile states, each linked to its mWater response.
+    _s18 = json.load(open(os.path.join(repo_root, "data", "sdws18.json"), encoding="utf8"))
+    _rb = idx.find("<!-- BEGIN GENERATED sdws18-records")
+    _re_ = idx.find("<!-- END GENERATED sdws18-records", _rb)
+    _region = idx[_rb:_re_] if _rb >= 0 and _re_ > _rb else ""
+    _rows = re.findall(r"<tr[^>]*data-rid=\"([0-9a-f]{32})\"[^>]*>(.*?)</tr>", _region, re.S)
+    # idx has its figure spans unwrapped; the tile is found in the raw page
+    _tile = 'data-fig="SDWS18.total.tests"' in idx_raw[idx_raw.find('id="pousec"'):idx_raw.find('id="sdws18tbl"')]
+    check("the SDWS 18 record table has one row per test in the tests tile",
+          _tile and len(_rows) == _s18["total"]["tests"], f"{_s18['total']['tests']} rows",
+          f"{len(_rows)} rows" + ("" if _tile else ", tests tile MISSING"),
+          "tools/render_sdws18.py --write; the tile reads SDWS18.total.tests")
+    _nolink = [rid for rid, body in _rows
+               if f'href="https://portal.mwater.co/#/responses/{rid}"' not in body]
+    check("every SDWS 18 record row links to its mWater response",
+          bool(_rows) and not _nolink, "all linked",
+          f"{len(_nolink)} without a link" if _nolink else f"{len(_rows)} linked",
+          "each row opens https://portal.mwater.co/#/responses/<response id>")
+
     # ---- 7bg. a point enters the fleet only through a works record --------
     # Four Marolinta points were in the managed fleet on the strength of a
     # 22 Aug 2025 identification-survey record and nothing else (Angelo
