@@ -1491,3 +1491,41 @@ A sixth reader's pass found nothing material and 7 minor points, all fixed:
   Endur'O water point created from 29 Sep 2026 whose system is a duplicate. The borehole links
   from before the decision are history and are not flagged.
 - Nothing in mWater was changed.
+
+## 29 September 2026 — Adriaan Mol: India Mark cap rule proposed to James Walker, not applied
+
+**Proposed** (email to James Walker, 28 Sep 2026): 500 people per India Mark pump where the water
+depth is 20 m or less, or a measured discharge test shows at least 16.6 l/min; otherwise 300.
+Evidence: the Sphere Handbook (500 people per hand pump at 16.6 l/min, about 8 hours a day) and
+the India Mark II rated-flow table (30 l/min at 10 m, 21.7 at 15 m, 16.7 at 20 m, 15.0 at 25 m).
+
+**Status: proposed, awaiting James's confirmation.** The applied cap stays at 300 (`PARAMS.im_cap`)
+in every carbon figure until his written reply is logged against `act-india-mark-cap-james`
+(owner Adriaan, closure: evidence). `check_consistency.py` 7bf enforces this. It also requires
+every figure under the proposed cap to be labelled as proposed.
+
+**Before this, the rule did not exist.** The build carried 300 as applied and 500 as a
+whole-fleet sensitivity (`im_cap_alt`), with the open question `act-indiamark-premises`. Neither
+used depth or discharge.
+
+**How the records meet the rule** (`tools/india_mark_cap.py`, run every build):
+- No form records the water depth itself.
+- The retired works form records the pump installation depth (question `ea5221c7`). The pump
+  sits below the water, so a pump installed at 20 m or less decides the depth side.
+- A deeper or unrecorded pump stays at 300 until a depth or discharge is measured.
+- The form's "Débit" carries no unit and is not a timed hand-pump test, so no pump qualifies on
+  flow.
+
+On the current extract, 38 of the 84 India Mark pumps qualify on depth, and 27 of them have an
+allocation above 300. The page shows current and proposed side by side in the people-served
+section (people served overall, carbon points, per site, per pump, the Fort-Dauphin share, the
+people-weighted fNRB). It also shows the proposed figure beside the headline, the partner table
+and the Qpop,y input.
+
+## 29 September 2026 — Adriaan Mol: owners workbook, reconfirmed
+
+The repo action list is the record of owner and deadline, and Adriaan and Claude update it. This
+confirms the entry of 28 September. That entry already stopped the workbook sync and removed the
+workbook from the build. It also moved the workbook to Central Data Hub › Water Documents › Archive
+as "RETIRED 2026-09-28 - Water report - action owners and deadlines (see decision_log.md).xlsx".
+Nothing further changed on 29 September.

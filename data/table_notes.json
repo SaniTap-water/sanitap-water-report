@@ -180,6 +180,12 @@
    "extracted": "Results pulled <span data-fig=\"PULLS['wq_results_piped.json'].pulled\"></span>; samples pulled <span data-fig=\"PULLS['wq_sampling_piped.json'].pulled\"></span>.",
    "filter": "Final responses on both forms, submitted since the tap-level sampling protocol went live, that are flagged: a result with no unpaired sample at its water point in the <span data-fig=\"PIPEDWQ.pairing.window_hours\"></span> hours before it was submitted, a sample with no result after the waiting period, a sample outside the standposts-only protocol, and a pair whose result date disagrees with its sample by more than a day. Other pairs are not listed.",
    "columns": "<b>Water point</b>: the water point code (the system code for a system-level sample). <b>Day</b>: the Madagascar day the sample was taken, or for a result with no sample the time it was submitted. <b>Sample</b>: the sampling record, or for an unpaired result the samples at its water point in the <span data-fig=\"PIPEDWQ.pairing.after_days\"></span> days before it."
+  },
+  "imcaptbl": {
+   "source": "PUMPS and the WorldPop allocation (SDWS 1) on this page, and <span class=\"mono\">data/india_mark_cap.json</span>, written each build by tools/india_mark_cap.py from the pump installation depth on the retired combined works form <span class=\"mono\">86cf66ef&hellip;</span>.",
+   "extracted": "Works form pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>; allocation run of <span data-fig=\"WPOPMETA.run\"></span>.",
+   "filter": "The whole managed portfolio, whatever scope is selected: these are the programme&rsquo;s figures, so they do not move with the scope buttons.",
+   "columns": "<b>Current</b>: the figure as the page reports it, every India Mark capped at the applied <span data-param=\"im_cap\"></span>. <b>Proposed rule</b>: the same figure with each India Mark capped at its proposed value, <span data-fig=\"IMCAP.cap_proposed\"></span> where its pump is installed at <span data-fig=\"IMCAP.depth_max_m\"></span> m or less and <span data-fig=\"IMCAP.cap_current\"></span> otherwise. <b>Difference</b>: proposed less current. Every carbon figure on this page uses the current column until James Walker confirms."
   }
  }
 }

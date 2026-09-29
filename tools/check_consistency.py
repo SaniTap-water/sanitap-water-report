@@ -3858,6 +3858,37 @@ def main():
           not copies, "none", "; ".join(copies[:3]) if copies else "none",
           "a copy renders one count under two meanings; compute each figure from its own records")
 
+    # ---- 7bf. the proposed India Mark cap stays proposed (29 Sep 2026) -----
+    # 500 where the pump sits at 20 m or less is proposed to James Walker
+    # (email 28 Sep 2026) and not applied. The page shows it beside the
+    # current figures; nothing may treat it as the applied cap until his
+    # written reply is logged against act-india-mark-cap-james.
+    _imc_p = os.path.join(repo_root, "data", "india_mark_cap.json")
+    _imc = json.load(open(_imc_p, encoding="utf8")) if os.path.isfile(_imc_p) else {}
+    _dec = json.loads(read(os.path.join(repo_root, "data", "decisions.json")))
+    _confirmed = "act-india-mark-cap-james" in json.dumps(_dec)
+    _imcap_now = re.search(r"\bim_cap:\{v:(\d+)", idx)
+    check("the applied India Mark cap is 300 until James Walker confirms the proposed rule",
+          _confirmed or (_imcap_now and _imcap_now.group(1) == "300"), "300 while proposed",
+          _imcap_now.group(1) if _imcap_now else "MISSING",
+          "PARAMS.im_cap changes only after his reply is logged in data/decisions.json")
+    # the side-by-side block is labelled as a whole ("Proposed ... not applied")
+    _blk_a = idx.find("// PROPOSED India Mark cap, beside the current figures")
+    _blk_z = idx.find("})();", _blk_a) if _blk_a >= 0 else -1
+    _prop_bad = [m.start() for m in re.finditer(r"wpop_prop", idx)
+                 if not (_blk_a <= m.start() <= _blk_z)
+                 and not re.search(r"(?i)propos|not applied|awaiting James",
+                                   idx[max(0, m.start() - 600):m.start() + 600])]
+    check("every figure under the proposed India Mark cap is labelled as proposed",
+          not _prop_bad, "none unlabelled", f"{len(_prop_bad)} unlabelled" if _prop_bad else "none unlabelled",
+          "a proposed figure must never read as the applied one")
+    check("the proposed India Mark cap file is current and marked proposed",
+          bool(_imc) and str(_imc.get("status", "")).startswith("proposed")
+          and subprocess.run([sys.executable, os.path.join(repo_root, "tools", "india_mark_cap.py"), "--check"],
+                             capture_output=True).returncode == 0,
+          "current, proposed", (_imc.get("status") or "MISSING")[:40],
+          "python3 tools/india_mark_cap.py --write")
+
     # ---- 7be. no figure span is printed as text (28 Sep 2026) --------------
     # A generator escaped a note carrying <span data-fig="WPOPMETA.run">, so
     # the reader saw the markup where the run date should have been. An

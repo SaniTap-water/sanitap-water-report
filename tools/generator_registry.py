@@ -305,6 +305,8 @@ WHOLE = {
     'MORADUP': ('moramanga_dedupe', 'render_datasets'),
     # the Moramanga water-point crosswalk
     'MORACW': ('moramanga_dedupe', 'render_datasets'),
+    # the PROPOSED India Mark cap per pump (not applied; act-india-mark-cap-james)
+    'IMCAP': ('india_mark_cap', 'render_datasets'),
     # parent actions' closed steps, keyed by action id
     'ACTKIDS': ('eval_conditions', 'render_datasets'),
 }

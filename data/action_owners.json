@@ -448,6 +448,10 @@
   "act-moramanga-register-standposts": {
    "deadline": null,
    "owner": "Endur’O (Coddy), with Lanja Randriamanantena (MadAvance IT) for mWater"
+  },
+  "act-india-mark-cap-james": {
+   "deadline": null,
+   "owner": "Adriaan Mol"
   }
  },
  "orphan_rows": {
@@ -475,7 +479,7 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 60,
-   "evidence": 46,
+   "evidence": 47,
    "manual": 28
   },
   "actions": {
@@ -793,6 +797,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-india-mark-cap-james": {
+    "type": "evidence",
+    "closes_when": "James Walker's written reply on the proposed India Mark cap rule, with its date",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-29"
    },
    "act-indiamark-premises": {
     "type": "evidence",

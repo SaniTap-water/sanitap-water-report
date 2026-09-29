@@ -109,6 +109,8 @@ STEPS = [
     ("tools/render_sdws26.py",       ["--write"],      True),
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),
+    # the PROPOSED India Mark cap per pump, shown beside the current figures
+    ("tools/india_mark_cap.py",      ["--write"],      True),
     ("tools/render_datasets.py",     ["--write"],      True),
     # the portfolio map page, from the report's own PUMPS and WPOP
     ("tools/render_portfolio.py",    ["--write"],      True),

@@ -1006,5 +1006,12 @@
   "target": 0,
   "says": "closes when each of the four Moramanga systems has at least one public standpost registered as a Distribution Point whose parent is the system's record of record; the interim kiosk mapping does not count",
   "when_satisfied": "OK"
+ },
+ "act-india-mark-cap-james": {
+  "kind": "decision",
+  "question": "Does James Walker confirm the proposed India Mark cap rule (500 where the water is at 20 m or less or a discharge test shows at least 16.6 l/min, otherwise 300)?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written reply on the proposed India Mark cap rule, with its date"
  }
 }

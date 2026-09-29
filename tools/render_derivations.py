@@ -401,6 +401,11 @@ _REP = ("Réparation après panne (repair)", F_REP, None)
 _CALL = ("Appel / signalement de pannes (call centre)", F_CALL, None)
 _REGF = (REGQ, None, None)
 RULES = [
+ # before every other rule: a figure under the PROPOSED India Mark cap must
+ # never be read as the applied one
+ dict(re=r"wpop_prop|IMCAP\.", pop="managed_fleet",
+      what="PROPOSED, not applied: the same WorldPop allocation with each India Mark pump capped at 500 where its installed pump depth is 20 m or less and at 300 otherwise (tools/india_mark_cap.py), awaiting James Walker's confirmation; every carbon figure uses the applied cap of 300",
+      forms=[("Clean Water || Premi\u00e8re r\u00e9habilitation / ... (pump installation depth)", F_COMBINED, None)], why=None),
  dict(re=r"ENDURO\.", pop=None,
       what="includes the hand-entered Endur'O figure from the dated manual file (ENDURO), added to the live hand-pump figure where the scope covers both",
       forms=[("Endur'O manual figures", None, "data/enduro_manual.json, supplier and date in the Endur'O block")],

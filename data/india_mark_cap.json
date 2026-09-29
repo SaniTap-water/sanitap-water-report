@@ -1,0 +1,535 @@
+{
+ "action": "act-india-mark-cap-james",
+ "cap_current": 300,
+ "cap_proposed": 500,
+ "counts": {
+  "india_mark": 84,
+  "qualify_depth": 38,
+  "qualify_discharge": 0,
+  "stay_300": 46,
+  "with_pump_depth": 49
+ },
+ "depth_max_m": 20,
+ "depth_source": "retired combined works form 86cf66ef, question ea5221c7 (pump installation depth, m)",
+ "evidence": [
+  "Sphere Handbook: 500 people per hand pump at 16.6 l/min, about 8 hours a day",
+  "India Mark II rated flow: 30 l/min at 10 m, 21.7 at 15 m, 16.7 at 20 m, 15.0 at 25 m"
+ ],
+ "flow_min_lpm": 16.6,
+ "note": "Written by tools/india_mark_cap.py. PROPOSED rule, not applied to any carbon figure.",
+ "points": {
+  "670401749": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "670401770": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-01-03",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "8713c841698f4820844c1fdfa4104d61"
+  },
+  "670401990": {
+   "basis": "pump installed at 24 m: water depth not shown, no discharge test",
+   "date": "2024-09-07",
+   "proposed_cap": 300,
+   "pump_depth_m": 24,
+   "rid": "4f1ac3c3d8b64c97b64d55de05db1783"
+  },
+  "670402056": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "670402094": {
+   "basis": "pump installed at 16 m, so water at 20 m or less",
+   "date": "2025-03-06",
+   "proposed_cap": 500,
+   "pump_depth_m": 16,
+   "rid": "974b8f513cf74b14a3015e80458086aa"
+  },
+  "670402214": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-05-03",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "051dd26f6c23412497c53b0b5d67d444"
+  },
+  "670402221": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893829": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893836": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893874": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893881": {
+   "basis": "pump installed at 18.6 m, so water at 20 m or less",
+   "date": "2024-08-28",
+   "proposed_cap": 500,
+   "pump_depth_m": 18.6,
+   "rid": "18a225652bd64a24905ed43313ce968c"
+  },
+  "742893898": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-03-27",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "2bdfc1f88f5a41c9b1d774012f4c7eed"
+  },
+  "742893915": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893922": {
+   "basis": "pump installed at 10 m, so water at 20 m or less",
+   "date": "2025-07-29",
+   "proposed_cap": 500,
+   "pump_depth_m": 10,
+   "rid": "6fa067d613aa49c9abff5a775f123aff"
+  },
+  "742893977": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742893991": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894033": {
+   "basis": "pump installed at 12 m, so water at 20 m or less",
+   "date": "2025-06-10",
+   "proposed_cap": 500,
+   "pump_depth_m": 12,
+   "rid": "33c57550f6094be89cc8977dc4531f56"
+  },
+  "742894040": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894064": {
+   "basis": "pump installed at 16.5 m, so water at 20 m or less",
+   "date": "2025-07-19",
+   "proposed_cap": 500,
+   "pump_depth_m": 16.5,
+   "rid": "79cbf5494d6b40cea13bf7aba51c0969"
+  },
+  "742894071": {
+   "basis": "pump installed at 12.4 m, so water at 20 m or less",
+   "date": "2024-09-27",
+   "proposed_cap": 500,
+   "pump_depth_m": 12.4,
+   "rid": "9554f33813d94874b60fe2fd5606613a"
+  },
+  "742894088": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894095": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894105": {
+   "basis": "pump installed at 19.1 m, so water at 20 m or less",
+   "date": "2024-09-13",
+   "proposed_cap": 500,
+   "pump_depth_m": 19.1,
+   "rid": "e05987d0433845dcbbc8d304abbccff6"
+  },
+  "742894181": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-04-27",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "a3a9c8bde8fa474cb36311dbced77d1c"
+  },
+  "742894198": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-02-11",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "18bf235c2d2c4d80b8c934013e334eff"
+  },
+  "742894208": {
+   "basis": "pump installed at 28 m: water depth not shown, no discharge test",
+   "date": "2024-11-08",
+   "proposed_cap": 300,
+   "pump_depth_m": 28,
+   "rid": "e259e603269e49c0bec460509a340015"
+  },
+  "742894222": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-03-14",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "c0659938c3cf4f3f8365acc66ef47065"
+  },
+  "742894239": {
+   "basis": "pump installed at 24.8 m: water depth not shown, no discharge test",
+   "date": "2024-09-08",
+   "proposed_cap": 300,
+   "pump_depth_m": 24.8,
+   "rid": "688f309cb5bc4084b5d77cc8f3448da8"
+  },
+  "742894246": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894253": {
+   "basis": "pump installed at 25 m: water depth not shown, no discharge test",
+   "date": "2025-06-14",
+   "proposed_cap": 300,
+   "pump_depth_m": 25,
+   "rid": "f1e0dc42650549c684ecd354e3555085"
+  },
+  "742894260": {
+   "basis": "pump installed at 5.4 m, so water at 20 m or less",
+   "date": "2024-11-12",
+   "proposed_cap": 500,
+   "pump_depth_m": 5.4,
+   "rid": "4598f0da16824bf5ac00902704c3920c"
+  },
+  "742894284": {
+   "basis": "pump installed at 20 m, so water at 20 m or less",
+   "date": "2025-06-14",
+   "proposed_cap": 500,
+   "pump_depth_m": 20,
+   "rid": "9459ba1d04534ac0be21053cee608a61"
+  },
+  "742894291": {
+   "basis": "pump installed at 20 m, so water at 20 m or less",
+   "date": "2025-07-08",
+   "proposed_cap": 500,
+   "pump_depth_m": 20,
+   "rid": "761c30fb136243af80a47f52147c0d5b"
+  },
+  "742894301": {
+   "basis": "pump installed at 15.5 m, so water at 20 m or less",
+   "date": "2024-09-10",
+   "proposed_cap": 500,
+   "pump_depth_m": 15.5,
+   "rid": "edb2c4c310584e6aa4aa81c21241e59d"
+  },
+  "742894318": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894356": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894363": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894370": {
+   "basis": "pump installed at 24.8 m: water depth not shown, no discharge test",
+   "date": "2024-09-10",
+   "proposed_cap": 300,
+   "pump_depth_m": 24.8,
+   "rid": "8cd006a0e89c40e3a482a46339899226"
+  },
+  "742894387": {
+   "basis": "pump installed at 16 m, so water at 20 m or less",
+   "date": "2025-06-17",
+   "proposed_cap": 500,
+   "pump_depth_m": 16,
+   "rid": "1596eb9722bd4fe2b42c702d9839fbde"
+  },
+  "742894411": {
+   "basis": "pump installed at 19 m, so water at 20 m or less",
+   "date": "2024-12-04",
+   "proposed_cap": 500,
+   "pump_depth_m": 19,
+   "rid": "30d8f216deb9427ca0bdbb6f29930c37"
+  },
+  "742894428": {
+   "basis": "pump installed at 24 m: water depth not shown, no discharge test",
+   "date": "2024-09-07",
+   "proposed_cap": 300,
+   "pump_depth_m": 24,
+   "rid": "cfcf95cbaaab41958b38599cc3dc883d"
+  },
+  "742894435": {
+   "basis": "pump installed at 18.6 m, so water at 20 m or less",
+   "date": "2024-09-07",
+   "proposed_cap": 500,
+   "pump_depth_m": 18.6,
+   "rid": "21015598b36047b3a79beb0970fa365b"
+  },
+  "742894442": {
+   "basis": "pump installed at 18.6 m, so water at 20 m or less",
+   "date": "2024-08-30",
+   "proposed_cap": 500,
+   "pump_depth_m": 18.6,
+   "rid": "b77d83ca645e4f958b4c9b3cbece9725"
+  },
+  "742894459": {
+   "basis": "pump installed at 27 m: water depth not shown, no discharge test",
+   "date": "2025-05-16",
+   "proposed_cap": 300,
+   "pump_depth_m": 27,
+   "rid": "39b61c4ec97b49a8951a7f04208cff0b"
+  },
+  "742894473": {
+   "basis": "pump installed at 20 m, so water at 20 m or less",
+   "date": "2025-07-08",
+   "proposed_cap": 500,
+   "pump_depth_m": 20,
+   "rid": "60836e25f3f34f0ca0f928c97006c908"
+  },
+  "742894480": {
+   "basis": "pump installed at 21.7 m: water depth not shown, no discharge test",
+   "date": "2024-09-11",
+   "proposed_cap": 300,
+   "pump_depth_m": 21.7,
+   "rid": "063f82fb98824a44a395388a52aeeaa1"
+  },
+  "742894497": {
+   "basis": "pump installed at 10 m, so water at 20 m or less",
+   "date": "2024-10-18",
+   "proposed_cap": 500,
+   "pump_depth_m": 10,
+   "rid": "93d4f26aa93f4bf29df91771c1362f5b"
+  },
+  "742894538": {
+   "basis": "pump installed at 21.7 m: water depth not shown, no discharge test",
+   "date": "2024-08-31",
+   "proposed_cap": 300,
+   "pump_depth_m": 21.7,
+   "rid": "65b287781f6746b8a24675cf3954a4b3"
+  },
+  "742894552": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-04-27",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "49008fed1a8d4e7e88527f168742c90a"
+  },
+  "742894583": {
+   "basis": "pump installed at 11 m, so water at 20 m or less",
+   "date": "2025-02-07",
+   "proposed_cap": 500,
+   "pump_depth_m": 11,
+   "rid": "28c1c9e7da1f477d839bc4395273aa54"
+  },
+  "742894686": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894693": {
+   "basis": "pump installed at 28 m: water depth not shown, no discharge test",
+   "date": "2024-10-18",
+   "proposed_cap": 300,
+   "pump_depth_m": 28,
+   "rid": "6b5d244c1112466e8d6ba30ce553fadb"
+  },
+  "742894703": {
+   "basis": "pump installed at 25 m: water depth not shown, no discharge test",
+   "date": "2025-04-24",
+   "proposed_cap": 300,
+   "pump_depth_m": 25,
+   "rid": "a4452cce2b7c4fab9627ba74ee15a05c"
+  },
+  "742894734": {
+   "basis": "pump installed at 13.5 m, so water at 20 m or less",
+   "date": "2025-07-04",
+   "proposed_cap": 500,
+   "pump_depth_m": 13.5,
+   "rid": "cddb9b0edd854508bd7906cc4186f2af"
+  },
+  "742894772": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894789": {
+   "basis": "pump installed at 3.5 m, so water at 20 m or less",
+   "date": "2024-09-05",
+   "proposed_cap": 500,
+   "pump_depth_m": 3.5,
+   "rid": "225e5b598f734ffdb9da9fbe850c62d1"
+  },
+  "742894796": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894806": {
+   "basis": "pump installed at 5 m, so water at 20 m or less",
+   "date": "2025-08-19",
+   "proposed_cap": 500,
+   "pump_depth_m": 5,
+   "rid": "c5d1300b59a7498b83289fa3c29e370f"
+  },
+  "742894813": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894820": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894837": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742894909": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-06-02",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "a8a391122da145968761553e770328ad"
+  },
+  "742894916": {
+   "basis": "pump installed at 18.6 m, so water at 20 m or less",
+   "date": "2024-09-04",
+   "proposed_cap": 500,
+   "pump_depth_m": 18.6,
+   "rid": "726f7a1a7fde43698e621bd8c8926798"
+  },
+  "742894923": {
+   "basis": "pump installed at 18.6 m, so water at 20 m or less",
+   "date": "2024-09-04",
+   "proposed_cap": 500,
+   "pump_depth_m": 18.6,
+   "rid": "00ec459d649248fb91ad237b081f501c"
+  },
+  "742894930": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-07-07",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "fd8ef88fee34492c9d76b4ac3e9ea1e5"
+  },
+  "742895034": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-05-29",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "9f4f3eb6b2d14538903ec29842453906"
+  },
+  "742895137": {
+   "basis": "pump installed at 17.5 m, so water at 20 m or less",
+   "date": "2024-12-20",
+   "proposed_cap": 500,
+   "pump_depth_m": 17.5,
+   "rid": "2c1c34f7c02c45e49aea5cc6e4369bc6"
+  },
+  "742895144": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895151": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895168": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895182": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895199": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895209": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895216": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895247": {
+   "basis": "pump installed at 18 m, so water at 20 m or less",
+   "date": "2025-01-27",
+   "proposed_cap": 500,
+   "pump_depth_m": 18,
+   "rid": "2d4c00292c32472cac7c602225025dbf"
+  },
+  "742895278": {
+   "basis": "pump installed at 8 m, so water at 20 m or less",
+   "date": "2025-05-14",
+   "proposed_cap": 500,
+   "pump_depth_m": 8,
+   "rid": "e9f96d046fc247c98ff9ee6de9c02e2f"
+  },
+  "742895285": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "742895292": {
+   "basis": "pump installed at 3.1 m, so water at 20 m or less",
+   "date": "2024-08-23",
+   "proposed_cap": 500,
+   "pump_depth_m": 3.1,
+   "rid": "c536f17cea914467956d5b814427575a"
+  },
+  "742895333": {
+   "basis": "pump installed at 2 m, so water at 20 m or less",
+   "date": "2025-07-17",
+   "proposed_cap": 500,
+   "pump_depth_m": 2,
+   "rid": "0a6f6844a88b486fb52d749e026f6bb9"
+  },
+  "742895704": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "987623115": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "987623256": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "987623270": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  },
+  "987623555": {
+   "basis": "no pump depth on record, no discharge test",
+   "proposed_cap": 300
+  }
+ },
+ "rated_flow": {
+  "rows": [
+   [
+    10,
+    30
+   ],
+   [
+    15,
+    21.7
+   ],
+   [
+    20,
+    16.7
+   ],
+   [
+    25,
+    15.0
+   ]
+  ],
+  "source": "India Mark II rated-flow table",
+  "unit": "l/min at pumping depth (m)"
+ },
+ "rule": "500 people per India Mark pump where the water depth is 20 m or less, or a measured discharge test shows at least 16.6 l/min; otherwise 300",
+ "sphere": {
+  "flow_lpm": 16.6,
+  "hours_per_day": 8,
+  "people_per_hand_pump": 500,
+  "source": "Sphere Handbook, water supply standard: 500 people per hand pump, flow 16.6 l/min, about 8 hours a day"
+ },
+ "status": "proposed - awaiting James Walker's confirmation (email 28 Sep 2026)"
+}
