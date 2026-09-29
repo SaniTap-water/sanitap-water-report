@@ -131,13 +131,23 @@ def main():
     # 0.1 m), and on 23 September that alone moved 90 capped allocations far
     # from any change. Pumps already in the run keep their run inputs; a
     # joining pump is appended from the register; a leaving one is dropped.
-    prev = json.load(open(SUMMARY, encoding="utf8")).get("points_file") or ""
-    prev = prev if os.path.isabs(prev) else os.path.join(SDWS1, prev)
+    _summ = json.load(open(SUMMARY, encoding="utf8"))
+    prev = _summ.get("points_file") or ""
+    if not os.path.isabs(prev):
+        # a relative input is the run's OWN copy, in its run folder. Resolving
+        # it against the pipeline root (until 29 Sep 2026) read an older input
+        # that lacked the pump that joined on 23 September, so the rerun moved
+        # its neighbours and the drift guard rightly refused to publish.
+        _run_dir = os.path.join(SDWS1, "runs", str(_summ.get("_run") or "").split(",")[0].strip())
+        prev = next((c for c in (os.path.join(_run_dir, prev), os.path.join(SDWS1, prev))
+                     if os.path.isfile(c)), os.path.join(SDWS1, prev))
     if not os.path.isfile(prev):
         stop(f"The WorldPop allocation must be rerun for {what}, but the input of the "
              f"run of record ({prev}) is unavailable, so nothing was published with a "
              "blank allocation.")
-    rows = [r for r in csv.DictReader(open(prev, encoding="utf8")) if r["code"] not in left]
+    all_rows = list(csv.DictReader(open(prev, encoding="utf8")))
+    prev_loc = {r["code"]: (float(r["lat"]), float(r["lon"])) for r in all_rows}
+    rows = [r for r in all_rows if r["code"] not in left]
     pts = os.path.join(out, "water_points.csv")
     with open(pts, "w", newline="", encoding="utf8") as fh:
         w = csv.writer(fh)
@@ -167,6 +177,8 @@ def main():
         old = next((p for p in pumps if p["wp"] == c), None)
         if old:
             loc[c] = (old["lat"], old["lon"])
+        elif c in prev_loc:                          # already gone from PUMPS:
+            loc[c] = prev_loc[c]                     # its place in the run input
     near = {c for c in fleet for m in moved_pumps
             if c != m and m in loc and metres(loc[c], loc[m]) < OVERLAP_M}
     allowed = set(joined) | near

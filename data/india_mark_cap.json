@@ -3,10 +3,10 @@
  "cap_current": 300,
  "cap_proposed": 500,
  "counts": {
-  "india_mark": 84,
+  "india_mark": 81,
   "qualify_depth": 38,
   "qualify_discharge": 0,
-  "stay_300": 46,
+  "stay_300": 43,
   "with_pump_depth": 49
  },
  "depth_max_m": 20,
@@ -482,18 +482,6 @@
    "rid": "0a6f6844a88b486fb52d749e026f6bb9"
   },
   "742895704": {
-   "basis": "no pump depth on record, no discharge test",
-   "proposed_cap": 300
-  },
-  "987623115": {
-   "basis": "no pump depth on record, no discharge test",
-   "proposed_cap": 300
-  },
-  "987623256": {
-   "basis": "no pump depth on record, no discharge test",
-   "proposed_cap": 300
-  },
-  "987623270": {
    "basis": "no pump depth on record, no discharge test",
    "proposed_cap": 300
   },

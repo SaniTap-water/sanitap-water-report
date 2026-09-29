@@ -1,0 +1,239 @@
+{
+ "ci_level_pct": 90,
+ "districts": {
+  "Fort-Dauphin": {
+   "distance_median_km": 0.09,
+   "ecoli": {
+    "0": 70,
+    "1-9": 0,
+    "10+": 0
+   },
+   "far_households": [],
+   "first": "2025-11-05",
+   "households": 70,
+   "in_managed_fleet": 10,
+   "last": "2025-11-14",
+   "pass": 70,
+   "pass_ci90": [
+    95.8,
+    100.0
+   ],
+   "pass_pct": 100.0,
+   "positives": [],
+   "pumps": {
+    "670401749": {
+     "first_sample": "2025-11-07",
+     "first_sdws3_pass": "2025-05-06",
+     "six_months": true
+    },
+    "670401770": {
+     "first_sample": "2025-11-08",
+     "first_sdws3_pass": "2025-04-11",
+     "six_months": true
+    },
+    "742893922": {
+     "first_sample": "2025-11-11",
+     "first_sdws3_pass": "2025-04-12",
+     "six_months": true
+    },
+    "742894318": {
+     "first_sample": "2025-11-14",
+     "first_sdws3_pass": "2025-05-01",
+     "six_months": true
+    },
+    "742894411": {
+     "first_sample": "2025-11-13",
+     "first_sdws3_pass": "2025-04-29",
+     "six_months": true
+    },
+    "742894844": {
+     "first_sample": "2025-11-12",
+     "first_sdws3_pass": "2025-04-26",
+     "six_months": true
+    },
+    "742894868": {
+     "first_sample": "2025-11-12",
+     "first_sdws3_pass": "2025-04-26",
+     "six_months": true
+    },
+    "742895405": {
+     "first_sample": "2025-11-07",
+     "first_sdws3_pass": "2025-05-03",
+     "six_months": true
+    },
+    "742895687": {
+     "first_sample": "2025-11-05",
+     "first_sdws3_pass": "2025-05-22",
+     "six_months": false
+    },
+    "742895814": {
+     "first_sample": "2025-11-06",
+     "first_sdws3_pass": "2025-05-21",
+     "six_months": false
+    }
+   },
+   "six_months_per_pump": 8,
+   "six_months_programme": true,
+   "tests": 70,
+   "water_points": 10,
+   "zero": 70,
+   "zero_ci90": [
+    95.8,
+    100.0
+   ],
+   "zero_pct": 100.0
+  },
+  "Maroantsetra": {
+   "distance_median_km": 0.04,
+   "ecoli": {
+    "0": 67,
+    "1-9": 3,
+    "10+": 0
+   },
+   "far_households": [
+    {
+     "code": "Tatita_MadAvance-DQ5NLH",
+     "km": 15.9,
+     "rid": "38387cad195f4edb8583eb610f9fbb0b",
+     "water_point": "771580727"
+    },
+    {
+     "code": "Tatita_MadAvance-DQ39LZ",
+     "km": 2.45,
+     "rid": "ed9c9beb13f8436dbb22a6ed546c6141",
+     "water_point": "742897184"
+    }
+   ],
+   "first": "2025-12-02",
+   "households": 70,
+   "in_managed_fleet": 10,
+   "last": "2025-12-11",
+   "pass": 70,
+   "pass_ci90": [
+    95.8,
+    100.0
+   ],
+   "pass_pct": 100.0,
+   "positives": [
+    {
+     "code": "Tatita_MadAvance-DQGCXS",
+     "comment": "Contamination probablement survenue entre l'echantillonnage et l'analyse.",
+     "date": "2025-12-09",
+     "ecoli": 2,
+     "passes": true,
+     "rid": "7629a84d3fcb4a48b834d069ce0f80cd",
+     "water_point": "819378051"
+    },
+    {
+     "code": "Tatita_MadAvance-DQ3C9X",
+     "comment": "Contamination probablement survenue entre l'echantillonnage et l'analyse.",
+     "date": "2025-12-04",
+     "ecoli": 7,
+     "passes": true,
+     "rid": "bd99dc55e5844b4187e64eb5609c1488",
+     "water_point": "742897184"
+    },
+    {
+     "code": "Tatita_MadAvance-DQ33U7",
+     "comment": "Contamination probablement survenue entre l'echantillonnage et l'analyse.",
+     "date": "2025-12-04",
+     "ecoli": 4,
+     "passes": true,
+     "rid": "f49b7a3908d04f77809dfcacc9b9a676",
+     "water_point": "742897218"
+    }
+   ],
+   "pumps": {
+    "699597548": {
+     "first_sample": "2025-12-11",
+     "first_sdws3_pass": "2025-08-05",
+     "six_months": false
+    },
+    "742895735": {
+     "first_sample": "2025-12-02",
+     "first_sdws3_pass": "2025-06-19",
+     "six_months": false
+    },
+    "742896633": {
+     "first_sample": "2025-12-03",
+     "first_sdws3_pass": "2025-07-03",
+     "six_months": false
+    },
+    "742897184": {
+     "first_sample": "2025-12-04",
+     "first_sdws3_pass": "2025-07-09",
+     "six_months": false
+    },
+    "742897218": {
+     "first_sample": "2025-12-04",
+     "first_sdws3_pass": "2025-07-09",
+     "six_months": false
+    },
+    "742897971": {
+     "first_sample": "2025-12-05",
+     "first_sdws3_pass": "2025-07-22",
+     "six_months": false
+    },
+    "771580727": {
+     "first_sample": "2025-12-05",
+     "first_sdws3_pass": "2025-07-11",
+     "six_months": false
+    },
+    "819378051": {
+     "first_sample": "2025-12-09",
+     "first_sdws3_pass": "2025-08-21",
+     "six_months": false
+    },
+    "825513589": {
+     "first_sample": "2025-12-10",
+     "first_sdws3_pass": "2025-08-31",
+     "six_months": false
+    },
+    "905251279": {
+     "first_sample": "2025-12-09",
+     "first_sdws3_pass": "2025-08-21",
+     "six_months": false
+    }
+   },
+   "six_months_per_pump": 0,
+   "six_months_programme": true,
+   "tests": 70,
+   "water_points": 10,
+   "zero": 67,
+   "zero_ci90": [
+    89.3,
+    98.8
+   ],
+   "zero_pct": 95.7
+  }
+ },
+ "far_km": 1.0,
+ "form": "db0bcbf2e7ea44b280aed653a715553e",
+ "not_recorded": [
+  "kit and lot",
+  "test method",
+  "sample source (stored container or not)",
+  "a paired pump (point-of-collection) sample",
+  "field blanks",
+  "duplicates"
+ ],
+ "note": "Written by tools/rebuild_sdws18.py from the household water-quality survey. No coordinates: distances only.",
+ "pass_rule": {
+  "poc_eq": 0,
+  "pou_lt_per_100ml": 10,
+  "source": "Water Quality Protocol v2.1 section 5.1; ERSDWS v2.0 section 3.2.3.2"
+ },
+ "programme_start": "2025-04-11",
+ "round": "2025",
+ "total": {
+  "pass": 140,
+  "pass_ci90": [
+   97.9,
+   100.0
+  ],
+  "pass_pct": 100.0,
+  "tests": 140,
+  "zero": 137,
+  "zero_pct": 97.9
+ }
+}

@@ -10,8 +10,19 @@ whole group every week, because that is where a new pump first appears.
 
 Each record falls into exactly one class:
 
-  in_fleet            already in the maintained fleet (PUMPS). Never removed
-                      here: a maintained pump reported down stays in.
+  in_fleet            already in the maintained fleet (PUMPS). A maintained
+                      pump reported down stays in. Removed only by a recorded
+                      exclusion (register_corrections), as a leaves record.
+  leaves              in the fleet but excluded by a recorded decision: it is
+                      removed from PUMPS, and tools/rerun_wpop.py drops its
+                      allocation. (29 Sep 2026: four Marolinta survey points.)
+  no_works_record     in the fleet with no programme works record - no
+                      successful first rehabilitation, no recorded correction,
+                      no record on the borehole-progress (new construction /
+                      rehabilitation) form. A point enters the fleet only
+                      through a works record, never through a survey record
+                      (decision register-fleet-entry-rule, 29 Sep 2026), so
+                      check_consistency fails the build on any of these.
   joins               a successful first rehabilitation (or a recorded
                       correction to one), not excluded by decision, with a
                       district that maps to a site, a coordinate, and a
@@ -47,6 +58,15 @@ def log(line):
         fh.write(f"{ts}  {line}\n")
 
 
+def works_points(P, corrected):
+    """Points with a programme works record: a successful first
+    rehabilitation (retired combined form or its successor), a recorded
+    correction to one, or a final record on the borehole-progress form (new
+    construction or rehabilitation). The fleet-entry rule of 29 Sep 2026."""
+    bh = {P._point_of(r) for r in P._borehole() if (r.get("status") or "final") == "final"}
+    return set(P.rehabilitated_successfully()) | set(corrected) | bh
+
+
 def classify():
     import populations as P
     import rebuild_summary as RS
@@ -65,10 +85,16 @@ def classify():
                    if isinstance(e, dict)})
     any_rehab = {P._point_of(r) for r in P._combined()
                  if P._answer(r, P.Q_TYPE) == P.C_FIRST_REHAB}
+    works = works_points(P, corrected)
 
     cls, why = {}, {}
     for code in rows:
-        if code in fleet:
+        if code in fleet and code in excluded:
+            cls[code] = "leaves"
+        elif code in fleet and code not in works:
+            cls[code] = "no_works_record"
+            why[code] = "in the fleet with no rehabilitation, new-construction or corrected record"
+        elif code in fleet:
             cls[code] = "in_fleet"
         elif code in excluded:
             cls[code] = "excluded"
@@ -100,7 +126,10 @@ def main():
     print("register classification: "
           + ", ".join(f"{k} {v}" for k, v in sorted(n.items())))
     joins = sorted(k for k, v in cls.items() if v == "joins")
-    review = sorted(k for k, v in cls.items() if v == "review")
+    review = sorted(k for k, v in cls.items() if v in ("review", "no_works_record"))
+    leaves = sorted(k for k, v in cls.items() if v == "leaves")
+    for k in leaves:
+        print(f"  leaves the portfolio by recorded decision: {k}")
     for k in joins:
         print(f"  joins the portfolio: {k}")
     for k in review:
@@ -110,6 +139,16 @@ def main():
     if not write:
         return 0
 
+    if leaves:
+        src = open(PAGE, encoding="utf8").read()
+        m = re.search(r"\bconst PUMPS\s*=\s*", src)
+        i = m.end()
+        j = src.index("];", i) + 1
+        arr = [r for r in json.loads(src[i:j]) if r["wp"] not in leaves]
+        open(PAGE, "w", encoding="utf8").write(
+            src[:i] + json.dumps(arr, ensure_ascii=False) + src[j:])
+        for k in leaves:
+            log(f"register: {k} left the portfolio (excluded by recorded decision)")
     if joins:
         src = open(PAGE, encoding="utf8").read()
         m = re.search(r"\bconst PUMPS\s*=\s*", src)
@@ -141,6 +180,10 @@ def main():
         joined.setdefault(k, {"on": datetime.date.today().isoformat(),
                               "why": "successful first rehabilitation, not excluded, "
                                      f"{reg[k]['site']}, {reg[k]['pump']}, located"})
+    left = dict(prev.get("left") or {})
+    for k in leaves:
+        left.setdefault(k, {"on": datetime.date.today().isoformat(),
+                            "why": "excluded by recorded decision (data/register_corrections.json)"})
     doc = {"note": "Every record in the MadAvance mWater group, classified by "
                    "tools/classify_register.py. Build-internal: nothing here is "
                    "rendered on the page.",
@@ -150,6 +193,7 @@ def main():
            "review": {k: why[k] for k in review},
            "fleet_points_not_in_group": gone,
            "joined": dict(sorted(joined.items())),
+           "left": dict(sorted(left.items())),
            "records": dict(sorted(cls.items()))}
     json.dump(doc, open(OUT, "w", encoding="utf8"), indent=1, ensure_ascii=False)
     return 0

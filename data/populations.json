@@ -19,25 +19,25 @@
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "737 of 918 points",
+   "detail": "733 of 918 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
   {
-   "detail": "5 of 737 points",
+   "detail": "1 of 733 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
-   "detail": "732 + 5 = 737 points",
+   "detail": "732 + 1 = 733 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: carbon fleet + Marolinta = managed fleet"
   },
   {
-   "detail": "731 rehabilitated + 6 never = 737 points",
+   "detail": "731 rehabilitated + 2 never = 733 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: the fleet is the successfully rehabilitated plus those never rehabilitated"
@@ -49,7 +49,7 @@
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
   },
   {
-   "detail": "6 never rehabilitated = 5 Marolinta (works on the borehole-progress form, which has no success answer, or none yet) + 1 recorded + 0 unexplained",
+   "detail": "2 never rehabilitated = 1 Marolinta (works on the borehole-progress form, which has no success answer, or none yet) + 1 recorded + 0 unexplained",
    "holds": true,
    "internal": false,
    "step": "POINTS: every fleet point with no successful rehabilitation is accounted for"
@@ -358,7 +358,7 @@
     ]
    ],
    "rule": "The water points MadAvance actively maintains today - the fleet this report is about. Every one has a maintenance history: it is visited, repaired and called about. This is the population behind “water points in scope”.",
-   "size": 737,
+   "size": 733,
    "unit": "points"
   },
   "marolinta": {
@@ -377,7 +377,7 @@
     ]
    ],
    "rule": "The Marolinta boreholes. Deichmann-funded, and outside the carbon programme entirely - they enter no carbon figure.",
-   "size": 5,
+   "size": 1,
    "unit": "points"
   },
   "marolinta_new_constructions": {
@@ -626,6 +626,42 @@
    ],
    "rule": "Repairs since 1 August 2024 that carry BOTH a breakdown notification date and a works completion date, and whose completion is not before its notification. Only these can be timed, so only these are in the median and the mean.",
    "size": 619,
+   "unit": "records"
+  },
+  "sdws18_pou_passing": {
+   "decided": "Point-of-use threshold per protocol v2.1 s.5.1; the form's own pass field still checks against 0 (act-pou-form-threshold).",
+   "decided_on": "2026-09-29",
+   "derives_from": [
+    "sdws18_pou_samples"
+   ],
+   "id": "sdws18_pou_passing",
+   "name": "SDWS 18 household samples passing",
+   "reads": [
+    [
+     "Clean Water || project SDWS18 || Survey || Active",
+     "db0bcbf2e7ea44b280aed653a715553e",
+     "question \"E. coli MPN per 100 ml (result)\" < 10"
+    ]
+   ],
+   "rule": "Of the 2025 household samples, those with fewer than 10 E. coli per 100 ml - the point-of-use pass rule (Water Quality Protocol v2.1 section 5.1; ERSDWS v2.0 section 3.2.3.2, WHO low risk). A pump or tap sample would pass only at 0; there are none in this round.",
+   "size": 140,
+   "unit": "records"
+  },
+  "sdws18_pou_samples": {
+   "decided": "The 2025 round is the Nov-Dec 2025 fieldwork on these two deployments; the Moramanga deployment holds only drafts.",
+   "decided_on": "2026-09-29",
+   "derives_from": [],
+   "id": "sdws18_pou_samples",
+   "name": "SDWS 18 household samples, 2025 round",
+   "reads": [
+    [
+     "Clean Water || project SDWS18 || Survey || Active",
+     "db0bcbf2e7ea44b280aed653a715553e",
+     "final responses on the Fort-Dauphin and Maroantsetra deployments"
+    ]
+   ],
+   "rule": "Final records on the household water-quality survey, deployments SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra); drafts left out. Every one is a household (point-of-use) sample: each is linked to a household and carries its GPS.",
+   "size": 140,
    "unit": "records"
   },
   "successful_first_rehabilitation_records": {

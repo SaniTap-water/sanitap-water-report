@@ -74,6 +74,8 @@ SETS = {
     "MORADUP": ("data", "moramanga_system_dedupe.json"),
     # the Moramanga crosswalk, old earlier-project point -> new Endur'O point
     "MORACW": ("data", "moramanga_wp_crosswalk.json"),
+    # the 2025 household water-quality round, SDWS 18 (tools/rebuild_sdws18.py)
+    "SDWS18": ("data", "sdws18.json"),
     # the PROPOSED India Mark cap per pump (tools/india_mark_cap.py): shown
     # beside the current figures, never applied to a carbon figure
     "IMCAP": ("data", "india_mark_cap.json"),

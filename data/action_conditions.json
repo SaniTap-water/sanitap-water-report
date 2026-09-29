@@ -342,16 +342,6 @@
   "closure": "manual",
   "closes_when": "Adriaan confirms the field teams are on the current first-rehabilitation form"
  },
- "act-marolita-spelling": {
-  "kind": "data",
-  "metric": "marolita_spelling_records",
-  "op": "==",
-  "target": 0,
-  "says": "closes when no works-form record spells the village Marolita",
-  "when_satisfied": "OK",
-  "converted_from": "none",
-  "converted_on": "2026-09-26"
- },
  "act-mor-1b-betanatanana-go-look": {
   "kind": "none",
   "says": "no closing condition: a site visit is not recorded anywhere this build can read",
@@ -516,7 +506,7 @@
   "kind": "data",
   "metric": "usage_question_answers",
   "op": ">=",
-  "says": "closes when point-of-use round one has 100 answered usage questions",
+  "says": "closes when the 2026 household round has 100 answered usage questions",
   "target": 100,
   "when_satisfied": "OK"
  },
@@ -1013,5 +1003,18 @@
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
   "closes_when": "James Walker's written reply on the proposed India Mark cap rule, with its date"
+ },
+ "act-sdws18-james-rulings": {
+  "kind": "decision",
+  "question": "For the 2025 SDWS 18 round: (a) which start date the six-month rule counts from; (b) whether a note covers the kit, method, sample source and paired pump sample the records lack?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker's written rulings on (a) the six-month start date and (b) the missing fields"
+ },
+ "act-pou-form-threshold": {
+  "kind": "none",
+  "says": "no closing condition the build can read: the pass field's threshold lives in the form's choice conditions, which the build does not evaluate",
+  "closure": "manual",
+  "closes_when": "Adriaan marks it done once the form's pass field uses the household threshold for household samples"
  }
 }

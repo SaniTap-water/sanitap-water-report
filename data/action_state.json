@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 6,
   "children": 3,
-  "data": 48,
-  "decision": 45,
+  "data": 47,
+  "decision": 47,
   "form": 7,
-  "none": 25
+  "none": 26
  },
  "state": {
   "act-2026-recovery": {
@@ -388,6 +388,14 @@
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
+  "act-india-mark-cap-james": {
+   "evaluated": "2026-09-29",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
   "act-indiamark-premises": {
    "evaluated": "2026-09-29",
    "evidence": "possible answer received &mdash; confirm to close: James Walker, 15 Sep 2026: &ldquo;WorldPop 100%. Rigorous and all of the claims and data is supported. There are references for higher numbers on handpumps. In Richard Carter&rsquo;s book he states 200 to&hellip;&rdquo; Bears on the premises figure but does not settle 500 against 300.",
@@ -471,14 +479,6 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
-  "act-marolita-spelling": {
-   "evaluated": "2026-09-29",
-   "evidence": "marolita_spelling_records = 19 (works-form records that spell the village Marolita); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when no works-form record spells the village Marolita",
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
@@ -651,7 +651,7 @@
   },
   "act-no-works-record": {
    "evaluated": "2026-09-29",
-   "evidence": "points_no_works_record = 6 (managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date); target == 0",
+   "evidence": "points_no_works_record = 2 (managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every managed pump has a works record of some kind",
@@ -711,7 +711,7 @@
    "evidence": "usage_question_answers = 0 (point-of-use responses that actually answer the usage question A9); target >= 100",
    "kind": "data",
    "satisfied": false,
-   "says": "closes when point-of-use round one has 100 answered usage questions",
+   "says": "closes when the 2026 household round has 100 answered usage questions",
    "when_satisfied": "OK"
   },
   "act-population-rerun": {
@@ -720,6 +720,14 @@
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition: a standing item that recurs whenever the portfolio grows",
+   "when_satisfied": "OK"
+  },
+  "act-pou-form-threshold": {
+   "evaluated": "2026-09-29",
+   "evidence": "no closing condition the build can read: the pass field's threshold lives in the form's choice conditions, which the build does not evaluate",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no closing condition the build can read: the pass field's threshold lives in the form's choice conditions, which the build does not evaluate",
    "when_satisfied": "OK"
   },
   "act-printed-year-meaning": {
@@ -895,6 +903,14 @@
    "kind": "data",
    "satisfied": true,
    "says": "closes when the stroke-test form carries results for the SDWS 23 sample",
+   "when_satisfied": "OK"
+  },
+  "act-sdws18-james-rulings": {
+   "evaluated": "2026-09-29",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-sdws26-annual-round": {

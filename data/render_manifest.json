@@ -1,24 +1,24 @@
 {
  "basis": {
   "all": {
-   "headline": "868",
-   "note": "868 water points in scope, the actively managed portfolio: 737 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 piped systems (ma",
+   "headline": "864",
+   "note": "864 water points in scope, the actively managed portfolio: 733 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 southern piped si",
    "note_bold": [
-    "868"
+    "864"
    ],
    "q": {
     "people": [
      {
-      "l": "people with safe water",
-      "v": "274,721"
+      "l": "people served (allocated, not tested)",
+      "v": "273,580"
      },
      {
       "l": "People served",
-      "v": "274,721"
+      "v": "273,580"
      },
      {
-      "l": "people with safe water today",
-      "v": "274,721"
+      "l": "people served today (allocated, not tested)",
+      "v": "273,580"
      }
     ],
     "people-per-pump": [
@@ -30,29 +30,29 @@
     "points": [
      {
       "l": "water points in scope",
-      "v": "868"
+      "v": "864"
      },
      {
       "l": "Water points under maintenance",
-      "v": "868"
+      "v": "864"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "868"
+      "v": "864"
      }
     ]
    }
   },
   "enduro": {
    "headline": "131",
-   "note": "131 water points in scope — Endur'O piped systems and kiosks. Headline figures on this page remain the agreed programme numbers (131 systems, ~146,000 people, S",
+   "note": "131 water points in scope — Endur'O's southern piped sites. Headline figures on this page remain the agreed programme numbers (131 sites, ~146,000 people, Sep 2",
    "note_bold": [
     "131"
    ],
    "q": {
     "people": [
      {
-      "l": "people with safe water",
+      "l": "people served (allocated, not tested)",
       "v": "146,000"
      },
      {
@@ -60,7 +60,7 @@
       "v": "146,000"
      },
      {
-      "l": "people with safe water today",
+      "l": "people served today (allocated, not tested)",
       "v": "146,000"
      }
     ],
@@ -87,24 +87,24 @@
    }
   },
   "mad": {
-   "headline": "737",
-   "note": "737 water points in scope: the 737 MadAvance hand pumps we maintain, broken ones included, Marolinta among them.",
+   "headline": "733",
+   "note": "733 water points in scope: the 733 MadAvance hand pumps we maintain, broken ones included, Marolinta among them.",
    "note_bold": [
-    "737"
+    "733"
    ],
    "q": {
     "people": [
      {
-      "l": "people with safe water",
-      "v": "128,721"
+      "l": "people served (allocated, not tested)",
+      "v": "127,580"
      },
      {
       "l": "People served",
-      "v": "128,721"
+      "v": "127,580"
      },
      {
-      "l": "people with safe water today",
-      "v": "128,721"
+      "l": "people served today (allocated, not tested)",
+      "v": "127,580"
      }
     ],
     "people-per-pump": [
@@ -116,15 +116,15 @@
     "points": [
      {
       "l": "water points in scope",
-      "v": "737"
+      "v": "733"
      },
      {
       "l": "Water points under maintenance",
-      "v": "737"
+      "v": "733"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "737"
+      "v": "733"
      }
     ]
    }
@@ -138,7 +138,7 @@
    "q": {
     "people": [
      {
-      "l": "people with safe water",
+      "l": "people served (allocated, not tested)",
       "v": "127,280"
      },
      {
@@ -146,7 +146,7 @@
       "v": "127,280"
      },
      {
-      "l": "people with safe water today",
+      "l": "people served today (allocated, not tested)",
       "v": "127,280"
      }
     ],
@@ -181,8 +181,8 @@
     "1",
     "12",
     "The register is a different population:",
-    "5",
-    "4",
+    "1",
+    "0",
     "1"
    ],
    "q": {
@@ -245,7 +245,7 @@
   "All pumps without a visit for more than 6 months",
   "Mapping rules: how the 1 km service area is drawn",
   "Who is counted as served: the annual usage survey",
-  "Point-of-use water quality (SDWS 22 / 24)",
+  "Household water quality (SDWS 18, share of samples passing)",
   "Gardien calendars — the days-not-operational record",
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
@@ -259,7 +259,7 @@
   "Where every figure on this page comes from",
   "Data quality notes"
  ],
- "height": 26717,
+ "height": 29730,
  "measure": 1132,
  "missing_ids": [],
  "mobile": {
@@ -276,16 +276,16 @@
  "page_errors": [],
  "partner": {
   "all": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 in process — by status in data/piped_systems_status.jsonregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
-   "tot": "868"
+   "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "tot": "864"
   },
   "enduro": {
-   "end": "131 piped systems — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 in process — by status in data/piped_systems_status.jsonregister reads 181 water points and 24 water systems, of which 4 carry attributesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
    "tot": "131"
   },
   "mad": {
    "end": "not in this scope — “MadAvance — all” does not cover it",
-   "tot": "737"
+   "tot": "733"
   },
   "madx": {
    "end": "not in this scope — “MadAvance excl. Marolinta” does not cover it",
@@ -319,11 +319,15 @@
   },
   "downtbl": {
    "hidden": false,
-   "rows": 21
+   "rows": 22
   },
   "exctbl": {
    "hidden": false,
    "rows": 15
+  },
+  "imcaptbl": {
+   "hidden": false,
+   "rows": 8
   },
   "itin": {
    "hidden": false,
@@ -331,11 +335,11 @@
   },
   "opentbl": {
    "hidden": false,
-   "rows": 30
+   "rows": 31
   },
   "over6": {
    "hidden": false,
-   "rows": 475
+   "rows": 476
   },
   "paramstbl": {
    "hidden": false,
@@ -347,7 +351,7 @@
   },
   "popstbl": {
    "hidden": false,
-   "rows": 30
+   "rows": 32
   },
   "poptbl": {
    "hidden": false,
@@ -365,6 +369,10 @@
    "hidden": false,
    "rows": 5
   },
+  "sdws18tbl": {
+   "hidden": false,
+   "rows": 2
+  },
   "sdws26tbl": {
    "hidden": false,
    "rows": 3
@@ -377,12 +385,12 @@
  "tile_heights": [
   {
    "h": 110,
-   "l": "868water points in scope",
+   "l": "864water points in scope",
    "v": 34
   },
   {
-   "h": 90,
-   "l": "274,721people with safe water",
+   "h": 110,
+   "l": "273,580people served (allocated, not tes",
    "v": 34
   },
   {
@@ -392,12 +400,12 @@
   },
   {
    "h": 131,
-   "l": "21hand pumps reported down",
+   "l": "22hand pumps reported down",
    "v": 34
   },
   {
    "h": 131,
-   "l": "475hand pumps with no visit in 6+ months",
+   "l": "476hand pumps with no visit in 6+ months",
    "v": 34
   },
   {

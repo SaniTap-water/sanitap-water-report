@@ -4,7 +4,8 @@
  "group_records": 918,
  "counts": {
   "excluded": 16,
-  "in_fleet": 737,
+  "in_fleet": 733,
+  "leaves": 4,
   "no_first_rehab": 127,
   "rehab_not_successful": 38
  },
@@ -14,6 +15,24 @@
   "742894057": {
    "on": "2026-09-23",
    "why": "successful first rehabilitation, not excluded, Fort-Dauphin, Canzee, located (register name corrected in mWater the same day; data/register_write_log.json)"
+  }
+ },
+ "left": {
+  "987623115": {
+   "on": "2026-09-29",
+   "why": "excluded by recorded decision (data/register_corrections.json)"
+  },
+  "987623256": {
+   "on": "2026-09-29",
+   "why": "excluded by recorded decision (data/register_corrections.json)"
+  },
+  "987623270": {
+   "on": "2026-09-29",
+   "why": "excluded by recorded decision (data/register_corrections.json)"
+  },
+  "987623517": {
+   "on": "2026-09-29",
+   "why": "excluded by recorded decision (data/register_corrections.json)"
   }
  },
  "records": {
@@ -893,15 +912,15 @@
   "987623074": "excluded",
   "987623098": "no_first_rehab",
   "987623108": "no_first_rehab",
-  "987623115": "in_fleet",
+  "987623115": "leaves",
   "987623122": "no_first_rehab",
   "987623146": "excluded",
   "987623153": "excluded",
   "987623160": "no_first_rehab",
   "987623184": "excluded",
-  "987623256": "in_fleet",
+  "987623256": "leaves",
   "987623263": "excluded",
-  "987623270": "in_fleet",
+  "987623270": "leaves",
   "987623287": "excluded",
   "987623294": "excluded",
   "987623304": "excluded",
@@ -912,7 +931,7 @@
   "987623414": "no_first_rehab",
   "987623421": "no_first_rehab",
   "987623490": "no_first_rehab",
-  "987623517": "in_fleet",
+  "987623517": "leaves",
   "987623524": "no_first_rehab",
   "987623555": "in_fleet",
   "988432109": "no_first_rehab",

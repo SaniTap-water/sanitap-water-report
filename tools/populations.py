@@ -567,6 +567,51 @@ def water_quality_tested():
             if _point_of(r) in fleet}
 
 
+def _pou_round_2025():
+    """Final records of the 2025 household water-quality round (SDWS 18)."""
+    import rebuild_sdws18 as R
+    return R.records()
+
+
+@population(
+    name="SDWS 18 household samples, 2025 round",
+    unit="records",
+    rule="Final records on the household water-quality survey, deployments "
+         "SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra); drafts left out. "
+         "Every one is a household (point-of-use) sample: each is linked to a "
+         "household and carries its GPS.",
+    reads=[("Clean Water || project SDWS18 || Survey || Active",
+            "db0bcbf2e7ea44b280aed653a715553e",
+            "final responses on the Fort-Dauphin and Maroantsetra deployments")],
+    decided="The 2025 round is the Nov-Dec 2025 fieldwork on these two "
+            "deployments; the Moramanga deployment holds only drafts.",
+    decided_on="2026-09-29",
+    derives_from=[])
+def sdws18_pou_samples():
+    return {r["_id"] for r in _pou_round_2025()}
+
+
+@population(
+    name="SDWS 18 household samples passing",
+    unit="records",
+    rule="Of the 2025 household samples, those with fewer than 10 E. coli per "
+         "100 ml - the point-of-use pass rule (Water Quality Protocol v2.1 "
+         "section 5.1; ERSDWS v2.0 section 3.2.3.2, WHO low risk). A pump or "
+         "tap sample would pass only at 0; there are none in this round.",
+    reads=[("Clean Water || project SDWS18 || Survey || Active",
+            "db0bcbf2e7ea44b280aed653a715553e",
+            'question "E. coli MPN per 100 ml (result)" < 10')],
+    decided="Point-of-use threshold per protocol v2.1 s.5.1; the form's own "
+            "pass field still checks against 0 (act-pou-form-threshold).",
+    decided_on="2026-09-29",
+    derives_from=["sdws18_pou_samples"])
+def sdws18_pou_passing():
+    import rebuild_sdws18 as R
+    return {r["_id"] for r in _pou_round_2025()
+            if isinstance(R.val(r, R.Q_ECOLI), (int, float))
+            and R.val(r, R.Q_ECOLI) < R.POU_PASS_LT}
+
+
 @population(
     name="Repairs since 1 August 2024",
     unit="records",

@@ -403,6 +403,9 @@ _REGF = (REGQ, None, None)
 RULES = [
  # before every other rule: a figure under the PROPOSED India Mark cap must
  # never be read as the applied one
+ dict(re=r"^SDWS18\.|SDWS18\.districts", pop="sdws18_pou_samples",
+      what="the 2025 household water-quality round (SDWS 18): final records on the Fort-Dauphin and Maroantsetra deployments of the household survey, computed every build by tools/rebuild_sdws18.py; a household sample passes at fewer than 10 E. coli per 100 ml; intervals exact (Clopper-Pearson), two-sided 90%",
+      forms=[("Clean Water || project SDWS18 || Survey || Active", "db0bcbf2e7ea44b280aed653a715553e", None)], why=None),
  dict(re=r"wpop_prop|IMCAP\.", pop="managed_fleet",
       what="PROPOSED, not applied: the same WorldPop allocation with each India Mark pump capped at 500 where its installed pump depth is 20 m or less and at 300 otherwise (tools/india_mark_cap.py), awaiting James Walker's confirmation; every carbon figure uses the applied cap of 300",
       forms=[("Clean Water || Premi\u00e8re r\u00e9habilitation / ... (pump installation depth)", F_COMBINED, None)], why=None),

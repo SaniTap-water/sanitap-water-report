@@ -80,6 +80,40 @@
    ],
    "logged_on": "2026-09-28",
    "logged_by": "Adriaan Mol"
+  },
+  "register-fleet-entry-rule": {
+   "answer": "A point enters the managed fleet only through a programme works record - a rehabilitation or a new construction, or a recorded correction to one - never through a survey or identification record. The 20 water points recorded on the retired combined form 86cf66ef on 21-24 Aug 2025 by account fitahianawilliam are an identification survey, not managed water points. Four of them were counted in the fleet (987623115, 987623256, 987623270, 987623517) with no works record of any kind, and are excluded. 987623555 stays: it has a final rehabilitation on the Marolinta borehole-progress form dated 26 Aug 2026. The rule is enforced in the build (tools/classify_register.py removes an excluded point from the fleet; check_consistency fails if any fleet point lacks a works record).",
+   "decided_by": "Adriaan Mol, COO SaniTap, on Angelo Nahavitatsara's statement",
+   "decided_on": "2026-09-29",
+   "source": "Angelo Nahavitatsara, 29 Sep 2026, as relayed by Adriaan Mol; rule set by Adriaan Mol, 29 Sep 2026",
+   "sender": "Angelo Nahavitatsara, MadAvance",
+   "quotes": [
+    "The 20 August 2025 records on form 86cf66efdd3749dd8a121314bab3675a (account fitahianawilliam, 22-24 Aug 2025) are an identification survey, not managed water points."
+   ],
+   "points": [
+    "987623074",
+    "987623115",
+    "987623146",
+    "987623153",
+    "987623184",
+    "987623256",
+    "987623263",
+    "987623270",
+    "987623287",
+    "987623294",
+    "987623304",
+    "987623397",
+    "987623421",
+    "987623517",
+    "987623524",
+    "987623555",
+    "988432109",
+    "988432123",
+    "988432161",
+    "988432305"
+   ],
+   "logged_on": "2026-09-29",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

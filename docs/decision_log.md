@@ -1529,3 +1529,69 @@ confirms the entry of 28 September. That entry already stopped the workbook sync
 workbook from the build. It also moved the workbook to Central Data Hub › Water Documents › Archive
 as "RETIRED 2026-09-28 - Water report - action owners and deadlines (see decision_log.md).xlsx".
 Nothing further changed on 29 September.
+
+## 29 September 2026 — Adriaan Mol: the 2025 household water-quality round (SDWS 18) is on the report
+
+**The round was run.** The page said the point-of-use round had not been run. Form `db0bcbf2`
+("Clean Water || project SDWS18") holds 140 final household samples:
+- Fort-Dauphin: 70 samples, 5–14 Nov 2025.
+- Maroantsetra: 70 samples, 2–11 Dec 2025.
+- Each district: 10 water points, 7 households each, all 20 points in the managed register.
+
+The build now pulls the form (`pou_survey.json`). `tools/rebuild_sdws18.py` computes the round
+every build (`data/sdws18.json`), and the populations `sdws18_pou_samples` and
+`sdws18_pou_passing` carry it into the carbon-parameters table.
+
+**Pass rule** (Water Quality Protocol v2.1 §5.1; methodology v2.0 §3.2.3.2):
+- A household (point-of-use) sample passes at fewer than 10 *E. coli* per 100 ml, the WHO low-risk
+  band.
+- A pump or tap sample passes only at 0.
+- All 140 are household samples.
+
+**Results:**
+- Both districts pass 100% (exact 90% CI 95.8–100).
+- The stricter no-*E. coli* rate is shown as information only: Fort-Dauphin 100%, Maroantsetra 95.7%.
+- The three Maroantsetra positives (2, 4 and 7 per 100 ml) are kept, with the enumerator's comment
+  ("contamination probably between sampling and analysis"). They pass, so nothing is triggered.
+  There are no field blanks or duplicates to check the comment against.
+- Two Maroantsetra households are recorded 2.45 km and 15.9 km from their pump. They are flagged as
+  a probable GPS or linking error and kept.
+
+**Open with James Walker** (asked 29 Sep 2026; `act-sdws18-james-rulings`):
+- (a) The six-month start date. Per pump, 0 of 10 Maroantsetra and 8 of 10 Fort-Dauphin pumps reach
+  six months; from the programme start of 11 Apr 2025, both districts do.
+- (b) Whether a note covers the kit, method, sample source and paired pump sample the 2025 records
+  lack.
+
+**Corrected:**
+- The three places that said the round had not been run.
+- The section, labelled SDWS 18 (share of samples passing).
+- `act-point-use-round-one`, now the 2026 round with field blanks, duplicates and a paired pump
+  sample.
+- New: `act-pou-form-threshold` (Lanja). The form's pass field still checks against 0.
+
+## 29 September 2026 — Adriaan Mol: a point enters the fleet only through a works record
+
+**Statement** (Angelo Nahavitatsara, 29 Sep 2026): the records of 21–24 Aug 2025 on form `86cf66ef`
+(account fitahianawilliam) are an identification survey, not managed water points. Of the 20 points:
+- **Excluded:** four were counted in the managed fleet with no works record of any kind —
+  987623115, 987623256, 987623270 and 987623517.
+- **Kept:** 987623555, on its final 26 Aug 2026 rehabilitation (borehole-progress form).
+- **Already outside:** 987623304 was excluded on 15 Sep; the other 14 were never in the fleet.
+
+**The rule:** a point enters the managed fleet only through a programme works record, never through a
+survey record. That means a successful rehabilitation, a new construction, or a recorded correction
+to one. Enforcement:
+- `tools/classify_register.py` removes an excluded point from the fleet.
+- `check_consistency.py` 7bg fails the build on any fleet point without a works record.
+- Logged in `data/decisions.json` (`register-fleet-entry-rule`).
+
+**Consequences:**
+- The fleet is 733: Marolinta 1, the carbon fleet unchanged at 732.
+- The WorldPop allocation was rerun for the four leaving points. Only 987623555 moved, and it stays at
+  its cap of 300; every other pump reproduced exactly.
+- The rerun first refused to publish because `rerun_wpop.py` read the run of record's input from the
+  pipeline root instead of the run folder. Fixed.
+
+**Removed:** `act-marolita-spelling` (19 records spelling the village "Marolita"). It is not needed:
+those are survey records, not managed water points.

@@ -186,6 +186,12 @@
    "extracted": "Works form pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>; allocation run of <span data-fig=\"WPOPMETA.run\"></span>.",
    "filter": "The whole managed portfolio, whatever scope is selected: these are the programme&rsquo;s figures, so they do not move with the scope buttons.",
    "columns": "<b>Current</b>: the figure as the page reports it, every India Mark capped at the applied <span data-param=\"im_cap\"></span>. <b>Proposed rule</b>: the same figure with each India Mark capped at its proposed value, <span data-fig=\"IMCAP.cap_proposed\"></span> where its pump is installed at <span data-fig=\"IMCAP.depth_max_m\"></span> m or less and <span data-fig=\"IMCAP.cap_current\"></span> otherwise. <b>Difference</b>: proposed less current. Every carbon figure on this page uses the current column until James Walker confirms."
+  },
+  "sdws18tbl": {
+   "source": "The household water-quality survey, form <span class=\"mono\">db0bcbf2&hellip;</span> (&ldquo;Clean Water || project SDWS18&rdquo;), through <span class=\"mono\">data/sdws18.json</span>, written each build by tools/rebuild_sdws18.py.",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['pou_survey.json'].pulled\"></span>.",
+   "filter": "The 2025 round: final records on the deployments SDWS18 (Fort-Dauphin) and SDWS18 (Maroantsetra); drafts left out. Every record is a household (point-of-use) sample. The whole round, whatever scope is selected.",
+   "columns": "<b>The three <i>E. coli</i> columns</b>: samples by <i>E. coli</i> per 100 ml, in the bands shown in their headings. <b>Pass</b>: fewer than <span data-fig=\"SDWS18.pass_rule.pou_lt_per_100ml\"></span> per 100 ml, the household rule (Water Quality Protocol v2.1 section 5.1; methodology v2.0 &sect;3.2.3.2), with its exact <span data-fig=\"SDWS18.ci_level_pct\"></span>% confidence interval. <b>No E. coli</b>: the stricter zero count, information only &mdash; it is the rule for a pump or tap sample, not for a household one."
   }
  }
 }

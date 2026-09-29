@@ -66,6 +66,10 @@ JSON_FORMS = {
     # the Moramanga piped-water carbon baseline survey (331 households):
     # the baseline cooking-fuel split for the piped systems in process
     "baseline_moramanga.json": "3ef4385a619244c7ad129169ac1ec71f",
+    # the household (point-of-use) water-quality survey, SDWS 18: the 2025
+    # round is its final records on the Fort-Dauphin and Maroantsetra
+    # deployments (tools/rebuild_sdws18.py, population sdws18_pou_samples)
+    "pou_survey.json": "db0bcbf2e7ea44b280aed653a715553e",
 }
 # Pulled and counted, read by nothing yet. Moving a name out of this set is
 # the step that puts it into a figure.

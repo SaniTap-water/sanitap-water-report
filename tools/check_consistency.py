@@ -3858,6 +3858,31 @@ def main():
           not copies, "none", "; ".join(copies[:3]) if copies else "none",
           "a copy renders one count under two meanings; compute each figure from its own records")
 
+    # ---- 7bg. a point enters the fleet only through a works record --------
+    # Four Marolinta points were in the managed fleet on the strength of a
+    # 22 Aug 2025 identification-survey record and nothing else (Angelo
+    # Nahavitatsara, 29 Sep 2026; decision register-fleet-entry-rule). Every
+    # fleet point must carry a successful first rehabilitation, a recorded
+    # correction to one, or a final borehole-progress (new construction or
+    # rehabilitation) record.
+    try:
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        import populations as _Pw, classify_register as _CR
+        _corr = json.load(open(os.path.join(repo_root, "data", "register_corrections.json"), encoding="utf8"))
+        _works = _CR.works_points(_Pw, {e["wp"] for e in _corr.get("corrected", [])})
+        _excl = {e["wp"] for e in _corr.get("excluded", [])}
+        _fleet = {p["wp"] for p in _Pw._page_pumps()}
+        _noworks = sorted(_fleet - _works)
+        _stillin = sorted(_fleet & _excl)
+    except Exception as _e:  # noqa: BLE001
+        _noworks, _stillin = [f"could not evaluate: {_e}"], []
+    check("every fleet point has a programme works record (no survey-only points)",
+          not _noworks, "none", ", ".join(_noworks[:5]) or "none",
+          "a survey or identification record never puts a point in the fleet")
+    check("no point excluded by recorded decision is still in the fleet",
+          not _stillin, "none", ", ".join(_stillin[:5]) or "none",
+          "tools/classify_register.py --write removes it; tools/rerun_wpop.py --write drops its allocation")
+
     # ---- 7bf. the proposed India Mark cap stays proposed (29 Sep 2026) -----
     # 500 where the pump sits at 20 m or less is proposed to James Walker
     # (email 28 Sep 2026) and not applied. The page shows it beside the

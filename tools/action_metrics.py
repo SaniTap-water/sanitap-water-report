@@ -348,14 +348,6 @@ def _m_sdws26_unapproved():
                and "2025-11-11" <= str(r.get("submittedOn") or "")[:10] <= "2025-11-22")
 
 
-@metric("marolita_spelling_records",
-        "works-form records that spell the village Marolita")
-def _m_marolita():
-    rs = json.load(open(os.path.join(EXPORTS, "combined_rehab.json"), encoding="utf8"))
-    return sum(1 for r in rs if re.search(r"\bMarolita\b",
-                                          json.dumps(r.get("data"), ensure_ascii=False)))
-
-
 @metric("test_kiosks_in_register",
         "of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk")
 def _m_test_kiosks():

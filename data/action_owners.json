@@ -452,6 +452,14 @@
   "act-india-mark-cap-james": {
    "deadline": null,
    "owner": "Adriaan Mol"
+  },
+  "act-sdws18-james-rulings": {
+   "deadline": null,
+   "owner": "James Walker"
+  },
+  "act-pou-form-threshold": {
+   "deadline": null,
+   "owner": "Lanja Randriamanantena"
   }
  },
  "orphan_rows": {
@@ -478,9 +486,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 60,
-   "evidence": 47,
-   "manual": 28
+   "auto": 59,
+   "evidence": 48,
+   "manual": 29
   },
   "actions": {
    "act-2026-recovery": {
@@ -875,13 +883,6 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
-   "act-marolita-spelling": {
-    "type": "auto",
-    "closes_when": "closes when no works-form record spells the village Marolita",
-    "closed": false,
-    "detected_closed_on": null,
-    "first_seen": "2026-09-22"
-   },
    "act-mor-1b-betanatanana-go-look": {
     "type": "manual",
     "closes_when": "Adriaan marks the site visit done",
@@ -1080,7 +1081,7 @@
    },
    "act-point-use-round-one": {
     "type": "auto",
-    "closes_when": "closes when point-of-use round one has 100 answered usage questions",
+    "closes_when": "closes when the 2026 household round has 100 answered usage questions",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1091,6 +1092,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-pou-form-threshold": {
+    "type": "manual",
+    "closes_when": "Adriaan marks it done once the form's pass field uses the household threshold for household samples",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-29"
    },
    "act-printed-year-meaning": {
     "type": "evidence",
@@ -1238,6 +1246,13 @@
     "closed": true,
     "detected_closed_on": "2026-09-21",
     "first_seen": "2026-09-21"
+   },
+   "act-sdws18-james-rulings": {
+    "type": "evidence",
+    "closes_when": "James Walker's written rulings on (a) the six-month start date and (b) the missing fields",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-29"
    },
    "act-sdws26-annual-round": {
     "type": "manual",

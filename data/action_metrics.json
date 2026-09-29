@@ -111,11 +111,6 @@
    "source": "mWater",
    "value": 3
   },
-  "marolita_spelling_records": {
-   "says": "works-form records that spell the village Marolita",
-   "source": "local",
-   "value": 19
-  },
   "moramanga_draft_records": {
    "says": "borehole-progress records on the Moramanga deployment never submitted",
    "source": "local",
@@ -174,7 +169,7 @@
   "points_no_works_record": {
    "says": "managed pumps with no works record of any kind: no preventive visit, repair, rehabilitation or construction date",
    "source": "local",
-   "value": 6
+   "value": 2
   },
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",

@@ -371,6 +371,34 @@
    "reason": "survey entry, not a managed asset",
    "was": "in the register as a rope pump",
    "wp": "987623397"
+  },
+  {
+   "decided_on": "2026-09-29",
+   "evidence": "its only record is a 22 Aug 2025 entry on the retired combined form 86cf66ef by account fitahianawilliam, part of the 21-24 Aug 2025 Marolinta identification survey; no rehabilitation or new-construction record on any works form",
+   "reason": "survey record, not a managed water point (Angelo Nahavitatsara, 29 Sep 2026); a point enters the managed fleet only through a programme works record",
+   "was": "in the managed fleet as a Marolinta point",
+   "wp": "987623115"
+  },
+  {
+   "decided_on": "2026-09-29",
+   "evidence": "its only record is a 22 Aug 2025 entry on the retired combined form 86cf66ef by account fitahianawilliam, part of the 21-24 Aug 2025 Marolinta identification survey; no rehabilitation or new-construction record on any works form",
+   "reason": "survey record, not a managed water point (Angelo Nahavitatsara, 29 Sep 2026); a point enters the managed fleet only through a programme works record",
+   "was": "in the managed fleet as a Marolinta point",
+   "wp": "987623256"
+  },
+  {
+   "decided_on": "2026-09-29",
+   "evidence": "its only record is a 22 Aug 2025 entry on the retired combined form 86cf66ef by account fitahianawilliam, part of the 21-24 Aug 2025 Marolinta identification survey; no rehabilitation or new-construction record on any works form",
+   "reason": "survey record, not a managed water point (Angelo Nahavitatsara, 29 Sep 2026); a point enters the managed fleet only through a programme works record",
+   "was": "in the managed fleet as a Marolinta point",
+   "wp": "987623270"
+  },
+  {
+   "decided_on": "2026-09-29",
+   "evidence": "its only record is a 22 Aug 2025 entry on the retired combined form 86cf66ef by account fitahianawilliam, part of the 21-24 Aug 2025 Marolinta identification survey; no rehabilitation or new-construction record on any works form",
+   "reason": "survey record, not a managed water point (Angelo Nahavitatsara, 29 Sep 2026); a point enters the managed fleet only through a programme works record",
+   "was": "in the managed fleet as a Marolinta point",
+   "wp": "987623517"
   }
  ],
  "excluded_from_map": [
