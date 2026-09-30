@@ -37,6 +37,16 @@ line. It never publishes a blank allocation.
 
     python3 tools/rerun_wpop.py            # say what would happen
     python3 tools/rerun_wpop.py --write
+    python3 tools/rerun_wpop.py --adopt r2025a_barriers_20260930 --reason "..."
+
+--adopt takes a full run of the pipeline after a METHOD change (30 Sep 2026:
+the barrier split fix), when every pump may move and the drift guard above
+would rightly refuse. It adopts the run only if its input is the run of
+record's own input (same pumps, same coordinates, same pump models), it was
+made on the pinned raster by the pipeline as it is now (sha256 of
+sdws1_population.py in the run summary) with no split failures, and it covers
+exactly the fleet. Every pump is replaced; the log records the reason and every
+change.
 """
 import csv, datetime, hashlib, io, json, math, os, re, subprocess, sys
 
@@ -59,7 +69,8 @@ OVERLAP_M = _C["neighbourhood_radius_m"]
 FROM_RUN = {"rows": "points", "points_with_a_barrier": "points_with_a_barrier",
             "points_cut_over_10pct": "points_cut_over_10pct",
             "points_at_the_cap": "points_at_the_cap",
-            "raster_national_sum": "raster_national_sum", "raster": "raster"}
+            "raster_national_sum": "raster_national_sum", "raster": "raster",
+            "pipeline_sha256": "pipeline_sha256"}
 
 
 def stop(sentence):
@@ -91,7 +102,80 @@ def sha256(p):
     return h.hexdigest()
 
 
+def before_of(prev):
+    """The run of record's figures before a method change, from its own summary."""
+    return {"run": str(prev.get("_run", "")).split(",")[0].strip(),
+            "reported_after_cap": prev.get("reported_after_cap"),
+            "points_cut_over_10pct": prev.get("points_cut_over_10pct"),
+            "points_at_the_cap": prev.get("points_at_the_cap")}
+
+
+def pipeline_sha256():
+    return sha256(PIPELINE)
+
+
+def adopt(run, reason):
+    """Adopt a full rerun after a method change (see the module docstring)."""
+    src = open(PAGE, encoding="utf8").read()
+    _pi, _pj, pumps = const(src, "PUMPS")
+    wi, wj, wpop = const(src, "WPOP")
+    fleet = {p["wp"]: p for p in pumps}
+    out = os.path.join(SDWS1, "runs", run)
+    summ = json.load(open(os.path.join(out, "sdws1_summary_equal.json"), encoding="utf8"))
+    if summ.get("raster_sha256") != RASTER_SHA256:
+        stop(f"The run {run} was not made on the pinned raster, so it was not adopted.")
+    if summ.get("pipeline_sha256") != pipeline_sha256():
+        stop(f"The run {run} was made by a different version of the pipeline than the one in "
+             f"{PIPELINE}, so it was not adopted.")
+    if summ.get("split_failures", 1) != 0:
+        stop(f"The run {run} records {summ.get('split_failures')} barrier split failure(s), so it was not adopted.")
+    _prev = json.load(open(SUMMARY, encoding="utf8"))
+    _run_dir = os.path.join(SDWS1, "runs", str(_prev.get("_run") or "").split(",")[0].strip())
+    rec_in = list(csv.DictReader(open(os.path.join(_run_dir, _prev.get("points_file") or "water_points.csv"), encoding="utf8")))
+    new_in = list(csv.DictReader(open(os.path.join(out, "water_points.csv"), encoding="utf8")))
+    if rec_in != new_in:
+        stop(f"The input of {run} is not the run of record's own input, so it was not adopted.")
+    new = {}
+    for row in csv.DictReader(open(os.path.join(out, "sdws1_population_equal.csv"), encoding="utf8")):
+        new[row["code"]] = [int(round(float(row["allocated"]))), int(float(row["revised"])), int(float(row["cap"]))]
+    if set(new) != set(fleet):
+        stop(f"The run {run} does not cover exactly the fleet, so it was not adopted.")
+    changed = {c: {"was": wpop.get(c), "now": new[c]} for c in sorted(new) if new[c] != wpop.get(c)}
+    src = src[:wi] + json.dumps(new, separators=(",", ":")) + src[wj:]
+    today = datetime.date.today().isoformat()
+    mi, mj, meta = const(src, "WPOPMETA")
+    for pf, rf in FROM_RUN.items():
+        meta[pf] = summ[rf]
+    meta["before_method_change"] = before_of(_prev)
+    meta["run"] = today
+    meta["pipeline_sha256"] = summ["pipeline_sha256"]
+    src = src[:mi] + json.dumps(meta, ensure_ascii=False) + src[mj:]
+    open(PAGE, "w", encoding="utf8").write(src)
+    doc = dict(summ)
+    doc["_before_method_change"] = before_of(_prev)
+    doc["_copied"] = today
+    doc["_run"] = f"{run}, allocation=equal"
+    doc["_note"] = ("The WorldPop allocation run's own summary, copied verbatim from "
+                    f"~/sdws1/runs/{run}/sdws1_summary_equal.json by tools/rerun_wpop.py --adopt, "
+                    f"which adopted a full rerun after a method change: {reason} "
+                    "tools/check_wpopmeta.py asserts the page against this file every build.")
+    json.dump(doc, open(SUMMARY, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+    log = json.load(open(RERUN_LOG, encoding="utf8")) if os.path.isfile(RERUN_LOG) else []
+    log.append({"on": today, "run": f"~/sdws1/runs/{run}", "raster_sha256": RASTER_SHA256,
+                "pipeline_sha256": summ["pipeline_sha256"], "method_change": reason,
+                "joined": [], "left": [], "within_2km": [], "changed": changed,
+                "reported_after_cap": summ["reported_after_cap"]})
+    json.dump(log, open(RERUN_LOG, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+    print(f"adopted ~/sdws1/runs/{run}: {len(changed)} pump(s) changed; reported after cap "
+          f"{_prev.get('reported_after_cap')} -> {summ['reported_after_cap']}.")
+    return 0
+
+
 def main():
+    if "--adopt" in sys.argv:
+        i = sys.argv.index("--adopt")
+        reason = sys.argv[sys.argv.index("--reason") + 1] if "--reason" in sys.argv else "method change"
+        return adopt(sys.argv[i + 1], reason)
     write = "--write" in sys.argv
     src = open(PAGE, encoding="utf8").read()
     _pi, _pj, pumps = const(src, "PUMPS")

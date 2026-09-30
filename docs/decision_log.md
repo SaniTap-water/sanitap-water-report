@@ -1795,3 +1795,41 @@ Measured against his transcription of 42 calendars (9,780 days): agreement over 
 - Follow-up the same day: four more places still rendered the pooled implied figure (a stat tile, three
   sentences). All now say it is withheld, and `check_consistency.py` fails if any `CALX.implied_*` or
   `GEN.calendar.implied_*` figure is rendered.
+
+## 30 Sep 2026 (e) — barrier split fixed in the SDWS 1 pipeline (Adriaan Mol)
+
+Approved by Adriaan Mol, 30 Sep 2026 (chat). `~/sdws1/sdws1_population.py` clipped each barrier line to the
+1 km circle and cut the circle with shapely `split()`. The clipped ends missed the circle's boundary by
+rounding, so the lines were often not noded with it and `split()` returned the whole circle: a river crossing
+the circle cut nothing. Found by the Sampler parity check (Sampler commit 71c5cca, README "Barrier clip parity").
+
+- Fix: lines are clipped to the circle grown by 50 m, the circle is polygonised with them, and the pieces
+  must tile the circle (a failure is counted in the run summary as `split_failures` and fails adoption).
+  A closed coastline way (an island) loaded as a polygon is cut along its outline; the first rerun found two
+  Fort-Dauphin points where this also used to fail silently. Rules unchanged: coastline, river, canal
+  (streams off); 40 m opening at bridge=yes|viaduct|boardwalk and ford=yes|stepping_stones|boat; keep the
+  fragment holding the pump. The same cut is used by barrier_overexclusion.py, barrier_check_maps.py and
+  sdws1_barrier_clip.py; verify/recompute_population.py fixes it by a different route (lines clipped to a
+  square well past the circle, then split()).
+- Regression test `~/sdws1/tests/test_split_fix.py`: 771703469 78.1 %, 742896798 64.9 %, 772741428 54.1 %
+  kept (each within 1 point), plus synthetic cases.
+- Rerun on the run of record's own input (745 pumps) and the pinned R2025A raster: runs/r2025a_barriers_20260930
+  (equal, idw, nearest, and the people-behind-a-barrier pass), r2025a_nobarriers_20260930, sens_c_20260930
+  (no river a barrier). Adopted with `tools/rerun_wpop.py --adopt` (new: a full rerun after a method change,
+  refused unless the input is the run of record's, the raster is pinned, the pipeline sha256 is the current
+  script's and there are no split failures). 337 pumps changed.
+
+| | Fort-Dauphin | Maroantsetra | Marolinta | Total |
+|---|---|---|---|---|
+| Allocated (after overlap split) | 78,081 → 75,989 | 86,743 → 84,356 | 1,355 → 1,355 | 166,178 → 161,699 |
+| Reported after cap | 41,462 → 40,639 | 85,818 → 83,717 | 1,354 → 1,354 | 128,634 → 125,710 |
+| Points at the cap | 79 → 74 | 3 → 3 | 0 → 0 | 82 → 77 |
+| Points cut > 10 % | 9 → 40 | 113 → 326 | 0 → 0 | 122 → 366 |
+| People behind a barrier | 658 → 7,623 | 26,801 → 78,359 | 0 → 0 | 27,459 → 85,982 |
+
+- The "no river a barrier" sensitivity (the figure keyed `streams_as_barriers` in data/wpop_pipeline_figures.json;
+  it is variant c of barrier_sensitivity.py, not streams) is now 128,939 against 125,710: +3,229 (2.57 %),
+  was +385 (0.3 %) with the split failing.
+- `wpop_pipeline_figures.py` now reads the 30 Sep folders; the 16 Sep folders are kept. The pipeline sha256
+  is in the run summary, WPOPMETA and the provenance paragraph; check_consistency fails if the run of record
+  was made by another version of the pipeline.

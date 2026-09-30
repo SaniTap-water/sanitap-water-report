@@ -24,8 +24,10 @@ import csv, datetime, json, os, re, sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SDWS1 = os.path.expanduser("~/sdws1")
 OUT = os.path.join(REPO, "data", "wpop_pipeline_figures.json")
-RUNS = {"barriers": "r2025a_barriers", "nobarriers": "r2025a_nobarriers",
-        "streams_as_barriers": "sens_c"}
+# 30 Sep 2026: the full set rerun on the current fleet after the barrier split fix
+# (the 16 Sep folders r2025a_barriers / r2025a_nobarriers / sens_c are kept, not quoted)
+RUNS = {"barriers": "r2025a_barriers_20260930", "nobarriers": "r2025a_nobarriers_20260930",
+        "streams_as_barriers": "sens_c_20260930"}
 VARIANTS = {"equal": "equal", "idw": "idw-p2", "nearest": "nearest"}
 
 
@@ -66,7 +68,7 @@ def build():
     out["streams_as_barriers_delta_pct"] = round(100 * (s - b) / b, 2)
 
     # people the barrier clip cuts off from every pump that reached them
-    p = os.path.join(SDWS1, "barrier_overexclusion.csv")
+    p = os.path.join(SDWS1, "runs", RUNS["barriers"], "overexclusion", "barrier_overexclusion.csv")
     sites = page_sites()
     by = {}
     tot = 0.0
@@ -80,7 +82,7 @@ def build():
         d["people"] += x
         d["points"] += 1
     out["barrier_exclusion"] = {
-        "file": "~/sdws1/barrier_overexclusion.csv",
+        "file": f"~/sdws1/runs/{RUNS['barriers']}/overexclusion/barrier_overexclusion.csv",
         "run_on": datetime.date.fromtimestamp(os.path.getmtime(p)).isoformat(),
         "people": round(tot),
         "by_site": {k: {"people": round(v["people"]), "points": v["points"]}

@@ -91,6 +91,8 @@ GENERATED = {
     'WPOPMETA.raster': 'check_wpopmeta (data/sdws1_summary_equal.json)',
     'WPOPMETA.raster_national_sum': 'check_wpopmeta (data/sdws1_summary_equal.json)',
     'WPOPMETA.rows': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.pipeline_sha256': 'check_wpopmeta (data/sdws1_summary_equal.json)',
+    'WPOPMETA.before_method_change': 'check_wpopmeta (data/sdws1_summary_equal.json)',
 
     'PARTIAL.[].kind_basis': 'build_call_tables',
     'DOWN.[].commune': 'rebuild_summary',

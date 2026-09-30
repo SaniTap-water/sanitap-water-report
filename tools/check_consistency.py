@@ -717,6 +717,18 @@ def main():
                 _bad.append(f"caps: pipeline {_caps and _caps.group(1)}")
             if not _sha or _sha.group(1) != _wp["raster_sha256"]:
                 _bad.append("raster checksum pinned in the pipeline")
+        # 30 Sep 2026: the run of record names the pipeline by content, and it is the pipeline as it is now
+        if _sha and os.path.isfile(_pl):
+            import hashlib as _hl
+            _pls = _hl.sha256(open(_pl, "rb").read()).hexdigest()
+            _sm = json.loads(read(os.path.join(repo_root, "data", "sdws1_summary_equal.json")))
+            if _sm.get("pipeline_sha256") != _pls:
+                _bad.append("the run of record was not made by the pipeline as it is now (sha256)")
+            if _sm.get("split_failures", 1) != 0:
+                _bad.append("the run of record records barrier split failures")
+            _wm2 = re.search(r"\bconst WPOPMETA\s*=\s*", idx)
+            if _wm2 and f'"pipeline_sha256": "{_pls}"' not in idx[_wm2.end():_wm2.end() + 4000]:
+                _bad.append("WPOPMETA does not carry the pipeline sha256")
         _sum = json.loads(read(os.path.join(repo_root, "data", "sdws1_summary_equal.json")))
         if _sum.get("raster_sha256") != _wp["raster_sha256"] or _sum.get("raster") != _wp["raster"]:
             _bad.append("raster of the run of record")

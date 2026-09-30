@@ -23,6 +23,9 @@ FROM_RUN = {
     "points_at_the_cap": "points_at_the_cap",
     "raster_national_sum": "raster_national_sum",
     "raster": "raster",
+    # 30 Sep 2026: the pipeline by content, and the figures before the barrier split fix
+    "pipeline_sha256": "pipeline_sha256",
+    "before_method_change": "_before_method_change",
 }
 
 
