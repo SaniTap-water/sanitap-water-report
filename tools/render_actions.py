@@ -313,6 +313,11 @@ def slug(s):
 
 CONDS = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), encoding="utf8"))
 # how each action closes: auto / evidence / manual (tools/closure_types.py)
+# retired id -> the action it was merged into (data/action_redirects.json)
+_RP = os.path.join(REPO, "data", "action_redirects.json")
+REDIRECTS = json.load(open(_RP, encoding="utf8")).get("redirects", {}) if os.path.isfile(_RP) else {}
+
+
 CLOSURE = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
            .get("closure", {}).get("actions", {}))
 SOURCES = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
@@ -449,12 +454,15 @@ def row(a, today, owner_cell=True):
     body = (f'<details class="act-detail" id="{a["id"]}">'
             f'<summary>{a["title_html"]}</summary>{det}</details>'
             if det else f'<b>{a["title_html"]}</b>')
+    # a retired id lands here: one anchor per redirect, in the main list only
+    alias = "".join(f'<span id="{old}" class="act-alias"></span>'
+                    for old, new in REDIRECTS.items() if new == a["id"]) if owner_cell else ""
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
-            f'<td>{body}'
+            f'<td>{alias}{body}'
             f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div></td>'
             + own
-            + f'<td><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
+            + f'<td class="st"><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
               f'{badge}{label}</td>'
               # a date is a number and never wraps; a deadline written as words
               # ("before the piped VPA-DD is submitted") is text and wraps
@@ -496,13 +504,15 @@ def block(idx, today=None):
     # the Item column a sliver and Status a wide empty band. Item carries the
     # text, so it is widest; data-cols="set" keeps layoutTables() from
     # re-measuring. Percentages, so print keeps the proportions.
-    head = ('<colgroup><col style="width:40%"><col style="width:15%"><col style="width:10%">'
-            '<col style="width:10%"><col style="width:25%"></colgroup>'
+    # 30 Sep 2026: Item 50 / Owner 12 / Status 6 / Deadline 8 / What would close it 24.
+    head = ('<colgroup><col style="width:50%"><col style="width:12%"><col style="width:6%">'
+            '<col style="width:8%"><col style="width:24%"></colgroup>'
             '<thead><tr><th>Item</th><th>Owner</th><th>Status</th>'
             '<th class="num">Deadline</th><th>What would close it</th>'
             '</tr></thead>')
-    head_no_owner = ('<colgroup><col style="width:47%"><col style="width:11%">'
-                     '<col style="width:12%"><col style="width:30%"></colgroup>'
+    # the same proportions without the Owner column (50:6:8:24 of 88)
+    head_no_owner = ('<colgroup><col style="width:56.8%"><col style="width:6.8%">'
+                     '<col style="width:9.1%"><col style="width:27.3%"></colgroup>'
                      '<thead><tr><th>Item</th><th>Status</th>'
                      '<th class="num">Deadline</th><th>What would close it</th>'
                      '</tr></thead>')
@@ -598,7 +608,7 @@ def block(idx, today=None):
          'here and are never set by hand.</span></p>'),
         # --- the rows, once ----------------------------------------------
         '  <div id="act-flat" class="tablewrap" style="margin-top:10px">'
-        '<table class="ind tfix acttbl" data-prose-table data-cols="set" style="min-width:1000px">' + head + '<tbody>',
+        '<table class="ind tfix acttbl" data-prose-table data-cols="set">' + head + '<tbody>',
     ]
     out += ["    " + row(a, today) for a in acts]
     out += ['  </tbody></table></div>',
@@ -613,7 +623,7 @@ def block(idx, today=None):
                    f'<summary>{face(lead, 22)}{lead} &mdash; {len(rows)} item(s) '
                    f'<span class="muted">({bits})</span></summary>'
                    '<div class="tablewrap" style="margin-top:8px">'
-                   '<table class="ind tfix acttbl" data-prose-table data-cols="set" style="min-width:840px">' + head_no_owner + '<tbody>')
+                   '<table class="ind tfix acttbl acttbl-own" data-prose-table data-cols="set">' + head_no_owner + '<tbody>')
         out += ["    " + row(a, today, owner_cell=False) for a in rows]
         out.append("  </tbody></table></div></details>")
     out += ['  </div>',

@@ -575,9 +575,14 @@ def main():
           "a verifier who cannot read Python still sees every definition")
     _defs_i = idx.find("<!-- BEGIN GENERATED definitions")
     _acts_i = idx.find("<!-- BEGIN GENERATED action-list")
+    # 30 Sep 2026: the definitions moved to the end of the page, inside
+    # "Where each figure comes from and what it counts"; what matters is that
+    # the region is not NESTED in the action list, not that it comes first
+    _acts_end = idx.find("<!-- END GENERATED action-list", _acts_i)
+    _nested = _acts_i >= 0 and _acts_i < _defs_i < _acts_end
     check("the definitions region is outside the action-list region",
-          _defs_i >= 0 and _acts_i >= 0 and _defs_i < _acts_i, "outside",
-          "outside" if _defs_i < _acts_i else "NESTED - it will be deleted",
+          _defs_i >= 0 and _acts_i >= 0 and not _nested, "outside",
+          "NESTED - it will be deleted" if _nested else "outside",
           "one generated region inside another is deleted without a word")
     check("the derivation panel is wired on the page",
           "function derivPanel(" in idx and "DERIV_SEL" in idx, "wired",

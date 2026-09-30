@@ -169,15 +169,10 @@
   "owner": "Adriaan Mol",
   "schedule": "<span class=\"pill ok\">OK</span><br><span class=\"muted\">self-closing on the age of data/enduro_manual.json</span>"
  },
- "act-establish-renewal-dates-current": {
+ "act-establish-renewal-dates-four": {
   "detail": "<b>Establish renewal dates and current status for the four baseline parameters.</b> <span class=\"mono\">SDWS 6</span> stove types, <span class=\"mono\">SDWS 8</span> fuel percentages, <span class=\"mono\">SDWS 11</span> weighted efficiency of baseline boiling devices, <span class=\"mono\">SDWS 12</span> <span class=\"mono\">Cb</span>, the proportion of end-users who in the baseline were <b>already using a safe water supply that did not require boiling</b> &mdash; a <b>deduction</b> from the creditable population, not a measure of who was boiling. Registered at <b>Anosy <span data-param=\"cb_anosy\"></span>%</b>, <b>Maroantsetra <span data-param=\"cb_maroantsetra\"></span>%</b>. Each was set at validation from baseline surveys and Kitchen Performance Tests; none has been tracked since. All four are <b>status UNKNOWN</b> until the renewal frequency is read out of the methodology. <span class=\"muted\">The renewal frequency could not be read here: the VPA-DD and the methodology PDF are not on this machine, and the parameters workbook lists all four under \"Data and Parameters Not Monitored\" without giving a renewal interval.</span>",
   "owner": "James Walker",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">renewal frequency read out</span><br><span class=\"muted\">status unknown</span>"
- },
- "act-establish-renewal-dates-four": {
-  "detail": "<b>Establish renewal dates for the four baseline parameters.</b> SDWS 6, SDWS 8, SDWS 11 and SDWS 12 were set at validation and have not been tracked since. Fix the renewal date for each and put it in the monitoring calendar.",
-  "owner": "James Walker",
-  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">no date proposed &mdash; Jan to set</span>"
  },
  "act-figure-residue": {
   "detail": "<b>Resolve the remaining unsourced figures.</b> Every number the report renders must be derivable from a population, declared in PARAMS with a citation, carried in a dated manual file, quoted from a named document, or the output of a named script. <b>Resolved on 23 September 2026: the census finds no unsourced figure on any scope</b>, and <span class=\"mono\">data/figure_backlog.json</span> is empty. Live counts render from populations, the calendar stratum and the people-served runs are registered computed artefacts, the VPA-DD values are declared, the Improved Cooking precedent is a quotation and retired values are marked as history; what could be none of those stopped rendering. The gate still fails on any new unsourced figure.",
@@ -688,5 +683,15 @@
   "detail": "<b>Complete the &ldquo;drilling result&rdquo; question on the Marolinta new-construction records (29 Jul&ndash;3 Aug 2026).</b> The six final new constructions on the borehole-progress form were filed before question 1.3b (<i>R&eacute;sultat de la foration</i>) was added, so none records whether the borehole is positive and equipped. They are in the fleet on their pump model; the answer makes &ldquo;completed and equipped&rdquo; explicit on the record.",
   "owner": "Angelo Nahavitatsara",
   "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\">all six records carry an answer</span>"
+ },
+ "act-usage-survey-inside-radius": {
+  "detail": "<b>Draw every usage-survey household inside the <span data-fig=\"BUILDCFG.worldpop.service_radius_m/1000\"></span>&nbsp;km service area.</b> Requirement (mapping rules, SDWS 1): survey households must lie inside the <span data-fig=\"BUILDCFG.worldpop.service_radius_m/1000\"></span>&nbsp;km radius. Today the sampler draws only from registered water points and the field rule walks households out from the source; the barrier constraint has still to be added to the sampler when the clip is built. <span class=\"muted\">Created 30 Sep 2026 by the status &rarr; action gate: the requirement stands at <i>partial</i> and no action covered it. Owner and deadline to be set.</span>",
+  "owner": "unassigned",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">owner and date to be set</span>"
+ },
+ "act-usage-survey-random-selection": {
+  "detail": "<b>Select water points and households at random for the usage survey.</b> Requirement (who is counted as served): randomised selection of water points and of households. The sampler is built and draws only from registered water points, but households are walked outward from the source rather than drawn at random, and the SDWS 1 barrier constraint has still to be added. <span class=\"muted\">Created 30 Sep 2026 by the status &rarr; action gate: the requirement stands at <i>partial</i> and no action covered it. Owner and deadline to be set.</span>",
+  "owner": "unassigned",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">owner and date to be set</span>"
  }
 }

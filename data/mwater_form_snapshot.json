@@ -1,5 +1,5 @@
 {
- "fetched": "2026-09-29",
+ "fetched": "2026-09-30",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -994,72 +994,6 @@
      "type": "NumberQuestion"
     },
     {
-     "code": "2.2",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
-     "en": "",
-     "fr": "Niveau statique",
-     "group": null,
-     "id": "ccd150fd1b52465a807c3f4fd15b9805",
-     "required": true,
-     "type": "NumberQuestion"
-    },
-    {
-     "code": "2.3",
-     "conditions": [],
-     "en": "",
-     "fr": "Niveau dynamique",
-     "group": null,
-     "id": "9d85f86768ba480f81f1ee37059df83f",
-     "required": true,
-     "type": "NumberQuestion"
-    },
-    {
-     "code": "2.4",
-     "conditions": [],
-     "en": "",
-     "fr": "Débit d'exploitation",
-     "group": null,
-     "id": "fae3aee1363a4c9b800c6ebd42b48d15",
-     "required": true,
-     "type": "NumberQuestion"
-    },
-    {
-     "code": "2.5",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
-     "en": "",
-     "fr": "Type de forage",
-     "group": null,
-     "id": "4bc5bf671fe849a18b322cab950fe710",
-     "required": true,
-     "type": "RadioQuestion"
-    },
-    {
      "code": "2.6",
      "conditions": [],
      "en": "",
@@ -1080,70 +1014,51 @@
      "type": "RadioQuestion"
     },
     {
+     "code": "2.2",
+     "conditions": [],
+     "en": "",
+     "fr": "Niveau statique",
+     "group": "Forage positif",
+     "id": "ccd150fd1b52465a807c3f4fd15b9805",
+     "required": true,
+     "type": "NumberQuestion"
+    },
+    {
+     "code": "2.5",
+     "conditions": [],
+     "en": "",
+     "fr": "Type de forage",
+     "group": "Forage positif",
+     "id": "4bc5bf671fe849a18b322cab950fe710",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
      "code": "2.8",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Diamètre du forage",
-     "group": null,
+     "group": "Forage positif",
      "id": "5f5a02edbb6044039e77d17b3fe58fd2",
      "required": true,
      "type": "RadioQuestion"
     },
     {
      "code": "2.9",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Type de cuvelage",
-     "group": null,
+     "group": "Forage positif",
      "id": "5b47f2730f73471f8fd5df0278df4c61",
      "required": true,
      "type": "RadioQuestion"
     },
     {
      "code": "2.10",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Profondeur de cuvelage plein",
-     "group": null,
+     "group": "Forage positif",
      "id": "4e92b564f6fd49dba74bf1cb9ab382f7",
      "required": true,
      "type": "NumberQuestion"
@@ -1225,6 +1140,16 @@
      "fr": "Débit maximal estimé du forage",
      "group": "Test de débit par palier",
      "id": "d7013cdeb53c4220bf44cc37292974be",
+     "required": true,
+     "type": "UnitsQuestion"
+    },
+    {
+     "code": "2.12.2b",
+     "conditions": [],
+     "en": "",
+     "fr": "Capacité de la pompe de test",
+     "group": "Test de débit par palier",
+     "id": "884342b034e145efbfec7b8ba9e7a936",
      "required": true,
      "type": "UnitsQuestion"
     },
@@ -1339,6 +1264,26 @@
      "type": "ImagesQuestion"
     },
     {
+     "code": "2.3",
+     "conditions": [],
+     "en": "",
+     "fr": "Niveau dynamique",
+     "group": null,
+     "id": "9d85f86768ba480f81f1ee37059df83f",
+     "required": true,
+     "type": "NumberQuestion"
+    },
+    {
+     "code": "2.4",
+     "conditions": [],
+     "en": "",
+     "fr": "Débit d'exploitation",
+     "group": null,
+     "id": "fae3aee1363a4c9b800c6ebd42b48d15",
+     "required": true,
+     "type": "NumberQuestion"
+    },
+    {
      "code": "2.14",
      "conditions": [],
      "en": "",
@@ -1400,20 +1345,7 @@
     },
     {
      "code": "3.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Catégorie de pompe",
      "group": null,
@@ -1423,20 +1355,7 @@
     },
     {
      "code": "3.2.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Modèle de pompe manuelle",
      "group": "Informations sur la pompe",
@@ -1526,20 +1445,7 @@
     },
     {
      "code": "3.2.3",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Photo : Pompe installée (vue générale)",
      "group": "Informations sur la pompe",
@@ -1549,20 +1455,7 @@
     },
     {
      "code": "3.2.4",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Photo : Tête de pompe (détail)",
      "group": "Informations sur la pompe",
@@ -1572,20 +1465,7 @@
     },
     {
      "code": "3.2.5",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Photo : Colonne montante",
      "group": "Informations sur la pompe",
@@ -1765,20 +1645,7 @@
     },
     {
      "code": "5.1.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Type d'aire d'assainissement",
      "group": "Aire d'assenissement",
@@ -1797,18 +1664,6 @@
        "rhs": {
         "literal": "CUhjm6d"
        }
-      },
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
       }
      ],
      "en": "",
@@ -1820,20 +1675,7 @@
     },
     {
      "code": "5.2.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Type d'évacuation des eaux usées",
      "group": "Evacuation des eaux usées",
@@ -1843,20 +1685,7 @@
     },
     {
      "code": "5.2.2.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Longueur du système d'évacuation",
      "group": "Informations sur le type d'évacuation",
@@ -1866,20 +1695,7 @@
     },
     {
      "code": "5.2.2.2",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Pente de l'évacuation",
      "group": "Informations sur le type d'évacuation",
@@ -1889,20 +1705,7 @@
     },
     {
      "code": "5.2.2.3",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "État de l'évacuation",
      "group": "Informations sur le type d'évacuation",
@@ -1912,20 +1715,7 @@
     },
     {
      "code": "5.2.2.4",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Photo : Système d'évacuation",
      "group": "Informations sur le type d'évacuation",
@@ -1935,20 +1725,7 @@
     },
     {
      "code": "5.3.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Risque d'érosion observé ?",
      "group": "Erosion",
@@ -1967,18 +1744,6 @@
        "rhs": {
         "literal": "ax1NVZY"
        }
-      },
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
       }
      ],
      "en": "",
@@ -1990,20 +1755,7 @@
     },
     {
      "code": "5.4.1",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Clôture de protection présente ?",
      "group": "Clôture",
@@ -2016,14 +1768,11 @@
      "conditions": [
       {
        "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
+        "question": "18e639ae94eb444caa0d6be01d66bd6e"
        },
-       "op": "isoneof",
+       "op": "is",
        "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
+        "literal": "ptvshYt"
        }
       }
      ],
@@ -2036,20 +1785,7 @@
     },
     {
      "code": "5.5",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Présence d'animaux à proximité ?",
      "group": null,
@@ -2059,20 +1795,7 @@
     },
     {
      "code": "5.6",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Photo : Point de rejet final",
      "group": null,
@@ -2212,52 +1935,26 @@
     },
     {
      "code": "7.2",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Points critiques à signaler",
-     "group": null,
+     "group": "Forage positif",
      "id": "f65a22ea7fc24a6592c19cb6df769891",
      "required": true,
      "type": "TextQuestion"
     },
     {
      "code": "7.3",
-     "conditions": [
-      {
-       "lhs": {
-        "question": "841feee6c2814a6391a791a062da3061"
-       },
-       "op": "isoneof",
-       "rhs": {
-        "literal": [
-         "VgmleuK",
-         "DTlQUAS"
-        ]
-       }
-      }
-     ],
+     "conditions": [],
      "en": "",
      "fr": "Signature numérique de l'enquêteur",
-     "group": null,
+     "group": "Forage positif",
      "id": "2c6e54873e9d4a2fadf102562508ec9d",
      "required": true,
      "type": "TextQuestion"
     }
    ],
-   "rev": 305,
+   "rev": 359,
    "state": "active"
   },
   "old-combined-works": {
@@ -6353,6 +6050,16 @@
    ],
    "questions": [
     {
+     "code": "1.0",
+     "conditions": [],
+     "en": "Site outside the carbon programme (not Gold Standard). Leave unticked for carbon sites.",
+     "fr": "Site hors programme carbone (non Gold Standard). Laisser non coché pour les sites carbone.",
+     "group": null,
+     "id": "dd99cd8929c24aff8e7bef8740795796",
+     "required": false,
+     "type": "CheckQuestion"
+    },
+    {
      "code": "1.1",
      "conditions": [],
      "en": "Water Point ID",
@@ -7143,7 +6850,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 299,
+   "rev": 310,
    "state": "active"
   },
   "preventive-maintenance": {
@@ -10181,6 +9888,16 @@
      "type": "MulticheckQuestion"
     },
     {
+     "code": "OPSTATUS",
+     "conditions": [],
+     "en": "Operating status / État de fonctionnement",
+     "fr": "",
+     "group": null,
+     "id": "b32acaf92e8c4dc89727041e98025ea6",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
      "code": "WS7.7",
      "conditions": [],
      "en": "Type of pump installed",
@@ -10201,7 +9918,7 @@
      "type": "ImagesQuestion"
     }
    ],
-   "rev": 184,
+   "rev": 185,
    "state": "active"
   }
  }

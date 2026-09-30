@@ -1670,7 +1670,7 @@ fleet; the other 12 carry no district in mWater and fell out of the join.
 ## 29 September 2026 — Adriaan Mol: action list and calendar SOP
 
 **Wording and layout:**
-- "What every figure is over" is renamed "What each figure counts", with a one-line explanation.
+- The old section title (which set every figure ranges over) is renamed "What each figure counts", with a one-line explanation.
   The rest of the section is collapsed by default; it had been fully open.
 - The action list has fixed column widths: Item 40%, Owner 15%, Status 10%, Deadline 10%, "What would
   close it" 25%. The owner tables use 47/11/12/30. One action text typed in capitals is now in
@@ -1708,3 +1708,25 @@ deadlines live in `data/action_owners.json`. It marked no open question about an
 - **Machine unreadable:** 191 days.
 
 This is published in the calendar section. The independent validation round stays open.
+
+## 30 Sep 2026 — report layout and consistency fixes (Adriaan Mol)
+
+**Table widths, root cause.** The sizer measured tables inside a closed `<details>` (Chromium keeps
+their `offsetParent`, so the guard let them through) and gave a `.num` column its full unwrapped width
+with no cap, then wrote the total back as an inline pixel width (`#chaintbl` 1,496 px wide, Step
+110 px). Rewritten: measured only when rendered, no inline width (`--tmin` where floors need it),
+`.num` capped at 25% on wide tables, text columns by content with a 160 px floor.
+
+**Action list.** Columns 50/12/6/8/24; small centred status badges; 1000 px minimum in CSS.
+`act-establish-renewal-dates-current` merged into `act-establish-renewal-dates-four` (the older id on
+the page of 18 Sep); the retired id redirects (`data/action_redirects.json`, logged under merges in
+`data/decisions.json`). No other near-duplicates found (titles and details compared).
+
+**Page.** One stat-tile component with the partner-card treatment; "This week" says period, its
+explanation collapsed; partner cards logo-left; Marolinta out of its one-child two-column grid (tiles
+4/2/1); SDWS 18 record table collapsed; "What each figure counts" merged into "Where each figure comes
+from and what it counts" at the end of the page; the five carbon-panel headings are h3 under the
+panel's h2, so no heading renders empty as loaded.
+
+**Status → action gate.** `data/status_actions.json`; two actions created with owner unassigned:
+`act-usage-survey-inside-radius`, `act-usage-survey-random-selection`.

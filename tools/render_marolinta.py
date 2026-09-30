@@ -89,7 +89,7 @@ def headline():
               'counted apart and in none of the figures')
     ben = json.load(open(os.path.join(REPO, "data", "marolinta_benef.json")))
     return (
-      '<div class="actstats" style="margin-bottom:14px">\n'
+      '<div class="actstats tiles4" style="margin-bottom:14px">\n'
       f'  <div class="stat"><b>{G.fig("points_final", m["points_final"])}</b><span>water points touched by '
       'the borehole-progress form, <b>counted from final records only</b>; '
       + drafts + '</span></div>\n'

@@ -229,7 +229,6 @@
  "headings": [
   "The fleet at a glance",
   "This week",
-  "What each figure counts",
   "Actions — the one list",
   "Portfolio by partner",
   "How the people-served figure is built",
@@ -250,16 +249,12 @@
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
   "Register corrections and exclusions",
-  "SDWS 26 — premises served, from the November 2025 round",
-  "Data the carbon programme needs from us",
-  "Baseline cooking fuel and stoves",
-  "Cookstoves and water: the overlap, measured",
-  "Carbon data gaps — the list Jan drives",
+  "The carbon calculation — open this for the Gold Standard file",
   "Impact",
-  "Where every figure on this page comes from",
-  "Data quality notes"
+  "Data quality notes",
+  "Where each figure comes from and what it counts"
  ],
- "height": 28708,
+ "height": 26660,
  "measure": 1132,
  "missing_ids": [],
  "mobile": {
@@ -269,7 +264,7 @@
    "TABLE#ptable",
    "COLGROUP",
    "COL",
-   "COL"
+   "THEAD"
   ]
  },
  "off_measure": [],
@@ -303,7 +298,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 33,
+ "sections": 32,
  "tables": {
   "chaintbl": {
    "hidden": false,
@@ -323,14 +318,14 @@
   },
   "exctbl": {
    "hidden": false,
-   "rows": 19
+   "rows": 18
   },
   "imcaptbl": {
    "hidden": false,
    "rows": 8
   },
   "itin": {
-   "hidden": false,
+   "hidden": true,
    "rows": 365
   },
   "opentbl": {
@@ -342,7 +337,7 @@
    "rows": 476
   },
   "paramstbl": {
-   "hidden": false,
+   "hidden": true,
    "rows": 93
   },
   "parttbl": {
@@ -350,7 +345,7 @@
    "rows": 52
   },
   "popstbl": {
-   "hidden": false,
+   "hidden": true,
    "rows": 32
   },
   "poptbl": {
@@ -362,7 +357,7 @@
    "rows": 9
   },
   "recontbl": {
-   "hidden": false,
+   "hidden": true,
    "rows": 16
   },
   "rettbl": {
@@ -370,7 +365,7 @@
    "rows": 5
   },
   "sdws18rec": {
-   "hidden": false,
+   "hidden": true,
    "rows": 140
   },
   "sdws18tbl": {
@@ -378,7 +373,7 @@
    "rows": 2
   },
   "sdws26tbl": {
-   "hidden": false,
+   "hidden": true,
    "rows": 3
   },
   "tracetbl": {
@@ -388,39 +383,39 @@
  },
  "tile_heights": [
   {
-   "h": 110,
+   "h": 100,
    "l": "876water points in scope",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 110,
+   "h": 100,
    "l": "274,634people served (allocated, not tes",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 110,
+   "h": 100,
    "l": "97%hand pumps not reported down",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 131,
+   "h": 121,
    "l": "22hand pumps reported down",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 131,
+   "h": 121,
    "l": "476hand pumps with no visit in 6+ months",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 131,
+   "h": 121,
    "l": "98%hand pumps with a passed E. coli test",
-   "v": 34
+   "v": 29
   },
   {
-   "h": 131,
+   "h": 122,
    "l": "324 · 142people per pump · Fort-Dauphin ",
-   "v": 34
+   "v": 29
   }
  ]
 }

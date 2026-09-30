@@ -87,7 +87,7 @@ def block():
 
     return f"""{BEGIN}
 <section data-scopes="all mad madx mar" id="sdws26">
-  <div class="sechead"><div><h2>SDWS 26 &mdash; premises served, from the November 2025 round</h2>
+  <div class="sechead"><div><h3 class="h2like">SDWS 26 &mdash; premises served, from the November 2025 round</h3>
   <p>The annual monitoring survey asks how often a household draws drinking water from the project
   water point, once for the dry season and once for the rainy season. A premises counts as served
   in a season when it reports use <b>at least every two days</b>, and <b>the served share is the

@@ -203,7 +203,7 @@ a meaning it did not have.
 * **A windowed count and a current total are labelled as such.** A tile that counts events in a
   window says so and names the window; a current total says what state it counts ("down now, by
   the last record on each pump"). Where both sit together, the page reconciles them in words.
-* **Say which set a figure is over.** Records or points; submitted or final; this form or both
+* **Say which set a figure counts.** Records or points; submitted or final; this form or both
   forms; the carbon fleet or the maintained fleet; per image or per pump-period; on file in mWater
   or in the backup. Two figures over different sets that could be read as the same thing carry the
   distinction beside them.
@@ -980,3 +980,29 @@ Three rules follow:
    reported separately and neither is passed off as the other.
 
 `tools/test_vintage.py` is the negative test. Run it after touching any of this.
+
+## Layout and status gates (30 Sep 2026)
+
+Two gates run inside `publish.sh`, and both must pass:
+
+* **`tools/check_layout.py`** loads the built page in Chromium at 1522 px and
+  506 px with every `<details>` open. It fails on an inline pixel width on a
+  table; a `.num` column over 25% while a text column is under 160 px; action
+  list shares more than 2 points off 50/12/6/8/24; an empty `<h2>` (also one
+  that renders no text as loaded, inside a collapsed `<details>`); the withdrawn
+  section wording; a stat tile whose surface, border or radius differs from the
+  partner cards; and a section box narrower than 90% of the content column,
+  including a grid with an empty column track. `--url` runs it against the live
+  page; `--shots DIR --tag NAME` saves screenshots.
+* **`tools/status_actions.py --write --check`**: every status cell in a table
+  marked `statusgate` is complete ("applied", "in place", "sourced and
+  evidenced") or names an OPEN action in `data/status_actions.json`, and links
+  to it. Closing that action while the status is unchanged fails the build.
+  A new requirements table (Requirement/Input column, then Status or Evidence
+  status) fails until it is marked `statusgate`.
+
+Tables are sized by `layoutTable()` in `index.html` only once they render,
+never with an inline width; `.num` columns are capped at 25% on a table of
+900 px or more (a capped one wraps, class `numwrap`), and text columns share
+the rest by content, never under 160 px there. Retired action ids live in
+`data/action_redirects.json`; the surviving row carries an anchor with the old id.

@@ -32,7 +32,8 @@ offline is allowed; publishing a week-old claim about a live form is not.
 It shells out to the mwater-mcp server rather than talking to the API itself,
 so there is one implementation of authentication and one of the form contract.
 """
-import json, os, subprocess, sys, datetime
+
+import json, os, subprocess, sys, datetime, time
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "mwater_form_snapshot.json")
@@ -79,10 +80,17 @@ def snapshot_age():
 def fetch(form_id):
     if not os.path.isfile(CALLER):
         raise Unavailable(f"{CALLER} is not present")
-    r = subprocess.run(["node", CALLER, "mwater_get_form_design",
-                        json.dumps({"form_id": form_id})],
-                       capture_output=True, text=True, cwd=MCP)
-    err = (r.stderr or "") + (r.stdout or "")
+    # A transient "fetch failed" from Node (seen on 30 Sep 2026: about half
+    # the calls, then fine on the next try) is retried a few times before it
+    # counts as a failure; any other error is judged at once, as before.
+    for attempt in range(4):
+        r = subprocess.run(["node", CALLER, "mwater_get_form_design",
+                            json.dumps({"form_id": form_id})],
+                           capture_output=True, text=True, cwd=MCP)
+        err = (r.stderr or "") + (r.stdout or "")
+        if "fetch failed" not in err or "{" in r.stdout:
+            break
+        time.sleep(2 * (attempt + 1))
     if r.returncode != 0 or "{" not in r.stdout:
         low = err.lower()
         if any(k in low for k in ("enotfound", "econnrefused", "etimedout", "network",

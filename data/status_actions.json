@@ -1,0 +1,60 @@
+{
+ "note": "Status -> action gate (Adriaan Mol, 30 Sep 2026). Every status cell in a requirements or evidence table (class statusgate on the page) is either complete (one of 'complete') or names an OPEN action here; tools/status_actions.py writes the link into the cell and --check fails the build on a non-complete status without an open action, and on an action closed while its status is still non-complete (unless the status text changed in the same commit). Rows are keyed by table and by the start of the requirement text.",
+ "complete": [
+  "applied",
+  "in place",
+  "sourced and evidenced"
+ ],
+ "rows": [
+  {
+   "table": "mapping-rules",
+   "requirement": "Survey households must lie inside the",
+   "status": "partial",
+   "action": "act-usage-survey-inside-radius",
+   "created": true
+  },
+  {
+   "table": "usage-survey",
+   "requirement": "Randomised selection of water points and of households",
+   "status": "partial",
+   "action": "act-usage-survey-random-selection",
+   "created": true
+  },
+  {
+   "table": "usage-survey",
+   "requirement": "A round each monitoring period",
+   "status": "partial",
+   "action": "act-sdws26-annual-round"
+  },
+  {
+   "table": "erinputs",
+   "requirement": "Cb",
+   "status": "sourced, not re-measured since validation",
+   "action": "act-establish-renewal-dates-four"
+  },
+  {
+   "table": "erinputs",
+   "requirement": "Xcleanboil,y",
+   "status": "sourced, not yet measured in monitoring",
+   "action": "act-sdws26-annual-round"
+  },
+  {
+   "table": "erinputs",
+   "requirement": "Mq,y",
+   "status": "partly evidenced",
+   "action": "act-sdws18-james-rulings"
+  },
+  {
+   "table": "erinputs",
+   "requirement": "Qm,y",
+   "status": "not yet evidenced",
+   "action": "act-move-stroke-test-sop"
+  },
+  {
+   "table": "erinputs",
+   "requirement": "DOp,y",
+   "status": "not yet evidenced",
+   "action": "act-2026-recovery"
+  }
+ ]
+}

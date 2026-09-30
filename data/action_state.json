@@ -316,14 +316,6 @@
    "says": "closes while the hand-entered Endur'O figures are under 60 days old; reopens the day they are not",
    "when_satisfied": "OK"
   },
-  "act-establish-renewal-dates-current": {
-   "evaluated": "2026-09-29",
-   "evidence": "no answer logged",
-   "kind": "decision",
-   "satisfied": false,
-   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-   "when_satisfied": "OK"
-  },
   "act-establish-renewal-dates-four": {
    "evaluated": "2026-09-29",
    "evidence": "no answer logged",
@@ -448,10 +440,10 @@
   },
   "act-mar-missing-rehabs": {
    "evaluated": "2026-09-29",
-   "evidence": "marolinta_rehabs_final = 7 (final R\u00e9habilitation records on the Marolinta deployment); target >= 10",
+   "evidence": "marolinta_rehabs_final = 7 (final Réhabilitation records on the Marolinta deployment); target >= 10",
    "kind": "data",
    "satisfied": false,
-   "says": "closes when final R\u00e9habilitation records on the borehole form reach 10",
+   "says": "closes when final Réhabilitation records on the borehole form reach 10",
    "when_satisfied": "OK"
   },
   "act-mar-new-construction-gap": {
@@ -492,7 +484,7 @@
   },
   "act-marolinta-drilling-result": {
    "evaluated": "2026-09-29",
-   "evidence": "marolinta_new_without_drilling_result = 6 (final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'R\u00e9sultat de la foration'); target == 0",
+   "evidence": "marolinta_new_without_drilling_result = 6 (final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'Résultat de la foration'); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when all six Marolinta new-construction records carry a drilling result",
@@ -1060,7 +1052,7 @@
   "act-update-sops-portfolio-figures": {
    "closed_since": "2026-09-26",
    "evaluated": "2026-09-29",
-   "evidence": "SOPs/COP_STROKE TEST \u2014 STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
+   "evidence": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
    "satisfied": true,
    "says": "closes when a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",

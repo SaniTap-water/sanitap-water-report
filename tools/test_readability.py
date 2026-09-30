@@ -9,6 +9,10 @@ block and the by-owner view so every table is on screen, and asserts:
   * every table is fixed-layout with a colgroup (table-layout: fixed);
   * number columns are right-aligned, do not wrap and are not clipped;
   * at 1366 px no text column is narrower than MIN_TEXT px;
+    exceptions (Adriaan Mol, 30 Sep 2026): the action list (table.acttbl)
+    has set widths, 50/12/6/8/24, so its Status badges and Deadline sit in
+    narrower columns by decision; and a .num column held at the 25% cap
+    (class numwrap, tools/check_layout.py) may wrap;
   * a table over 12 visible rows sits in a scroll box no taller than 60vh,
     with a sticky header and a "N lignes - faites defiler" line above it
     giving the right N;
@@ -57,10 +61,12 @@ MEASURE = r"""(minText)=>{
         for(const row of rows){ const c=row.cells[ci]; if(!c||c.tagName!=='TD'||(c.colSpan||1)>1||!c.classList.contains('num')) continue;
           const cs=getComputedStyle(c);
           if(cs.textAlign!=='right'&&cs.textAlign!=='end') {numBad.push(`col ${ci+1} not right-aligned`); break;}
-          if(cs.whiteSpace!=='nowrap'&&cs.whiteSpace!=='pre') {numBad.push(`col ${ci+1} wraps`); break;}
+          // 30 Sep 2026: a .num column the sizer holds at its 25% cap (class numwrap)
+          // wraps by design, and the action list's set widths (acttbl) are exempt
+          if(cs.whiteSpace!=='nowrap'&&cs.whiteSpace!=='pre'&&!c.classList.contains('numwrap')&&!t.classList.contains('acttbl')) {numBad.push(`col ${ci+1} wraps`); break;}
           if(c.scrollWidth>c.clientWidth+2) {numBad.push(`col ${ci+1} clipped (${c.scrollWidth}>${c.clientWidth})`); break;}
         }
-      } else if(widths.length) txt.push([Math.round(widths[ci]),head[ci]||('col '+(ci+1))]);
+      } else if(widths.length && !t.classList.contains('acttbl')) txt.push([Math.round(widths[ci]),head[ci]||('col '+(ci+1))]);
     }
     txt.sort((a,b)=>a[0]-b[0]);
     const box=t.closest('.tablewrap,.tablescroll')||t.parentElement, bs=getComputedStyle(box);

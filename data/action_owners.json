@@ -97,12 +97,8 @@
    "deadline": "2026-10-31",
    "owner": "Jan, with Coddy"
   },
-  "act-establish-renewal-dates-current": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
   "act-establish-renewal-dates-four": {
-   "deadline": null,
+   "deadline": "2026-10-31",
    "owner": "James Walker"
   },
   "act-find-source-annual-independent": {
@@ -472,6 +468,14 @@
   "act-sop-calendar-v17-signoff": {
    "deadline": null,
    "owner": "Angelo Nahavitatsara"
+  },
+  "act-usage-survey-inside-radius": {
+   "deadline": null,
+   "owner": "unassigned"
+  },
+  "act-usage-survey-random-selection": {
+   "deadline": null,
+   "owner": "unassigned"
   }
  },
  "orphan_rows": {
@@ -499,8 +503,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 59,
-   "evidence": 52,
-   "manual": 27
+   "evidence": 51,
+   "manual": 29
   },
   "actions": {
    "act-2026-recovery": {
@@ -755,16 +759,9 @@
     "detected_closed_on": "2026-09-22",
     "first_seen": "2026-09-22"
    },
-   "act-establish-renewal-dates-current": {
-    "type": "evidence",
-    "closes_when": "a note from James Walker giving the renewal date and current status of each of the four baseline parameters",
-    "closed": false,
-    "detected_closed_on": null,
-    "first_seen": "2026-09-21"
-   },
    "act-establish-renewal-dates-four": {
     "type": "evidence",
-    "closes_when": "a note from James Walker giving the renewal date of each of the four baseline parameters",
+    "closes_when": "a note from James Walker giving the renewal date and current status of each of the four baseline parameters",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1391,6 +1388,20 @@
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-usage-survey-inside-radius": {
+    "type": "manual",
+    "closes_when": "every surveyed household lies inside the service radius of its water point, with the barrier constraint built into the sampler",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-usage-survey-random-selection": {
+    "type": "manual",
+    "closes_when": "water points and households for the usage survey are drawn at random from the sampling frame, with the barrier constraint in the sampler",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
    },
    "act-v2-adherence": {
     "type": "manual",

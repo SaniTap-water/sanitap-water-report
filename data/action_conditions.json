@@ -187,19 +187,12 @@
   "target": 60,
   "when_satisfied": "OK"
  },
- "act-establish-renewal-dates-current": {
+ "act-establish-renewal-dates-four": {
   "kind": "decision",
   "question": "What are the renewal dates and current status for SDWS 6, 8, 11 and 12?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
   "closes_when": "a note from James Walker giving the renewal date and current status of each of the four baseline parameters"
- },
- "act-establish-renewal-dates-four": {
-  "kind": "decision",
-  "question": "What are the renewal dates for the four baseline parameters?",
-  "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "evidence",
-  "closes_when": "a note from James Walker giving the renewal date of each of the four baseline parameters"
  },
  "act-figure-residue": {
   "kind": "data",
@@ -1034,5 +1027,17 @@
   "when_satisfied": "OK",
   "closure": "evidence",
   "closes_when": "all six new-construction records answer 'Résultat de la foration' (read every build)"
+ },
+ "act-usage-survey-inside-radius": {
+  "kind": "none",
+  "says": "no closing condition the build can read: a person confirms the sampler and the field rule",
+  "closure": "manual",
+  "closes_when": "every surveyed household lies inside the service radius of its water point, with the barrier constraint built into the sampler"
+ },
+ "act-usage-survey-random-selection": {
+  "kind": "none",
+  "says": "no closing condition the build can read: a person confirms the sampler and the field rule",
+  "closure": "manual",
+  "closes_when": "water points and households for the usage survey are drawn at random from the sampling frame, with the barrier constraint in the sampler"
  }
 }

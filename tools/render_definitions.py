@@ -85,19 +85,20 @@ def block():
         + (f' <span class="muted">({esc(g["known"])})</span>' if g.get("known") else "")
         + "</li>" for k, g in enumerate(pops.get("gaps", [])))
 
+    # 30 Sep 2026: no longer a section of its own. It sits inside the last
+    # section, "Where each figure comes from and what it counts", after the
+    # source table: the sets and the reconciliation in ONE collapsed block.
+    # The anchors #definitions and #definitions-body are kept.
     return f"""{BEGIN}
-<section data-scopes="all mad madx mar enduro" id="definitions">
-  <div class="sechead"><div><h2>What each figure counts</h2>
-  <p><b>Each figure on this page counts a named set of records; this table says which set, and how it is selected.</b></p>
-  </div></div>
-  <details class="expl" id="definitions-body"><summary>Show the sets and how each is selected</summary>
+<div id="definitions">
+  <details class="expl" id="definitions-body"><summary>Show the sets behind each figure and the reconciliation checks</summary>
   <p class="note">Figures used to move because no file said what a population <i>is</i>. These are the
   definitions the whole page is built on, each one a set of records rather than a stored count, so
   a figure cannot drift from the thing it counts. Every number on this page expands to name one of
   these. Written by <span class="mono">tools/populations.py</span>; nothing here is typed.</p>
   <div class="tfilter" data-filter-for="popstbl"><label for="popsfilter">Find a population</label>
   <input type="search" id="popsfilter" placeholder="name or id" autocomplete="off"></div>
-  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl" data-cols="set" style="min-width:1020px">
+  <div class="tablewrap" style="max-height:none"><table class="ind" id="popstbl" data-table="popstbl" data-cols="set">
   <!-- widths under the readability rule (28 Sep 2026): the rule text is the
        longest column, the derivation chain the shortest that still carries words;
        below 1020 px the table scrolls inside its box rather than squeezing them -->
@@ -116,8 +117,9 @@ def block():
   <tbody>{chain}</tbody></table></div>
   {_tablenote('chaintbl')}
   {'<div class="panel" style="margin-top:14px"><div class="eyebrow">Where it does not reconcile</div><ul class="note">' + gaps + '</ul></div>' if gaps else ''}
+  </details>
 
-  <details class="expl" style="margin-top:18px"><summary>Declared parameters &mdash; the values
+  <details class="expl" style="margin-top:14px"><summary>Declared parameters &mdash; the values
   that are chosen, not measured</summary>
   <div class="panel" style="margin-top:12px">
   <p class="note" style="margin-top:0">These do not move with the data and must not. Each carries
@@ -127,8 +129,7 @@ def block():
   <thead><tr><th>Parameter</th><th class="num">Value</th><th>Citation</th><th>Set</th></tr></thead>
   <tbody></tbody></table></div>
   {_tablenote('paramstbl')}</div></details>
-</details>
-</section>
+</div>
 {END}"""
 
 

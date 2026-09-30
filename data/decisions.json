@@ -228,6 +228,16 @@
    "source": "Adriaan Mol, instruction for the water report, 2026-09-28 (workbook reconciliation)",
    "reason": "Both tracked the same Marolinta new-borehole gap (records on the borehole-progress form against the ten reported), both closing automatically at ten. act-mar-missing-boreholes survives: its count is a register population recomputed every build; act-mar-new-construction-gap read data/marolinta_works.json, which the build had not refreshed since 21 Sep.",
    "closes_on": "act-mar-missing-boreholes closing; act-mar-new-construction-gap is its child (kind children) and closes with it"
+  },
+  "act-establish-renewal-dates-current": {
+   "merged_into": "act-establish-renewal-dates-four",
+   "redirected": true,
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-30",
+   "source": "Adriaan Mol, instruction for the water report, 2026-09-30 (layout and consistency fixes, step 2)",
+   "reason": "The same action twice: 'Establish renewal dates and current status for the four baseline parameters' and 'Establish renewal dates for the four baseline parameters' (SDWS 6, 8, 11, 12). Both entered the page in the same commit (9df688b, 18 Sep 2026); act-establish-renewal-dates-four stood first on that page and is kept as the older id.",
+   "closes_on": "the survivor carries the fuller text, the stricter closing condition (renewal date AND current status of each parameter, in writing from James Walker) and the 31 Oct 2026 deadline, which the survivor lacked; owner James Walker on both",
+   "owner_and_deadline": "James Walker, 2026-10-31"
   }
  },
  "merges_note": "Actions merged into another. A merged action keeps its id and row and closes with the action it merged into (kind children in data/action_conditions.json); a merge never closes anything on its own."

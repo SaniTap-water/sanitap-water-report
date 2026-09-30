@@ -1,0 +1,6 @@
+{
+ "note": "Action ids merged into another and retired. The retired id stays reachable: render_actions.py puts an anchor with that id inside the surviving row, so every link to it lands on the action it became. Decided merges are logged in data/decisions.json (merges).",
+ "redirects": {
+  "act-establish-renewal-dates-current": "act-establish-renewal-dates-four"
+ }
+}

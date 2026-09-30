@@ -184,7 +184,7 @@ def block():
     G = GenFigs("cparams")
     return f"""{BEGIN}
 <section data-scopes="all mad madx mar" id="carbon-params">
-  <div class="sechead"><div><h2>Data the carbon programme needs from us</h2>
+  <div class="sechead"><div><h3 class="h2like">Data the carbon programme needs from us</h3>
   <p>One row for every parameter the methodology requires us to evidence. This report does not run
   the carbon programme &mdash; methodology interpretation, the design review and the Gold Standard
   relationship are the Head of Carbon's. Where the two meet there is one question, and this is it:

@@ -97,6 +97,17 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr
   fi
 done
 
+# ---- 1b. status -> action gate (30 Sep 2026) ---------------------------------
+# Every non-complete status in a requirements/evidence table names an OPEN
+# action (data/status_actions.json) and links to it. The links are written
+# after the action list, then checked; a failure stops the build here.
+python3 tools/status_actions.py --write --check
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: a non-complete status has no open action, or an action closed while its status is still open (exit $RC)."
+  exit 1
+fi
+
 # ---- 1c. the render gate ---------------------------------------------------
 # Markup checks cannot see a page that parses but no longer shows what it
 # should. This loads the page in headless Chromium and asserts against the
@@ -141,6 +152,14 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   RC=${PIPESTATUS[0]}
   if [ "$RC" -ne 0 ]; then
     say "ABORT: a table breaks the formatting and readability rule (exit $RC)."
+    exit 1
+  fi
+  say ""
+  say "checking the layout acceptance test (1522 px and 506 px, every <details> open) ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_layout.py | tail -12
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the layout acceptance test failed (exit $RC)."
     exit 1
   fi
   say ""
