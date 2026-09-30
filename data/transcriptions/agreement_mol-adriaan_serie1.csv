@@ -1,52 +1,52 @@
 kind,comparison,a,b,calendrier,point_eau,cells_compared,cells_agreeing,agreement,status,detail
 calendar,human-machine,Mol Adriaan [smue15],machine,2,742894978,12,12,1.0,compared,
-calendar,human-machine,Mol Adriaan [smue15],machine,4,742894466,82,79,0.9634,compared,-->X x3
+calendar,human-machine,Mol Adriaan [smue15],machine,4,742894466,82,82,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,5,773042759,366,355,0.9699,compared,-->X x9; -->? x2
 calendar,human-machine,Mol Adriaan [smue15],machine,10,742894844,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,14,742896664,366,356,0.9727,compared,-->X x8; -->? x2
-calendar,human-machine,Mol Adriaan [smue15],machine,16,825367379,176,168,0.9545,compared,-->X x6; -->? x2
-calendar,human-machine,Mol Adriaan [smue15],machine,18,742894985,12,10,0.8333,compared,-->? x1; X->? x1
-calendar,human-machine,Mol Adriaan [smue15],machine,19,742894411,245,237,0.9673,compared,-->X x6; -->? x2
-calendar,human-machine,Mol Adriaan [smue15],machine,22,786932780,43,35,0.814,compared,-->X x6; -->? x2
-calendar,human-machine,Mol Adriaan [smue15],machine,27,742893843,136,122,0.8971,compared,-->X x7; -->? x6; X->- x1
-calendar,human-machine,Mol Adriaan [smue15],machine,28,742895247,51,46,0.902,compared,-->X x3; -->? x2
+calendar,human-machine,Mol Adriaan [smue15],machine,14,742896664,366,366,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,16,825367379,176,176,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,18,742894985,12,9,0.75,compared,-->? x2; X->- x1
+calendar,human-machine,Mol Adriaan [smue15],machine,19,742894411,245,245,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,22,786932780,43,43,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,27,742893843,136,135,0.9926,compared,X->- x1
+calendar,human-machine,Mol Adriaan [smue15],machine,28,742895247,51,51,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,31,773597170,0,0,,no overlapping cells,
 calendar,human-machine,Mol Adriaan [smue15],machine,32,699597593,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,40,742895577,140,130,0.9286,compared,-->X x9; X->- x1
-calendar,human-machine,Mol Adriaan [smue15],machine,42,742893946,75,65,0.8667,compared,-->X x7; X->- x2; -->? x1
-calendar,human-machine,Mol Adriaan [smue15],machine,43,742895168,253,239,0.9447,compared,-->? x8; -->X x6
-calendar,human-machine,Mol Adriaan [smue15],machine,48,794587460,202,182,0.901,compared,-->X x14; -->? x4; X->- x2
-calendar,human-machine,Mol Adriaan [smue15],machine,51,698771275,350,326,0.9314,compared,-->X x14; -->? x7; X->- x3
-calendar,human-machine,Mol Adriaan [smue15],machine,52,905251200,175,151,0.8629,compared,-->X x16; -->? x8
-calendar,human-machine,Mol Adriaan [smue15],machine,53,813642325,169,147,0.8698,compared,-->X x18; -->? x4
-calendar,human-machine,Mol Adriaan [smue15],machine,54,742895498,232,219,0.944,compared,-->X x7; -->? x5; X->- x1
+calendar,human-machine,Mol Adriaan [smue15],machine,40,742895577,140,139,0.9929,compared,X->- x1
+calendar,human-machine,Mol Adriaan [smue15],machine,42,742893946,75,72,0.96,compared,X->- x3
+calendar,human-machine,Mol Adriaan [smue15],machine,43,742895168,253,251,0.9921,compared,-->? x2
+calendar,human-machine,Mol Adriaan [smue15],machine,48,794587460,202,200,0.9901,compared,X->- x2
+calendar,human-machine,Mol Adriaan [smue15],machine,51,698771275,350,345,0.9857,compared,X->- x3; -->? x2
+calendar,human-machine,Mol Adriaan [smue15],machine,52,905251200,175,175,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,53,813642325,169,168,0.9941,compared,-->? x1
+calendar,human-machine,Mol Adriaan [smue15],machine,54,742895498,232,231,0.9957,compared,X->- x1
 calendar,human-machine,Mol Adriaan [smue15],machine,55,775759299,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,56,742897988,83,59,0.7108,compared,-->? x21; -->X x3
+calendar,human-machine,Mol Adriaan [smue15],machine,56,742897988,83,70,0.8434,compared,-->? x13
 calendar,human-machine,Mol Adriaan [smue15],machine,57,781940247,365,365,1.0,compared,
-calendar,human-machine,Mol Adriaan [smue15],machine,58,699597562,64,34,0.5312,compared,-->? x22; -->X x8
-calendar,human-machine,Mol Adriaan [smue15],machine,59,699596743,365,332,0.9096,compared,-->X x25; -->? x6; X->- x2
-calendar,human-machine,Mol Adriaan [smue15],machine,60,771799293,231,221,0.9567,compared,-->X x7; -->? x3
+calendar,human-machine,Mol Adriaan [smue15],machine,58,699597562,64,39,0.6094,compared,-->? x25
+calendar,human-machine,Mol Adriaan [smue15],machine,59,699596743,365,363,0.9945,compared,X->- x2
+calendar,human-machine,Mol Adriaan [smue15],machine,60,771799293,231,231,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,61,763895321,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,62,742896808,366,354,0.9672,compared,-->? x6; -->X x6
-calendar,human-machine,Mol Adriaan [smue15],machine,63,699596932,365,330,0.9041,compared,-->X x29; -->? x6
-calendar,human-machine,Mol Adriaan [smue15],machine,64,742895436,366,343,0.9372,compared,-->X x16; -->? x7
-calendar,human-machine,Mol Adriaan [smue15],machine,65,742895395,51,47,0.9216,compared,-->X x4
+calendar,human-machine,Mol Adriaan [smue15],machine,62,742896808,366,366,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,63,699596932,365,365,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,64,742895436,366,366,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,65,742895395,51,51,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,66,742893843,23,23,1.0,compared,
-calendar,human-machine,Mol Adriaan [smue15],machine,67,742895278,365,360,0.9863,compared,-->? x4; -->X x1
+calendar,human-machine,Mol Adriaan [smue15],machine,67,742895278,365,363,0.9945,compared,-->X x1; -->? x1
 calendar,human-machine,Mol Adriaan [smue15],machine,68,833033040,184,184,1.0,compared,
-calendar,human-machine,Mol Adriaan [smue15],machine,69,742897249,279,257,0.9211,compared,-->? x9; -->X x9; X->- x4
-calendar,human-machine,Mol Adriaan [smue15],machine,70,698772018,365,345,0.9452,compared,-->X x14; -->? x6
+calendar,human-machine,Mol Adriaan [smue15],machine,69,742897249,279,269,0.9642,compared,-->? x6; X->- x4
+calendar,human-machine,Mol Adriaan [smue15],machine,70,698772018,365,365,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,71,742898044,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,72,792494830,150,140,0.9333,compared,-->X x7; -->? x3
-calendar,human-machine,Mol Adriaan [smue15],machine,73,779461066,365,346,0.9479,compared,-->X x17; -->? x2
-calendar,human-machine,Mol Adriaan [smue15],machine,74,795836457,365,348,0.9534,compared,-->? x10; -->X x7
-calendar,human-machine,Mol Adriaan [smue15],machine,75,800634100,365,341,0.9342,compared,-->X x19; -->? x3; X->- x2
+calendar,human-machine,Mol Adriaan [smue15],machine,72,792494830,150,146,0.9733,compared,-->? x4
+calendar,human-machine,Mol Adriaan [smue15],machine,73,779461066,365,365,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,74,795836457,365,365,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,75,800634100,365,363,0.9945,compared,X->- x2
 calendar,human-machine,Mol Adriaan [smue15],machine,76,771799262,0,0,,no overlapping cells,
-calendar,human-machine,Mol Adriaan [smue15],machine,77,742897524,271,262,0.9668,compared,-->X x8; -->? x1
-calendar,human-machine,Mol Adriaan [smue15],machine,78,699597043,365,345,0.9452,compared,-->X x17; -->? x3
-calendar,human-machine,Mol Adriaan [smue15],machine,79,699596925,366,343,0.9372,compared,-->X x13; -->? x10
-calendar,human-machine,Mol Adriaan [smue15],machine,80,742896413,366,343,0.9372,compared,-->X x17; -->? x6
+calendar,human-machine,Mol Adriaan [smue15],machine,77,742897524,271,271,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,78,699597043,365,365,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,79,699596925,366,366,1.0,compared,
+calendar,human-machine,Mol Adriaan [smue15],machine,80,742896413,366,366,1.0,compared,
 calendar,human-machine,Mol Adriaan [smue15],machine,81,699597548,0,0,,no overlapping cells,
 calendar,human-machine,Mol Adriaan [smue15],machine,82,742893805,365,342,0.937,compared,-->X x17; -->? x6
-calendar,human-machine,Mol Adriaan [smue15],machine,83,742894473,245,234,0.9551,compared,-->X x11
-pair,human-machine,Mol Adriaan [smue15],machine,,,9780,9177,0.9205,"42 calendars compared, 0 excluded",mean over calendars; sd 0.0823; min 0.5312; pooled-cell 0.9383
+calendar,human-machine,Mol Adriaan [smue15],machine,83,742894473,245,245,1.0,compared,
+pair,human-machine,Mol Adriaan [smue15],machine,,,9780,9669,0.9746,"42 calendars compared, 0 excluded",mean over calendars; sd 0.0735; min 0.6094; pooled-cell 0.9887

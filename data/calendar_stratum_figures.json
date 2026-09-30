@@ -1,48 +1,48 @@
 {
  "by_site": {
   "Fort-Dauphin": {
-   "mean_do": 353.3,
-   "mean_do_before_floor": 347.9,
-   "median_do": 357.8,
-   "point_years": 51,
-   "points": 48
+   "mean_do": 364.7,
+   "mean_do_before_floor": 364.6,
+   "median_do": 365,
+   "point_years": 57,
+   "points": 52
   },
   "Maroantsetra": {
-   "mean_do": 353.6,
-   "mean_do_before_floor": 347.3,
-   "median_do": 356.7,
-   "point_years": 361,
-   "points": 260
+   "mean_do": 363.7,
+   "mean_do_before_floor": 363.4,
+   "median_do": 365.0,
+   "point_years": 366,
+   "points": 265
   },
   "not in the managed register": {
-   "mean_do": 354.2,
-   "mean_do_before_floor": 349.1,
-   "median_do": 353.7,
+   "mean_do": 365.3,
+   "mean_do_before_floor": 364.7,
+   "median_do": 365,
    "point_years": 3,
    "points": 2
   }
  },
  "by_year": {
   "2024": {
-   "mean_do": 358.6,
-   "mean_do_before_floor": 352.3,
-   "median_do": 360.7,
-   "point_years": 83,
-   "points": 83
+   "mean_do": 364.3,
+   "mean_do_before_floor": 364.0,
+   "median_do": 366.0,
+   "point_years": 84,
+   "points": 84
   },
   "2025": {
-   "mean_do": 357.3,
-   "mean_do_before_floor": 351.0,
-   "median_do": 358.7,
-   "point_years": 169,
-   "points": 169
+   "mean_do": 364.2,
+   "mean_do_before_floor": 363.7,
+   "median_do": 365,
+   "point_years": 171,
+   "points": 171
   },
   "2026": {
-   "mean_do": 347.1,
-   "mean_do_before_floor": 341.0,
-   "median_do": 349.9,
-   "point_years": 163,
-   "points": 163
+   "mean_do": 363.4,
+   "mean_do_before_floor": 363.1,
+   "median_do": 365,
+   "point_years": 171,
+   "points": 171
   }
  },
  "custody": {
@@ -82,22 +82,22 @@
  "evidenced_by": {
   "first_recorded": {
    "2024": {
-    "evidenced": 227,
-    "not": 359
+    "evidenced": 234,
+    "not": 352
    },
    "2025": {
-    "evidenced": 81,
-    "not": 69
+    "evidenced": 83,
+    "not": 67
    }
   },
   "photos": {
    "1-2": {
-    "evidenced": 25,
-    "not": 101
+    "evidenced": 28,
+    "not": 98
    },
    "3-5": {
-    "evidenced": 235,
-    "not": 240
+    "evidenced": 241,
+    "not": 234
    },
    "6+": {
     "evidenced": 48,
@@ -110,22 +110,22 @@
   },
   "pump": {
    "Canzee": {
-    "evidenced": 275,
-    "not": 377
+    "evidenced": 280,
+    "not": 372
    },
    "IndiaMark": {
-    "evidenced": 33,
-    "not": 51
+    "evidenced": 37,
+    "not": 47
    }
   },
   "site": {
    "Fort-Dauphin": {
-    "evidenced": 48,
-    "not": 79
+    "evidenced": 52,
+    "not": 75
    },
    "Maroantsetra": {
-    "evidenced": 260,
-    "not": 344
+    "evidenced": 265,
+    "not": 339
    },
    "Marolinta": {
     "evidenced": 0,
@@ -133,30 +133,30 @@
    }
   }
  },
- "evidenced_points": 308,
+ "evidenced_points": 317,
  "first_reader": {
   "file": "~/sdws1/calendar_extract/run.log",
   "images_extracted": 1156,
   "run_on": "2026-09-18",
   "script": "~/sdws1/calendar_extract/run_extract.py"
  },
- "floor_pct": 1.84,
+ "floor_pct": 1.22,
  "generator": "tools/calendar_stratum.py",
  "input": "data/calendar_extraction_summary.csv",
  "input_run_on": "2026-09-20",
  "input_written_by": "tools/recompute_figures.py",
  "mean_do_by_photos": {
   "1-2": {
-   "mean_do": 356.8,
-   "point_years": 25
+   "mean_do": 364.6,
+   "point_years": 28
   },
   "3-5": {
-   "mean_do": 353.0,
-   "point_years": 321
+   "mean_do": 363.6,
+   "point_years": 327
   },
   "6+": {
-   "mean_do": 355.0,
-   "point_years": 66
+   "mean_do": 364.8,
+   "point_years": 68
   }
  },
  "note": "Gardien-calendar stratum figures, computed by rule R (see the generator's docstring) from the calendar reader's outputs. The reader is not re-run.",
@@ -172,11 +172,11 @@
   "total": 2367
  },
  "portfolio": {
-  "mean_do": 353.6,
-  "mean_do_before_floor": 347.4,
-  "median_do": 356.7,
-  "point_years": 415,
-  "points": 310
+  "mean_do": 363.9,
+  "mean_do_before_floor": 363.5,
+  "median_do": 365.0,
+  "point_years": 426,
+  "points": 319
  },
  "seed": null,
  "year_coverage": {

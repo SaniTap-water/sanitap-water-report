@@ -202,6 +202,9 @@ def main():
         "photographs_excluded_not_calendar": len(excluded),
         "images_readable": len(readable),
         "images_with_day_calls": len(day_call_images),
+        # 30 Sep 2026: sheets the old row test rejected, admitted by the fixed row
+        # finder because their measured agreement is >= 0.97 (data/calendar_row_admissions.csv)
+        "row_admitted": len([r for r in leg if "(admitted:" in (r.get("row_registration") or "")]),
         "sheets_dated_from_the_sheet": len([i for i in readable if i in sheet_year]),
         "sheets_not_dated": len([i for i in readable if i not in sheet_year]) if a.sheet_years else 0,
         "visits_total": len(visits_all),

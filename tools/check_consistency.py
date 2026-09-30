@@ -1348,7 +1348,10 @@ def main():
                     if "real_marked_pct" in fig else
                     [("probe_marked_pct", "impossible-cell marked rate"),
                      ("observed_marked_pct", "observed-cell marked rate")])
-        pct_keys.append(("implied_true_marked_pct", "implied true marked rate"))
+        # 30 Sep 2026: the implied rate and uptime are withheld (Adriaan Mol); the page must say so
+        check("the implied uptime is withheld, and the page says so",
+              "Implied uptime: withheld." in idxv, "withheld",
+              "withheld" if "Implied uptime: withheld." in idxv else "NOT STATED")
         for key, label in pct_keys:
             want = f"{fig[key]:.2f}%"
             check(f"page states the {label}: {want}", f"<b>{want}</b>" in idxv, want,
@@ -1742,8 +1745,7 @@ def main():
                       f"<b>{want}</b>" in idxv, want,
                       want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE")
             for key, label in (("observed_marked_pct", "observed-cell marked rate"),
-                               ("probe_marked_pct", "impossible-cell marked rate"),
-                               ("implied_true_marked_pct", "implied true marked rate")):
+                               ("probe_marked_pct", "impossible-cell marked rate")):
                 want = f"{fig[key]:.2f}%"
                 check(f"page states the {label}: {want}",
                       f"<b>{want}</b>" in idxv, want,
@@ -2803,9 +2805,13 @@ def main():
     check("the page states what must be shown is representativeness, not completeness",
           "representative of the stratum, not complete for every point" in idx,
           "stated", "stated" if "representative of the stratum" in idx else "MISSING")
+    # 30 Sep 2026: read from the generator's file, not hard-coded (the row fix moved them)
+    _cs = json.loads(read(os.path.join(repo_root, "data", "calendar_stratum_figures.json")))
+    _want = [f"{_cs['portfolio']['point_years']:,}", f"{_cs['by_site']['Maroantsetra']['mean_do']}",
+             f"{_cs['by_site']['Fort-Dauphin']['mean_do']}"]
     check("the stratum figures carry their point-year counts",
-          "415" in idx and "353.6" in idx and "353.3" in idx, "present",
-          "present" if "353.6" in idx else "MISSING",
+          all(w in idx for w in _want), "present",
+          "present" if all(w in idx for w in _want) else "MISSING " + ", ".join(w for w in _want if w not in idx),
           "portfolio and both districts")
     _calsf = json.loads(read(os.path.join(repo_root, "data", "calendar_stratum_figures.json")))
     check("the page reports the representativeness test and its answer",

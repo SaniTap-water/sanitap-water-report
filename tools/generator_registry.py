@@ -140,6 +140,7 @@ GENERATED = {
     'CALX.implied_days_not_operational': 'render_datasets',
     'CALX.implied_true_marked_pct': 'render_datasets',
     'CALX.implied_uptime_days': 'render_datasets',
+    'CALX.row_admitted': 'render_datasets',
     'CALX.impossible_cells': 'render_datasets',
     'CALX.median_confidence': 'render_datasets',
     'CALX.observed_cells': 'render_datasets',

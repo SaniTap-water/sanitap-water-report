@@ -1768,3 +1768,27 @@ are per section), so the Endur'O ones sit under their Endur'O owner; "depends on
   2026-10-16, closing on the signed SOP v1.0; status mappings unchanged.
 - `act-sdws26-annual-round`: deadline 2026-11-30 for the 2026 round, run to SOP-MAD-SDWS26 using the Sampler
   usage-survey mode; owner and recurring rule unchanged.
+
+## 30 Sep 2026 (d) — calendar reader row alignment fixed (Adriaan Mol)
+
+Approved by Adriaan Mol, 30 Sep 2026 (chat), after the fix was held on 29 Sep because missed X rose by two.
+Measured against his transcription of 42 calendars (9,780 days): agreement over days 93.8% → 98.9%
+(mean over calendars 92.1% → 97.5%); false X 394 → 27 (days 1–5: 366 → 5); missed X 18 → 20
+(new misses: sheet 42, 3 February; sheet 18, 7 January).
+
+- Cause: the day rows were fitted over the tint bounding box, which ran up through the header photographs,
+  title and logos, so days 1–5 were read off the header and every lower row shifted. Rows are now registered
+  on the printed weekend shading, or on the 2026/27 sheets on the month-name band above day 1, per month
+  column (`caltools.fit_day_rows`).
+- The reader of record moves into this repository: `tools/caltools.py`, `tools/run_extract2.py` (the copies in
+  `~/sdws1/calendar_extract` now point here; the pre-fix outputs are kept in `.attic/pre-rowfix-20260929`).
+- Coverage test: the fixed row finder replaces the old row test for sheets that test rejected, and such a
+  sheet is admitted only if listed in `data/calendar_row_admissions.csv` with agreement of 0.97 or better
+  against the transcription. 17 of the 25 transcribed sheets the old test rejected are admitted; 30 (0.967),
+  33 (0.62) and 92 (0.75) fall below; 7 and 23 had no elapsed day to compare; 3, 86 and 93 have no anchor.
+  Sheets nobody has transcribed cannot be measured and are not admitted. Photographs with day calls
+  593 → 608. The published agreement figure stays on the 42 calendars flagged comparable in the export.
+- Implied uptime stays withheld (it would read 367.2 days): the page states the observed and floor rates
+  only, and `check_consistency.py` now requires the withheld statement instead of the implied rate.
+- Days not operational on the page move with the reader (these figures are internal; DO_p,y and the carbon
+  figures stay on the registered 347 days).
