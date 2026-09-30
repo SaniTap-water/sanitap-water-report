@@ -1792,3 +1792,6 @@ Measured against his transcription of 42 calendars (9,780 days): agreement over 
   only, and `check_consistency.py` now requires the withheld statement instead of the implied rate.
 - Days not operational on the page move with the reader (these figures are internal; DO_p,y and the carbon
   figures stay on the registered 347 days).
+- Follow-up the same day: four more places still rendered the pooled implied figure (a stat tile, three
+  sentences). All now say it is withheld, and `check_consistency.py` fails if any `CALX.implied_*` or
+  `GEN.calendar.implied_*` figure is rendered.

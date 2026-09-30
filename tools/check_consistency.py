@@ -1349,6 +1349,10 @@ def main():
                     [("probe_marked_pct", "impossible-cell marked rate"),
                      ("observed_marked_pct", "observed-cell marked rate")])
         # 30 Sep 2026: the implied rate and uptime are withheld (Adriaan Mol); the page must say so
+        _impl = [k for k in ("implied_uptime_days", "implied_days_not_operational", "implied_true_marked_pct")
+                 if f'data-fig="CALX.{k}"' in idx_raw or f'data-fig="GEN.calendar.{k}"' in idx_raw]
+        check("no implied uptime figure is rendered anywhere on the page", not _impl, "none",
+              "none" if not _impl else ", ".join(_impl))
         check("the implied uptime is withheld, and the page says so",
               "Implied uptime: withheld." in idxv, "withheld",
               "withheld" if "Implied uptime: withheld." in idxv else "NOT STATED")
