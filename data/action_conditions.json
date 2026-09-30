@@ -693,9 +693,9 @@
   "form": "water-quality-sampling-sdws3",
   "kind": "form",
   "predicate": {
-   "text": "operating"
+   "code": "OPSTATUS"
   },
-  "says": "closes when the SDWS 3 sampling form carries an operating-status question"
+  "says": "closes when the SDWS 3 sampling form (43c96af4bc4240c0b5c4402383b9c539) carries a question with code OPSTATUS, in any language"
  },
  "act-sensor-definition": {
   "kind": "decision",

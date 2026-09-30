@@ -1730,3 +1730,13 @@ panel's h2, so no heading renders empty as loaded.
 
 **Status → action gate.** `data/status_actions.json`; two actions created with owner unassigned:
 `act-usage-survey-inside-radius`, `act-usage-survey-random-selection`.
+
+## 30 Sep 2026 (b) — visible surface tint, light-theme contrast, theme switch (Adriaan Mol)
+
+- `--tint` / `--tint-line`: light #cbdded / #9fbfd8 (1.28:1 on the page), dark #20323f / #36546a
+  (1.37:1); on tiles, donut cards, partner cards, table headers and panel summary bars.
+- Light theme: `--ink3` #566169, `--warn` #8a5300, `--crit` #b3261e, `--good` #1a6e1a; dark `--ink3`
+  #9aa19d, `--good` #2fbf2f, `--crit` #f07c7c. Light-theme text under threshold: 4,455 nodes before
+  (5 colour/background pairs, incl. the 13 amber numbers at 1.79:1), 0 after.
+- Laptop-only render checks (1280, 1440, 1920); Auto / Light / Dark switch.
+- Held 29 Sep edits applied: 987623304 "Canzee (record f21f3cbd and photos agree)"; OPSTATUS closing check.

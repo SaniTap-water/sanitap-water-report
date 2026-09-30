@@ -1006,3 +1006,13 @@ never with an inline width; `.num` columns are capped at 25% on a table of
 900 px or more (a capped one wraps, class `numwrap`), and text columns share
 the rest by content, never under 160 px there. Retired action ids live in
 `data/action_redirects.json`; the surviving row carries an anchor with the old id.
+
+### Laptops only, both themes, tinted surfaces (30 Sep 2026, second pass)
+
+Every render check runs at 1280x800, 1440x900 and 1920x1080 only; the narrow-screen CSS stays but is
+not tested. `check_layout.py` runs in the light and the dark scheme and adds: tinted surfaces at
+1.25:1 or more on the page background (`--tint`, `--tint-line` in `:root` for each theme), all text
+at 4.5:1 (3:1 at 24 px and larger) against its composited background, and partner cards logo-left and
+no taller than 220 px (Endur'O excepted). Status colours hold 4.5:1 on the page and on `--tint` in both
+themes. The header carries an Auto / Light / Dark switch (`localStorage` key `sanitap-theme`, applied
+in `<head>` before first paint).

@@ -2,8 +2,9 @@
 """Layout acceptance test for the built page (Adriaan Mol, 30 Sep 2026).
 
 Loads the page in Chromium (Playwright; preinstalled, never `playwright
-install`) at 1522 px and 506 px with every <details> open, lets the table
-sizer run, and fails on:
+install`) in the light AND the dark scheme at three laptop sizes - 1280x800,
+1440x900, 1920x1080 (laptops only, 30 Sep 2026; the narrow-screen CSS stays,
+untested) - with every <details> open, lets the table sizer run, and fails on:
 
   1. an inline pixel width on any table (style="width:...px"; a min-width
      set through --tmin is not a width);
@@ -15,8 +16,16 @@ sizer run, and fails on:
   5. the withdrawn wording of the old section title anywhere on the page;
   6. any stat tile whose computed background, border colour or radius
      differs from the partner cards';
-  7. at 1522 px, any section content box narrower than 90% of the content
-     column (tables inside .tablescroll/.tablewrap excepted).
+  7. any section content box narrower than 90% of the content column
+     (tables inside .tablescroll/.tablewrap excepted), or a grid with an
+     empty column track;
+  8. a tinted surface (tiles, partner cards, table headers, a collapsed
+     panel's summary bar) under 1.25:1 against the page background, or tiles
+     that are not all the same colour;
+  9. visible text under 4.5:1 against its composited background (3:1 for
+     text 24 px and larger), pills and other translucent fills composited;
+ 10. a partner card whose logo is not left of its text, or taller than
+     220 px (Endur'O excepted when its text needs more).
 
     python3 tools/check_layout.py                     # the built index.html
     python3 tools/check_layout.py --url https://...   # the live page
@@ -27,16 +36,12 @@ Exits non-zero on any failure; publish.sh runs it as part of the gate.
 import argparse, json, os, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WIDE, NARROW = 1522, 506
+LAPTOPS = ((1280, 800), (1440, 900), (1920, 1080))
+SCHEMES = ("light", "dark")
+SHOT_WIDTH = 1440
 ACT_SHARES = [50, 12, 6, 8, 24]
-SHOTS = {  # name -> selector of the element to capture
-    "chaintbl": "#chaintbl",
-    "action-list": "#act-flat",
-    "this-week": "section:has(#week)",
-    "partner-cards": "section:has(.partner)",
-    "marolinta": "section:has(> .sechead h2)",   # resolved in JS below
-    "sdws18": "#pousec",
-}
+SHOTS = ["this-week", "fleet-at-a-glance", "partner-cards", "marolinta", "action-list",
+         "chaintbl", "sdws18"]
 
 JS_PREP = """async () => {
   document.querySelectorAll('details').forEach(d => d.open = true);
@@ -94,7 +99,7 @@ JS_CHECK = r"""(args) => {
   else {
     const ref = getComputedStyle(pc), key = s => [s.backgroundColor, s.borderTopColor, s.borderTopLeftRadius].join(' | ');
     const want = key(ref);
-    for (const el of document.querySelectorAll('.tile, .wk > div, .actstats > .stat, .stats > .stat')) {
+    for (const el of document.querySelectorAll('.tile, .wk > div, .actstats > .stat, .stats > .stat, .donut')) {
       if (!vis(el)) continue;
       const k = key(getComputedStyle(el));
       if (k !== want) out.push(['tiles', `${el.closest('section')?.querySelector('h2')?.textContent.trim().slice(0, 40) || '?'}: ${k} (partner ${want})`]);
@@ -137,6 +142,85 @@ JS_CHECK = r"""(args) => {
   return out;
 }"""
 
+JS_TINT = r"""() => {
+  const out = [], rgb = c => { const v = (c.match(/-?[\d.]+(e-?\d+)?/g) || []).map(Number); return /^color\(srgb/.test(c) ? v.map((x, i) => i < 3 ? x * 255 : x) : v; };
+  const lum = c => { const [r, g, b] = rgb(c).slice(0, 3).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
+    return .2126 * r + .7152 * g + .0722 * b; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };
+  const page = getComputedStyle(document.body).backgroundColor;
+  const vis = el => el.getClientRects().length > 0;
+  const groups = {
+    tiles: [...document.querySelectorAll('.tile, .wk > div, .actstats > .stat, .stats > .stat, .donut')],
+    'partner cards': [...document.querySelectorAll('.partner')],
+    'table headers': [...document.querySelectorAll('thead th')],
+    'panel summaries': [...document.querySelectorAll('details.expl > summary, details.panel > summary')] };
+  const seen = new Set();
+  for (const [g, els] of Object.entries(groups)) {
+    for (const el of els) { if (!vis(el)) continue;
+      const bg = getComputedStyle(el).backgroundColor; if (g === 'tiles') seen.add(bg);
+      const r = ratio(page, bg);
+      if (r < 1.25) { out.push(`${g}: ${bg} on page ${page} is ${r.toFixed(2)}:1 (< 1.25)`); break; } } }
+  if (seen.size > 1) out.push(`tiles are not identical: ${[...seen].join(' / ')}`);
+  return out;
+}"""
+
+JS_CONTRAST = r"""() => {
+  // rgb()/rgba() give 0-255 channels; color-mix() results come back as
+  // color(srgb r g b / a) with 0-1 channels
+  const parse = c => { const m = c.match(/-?[\d.]+(e-?\d+)?/g); if (!m) return [0, 0, 0, 0]; const v = m.map(Number);
+    const k = /^color\(srgb/.test(c) ? 255 : 1; return [v[0] * k, v[1] * k, v[2] * k, v.length > 3 ? v[3] : 1]; };
+  const over = (top, under) => { const a = top[3]; return [0, 1, 2].map(i => top[i] * a + under[i] * (1 - a)).concat(1); };
+  const lum = c => { const [r, g, b] = c.slice(0, 3).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + .05) / (y + .05); };
+  const cache = new Map();
+  const bgOf = el => {                      // the composited background behind el
+    if (!el || el === document.documentElement) return [255, 255, 255, 1];
+    if (cache.has(el)) return cache.get(el);
+    const under = bgOf(el.parentElement);
+    const c = parse(getComputedStyle(el).backgroundColor);
+    const out = c[3] > 0 ? over(c, under) : under;
+    cache.set(el, out); return out;
+  };
+  const fails = new Map();
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  for (let n = w.nextNode(); n; n = w.nextNode()) {
+    if (!n.nodeValue.trim()) continue;
+    const el = n.parentElement; if (!el || el.closest('script,style,noscript,[hidden],.tip')) continue;
+    if (!el.getClientRects().length) continue;
+    const cs = getComputedStyle(el);
+    if (cs.visibility === 'hidden' || +cs.opacity === 0) continue;
+    const inSvg = el.closest('svg');
+    const fg0 = parse(inSvg ? cs.fill : cs.color); if (fg0[3] === 0) continue;
+    const bg = bgOf(inSvg ? inSvg.parentElement : el);
+    const fg = fg0[3] < 1 ? over(fg0, bg) : fg0;
+    const px = parseFloat(cs.fontSize), need = px >= 24 ? 3 : 4.5;
+    const r = ratio(fg, bg);
+    if (r < need - 0.005) {
+      const key = `${cs.color}|${bg.slice(0, 3).map(Math.round).join(',')}`;
+      const cur = fails.get(key) || { n: 0, r, fg: cs.color, bg: `rgb(${bg.slice(0, 3).map(Math.round).join(', ')})`, eg: [] };
+      cur.n++; if (cur.eg.length < 3) cur.eg.push(`${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' ? '.' + el.className.split(' ').filter(Boolean).join('.') : ''} "${n.nodeValue.trim().slice(0, 24)}"`);
+      fails.set(key, cur);
+    }
+  }
+  return [...fails.values()].sort((a, b) => b.n - a.n)
+    .map(f => ({ n: f.n, what: `${f.n} text node(s) ${f.fg} on ${f.bg} = ${f.r.toFixed(2)}:1, e.g. ${f.eg.join('; ')}` }));
+}"""
+
+JS_PARTNER = r"""() => {
+  const out = [];
+  for (const c of document.querySelectorAll('.partner')) {
+    const img = c.querySelector('img'), txt = c.querySelector('.pname');
+    if (!img || !txt) { out.push('a partner card without a logo or a name'); continue; }
+    const name = txt.textContent.trim(), ri = img.getBoundingClientRect(), rt = txt.getBoundingClientRect();
+    const body = c.querySelector('.pbody')?.getBoundingClientRect();
+    if (!(ri.right <= rt.left + 1 && (!body || ri.right <= body.left + 1)))
+      out.push(`${name}: logo is not left of the text (logo ${Math.round(ri.left)}-${Math.round(ri.right)}, text from ${Math.round(rt.left)})`);
+    const h = c.getBoundingClientRect().height;
+    if (h > 220.5 && !/endur/i.test(name)) out.push(`${name}: card is ${Math.round(h)} px tall (> 220)`);
+  }
+  return out;
+}"""
+
 JS_EMPTY_H2_AS_LOADED = r"""() => [...document.querySelectorAll('h2')]
   .filter(h => !h.innerText.trim())
   .map(h => `as loaded: <h2> "${h.textContent.trim().slice(0, 50)}" renders no text` +
@@ -145,6 +229,9 @@ JS_EMPTY_H2_AS_LOADED = r"""() => [...document.querySelectorAll('h2')]
 JS_SHOT_TARGET = r"""(name) => {
   const pick = {
     'chaintbl': () => document.getElementById('chaintbl'),
+    'fleet-at-a-glance': () => [...document.querySelectorAll('h2')].find(h => h.textContent.trim() === 'The fleet at a glance')?.closest('section, div.sechead')?.parentElement?.closest('section') || [...document.querySelectorAll('h2')].find(h => h.textContent.trim() === 'The fleet at a glance')?.closest('section') || document.getElementById('tiles'),
+    'details-collapsed': () => document.getElementById('weekhow'),
+    'details-open': () => document.getElementById('weekhow'),
     'action-list': () => document.getElementById('act-flat'),
     'this-week': () => document.getElementById('week')?.closest('section'),
     'partner-cards': () => document.querySelector('.partner')?.closest('section'),
@@ -159,34 +246,48 @@ JS_SHOT_TARGET = r"""(name) => {
 }"""
 
 
+def shoot(pg, shots, tag, scheme, name):
+    if not pg.evaluate(JS_SHOT_TARGET, name):
+        print(f"  screenshot {name}: element not found")
+        return
+    path = os.path.join(shots, f"{tag + '-' if tag else ''}{scheme}-{name}.png")
+    pg.locator(f'[data-shot="{name}"]').screenshot(path=path)
+    print(f"  screenshot {path}")
+
+
 def run(url, shots=None, tag=None):
     from playwright.sync_api import sync_playwright
     fails = []
     with sync_playwright() as p:
         b = p.chromium.launch()
-        for width in (WIDE, NARROW):
-            pg = b.new_page(viewport={"width": width, "height": 1000})
-            pg.goto(url, wait_until="load")
-            pg.wait_for_timeout(1200)
-            # 4b. as loaded, before anything is opened: an <h2> a reader or a
-            # screen reader meets with no rendered text (e.g. inside a
-            # collapsed <details>) is an empty heading too
-            for what in pg.evaluate(JS_EMPTY_H2_AS_LOADED):
-                fails.append((width, "empty-h2", what))
-            pg.evaluate(JS_PREP)
-            for kind, what in pg.evaluate(JS_CHECK, [width == WIDE, ACT_SHARES]):
-                fails.append((width, kind, what))
-            if shots and width == WIDE:
-                os.makedirs(shots, exist_ok=True)
-                for name in SHOTS:
-                    if pg.evaluate(JS_SHOT_TARGET, name):
-                        loc = pg.locator(f'[data-shot="{name}"]')
-                        path = os.path.join(shots, f"{tag or 'shot'}-{name}.png")
-                        loc.screenshot(path=path)
-                        print(f"  screenshot {path}")
-                    else:
-                        print(f"  screenshot {name}: element not found")
-            pg.close()
+        for scheme in SCHEMES:
+            for width, height in LAPTOPS:
+                where = f"{scheme} {width}"
+                pg = b.new_page(viewport={"width": width, "height": height}, color_scheme=scheme)
+                pg.goto(url, wait_until="load")
+                pg.wait_for_timeout(1200)
+                # 4b. as loaded, before anything is opened: an <h2> a reader or a
+                # screen reader meets with no rendered text (e.g. inside a
+                # collapsed <details>) is an empty heading too
+                for what in pg.evaluate(JS_EMPTY_H2_AS_LOADED):
+                    fails.append((where, "empty-h2", what))
+                snap = shots and width == SHOT_WIDTH
+                if snap:
+                    os.makedirs(shots, exist_ok=True)
+                    shoot(pg, shots, tag, scheme, "details-collapsed")
+                pg.evaluate(JS_PREP)
+                for kind, what in pg.evaluate(JS_CHECK, [True, ACT_SHARES]):
+                    fails.append((where, kind, what))
+                for what in pg.evaluate(JS_TINT):
+                    fails.append((where, "tint", what))
+                for f in pg.evaluate(JS_CONTRAST):
+                    fails.append((where, "contrast", f["what"]))
+                for what in pg.evaluate(JS_PARTNER):
+                    fails.append((where, "partner-cards", what))
+                if snap:
+                    for name in SHOTS + ["details-open"]:
+                        shoot(pg, shots, tag, scheme, name)
+                pg.close()
         b.close()
     return fails
 
@@ -201,13 +302,14 @@ def main():
     fails = run(a.url, a.shots, a.tag)
     if a.json:
         print(json.dumps(fails, ensure_ascii=False, indent=1))
-    kinds = ["inline-width", "num-vs-text", "action-shares", "empty-h2", "figure-is-over", "tiles", "narrow"]
+    kinds = ["inline-width", "num-vs-text", "action-shares", "empty-h2", "figure-is-over", "tiles", "narrow",
+             "tint", "contrast", "partner-cards"]
     print(f"check_layout: {a.url}")
     for k in kinds:
         got = [f for f in fails if f[1] == k]
         print(f"  {'FAIL' if got else 'ok  '} {k:15s} {len(got)}")
         for w, _, what in got[:12]:
-            print(f"         [{w}px] {what}")
+            print(f"         [{w}] {what}")
         if len(got) > 12:
             print(f"         ... and {len(got) - 12} more")
     sys.exit(1 if fails else 0)

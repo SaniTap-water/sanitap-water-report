@@ -3,12 +3,12 @@
 
 The rule is Adriaan Mol's, 28 Sep 2026, and is written out in CONTRIBUTING.md
 ("Formatting and readability"). This loads index.html in headless Chromium
-at 1366 px and 390 px, in the light and the dark theme, opens every collapsed
+at 1280, 1440 and 1920 px (laptops only, 30 Sep 2026), in the light and the dark theme, opens every collapsed
 block and the by-owner view so every table is on screen, and asserts:
 
   * every table is fixed-layout with a colgroup (table-layout: fixed);
   * number columns are right-aligned, do not wrap and are not clipped;
-  * at 1366 px no text column is narrower than MIN_TEXT px;
+  * at every width no text column is narrower than MIN_TEXT px;
     exceptions (Adriaan Mol, 30 Sep 2026): the action list (table.acttbl)
     has set widths, 50/12/6/8/24, so its Status badges and Deadline sit in
     narrower columns by decision; and a .num column held at the 25% cap
@@ -16,7 +16,7 @@ block and the by-owner view so every table is on screen, and asserts:
   * a table over 12 visible rows sits in a scroll box no taller than 60vh,
     with a sticky header and a "N lignes - faites defiler" line above it
     giving the right N;
-  * the page never scrolls sideways, at 1366 px or at 390 px;
+  * the page never scrolls sideways, at any of the three widths;
   * header and body text keep a contrast of at least 4.5:1 in both themes.
 
 In PRINT (emulated at A4 width, from the dark theme with a filter active, after
@@ -39,6 +39,8 @@ import argparse, functools, http.server, os, sys, tempfile, threading
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MIN_TEXT = 110
+# laptops only (Adriaan Mol, 30 Sep 2026): the narrow-screen CSS stays, untested
+LAPTOPS = ((1280, 800), (1440, 900), (1920, 1080))
 MAX_ROWS = 12
 
 MEASURE = r"""(minText)=>{
@@ -112,7 +114,7 @@ PRINT = r"""()=>{
 
 def print_check(b, url, fails):
     """Emulate print from the WORST starting point: dark theme, a filter on."""
-    pg = b.new_page(viewport={"width": 1366, "height": 900})
+    pg = b.new_page(viewport={"width": 1440, "height": 900})
     pg.emulate_media(color_scheme="dark")
     pg.goto(url)
     pg.wait_for_function("typeof layoutTables==='function'")
@@ -168,8 +170,8 @@ def run(args):
     with sync_playwright() as p:
         b = p.chromium.launch()
         for scheme in ("light", "dark"):
-            for width in (1366, 390):
-                pg = b.new_page(viewport={"width": width, "height": 900})
+            for width, height in LAPTOPS:
+                pg = b.new_page(viewport={"width": width, "height": height})
                 pg.emulate_media(color_scheme=scheme)
                 errs = []
                 pg.on("pageerror", lambda e: errs.append(str(e)))
@@ -199,7 +201,7 @@ def run(args):
                             fails.append(f"{where}: not fixed-layout with a colgroup")
                         for m in t["numBad"]:
                             fails.append(f"{where}: number {m}")
-                        if width == 1366 and t["narrow"] and t["narrow"][0] < MIN_TEXT - 0.5:
+                        if t["narrow"] and t["narrow"][0] < MIN_TEXT - 0.5:
                             fails.append(f"{where}: text column '{t['narrow'][1]}' is {t['narrow'][0]} px (< {MIN_TEXT})")
                         if t["rows"] > MAX_ROWS:
                             mh = t["boxMax"]
@@ -213,7 +215,7 @@ def run(args):
                         for k, v in (("header", t["cHead"]), ("body", t["cBody"])):
                             if v is not None and v < 4.5:
                                 fails.append(f"{where}: {k} text contrast {v:.2f}:1 (< 4.5)")
-                        if width == 1366:
+                        if width == LAPTOPS[1][0]:
                             listing.setdefault((view, name), {})[scheme] = t
                             if not args.no_shots:
                                 el = pg.locator("table").nth(t["i"])
@@ -230,7 +232,7 @@ def run(args):
         print_check(b, url, fails)
         b.close()
     srv.shutdown()
-    print(f"  {'table':34s} {'view':9s} {'rows':>5s} {'cols':>4s}  narrowest text column at 1366 px")
+    print(f"  {'table':34s} {'view':9s} {'rows':>5s} {'cols':>4s}  narrowest text column at 1440 px")
     for (view, name), by in sorted(listing.items(), key=lambda x: (x[0][0], x[0][1])):
         t = by.get("light") or by.get("dark")
         nw = f"{t['narrow'][0]} px ({t['narrow'][1]})" if t["narrow"] else "no text column"
@@ -241,7 +243,7 @@ def run(args):
         for f in fails[:80]:
             print("   ", f)
         return 1
-    print("  readability rule: every table holds, in both themes, at 1366 px and 390 px, and in print")
+    print("  readability rule: every table holds, in both themes, at 1280, 1440 and 1920 px, and in print")
     return 0
 
 

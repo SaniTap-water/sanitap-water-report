@@ -227,9 +227,10 @@ def probe(page_path):
                 l: t.textContent.trim().replace(/\\s+/g, ' ').slice(0, 40)}));
             g.style.alignItems = was; return r; }""")
 
-        # THE PAGE NEVER SCROLLS SIDEWAYS ON A PHONE. A wide table scrolls
-        # inside its own container; the page does not.
-        mp = b.new_page(viewport={"width": 390, "height": 800})
+        # THE PAGE NEVER SCROLLS SIDEWAYS. A wide table scrolls inside its own
+        # container; the page does not. Tested at the narrowest laptop width
+        # (laptops only, Adriaan Mol, 30 Sep 2026; the phone CSS stays, untested).
+        mp = b.new_page(viewport={"width": 1280, "height": 800})
         mp.goto("file://" + page_path, wait_until="load", timeout=60000)
         mp.wait_for_timeout(1200)
         out["mobile"] = mp.evaluate("""() => ({sw: document.documentElement.scrollWidth,
@@ -366,7 +367,7 @@ def main():
                      f"heights {min(vs)}-{max(vs)}px")
     mob = got.get("mobile") or {}
     if mob and mob["sw"] > mob["vw"] + 1:
-        fails.append(f"the page scrolls sideways at phone width ({mob['sw']}px "
+        fails.append(f"the page scrolls sideways at 1280 px ({mob['sw']}px "
                      f"against {mob['vw']}px): {', '.join(mob['wide']) or 'unknown'}")
 
     if got["page_errors"]:

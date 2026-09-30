@@ -162,12 +162,14 @@
    "logged_by": "Adriaan Mol"
   },
   "register-987623304-exclusion-superseded": {
-   "answer": "987623304 joins on its final rehabilitation of 29 Aug 2026 (Fonctionnel). The exclusion of 15 Sep 2026 as a rope-pump survey entry is superseded: the survey recorded the pump before rehabilitation. The record gives the hand pump model as Canzee (not India Mark), and its photographs ('Pompe installee', 'Tete de pompe', rehabilitation record f21f3cbd) show a Canzee-type PVC direct-action pump, not a rope pump: confirmed by photo, so no pump-type action is needed. As a Marolinta point it stays outside all carbon figures.",
+   "answer": "987623304 joins on its final rehabilitation of 29 Aug 2026 (Fonctionnel). The exclusion of 15 Sep 2026 as a rope-pump survey entry is superseded: the survey recorded the pump before rehabilitation. Pump model: Canzee (record f21f3cbd and photos agree) - the rehabilitation record gives the hand pump model as Canzee and its photographs ('Pompe installee', 'Tete de pompe') show a Canzee-type PVC direct-action pump, not a rope pump. No pump-type action. As a Marolinta point it stays outside all carbon figures.",
    "decided_by": "Adriaan Mol, COO SaniTap",
    "decided_on": "2026-09-29",
    "source": "Adriaan Mol, 29 Sep 2026",
    "logged_on": "2026-09-29",
-   "logged_by": "Adriaan Mol"
+   "logged_by": "Adriaan Mol",
+   "corrected_on": "2026-09-29",
+   "correction": "Pump wording corrected to 'Canzee (record f21f3cbd and photos agree)' (Adriaan Mol, 29 Sep 2026); an earlier instruction had given it as India Mark."
   },
   "register-782134540-exception": {
    "answer": "782134540 (Maroantsetra, Canzee) has no rehabilitation or new-construction record - only a repair (28 Jun 2025), an E. coli pass (11 Jul 2025) and call-centre records. It stays in the fleet as the one recorded exception to the fleet-entry rule, under the correction of 15 Sep 2026, until 31 Oct 2026: act-782134540-rehab-record (Angelo) closes when a final rehabilitation record for it appears in mWater; if none has by then, the point leaves the fleet and the carbon fleet (732 -> 731) at the next build, enforced by tools/classify_register.py.",

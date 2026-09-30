@@ -860,7 +860,8 @@
    ],
    "id": "8764843c94484f5b984078c68f13b2ca",
    "locales": [
-    "fr"
+    "fr",
+    "mg"
    ],
    "questions": [
     {
@@ -1954,7 +1955,7 @@
      "type": "TextQuestion"
     }
    ],
-   "rev": 359,
+   "rev": 363,
    "state": "active"
   },
   "old-combined-works": {
