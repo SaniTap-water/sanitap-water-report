@@ -338,7 +338,7 @@
    "owner": "Angelo, tracked by Jan"
   },
   "act-sdws26-annual-round": {
-   "deadline": null,
+   "deadline": "2026-11-30",
    "owner": "Angelo Nahavitatsara, MadAvance water team"
   },
   "act-sdws26-approve-2025": {
@@ -470,12 +470,44 @@
    "owner": "Angelo Nahavitatsara"
   },
   "act-usage-survey-inside-radius": {
-   "deadline": null,
-   "owner": "unassigned"
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol"
   },
   "act-usage-survey-random-selection": {
-   "deadline": null,
-   "owner": "unassigned"
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol"
+  },
+  "act-tana-baseline-form": {
+   "deadline": "2026-10-09",
+   "owner": "Adriaan Mol"
+  },
+  "act-tana-baseline-sample-size": {
+   "deadline": "2026-10-09",
+   "owner": "James Walker"
+  },
+  "act-tana-baseline-survey": {
+   "deadline": "2026-10-31",
+   "owner": "Endur’O (Coddy Velonizy, Ntsoa Ranaivoson)"
+  },
+  "act-tana-jirama-licence-filed": {
+   "deadline": "2026-10-16",
+   "owner": "Endur’O (Coddy Velonizy)"
+  },
+  "act-ralf-shopkeeper-waterpoint-link": {
+   "deadline": "2026-10-31",
+   "owner": "Ralf van Veenendaal (Curtech)"
+  },
+  "act-ralf-meter-install-register": {
+   "deadline": "2026-10-31",
+   "owner": "Ralf van Veenendaal (Curtech)"
+  },
+  "act-usage-survey-sop": {
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol; sign-off James Walker"
+  },
+  "act-sampler-usage-survey-mode": {
+   "deadline": "2026-10-23",
+   "owner": "Adriaan Mol (built with Claude Code)"
   }
  },
  "orphan_rows": {
@@ -503,8 +535,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 59,
-   "evidence": 51,
-   "manual": 29
+   "evidence": 60,
+   "manual": 28
   },
   "actions": {
    "act-2026-recovery": {
@@ -718,9 +750,9 @@
     "first_seen": "2026-09-25"
    },
    "act-enduro-onboard-3-bind-taps": {
-    "type": "auto",
-    "closes_when": "closes when every installed smart tap is bound by its test dispense",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "superseded by act-ralf-meter-install-register (decision of 30 Sep 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-25"
    },
@@ -1151,6 +1183,20 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-ralf-meter-install-register": {
+    "type": "evidence",
+    "closes_when": "an endpoint or URL, with date filter and paging like getTransactions, returns per installation the meter identifier (EEPROM id), mWater water point code, date and time installed, installer, tap position if recorded, and removals and swaps; questions <span class=\"mono\">2.1</span> and <span class=\"mono\">2.2</span> are then removed from Piped Water || Enregistrement Point de Distribution",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-ralf-shopkeeper-waterpoint-link": {
+    "type": "evidence",
+    "closes_when": "getShopkeepers returns, per shopkeeper, name, phone number and the mWater water point code of the kiosk they run",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
    "act-re-run-improved-cookstove": {
     "type": "manual",
     "closes_when": "recurring: Adriaan marks each year's round done",
@@ -1270,6 +1316,13 @@
     "detected_closed_on": "2026-09-21",
     "first_seen": "2026-09-21"
    },
+   "act-sampler-usage-survey-mode": {
+    "type": "evidence",
+    "closes_when": "the Sampler has the usage-survey mode, a dry-run draw has been tested for both scenarios, and the SOP links to it",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
    "act-sdws18-james-rulings": {
     "type": "evidence",
     "closes_when": "James Walker's written rulings on (a) the six-month start date and (b) the missing fields",
@@ -1308,8 +1361,8 @@
    "act-sdws3-operating-status": {
     "type": "auto",
     "closes_when": "closes when the SDWS 3 sampling form (43c96af4bc4240c0b5c4402383b9c539) carries a question with code OPSTATUS, in any language",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-09-30",
     "first_seen": "2026-09-21"
    },
    "act-sensor-cost-benefit": {
@@ -1354,6 +1407,34 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-tana-baseline-form": {
+    "type": "manual",
+    "closes_when": "the form has a &ldquo;Baseline (Tana kiosks)&rdquo; deployment; hand-pump question <span class=\"mono\">3.1.1</span> is removed or conditioned; the pre-project water-source options cover urban sources (JIRAMA standpipe, neighbour&rsquo;s connection, water vendor); the fuel-question tenses are fixed",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-tana-baseline-sample-size": {
+    "type": "evidence",
+    "closes_when": "James Walker states in writing the number of households and any clustering rule (logged in data/decisions.json with a <span class=\"mono\">households</span> figure)",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-tana-baseline-survey": {
+    "type": "auto",
+    "closes_when": "closes when final responses on the Tana deployment of the baseline form, each with both randomisation photographs, reach the sample size set under act-tana-baseline-sample-size",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-tana-jirama-licence-filed": {
+    "type": "evidence",
+    "closes_when": "a copy of the JIRAMA licence or authorisation covering the urban kiosk network is on SharePoint Water Documents, with its reference and validity dates",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
    "act-transcription-round": {
     "type": "auto",
     "closes_when": "closes when 50 calendars have been transcribed",
@@ -1390,15 +1471,22 @@
     "first_seen": "2026-09-21"
    },
    "act-usage-survey-inside-radius": {
-    "type": "manual",
-    "closes_when": "every surveyed household lies inside the service radius of its water point, with the barrier constraint built into the sampler",
+    "type": "evidence",
+    "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-30"
    },
    "act-usage-survey-random-selection": {
-    "type": "manual",
-    "closes_when": "water points and households for the usage survey are drawn at random from the sampling frame, with the barrier constraint in the sampler",
+    "type": "evidence",
+    "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-09-30"
+   },
+   "act-usage-survey-sop": {
+    "type": "evidence",
+    "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-30"

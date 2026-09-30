@@ -204,6 +204,7 @@ GENERATED = {
     'METRICS.consent_question_answers': 'render_datasets',
     'METRICS.downs_without_repair': 'render_datasets',
     'METRICS.duplicate_question_codes': 'render_datasets',
+    'METRICS.tana_baseline_households_short': 'render_datasets',
     'METRICS.enduro_figures_age_days': 'render_datasets',
     'METRICS.enduro_figures_unattributed': 'render_datasets',
     'METRICS.er_percent_of_type3_cap': 'render_datasets',

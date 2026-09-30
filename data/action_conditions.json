@@ -163,6 +163,7 @@
    "act-enduro-onboard-1-enumerators",
    "act-enduro-onboard-2-register-sites",
    "act-enduro-onboard-3-bind-taps",
+   "act-ralf-meter-install-register",
    "act-enduro-feed",
    "act-enduro-onboard-5-calibration",
    "act-enduro-onboard-6-kiosk-wq",
@@ -874,12 +875,20 @@
   "when_satisfied": "OK"
  },
  "act-enduro-onboard-3-bind-taps": {
-  "kind": "data",
-  "metric": "smart_taps_unbound",
-  "op": "==",
-  "target": 0,
-  "says": "closes when every installed smart tap is bound by its test dispense",
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Is binding each smart tap by a paired-timestamp test dispense still owed?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "superseded by act-ralf-meter-install-register (decision of 30 Sep 2026)",
+  "converted_on": "2026-09-30",
+  "converted_from": {
+   "kind": "data",
+   "metric": "smart_taps_unbound",
+   "op": "==",
+   "target": 0,
+   "says": "closes when every installed smart tap is bound by its test dispense",
+   "when_satisfied": "OK"
+  }
  },
  "act-enduro-onboard-5-calibration": {
   "kind": "data",
@@ -1029,15 +1038,75 @@
   "closes_when": "all six new-construction records answer 'Résultat de la foration' (read every build)"
  },
  "act-usage-survey-inside-radius": {
-  "kind": "none",
-  "says": "no closing condition the build can read: a person confirms the sampler and the field rule",
-  "closure": "manual",
-  "closes_when": "every surveyed household lies inside the service radius of its water point, with the barrier constraint built into the sampler"
+  "kind": "artefact",
+  "where": "hub",
+  "path": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx",
+  "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+  "closure": "evidence",
+  "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off"
  },
  "act-usage-survey-random-selection": {
+  "kind": "artefact",
+  "where": "hub",
+  "path": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx",
+  "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+  "closure": "evidence",
+  "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off"
+ },
+ "act-tana-baseline-form": {
   "kind": "none",
-  "says": "no closing condition the build can read: a person confirms the sampler and the field rule",
+  "says": "no closing condition the build can read: the form changes are checked by a person in the portal designer",
   "closure": "manual",
-  "closes_when": "water points and households for the usage survey are drawn at random from the sampling frame, with the barrier constraint in the sampler"
+  "closes_when": "the form has a &ldquo;Baseline (Tana kiosks)&rdquo; deployment; hand-pump question <span class=\"mono\">3.1.1</span> is removed or conditioned; the pre-project water-source options cover urban sources (JIRAMA standpipe, neighbour&rsquo;s connection, water vendor); the fuel-question tenses are fixed"
+ },
+ "act-tana-baseline-sample-size": {
+  "kind": "decision",
+  "question": "How many households does the Antananarivo urban-kiosk carbon baseline need, and with what clustering rule?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "James Walker states in writing the number of households and any clustering rule (logged in data/decisions.json with a <span class=\"mono\">households</span> figure)"
+ },
+ "act-tana-baseline-survey": {
+  "kind": "data",
+  "metric": "tana_baseline_households_short",
+  "op": "==",
+  "target": 0,
+  "when_satisfied": "OK",
+  "says": "closes when final responses on the Tana deployment of the baseline form, each with both randomisation photographs, reach the sample size set under act-tana-baseline-sample-size"
+ },
+ "act-tana-jirama-licence-filed": {
+  "kind": "artefact",
+  "where": "sharepoint",
+  "folder": "Water Documents",
+  "name_contains": "JIRAMA",
+  "says": "closes when the JIRAMA licence or authorisation is filed in Water Documents",
+  "closure": "evidence",
+  "closes_when": "a copy of the JIRAMA licence or authorisation covering the urban kiosk network is on SharePoint Water Documents, with its reference and validity dates"
+ },
+ "act-ralf-shopkeeper-waterpoint-link": {
+  "kind": "none",
+  "says": "no closing condition the build can read yet: the Zoho endpoint is checked by a person",
+  "closure": "evidence",
+  "closes_when": "getShopkeepers returns, per shopkeeper, name, phone number and the mWater water point code of the kiosk they run"
+ },
+ "act-ralf-meter-install-register": {
+  "kind": "none",
+  "says": "no closing condition the build can read yet: the endpoint is checked by a person",
+  "closure": "evidence",
+  "closes_when": "an endpoint or URL, with date filter and paging like getTransactions, returns per installation the meter identifier (EEPROM id), mWater water point code, date and time installed, installer, tap position if recorded, and removals and swaps; questions <span class=\"mono\">2.1</span> and <span class=\"mono\">2.2</span> are then removed from Piped Water || Enregistrement Point de Distribution"
+ },
+ "act-usage-survey-sop": {
+  "kind": "artefact",
+  "where": "hub",
+  "path": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx",
+  "says": "closes when SOP-MAD-SDWS26-EnqueteUsage v1.0 is filed in the SOPs folder with James Walker&rsquo;s sign-off",
+  "closure": "evidence",
+  "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off"
+ },
+ "act-sampler-usage-survey-mode": {
+  "kind": "none",
+  "says": "no closing condition the build can read: the Sampler is a separate site",
+  "closure": "evidence",
+  "closes_when": "the Sampler has the usage-survey mode, a dry-run draw has been tested for both scenarios, and the SOP links to it"
  }
 }

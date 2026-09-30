@@ -1088,7 +1088,7 @@
      "code": "2.11.3",
      "conditions": [],
      "en": "",
-     "fr": "Début de la zone crépinée",
+     "fr": "Début de la zone crépinée (m/sol)",
      "group": "Crépinée",
      "id": "b9b479ea233e48dd9bf1a74a52937f3a",
      "required": true,
@@ -1098,7 +1098,7 @@
      "code": "2.11.4",
      "conditions": [],
      "en": "",
-     "fr": "Fin de la zone crépinée",
+     "fr": "Fin de la zone crépinée (m/sol)",
      "group": "Crépinée",
      "id": "495ee0f27fe746feb0d5151abb4858c4",
      "required": true,
@@ -1219,7 +1219,7 @@
      "conditions": [],
      "en": "",
      "fr": "Durée de pompage",
-     "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
+     "group": "Test de débit à débit constant de longue durée : 1 h, 2 h ou 4 h de pompage",
      "id": "0013a188ee75455bb541c9d923d09cd9",
      "required": true,
      "type": "DropdownQuestion"
@@ -1249,7 +1249,7 @@
      "conditions": [],
      "en": "",
      "fr": "Débit réel confirmé",
-     "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
+     "group": "Test de débit à débit constant de longue durée : 1 h, 2 h ou 4 h de pompage",
      "id": "7f88b0eb5103441bae9c00c0e4d5288c",
      "required": true,
      "type": "UnitsQuestion"
@@ -1259,7 +1259,7 @@
      "conditions": [],
      "en": "",
      "fr": "Photo : fiche d'essai de pompage du foreur (relevés bruts : heure, niveau, débit)",
-     "group": "Test de débit à débit constant à longue durée - Soit 12h, soit 24h, soit 48h de pompage",
+     "group": "Test de débit à débit constant de longue durée : 1 h, 2 h ou 4 h de pompage",
      "id": "d79d936110aa43ce98758b5520cfcc01",
      "required": false,
      "type": "ImagesQuestion"
@@ -1698,7 +1698,7 @@
      "code": "5.2.2.2",
      "conditions": [],
      "en": "",
-     "fr": "Pente de l'évacuation",
+     "fr": "Pente de l'évacuation (degrés)",
      "group": "Informations sur le type d'évacuation",
      "id": "caa932530944437c9be416a1c7a579db",
      "required": true,
@@ -1955,7 +1955,7 @@
      "type": "TextQuestion"
     }
    ],
-   "rev": 363,
+   "rev": 375,
    "state": "active"
   },
   "old-combined-works": {

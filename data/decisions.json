@@ -210,6 +210,14 @@
    "source": "Adriaan Mol, 29 Sep 2026",
    "logged_on": "2026-09-29",
    "logged_by": "Adriaan Mol"
+  },
+  "act-enduro-onboard-3-bind-taps": {
+   "answer": "Superseded by act-ralf-meter-install-register. The test dispenses were removed from the Endur’O forms on 30 Sep 2026 because the smart tap setup app binds each meter to its water point; the binding is read from the app’s installation register once Curtech exposes it.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-09-30",
+   "source": "Adriaan Mol to Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", sent 30 Sep 2026 11:38",
+   "logged_on": "2026-09-30",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

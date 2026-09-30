@@ -1,5 +1,5 @@
 {
- "counted": "2026-09-29",
+ "counted": "2026-09-30",
  "metrics": {
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -24,7 +24,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 11
+   "value": 12
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -224,7 +224,12 @@
   "stroke_test_responses": {
    "says": "results recorded on the stroke-meter form",
    "source": "mWater",
-   "value": 40
+   "value": 39
+  },
+  "tana_baseline_households_short": {
+   "says": "households still to survey for the Antananarivo kiosk baseline: the sample size set by James Walker less the final responses on the Tana deployment carrying both randomisation photographs",
+   "source": "local",
+   "value": null
   },
   "test_kiosks_in_register": {
    "says": "of the two test records 924119262 and 927104201, how many sit in the MadAvance register as a kiosk",
@@ -239,7 +244,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 41
+   "value": 36
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

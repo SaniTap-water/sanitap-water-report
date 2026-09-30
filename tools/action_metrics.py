@@ -359,6 +359,34 @@ def _m_rehab_782134540():
             and (r.get("status") or "final") == "final")
 
 
+# The Antananarivo urban-kiosk carbon baseline (act-tana-baseline-survey, 30 Sep
+# 2026): final responses on any deployment of the baseline form other than the
+# Moramanga one, each with both randomisation photographs (1.2 bottle or pen
+# direction, 1.3 dice number), counted against the sample size James Walker
+# sets (act-tana-baseline-sample-size, logged with a "households" figure).
+# Until that number is logged there is nothing to count against: no value.
+TANA_BASELINE_FORM = "3ef4385a619244c7ad129169ac1ec71f"
+MORAMANGA_BASELINE_DEPLOYMENT = "2e32e23afd2d4155a6fd440b7285cfd3"
+BASELINE_PHOTOS = ("a477bf099a3c4c05af4a40892a7b58fc", "8c5525cf7b14441cb91fb6871765a211")
+
+
+@metric("tana_baseline_households_short",
+        "households still to survey for the Antananarivo kiosk baseline: the sample size set by James Walker "
+        "less the final responses on the Tana deployment carrying both randomisation photographs")
+def _m_tana_baseline():
+    dec = json.load(open(d("data", "decisions.json"))).get("decisions", {}).get("act-tana-baseline-sample-size") or {}
+    need = dec.get("households")
+    if not isinstance(need, int):
+        return None
+    rows_ = json.load(open(os.path.join(os.path.expanduser("~/mwater-exports"), "baseline_moramanga.json")))
+    have = sum(1 for r in rows_
+               if r.get("form", TANA_BASELINE_FORM) == TANA_BASELINE_FORM
+               and r.get("deployment") != MORAMANGA_BASELINE_DEPLOYMENT
+               and (r.get("status") or "") == "final"
+               and all((r.get("data") or {}).get(q, {}).get("value") for q in BASELINE_PHOTOS))
+    return max(0, need - have)
+
+
 @metric("marolinta_new_without_drilling_result",
         "final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'Résultat de la foration'")
 def _m_marolinta_drilling():

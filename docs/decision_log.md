@@ -1740,3 +1740,31 @@ panel's h2, so no heading renders empty as loaded.
   (5 colour/background pairs, incl. the 13 amber numbers at 1.79:1), 0 after.
 - Laptop-only render checks (1280, 1440, 1920); Auto / Light / Dark switch.
 - Held 29 Sep edits applied: 987623304 "Canzee (record f21f3cbd and photos agree)"; OPSTATUS closing check.
+
+## 30 Sep 2026 (c) — Antananarivo kiosk baseline, Curtech endpoints, usage-survey SOP and Sampler mode (Adriaan Mol)
+
+Eight open actions added (owner and deadline in `data/action_owners.json`, closing conditions in
+`data/action_conditions.json`, detail in `data/action_details.json`). Actions carry no scope field (scopes
+are per section), so the Endur'O ones sit under their Endur'O owner; "depends on" is in the detail text.
+
+| Action | Owner | Deadline | Closure | Source |
+|---|---|---|---|---|
+| `act-tana-baseline-form` | Adriaan Mol | 2026-10-09 | manual | Adriaan's reply to Jan de Graaf, "RE: Endur'O registration forms are live: please test them at the prototype smart tap site", 30 Sep 2026 |
+| `act-tana-baseline-sample-size` | James Walker | 2026-10-09 | evidence (decision, with a `households` figure) | as above |
+| `act-tana-baseline-survey` | Endur'O (Coddy Velonizy, Ntsoa Ranaivoson) | 2026-10-31 | auto: `tana_baseline_households_short` = 0 | Jan de Graaf, "Fw: Endur'O registration forms are live...", 30 Sep 2026; Adriaan's reply |
+| `act-tana-jirama-licence-filed` | Endur'O (Coddy Velonizy) | 2026-10-16 | evidence (SharePoint Water Documents) | Adriaan's reply-all to Jan and Coddy, 30 Sep 2026 |
+| `act-ralf-shopkeeper-waterpoint-link` | Ralf van Veenendaal (Curtech) | 2026-10-31 | evidence | Adriaan to Ralf, "RE: Zoho endpoint: works, and what else we need alongside it", 30 Sep 2026 |
+| `act-ralf-meter-install-register` | Ralf van Veenendaal (Curtech) | 2026-10-31 | evidence | as above, sent 30 Sep 2026 11:38 |
+| `act-usage-survey-sop` | Adriaan Mol; sign-off James Walker | 2026-10-16 | evidence (SOP v1.0 in SOPs) | chat, 30 Sep 2026 |
+| `act-sampler-usage-survey-mode` | Adriaan Mol (built with Claude Code) | 2026-10-23 | evidence | chat, 30 Sep 2026 |
+
+- `tana_baseline_households_short` (tools/action_metrics.py): final responses on any deployment of form
+  3ef4385a other than Moramanga's, each with both randomisation photographs, against James Walker's
+  logged sample size; no value until that is logged, so the action cannot close early.
+- `act-enduro-onboard-3-bind-taps` (the action the instruction called act-enduro-smart-taps-bind) closed as
+  superseded by `act-ralf-meter-install-register` (logged in data/decisions.json); the new action is a step
+  of `act-enduro-move-register-fully`.
+- `act-usage-survey-random-selection` and `act-usage-survey-inside-radius`: owner Adriaan Mol, deadline
+  2026-10-16, closing on the signed SOP v1.0; status mappings unchanged.
+- `act-sdws26-annual-round`: deadline 2026-11-30 for the 2026 round, run to SOP-MAD-SDWS26 using the Sampler
+  usage-survey mode; owner and recurring rule unchanged.
