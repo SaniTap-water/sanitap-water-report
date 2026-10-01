@@ -629,6 +629,40 @@ def main():
           else "MISSING",
           "the API accepts the PATCH and discards the field; that is a finding, "
           "not a silence")
+    # ---- every managed point has a valid admin_region, or is a documented exception (1 Oct 2026)
+    # A missing admin_region, or one that is not a row of mWater's admin_regions table, fails
+    # unless the point is listed in data/admin_region_exceptions.json with the reason; a listed
+    # point that has since gained a valid region fails too, so it leaves the list.
+    _arx_p = os.path.join(repo_root, "data", "admin_region_exceptions.json")
+    _wpx_p = os.path.expanduser("~/mwater-exports/wp_madavance.csv")
+    if not os.path.isfile(_arx_p) or not os.path.isfile(_wpx_p):
+        check("no managed point with a missing or invalid admin_region", False, "checked",
+              "exception file or register extract missing", "data/admin_region_exceptions.json")
+    else:
+        import csv as _csv_ar
+        _arx = json.loads(read(_arx_p))
+        _valid = {int(i) for i in _arx["valid_region_ids"]["ids"]}
+        _exc = {p["wp"] for p in _arx["points"]}
+        _bad_ar, _left = [], []
+        for _r in _csv_ar.DictReader(open(_wpx_p, encoding="utf8")):
+            _v = (_r.get("admin_region") or "").strip()
+            _ok = bool(_v) and int(float(_v)) in _valid
+            if not _ok and _r["code"] not in _exc:
+                _bad_ar.append(f"{_r['code']} ({_v or 'empty'})")
+            if _ok and _r["code"] in _exc:
+                _left.append(_r["code"])
+        check("no managed point with a missing or invalid admin_region (documented exceptions apart)",
+              not _bad_ar and not _left, f"0 outside the {len(_exc)} exceptions",
+              (f"{len(_bad_ar)}: {', '.join(_bad_ar[:4])}" if _bad_ar else "")
+              + (f"; now valid, remove from the exception list: {', '.join(_left)}" if _left else "")
+              or f"0 outside the {len(_exc)} exceptions",
+              "data/admin_region_exceptions.json; a new region id is looked up in mWater (read-only) before it is added")
+        _txt = _arx.get("reason", "")
+        _dq_ok = all(f'<span class="mono">{w}</span>' in idx_raw for w in _exc) and "gaps between polygons" in idx_raw
+        check("the admin_region exceptions are shown in the data-quality notes with their reason",
+              _dq_ok and "decision 1 Oct 2026" in _txt, "shown", "shown" if _dq_ok else "MISSING",
+              "data-quality section, #dq")
+
     # ---- the mWater tooling is read-only (2026-09-25) ----------------------
     # mWater allows writes only via the portal or MCP proposals. The write
     # scripts are in tools/mwater/retired/; nothing the build runs may call

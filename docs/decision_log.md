@@ -1863,3 +1863,20 @@ Instruction of Adriaan Mol, 1 Oct 2026 (chat).
 - Evidence folder "SDWS1 people served (current method)" (Central Data Hub > Water Documents > Evidence):
   README, script + sha256, MANIFEST, per-point outputs for the fleet and the UNICEF point set, summaries,
   sensitivity runs, and `unicef-tool-data-note.md`. Linked from the provenance and the mapping rules.
+
+## 1 Oct 2026 (b) — managed points without a valid mWater region: documented exception (Adriaan Mol)
+
+Ten managed points carry no valid `admin_region`: 698771103, 698771110, 699596004, 699596114, 698771244,
+698771251, 742897074, 742897115, 742897232 (empty) and 670401842 Morafeno (306666, not a row of mWater's
+admin_regions table). Reason, as decided: "mWater's boundaries leave these points unassigned (gaps between
+polygons). mWater will not set regions by hand, and we will not ask for a platform-wide boundary change
+(decision 1 Oct 2026). Commune and fokontany for the 9 Maroantsetra points come from their works records;
+Morafeno is placed in Anosy by its GPS."
+
+- Read from mWater (read-only, 1 Oct 2026) before applying: all ten still empty or unresolvable, so none
+  left the exception. Of the managed group's 136 distinct region ids, 135 resolve; only 306666 does not.
+- `data/admin_region_exceptions.json` holds the ten, the reason and the 135 valid ids. New check in
+  check_consistency: no managed point (wp_madavance.csv) with a missing or invalid admin_region outside the
+  list, and no listed point that has since gained a valid one. Verified by removing 742897232 from the list:
+  the check failed ("1: 742897232 (empty)"); restored.
+- The ten are shown in the data-quality notes with the reason. No write to mWater.
