@@ -1,0 +1,660 @@
+{
+ "note": "Written by tools/transcription_round1.py. Transcription check, round 1: Adriaan Mol (28 Sep 2026), Dieu Donné Razafimahatratra (MadAvance MERV, 1 Oct 2026, cleaned) and the machine reader (extraction_days2.csv, 30 Sep 2026) on one observed window per sheet (sheet year of record and photo date). X versus blank is scored; ? is never scored.",
+ "inputs": {
+  "dieu_donne": "data/transcriptions/releves_calendriers_dieu-donne_serie1_2026-10-01.csv",
+  "dieu_donne_sha256": "8fb8317d5ffe0797263f4c53eab01182796958483e5b7d57af983fb2e4f09867",
+  "adriaan": "data/transcriptions/releves_calendriers_mol-adriaan_serie1_2026-09-28.csv",
+  "adriaan_sha256": "c03063a17eead9802d3a0929742f1248f5eff2f3abc9c47cbbc083e432a6ae55",
+  "machine": "extraction_days2.csv",
+  "machine_sha256": "712f0a5e6af4b53ceafe9613bf2ce1cff0eaa1aa0f9d4f6a809482a11776fae2",
+  "exported": "2026-10-01T07:50:01.947Z"
+ },
+ "raw": {
+  "rows": 29943,
+  "calendars": 83,
+  "x": 105,
+  "question": 126,
+  "statut": {
+   "marque": 46,
+   "exclu": 1,
+   "vide_verifie": 35,
+   "vu_sans_confirmation": 1
+  }
+ },
+ "cleaning": {
+  "void_after_photo": 31,
+  "void_calendars": [
+   2,
+   12,
+   66,
+   68,
+   69,
+   72,
+   86,
+   90,
+   92,
+   97
+  ],
+  "void_x": 4,
+  "void_q": 27,
+  "year_questions": [
+   {
+    "calendrier": 2,
+    "mois": 4,
+    "jour": 1,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-04-01",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 2,
+    "mois": 5,
+    "jour": 31,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-05-31",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 2,
+    "mois": 7,
+    "jour": 1,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-07-01",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 2,
+    "mois": 8,
+    "jour": 31,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-08-31",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 2,
+    "mois": 10,
+    "jour": 1,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-10-01",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 2,
+    "mois": 10,
+    "jour": 31,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-10-31",
+    "date_photo": "2026-01-12",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 12,
+    "mois": 3,
+    "jour": 23,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-03-23",
+    "date_photo": "2026-03-10",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 12,
+    "mois": 3,
+    "jour": 24,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-03-24",
+    "date_photo": "2026-03-10",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 66,
+    "mois": 3,
+    "jour": 25,
+    "releve": "X",
+    "date_if_year_minus_one": "2025-03-25",
+    "date_photo": "2026-01-23",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 68,
+    "mois": 7,
+    "jour": 16,
+    "releve": "X",
+    "date_if_year_minus_one": "2025-07-16",
+    "date_photo": "2026-07-03",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 69,
+    "mois": 10,
+    "jour": 25,
+    "releve": "?",
+    "date_if_year_minus_one": "2024-10-25",
+    "date_photo": "2025-10-06",
+    "annee_feuille": "2025"
+   },
+   {
+    "calendrier": 69,
+    "mois": 10,
+    "jour": 26,
+    "releve": "?",
+    "date_if_year_minus_one": "2024-10-26",
+    "date_photo": "2025-10-06",
+    "annee_feuille": "2025"
+   },
+   {
+    "calendrier": 72,
+    "mois": 8,
+    "jour": 19,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-08-19",
+    "date_photo": "2026-05-30",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 72,
+    "mois": 8,
+    "jour": 20,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-08-20",
+    "date_photo": "2026-05-30",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 86,
+    "mois": 7,
+    "jour": 7,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-07-07",
+    "date_photo": "2026-02-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 86,
+    "mois": 9,
+    "jour": 11,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-09-11",
+    "date_photo": "2026-02-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 90,
+    "mois": 7,
+    "jour": 8,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-07-08",
+    "date_photo": "2026-03-20",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 90,
+    "mois": 7,
+    "jour": 9,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-07-09",
+    "date_photo": "2026-03-20",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 90,
+    "mois": 8,
+    "jour": 28,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-08-28",
+    "date_photo": "2026-03-20",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 90,
+    "mois": 8,
+    "jour": 29,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-08-29",
+    "date_photo": "2026-03-20",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 90,
+    "mois": 10,
+    "jour": 8,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-10-08",
+    "date_photo": "2026-03-20",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 4,
+    "jour": 20,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-04-20",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 5,
+    "jour": 8,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-05-08",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 6,
+    "jour": 25,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-06-25",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 6,
+    "jour": 27,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-06-27",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 10,
+    "jour": 15,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-10-15",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 11,
+    "jour": 11,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-11-11",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 12,
+    "jour": 15,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-12-15",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 92,
+    "mois": 12,
+    "jour": 17,
+    "releve": "?",
+    "date_if_year_minus_one": "2025-12-17",
+    "date_photo": "2026-03-11",
+    "annee_feuille": "2026"
+   },
+   {
+    "calendrier": 97,
+    "mois": 11,
+    "jour": 25,
+    "releve": "X",
+    "date_if_year_minus_one": "2024-11-25",
+    "date_photo": "2025-09-19",
+    "annee_feuille": "2025"
+   },
+   {
+    "calendrier": 97,
+    "mois": 11,
+    "jour": 26,
+    "releve": "X",
+    "date_if_year_minus_one": "2024-11-26",
+    "date_photo": "2025-09-19",
+    "annee_feuille": "2025"
+   }
+  ],
+  "year_question_calendars": [
+   2,
+   12,
+   66,
+   68,
+   69,
+   72,
+   86,
+   90,
+   92,
+   97
+  ],
+  "margin_note_x": 33,
+  "margin_note_q": 3,
+  "x_to_question": [
+   {
+    "calendrier": 18,
+    "mois": 1,
+    "jour": 7
+   },
+   {
+    "calendrier": 30,
+    "mois": 10,
+    "jour": 28
+   },
+   {
+    "calendrier": 38,
+    "mois": 5,
+    "jour": 25
+   },
+   {
+    "calendrier": 64,
+    "mois": 10,
+    "jour": 28
+   },
+   {
+    "calendrier": 87,
+    "mois": 1,
+    "jour": 17
+   }
+  ],
+  "doubtful_superseded_by_void": [
+   {
+    "calendrier": 66,
+    "mois": 3,
+    "jour": 25
+   },
+   {
+    "calendrier": 68,
+    "mois": 7,
+    "jour": 16
+   }
+  ],
+  "held_out": [
+   7,
+   23,
+   31,
+   32,
+   55,
+   61,
+   71,
+   76,
+   81
+  ],
+  "excluded": [
+   3
+  ],
+  "adjustment_rows": 83
+ },
+ "clean_totals": {
+  "calendars": 73,
+  "days": 15738,
+  "x": 63,
+  "question": 101,
+  "calendars_marked": 23
+ },
+ "clean_totals_note": "Dieu Donné after cleaning, over the calendars he transcribed (statut marque or vide_verifie), excluding 3 and the hold-outs, inside the observed window; calendar 43's margin-note cells are outside the grid figures",
+ "not_transcribed": {
+  "adriaan": [],
+  "dieu_donne": []
+ },
+ "calendars_both_humans": 73,
+ "calendars_three_way": 68,
+ "three_way_calendars": [
+  2,
+  4,
+  5,
+  6,
+  10,
+  11,
+  12,
+  14,
+  16,
+  18,
+  19,
+  22,
+  26,
+  27,
+  28,
+  34,
+  35,
+  36,
+  38,
+  39,
+  40,
+  42,
+  43,
+  44,
+  46,
+  48,
+  50,
+  51,
+  52,
+  53,
+  54,
+  56,
+  57,
+  58,
+  59,
+  60,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  72,
+  73,
+  74,
+  75,
+  77,
+  78,
+  79,
+  80,
+  82,
+  83,
+  84,
+  85,
+  87,
+  88,
+  89,
+  90,
+  91,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99
+ ],
+ "pairs": [
+  {
+   "cells_scored": 14785,
+   "agree": 14759,
+   "agreement": 0.9982,
+   "both_x": 40,
+   "a_x_b_blank": 5,
+   "a_blank_b_x": 21,
+   "both_blank": 14719,
+   "cells_with_question_mark": 77,
+   "kappa": 0.7539,
+   "matrix": {
+    "-|-": 14719,
+    "-|?": 76,
+    "-|X": 21,
+    "X|-": 5,
+    "X|?": 1,
+    "X|X": 40
+   },
+   "a": "adriaan",
+   "b": "dieu_donne",
+   "scope": "three_way",
+   "calendars": 68,
+   "cells_in_window": 14865
+  },
+  {
+   "cells_scored": 14730,
+   "agree": 14624,
+   "agreement": 0.9928,
+   "both_x": 0,
+   "a_x_b_blank": 46,
+   "a_blank_b_x": 60,
+   "both_blank": 14624,
+   "cells_with_question_mark": 132,
+   "kappa": -0.0035,
+   "matrix": {
+    "-|-": 14624,
+    "-|?": 132,
+    "-|X": 60,
+    "X|-": 46
+   },
+   "a": "adriaan",
+   "b": "machine",
+   "scope": "three_way",
+   "calendars": 68,
+   "cells_in_window": 14865
+  },
+  {
+   "cells_scored": 14656,
+   "agree": 14535,
+   "agreement": 0.9917,
+   "both_x": 0,
+   "a_x_b_blank": 61,
+   "a_blank_b_x": 60,
+   "both_blank": 14535,
+   "cells_with_question_mark": 209,
+   "kappa": -0.0041,
+   "matrix": {
+    "-|-": 14535,
+    "-|?": 132,
+    "-|X": 60,
+    "?|-": 77,
+    "X|-": 61
+   },
+   "a": "dieu_donne",
+   "b": "machine",
+   "scope": "three_way",
+   "calendars": 68,
+   "cells_in_window": 14865
+  },
+  {
+   "cells_scored": 15633,
+   "agree": 15607,
+   "agreement": 0.9983,
+   "both_x": 42,
+   "a_x_b_blank": 5,
+   "a_blank_b_x": 21,
+   "both_blank": 15565,
+   "cells_with_question_mark": 101,
+   "kappa": 0.7628,
+   "matrix": {
+    "-|-": 15565,
+    "-|?": 100,
+    "-|X": 21,
+    "X|-": 5,
+    "X|?": 1,
+    "X|X": 42
+   },
+   "a": "adriaan",
+   "b": "dieu_donne",
+   "scope": "all_human",
+   "calendars": 73,
+   "cells_in_window": 15738
+  }
+ ],
+ "calendar_pairs": [
+  {
+   "a": "adriaan",
+   "b": "dieu_donne",
+   "scope": "three_way",
+   "calendars": 68,
+   "both_marked": 17,
+   "a_only": 1,
+   "b_only": 5,
+   "neither": 45,
+   "x_total_a": 46,
+   "x_total_b": 61,
+   "same_x_count": 60
+  },
+  {
+   "a": "adriaan",
+   "b": "machine",
+   "scope": "three_way",
+   "calendars": 68,
+   "both_marked": 2,
+   "a_only": 16,
+   "b_only": 5,
+   "neither": 45,
+   "x_total_a": 46,
+   "x_total_b": 60,
+   "same_x_count": 45
+  },
+  {
+   "a": "dieu_donne",
+   "b": "machine",
+   "scope": "three_way",
+   "calendars": 68,
+   "both_marked": 3,
+   "a_only": 19,
+   "b_only": 4,
+   "neither": 42,
+   "x_total_a": 61,
+   "x_total_b": 60,
+   "same_x_count": 43
+  },
+  {
+   "a": "adriaan",
+   "b": "dieu_donne",
+   "scope": "all_human",
+   "calendars": 73,
+   "both_marked": 18,
+   "a_only": 1,
+   "b_only": 5,
+   "neither": 49,
+   "x_total_a": 48,
+   "x_total_b": 63,
+   "same_x_count": 65
+  }
+ ],
+ "machine_vs": {
+  "adriaan": {
+   "tp": 0,
+   "fn": 46,
+   "fp": 60,
+   "tn": 14627,
+   "machine_question_mark": 132,
+   "sensitivity": 0.0,
+   "specificity": 0.9959
+  },
+  "dieu_donne": {
+   "tp": 0,
+   "fn": 61,
+   "fp": 60,
+   "tn": 14535,
+   "machine_question_mark": 132,
+   "sensitivity": 0.0,
+   "specificity": 0.9959
+  },
+  "both_humans_agree": {
+   "tp": 0,
+   "fn": 40,
+   "fp": 60,
+   "tn": 14530,
+   "machine_question_mark": 132,
+   "sensitivity": 0.0,
+   "specificity": 0.9959
+  }
+ },
+ "human_disagreements": 127,
+ "human_disagreements_by_type": {
+  "X contre vide": 26,
+  "? contre vide": 100,
+  "? contre X": 1
+ },
+ "human_disagreement_calendars": 26,
+ "evidence": "data/transcriptions/round1_resume.md"
+}

@@ -312,6 +312,8 @@ WHOLE = {
     'MORACW': ('moramanga_dedupe', 'render_datasets'),
     # the calendar-extraction accuracy (human transcription against the machine)
     'TACC': ('compare_transcriptions', 'render_datasets'),
+    # transcription check, round 1 (two humans and the machine)
+    'TRC1': ('transcription_round1', 'render_datasets'),
     # the 2025 household water-quality round, SDWS 18
     'SDWS18': ('rebuild_sdws18', 'render_datasets'),
     # the PROPOSED India Mark cap per pump (not applied; act-india-mark-cap-james)

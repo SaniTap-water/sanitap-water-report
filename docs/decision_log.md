@@ -1880,3 +1880,13 @@ Morafeno is placed in Anosy by its GPS."
   list, and no listed point that has since gained a valid one. Verified by removing 742897232 from the list:
   the check failed ("1: 742897232 (empty)"); restored.
 - The ten are shown in the data-quality notes with the reason. No write to mWater.
+
+## 1 Oct 2026 (c) — transcription check, round 1: Dieu Donné's results ingested (Adriaan Mol)
+
+Dieu Donné Razafimahatratra (MadAvance MERV) transcribed the 83 calendars of series 1 (export 1 Oct 2026). Cleaning
+rules, as decided: (a) a mark after the photo date is void, each checked against the year before; (b) calendar 43's
+X are the gardien's margin notes, out of grid accuracy; (c) an X whose note calls the sign doubtful counts as ?;
+(d) the nine 2027 sheets with no observed day are held out until MadAvance confirms which side was marked;
+(e) calendar 3 stays excluded. Applied in `tools/transcription_round1.py`, never in the raw file. Results in
+`data/transcriptions/round1_resume.md`; the page carries the block "Transcription check, round 1". No action
+status changed; read-only on mWater.

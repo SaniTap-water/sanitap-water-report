@@ -211,3 +211,36 @@ the first thing to fix in the reader before the validation round is scored.
   the gardien was marking a 2026 sheet through late 2025. With 2026 every day is outside the
   observable window, so those three marks are kept but exported as `non_observe`. This is the
   question open as `act-printed-year-meaning`; the year stays editable.
+
+## Transcription check, round 1 — Dieu Donné Razafimahatratra (MadAvance MERV), exported 1 Oct 2026
+
+File `data/transcriptions/releves_calendriers_dieu-donne_serie1_2026-10-01.csv` (Downloads, 1 Oct 2026
+20:33; the browser had already renamed the download from its `.tmp` name), 29,943 rows,
+83 calendars, exported 2026-10-01T07:50:01.947Z, kept byte for byte as exported
+(SHA-256 `8fb8317d5ffe0797263f4c53eab01182796958483e5b7d57af983fb2e4f09867`). The transcriber field carried the instruction he was
+given; it reads "Dieu Donné Razafimahatratra (MadAvance MERV)" in the cleaned data and everything after it.
+
+`tools/transcription_round1.py` cleans it (rules a–e, set by Adriaan Mol on 1 Oct 2026; every step a row of
+`round1_ajustements.csv`), compares Adriaan, Dieu Donné and the machine on one observed window (sheet year of
+record and photo date), and writes `round1_resume.md`, `round1_desaccords_humains.csv`,
+`round1_calendriers.csv`, `round1_matrices.csv` and `data/transcription_round1.json`. The script fails if the
+data no longer matches the rules as given (31 void marks on the ten calendars, 33 margin X on 43, the doubtful-sign
+calendars, the nine 2027 sheets with no observed day). The block "Transcription check, round 1" on the page renders
+from that JSON (`tools/render_transcription_round1.py`). No action's status changed.
+
+- Rule (c) is matched on the note: a doubtful-sign phrase (point, barre or chiffre … suspect) and the dates written
+  before it, ±1 day. "Croix suspecte" is a cross and is not converted, which is why calendar 14 (X on 24 Jun and
+  9 Oct, its suspect points on 9–18 May) is not converted. Calendar 18's note says 6 Jan; the X is on 7 Jan, where
+  Adriaan also has it.
+- Calendar 43: the 3 ? of 10–12 Feb come from the same margin notes as the 33 X and are tagged with them.
+- Adriaan's export predates the sheet years set on 28 Sep on ten sheets (30, 34, 38, 46, 50, 89, 91, 92, 97, 99),
+  so his own `etat_cellule` is not used; on 89 his three X fall outside the window.
+- Calendar 84 has no sheet year; its 2 X (25–26 Dec) are scored as observed, but would be void if it is 2025.
+
+Cleaned: 63 X, 101 ? on 73 calendars (23 with an X).
+On the 68 calendars all three read: humans agree on X/blank 99.8% (κ 0.7539);
+Adriaan × machine 99.3% (κ -0.0035); Dieu Donné × machine 99.2% (κ -0.0041).
+**The machine finds none of the humans' X** (sensitivity 0% against either, and against the
+40 X both agree on); its 60 X fall on cells both read blank. This agrees with the
+30 Sep figures (missed X 20 of Adriaan's 20 in frame), which the page's "rarely misses a marked day" does not.
+Human disagreements to settle by eye: 127 days on 26 calendars.
