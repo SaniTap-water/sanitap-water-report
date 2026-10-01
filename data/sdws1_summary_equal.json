@@ -11,7 +11,12 @@
  "mean_allocated_per_point": 217.0,
  "reported_after_cap": 125710,
  "points_at_the_cap": 77,
- "pipeline_sha256": "181da66fe8bd9333b4e3f8c5b077d895b32004631087275bf176bdf106a4df08",
+ "pipeline_sha256": "2319f3e05ba4fc7a72b8de730985e09a34b38d4c1a9f3055042bcced1ff57bae",
+ "caps": {
+  "Canzee": 500,
+  "IndiaMark": 300,
+  "*": 300
+ },
  "split_failures": 0,
  "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
  "raster_path": "/home/bushp/sdws1/rasters/mdg_pop_2025_CN_100m_R2025A_v1.tif",
@@ -24,13 +29,13 @@
  "raster_national_sum": 32351522,
  "raster_status": "raster of record (WorldPop R2025A v1, 2025, constrained (hub dataset 74239))",
  "points_file": "water_points.csv",
- "_copied": "2026-09-30",
- "_run": "r2025a_barriers_20260930, allocation=equal",
- "_note": "The WorldPop allocation run's own summary, copied verbatim from ~/sdws1/runs/r2025a_barriers_20260930/sdws1_summary_equal.json by tools/rerun_wpop.py --adopt, which adopted a full rerun after a method change: barrier split fixed (30 Sep 2026): a river crossing the 1 km circle now always cuts it; the rules are unchanged. tools/check_wpopmeta.py asserts the page against this file every build.",
  "_before_method_change": {
   "run": "r2025a_barriers_20260929",
   "reported_after_cap": 128634,
   "points_cut_over_10pct": 122,
   "points_at_the_cap": 82
- }
+ },
+ "_copied": "2026-10-01",
+ "_run": "fleet_20261001/barriers, allocation=equal",
+ "_note": "The WorldPop allocation run's own summary, copied verbatim from ~/sdws1/runs/fleet_20261001/barriers/sdws1_summary_equal.json by tools/rerun_wpop.py --repin: the method moved into the private repository SaniTap-water/sdws1-method (1 Oct 2026); the run of record is rerun at the pinned commit. Every per-point figure is identical to the previous run of record. tools/check_wpopmeta.py asserts the page against this file every build."
 }

@@ -4,10 +4,10 @@
   "appel_signalement_pannes.csv": {
    "form": "call-centre",
    "form_id": "c08b3fe26d0f42c084074701f29eb75e",
-   "newest_submitted": "2026-09-28",
-   "rows": 2831,
-   "unique": 2831,
-   "written": "2026-09-29T13:55:20"
+   "newest_submitted": "2026-10-01",
+   "rows": 2832,
+   "unique": 2832,
+   "written": "2026-10-01T09:18:45"
   },
   "baseline_moramanga.json": {
    "form_id": "3ef4385a619244c7ad129169ac1ec71f",
@@ -15,7 +15,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 331,
    "unique": 331,
-   "written": "2026-09-29T14:10:23"
+   "written": "2026-10-01T09:32:36"
   },
   "cbn_gender.json": {
    "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
@@ -23,7 +23,7 @@
    "read_by": "populations.py",
    "rows": 414,
    "unique": 414,
-   "written": "2026-09-29T14:05:48"
+   "written": "2026-10-01T09:28:01"
   },
   "combined_rehab.json": {
    "form_id": "86cf66efdd3749dd8a121314bab3675a",
@@ -31,7 +31,7 @@
    "read_by": "populations.py",
    "rows": 1688,
    "unique": 1688,
-   "written": "2026-09-29T13:59:58"
+   "written": "2026-10-01T09:23:07"
   },
   "enduro_points.csv": {
    "entity_type": "water_point",
@@ -40,7 +40,7 @@
    "read_by": "moramanga_dedupe.py",
    "rows": 182,
    "unique": 182,
-   "written": "2026-09-29T14:12:46"
+   "written": "2026-10-01T09:34:42"
   },
   "first_rehab_current.json": {
    "form_id": "63747997e70e478fbb2ebf71581ceeb0",
@@ -48,7 +48,7 @@
    "read_by": "populations.py",
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-29T14:04:55"
+   "written": "2026-10-01T09:27:16"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -56,7 +56,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-29T13:58:56"
+   "written": "2026-10-01T09:22:07"
   },
   "hygiene.json": {
    "form_id": "283c5670de82489d833e986cb76a67d8",
@@ -64,7 +64,7 @@
    "read_by": "populations.py",
    "rows": 108,
    "unique": 108,
-   "written": "2026-09-29T14:02:32"
+   "written": "2026-10-01T09:25:09"
   },
   "identification.json": {
    "form_id": "198b016d72af41baa2608a8c9c35f8cb",
@@ -72,7 +72,7 @@
    "read_by": "populations.py",
    "rows": 56,
    "unique": 56,
-   "written": "2026-09-29T14:03:21"
+   "written": "2026-10-01T09:25:52"
   },
   "marolinta_borehole.json": {
    "form_id": "8764843c94484f5b984078c68f13b2ca",
@@ -80,7 +80,7 @@
    "read_by": "populations.py",
    "rows": 20,
    "unique": 20,
-   "written": "2026-09-29T14:04:08"
+   "written": "2026-10-01T09:26:32"
   },
   "piped_point_reg.json": {
    "form_id": "8a3af50ceec84cda85d454d96079991d",
@@ -88,15 +88,15 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 1,
    "unique": 1,
-   "written": "2026-09-29T14:09:36"
+   "written": "2026-10-01T09:31:43"
   },
   "piped_system_reg.json": {
    "form_id": "44044e27c0f24cc4a432a38b09886684",
    "newest_submitted": null,
    "read_by": "rebuild_piped_wq.py",
-   "rows": 1,
-   "unique": 1,
-   "written": "2026-09-29T14:08:51"
+   "rows": 2,
+   "unique": 2,
+   "written": "2026-10-01T09:30:53"
   },
   "piped_systems.csv": {
    "entity_type": "water_system",
@@ -105,7 +105,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 25,
    "unique": 25,
-   "written": "2026-09-29T14:12:15"
+   "written": "2026-10-01T09:34:18"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
@@ -113,7 +113,7 @@
    "newest_submitted": "2026-09-28",
    "rows": 761,
    "unique": 761,
-   "written": "2026-09-29T13:50:34"
+   "written": "2026-10-01T09:14:34"
   },
   "pou_survey.json": {
    "form_id": "db0bcbf2e7ea44b280aed653a715553e",
@@ -121,7 +121,7 @@
    "read_by": "populations.py",
    "rows": 142,
    "unique": 142,
-   "written": "2026-09-29T14:11:15"
+   "written": "2026-10-01T09:33:21"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -129,7 +129,7 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-09-29T13:57:13"
+   "written": "2026-10-01T09:20:17"
   },
   "repair.json": {
    "form_id": "958b4763788348d699e7d8c5821f92ee",
@@ -137,7 +137,7 @@
    "read_by": "populations.py",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-29T14:00:50"
+   "written": "2026-10-01T09:23:44"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
@@ -145,7 +145,7 @@
    "newest_submitted": "2026-09-22",
    "rows": 214,
    "unique": 214,
-   "written": "2026-09-29T13:52:18"
+   "written": "2026-10-01T09:16:07"
   },
   "roof_count.json": {
    "form_id": "8aa2dd78eb1f460f8f43db7935955846",
@@ -153,7 +153,7 @@
    "read_by": "populations.py",
    "rows": 725,
    "unique": 725,
-   "written": "2026-09-29T14:06:41"
+   "written": "2026-10-01T09:28:48"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
@@ -162,7 +162,7 @@
    "read_by": "populations.py",
    "rows": 918,
    "unique": 918,
-   "written": "2026-09-29T14:11:49"
+   "written": "2026-10-01T09:33:54"
   },
   "wq_results.json": {
    "form_id": "7b33c5d7e5074808a94915939a5a0783",
@@ -170,7 +170,7 @@
    "read_by": "populations.py",
    "rows": 736,
    "unique": 736,
-   "written": "2026-09-29T14:01:41"
+   "written": "2026-10-01T09:24:26"
   },
   "wq_results_piped.json": {
    "form_id": "0ac68d8274d24f54af0c28b29119b77d",
@@ -178,20 +178,20 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 45,
    "unique": 45,
-   "written": "2026-09-29T14:07:24"
+   "written": "2026-10-01T09:29:29"
   },
   "wq_sampling_piped.json": {
    "form_id": "ef8cf7353a974cf984d34860dcf2952d",
-   "newest_submitted": "2026-09-28",
+   "newest_submitted": "2026-09-16",
    "read_by": "rebuild_piped_wq.py",
    "rows": 75,
    "unique": 75,
-   "written": "2026-09-29T14:08:04"
+   "written": "2026-10-01T09:30:11"
   }
  },
- "newest_in_files": "2026-09-28",
+ "newest_in_files": "2026-10-01",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-09-29T14:12:46",
+ "pulled_at": "2026-10-01T09:34:42",
  "strays": [
   "old_combined_reparation.csv",
   "wp_lookup.csv"

@@ -61,8 +61,8 @@ GENERATED = {
     'WPOPX.pipeline': 'wpop_pipeline_figures',
     'WPOPX.runs': 'wpop_pipeline_figures',
     'WPOPX.seed': 'wpop_pipeline_figures',
-    'WPOPX.streams_as_barriers_delta': 'wpop_pipeline_figures',
-    'WPOPX.streams_as_barriers_delta_pct': 'wpop_pipeline_figures',
+    'WPOPX.no_river_barriers_delta': 'wpop_pipeline_figures',
+    'WPOPX.no_river_barriers_delta_pct': 'wpop_pipeline_figures',
 
     'SDWS26.answered_both': 'rebuild_sdws26',
     'SDWS26.approved': 'rebuild_sdws26',

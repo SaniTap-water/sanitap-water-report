@@ -10,41 +10,41 @@
     "points": 393
    }
   },
-  "file": "~/sdws1/runs/r2025a_barriers_20260930/overexclusion/barrier_overexclusion.csv",
+  "file": "~/sdws1/runs/fleet_20261001/barriers/overexclusion/barrier_overexclusion.csv",
   "people": 85982,
-  "run_on": "2026-09-30"
+  "run_on": "2026-10-01"
  },
  "generator": "tools/wpop_pipeline_figures.py",
+ "no_river_barriers_delta": 3229,
+ "no_river_barriers_delta_pct": 2.57,
  "note": "Figures from the WorldPop people-served runs that the page quotes and data/sdws1_summary_equal.json does not carry. Read from the run outputs, never re-run.",
  "pipeline": "~/sdws1/sdws1_population.py",
  "runs": {
   "barriers": {
    "equal": 125710,
-   "folder": "~/sdws1/runs/r2025a_barriers_20260930",
+   "folder": "~/sdws1/runs/fleet_20261001/barriers",
    "idw": 124966,
    "nearest": 121709,
    "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
    "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
-   "run_on": "2026-09-30"
+   "run_on": "2026-10-01"
+  },
+  "no_river_barriers": {
+   "equal": 128939,
+   "folder": "~/sdws1/runs/fleet_20261001/no_river_barriers",
+   "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
+   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+   "run_on": "2026-10-01"
   },
   "nobarriers": {
    "equal": 129018,
-   "folder": "~/sdws1/runs/r2025a_nobarriers_20260930",
+   "folder": "~/sdws1/runs/fleet_20261001/nobarriers",
    "idw": 128106,
    "nearest": 124381,
    "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
    "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
-   "run_on": "2026-09-30"
-  },
-  "streams_as_barriers": {
-   "equal": 128939,
-   "folder": "~/sdws1/runs/sens_c_20260930",
-   "raster": "mdg_pop_2025_CN_100m_R2025A_v1.tif",
-   "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
-   "run_on": "2026-09-30"
+   "run_on": "2026-10-01"
   }
  },
- "seed": null,
- "streams_as_barriers_delta": 3229,
- "streams_as_barriers_delta_pct": 2.57
+ "seed": null
 }

@@ -729,6 +729,32 @@ def main():
             _wm2 = re.search(r"\bconst WPOPMETA\s*=\s*", idx)
             if _wm2 and f'"pipeline_sha256": "{_pls}"' not in idx[_wm2.end():_wm2.end() + 4000]:
                 _bad.append("WPOPMETA does not carry the pipeline sha256")
+        # 1 Oct 2026: one method, one home. The script's sha256 must agree on the page, in the
+        # build config's pin, in the repository at the pinned commit and in the evidence folder.
+        _pin = _wp.get("pipeline") or {}
+        import hashlib as _hl2, subprocess as _sp2
+        _shas = {"build_config pin": _pin.get("script_sha256")}
+        try:
+            _blob = _sp2.run(["git", "-C", os.path.expanduser("~/sdws1"), "show",
+                              f"{_pin.get('commit')}:{_pin.get('script', 'sdws1_population.py')}"],
+                             capture_output=True, check=True).stdout
+            _shas["repository at the pinned commit"] = _hl2.sha256(_blob).hexdigest()
+        except Exception:
+            _shas["repository at the pinned commit"] = None
+        _ev = _pin.get("evidence_folder") or ""
+        _evs = os.path.join(_ev, _pin.get("script", "sdws1_population.py"))
+        _shas["evidence folder copy"] = _hl2.sha256(open(_evs, "rb").read()).hexdigest() if os.path.isfile(_evs) else None
+        _evf = _evs + ".sha256"
+        _shas["evidence folder .sha256 file"] = (open(_evf).read().split() or [None])[0] if os.path.isfile(_evf) else None
+        _wm3 = re.search(r"\bconst WPOPMETA\s*=\s*", idx_raw)
+        _pm = json.loads(idx_raw[_wm3.end():idx_raw.index("};", _wm3.end()) + 1]) if _wm3 else {}
+        _shas["page (WPOPMETA)"] = _pm.get("pipeline_sha256")
+        if len(set(_shas.values())) != 1 or None in _shas.values():
+            _bad.append("script sha256 differs or is missing: " + "; ".join(f"{k} {str(v)[:12]}" for k, v in _shas.items()))
+        if _pin.get("commit") and _pin["commit"][:7] not in idx_raw:
+            _bad.append("the page does not name the pinned commit of the method repository")
+        if _pin.get("evidence_url") and _pin["evidence_url"] not in idx_raw:
+            _bad.append("the page does not link the evidence folder")
         _sum = json.loads(read(os.path.join(repo_root, "data", "sdws1_summary_equal.json")))
         if _sum.get("raster_sha256") != _wp["raster_sha256"] or _sum.get("raster") != _wp["raster"]:
             _bad.append("raster of the run of record")

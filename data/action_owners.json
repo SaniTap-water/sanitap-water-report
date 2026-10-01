@@ -450,7 +450,7 @@
    "owner": "Adriaan Mol"
   },
   "act-sdws18-james-rulings": {
-   "deadline": null,
+   "deadline": "2026-10-16",
    "owner": "James Walker"
   },
   "act-pou-form-threshold": {
@@ -508,6 +508,10 @@
   "act-sampler-usage-survey-mode": {
    "deadline": "2026-10-23",
    "owner": "Adriaan Mol (built with Claude Code)"
+  },
+  "act-wq-incubator-sop": {
+   "deadline": "2026-10-23",
+   "owner": "Cathy Andriambololonirina (Mandie)"
   }
  },
  "orphan_rows": {
@@ -535,7 +539,7 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 59,
-   "evidence": 60,
+   "evidence": 61,
    "manual": 28
   },
   "actions": {
@@ -1325,7 +1329,7 @@
    },
    "act-sdws18-james-rulings": {
     "type": "evidence",
-    "closes_when": "James Walker's written rulings on (a) the six-month start date and (b) the missing fields",
+    "closes_when": "written reply from James answering (a) whether the six-month rule counts per pump, from its first passing test, or from the programme start of 11 Apr 2025, and (b) whether a note in the monitoring report is enough for the fields missing from the 2025 records",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-29"
@@ -1561,6 +1565,13 @@
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
+   "act-wq-incubator-sop": {
+    "type": "evidence",
+    "closes_when": "SOP section and the record of a <span class=\"mono\">24</span>-hour empty-chamber temperature run received and filed. The SOP section must cover: an independent calibrated thermometer; readings at three positions; start and end temperatures photographed on every run; a positive control on every batch; <span class=\"mono\">35</span>&nbsp;&deg;C, read at <span class=\"mono\">20</span>&ndash;<span class=\"mono\">24</span> hours",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-01"
+   },
    "act-wq-retest": {
     "type": "auto",
     "closes_when": "closes when no point carries a failed E. coli result without a retest",
@@ -1795,6 +1806,14 @@
      "date": "2026-09-27",
      "subject": "You have a reply from mWater support",
      "answer": "Replies of 26 and 27 Sep in the support conversation opened by Lanja Randriamanantena: the form carrying the “Fer &gt; 0.2 mg/l” calculation was restored from backup."
+    }
+   ],
+   "act-india-mark-cap-james": [
+    {
+     "sender": "James Walker, Carbon Lead",
+     "date": "2026-09-30",
+     "subject": "Re: Water program dashboard & actions",
+     "answer": "30 Sep 2026: James cites columns BB–BD (per trip, without trips per day); recomputed with trips: about 20 litres per person per day (median), about 80 per household. Supports 300; written confirmation requested 1 Oct 2026."
     }
    ]
   }

@@ -4293,5 +4293,18 @@
    }
   },
   "reported_after_cap": 125710
+ },
+ {
+  "on": "2026-10-01",
+  "run": "~/sdws1/runs/fleet_20261001/barriers",
+  "raster_sha256": "838c2fc72e498e6099735d712a7bbea5f9e44747bf1f676618caf381085aaade",
+  "pipeline_sha256": "2319f3e05ba4fc7a72b8de730985e09a34b38d4c1a9f3055042bcced1ff57bae",
+  "pipeline_commit": "f2e20047363fa2d3e9215bbf34a2d7415136bd5d",
+  "repin": "the method moved into the private repository SaniTap-water/sdws1-method (1 Oct 2026); the run of record is rerun at the pinned commit.",
+  "joined": [],
+  "left": [],
+  "within_2km": [],
+  "changed": {},
+  "reported_after_cap": 125710
  }
 ]

@@ -6,8 +6,8 @@ WHY THIS EXISTS
 The people-served section quotes figures the WorldPop allocation produced but
 that data/sdws1_summary_equal.json does not carry: the people the barrier clip
 excludes (27,459, of which 658 in Fort-Dauphin), the totals under the three
-ways of splitting a shared service area, and the effect of treating streams as
-barriers. They were typed into the page from the run folders, so nothing could
+ways of splitting a shared service area, and the effect of treating no river as
+a barrier. They were typed into the page from the run folders, so nothing could
 tell them from a typo - and one set of them had quietly come from the
 quarantined 2020 raster rather than the raster of record.
 
@@ -24,10 +24,12 @@ import csv, datetime, json, os, re, sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SDWS1 = os.path.expanduser("~/sdws1")
 OUT = os.path.join(REPO, "data", "wpop_pipeline_figures.json")
-# 30 Sep 2026: the full set rerun on the current fleet after the barrier split fix
-# (the 16 Sep folders r2025a_barriers / r2025a_nobarriers / sens_c are kept, not quoted)
-RUNS = {"barriers": "r2025a_barriers_20260930", "nobarriers": "r2025a_nobarriers_20260930",
-        "streams_as_barriers": "sens_c_20260930"}
+# 1 Oct 2026: every run made by SaniTap-water/sdws1-method at the commit pinned in
+# data/build_config.json (tools/run_fleet.sh). "no_river_barriers" is the run with no river
+# as a barrier (barrier_sensitivity.py variant c: coastline and canals only); until 1 Oct it
+# was keyed "streams_as_barriers", which it never was.
+RUNS = {"barriers": "fleet_20261001/barriers", "nobarriers": "fleet_20261001/nobarriers",
+        "no_river_barriers": "fleet_20261001/no_river_barriers"}
 VARIANTS = {"equal": "equal", "idw": "idw-p2", "nearest": "nearest"}
 
 
@@ -63,9 +65,9 @@ def build():
             out["runs"][key].setdefault("raster_sha256", s.get("raster_sha256"))
             out["runs"][key].setdefault(
                 "run_on", datetime.date.fromtimestamp(os.path.getmtime(p)).isoformat())
-    b, s = out["runs"]["barriers"]["equal"], out["runs"]["streams_as_barriers"]["equal"]
-    out["streams_as_barriers_delta"] = s - b
-    out["streams_as_barriers_delta_pct"] = round(100 * (s - b) / b, 2)
+    b, s = out["runs"]["barriers"]["equal"], out["runs"]["no_river_barriers"]["equal"]
+    out["no_river_barriers_delta"] = s - b
+    out["no_river_barriers_delta_pct"] = round(100 * (s - b) / b, 2)
 
     # people the barrier clip cuts off from every pump that reached them
     p = os.path.join(SDWS1, "runs", RUNS["barriers"], "overexclusion", "barrier_overexclusion.csv")

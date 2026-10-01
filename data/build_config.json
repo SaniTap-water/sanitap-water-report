@@ -23,6 +23,16 @@
   "caps": {
    "Canzee": 500,
    "IndiaMark": 300
+  },
+  "pipeline": {
+   "repo": "SaniTap-water/sdws1-method",
+   "repo_url": "https://github.com/SaniTap-water/sdws1-method",
+   "commit": "f2e20047363fa2d3e9215bbf34a2d7415136bd5d",
+   "commit_url": "https://github.com/SaniTap-water/sdws1-method/commit/f2e20047363fa2d3e9215bbf34a2d7415136bd5d",
+   "script": "sdws1_population.py",
+   "script_sha256": "2319f3e05ba4fc7a72b8de730985e09a34b38d4c1a9f3055042bcced1ff57bae",
+   "evidence_folder": "/mnt/c/Users/bushp/OneDrive - SaniTap/Central Data Hub - Water Documents/Evidence/SDWS1 people served (current method)",
+   "evidence_url": "https://sanitap.sharepoint.com/sites/CentralDataHub/Water%20Documents/Evidence/SDWS1%20people%20served%20(current%20method)"
   }
  },
  "roof_count": {

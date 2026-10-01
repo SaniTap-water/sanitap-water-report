@@ -1,6 +1,6 @@
 {
  "counts": {
-  "appel_signalement_pannes.csv": 2831,
+  "appel_signalement_pannes.csv": 2832,
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
@@ -11,7 +11,7 @@
   "identification.json": 56,
   "marolinta_borehole.json": 20,
   "piped_point_reg.json": 1,
-  "piped_system_reg.json": 1,
+  "piped_system_reg.json": 2,
   "piped_systems.csv": 25,
   "pm.csv": 761,
   "pou_survey.json": 142,
@@ -25,5 +25,5 @@
   "wq_sampling_piped.json": 75
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-09-30"
+ "recorded": "2026-10-01"
 }

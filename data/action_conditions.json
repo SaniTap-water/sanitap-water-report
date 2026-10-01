@@ -1006,10 +1006,10 @@
  },
  "act-sdws18-james-rulings": {
   "kind": "decision",
-  "question": "For the 2025 SDWS 18 round: (a) which start date the six-month rule counts from; (b) whether a note covers the kit, method, sample source and paired pump sample the records lack?",
+  "question": "For the 2025 SDWS 18 round: (a) does the six-month rule count per pump, from its first passing test, or from the programme start of 11 Apr 2025; (b) is a note in the monitoring report enough for the kit, method, sample source and paired pump sample the 2025 records lack?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "James Walker's written rulings on (a) the six-month start date and (b) the missing fields"
+  "closes_when": "written reply from James answering (a) whether the six-month rule counts per pump, from its first passing test, or from the programme start of 11 Apr 2025, and (b) whether a note in the monitoring report is enough for the fields missing from the 2025 records"
  },
  "act-pou-form-threshold": {
   "kind": "none",
@@ -1108,5 +1108,11 @@
   "says": "no closing condition the build can read: the Sampler is a separate site",
   "closure": "evidence",
   "closes_when": "the Sampler has the usage-survey mode, a dry-run draw has been tested for both scenarios, and the SOP links to it"
+ },
+ "act-wq-incubator-sop": {
+  "kind": "none",
+  "says": "no closing condition the build can read yet: the SOP section and the temperature record are checked by a person",
+  "closure": "evidence",
+  "closes_when": "SOP section and the record of a <span class=\"mono\">24</span>-hour empty-chamber temperature run received and filed. The SOP section must cover: an independent calibrated thermometer; readings at three positions; start and end temperatures photographed on every run; a positive control on every batch; <span class=\"mono\">35</span>&nbsp;&deg;C, read at <span class=\"mono\">20</span>&ndash;<span class=\"mono\">24</span> hours"
  }
 }

@@ -114,8 +114,76 @@ def pipeline_sha256():
     return sha256(PIPELINE)
 
 
+PIN = _cfg.load()["worldpop"]["pipeline"]
+
+
+def check_pipeline():
+    """The method lives in SaniTap-water/sdws1-method; the report runs it only at the
+    commit pinned in data/build_config.json, with the script unmodified (1 Oct 2026)."""
+    try:
+        head = subprocess.run(["git", "-C", SDWS1, "rev-parse", "HEAD"], capture_output=True,
+                              text=True, check=True).stdout.strip()
+        dirty = subprocess.run(["git", "-C", SDWS1, "status", "--porcelain", "--", PIN["script"]],
+                               capture_output=True, text=True, check=True).stdout.strip()
+    except Exception as e:
+        stop(f"The SDWS 1 pipeline at {SDWS1} is not the {PIN['repo']} repository ({e}), so nothing was run.")
+    if head != PIN["commit"]:
+        stop(f"The SDWS 1 pipeline is at {head[:12]}, not the pinned commit {PIN['commit'][:12]} "
+             f"of {PIN['repo']}, so nothing was run.")
+    if dirty:
+        stop(f"{PIN['script']} has local changes against the pinned commit, so nothing was run.")
+    if pipeline_sha256() != PIN["script_sha256"]:
+        stop("The pipeline script does not match the pinned sha256, so nothing was run.")
+
+
+def repin(run, reason):
+    """Adopt a rerun at a newly pinned commit whose per-point figures are identical."""
+    check_pipeline()
+    src = open(PAGE, encoding="utf8").read()
+    wi, wj, wpop = const(src, "WPOP")
+    out = os.path.join(SDWS1, "runs", run)
+    summ = json.load(open(os.path.join(out, "sdws1_summary_equal.json"), encoding="utf8"))
+    if summ.get("pipeline_sha256") != PIN["script_sha256"] or summ.get("raster_sha256") != RASTER_SHA256 \
+            or summ.get("split_failures", 1) != 0:
+        stop(f"The run {run} was not made by the pinned pipeline on the pinned raster without split failures, so it was not adopted.")
+    new = {}
+    for row in csv.DictReader(open(os.path.join(out, "sdws1_population_equal.csv"), encoding="utf8")):
+        new[row["code"]] = [int(round(float(row["allocated"]))), int(float(row["revised"])), int(float(row["cap"]))]
+    diff = [c for c in set(new) | set(wpop) if new.get(c) != wpop.get(c)]
+    if diff:
+        stop(f"The run {run} differs from the page on {len(diff)} pump(s) (first {sorted(diff)[0]}): a re-pin must "
+             "reproduce every figure exactly, so it was not adopted.")
+    prev = json.load(open(SUMMARY, encoding="utf8"))
+    today = datetime.date.today().isoformat()
+    mi, mj, meta = const(src, "WPOPMETA")
+    for pf, rf in FROM_RUN.items():
+        meta[pf] = summ[rf]
+    meta["run"] = today
+    src = src[:mi] + json.dumps(meta, ensure_ascii=False) + src[mj:]
+    open(PAGE, "w", encoding="utf8").write(src)
+    doc = dict(summ)
+    doc["_before_method_change"] = prev.get("_before_method_change")
+    doc["_copied"] = today
+    doc["_run"] = f"{run}, allocation=equal"
+    doc["_note"] = ("The WorldPop allocation run's own summary, copied verbatim from "
+                    f"~/sdws1/runs/{run}/sdws1_summary_equal.json by tools/rerun_wpop.py --repin: {reason} "
+                    "Every per-point figure is identical to the previous run of record. "
+                    "tools/check_wpopmeta.py asserts the page against this file every build.")
+    json.dump(doc, open(SUMMARY, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+    log = json.load(open(RERUN_LOG, encoding="utf8")) if os.path.isfile(RERUN_LOG) else []
+    log.append({"on": today, "run": f"~/sdws1/runs/{run}", "raster_sha256": RASTER_SHA256,
+                "pipeline_sha256": summ["pipeline_sha256"], "pipeline_commit": PIN["commit"], "repin": reason,
+                "joined": [], "left": [], "within_2km": [], "changed": {},
+                "reported_after_cap": summ["reported_after_cap"]})
+    json.dump(log, open(RERUN_LOG, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+    print(f"re-pinned to {PIN['repo']}@{PIN['commit'][:12]}: run {run}, every figure identical "
+          f"({summ['reported_after_cap']} reported after cap).")
+    return 0
+
+
 def adopt(run, reason):
     """Adopt a full rerun after a method change (see the module docstring)."""
+    check_pipeline()
     src = open(PAGE, encoding="utf8").read()
     _pi, _pj, pumps = const(src, "PUMPS")
     wi, wj, wpop = const(src, "WPOP")
@@ -172,6 +240,9 @@ def adopt(run, reason):
 
 
 def main():
+    if "--repin" in sys.argv:
+        reason = sys.argv[sys.argv.index("--reason") + 1] if "--reason" in sys.argv else "re-pin"
+        return repin(sys.argv[sys.argv.index("--repin") + 1], reason)
     if "--adopt" in sys.argv:
         i = sys.argv.index("--adopt")
         reason = sys.argv[sys.argv.index("--reason") + 1] if "--reason" in sys.argv else "method change"
@@ -192,6 +263,7 @@ def main():
         return 0
 
     what = f"{len(joined)} joining and {len(left)} leaving pump(s)"
+    check_pipeline()
     for path, label in ((PIPELINE, "the SDWS1 pipeline"), (PY, "the SDWS1 Python"),
                         (RASTER, "the R2025A raster"), (BARRIERS, "the barrier network")):
         if not os.path.exists(path):

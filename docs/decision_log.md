@@ -1833,3 +1833,33 @@ the circle cut nothing. Found by the Sampler parity check (Sampler commit 71c5cc
 - `wpop_pipeline_figures.py` now reads the 30 Sep folders; the 16 Sep folders are kept. The pipeline sha256
   is in the run summary, WPOPMETA and the provenance paragraph; check_consistency fails if the run of record
   was made by another version of the pipeline.
+
+## 1 Oct 2026 — one SDWS 1 method for the report and the UNICEF tool (Adriaan Mol)
+
+Instruction of Adriaan Mol, 1 Oct 2026 (chat).
+
+- The method lives in the private repository **SaniTap-water/sdws1-method** (`~/sdws1` under git),
+  pinned in `data/build_config.json` (`worldpop.pipeline`: commit f2e2004, script sha256 2319f3e0…).
+  Rasters, OSM extracts, point files, renders and run outputs stay out (`.gitignore`); `MANIFEST.md`
+  records their sha256 and sources. The pre-fix script is not kept anywhere. Stale copies replaced by a
+  pointer file (`POINTER-sdws1-method.md`): `Downloads\sdws1-inputs\`, `Downloads\sdws1-2026-09-15\`,
+  `Downloads\Claude outputs\` and the evidence library's `SDWS1_Population Count\World-Pop\` (whose
+  16 Sep pre-fix outputs and renders were removed; its methodology documents stay).
+- `tools/rerun_wpop.py` runs the pipeline only at the pinned commit with the script unmodified, and has
+  `--repin` (a rerun at a newly pinned commit must reproduce every per-point figure). Fleet check at the
+  pinned commit: all 745 per-point figures identical, 125,710 after caps; run of record now
+  `~/sdws1/runs/fleet_20261001/barriers`.
+- check_consistency fails unless the script sha256 is the same on the page, in the build config pin,
+  in the repository at the pinned commit, in the evidence-folder copy and in its `.sha256` file, and unless
+  the page names the commit and links the evidence folder.
+- The sensitivity keyed `streams_as_barriers` was always the no-river run (barrier_sensitivity.py
+  variant c); renamed `no_river_barriers` in data/wpop_pipeline_figures.json, its generator, the
+  registry and the page. The pipeline's own `streams_as_barriers` flag (--include-streams) is unchanged.
+- UNICEF tool: `unicef/build_points.py` writes the point rule down (latest monitoring type; valid GPS in
+  Madagascar or within 0.05° of its coast; monitoring-flagged duplicates out; 5+ points on one 5-decimal
+  coordinate out): 33,016 points against the tool's 32,996 (its 23 Sep filter was not recorded). With the
+  fixed method: 12,583,744 people within 1 km after the clip; 5,267,349 after caps; restoration pool
+  650,282 (5,022 of its 5,024 points in the set).
+- Evidence folder "SDWS1 people served (current method)" (Central Data Hub > Water Documents > Evidence):
+  README, script + sha256, MANIFEST, per-point outputs for the fleet and the UNICEF point set, summaries,
+  sensitivity runs, and `unicef-tool-data-note.md`. Linked from the provenance and the mapping rules.
