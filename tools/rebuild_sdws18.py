@@ -101,23 +101,41 @@ def register_positions():
     return out
 
 
-def first_sdws3_pass():
-    """Each point's first passing SDWS 3 result (E. coli below 1 per 100 ml)."""
-    first = {}
-    for r in P._wq_results():
+# James Walker, "Re: Water program dashboard & actions", 1 Oct 2026 09:33 UTC:
+# the six-month rule counts per pump from its installation or rehabilitation
+# date, and applies in every annual round. The date is the works record's:
+# "Date de début des travaux" on the first-rehabilitation record (a successful
+# one first), or the works date on the borehole-progress form for a point
+# built or rehabilitated there.
+Q_WORKS_DATE = "fd61cf9286954462a0fb1ab5de12e643"     # combined form, "Date de début des travaux"
+Q_BOREHOLE_DATE = "86fc2a6da162"                     # borehole-progress form, 1.2 date of works (prefix)
+
+
+def works_dates():
+    """water point -> (date, source) of the works that put it into service."""
+    succ, any_ = {}, {}
+    for r in P._combined():
+        if (r.get("status") or "final") != "final" or P._answer(r, P.Q_TYPE) != P.C_FIRST_REHAB:
+            continue
+        w = P._point_of(r)
+        d = str(val(r, Q_WORKS_DATE) or "")[:10]
+        if not (w and d[:2] == "20"):
+            continue
+        if not any_.get(w) or d < any_[w]:
+            any_[w] = d
+        if P._answer(r, P.Q_SUCCESS) == P.C_YES and (not succ.get(w) or d < succ[w]):
+            succ[w] = d
+    out = {w: (d, "first rehabilitation, successful") for w, d in succ.items()}
+    out.update({w: (d, "first rehabilitation") for w, d in any_.items() if w not in out})
+    for r in P._borehole():
         if (r.get("status") or "final") != "final":
             continue
-        data = r.get("data") or {}
-        qe = next((q for q in data if q.startswith(SDWS3_ECOLI)), None)
-        qd = next((q for q in data if q.startswith(SDWS3_RESULT_DATE)), None)
-        e = val(r, qe) if qe else None
-        if not isinstance(e, (int, float)) or e >= 1:
-            continue
-        d = str((val(r, qd) if qd else None) or r.get("submittedOn") or "")[:10]
         w = P._point_of(r)
-        if w and d and (w not in first or d < first[w]):
-            first[w] = d
-    return first
+        d = next((str((v.get("value") if isinstance(v, dict) else v) or "")[:10]
+                  for k, v in (r.get("data") or {}).items() if k.startswith(Q_BOREHOLE_DATE)), "")
+        if w and d[:2] == "20" and w not in out:
+            out[w] = (d, "borehole works")
+    return out
 
 
 def six_months_after(d):
@@ -143,8 +161,7 @@ def records():
 def build():
     pos = register_positions()
     fleet = {p["wp"] for p in P._page_pumps()}
-    first = first_sdws3_pass()
-    programme_start = min(first[w] for w in first if w in fleet)
+    works = works_dates()
     by = collections.defaultdict(list)
     for r in records():
         by[DEPLOY[r["deployment"]]].append(r)
@@ -174,8 +191,8 @@ def build():
                       "passes": val(r, Q_ECOLI) < POU_PASS_LT,
                       "comment": val(r, Q_COMMENT)}
                      for r in R if isinstance(val(r, Q_ECOLI), (int, float)) and val(r, Q_ECOLI) > 0]
-        # the six-month rule, per pump: from that pump's first passing SDWS 3 result
-        # to the first household sample taken at it
+        # the six-month rule, per pump (James Walker, 1 Oct 2026): from that pump's
+        # installation or rehabilitation date to the first household sample at it
         first_sample = {}
         for r in R:
             w, d = entity(r, "water_point"), str(val(r, Q_DATE) or "")[:10]
@@ -183,10 +200,14 @@ def build():
                 first_sample[w] = d
         per_pump = {}
         for w in wps:
-            f, s = first.get(w), first_sample.get(w)
-            ok = bool(f and s and datetime.date.fromisoformat(s) >=
-                      six_months_after(datetime.date.fromisoformat(f)))
-            per_pump[w] = {"first_sdws3_pass": f, "first_sample": s, "six_months": ok}
+            wd, src = works.get(w, (None, None))
+            s = first_sample.get(w)
+            ok = (None if not (wd and s) else
+                  datetime.date.fromisoformat(s) >= six_months_after(datetime.date.fromisoformat(wd)))
+            per_pump[w] = {"works_date": wd, "works_source": src, "first_sample": s,
+                           "days_after_works": ((datetime.date.fromisoformat(s) - datetime.date.fromisoformat(wd)).days
+                                                if wd and s else None),
+                           "six_months": ok}
         out[site] = {
             "tests": n, "first": dates[0] if dates else None, "last": dates[-1] if dates else None,
             "water_points": len(wps), "households": len(hhs),
@@ -201,9 +222,9 @@ def build():
             "positives": positives,
             "distance_median_km": round(statistics.median(dist), 2) if dist else None,
             "far_households": far,
-            "six_months_per_pump": sum(1 for v in per_pump.values() if v["six_months"]),
-            "six_months_programme": bool(dates) and datetime.date.fromisoformat(dates[0]) >=
-                six_months_after(datetime.date.fromisoformat(programme_start)),
+            "six_months_inside": sum(1 for v in per_pump.values() if v["six_months"] is True),
+            "six_months_outside": sum(1 for v in per_pump.values() if v["six_months"] is False),
+            "six_months_no_works_date": sum(1 for v in per_pump.values() if v["six_months"] is None),
             "pumps": per_pump,
         }
     rec_rows = []
@@ -231,7 +252,9 @@ def build():
         "form": FORM, "round": "2025",
         "pass_rule": {"pou_lt_per_100ml": POU_PASS_LT, "poc_eq": 0,
                       "source": "Water Quality Protocol v2.1 section 5.1; ERSDWS v2.0 section 3.2.3.2"},
-        "programme_start": programme_start,
+        "six_month_rule": {"from": "each pump's installation or rehabilitation date (works record)",
+                           "applies": "every annual round",
+                           "source": "James Walker, \"Re: Water program dashboard & actions\", 1 Oct 2026 09:33 UTC"},
         "ci_level_pct": 90,
         "far_km": FAR_KM,
         "districts": out,
@@ -256,7 +279,7 @@ def main():
         print(f"  {s}: {v['tests']} tests {v['first']}..{v['last']}, {v['water_points']} points, "
               f"{v['households']} households; pass {v['pass']} ({v['pass_pct']}%, 90% CI {v['pass_ci90']}); "
               f"0 E. coli {v['zero']} ({v['zero_pct']}%); positives {[p['ecoli'] for p in v['positives']]}; "
-              f"far {[f['km'] for f in v['far_households']]}; six months per pump {v['six_months_per_pump']} of {v['water_points']}")
+              f"far {[f['km'] for f in v['far_households']]}; six-month rule inside {v['six_months_inside']}, outside {v['six_months_outside']}, no works date {v['six_months_no_works_date']} of {v['water_points']}")
     if mode == "--write":
         open(OUT, "w", encoding="utf8").write(txt)
         print("data/sdws18.json written")

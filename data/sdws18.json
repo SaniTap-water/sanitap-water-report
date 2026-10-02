@@ -22,58 +22,79 @@
    "positives": [],
    "pumps": {
     "670401749": {
+     "days_after_works": 441,
      "first_sample": "2025-11-07",
-     "first_sdws3_pass": "2025-05-06",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-08-23",
+     "works_source": "first rehabilitation, successful"
     },
     "670401770": {
+     "days_after_works": 528,
      "first_sample": "2025-11-08",
-     "first_sdws3_pass": "2025-04-11",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-05-29",
+     "works_source": "first rehabilitation, successful"
     },
     "742893922": {
+     "days_after_works": 601,
      "first_sample": "2025-11-11",
-     "first_sdws3_pass": "2025-04-12",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-03-20",
+     "works_source": "first rehabilitation, successful"
     },
     "742894318": {
+     "days_after_works": 577,
      "first_sample": "2025-11-14",
-     "first_sdws3_pass": "2025-05-01",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-04-16",
+     "works_source": "first rehabilitation, successful"
     },
     "742894411": {
+     "days_after_works": 574,
      "first_sample": "2025-11-13",
-     "first_sdws3_pass": "2025-04-29",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-04-18",
+     "works_source": "first rehabilitation, successful"
     },
     "742894844": {
+     "days_after_works": 555,
      "first_sample": "2025-11-12",
-     "first_sdws3_pass": "2025-04-26",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-05-06",
+     "works_source": "first rehabilitation, successful"
     },
     "742894868": {
+     "days_after_works": 554,
      "first_sample": "2025-11-12",
-     "first_sdws3_pass": "2025-04-26",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-05-07",
+     "works_source": "first rehabilitation, successful"
     },
     "742895405": {
+     "days_after_works": 524,
      "first_sample": "2025-11-07",
-     "first_sdws3_pass": "2025-05-03",
-     "six_months": true
+     "six_months": true,
+     "works_date": "2024-06-01",
+     "works_source": "first rehabilitation, successful"
     },
     "742895687": {
+     "days_after_works": 518,
      "first_sample": "2025-11-05",
-     "first_sdws3_pass": "2025-05-22",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-06-05",
+     "works_source": "first rehabilitation, successful"
     },
     "742895814": {
+     "days_after_works": 518,
      "first_sample": "2025-11-06",
-     "first_sdws3_pass": "2025-05-21",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-06-06",
+     "works_source": "first rehabilitation, successful"
     }
    },
-   "six_months_per_pump": 8,
-   "six_months_programme": true,
+   "six_months_inside": 10,
+   "six_months_no_works_date": 0,
+   "six_months_outside": 0,
    "tests": 70,
    "water_points": 10,
    "zero": 70,
@@ -145,58 +166,79 @@
    ],
    "pumps": {
     "699597548": {
+     "days_after_works": 399,
      "first_sample": "2025-12-11",
-     "first_sdws3_pass": "2025-08-05",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-11-07",
+     "works_source": "first rehabilitation, successful"
     },
     "742895735": {
+     "days_after_works": 545,
      "first_sample": "2025-12-02",
-     "first_sdws3_pass": "2025-06-19",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-06-05",
+     "works_source": "first rehabilitation, successful"
     },
     "742896633": {
+     "days_after_works": 527,
      "first_sample": "2025-12-03",
-     "first_sdws3_pass": "2025-07-03",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-06-24",
+     "works_source": "first rehabilitation, successful"
     },
     "742897184": {
+     "days_after_works": 500,
      "first_sample": "2025-12-04",
-     "first_sdws3_pass": "2025-07-09",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-07-22",
+     "works_source": "first rehabilitation, successful"
     },
     "742897218": {
+     "days_after_works": 498,
      "first_sample": "2025-12-04",
-     "first_sdws3_pass": "2025-07-09",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-07-24",
+     "works_source": "first rehabilitation, successful"
     },
     "742897971": {
+     "days_after_works": 484,
      "first_sample": "2025-12-05",
-     "first_sdws3_pass": "2025-07-22",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-08-08",
+     "works_source": "first rehabilitation, successful"
     },
     "771580727": {
+     "days_after_works": 475,
      "first_sample": "2025-12-05",
-     "first_sdws3_pass": "2025-07-11",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2024-08-17",
+     "works_source": "first rehabilitation, successful"
     },
     "819378051": {
+     "days_after_works": 212,
      "first_sample": "2025-12-09",
-     "first_sdws3_pass": "2025-08-21",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2025-05-11",
+     "works_source": "first rehabilitation, successful"
     },
     "825513589": {
+     "days_after_works": 201,
      "first_sample": "2025-12-10",
-     "first_sdws3_pass": "2025-08-31",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2025-05-23",
+     "works_source": "first rehabilitation, successful"
     },
     "905251279": {
+     "days_after_works": 211,
      "first_sample": "2025-12-09",
-     "first_sdws3_pass": "2025-08-21",
-     "six_months": false
+     "six_months": true,
+     "works_date": "2025-05-12",
+     "works_source": "first rehabilitation, successful"
     }
    },
-   "six_months_per_pump": 0,
-   "six_months_programme": true,
+   "six_months_inside": 10,
+   "six_months_no_works_date": 0,
+   "six_months_outside": 0,
    "tests": 70,
    "water_points": 10,
    "zero": 67,
@@ -224,7 +266,6 @@
   "pou_lt_per_100ml": 10,
   "source": "Water Quality Protocol v2.1 section 5.1; ERSDWS v2.0 section 3.2.3.2"
  },
- "programme_start": "2025-04-11",
  "records": [
   {
    "code": "Cathy_MadAvance-DMNHBX",
@@ -2188,6 +2229,11 @@
   }
  ],
  "round": "2025",
+ "six_month_rule": {
+  "applies": "every annual round",
+  "from": "each pump's installation or rehabilitation date (works record)",
+  "source": "James Walker, \"Re: Water program dashboard & actions\", 1 Oct 2026 09:33 UTC"
+ },
  "total": {
   "pass": 140,
   "pass_ci90": [

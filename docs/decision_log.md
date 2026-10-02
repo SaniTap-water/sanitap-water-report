@@ -1934,3 +1934,34 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   v2.0 SDWS 24. No actions added; gaps listed for Adriaan to decide.
 - Extracts re-pulled 2 Oct (read-only) and the weekly rebuild steps run on them; act-moramanga-system-dedupe now
   satisfied from mWater data (duplicates resolved).
+
+## 2 Oct 2026 (b) — Asana is the editable action list; nothing closes without recorded evidence (Adriaan Mol)
+
+- **Asana holds owner, deadline and completion.** Project "H2O4CO2 - CLEAN WATER" (1209455787942089), section
+  "Weekly report actions" (1219100994717113): one task per open action, named "<act-id> — <title>", plus the
+  completed act-sdws18-james-rulings (121 tasks). Angelo NAHAVITATSARA added as a project member. Owners not in
+  Asana (Ralf, Endur'O, Gold Standard, MadAvance, Coddy, Ntsoa — the last two have workspace accounts but were
+  treated as not in Asana as instructed) are assigned to Adriaan with a first line "Owner: <name> (not in Asana)";
+  15 actions. Map in data/asana_map.json; tools/asana_setup.py is the only script that writes to Asana, and
+  re-running it creates nothing twice.
+- **The build reads Asana read-only** (tools/asana_pull.py → data/asana_pull.json) and renders owner, deadline and
+  completion from it; data/action_owners.json keeps closes-when, type, sources and the new `evidence` record.
+  A hand-added task without an act-id gets one from its name and is logged as "new from Asana".
+- **Evidence rule.** An action is closed on the page only when a build condition is satisfied this run (data, form,
+  children, artefact) or an `evidence` entry is recorded. A task completed in Asana without one shows "done in
+  Asana, evidence pending"; an author-closed action without one is reopened. Backfilled from the existing record:
+  17 decision-closed actions (data/decisions.json) and 3 hub artefacts. act-mor-re-take-gps-fix was closed with no
+  evidence ("supersedes the original action") and is reopened.
+- **Gate** tools/check_asana.py (in publish.sh): every open act-id has exactly one task; owner and deadline on the
+  page equal Asana; no action closed without evidence. Shown failing by setting act-call-no-followup's due date to
+  2026-10-30 in the local copy of the pull (1 failure), then restored (0).
+- **Reconciliation** of the 45 earlier open tasks in the project (untouched): data/asana_reconcile.csv —
+  1 duplicates, 24 overlap, 20 no match.
+- **SDWS 18.** James Walker ruled 1 Oct 2026 09:33 UTC ("Re: Water program dashboard & actions"): six months per
+  pump from installation or rehabilitation, every annual round; kit and SOP on file; no paired pump sample under
+  v1.0. The section now shows each 2025 pump's works date against its sample date (Fort-Dauphin 10 inside, 0
+  outside; Maroantsetra 10 inside, 0 outside; 0 without a works date). The "first passing test / 11 April 2025"
+  alternatives are removed. Mq,y's remaining gap moves to act-sdws18-2025-kit-sop.
+- New actions: act-sdws18-2025-kit-sop, act-call-no-followup, act-hygiene-campaign-2026, act-jmp-survey-2026,
+  act-calendar-human-sample-annual. Weekly call counts are kept in data/call_followup_history.json; the
+  two-edition closure metric is uncounted until a second week is on record.

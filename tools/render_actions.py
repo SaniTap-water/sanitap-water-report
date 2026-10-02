@@ -27,7 +27,7 @@ tools/check_consistency.py asserts that.
     python3 tools/render_actions.py --write
     python3 tools/render_actions.py --check
 """
-import collections, datetime, difflib, json, os, re, sys
+import collections, datetime, difflib, html, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # a region that differs only in prerendered figure values is not drift
@@ -126,7 +126,7 @@ def details():
     return json.load(open(p)) if os.path.isfile(p) else {}
 
 
-def actions(idx):
+def actions(idx, use_asana=True):
     out = []
     det = details()
     for aid, body in _rows_from(det):
@@ -205,6 +205,43 @@ def actions(idx):
         elif a["state"] == "OK":
             # the condition says it is not done, whatever the row claims
             a["state"] = "ACT"
+    # Evidence and Asana (2 Oct 2026). An action that no build condition can
+    # close (decision, none, a document outside the repository) is closed only
+    # when the evidence its closes-when names is recorded in
+    # data/action_owners.json ("evidence"). Asana is the source for owner,
+    # deadline and completion of every action that has a task
+    # (data/asana_pull.json, read-only at build by tools/asana_pull.py); a task
+    # completed in Asana without that evidence shows as "done in Asana,
+    # evidence pending" and stays open.
+    rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
+    evid = (rec.get("evidence") or {}).get("actions", {})
+    conds_all = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), encoding="utf8"))
+    pull = load_asana() if use_asana else {}
+    for a in out:
+        c = conds_all.get(a["id"]) or {}
+        # a condition the build itself verifies is recorded evidence: an mWater
+        # count, the form snapshot, the child steps, or a named file the build
+        # finds in the repository or the Central Data Hub listing
+        a["auto"] = c.get("kind") in ("data", "form", "children", "artefact")
+        a["evidence"] = evid.get(a["id"])
+        if not a["auto"]:
+            if a["evidence"]:
+                a["state"], a["label"] = "OK", ""
+            elif a["state"] == "OK":
+                a["state"], a["label"] = "ACT", "closed without recorded evidence: reopened"
+        t = pull.get(a["id"])
+        if t:
+            a["asana"], a["asana_gid"] = t.get("permalink"), t.get("gid")
+            a["owner"], a["lead"] = t["owner"], lead_owner(t["owner"])
+            a["from_asana"] = True
+            if t.get("due_on"):
+                a["due"] = datetime.date.fromisoformat(t["due_on"])
+                a["deadline"] = a["due"].strftime("%-d %b %Y")
+            else:
+                a["due"], a["deadline"] = None, ""
+            if t.get("completed") and a["state"] != "OK":
+                a["asana_done"] = True
+                a["label"] = "done in Asana, evidence pending"
     for a in out:
         # a date is only outstanding on something still to act on, so this is
         # recomputed after the conditions have had their say
@@ -242,6 +279,12 @@ def actions(idx):
     return out
 
 
+
+
+def load_asana():
+    """act-id -> the task as last read from Asana (data/asana_pull.json)."""
+    p = os.path.join(REPO, "data", "asana_pull.json")
+    return (json.load(open(p, encoding="utf8")) if os.path.isfile(p) else {}).get("tasks", {})
 
 
 def load_state():
@@ -451,13 +494,26 @@ def row(a, today, owner_cell=True):
                 + (f'; closed by the build on {cl["detected_closed_on"]}'
                    if cl["type"] == "auto" and cl.get("detected_closed_on") else "")
                 + '.</p>')
+    if a.get("asana") and det:
+        det += (f'<p class="asana muted" style="font-size:.85em;margin:8px 0 0"><b>Asana</b>: '
+                f'<a href="{a["asana"]}" target="_blank" rel="noopener">the task for this action</a> '
+                f'&mdash; owner, due date and completion are read from it at each build.</p>')
+    if a.get("evidence") and det:
+        e = a["evidence"]
+        det += (f'<p class="evidence muted" style="font-size:.85em;margin:8px 0 0"><b>Evidence recorded</b> '
+                f'{e.get("recorded_on") or ""}: {e.get("source") or ""}.</p>')
     body = (f'<details class="act-detail" id="{a["id"]}">'
             f'<summary>{a["title_html"]}</summary>{det}</details>'
             if det else f'<b>{a["title_html"]}</b>')
     # a retired id lands here: one anchor per redirect, in the main list only
     alias = "".join(f'<span id="{old}" class="act-alias"></span>'
                     for old, new in REDIRECTS.items() if new == a["id"]) if owner_cell else ""
-    return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"'
+    gate = (f' data-act="{a["id"]}" data-owner="{html.escape(a["owner"], quote=True)}"'
+            f' data-due="{a["due"].isoformat() if a.get("due") else ""}"'
+            + (f' data-asana="{a["asana_gid"]}"' if a.get("asana_gid") else "")
+            + (' data-evidence="1"' if a.get("evidence") else "")
+            + (' data-auto="1"' if a.get("auto") else "")) if owner_cell else ""
+    return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"{gate}'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
             f'<td>{alias}{body}'
             f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div></td>'

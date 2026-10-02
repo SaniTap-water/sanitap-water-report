@@ -93,6 +93,8 @@ STEPS = [
     ("tools/render_block.py",        ["--write"],      True),
     ("tools/render_form_freshness.py", ["--write"],    True),
     ("tools/render_ttr_table.py",    ["--write"],      True),
+    # owner, deadline and completion from the Asana section, read-only
+    ("tools/asana_pull.py",          ["--write"],      True),
     ("tools/render_actions.py",      ["--write"],      True),
     # the Endur'O block and the inlined datasets, so every figure the prose
     # quotes is reachable from the page's own data

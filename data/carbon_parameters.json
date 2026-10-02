@@ -119,8 +119,8 @@
    "population": "sdws18_pou_passing",
    "relevant": "sdws18_pou_samples",
    "owner": "Lanja Randriamanantena",
-   "action": "act-sdws18-james-rulings",
-   "gap": "Measured for 2025 from the November-December round (both districts pass). Open with James Walker: which start date the six-month rule counts from, and whether a note covers the kit, method, sample source and paired pump sample the 2025 records lack. The 2026 round needs field blanks, duplicates and a paired pump sample.",
+   "action": "act-sdws18-2025-kit-sop",
+   "gap": "Measured for 2025 from the November-December round (both districts pass). James Walker ruled on 1 Oct 2026: the six-month rule counts per pump from its installation or rehabilitation date (every 2025 sampled pump is inside it), no paired pump sample is needed under methodology v1.0, and the kit, lot numbers, method and SOP used must be filed. The 2026 round needs field blanks, duplicates and a paired pump sample.",
    "commitment": "VPA-DD B.7.1: the same instrument yields SDWS 22, SDWS 25 and SDWS 26 and carries the WHO/UNICEF JMP core questions for drinking water and hygiene (SDWS 20)."
   },
   {

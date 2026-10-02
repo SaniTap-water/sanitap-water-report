@@ -89,7 +89,7 @@ fi
 for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr_table.py \
            tools/india_mark_cap.py tools/transcription_round1.py tools/render_transcription_round1.py tools/render_reader_diagnosis.py \
            tools/call_followup.py tools/render_call_followup.py tools/rebuild_hygiene.py tools/render_hygiene.py \
-           tools/render_datasets.py tools/render_actions.py tools/render_portfolio.py \
+           tools/render_datasets.py tools/asana_pull.py tools/render_actions.py tools/render_portfolio.py \
            tools/render_piped_pairing.py tools/render_sdws18.py; do
   python3 "$gen" --write
   RC=$?
@@ -98,6 +98,17 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr
     exit 2
   fi
 done
+
+# ---- 1b. Asana gate (2 Oct 2026) ---------------------------------------------
+# Every open action has exactly one Asana task, owner and deadline on the page
+# equal Asana's, and nothing is closed without recorded evidence. The Asana
+# read above is read-only; tools/asana_setup.py is the only writer.
+python3 tools/check_asana.py
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the action list disagrees with Asana or closes an action without evidence (exit $RC)."
+  exit 1
+fi
 
 # ---- 1b. status -> action gate (30 Sep 2026) ---------------------------------
 # Every non-complete status in a requirements/evidence table names an OPEN

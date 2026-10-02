@@ -205,6 +205,17 @@ def _m11():
     return pm[-2][1] if len(pm) > 1 else 0
 
 
+@metric("calls_no_repair_7d_worst_of_two_editions",
+        "calls reporting a pump not working with no repair after 7 days, the larger of the last two weekly editions (not counted until two editions are on record)")
+def _m_call_followup():
+    hp = d("data", "call_followup_history.json")
+    hist = json.load(open(hp)) if os.path.isfile(hp) else {}
+    weeks = sorted(hist)
+    if len(weeks) < 2:
+        return None
+    return max(hist[w]["no_repair_7d"] for w in weeks[-2:])
+
+
 @metric("points_over_6_months",
         "points with no maintenance visit for more than six months")
 def _m12():

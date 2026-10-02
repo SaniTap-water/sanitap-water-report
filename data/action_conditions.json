@@ -1114,5 +1114,41 @@
   "says": "no closing condition the build can read yet: the SOP section and the temperature record are checked by a person",
   "closure": "evidence",
   "closes_when": "SOP section and the record of a <span class=\"mono\">24</span>-hour empty-chamber temperature run received and filed. The SOP section must cover: an independent calibrated thermometer; readings at three positions; start and end temperatures photographed on every run; a positive control on every batch; <span class=\"mono\">35</span>&nbsp;&deg;C, read at <span class=\"mono\">20</span>&ndash;<span class=\"mono\">24</span> hours"
+ },
+ "act-sdws18-2025-kit-sop": {
+  "kind": "decision",
+  "says": "closes when the kit, lot numbers (or a statement that none were kept), method and SOP used in Nov–Dec 2025 are filed in the SDWS 18 evidence folder",
+  "closure": "evidence",
+  "closes_when": "the kit, lot numbers (or a statement that none were kept), method and SOP used in Nov–Dec 2025 are filed in the SDWS 18 evidence folder",
+  "question": "Is the evidence on file? the kit, lot numbers (or a statement that none were kept), method and SOP used in Nov–Dec 2025 are filed in the SDWS 18 evidence folder"
+ },
+ "act-call-no-followup": {
+  "kind": "data",
+  "says": "closes when “Calls and what followed” shows 0 calls with no repair after seven days for two consecutive weekly editions",
+  "metric": "calls_no_repair_7d_worst_of_two_editions",
+  "op": "==",
+  "target": 0,
+  "when_satisfied": "OK"
+ },
+ "act-hygiene-campaign-2026": {
+  "kind": "decision",
+  "says": "closes when (1) sessions are recorded after 16 Mar 2026 at the points the agreed campaign covers; (2) 2025 attendance evidence is filed, or its absence documented; (3) the 2026 annual hygiene campaign results report is filed",
+  "closure": "evidence",
+  "closes_when": "(1) sessions are recorded after 16 Mar 2026 at the points the agreed campaign covers; (2) 2025 attendance evidence is filed, or its absence documented; (3) the 2026 annual hygiene campaign results report is filed",
+  "question": "Is the evidence on file? (1) sessions are recorded after 16 Mar 2026 at the points the agreed campaign covers; (2) 2025 attendance evidence is filed, or its absence documented; (3) the 2026 annual hygiene campaign results report is filed"
+ },
+ "act-jmp-survey-2026": {
+  "kind": "decision",
+  "says": "closes when the November 2026 Hygiene&San round is complete for both scenarios and shown against the 2025 baseline (the share of households with soap and water, as shown under Hygiene promotion and gender)",
+  "closure": "evidence",
+  "closes_when": "the November 2026 Hygiene&San round is complete for both scenarios and shown against the 2025 baseline (the share of households with soap and water, as shown under Hygiene promotion and gender)",
+  "question": "Is the evidence on file? the November 2026 Hygiene&San round is complete for both scenarios and shown against the 2025 baseline (the share of households with soap and water, as shown under Hygiene promotion and gender)"
+ },
+ "act-calendar-human-sample-annual": {
+  "kind": "decision",
+  "says": "closes when (1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology’s sampling confidence and the agreement between the readers",
+  "closure": "evidence",
+  "closes_when": "(1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology’s sampling confidence and the agreement between the readers",
+  "question": "Is the evidence on file? (1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology’s sampling confidence and the agreement between the readers"
  }
 }

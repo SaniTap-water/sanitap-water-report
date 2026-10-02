@@ -28,6 +28,7 @@ to contain the word "register" would pass. Treat a 908 PASS as "nothing obviousl
 wrong", not as proof.
 """
 import argparse, collections, datetime, json, os, re, subprocess, sys, tempfile
+import html as _html
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from exclude_retired import (RETIRED_NAME_PREFIX, KNOWN_RETIRED_CODES,  # noqa: E402
@@ -3983,6 +3984,7 @@ def main():
     NOT_A_FIGURE = {
         ("build_call_tables.py", "status_src"): "a record-type label (call / maintenance / repair), not a count",
         ("render_actions.py", "owner"): "an owner's name from the owners record, not a figure",
+        ("asana_setup.py", "due_on"): "the action's deadline date sent to its Asana task, not a figure",
         ("recompute_figures.py", "real_cells"): "written only under the retired all-cells basis, to reproduce an "
                                                "archived edition; absent from the current figures file",
     }
@@ -4183,9 +4185,16 @@ def main():
     check("owners record: deadlines are absent or ISO dates",
           not bad_dl, "ok", ", ".join(bad_dl[:3]) or "ok")
     # replaces "owner workbook: the dropdown offers only owners the report can render"
-    bad_own = [k for k, r in own_rows.items() if k in _ad_ids and r.get("owner")
+    # (2 Oct 2026) an action with an Asana task shows the task's owner (the
+    # assignee, or the "Owner: ... (not in Asana)" line); tools/check_asana.py
+    # holds the page to it. The record's owner is shown only where no task exists.
+    _apull = json.load(open(os.path.join(repo_root, "data", "asana_pull.json"), encoding="utf8")).get("tasks", {}) \
+        if os.path.isfile(os.path.join(repo_root, "data", "asana_pull.json")) else {}
+    bad_own = [k for k, r in own_rows.items() if k in _ad_ids and k not in _apull and r.get("owner")
                and (_row_html(k) is None or f"<span>{r['owner']}</span></span></td>" not in _row_html(k))]
-    check("owners record: the page shows each recorded owner on its row",
+    bad_own += [k for k in _ad_ids if k in _apull and (_row_html(k) is None or
+                f"<span>{_html.escape(_apull[k]['owner'], quote=False)}</span></span></td>" not in _row_html(k))]
+    check("owners record: the page shows each owner on its row (Asana's where the action has a task)",
           not bad_own, "all shown", ", ".join(bad_own[:3]) or "all shown")
     # replaces "owner workbook: the id column is exactly what the generator wrote"
     bad_dd = []
@@ -4211,11 +4220,11 @@ def main():
           f"{len(own_rows)} rows; SharePoint workbook retired {_ret.get('retired_on', '?')}")
     # replaces "the workbook carries nothing the build can compute"
     stray = [k for r in own_rows.values() for k in r
-             if k not in ("owner", "deadline")]
+             if k not in ("owner", "deadline", "source", "depends_on")]
     check("the owners record carries nothing the build can compute",
-          not stray, "owner + deadline only",
+          not stray, "owner, deadline, source, depends_on only",
           f"also {', '.join(sorted(set(stray))[:3])}" if stray
-          else "owner + deadline only",
+          else "owner, deadline, source, depends_on only",
           "status and closure are computed, never set by hand")
     # replaces "a workbook that cannot be read says so on the page"
     _ra = read(os.path.join(repo_root, "tools", "render_actions.py"))

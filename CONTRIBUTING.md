@@ -1067,3 +1067,16 @@ after the outermost such row (`derivAnchor`). A row expanded inside a long table
 readability rule) scrolls that box so it starts in view; the rest is reached by scrolling the box. `tools/check_panels.py` opens every panel and every
 `<details>` at 1280, 1440 and 1920 px and fails on a panel that is narrow, overlapped, clipped or that
 does not push what follows down. Both run in `publish.sh`.
+
+## Actions: Asana is the list, the repo is the evidence (2 Oct 2026)
+
+Owner, deadline and completion of every action are edited in Asana (project "H2O4CO2 - CLEAN WATER",
+section "Weekly report actions"), not in the repo. Each build runs `tools/asana_pull.py` (read-only) and
+renders from `data/asana_pull.json`. `tools/asana_setup.py` is the only script that writes to Asana — run
+it after adding an action to `data/action_details.json`, with `--complete <act-id>` to complete a task.
+The token lives in `~/.config/sanitap/asana_token`; never print or commit it.
+
+Completing a task in Asana does not close the action: the page shows "done in Asana, evidence pending"
+until the evidence its closes-when names is recorded under `evidence` in `data/action_owners.json` (or a
+build condition is satisfied). `tools/check_asana.py` fails the publish on an open action without exactly
+one task, an owner or deadline differing from Asana, or an action closed without evidence.

@@ -214,7 +214,9 @@ for _s in ("Fort-Dauphin", "Maroantsetra"):
         ("zero_pct.toFixed(1)", "sdws18_pou_samples", f"information only, not the pass rule: records with no E. coli, ${{{_d}.zero}} of the {_n} = ${{{_d}.zero_pct.toFixed(1)}}%"),
         ("zero_ci90[0].toFixed(1)", "sdws18_pou_samples", f"exact two-sided 90% interval, lower bound, for ${{{_d}.zero}} with no E. coli of the {_n}"),
         ("zero_ci90[1].toFixed(1)", "sdws18_pou_samples", f"exact two-sided 90% interval, upper bound, for ${{{_d}.zero}} with no E. coli of the {_n}"),
-        ("six_months_per_pump", "sdws18_pou_samples", f"of the ${{{_d}.water_points}} water points sampled, those whose first household sample falls at least six months after their first passing SDWS 3 result"),
+        ("six_months_inside", "sdws18_pou_samples", f"of the ${{{_d}.water_points}} water points sampled, those whose first household sample falls at least six months after the pump's installation or rehabilitation date (James Walker, 1 Oct 2026)"),
+        ("six_months_outside", "sdws18_pou_samples", f"of the ${{{_d}.water_points}} water points sampled, those whose first household sample falls less than six months after the pump's installation or rehabilitation date"),
+        ("six_months_no_works_date", "sdws18_pou_samples", f"of the ${{{_d}.water_points}} water points sampled, those with no installation or rehabilitation date in the works records"),
     ):
         D[f"{_d}.{_f}"] = dict(pop=_pop, arith="`" + _txt + "`", forms=_S18F)
 D["SDWS18.total.tests"] = dict(pop="sdws18_pou_samples", forms=_S18F,

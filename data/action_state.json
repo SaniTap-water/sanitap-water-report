@@ -3,8 +3,8 @@
  "kinds": {
   "artefact": 10,
   "children": 3,
-  "data": 47,
-  "decision": 52,
+  "data": 48,
+  "decision": 56,
   "form": 7,
   "none": 29
  },
@@ -67,12 +67,28 @@
    "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
    "when_satisfied": "OK"
   },
+  "act-calendar-human-sample-annual": {
+   "evaluated": "2026-10-02",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when (1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology\u2019s sampling confidence and the agreement between the readers",
+   "when_satisfied": "OK"
+  },
   "act-calendar-v13": {
    "evaluated": "2026-10-02",
    "evidence": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
    "kind": "none",
    "satisfied": null,
    "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
+   "when_satisfied": "OK"
+  },
+  "act-call-no-followup": {
+   "evaluated": "2026-10-02",
+   "evidence": "calls_no_repair_7d_worst_of_two_editions could not be counted this build",
+   "kind": "data",
+   "satisfied": null,
+   "says": "closes when \u201cCalls and what followed\u201d shows 0 calls with no repair after seven days for two consecutive weekly editions",
    "when_satisfied": "OK"
   },
   "act-call-service-visit": {
@@ -383,6 +399,14 @@
    "says": "closes when Gold Standard's correction or written answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
+  "act-hygiene-campaign-2026": {
+   "evaluated": "2026-10-02",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when (1) sessions are recorded after 16 Mar 2026 at the points the agreed campaign covers; (2) 2025 attendance evidence is filed, or its absence documented; (3) the 2026 annual hygiene campaign results report is filed",
+   "when_satisfied": "OK"
+  },
   "act-identify-count-institutional-premises": {
    "evaluated": "2026-10-02",
    "evidence": "no answer logged",
@@ -405,6 +429,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-jmp-survey-2026": {
+   "evaluated": "2026-10-02",
+   "evidence": "no answer logged",
+   "kind": "decision",
+   "satisfied": false,
+   "says": "closes when the November 2026 Hygiene&San round is complete for both scenarios and shown against the 2025 baseline (the share of households with soap and water, as shown under Hygiene promotion and gender)",
    "when_satisfied": "OK"
   },
   "act-make-calendar-photograph-mandatory": {
@@ -942,11 +974,20 @@
    "says": "no closing condition the build can read: the Sampler is a separate site",
    "when_satisfied": "OK"
   },
-  "act-sdws18-james-rulings": {
+  "act-sdws18-2025-kit-sop": {
    "evaluated": "2026-10-02",
    "evidence": "no answer logged",
    "kind": "decision",
    "satisfied": false,
+   "says": "closes when the kit, lot numbers (or a statement that none were kept), method and SOP used in Nov\u2013Dec 2025 are filed in the SDWS 18 evidence folder",
+   "when_satisfied": "OK"
+  },
+  "act-sdws18-james-rulings": {
+   "closed_since": "2026-10-02",
+   "evaluated": "2026-10-02",
+   "evidence": "decided 2026-10-01 by James Walker, Carbon Lead: (a) The six-month rule counts per pump from its installation or rehabilitation date, and applies in every annual round. (b) Kit and SOP details should be on file; no paired pump sample is needed under methodology v1.0.",
+   "kind": "decision",
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },

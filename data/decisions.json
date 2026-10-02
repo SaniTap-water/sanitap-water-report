@@ -218,6 +218,12 @@
    "source": "Adriaan Mol to Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", sent 30 Sep 2026 11:38",
    "logged_on": "2026-09-30",
    "logged_by": "Adriaan Mol"
+  },
+  "act-sdws18-james-rulings": {
+   "answer": "(a) The six-month rule counts per pump from its installation or rehabilitation date, and applies in every annual round. (b) Kit and SOP details should be on file; no paired pump sample is needed under methodology v1.0.",
+   "decided_by": "James Walker, Carbon Lead",
+   "decided_on": "2026-10-01",
+   "source": "James Walker, \"Re: Water program dashboard & actions\", 1 Oct 2026 09:33 UTC"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

@@ -134,6 +134,14 @@ def main():
     if write:
         open(OUT, "w", encoding="utf8").write(txt)
         print("  ->", os.path.relpath(OUT, REPO))
+        # one entry per ISO week (the weekly edition): act-call-no-followup
+        # closes on two consecutive editions with no call left unrepaired
+        hp = os.path.join(REPO, "data", "call_followup_history.json")
+        hist = json.load(open(hp, encoding="utf8")) if os.path.isfile(hp) else {}
+        y, w, _ = asof.isocalendar()
+        hist[f"{y}-W{w:02d}"] = {"asof": asof.isoformat(),
+                                 "no_repair_7d": res["windows"]["window"]["no_repair_7d"]}
+        open(hp, "w", encoding="utf8").write(json.dumps(dict(sorted(hist.items())), indent=1) + "\n")
     elif not os.path.isfile(OUT) or open(OUT, encoding="utf8").read() != txt:
         print("call_followup: data/call_followup.json is out of date (run --write)")
         return 1

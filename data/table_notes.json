@@ -246,6 +246,12 @@
    "extracted": "Extracts pulled <span data-fig=\"PULLS['hygiene.json'].pulled\"></span>; as-of date <span data-fig=\"HYG.asof\"></span>.",
    "filter": "One row per district in the scope.",
    "columns": "<b>Sessions on record</b>: all submitted sessions at managed points in the district. <b>Last session</b>: the latest visit date."
+  },
+  "sdws18six": {
+   "source": "SDWS18 on this page, from <span class=\"mono\">data/sdws18.json</span>, written by tools/rebuild_sdws18.py from the household water-quality survey <span class=\"mono\">db0bcbf2&hellip;</span> and the works records: the first-rehabilitation records on the combined works form <span class=\"mono\">86cf66ef&hellip;</span> (&ldquo;Date de d&eacute;but des travaux&rdquo;) and the borehole-progress form.",
+   "extracted": "Survey pulled <span data-fig=\"PULLS['pou_survey.json'].pulled\"></span>; works form pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
+   "filter": "Every water point sampled in the 2025 household round, by district. The rule, as ruled by James Walker on 1 Oct 2026: counted per pump from its installation or rehabilitation date, in every annual round.",
+   "columns": "<b>Installed or rehabilitated</b>: the works date, from a successful first-rehabilitation record where there is one. <b>First household sample</b>: the earliest sample at that pump in the round. <b>Days after the works</b>: between the two. <b>Six-month rule</b>: inside when the sample falls at least six months after the works."
   }
  }
 }

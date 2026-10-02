@@ -17,6 +17,7 @@ import html, json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from prerender_figures import same as _same  # noqa: E402
+import table_notes  # noqa: E402
 
 REPO = os.path.dirname(HERE)
 PAGE = os.path.join(REPO, "index.html")
@@ -57,8 +58,32 @@ def block():
             '<th>Result (pass &lt; <span data-fig="SDWS18.pass_rule.pou_lt_per_100ml"></span>)</th>'
             '<th>Enumerator comment</th><th>mWater record</th></tr></thead>')
     body = "\n".join(row(r, lt) for r in d["records"])
-    return ('\n<div class="tablewrap" style="margin-top:12px"><table data-table="sdws18rec" id="sdws18rec">'
+    return (six_month_table(d)
+            + '\n<div class="tablewrap" style="margin-top:12px"><table data-table="sdws18rec" id="sdws18rec">'
             + head + "<tbody>\n" + body + "\n</tbody></table></div>\n")
+
+
+def six_month_table(d):
+    """The six-month rule per pump (James Walker, 1 Oct 2026): the first household
+    sample at each pump against that pump's installation or rehabilitation date."""
+    rows = []
+    for site in ("Fort-Dauphin", "Maroantsetra"):
+        for w, p in sorted(d["districts"][site]["pumps"].items()):
+            b = f"SDWS18.districts['{site}'].pumps['{w}']"
+            res = ('<span class="pill ok">inside the rule</span>' if p["six_months"] is True else
+                   '<span class="pill crit">outside the rule</span>' if p["six_months"] is False else
+                   '<span class="pill na">no works date</span>')
+            rows.append(f'<tr><td>{site}</td><td class="mono">{html.escape(w)}</td>'
+                        f'<td class="num">{f"""<span data-fig="{b}.works_date"></span>""" if p["works_date"] else "&mdash;"}</td>'
+                        f'<td>{html.escape(p["works_source"] or "none on file")}</td>'
+                        f'<td class="num"><span data-fig="{b}.first_sample"></span></td>'
+                        f'<td class="num">{f"""<span data-fig="{b}.days_after_works"></span>""" if p["days_after_works"] is not None else "&mdash;"}</td>'
+                        f'<td>{res}</td></tr>')
+    return ('\n<div class="tablewrap" style="margin-top:12px"><table data-table="sdws18six" id="sdws18six">'
+            '<thead><tr><th>District</th><th>Water point</th><th class="num">Installed or rehabilitated</th>'
+            '<th>From</th><th class="num">First household sample</th><th class="num">Days after the works</th>'
+            '<th>Six-month rule</th></tr></thead><tbody>\n' + "\n".join(rows) + '\n</tbody></table></div>\n'
+            + table_notes.render("sdws18six") + "\n")
 
 
 def main():
