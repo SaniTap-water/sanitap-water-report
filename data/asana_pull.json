@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-02T15:22:35+00:00",
+ "pulled_at": "2026-10-02T16:17:05+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -935,10 +935,10 @@
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-02",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059420262",
-   "modified_at": "2026-10-02T14:55:11.558Z"
+   "modified_at": "2026-10-02T16:16:13.210Z"
   },
   "act-printed-year-meaning": {
    "gid": "1219101112069140",
@@ -954,15 +954,15 @@
   },
   "act-produce-s4-19-cl": {
    "gid": "1219101111773731",
-   "name": "Produce the list of households served by each borehole [act-produce-s4-19-cl]",
-   "title": "Produce the list of households served by each borehole",
+   "name": "Produce the database of all installed boreholes, with households served by each [act-produce-s4-19-cl]",
+   "title": "Produce the database of all installed boreholes, with households served by each",
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111773731",
-   "modified_at": "2026-10-02T14:55:14.752Z"
+   "modified_at": "2026-10-02T16:16:07.692Z"
   },
   "act-put-usage-question-live": {
    "gid": "1219101111019443",

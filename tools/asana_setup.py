@@ -16,7 +16,9 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
      source, dependencies and a link to the action on the live report;
   4. reassigns tasks held by Adriaan for an owner "not in Asana" who now is
      (Coddy, Ntsoa, Endur'O), removing that first description line;
-  5. completes the tasks of actions named with --complete.
+  5. completes the tasks of actions named with --complete;
+  6. --retitle renames named tasks to their title in data/action_owners.json,
+     and --section-top moves the section above the project's first section.
 
 Idempotent: data/asana_map.json maps act-id to task gid, and a task already in
 the section whose name starts with the act-id is adopted rather than
@@ -220,6 +222,10 @@ def main():
     g.add_argument("--dry-run", action="store_true")
     g.add_argument("--write", action="store_true")
     ap.add_argument("--complete", nargs="*", default=[])
+    ap.add_argument("--retitle", nargs="*", default=[],
+                    help="rename these act-ids' tasks to '<title> [act-id]' from data/action_owners.json")
+    ap.add_argument("--section-top", action="store_true",
+                    help="move the section 'Weekly report actions' above the project's first section")
     a = ap.parse_args()
     info = action_info()
     open_ids = [k for k, v in info.items() if v["state"] in ("ACT", "WATCH")]
@@ -287,6 +293,16 @@ def main():
         A.put(f"/tasks/{gid}", {"name": new_name})
     if renames:
         print(f"  renamed {len(renames)} task(s)")
+    for k in a.retitle:
+        A.put(f"/tasks/{amap['tasks'][k]}", {"name": task_name(info[k]["title"], k)})
+        print(f"  retitled {k}: {info[k]['title']!r}")
+    if a.section_top:
+        order = [x["gid"] for x in A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})]
+        if order[0] != amap["section"]:
+            A.post(f"/projects/{A.PROJECT}/sections/insert",
+                   {"section": amap["section"], "before_section": order[0]})
+        after = A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})
+        print("  sections now: " + " | ".join(x["name"] for x in after))
     for k in a.complete:
         A.put(f"/tasks/{amap['tasks'][k]}", {"completed": True})
         print(f"  completed {k}")

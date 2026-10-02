@@ -2003,3 +2003,16 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   Donné, 1 Oct 2026; commit 8abf684; data/transcriptions/) transcribed 83, 73 confirmed after cleaning. Evidence
   recorded; Asana task completed. The metric transcription_sheets_done read only the transcription page's own
   store (0) and now also counts round 1.
+
+## 2 Oct 2026 (e) — section first in Asana; household pass rule closed; installation database retitled (Adriaan Mol)
+
+- "Weekly report actions" moved above "Suivi des recommandations/Mision Maro/10-2025" (sections/insert,
+  via `tools/asana_setup.py --section-top`); nothing else in the project changed.
+- act-pou-form-threshold closed on evidence: Lanja Randriamanantena, "RE: PoU form updated again (piped
+  water)…", 1 Oct 2026 14:44 UTC — J1 already applies the protocol rule (a household sample with 5 E. coli per
+  100 ml shows "Pass – PoU", a source sample with 5 "Fail – PoC"); only the disabled old question 8 checked
+  against 0; the 2025 records stay as entered. The action had assumed the live field checked against 0.
+- act-produce-s4-19-cl retitled "Produce the database of all installed boreholes, with households served by
+  each" (was "Produce the list of households served by each borehole"), on Gold Standard's clarification
+  request CL#2: "Full installation database (till date) with number of households under each specific
+  borehole/system shall be uploaded on GS Assurance Platform." Closes-when and detail now say the same.

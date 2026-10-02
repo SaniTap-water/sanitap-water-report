@@ -521,7 +521,7 @@
   "says": "closes when the installation database file exists",
   "where": "sharepoint",
   "closure": "evidence",
-  "closes_when": "the installation database (households per borehole, to a stated cut-off) is filed in Water Documents"
+  "closes_when": "the installation database (every borehole and system installed to date, with the number of households under each, as Gold Standard's clarification request CL#2 asks) is filed in Water Documents"
  },
  "act-put-current-methodology-vpa": {
   "kind": "artefact",

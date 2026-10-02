@@ -440,7 +440,7 @@
   "act-produce-s4-19-cl": {
    "deadline": "2026-10-31",
    "owner": "Adriaan, submitted by James Walker",
-   "title": "Produce the list of households served by each borehole"
+   "title": "Produce the database of all installed boreholes, with households served by each"
   },
   "act-put-current-methodology-vpa": {
    "deadline": "2026-09-30",
@@ -1415,7 +1415,7 @@
    },
    "act-produce-s4-19-cl": {
     "type": "evidence",
-    "closes_when": "the installation database (households per borehole, to a stated cut-off) is filed in Water Documents",
+    "closes_when": "the installation database (every borehole and system installed to date, with the number of households under each, as Gold Standard's clarification request CL#2 asks) is filed in Water Documents",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -2253,6 +2253,13 @@
     "what": "transcription round 1: calendars transcribed by a person, at or above the 50 the closes-when names",
     "source": "Dieu Donné Razafimahatratra (MadAvance MERV), releves_calendriers_dieu-donne_serie1_2026-10-01.csv (sha256 8fb8317d…): 83 calendars, 73 after cleaning; round-1 comparison with Adriaan Mol and the machine reader, commit 8abf684; data/transcriptions/round1_resume.md",
     "summary": "83 calendars transcribed (73 confirmed after cleaning, 15,738 days); human-to-human agreement and the machine comparison reported in the round-1 summary. The machine reader failed validation and is withdrawn; the annual human-read sample continues under act-calendar-human-sample-annual."
+   },
+   "act-pou-form-threshold": {
+    "recorded_on": "2026-10-02",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "Lanja's written confirmation that the household water test form's pass field (J1) already applies the protocol rule",
+    "source": "Lanja Randriamanantena, \"RE: PoU form updated again (piped water)…\", 1 Oct 2026, 14:44 UTC",
+    "summary": "J1 already applies the protocol rule: a household sample with 5 E. coli per 100 ml shows \"Pass – PoU\"; a source sample with 5 shows \"Fail – PoC\". Only the disabled old question 8 checked against 0, and the 2025 records stay as entered."
    }
   }
  }
