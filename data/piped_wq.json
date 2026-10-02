@@ -92,7 +92,7 @@
   ],
   "managed_kiosk_wq_results": 0,
   "points_registered": 1,
-  "points_registered_draft": 0,
+  "points_registered_draft": 1,
   "systems_registered": 0,
   "systems_registered_draft": 1,
   "taps_bound": 0,
@@ -101,7 +101,7 @@
  },
  "pairing": {
   "after_days": 7,
-  "as_of": "2026-09-29",
+  "as_of": "2026-10-02",
   "baseline": {
    "result_list": [
     {
@@ -339,34 +339,25 @@
   "flagged": {
    "date_mismatch": 0,
    "earlier_project_record": 0,
-   "outside_protocol": 1,
+   "outside_protocol": 0,
    "result_without_sample": 0,
    "sample_without_result": 0
   },
-  "flagged_total": 1,
+  "flagged_total": 0,
   "flags": {
    "date_mismatch": [],
    "earlier_project_record": [],
-   "outside_protocol": [
-    {
-     "day": "2026-09-28",
-     "point": null,
-     "pre_completion": true,
-     "sample": "Cathy_MadAvance-EGKYJV",
-     "system": "1108783662",
-     "why": "sample at system level (no water point, 1.1b)"
-    }
-   ],
+   "outside_protocol": [],
    "result_without_sample": [],
    "sample_without_result": []
   },
-  "outside_protocol": 1,
+  "outside_protocol": 0,
   "paired": 0,
   "paired_with_gps": 0,
   "paired_with_photo": 0,
   "pairs": [],
   "pre_completion": {
-   "outside_protocol": 1,
+   "outside_protocol": 0,
    "paired": 0,
    "samples": 0
   },
@@ -374,9 +365,9 @@
   "protocol_live_day": "2026-09-22",
   "results": 0,
   "rule": "a result pairs with the most recent unpaired sample at the same water point (result 1.2b = sample 1.1b) taken within 72 h before the result was submitted; each sample pairs once",
-  "samples": 1,
+  "samples": 0,
   "samples_pending": 0,
-  "samples_pulled": "2026-09-29",
+  "samples_pulled": "2026-10-02",
   "sampling_form": "ef8cf7353a974cf984d34860dcf2952d",
   "window_hours": 72
  },
@@ -396,7 +387,7 @@
   "systems": 0,
   "tap_recorded": 0
  },
- "pulled": "2026-09-29",
+ "pulled": "2026-10-02",
  "responses": 45,
  "status_counts": {
   "in_process": 4,

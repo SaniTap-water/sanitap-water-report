@@ -1,0 +1,157 @@
+{
+ "note": "Written by tools/rebuild_hygiene.py: hygiene-promotion sessions and the JMP-question survey on water points in the managed register, by the point's district.",
+ "asof": "2026-10-02",
+ "since_12m": "2025-10-02",
+ "window_months": 12,
+ "forms": {
+  "sessions": {
+   "file": "hygiene.json",
+   "form_id": "283c5670de82489d833e986cb76a67d8",
+   "name": "Clean Water || Formation et Suivi promotion de l'hygiène",
+   "pulled": true,
+   "responses": 108,
+   "first": "2026-01-13",
+   "last": "2026-03-16",
+   "outside_managed": 2
+  },
+  "jmp_survey": {
+   "file": "hygiene_san.json",
+   "form_id": "209cc5fc24e24463aff702c11b6bd18f",
+   "name": "Clean Water || project Hygiene&San || Survey",
+   "pulled": true,
+   "responses": 413,
+   "first": "2025-11-11",
+   "last": "2025-11-21",
+   "outside_managed": 0
+  },
+  "cbn_gender": {
+   "file": "cbn_gender.json",
+   "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
+   "name": "Clean Water || Project Cbn&Gender || Survey",
+   "pulled": true,
+   "responses": 413,
+   "first": "2025-11-11",
+   "last": "2025-11-21"
+  }
+ },
+ "by_site": {
+  "Fort-Dauphin": {
+   "sessions": 27,
+   "sessions_12m": 27,
+   "points_12m": 27,
+   "points_ever": 27,
+   "fleet": 128,
+   "male": 321,
+   "female": 427,
+   "with_counts": 27,
+   "gender_sessions": 5,
+   "mhm_sessions": 8,
+   "first": "2026-01-28",
+   "last": "2026-03-13"
+  },
+  "Maroantsetra": {
+   "sessions": 79,
+   "sessions_12m": 79,
+   "points_12m": 78,
+   "points_ever": 78,
+   "fleet": 604,
+   "male": 832,
+   "female": 1201,
+   "with_counts": 79,
+   "gender_sessions": 28,
+   "mhm_sessions": 71,
+   "first": "2026-01-13",
+   "last": "2026-03-12"
+  },
+  "Marolinta": {
+   "sessions": 0,
+   "sessions_12m": 0,
+   "points_12m": 0,
+   "points_ever": 0,
+   "fleet": 13,
+   "male": 0,
+   "female": 0,
+   "with_counts": 0,
+   "gender_sessions": 0,
+   "mhm_sessions": 0,
+   "first": null,
+   "last": null
+  }
+ },
+ "months": {
+  "2026-01": {
+   "Fort-Dauphin": 5,
+   "Maroantsetra": 21,
+   "Marolinta": 0
+  },
+  "2026-02": {
+   "Fort-Dauphin": 12,
+   "Maroantsetra": 43,
+   "Marolinta": 0
+  },
+  "2026-03": {
+   "Fort-Dauphin": 10,
+   "Maroantsetra": 15,
+   "Marolinta": 0
+  }
+ },
+ "years": {
+  "2025": {
+   "Fort-Dauphin": {
+    "sessions": 0,
+    "points": 0,
+    "jmp_n": 208,
+    "jmp_basic": 0,
+    "jmp_first": "2025-11-11",
+    "jmp_last": "2025-11-21"
+   },
+   "Maroantsetra": {
+    "sessions": 0,
+    "points": 0,
+    "jmp_n": 202,
+    "jmp_basic": 8,
+    "jmp_first": "2025-11-11",
+    "jmp_last": "2025-11-21"
+   },
+   "Marolinta": {
+    "sessions": 0,
+    "points": 0,
+    "jmp_n": 0,
+    "jmp_basic": 0,
+    "jmp_first": null,
+    "jmp_last": null
+   }
+  },
+  "2026": {
+   "Fort-Dauphin": {
+    "sessions": 27,
+    "points": 27,
+    "jmp_n": 0,
+    "jmp_basic": 0,
+    "jmp_first": null,
+    "jmp_last": null
+   },
+   "Maroantsetra": {
+    "sessions": 79,
+    "points": 78,
+    "jmp_n": 0,
+    "jmp_basic": 0,
+    "jmp_first": null,
+    "jmp_last": null
+   },
+   "Marolinta": {
+    "sessions": 0,
+    "points": 0,
+    "jmp_n": 0,
+    "jmp_basic": 0,
+    "jmp_first": null,
+    "jmp_last": null
+   }
+  }
+ },
+ "sites": [
+  "Fort-Dauphin",
+  "Maroantsetra",
+  "Marolinta"
+ ]
+}

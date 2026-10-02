@@ -541,7 +541,7 @@ def block(idx, today=None):
     F = lambda k: f'<span data-fig="ACTN.{k}"></span>'   # noqa: E731
 
     out = [
-        '<section data-scopes="all mad madx mar enduro" id="actions">',
+        '<section data-scopes="all mad madx mar enduro" id="actions" data-programme-wide="1">',
         '  <div class="sechead"><div><h2>Actions &mdash; the one list</h2>'
         '<p>Every open item in this report, in one place. Open a row for the '
         'detail; there is no second list to keep in step with this one. '

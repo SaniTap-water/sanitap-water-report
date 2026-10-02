@@ -88,6 +88,7 @@ fi
 # build if a region and its generator disagree.
 for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr_table.py \
            tools/india_mark_cap.py tools/transcription_round1.py tools/render_transcription_round1.py tools/render_reader_diagnosis.py \
+           tools/call_followup.py tools/render_call_followup.py tools/rebuild_hygiene.py tools/render_hygiene.py \
            tools/render_datasets.py tools/render_actions.py tools/render_portfolio.py \
            tools/render_piped_pairing.py tools/render_sdws18.py; do
   python3 "$gen" --write
@@ -161,6 +162,22 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   RC=${PIPESTATUS[0]}
   if [ "$RC" -ne 0 ]; then
     say "ABORT: the layout acceptance test failed (exit $RC)."
+    exit 1
+  fi
+  say ""
+  say "checking that every provenance panel follows the scope buttons ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_provenance.py | tail -12
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a provenance panel does not match its figure, or names a source its scope does not use (exit $RC)."
+    exit 1
+  fi
+  say ""
+  say "opening every panel and expanding block at 1280, 1440 and 1920 px ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_panels.py | tail -12
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: a panel or expanding block overlaps, is clipped or does not push the content down (exit $RC)."
     exit 1
   fi
   say ""

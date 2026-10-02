@@ -1913,3 +1913,24 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   2,787 t / 3,015 t / 25,121 t) survive only in archived editions, which are left as issued.
 - Reader diagnosed and partly fixed (v3); validation does not pass; no full re-run, nothing published
   from it. Detail in docs/transcription_round_notes.md. Read-only on mWater.
+
+## 2 Oct 2026 — provenance follows the scope; panels at full width; calls and what followed; hygiene and gender (Adriaan Mol)
+
+- **Provenance.** Panels split hand-pump + Endur'O figures by scope (MadAvance alone; the Endur'O manual file
+  alone; MadAvance + Endur'O = total, each with source and date). Before the fix, 6 tile × scope pairs were wrong:
+  "water points in scope" and "people served" under MadAvance — all and MadAvance excl. Marolinta described the
+  Endur'O manual file ("covers both: 125,710"), and under All SaniTap showed no MadAvance + Endur'O sum. Across the
+  whole page, 648 panel failures in the first check (tools/check_provenance.py) → 0. Partner cards, the smart
+  meter, the estate note's Endur'O sentence and the stove-overlap section now carry their own scopes; the action
+  list, register trace, carbon data gaps and data-quality notes are marked programme-wide. Gate shown failing by
+  making the composite arithmetic print total + 1 (8 failures), then restored.
+- **Layout.** Panels open beneath their card row at full width (derivAnchor); table-cell panels open in a
+  full-width row (after row spans, pinned to the visible width of a scrolling table); a row expanded inside a long
+  table's 60vh scroll box scrolls that box to bring itself into view (the readability rule keeps the box). tools/check_panels.py at 1280/1440/1920: 983 distinct failures on the old
+  placement → 0.
+- **Calls and what followed** (tools/call_followup.py, data/call_followup.json): table under the activity tiles.
+- **Hygiene promotion and gender** (tools/rebuild_hygiene.py, data/hygiene.json): new section; the Hygiene&San
+  survey (209cc5fc…) is now pulled (hygiene_san.json). Obligation quoted from ERSDWS v1.0 SDWS 20, the VPA-DD and
+  v2.0 SDWS 24. No actions added; gaps listed for Adriaan to decide.
+- Extracts re-pulled 2 Oct (read-only) and the weekly rebuild steps run on them; act-moramanga-system-dedupe now
+  satisfied from mWater data (duplicates resolved).

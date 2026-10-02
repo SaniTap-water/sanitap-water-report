@@ -1042,3 +1042,28 @@ all round-1 calendars **and** on the held-out (even-numbered) ones. `tools/recom
 registrations are cached in `~/sdws1/calendar_extract/v3_cache`). It is not in the build loop; rerun
 it when the reader or the transcriptions change. Days operational stand at the registered 347 days
 either way; the only operational evidence shown is the human transcription, labelled as a sample.
+
+## Provenance panels follow the scope buttons, and open at full width (1 Oct 2026)
+
+**Scope.** Every "How this figure is produced" panel says which scope it is in. A figure that adds
+Endur'O's hand-entered figure to the hand pumps (`agg(HP).x + (SCOPES[SCOPE].enduro ? ENDURO.y : 0)`)
+is split into its parts by the page (`scopeComposite`): MadAvance alone, the Endur'O manual file alone,
+or *MadAvance + Endur'O = total* with each source and date, according to what the scope covers. The
+Endur'O manual-file derivation is never chosen in a scope without Endur'O. Partner-specific blocks
+carry their own `data-scopes` (the partner cards, the smart-meter panel, the Endur'O sentence in the
+estate note), which `applyScope` now honours on any element. Sections that are the same in every
+scope (the action list, the register trace, the carbon data gaps, the data-quality notes) are marked
+`data-programme-wide`, and their panels say "programme-wide" instead of pretending to follow the
+buttons. Every panel's arithmetic arrives at the value its own expression gives.
+
+`tools/check_provenance.py` builds the panel of every live figure in all five scopes and fails on a
+panel whose arithmetic does not arrive at the figure, one that names a source its scope does not use,
+a composite without the sum in a scope with both partners, or a panel with no scope row.
+
+**Layout.** A panel opens at full width beneath its card or card row and pushes the content down: a
+figure in a table cell opens in a full-width row under that row (after any row-spanning cell, pinned to
+the visible width of a sideways-scrolling table); a figure inside a grid or a row of flex cards opens
+after the outermost such row (`derivAnchor`). A row expanded inside a long table's 60vh scroll box (the
+readability rule) scrolls that box so it starts in view; the rest is reached by scrolling the box. `tools/check_panels.py` opens every panel and every
+`<details>` at 1280, 1440 and 1920 px and fails on a panel that is narrow, overlapped, clipped or that
+does not push what follows down. Both run in `publish.sh`.

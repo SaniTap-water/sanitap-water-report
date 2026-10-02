@@ -4,10 +4,10 @@
   "appel_signalement_pannes.csv": {
    "form": "call-centre",
    "form_id": "c08b3fe26d0f42c084074701f29eb75e",
-   "newest_submitted": "2026-10-01",
-   "rows": 2832,
-   "unique": 2832,
-   "written": "2026-10-01T09:18:45"
+   "newest_submitted": "2026-10-02",
+   "rows": 2833,
+   "unique": 2833,
+   "written": "2026-10-02T15:49:06"
   },
   "baseline_moramanga.json": {
    "form_id": "3ef4385a619244c7ad129169ac1ec71f",
@@ -15,7 +15,7 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 331,
    "unique": 331,
-   "written": "2026-10-01T09:32:36"
+   "written": "2026-10-02T16:04:24"
   },
   "cbn_gender.json": {
    "form_id": "2eeb86824b4545eca33db9e7cf7dcbd4",
@@ -23,7 +23,7 @@
    "read_by": "populations.py",
    "rows": 414,
    "unique": 414,
-   "written": "2026-10-01T09:28:01"
+   "written": "2026-10-02T15:58:47"
   },
   "combined_rehab.json": {
    "form_id": "86cf66efdd3749dd8a121314bab3675a",
@@ -31,16 +31,16 @@
    "read_by": "populations.py",
    "rows": 1688,
    "unique": 1688,
-   "written": "2026-10-01T09:23:07"
+   "written": "2026-10-02T15:53:08"
   },
   "enduro_points.csv": {
    "entity_type": "water_point",
    "group": "group:c305b9b85f41417387b553d9a33c795b",
    "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the managed group and walked in 90-day windows",
    "read_by": "moramanga_dedupe.py",
-   "rows": 182,
-   "unique": 182,
-   "written": "2026-10-01T09:34:42"
+   "rows": 184,
+   "unique": 184,
+   "written": "2026-10-02T16:06:42"
   },
   "first_rehab_current.json": {
    "form_id": "63747997e70e478fbb2ebf71581ceeb0",
@@ -48,7 +48,7 @@
    "read_by": "populations.py",
    "rows": 0,
    "unique": 0,
-   "written": "2026-10-01T09:27:16"
+   "written": "2026-10-02T15:57:56"
   },
   "forage_moramanga.csv": {
    "form": "marolinta-borehole-progress",
@@ -56,7 +56,7 @@
    "newest_submitted": "2026-08-29",
    "rows": 20,
    "unique": 20,
-   "written": "2026-10-01T09:22:07"
+   "written": "2026-10-02T15:52:11"
   },
   "hygiene.json": {
    "form_id": "283c5670de82489d833e986cb76a67d8",
@@ -64,15 +64,23 @@
    "read_by": "populations.py",
    "rows": 108,
    "unique": 108,
-   "written": "2026-10-01T09:25:09"
+   "written": "2026-10-02T15:55:36"
+  },
+  "hygiene_san.json": {
+   "form_id": "209cc5fc24e24463aff702c11b6bd18f",
+   "newest_submitted": "2025-11-21",
+   "read_by": "rebuild_hygiene.py",
+   "rows": 413,
+   "unique": 413,
+   "written": "2026-10-02T15:59:36"
   },
   "identification.json": {
    "form_id": "198b016d72af41baa2608a8c9c35f8cb",
-   "newest_submitted": "2026-09-25",
+   "newest_submitted": "2026-10-01",
    "read_by": "populations.py",
-   "rows": 56,
-   "unique": 56,
-   "written": "2026-10-01T09:25:52"
+   "rows": 57,
+   "unique": 57,
+   "written": "2026-10-02T15:56:25"
   },
   "marolinta_borehole.json": {
    "form_id": "8764843c94484f5b984078c68f13b2ca",
@@ -80,23 +88,23 @@
    "read_by": "populations.py",
    "rows": 20,
    "unique": 20,
-   "written": "2026-10-01T09:26:32"
+   "written": "2026-10-02T15:57:14"
   },
   "piped_point_reg.json": {
    "form_id": "8a3af50ceec84cda85d454d96079991d",
    "newest_submitted": "2026-09-26",
    "read_by": "rebuild_piped_wq.py",
-   "rows": 1,
-   "unique": 1,
-   "written": "2026-10-01T09:31:43"
+   "rows": 2,
+   "unique": 2,
+   "written": "2026-10-02T16:03:29"
   },
   "piped_system_reg.json": {
    "form_id": "44044e27c0f24cc4a432a38b09886684",
    "newest_submitted": null,
    "read_by": "rebuild_piped_wq.py",
-   "rows": 2,
-   "unique": 2,
-   "written": "2026-10-01T09:30:53"
+   "rows": 3,
+   "unique": 3,
+   "written": "2026-10-02T16:02:43"
   },
   "piped_systems.csv": {
    "entity_type": "water_system",
@@ -105,15 +113,15 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 25,
    "unique": 25,
-   "written": "2026-10-01T09:34:18"
+   "written": "2026-10-02T16:06:11"
   },
   "pm.csv": {
    "form": "preventive-maintenance",
    "form_id": "de26d89a5c8a4452b42158c622be20d0",
-   "newest_submitted": "2026-09-28",
-   "rows": 761,
-   "unique": 761,
-   "written": "2026-10-01T09:14:34"
+   "newest_submitted": "2026-10-02",
+   "rows": 763,
+   "unique": 763,
+   "written": "2026-10-02T15:44:11"
   },
   "pou_survey.json": {
    "form_id": "db0bcbf2e7ea44b280aed653a715553e",
@@ -121,7 +129,7 @@
    "read_by": "populations.py",
    "rows": 142,
    "unique": 142,
-   "written": "2026-10-01T09:33:21"
+   "written": "2026-10-02T16:05:14"
   },
   "premiere_rehabilitation.csv": {
    "form": "premiere-rehabilitation",
@@ -129,23 +137,23 @@
    "newest_submitted": null,
    "rows": 0,
    "unique": 0,
-   "written": "2026-10-01T09:20:17"
+   "written": "2026-10-02T15:50:38"
   },
   "repair.json": {
    "form_id": "958b4763788348d699e7d8c5821f92ee",
-   "newest_submitted": "2026-09-22",
+   "newest_submitted": "2026-10-02",
    "read_by": "populations.py",
-   "rows": 214,
-   "unique": 214,
-   "written": "2026-10-01T09:23:44"
+   "rows": 217,
+   "unique": 217,
+   "written": "2026-10-02T15:54:04"
   },
   "reparation_apres_panne.csv": {
    "form": "repair-after-breakdown",
    "form_id": "958b4763788348d699e7d8c5821f92ee",
-   "newest_submitted": "2026-09-22",
-   "rows": 214,
-   "unique": 214,
-   "written": "2026-10-01T09:16:07"
+   "newest_submitted": "2026-10-02",
+   "rows": 217,
+   "unique": 217,
+   "written": "2026-10-02T15:45:46"
   },
   "roof_count.json": {
    "form_id": "8aa2dd78eb1f460f8f43db7935955846",
@@ -153,16 +161,16 @@
    "read_by": "populations.py",
    "rows": 725,
    "unique": 725,
-   "written": "2026-10-01T09:28:48"
+   "written": "2026-10-02T16:00:30"
   },
   "wp_madavance.csv": {
    "entity_type": "water_point",
    "group": "group:aaaf0a14e4ce44eaa7a2bcfd1c74aa56",
    "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the managed group and walked in 90-day windows",
    "read_by": "populations.py",
-   "rows": 918,
-   "unique": 918,
-   "written": "2026-10-01T09:33:54"
+   "rows": 919,
+   "unique": 919,
+   "written": "2026-10-02T16:05:47"
   },
   "wq_results.json": {
    "form_id": "7b33c5d7e5074808a94915939a5a0783",
@@ -170,7 +178,7 @@
    "read_by": "populations.py",
    "rows": 736,
    "unique": 736,
-   "written": "2026-10-01T09:24:26"
+   "written": "2026-10-02T15:54:53"
   },
   "wq_results_piped.json": {
    "form_id": "0ac68d8274d24f54af0c28b29119b77d",
@@ -178,22 +186,23 @@
    "read_by": "rebuild_piped_wq.py",
    "rows": 45,
    "unique": 45,
-   "written": "2026-10-01T09:29:29"
+   "written": "2026-10-02T16:01:14"
   },
   "wq_sampling_piped.json": {
    "form_id": "ef8cf7353a974cf984d34860dcf2952d",
    "newest_submitted": "2026-09-16",
    "read_by": "rebuild_piped_wq.py",
-   "rows": 75,
-   "unique": 75,
-   "written": "2026-10-01T09:30:11"
+   "rows": 77,
+   "unique": 77,
+   "written": "2026-10-02T16:01:58"
   }
  },
- "newest_in_files": "2026-10-01",
+ "newest_in_files": "2026-10-02",
  "note": "These are the ONLY filenames the build reads. A pull that writes anywhere else changes nothing and still looks like a success - that is how 21 September's repairs.csv was lost.",
- "pulled_at": "2026-10-01T09:34:42",
+ "pulled_at": "2026-10-02T16:06:42",
  "strays": [
   "old_combined_reparation.csv",
+  "tana_kiosk_diagnostic_2026-10-02.csv",
   "wp_lookup.csv"
  ]
 }

@@ -222,6 +222,30 @@
    "extracted": "Round-<span class=\"mono\">1</span> transcriptions exported <span class=\"mono\">28 Sep</span> and <span class=\"mono\">1 Oct 2026</span>; v2 output of the <span class=\"mono\">30 Sep 2026</span> run; v3 run on <span class=\"mono\">1 Oct 2026</span>.",
    "filter": "Days inside each sheet&rsquo;s observed window on the round-<span class=\"mono\">1</span> calendars both humans confirmed and the machine reads. <b>All calendars</b>: every one; <b>held-out calendars</b>: the even-numbered ones, which played no part in choosing v3&rsquo;s threshold. A day the machine reads ? is left out.",
    "columns": "<b>Both-X days found</b>: days both humans marked X that the reader also reads X. <b>Sensitivity</b>: that share. <b>Specificity</b>: of the days both read blank, the share the reader reads blank. <b>&kappa;</b>: agreement corrected for chance. The last two columns take each human alone as the reference."
+  },
+  "callfollow": {
+   "source": "CALLF on this page, from <span class=\"mono\">data/call_followup.json</span>, written by tools/call_followup.py from the call-centre form <span class=\"mono\">c08b3fe2&hellip;</span>, the preventive-maintenance form <span class=\"mono\">de26d89a&hellip;</span> and the repair form <span class=\"mono\">958b4763&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['appel_signalement_pannes.csv'].pulled\"></span>; as-of date <span data-fig=\"CALLF.asof\"></span>, the activity tiles&rsquo; own.",
+   "filter": "Managed pumps a submitted call reported down, or partially working for a reason other than a routine service request, in the last <span data-fig=\"CALLF.windows.window.days\"></span> days; one row per pump, from its first such call in the window.",
+   "columns": "<b>Call</b>: the date of that call, linked to the record. <b>Next record</b>: the first submitted repair or preventive visit after the call, with days elapsed. <b>Next repair</b>: the first repair after the call. <b>Repaired in time</b>: a repair within <span data-fig=\"CALLF.followup_days\"></span> days of the call, none after that, or a call too recent to say."
+  },
+  "hyg-months": {
+   "source": "HYG on this page, from <span class=\"mono\">data/hygiene.json</span>, written by tools/rebuild_hygiene.py from the hygiene-promotion form <span class=\"mono\">283c5670&hellip;</span> and the annual Hygiene&amp;San survey <span class=\"mono\">209cc5fc&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['hygiene.json'].pulled\"></span>; as-of date <span data-fig=\"HYG.asof\"></span>.",
+   "filter": "Submitted sessions on water points in the managed register, in the districts the scope covers, by month of the visit date; months with none are shown.",
+   "columns": "<b>Sessions</b>: hygiene-promotion sessions recorded that month."
+  },
+  "hyg-years": {
+   "source": "HYG on this page, from <span class=\"mono\">data/hygiene.json</span>, written by tools/rebuild_hygiene.py from the hygiene-promotion form <span class=\"mono\">283c5670&hellip;</span> and the annual Hygiene&amp;San survey <span class=\"mono\">209cc5fc&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['hygiene.json'].pulled\"></span>; as-of date <span data-fig=\"HYG.asof\"></span>.",
+   "filter": "Each calendar year, the districts the scope covers. Survey households: submitted Hygiene&amp;San responses at a managed point where the handwashing place could be asked about (community households, permission given).",
+   "columns": "<b>Sessions</b>, <b>Water points reached</b>: sessions recorded and distinct managed points they were held at. <b>JMP survey households</b>: households asked the JMP core hygiene questions. <b>With basic hygiene</b>: share with a handwashing place observed with water and soap. <b>Meets the obligation</b>: at least one session and a JMP-question survey that year."
+  },
+  "hyg-last": {
+   "source": "HYG on this page, from <span class=\"mono\">data/hygiene.json</span>, written by tools/rebuild_hygiene.py from the hygiene-promotion form <span class=\"mono\">283c5670&hellip;</span> and the annual Hygiene&amp;San survey <span class=\"mono\">209cc5fc&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['hygiene.json'].pulled\"></span>; as-of date <span data-fig=\"HYG.asof\"></span>.",
+   "filter": "One row per district in the scope.",
+   "columns": "<b>Sessions on record</b>: all submitted sessions at managed points in the district. <b>Last session</b>: the latest visit date."
   }
  }
 }

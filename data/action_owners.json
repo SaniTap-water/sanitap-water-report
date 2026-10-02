@@ -1043,8 +1043,8 @@
    "act-moramanga-system-dedupe": {
     "type": "auto",
     "closes_when": "closes when Endur'O's three accidental duplicates are gone from mWater or marked decommissioned or disposed, and every other duplicate carries a resolution note",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-02",
     "first_seen": "2026-09-28"
    },
    "act-move-stroke-test-sop": {
@@ -1233,7 +1233,7 @@
     "type": "auto",
     "closes_when": "closes when the extract on this page is level with mWater",
     "closed": true,
-    "detected_closed_on": "2026-09-21",
+    "detected_closed_on": "2026-10-02",
     "first_seen": "2026-09-21"
    },
    "act-rehab-recording": {

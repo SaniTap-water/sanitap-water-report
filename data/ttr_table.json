@@ -3,7 +3,7 @@
   "max": 55,
   "mean": 4.8,
   "median": 1,
-  "n": 189,
+  "n": 190,
   "p90": 16
  },
  "by_quarter": {
@@ -34,6 +34,13 @@
    "median": 3,
    "n": 29,
    "p90": 9
+  },
+  "2026 Q4": {
+   "max": 7,
+   "mean": 7,
+   "median": 7,
+   "n": 1,
+   "p90": 7
   }
  },
  "by_site": {
@@ -48,7 +55,7 @@
    "max": 49,
    "mean": 3.9,
    "median": 1,
-   "n": 134,
+   "n": 135,
    "p90": 9
   },
   "Points outside the managed register": {
@@ -61,8 +68,8 @@
  },
  "facts": {
   "completed_on_submission": 145,
-  "points": 145,
-  "same_day_notification_pct": 70,
+  "points": 146,
+  "same_day_notification_pct": 69,
   "zero_or_one_day_pct": 61
  },
  "note": "Time to repair on the live repair form, final responses with both dates; written by tools/render_ttr_table.py."

@@ -1,5 +1,5 @@
 {
- "counted": "2026-10-01",
+ "counted": "2026-10-02",
  "metrics": {
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -14,7 +14,7 @@
   "downs_without_repair": {
    "says": "managed pumps reported down to the call centre since 1 March with no repair record since",
    "source": "local",
-   "value": 31
+   "value": 29
   },
   "duplicate_question_codes": {
    "says": "question codes reused inside a single mWater form",
@@ -24,7 +24,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 13
+   "value": 14
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -34,12 +34,12 @@
   "enduro_points_total": {
    "says": "water points in Endur'O's mWater group",
    "source": "mWater",
-   "value": 182
+   "value": 184
   },
   "enduro_points_without_system": {
    "says": "water points in Endur'O's mWater group with no parent water system set",
    "source": "mWater",
-   "value": 178
+   "value": 180
   },
   "enduro_sites_outside_mwater": {
    "says": "Endur'O managed sites not yet represented in mWater (not computable: 'NoneType' object has no attribute 'group')",
@@ -124,7 +124,7 @@
   "moramanga_duplicates_unresolved": {
    "says": "duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note",
    "source": "local",
-   "value": 3
+   "value": 0
   },
   "moramanga_systems_without_standpost": {
    "says": "of the four Moramanga systems, those with no public standpost registered as a Distribution Point on the scheme",
@@ -179,7 +179,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 476
+   "value": 475
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -244,7 +244,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 36
+   "value": 37
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

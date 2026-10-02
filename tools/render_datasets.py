@@ -83,6 +83,10 @@ SETS = {
     # the calendar reader against round 1, and the publication gate it feeds
     # (tools/reader_validation.py, tools/reader_gate.py)
     "RVAL": ("data", "reader_validation.json"),
+    # calls that reported a pump not working, and what followed (tools/call_followup.py)
+    "CALLF": ("data", "call_followup.json"),
+    # hygiene promotion and gender, by district (tools/rebuild_hygiene.py)
+    "HYG": ("data", "hygiene.json"),
     # the 2025 household water-quality round, SDWS 18 (tools/rebuild_sdws18.py)
     "SDWS18": ("data", "sdws18.json"),
     # the PROPOSED India Mark cap per pump (tools/india_mark_cap.py): shown

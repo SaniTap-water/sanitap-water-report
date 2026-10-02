@@ -3777,9 +3777,10 @@ def main():
           not re.search(r'<img[^>]+src="https?://[^"]*logo', idx, re.I), "none",
           "none" if not re.search(r'<img[^>]+src="https?://[^"]*logo', idx, re.I)
           else "HOT-LINKED", "assets/ is the source")
+    # partner cards may carry their own data-scopes (1 Oct 2026)
+    _pb = len(re.findall(r'<div class="partner"[ >]', idx))
     check("each partner has its own block",
-          idx.count('<div class="partner">') == 3, "3 blocks",
-          f"{idx.count(chr(60) + 'div class=' + chr(34) + 'partner' + chr(34) + '>')} blocks",
+          _pb == 3, "3 blocks", f"{_pb} blocks",
           "SaniTap, MadAvance, Endur'O")
     check("the Endur'O reconciliation is folded in, not a section of its own",
           "The Endur&rsquo;O estate, reconciled &mdash; three lists" in idx

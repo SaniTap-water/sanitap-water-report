@@ -50,6 +50,10 @@ JSON_FORMS = {
     "first_rehab_current.json": "63747997e70e478fbb2ebf71581ceeb0",
     # the annual monitoring survey: SDWS 26 usage, SDWS 25 household size
     "cbn_gender.json": "2eeb86824b4545eca33db9e7cf7dcbd4",
+    # the annual hygiene and sanitation survey (JMP core hygiene questions:
+    # handwashing place, water and soap observed) - the SDWS 24 impact
+    # assessment, read by tools/rebuild_hygiene.py (1 Oct 2026)
+    "hygiene_san.json": "209cc5fc24e24463aff702c11b6bd18f",
     # the beneficiary roof count per water point - PUMPS.benef is computed
     # from it every build (tools/rebuild_pump_inputs.py)
     "roof_count.json": "8aa2dd78eb1f460f8f43db7935955846",
@@ -81,7 +85,8 @@ READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
            "piped_systems.csv": "rebuild_piped_wq.py",
            "piped_system_reg.json": "rebuild_piped_wq.py",
            "piped_point_reg.json": "rebuild_piped_wq.py",
-           "baseline_moramanga.json": "rebuild_piped_wq.py"}
+           "baseline_moramanga.json": "rebuild_piped_wq.py",
+           "hygiene_san.json": "rebuild_hygiene.py"}
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
 # Entity extracts: name -> (entity type, managed-by group). The register is

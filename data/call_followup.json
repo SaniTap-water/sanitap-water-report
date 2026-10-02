@@ -1,0 +1,703 @@
+{
+ "note": "Written by tools/call_followup.py. Pumps a call reported not working (down, or partially working for a reason other than a routine service request), first qualifying call per pump in each window, and the next submitted repair or preventive-maintenance record after it in mWater.",
+ "asof": "2026-10-02",
+ "followup_days": 7,
+ "windows": {
+  "week": {
+   "days": 7,
+   "from_excl": "2026-09-25",
+   "to": "2026-10-02",
+   "calls": [
+    {
+     "wp": "699597407",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-28",
+     "call_rid": "1e0b88b234b74dd4951cf7ef3c8a6e6b",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-10-02",
+      "rid": "40ac740feea5484cbb2902e564beb64a",
+      "days": 4
+     },
+     "next_repair": {
+      "date": "2026-10-02",
+      "rid": "40ac740feea5484cbb2902e564beb64a",
+      "days": 4
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742893922",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-28",
+     "call_rid": "c3aa09ed5937460b9ca0b240ed0cad10",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "833033253",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-01",
+     "call_rid": "6a3d942db8514eea9487e01dd942d513",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "670401691",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-10-02",
+     "call_rid": "c0cc3daf23c64bcd862a2314fff7d7c0",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    }
+   ],
+   "pm_visits": [
+    {
+     "wp": "698771983",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "ef245bbb92644b52b3b15471af20536e"
+    },
+    {
+     "wp": "742896011",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "2abe847bfff34ec9be8af06819cf82d1"
+    },
+    {
+     "wp": "742896028",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "6c530bb7f8e44b61aa152f474bde444d"
+    },
+    {
+     "wp": "814009107",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "7fa12d424e6645d7a0c01fdcbab37715"
+    },
+    {
+     "wp": "833032702",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "c8954dedc0f74f7989105b2b84fac9d4"
+    },
+    {
+     "wp": "698771196",
+     "site": "Maroantsetra",
+     "date": "2026-10-02",
+     "rid": "242cd97162b845d59f90b9f66cb2cdf8"
+    }
+   ],
+   "pumps_called": 4,
+   "pm_records": 6,
+   "pumps_visited": 6,
+   "overlap": [],
+   "overlap_n": 0,
+   "no_repair_7d": 0,
+   "repaired_7d": 1,
+   "not_yet_due": 3,
+   "nothing_after": 3
+  },
+  "window": {
+   "days": 28,
+   "from_excl": "2026-09-04",
+   "to": "2026-10-02",
+   "calls": [
+    {
+     "wp": "742893867",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-06",
+     "call_rid": "a2fd17e8b954469ca40ba169f06e35d2",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-07",
+      "rid": "cd305fbfa3804de0813a55aca5f7f266",
+      "days": 1
+     },
+     "next_repair": {
+      "date": "2026-09-07",
+      "rid": "cd305fbfa3804de0813a55aca5f7f266",
+      "days": 1
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742893953",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-06",
+     "call_rid": "887ffe30354f4535818a92e172f80f0a",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-07",
+      "rid": "3d16d40d016c407599688805686f6e47",
+      "days": 1
+     },
+     "next_repair": {
+      "date": "2026-09-07",
+      "rid": "3d16d40d016c407599688805686f6e47",
+      "days": 1
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742897720",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-07",
+     "call_rid": "28c40aa3865341b2bd7be7beaca8ddef",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-10",
+      "rid": "bd3b1c6b6c6540dea5fd94096027763e",
+      "days": 3
+     },
+     "next_repair": {
+      "date": "2026-09-10",
+      "rid": "bd3b1c6b6c6540dea5fd94096027763e",
+      "days": 3
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "670401990",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-08",
+     "call_rid": "abca5ecbfb1048d18247b8a47c3854dc",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-10",
+      "rid": "97efb74829964e6e8ac0b979bce05f92",
+      "days": 2
+     },
+     "next_repair": {
+      "date": "2026-09-10",
+      "rid": "97efb74829964e6e8ac0b979bce05f92",
+      "days": 2
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "698795345",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-08",
+     "call_rid": "d1cfaa6f2ce2419dbc43352224172134",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-11",
+      "rid": "51e2d0b9dd284ee895d22c9894ab7d4b",
+      "days": 3
+     },
+     "next_repair": {
+      "date": "2026-09-11",
+      "rid": "51e2d0b9dd284ee895d22c9894ab7d4b",
+      "days": 3
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742894033",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-08",
+     "call_rid": "5dfb7a192f164c97ba95208ff874a90c",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-08",
+      "rid": "bfe7336e0e0f4955b6f6b522adb2656e",
+      "days": 0
+     },
+     "next_repair": {
+      "date": "2026-09-08",
+      "rid": "bfe7336e0e0f4955b6f6b522adb2656e",
+      "days": 0
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742894655",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-08",
+     "call_rid": "f4ed007f477b44359a1cff19e2b18596",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-14",
+      "rid": "b5c5e1789db140c19418974de0eec174",
+      "days": 6
+     },
+     "next_repair": {
+      "date": "2026-09-14",
+      "rid": "b5c5e1789db140c19418974de0eec174",
+      "days": 6
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742895168",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-08",
+     "call_rid": "823647dbbc224136829b8ca3a4b412a7",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-10",
+      "rid": "7319a5df3d5d401a8083a3ef8a9e8b88",
+      "days": 2
+     },
+     "next_repair": {
+      "date": "2026-09-10",
+      "rid": "7319a5df3d5d401a8083a3ef8a9e8b88",
+      "days": 2
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "786865303",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-08",
+     "call_rid": "f9897219a387465691015daff6069d8a",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742897672",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-10",
+     "call_rid": "a1b77a918e1948bbabb2594e4e1ad3ef",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-10",
+      "rid": "fca3d4e4275342919228beee5e542ae5",
+      "days": 0
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-10",
+      "rid": "fca3d4e4275342919228beee5e542ae5",
+      "days": 0
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "698771983",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-14",
+     "call_rid": "98571a184fcc4656bf41acc88a8d8778",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-28",
+      "rid": "ef245bbb92644b52b3b15471af20536e",
+      "days": 14
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-28",
+      "rid": "ef245bbb92644b52b3b15471af20536e",
+      "days": 14
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742896011",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-14",
+     "call_rid": "1f93ffacb1b24e74953a61a1c17b0944",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-28",
+      "rid": "2abe847bfff34ec9be8af06819cf82d1",
+      "days": 14
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-28",
+      "rid": "2abe847bfff34ec9be8af06819cf82d1",
+      "days": 14
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742896028",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-14",
+     "call_rid": "e013d8bbbe914517b223fa39f8539304",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-28",
+      "rid": "6c530bb7f8e44b61aa152f474bde444d",
+      "days": 14
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-28",
+      "rid": "6c530bb7f8e44b61aa152f474bde444d",
+      "days": 14
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742896743",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-15",
+     "call_rid": "37b6ea41fe2c495ba36f746ff6b947e2",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-22",
+      "rid": "91d02cba69464eb681e53d2131ee7edf",
+      "days": 7
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-22",
+      "rid": "91d02cba69464eb681e53d2131ee7edf",
+      "days": 7
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742897964",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-15",
+     "call_rid": "9e8d55abd56a457688e7ca10f6cd37c8",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "794587460",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-16",
+     "call_rid": "b3b15c0202b04330ba65b4a56471a621",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-22",
+      "rid": "c35803f705794b168e2b55ed42fbde82",
+      "days": 6
+     },
+     "next_repair": {
+      "date": "2026-09-22",
+      "rid": "c35803f705794b168e2b55ed42fbde82",
+      "days": 6
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "670401770",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-18",
+     "call_rid": "f7009970d0b54a17a1ceed76addea2c9",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "742895869",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-21",
+     "call_rid": "117a30c7d1f744efb6574b608cd21d7f",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-09-22",
+      "rid": "298966535d084c389d82e51abf5c0270",
+      "days": 1
+     },
+     "next_repair": {
+      "date": "2026-09-22",
+      "rid": "298966535d084c389d82e51abf5c0270",
+      "days": 1
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "833032702",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-21",
+     "call_rid": "b9b90ad8263f42e49321aec0b8e641a4",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-28",
+      "rid": "c8954dedc0f74f7989105b2b84fac9d4",
+      "days": 7
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-28",
+      "rid": "c8954dedc0f74f7989105b2b84fac9d4",
+      "days": 7
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "814009107",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-22",
+     "call_rid": "33aa2ea8649c449aacb5eb1475018682",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-09-28",
+      "rid": "7fa12d424e6645d7a0c01fdcbab37715",
+      "days": 6
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-09-28",
+      "rid": "7fa12d424e6645d7a0c01fdcbab37715",
+      "days": 6
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "698771196",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-24",
+     "call_rid": "a8ca69738f364953b7028c5f20eaa706",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-10-02",
+      "rid": "242cd97162b845d59f90b9f66cb2cdf8",
+      "days": 8
+     },
+     "next_repair": null,
+     "next_pm": {
+      "date": "2026-10-02",
+      "rid": "242cd97162b845d59f90b9f66cb2cdf8",
+      "days": 8
+     },
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "699596925",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-24",
+     "call_rid": "7a4a6e2adf2846d99b47523e7c9e064e",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-10-02",
+      "rid": "fa720bc14e37483da1b92e1440f7337e",
+      "days": 8
+     },
+     "next_repair": {
+      "date": "2026-10-02",
+      "rid": "fa720bc14e37483da1b92e1440f7337e",
+      "days": 8
+     },
+     "next_pm": null,
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "774001555",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-24",
+     "call_rid": "e1a8089fa2a74c3d9202786eb131ef70",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "no repair after 7 days"
+    },
+    {
+     "wp": "699597407",
+     "site": "Maroantsetra",
+     "call_date": "2026-09-28",
+     "call_rid": "1e0b88b234b74dd4951cf7ef3c8a6e6b",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": {
+      "kind": "repair",
+      "date": "2026-10-02",
+      "rid": "40ac740feea5484cbb2902e564beb64a",
+      "days": 4
+     },
+     "next_repair": {
+      "date": "2026-10-02",
+      "rid": "40ac740feea5484cbb2902e564beb64a",
+      "days": 4
+     },
+     "next_pm": null,
+     "flag": "repaired within 7 days"
+    },
+    {
+     "wp": "742893922",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-09-28",
+     "call_rid": "c3aa09ed5937460b9ca0b240ed0cad10",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "833033253",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-01",
+     "call_rid": "6a3d942db8514eea9487e01dd942d513",
+     "status": "partial",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "670401691",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-10-02",
+     "call_rid": "c0cc3daf23c64bcd862a2314fff7d7c0",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    }
+   ],
+   "pm_visits": [
+    {
+     "wp": "742897672",
+     "site": "Maroantsetra",
+     "date": "2026-09-10",
+     "rid": "fca3d4e4275342919228beee5e542ae5"
+    },
+    {
+     "wp": "742895948",
+     "site": "Maroantsetra",
+     "date": "2026-09-11",
+     "rid": "9cd3347cb46d4ad4972d47b91f329a63"
+    },
+    {
+     "wp": "742896743",
+     "site": "Maroantsetra",
+     "date": "2026-09-22",
+     "rid": "91d02cba69464eb681e53d2131ee7edf"
+    },
+    {
+     "wp": "698771983",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "ef245bbb92644b52b3b15471af20536e"
+    },
+    {
+     "wp": "742896011",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "2abe847bfff34ec9be8af06819cf82d1"
+    },
+    {
+     "wp": "742896028",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "6c530bb7f8e44b61aa152f474bde444d"
+    },
+    {
+     "wp": "814009107",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "7fa12d424e6645d7a0c01fdcbab37715"
+    },
+    {
+     "wp": "833032702",
+     "site": "Maroantsetra",
+     "date": "2026-09-28",
+     "rid": "c8954dedc0f74f7989105b2b84fac9d4"
+    },
+    {
+     "wp": "698771196",
+     "site": "Maroantsetra",
+     "date": "2026-10-02",
+     "rid": "242cd97162b845d59f90b9f66cb2cdf8"
+    }
+   ],
+   "pumps_called": 27,
+   "pm_records": 9,
+   "pumps_visited": 9,
+   "overlap": [
+    "698771196",
+    "698771983",
+    "742896011",
+    "742896028",
+    "742896743",
+    "742897672",
+    "814009107",
+    "833032702"
+   ],
+   "overlap_n": 8,
+   "no_repair_7d": 13,
+   "repaired_7d": 11,
+   "not_yet_due": 3,
+   "nothing_after": 7
+  }
+ }
+}

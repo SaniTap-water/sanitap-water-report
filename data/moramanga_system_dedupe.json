@@ -1,15 +1,15 @@
 {
- "retired_in_mwater": [],
+ "retired_in_mwater": [
+  "1108783569",
+  "1108783631",
+  "1108783655"
+ ],
  "accidental": [
   "1108783569",
   "1108783631",
   "1108783655"
  ],
- "accidental_open": [
-  "1108783569",
-  "1108783631",
-  "1108783655"
- ],
+ "accidental_open": [],
  "wrong_parent": [],
  "wrong_parent_n": 0,
  "note": "Written by tools/moramanga_dedupe.py from ~/mwater-exports/piped_systems.csv, ~/mwater-exports/piped_point_reg.json and the dated 3 km snapshot data/moramanga_system_history.json (all read only). Only 'resolutions' is edited by hand: resolutions {code: {resolution, date, source}}, decisions, interim_points and the dated permissions read. A duplicate that leaves the extract is resolved in mWater.",
@@ -861,12 +861,8 @@
   }
  ],
  "duplicates": 7,
- "unresolved": 3,
- "unresolved_codes": [
-  "1108783569",
-  "1108783631",
-  "1108783655"
- ],
+ "unresolved": 0,
+ "unresolved_codes": [],
  "nearby": 11,
  "resolved_by_absence": [],
  "resolved_other_organisation": [
