@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-02T14:21:53+00:00",
+ "pulled_at": "2026-10-02T14:43:12+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -238,13 +238,13 @@
   "act-enduro-link-wp-systems": {
    "gid": "1219100995254721",
    "name": "act-enduro-link-wp-systems — Set the parent water system on Endur’O water points in mWater.",
-   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995254721",
-   "modified_at": "2026-10-02T13:41:32.445Z"
+   "modified_at": "2026-10-02T14:41:52.474Z"
   },
   "act-enduro-move-register-fully": {
    "gid": "1219100936889481",
@@ -260,13 +260,13 @@
   "act-enduro-onboard-2-register-sites": {
    "gid": "1219101110601508",
    "name": "act-enduro-onboard-2-register-sites — Endur’O onboarding: register every managed Endur’O site with the System and Distribution Point forms.",
-   "owner": "Coddy with Jan",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110601508",
-   "modified_at": "2026-10-02T13:41:37.194Z"
+   "modified_at": "2026-10-02T14:41:54.863Z"
   },
   "act-enduro-onboard-5-calibration": {
    "gid": "1219101110593068",
@@ -293,13 +293,13 @@
   "act-enduro-onboard-7-piped-sdws27": {
    "gid": "1219100937427920",
    "name": "act-enduro-onboard-7-piped-sdws27 — Endur’O onboarding: piped maintenance, repair and days-not-operational records in mWater — the SDWS 27 evidence.",
-   "owner": "Coddy with Jan",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937427920",
-   "modified_at": "2026-10-02T13:41:44.301Z"
+   "modified_at": "2026-10-02T14:41:57.065Z"
   },
   "act-enduro-people-source": {
    "gid": "1219101110893755",
@@ -689,13 +689,13 @@
   "act-moramanga-register-standposts": {
    "gid": "1219101270051092",
    "name": "act-moramanga-register-standposts — Register every Moramanga public standpost as a water point (Distribution Point) linked to its system of record: existing systems now, new systems at commissioning.",
-   "owner": "Endur’O (Coddy), with Lanja Randriamanantena (MadAvance IT) for mWater",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270051092",
-   "modified_at": "2026-10-02T13:43:09.167Z"
+   "modified_at": "2026-10-02T14:41:58.894Z"
   },
   "act-move-stroke-test-sop": {
    "gid": "1219101059142366",
@@ -1140,24 +1140,24 @@
   "act-tana-baseline-survey": {
    "gid": "1219101270910232",
    "name": "act-tana-baseline-survey — Run the carbon baseline survey around the Antananarivo urban kiosks.",
-   "owner": "Endur’O (Coddy Velonizy, Ntsoa Ranaivoson)",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270910232",
-   "modified_at": "2026-10-02T13:44:42.651Z"
+   "modified_at": "2026-10-02T14:42:00.786Z"
   },
   "act-tana-jirama-licence-filed": {
    "gid": "1219101107423207",
    "name": "act-tana-jirama-licence-filed — File the licence from JIRAMA (Jiro sy Rano Malagasy, the national water and electricity utility) covering the Antananarivo kiosk network centrally.",
-   "owner": "Endur’O (Coddy Velonizy)",
-   "assignee_gid": "1132514258683237",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107423207",
-   "modified_at": "2026-10-02T13:44:45.001Z"
+   "modified_at": "2026-10-02T14:42:03.998Z"
   },
   "act-transcription-round": {
    "gid": "1219101112472220",

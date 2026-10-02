@@ -1965,3 +1965,18 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - New actions: act-sdws18-2025-kit-sop, act-call-no-followup, act-hygiene-campaign-2026, act-jmp-survey-2026,
   act-calendar-human-sample-annual. Weekly call counts are kept in data/call_followup_history.json; the
   two-edition closure metric is uncounted until a second week is on record.
+
+## 2 Oct 2026 (c) — Coddy Velonizy and Ntsoa Ranaivoson own their Endur'O actions in Asana (Adriaan Mol)
+
+- tools/asana_setup.py owner map: Coddy Velonizy (1209012876322233, "IT Assistant") and Ntsoa Ranaivoson
+  (1211301105253477, Endur'O director) added, and both made project members. "Endur'O (<person>)" is that
+  person (the first named when two are); "Endur'O" with no person named is assigned to Coddy and keeps
+  "Owner: Endur'O" as the first description line. The build reads the same map (tools/asana_pull.py imports it).
+- Reassigned from Adriaan to Coddy, "Owner: … (not in Asana)" line removed and the owner as written kept
+  lower in the description: act-enduro-link-wp-systems (Endur'O, no person: keeps "Owner: Endur'O"),
+  act-enduro-onboard-2-register-sites, act-enduro-onboard-7-piped-sdws27, act-moramanga-register-standposts,
+  act-tana-baseline-survey (Coddy and Ntsoa both named; Coddy first), act-tana-jirama-licence-filed.
+- Still with Adriaan (owner not in Asana): MadAvance, 6 (act-close-eight-2-2, act-confirm-india-mark-capacity,
+  act-identify-count-institutional-premises, act-point-use-round-one, act-sdws26-approve-2025,
+  act-transcription-round); Ralf van Veenendaal (Curtech), 3 (act-enduro-onboard-5-calibration,
+  act-ralf-meter-install-register, act-ralf-shopkeeper-waterpoint-link).

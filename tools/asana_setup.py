@@ -3,7 +3,8 @@
 writes to Asana; every build reads it read-only (tools/asana_pull.py).
 
 Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
-  1. adds Angelo NAHAVITATSARA (1207774235226712) as a member if he is not one;
+  1. adds Angelo NAHAVITATSARA, Coddy Velonizy and Ntsoa Ranaivoson as members
+     if they are not;
   2. creates the section "Weekly report actions" if it does not exist;
   3. creates one task per OPEN action on the report (state ACT or WATCH, as
      tools/render_actions.py computes it), named "<act-id> — <title>", due on the
@@ -11,7 +12,9 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
      workspace and to Adriaan otherwise, with a description that starts
      "Owner: <name> (not in Asana)" in that case and gives the closes-when, type,
      source, dependencies and a link to the action on the live report;
-  4. completes the tasks of actions named with --complete.
+  4. reassigns tasks held by Adriaan for an owner "not in Asana" who now is
+     (Coddy, Ntsoa, Endur'O), removing that first description line;
+  5. completes the tasks of actions named with --complete.
 
 Idempotent: data/asana_map.json maps act-id to task gid, and a task already in
 the section whose name starts with the act-id is adopted rather than
@@ -30,8 +33,13 @@ MAP = os.path.join(REPO, "data", "asana_map.json")
 ANGELO = "1207774235226712"
 ADRIAAN = "1132514258683237"
 # owner (first name on the report) -> Asana user gid, workspace sanitap.org.
-# Coddy and Ntsoa have workspace accounts but are treated as not in Asana, as
-# instructed on 2 Oct 2026; Ralf, Endur'O, MadAvance and Gold Standard are not users.
+# Coddy Velonizy ("IT Assistant", coddy@madavance.org) and Ntsoa Ranaivoson
+# (Endur'O director) added 2 Oct 2026 (second pass). An owner "Endur'O" with a
+# person in brackets is that person; "Endur'O" with no person named is assigned
+# to Coddy and keeps "Owner: Endur'O" as the first line of the description.
+# Ralf, MadAvance and Gold Standard are not users: assigned to Adriaan.
+CODDY = "1209012876322233"
+NTSOA = "1211301105253477"
 PEOPLE = {"jan": ("1209565438602753", "Jan de Graaf"),
           "angelo": (ANGELO, "Angelo Nahavitatsara"),
           "lanja": ("1206894470435125", "Lanja Randriamanantena"),
@@ -39,22 +47,41 @@ PEOPLE = {"jan": ("1209565438602753", "Jan de Graaf"),
           "james": ("1213895542888866", "James Walker"),
           "amede": ("1210706024318014", "Amédé Rafidimanantsoa"),
           "amédé": ("1210706024318014", "Amédé Rafidimanantsoa"),
-          "adriaan": (ADRIAAN, "Adriaan Mol")}
+          "adriaan": (ADRIAAN, "Adriaan Mol"),
+          "coddy": (CODDY, "Coddy Velonizy"),
+          "ntsoa": (NTSOA, "Ntsoa Ranaivoson")}
 NAME_OF = {gid: name for gid, name in PEOPLE.values()}
+MEMBERS = [ANGELO, CODDY, NTSOA]
+ENDURO_LINE = "Owner: Endur'O"
+
+
+def _first(word):
+    return re.sub(r"[^a-zé]", "", word.lower())
 
 
 def match_owner(owner):
-    """-> (assignee gid, canonical name or None, owner text when not in Asana)."""
+    """-> (assignee gid, canonical name or None, owner text when not in Asana,
+    first description line or None)."""
     o = (owner or "").strip()
-    first = re.sub(r"[^a-zé]", "", o.split()[0].lower()) if o.split() else ""
+    first = _first(o.split()[0]) if o.split() else ""
     if first in PEOPLE:
         gid, name = PEOPLE[first]
-        return gid, name, None
-    return ADRIAAN, None, (o if o and o not in ("—", "&mdash;") else "none set")
+        return gid, name, None, None
+    if first == "enduro":
+        inner = re.match(r"^\S+\s*\(([^)]*)\)", o)
+        for w in (re.split(r"[\s,/]+", inner.group(1)) if inner else []):
+            if _first(w) in PEOPLE:
+                gid, name = PEOPLE[_first(w)]
+                return gid, name, None, None
+        return CODDY, PEOPLE["coddy"][1], None, ENDURO_LINE
+    return ADRIAAN, None, (o if o and o not in ("—", "&mdash;") else "none set"), None
 
 
 def notes_for(a, info):
     lines = []
+    if info.get("first_line"):
+        lines.append(info["first_line"])
+        lines.append("")
     if info["not_in_asana"]:
         lines.append(f"Owner: {info['not_in_asana']} (not in Asana)")
         lines.append("")
@@ -84,7 +111,7 @@ def action_info():
     for a in acts:
         rec = own["owners"].get(a["id"], {})
         owner_text = rec.get("owner") or a["owner"]
-        gid, name, not_in = match_owner(owner_text)
+        gid, name, not_in, first_line = match_owner(owner_text)
         c = con.get(a["id"], {})
         cl = clos.get(a["id"], {})
         src = rec.get("source")
@@ -95,10 +122,45 @@ def action_info():
         out[a["id"]] = dict(
             act=a, state=a["state"], title=a["title"], deadline=rec.get("deadline"),
             assignee=gid, assignee_name=name or NAME_OF[gid], not_in_asana=not_in, owner_text=owner_text,
+            first_line=first_line,
             closes_when=cl.get("closes_when") or c.get("closes_when") or c.get("says") or "not stated",
             type=cl.get("type") or c.get("closure") or c.get("kind") or "not stated",
             source=src or "the report's action record (data/action_details.json)",
             depends=", ".join(dep) or "—")
+    return out
+
+
+NOT_IN_LINE = re.compile(r"^\s*Owner:\s*(.+?)\s*\(not in Asana\)\s*$")
+
+
+def plan_reassign(section):
+    """Tasks assigned to Adriaan whose description starts "Owner: <x> (not in
+    Asana)" where <x> is now an Asana user (or Endur'O): reassign, drop that
+    first line (Endur'O with no person keeps "Owner: Endur'O"), and keep the
+    owner as written on the report further down."""
+    if not section:
+        return []
+    out = []
+    for t in A.get(f"/sections/{section}/tasks", {"opt_fields": "name,assignee.gid,notes,completed"}):
+        if (t.get("assignee") or {}).get("gid") != ADRIAAN:
+            continue
+        lines = (t.get("notes") or "").split("\n")
+        m = NOT_IN_LINE.match(lines[0]) if lines else None
+        if not m:
+            continue
+        gid, name, not_in, first_line = match_owner(m.group(1))
+        if gid == ADRIAAN:
+            continue
+        rest = lines[1:]
+        while rest and not rest[0].strip():
+            rest = rest[1:]
+        written = f"Owner as written on the report: {m.group(1)}"
+        if written not in rest:
+            i = next((j + 1 for j, l in enumerate(rest) if l.startswith("On the report: ")), len(rest))
+            rest = rest[:i] + [written] + rest[i:]
+        notes = "\n".join(([first_line, ""] if first_line else []) + rest)
+        aid = (re.match(r"(act-[a-z0-9-]+)\s", t["name"]) or [None, t["gid"]])[1]
+        out.append((t["gid"], aid, m.group(1), gid, notes))
     return out
 
 
@@ -130,18 +192,23 @@ def main():
     todo = [k for k in want if k not in amap["tasks"] and k not in existing]
     print(f"open actions {len(open_ids)}; already mapped {sum(1 for k in want if k in amap['tasks'])}; "
           f"adopted from the section {sum(1 for k in want if k in existing and k not in amap['tasks'])}; to create {len(todo)}")
-    print(f"Angelo a member: {ANGELO in members}; section exists: {A.SECTION_NAME in secs}")
+    print("members: " + ", ".join(f"{NAME_OF[g]} {g in members}" for g in MEMBERS)
+          + f"; section exists: {A.SECTION_NAME in secs}")
     adriaan = sorted(k for k in want if info.get(k, {}).get("not_in_asana"))
     print(f"assigned to Adriaan because the owner is not in Asana: {len(adriaan)}")
+    reassign = plan_reassign(secs.get(A.SECTION_NAME))
+    for gid, aid, owner, to, _ in reassign:
+        print(f"  {'would reassign' if a.dry_run else 'reassign'}: {aid} ({owner}) -> {NAME_OF[to]}")
     if a.dry_run:
         for k in todo[:8]:
             v = info[k]
             print(f"  would create: {k} — {v['title'][:70]} | {v['assignee_name']} | due {v['deadline']}")
         return 0
 
-    if ANGELO not in members:
-        A.post(f"/projects/{A.PROJECT}/addMembers", {"members": [ANGELO]})
-        print("  added Angelo NAHAVITATSARA as a project member")
+    for g in MEMBERS:
+        if g not in members:
+            A.post(f"/projects/{A.PROJECT}/addMembers", {"members": [g]})
+            print(f"  added {NAME_OF.get(g, g)} as a project member")
     if A.SECTION_NAME not in secs:
         s = A.post(f"/projects/{A.PROJECT}/sections", {"name": A.SECTION_NAME})
         secs[A.SECTION_NAME] = s["gid"]
@@ -162,6 +229,8 @@ def main():
         amap["tasks"][k] = t["gid"]
         created.append(k)
         json.dump(amap, open(MAP, "w", encoding="utf8"), indent=1, ensure_ascii=False)   # after every task
+    for gid, aid, owner, to, notes in reassign:
+        A.put(f"/tasks/{gid}", {"assignee": to, "notes": notes})
     for k in a.complete:
         A.put(f"/tasks/{amap['tasks'][k]}", {"completed": True})
         print(f"  completed {k}")
