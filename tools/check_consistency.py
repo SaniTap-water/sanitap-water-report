@@ -142,6 +142,7 @@ def main():
                     help=f"sdws1_summary_*.json of record. Default: ${SUMMARY_ENV}, then "
                          f"<repo>/data/, then a sibling ~/sdws1 checkout.")
     a = ap.parse_args()
+    portfolio_path = a.portfolio           # `a` is reused as a loop name further down
 
     # Figures are live spans prerendered with their value: <b><span data-fig=
     # "...">505</span></b>. Every check of what the page states reads idx, the
@@ -1387,17 +1388,18 @@ def main():
               fig["water_points"] == len({r["water_point"] for r in rows}),
               fig["water_points"], len({r["water_point"] for r in rows}))
         csv_dno = sum(int(r["days_not_operational"]) for r in rows)
-        check("extraction JSON matches the summary CSV: days not operational",
-              fig["days_not_operational"] == csv_dno, fig["days_not_operational"], csv_dno)
+        if "days_not_operational" in fig:     # withdrawn while the reader is not validated
+            check("extraction JSON matches the summary CSV: days not operational",
+                  fig["days_not_operational"] == csv_dno, fig["days_not_operational"], csv_dno)
         # and the page must state what the JSON says
         def fmt_n(v):
             return f"{v:,}" if isinstance(v, int) and v >= 1000 else str(v)
         # which cell-count keys exist depends on the basis the figures were
         # computed on; block 7ra asserts the observed-basis ones in detail
         keys = [("pump_periods", "pump-periods"),
-                ("water_points", "water points"),
-                ("days_not_operational", "days not operational"),
-                ("days_illegible", "days illegible"),
+                ("water_points", "water points")]
+        keys += ([("days_not_operational", "days not operational")] if "days_not_operational" in fig else [])
+        keys += [("days_illegible", "days illegible"),
                 ("images_readable", "images readable"),
                 ("images_with_day_calls", "images with day calls"),
                 ("impossible_cells", "impossible cells")]
@@ -1415,19 +1417,28 @@ def main():
             check(f"page states the extraction {label}: {want}",
                   there, want, want if there else "NOT ON THE PAGE",
                   "from data/calendar_extraction_figures.json")
-        pct_keys = ([("impossible_marked_pct", "impossible-cell marked rate"),
+        # 1 Oct 2026: machine-read downtime withdrawn until the reader is
+        # validated (tools/reader_gate.py); the data file then omits the rates
+        _withheld = "machine_downtime_withheld" in fig
+        pct_keys = ([] if _withheld else
+                    [("impossible_marked_pct", "impossible-cell marked rate"),
                      ("real_marked_pct", "real-cell marked rate")]
                     if "real_marked_pct" in fig else
                     [("probe_marked_pct", "impossible-cell marked rate"),
                      ("observed_marked_pct", "observed-cell marked rate")])
-        # 30 Sep 2026: the implied rate and uptime are withheld (Adriaan Mol); the page must say so
-        _impl = [k for k in ("implied_uptime_days", "implied_days_not_operational", "implied_true_marked_pct")
-                 if f'data-fig="CALX.{k}"' in idx_raw or f'data-fig="GEN.calendar.{k}"' in idx_raw]
-        check("no implied uptime figure is rendered anywhere on the page", not _impl, "none",
-              "none" if not _impl else ", ".join(_impl))
-        check("the implied uptime is withheld, and the page says so",
-              "Implied uptime: withheld." in idxv, "withheld",
-              "withheld" if "Implied uptime: withheld." in idxv else "NOT STATED")
+        if _withheld:
+            check("machine-read downtime is withdrawn, and the page says so",
+                  "Machine-read downtime: withdrawn." in idxv, "withdrawn",
+                  "withdrawn" if "Machine-read downtime: withdrawn." in idxv else "NOT STATED")
+        else:
+            # 30 Sep 2026: the implied rate and uptime are withheld (Adriaan Mol); the page must say so
+            _impl = [k for k in ("implied_uptime_days", "implied_days_not_operational", "implied_true_marked_pct")
+                     if f'data-fig="CALX.{k}"' in idx_raw or f'data-fig="GEN.calendar.{k}"' in idx_raw]
+            check("no implied uptime figure is rendered anywhere on the page", not _impl, "none",
+                  "none" if not _impl else ", ".join(_impl))
+            check("the implied uptime is withheld, and the page says so",
+                  "Implied uptime: withheld." in idxv, "withheld",
+                  "withheld" if "Implied uptime: withheld." in idxv else "NOT STATED")
         for key, label in pct_keys:
             want = f"{fig[key]:.2f}%"
             check(f"page states the {label}: {want}", f"<b>{want}</b>" in idxv, want,
@@ -1808,10 +1819,11 @@ def main():
                   else "CONFLATED",
                   "an unobserved blank is not an illegible cell")
             check("the implied true marked rate is the observed rate less the probe",
-                  abs(fig["implied_true_marked_pct"]
+                  "implied_true_marked_pct" not in fig or abs(fig["implied_true_marked_pct"]
                       - (fig["observed_marked_pct"] - fig["probe_marked_pct"])) < 0.011,
-                  round(fig["observed_marked_pct"] - fig["probe_marked_pct"], 2),
-                  fig["implied_true_marked_pct"])
+                  round(fig["observed_marked_pct"] - fig["probe_marked_pct"], 2)
+                  if "implied_true_marked_pct" in fig else "withdrawn",
+                  fig.get("implied_true_marked_pct", "withdrawn"))
             for key, label in (("observed_cells", "observed cells"),
                                ("unobserved_cells", "unobserved cells"),
                                ("sheets_not_dated", "sheets that could not be dated")):
@@ -1822,6 +1834,8 @@ def main():
                       want if f"<b>{want}</b>" in idxv else "NOT ON THE PAGE")
             for key, label in (("observed_marked_pct", "observed-cell marked rate"),
                                ("probe_marked_pct", "impossible-cell marked rate")):
+                if key not in fig:            # withdrawn (tools/reader_gate.py)
+                    continue
                 want = f"{fig[key]:.2f}%"
                 check(f"page states the {label}: {want}",
                       f"<b>{want}</b>" in idxv, want,
@@ -1850,11 +1864,13 @@ def main():
         check(f"transcription method note: {why}", frag in idx, "present",
               "present" if frag in idx else "MISSING",
               "the accuracy assessment is only as good as its declared method")
-    check("days-operational section reserves the result footnote",
-          "An accuracy assessment of the machine reading of these calendars is in progress" in idx,
-          "reserved", "reserved" if "An accuracy assessment of the machine reading"
-          " of these calendars is in progress" in idx else "MISSING",
-          "the footnote is placed before the results, and says so")
+    # 1 Oct 2026: the assessment reported (transcription round 1) and the
+    # footnote now says so and that the machine reading is withdrawn
+    _fn_ok = ("An accuracy assessment of the machine reading of these calendars is in progress" in idx
+              or "The accuracy assessment of the machine reading has reported, and the machine reading is withdrawn" in idx)
+    check("days-operational section carries the result footnote",
+          _fn_ok, "present", "present" if _fn_ok else "MISSING",
+          "the footnote states where the assessment stands")
 
     # ---- 7sa. an agreement figure never travels without its denominator ----
     # "The extraction agrees with the human 92% of the time" is not a fact
@@ -2462,13 +2478,16 @@ def main():
           "retracted",
           "retracted" if "5 February 2026" not in idx else "STILL PRESENT",
           "the claim did not survive testing")
-    check("the page states the printed year is real but the sheets are in service",
+    # 1 Oct 2026: the in-service argument rested on machine marked rates,
+    # withdrawn with them; the page must say the question cannot be read from
+    # the machine's marks, and carry no rate
+    check("the page states the printed year is real and that use cannot be read from machine marks",
           "A printed year later than the photograph does not mean an unused sheet" in idx
-          # the two rates are computed from the reader's output since 25 September
-          and 'data-fig="GEN.calendar.rate_early_pct"' in idx_raw
-          and 'data-fig="GEN.calendar.rate_late_pct"' in idx_raw, "stated",
-          "stated" if "does not mean an unused sheet" in idx else "MISSING",
-          "marks concentrate in months already elapsed at the photograph")
+          and "cannot be read from the machine&rsquo;s marks" in idx
+          and 'data-fig="GEN.calendar.rate_early_pct"' not in idx_raw
+          and 'data-fig="GEN.calendar.rate_late_pct"' not in idx_raw, "stated",
+          "stated" if "cannot be read from the machine&rsquo;s marks" in idx else "MISSING",
+          "the in-service rates were machine marks, withdrawn 1 Oct 2026")
     check("the custody rule stands on rolling replacement, not on timing",
           "remplac&eacute;s au fur et &agrave; mesure" in idx, "restated",
           "restated" if "remplac&eacute;s au fur et &agrave; mesure" in idx
@@ -2883,12 +2902,39 @@ def main():
           "stated", "stated" if "representative of the stratum" in idx else "MISSING")
     # 30 Sep 2026: read from the generator's file, not hard-coded (the row fix moved them)
     _cs = json.loads(read(os.path.join(repo_root, "data", "calendar_stratum_figures.json")))
-    _want = [f"{_cs['portfolio']['point_years']:,}", f"{_cs['by_site']['Maroantsetra']['mean_do']}",
-             f"{_cs['by_site']['Fort-Dauphin']['mean_do']}"]
-    check("the stratum figures carry their point-year counts",
-          all(w in idx for w in _want), "present",
-          "present" if all(w in idx for w in _want) else "MISSING " + ", ".join(w for w in _want if w not in idx),
-          "portfolio and both districts")
+    if "mean_do" in _cs["portfolio"]:
+        _want = [f"{_cs['portfolio']['point_years']:,}", f"{_cs['by_site']['Maroantsetra']['mean_do']}",
+                 f"{_cs['by_site']['Fort-Dauphin']['mean_do']}"]
+        check("the stratum figures carry their point-year counts",
+              all(w in idx for w in _want), "present",
+              "present" if all(w in idx for w in _want) else "MISSING " + ", ".join(w for w in _want if w not in idx),
+              "portfolio and both districts")
+    else:
+        check("the stratum days-operational averages are withdrawn, and the page says so",
+              "Days operational as a stratum average: withdrawn" in idx, "withdrawn",
+              "withdrawn" if "Days operational as a stratum average: withdrawn" in idx else "NOT STATED",
+              "machine-read (tools/reader_gate.py)")
+
+    # ---- machine-read downtime: the publication gate (1 Oct 2026) -------
+    # Transcription round 1: the calendar reader detected 0 of the 40 days both
+    # human readers marked X. No figure computed from its marks may be
+    # published until data/reader_validation.json shows the reader of record
+    # validated (sensitivity >= 0.90, specificity >= 0.99 against both-human
+    # X days, on all and on held-out calendars). Shown failing on 1 Oct 2026
+    # by restoring the 363.9-day tile: "data-fig on mean_do".
+    import reader_gate
+    _rok, _rwhy = reader_gate.validated()
+    for _pn, _ph in (("index.html", idx_raw), ("portfolio.html", read(portfolio_path))):
+        _rh = reader_gate.page_violations(_ph)
+        check(f"{_pn}: no machine-reader downtime figure is published unless the reader is validated",
+              _rok or not _rh, "none" if not _rok else "allowed (validated)",
+              ("; ".join(_rh[:4]) + (f" (+{len(_rh) - 4} more)" if len(_rh) > 4 else "")) if _rh else "none",
+              _rwhy)
+    for _fn, _keys in reader_gate.FIELDS.items():
+        _doc = read(os.path.join(repo_root, "data", _fn))
+        _rh = [k for k in _keys if f'"{k}":' in _doc]
+        check(f"data/{_fn} carries no machine-read downtime field unless the reader is validated",
+              _rok or not _rh, "none", ", ".join(_rh) if _rh else "none", _rwhy)
     _calsf = json.loads(read(os.path.join(repo_root, "data", "calendar_stratum_figures.json")))
     check("the page reports the representativeness test and its answer",
           "Yes, it is biased" in idx

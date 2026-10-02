@@ -649,6 +649,16 @@
    "specificity": 0.9959
   }
  },
+ "human_rate": {
+  "calendars": 68,
+  "days": 14865,
+  "adriaan_x": 46,
+  "dieu_donne_x": 61,
+  "both_x": 40,
+  "adriaan_pct": 0.31,
+  "dieu_donne_pct": 0.41,
+  "both_pct": 0.27
+ },
  "human_disagreements": 127,
  "human_disagreements_by_type": {
   "X contre vide": 26,

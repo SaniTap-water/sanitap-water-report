@@ -14,29 +14,22 @@
  "points_without_readable": 84,
  "pump_periods": 516,
  "water_points": 362,
- "days_not_operational": 559,
  "days_illegible": 1352,
  "days_unobserved": 77324,
  "median_confidence": 0.28,
  "observed_cells": 131129,
  "unobserved_cells": 90884,
  "impossible_cells": 4163,
- "observed_marked": 800,
  "observed_illegible": 1563,
  "unobserved_called_illegible": 2734,
- "unobserved_called_marked": 460,
- "observed_marked_pct": 0.61,
  "observed_illegible_pct": 1.19,
  "probe_cells": 2788,
- "probe_marked_pct": 1.22,
- "implied_true_marked_pct": -0.61,
- "implied_days_not_operational": -2.2,
- "implied_uptime_days": 367.2,
  "basis": "observed cells only, sheet year read off the sheet",
  "sheets_by_year": {
   "2024": 93,
   "2025": 199,
   "2026": 239,
   "2027": 77
- }
+ },
+ "machine_downtime_withheld": "reader of record v2 not validated: sensitivity 0.0, specificity 0.9959 against both-human X days; machine-read downtime fields omitted (tools/reader_gate.py)"
 }

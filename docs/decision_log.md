@@ -1890,3 +1890,26 @@ X are the gardien's margin notes, out of grid accuracy; (c) an X whose note call
 (e) calendar 3 stays excluded. Applied in `tools/transcription_round1.py`, never in the raw file. Results in
 `data/transcriptions/round1_resume.md`; the page carries the block "Transcription check, round 1". No action
 status changed; read-only on mWater.
+
+## 1 Oct 2026 (d) — calendar reader: record corrected, machine-read downtime withdrawn (Adriaan Mol)
+
+Transcription round 1: the reader detected 0 of the 40 days both human readers marked X (sensitivity
+0%, specificity 99.6%, κ ≈ 0 against either human). Decided: its counts are not evidence of downtime.
+
+- Page: "rarely misses a marked day" replaced with the round-1 result. Withdrawn: the 363.9-day header
+  count and tile; "1.1 days not operational" (three paragraphs); the stratum days-operational table
+  (portfolio, districts, sheet years, before/after the floor) and its footnote; the visit-frequency
+  averages (364.6 / 363.6 / 364.8); the observed-cell marked rate 0.61% and impossible-cell floor 1.22%;
+  559 days not operational and 460 unobserved cells called marked; the 2027-sheet marked rates and the
+  "in service" argument built on them. Shown instead: the registered 347-day cap as the carbon basis and
+  "operational evidence: human transcription only" — X days per observed day for each human and for
+  both, labelled a sample of 68 calendars.
+- Data: the same fields omitted from data/calendar_extraction_figures.json and
+  data/calendar_stratum_figures.json by their generators (tools/reader_gate.py).
+- Gate: check_consistency fails on any machine-downtime field or withdrawn figure on either page or in
+  those files unless data/reader_validation.json shows sensitivity ≥ 0.90 and specificity ≥ 0.99
+  against both-human X days, on all and held-out calendars.
+- Older values of the same kind (2.41%, 4.25%, 1.84%, 8.8 days, 356.2 days, "98% of days", 97.6%,
+  2,787 t / 3,015 t / 25,121 t) survive only in archived editions, which are left as issued.
+- Reader diagnosed and partly fixed (v3); validation does not pass; no full re-run, nothing published
+  from it. Detail in docs/transcription_round_notes.md. Read-only on mWater.

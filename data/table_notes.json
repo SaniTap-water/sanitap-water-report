@@ -210,6 +210,18 @@
    "extracted": "Transcriptions exported on the transcription page, the second at <span data-fig=\"TRC1.inputs.exported\"></span>; read from the files, not from mWater.",
    "filter": "The <span data-fig=\"TRC1.calendars_three_way\"></span> calendars both humans confirmed and the machine reads, days inside each sheet&rsquo;s observed window (sheet year and photo date); calendar <span class=\"mono\">3</span>, the sheets held out and calendar <span class=\"mono\">43</span>&rsquo;s margin-note days are out. Dieu Donn&eacute;&rsquo;s cells after cleaning (round1_ajustements.csv). Days the reference reads ? and days the machine reads ? are left out.",
    "columns": "<b>Sensitivity</b>: of the reference&rsquo;s X, the share the machine also reads X. <b>Specificity</b>: of the reference&rsquo;s blanks, the share the machine reads blank. <b>X found</b>, <b>X missed</b>: the reference&rsquo;s X the machine reads X, and reads blank. <b>X the reference reads blank</b>: the machine&rsquo;s X on a day the reference reads blank. The last row takes as reference only the days the two humans read the same way."
+  },
+  "rdiag-causes": {
+   "source": "RVAL on this page, from <span class=\"mono\">data/reader_validation.json</span>, written by tools/reader_validation.py from transcription round <span class=\"mono\">1</span> (<span class=\"mono\">data/transcriptions/</span>), the reader of record&rsquo;s output <span class=\"mono\">extraction_days2.csv</span> and the v3 reading of the same photographs. The causes come from <span class=\"mono\">data/reader_diagnosis/cells.csv</span>, classed by eye from the crops in that folder.",
+   "extracted": "Crops cut on <span class=\"mono\">1 Oct 2026</span> from the photographs in the mWater image backup, with the reader&rsquo;s own geometry (<span class=\"mono\">tools/diagnose_reader.py</span>).",
+   "filter": "The days both human readers marked X in round <span class=\"mono\">1</span>, on the calendars both confirmed and the machine reads, inside each sheet&rsquo;s observed window; one row per cause.",
+   "columns": "<b>Why the reader missed it</b>: the main reason, one per day. <b>X days</b>: how many of the both-X days it explains. <b>What happened</b>: what the crop shows."
+  },
+  "rdiag-metrics": {
+   "source": "RVAL on this page, from <span class=\"mono\">data/reader_validation.json</span>, written by tools/reader_validation.py from transcription round <span class=\"mono\">1</span> (<span class=\"mono\">data/transcriptions/</span>), the reader of record&rsquo;s output <span class=\"mono\">extraction_days2.csv</span> and the v3 reading of the same photographs.",
+   "extracted": "Round-<span class=\"mono\">1</span> transcriptions exported <span class=\"mono\">28 Sep</span> and <span class=\"mono\">1 Oct 2026</span>; v2 output of the <span class=\"mono\">30 Sep 2026</span> run; v3 run on <span class=\"mono\">1 Oct 2026</span>.",
+   "filter": "Days inside each sheet&rsquo;s observed window on the round-<span class=\"mono\">1</span> calendars both humans confirmed and the machine reads. <b>All calendars</b>: every one; <b>held-out calendars</b>: the even-numbered ones, which played no part in choosing v3&rsquo;s threshold. A day the machine reads ? is left out.",
+   "columns": "<b>Both-X days found</b>: days both humans marked X that the reader also reads X. <b>Sensitivity</b>: that share. <b>Specificity</b>: of the days both read blank, the share the reader reads blank. <b>&kappa;</b>: agreement corrected for chance. The last two columns take each human alone as the reference."
   }
  }
 }

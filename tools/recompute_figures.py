@@ -247,6 +247,11 @@ def main():
         fig["real_marked_pct"] = obs_marked_pct
         fig["impossible_marked_pct"] = probe_pct
 
+    # machine-read downtime is published only once the reader is validated
+    # against human transcription (tools/reader_gate.py, 1 Oct 2026)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import reader_gate
+    fig = reader_gate.strip(fig, "calendar_extraction_figures.json")
     os.makedirs(a.out, exist_ok=True)
     with open(os.path.join(a.out, "calendar_extraction_figures.json"), "w") as f:
         json.dump(fig, f, indent=1)

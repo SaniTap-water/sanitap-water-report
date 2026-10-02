@@ -1,0 +1,253 @@
+{
+ "note": "Written by tools/reader_validation.py: the calendar reader against transcription round 1 (Adriaan Mol 28 Sep 2026; Dieu Donné Razafimahatratra 1 Oct 2026, cleaned), days inside each sheet's observed window on the calendars both humans confirmed and the machine reads. X is positive. 'both' takes only the days the two humans read the same way.",
+ "gate": {
+  "sensitivity_min": 0.9,
+  "specificity_min": 0.99,
+  "against": "both",
+  "on": [
+   "all",
+   "held out (even calendars)"
+  ]
+ },
+ "calendars": 68,
+ "registered_v3": 60,
+ "not_registered_v3": {
+  "11": "grid not registered from the printed text (month names 4, numbers 2)",
+  "44": "grid not registered from the printed text (month names 12, numbers 26)",
+  "57": "grid not registered from the printed text (month names 15, numbers 40)",
+  "68": "grid not registered from the printed text (month names 10, numbers 26)",
+  "77": "grid not registered from the printed text (month names 13, numbers 29)",
+  "84": "grid not registered from the printed text (month names 0, numbers 2)",
+  "88": "grid not registered from the printed text (month names 10, numbers 3)",
+  "91": "grid not registered from the printed text (month names 8, numbers 1)"
+ },
+ "v3_threshold": 0.1366,
+ "v3_threshold_rule": "most sensitive with specificity >= 0.995 against both humans on the odd-numbered calendars",
+ "readers": {
+  "v2": {
+   "all": {
+    "adriaan": {
+     "tp": 0,
+     "fn": 46,
+     "fp": 60,
+     "tn": 14627,
+     "machine_question_mark": 132,
+     "sensitivity": 0.0,
+     "specificity": 0.9959,
+     "kappa": -0.0035
+    },
+    "dieu_donne": {
+     "tp": 0,
+     "fn": 61,
+     "fp": 60,
+     "tn": 14535,
+     "machine_question_mark": 132,
+     "sensitivity": 0.0,
+     "specificity": 0.9959,
+     "kappa": -0.0041
+    },
+    "both": {
+     "tp": 0,
+     "fn": 40,
+     "fp": 60,
+     "tn": 14530,
+     "machine_question_mark": 132,
+     "sensitivity": 0.0,
+     "specificity": 0.9959,
+     "kappa": -0.0033
+    }
+   },
+   "tuning (odd calendars)": {
+    "adriaan": {
+     "tp": 0,
+     "fn": 17,
+     "fp": 19,
+     "tn": 6497,
+     "machine_question_mark": 34,
+     "sensitivity": 0.0,
+     "specificity": 0.9971,
+     "kappa": -0.0028
+    },
+    "dieu_donne": {
+     "tp": 0,
+     "fn": 18,
+     "fp": 19,
+     "tn": 6451,
+     "machine_question_mark": 34,
+     "sensitivity": 0.0,
+     "specificity": 0.9971,
+     "kappa": -0.0029
+    },
+    "both": {
+     "tp": 0,
+     "fn": 17,
+     "fp": 19,
+     "tn": 6451,
+     "machine_question_mark": 34,
+     "sensitivity": 0.0,
+     "specificity": 0.9971,
+     "kappa": -0.0028
+    }
+   },
+   "held out (even calendars)": {
+    "adriaan": {
+     "tp": 0,
+     "fn": 29,
+     "fp": 41,
+     "tn": 8130,
+     "machine_question_mark": 98,
+     "sensitivity": 0.0,
+     "specificity": 0.995,
+     "kappa": -0.0042
+    },
+    "dieu_donne": {
+     "tp": 0,
+     "fn": 43,
+     "fp": 41,
+     "tn": 8084,
+     "machine_question_mark": 98,
+     "sensitivity": 0.0,
+     "specificity": 0.995,
+     "kappa": -0.0052
+    },
+    "both": {
+     "tp": 0,
+     "fn": 23,
+     "fp": 41,
+     "tn": 8079,
+     "machine_question_mark": 98,
+     "sensitivity": 0.0,
+     "specificity": 0.995,
+     "kappa": -0.0036
+    }
+   }
+  },
+  "v3": {
+   "all": {
+    "adriaan": {
+     "tp": 4,
+     "fn": 40,
+     "fp": 119,
+     "tn": 13150,
+     "machine_question_mark": 0,
+     "sensitivity": 0.0909,
+     "specificity": 0.991,
+     "kappa": 0.0432
+    },
+    "dieu_donne": {
+     "tp": 5,
+     "fn": 51,
+     "fp": 118,
+     "tn": 13062,
+     "machine_question_mark": 0,
+     "sensitivity": 0.0893,
+     "specificity": 0.991,
+     "kappa": 0.0503
+    },
+    "both": {
+     "tp": 4,
+     "fn": 34,
+     "fp": 118,
+     "tn": 13057,
+     "machine_question_mark": 0,
+     "sensitivity": 0.1053,
+     "specificity": 0.991,
+     "kappa": 0.0458
+    }
+   },
+   "tuning (odd calendars)": {
+    "adriaan": {
+     "tp": 4,
+     "fn": 12,
+     "fp": 28,
+     "tn": 5702,
+     "machine_question_mark": 0,
+     "sensitivity": 0.25,
+     "specificity": 0.9951,
+     "kappa": 0.1636
+    },
+    "dieu_donne": {
+     "tp": 4,
+     "fn": 13,
+     "fp": 28,
+     "tn": 5656,
+     "machine_question_mark": 0,
+     "sensitivity": 0.2353,
+     "specificity": 0.9951,
+     "kappa": 0.16
+    },
+    "both": {
+     "tp": 4,
+     "fn": 12,
+     "fp": 28,
+     "tn": 5656,
+     "machine_question_mark": 0,
+     "sensitivity": 0.25,
+     "specificity": 0.9951,
+     "kappa": 0.1635
+    }
+   },
+   "held out (even calendars)": {
+    "adriaan": {
+     "tp": 0,
+     "fn": 28,
+     "fp": 91,
+     "tn": 7448,
+     "machine_question_mark": 0,
+     "sensitivity": 0.0,
+     "specificity": 0.9879,
+     "kappa": -0.0057
+    },
+    "dieu_donne": {
+     "tp": 1,
+     "fn": 38,
+     "fp": 90,
+     "tn": 7406,
+     "machine_question_mark": 0,
+     "sensitivity": 0.0256,
+     "specificity": 0.988,
+     "kappa": 0.0082
+    },
+    "both": {
+     "tp": 0,
+     "fn": 22,
+     "fp": 90,
+     "tn": 7401,
+     "machine_question_mark": 0,
+     "sensitivity": 0.0,
+     "specificity": 0.988,
+     "kappa": -0.0047
+    }
+   }
+  }
+ },
+ "gate_passed": {
+  "v2": false,
+  "v3": false
+ },
+ "diagnosis": {
+  "both_x_cells": 40,
+  "blank_cells": 40,
+  "causes": {
+   "ink below threshold": 13,
+   "column off by a whole month": 9,
+   "column phase": 8,
+   "row off by one": 4,
+   "ink colour": 4,
+   "photo blurred": 1,
+   "orientation": 1
+  },
+  "v2_mark_threshold": 0.2,
+  "v2_illegible_band": [
+   0.12,
+   0.3
+  ],
+  "v2_max_ink_on_x": 0.077,
+  "v2_max_ink_on_blank": 0.094,
+  "x_cells_with_blue_or_purple_ink": 14,
+  "sheets_turned_in_set": 21,
+  "reviewed": "by eye from the crops, 1 Oct 2026"
+ },
+ "reader_of_record": "v2",
+ "publishable": false
+}

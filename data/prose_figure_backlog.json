@@ -1,13 +1,8 @@
 {
  "note": "Numbers still typed into the body prose of index.html. Every one of these should become a data-fig span, a PARAMS entry, or a figure in a dated manual file. This list may only shrink: tools/prose_figures.py --gate fails on any literal not on it.",
  "recorded": "2026-09-22",
- "shrunk_note": "25 Sep 2026: 132 values converted to live figures, parameters or quotations (class d census); 46 remain.",
+ "shrunk_note": "25 Sep 2026: 132 values converted to live figures, parameters or quotations (class d census); 46 remain. 1 Oct 2026: \"0\" no longer typed (it was an owner-filter chip count, now rendered); 45 remain.",
  "values": {
-  "0": {
-   "ctx": "chip\" data-own=\"unassigned\" aria-pressed=\"false\">UUnassigned 1 &middot; 0 ACT Show To act on &mdash; <span data-fig=",
-   "line": 335,
-   "n": 138
-  },
   "009": {
    "ctx": "values&hellip;&rdquo; The values are taken under option (a); the rule update is held in Water Documents/Methodology of record/ with its checksum. A6.4-AMT-009 is not the basis and is no longer cited as one. The rule upda",
    "line": 1274,

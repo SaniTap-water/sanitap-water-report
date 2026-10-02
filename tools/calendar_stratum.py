@@ -61,7 +61,9 @@ NOT_REG = "not in the managed register"
 
 
 def build():
-    floor = json.load(open(d("calendar_extraction_figures.json")))["probe_marked_pct"] / 100
+    # the floor is a machine marked rate: absent while the reader is not
+    # validated (tools/reader_gate.py), and then nothing uses it
+    floor = (json.load(open(d("calendar_extraction_figures.json"))).get("probe_marked_pct") or 0) / 100
     cov = {r["code"]: r for r in csv.DictReader(open(d("gardien_calendar_coverage.csv")))}
     rows = []
     for r in csv.DictReader(open(d("calendar_extraction_summary.csv"))):
@@ -181,7 +183,9 @@ def build():
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--check"
-    new = json.dumps(build(), indent=1, ensure_ascii=False, sort_keys=True) + "\n"
+    import reader_gate                     # machine-read downtime only once validated
+    new = json.dumps(reader_gate.strip(build(), "calendar_stratum_figures.json"),
+                     indent=1, ensure_ascii=False, sort_keys=True) + "\n"
     old = open(OUT, encoding="utf8").read() if os.path.isfile(OUT) else ""
     if mode == "--write":
         open(OUT, "w", encoding="utf8").write(new)

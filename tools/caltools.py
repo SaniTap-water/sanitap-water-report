@@ -797,3 +797,311 @@ def cell_marks_rows(rect_bgr, bbox, gen, x_left, x_pitch, y_top, y_pitch, offs):
                 continue
             out[m, d] = float(ink[c0:c1, a:b].mean())
     return out
+
+
+# --------------------------------------------------------------------------
+# Reader v3 (1 Oct 2026): registration on the printed day text, ink against
+# the local background. Diagnosis on transcription round 1 (40 days both human
+# readers marked X, 40 both read blank; data/reader_diagnosis/): the v2 reader
+# found none of the 40. Its month columns started at the printed weekday
+# rather than the day-number rule, and on some sheets a whole column or row
+# out; its ink test masked every blue pixel as printed shading, which removes
+# blue and purple ballpoint; and its 0.20 ink threshold sits above a pencil or
+# ballpoint X, which covers 0.03-0.10 of the window.
+#
+#   * registration: OCR of the printed month names fixes each column, and of
+#     the day numbers each column's left edge and row line, fitted per column
+#     so a leaning or curled column is followed; orientation is the
+#     rectification whose month names read left to right;
+#   * ink: darker than the local paper by a fixed margin, in grey, so blue,
+#     purple, red and pencil all count, with the printed rules removed;
+#   * a cell's score is what exceeds what the sheet prints there (its day
+#     number, the same in every month, and its weekday, the same in every cell
+#     of that weekday), over the right of the cell.
+# Result on round 1 (data/reader_validation.json): better than v2 but far
+# from the publication gate.
+# Nothing in production calls this until the validation gate passes.
+# --------------------------------------------------------------------------
+
+V3_DARK = 32            # grey levels darker than the local paper
+
+
+def v3_dark(rect_bgr, pitch, col_pitch=None):
+    """Ink darker than the local paper, with the printed rules taken out.
+
+    Long straight runs - the grid rules and the edges of the shaded cells -
+    are removed by opening with a long horizontal and a long vertical line;
+    a hand-drawn X, tick or bar is shorter than either and survives."""
+    g = cv2.cvtColor(rect_bgr, cv2.COLOR_BGR2GRAY)
+    k = int(max(15, pitch * 1.2)) | 1
+    k = min(k, 99)
+    bg = cv2.medianBlur(g, k)
+    dark = ((bg.astype(np.int16) - g.astype(np.int16)) > V3_DARK).astype(np.uint8)
+    if col_pitch:
+        hl = cv2.morphologyEx(dark, cv2.MORPH_OPEN, np.ones((1, max(9, int(col_pitch * 0.45))), np.uint8))
+        vl = cv2.morphologyEx(dark, cv2.MORPH_OPEN, np.ones((max(9, int(pitch * 1.6)), 1), np.uint8))
+        lines = cv2.dilate(hl | vl, np.ones((3, 3), np.uint8))
+        dark = dark & (1 - lines)
+    return dark.astype(bool)
+
+
+MONTH_NAMES = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT",
+               "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE"]
+_OCR = None
+
+
+def _ocr():
+    global _OCR
+    if _OCR is None:
+        from rapidocr_onnxruntime import RapidOCR
+        _OCR = RapidOCR()
+    return _OCR
+
+
+def _month_of(text):
+    import difflib, unicodedata
+    t = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().upper()
+    t = "".join(ch for ch in t if ch.isalpha())
+    if len(t) < 3:
+        return None
+    best = max(range(MONTHS), key=lambda m: difflib.SequenceMatcher(None, t, MONTH_NAMES[m]).ratio())
+    r = difflib.SequenceMatcher(None, t, MONTH_NAMES[best]).ratio()
+    return best if r >= 0.75 and (len(t) >= 4 or t == "MAI") else None
+
+
+def _robust_line(xs, ys):
+    """y = a + b x by repeated median (Siegel), tolerant of misread tokens."""
+    xs, ys = np.asarray(xs, float), np.asarray(ys, float)
+    n = len(xs)
+    if n < 2:
+        return None
+    slopes = []
+    for i in range(n):
+        dx = xs - xs[i]
+        ok = dx != 0
+        if ok.any():
+            slopes.append(np.median((ys[ok] - ys[i]) / dx[ok]))
+    b = float(np.median(slopes))
+    a = float(np.median(ys - b * xs))
+    return a, b
+
+
+def register_ocr(rect):
+    """Register the day grid on the printed text. -> dict or None.
+
+    Month names give each column's centre (a straight line in the month
+    index: centre = x0 + m * pitch). Day numbers give the rows: in each
+    column, a number n is centred on y = top_m + (n - 0.5) * row_pitch, fitted
+    per column so a curled sheet keeps its own row line in each column."""
+    # the day numbers are about 12 px tall on the rectified sheet; read at
+    # twice the size they are found three to five times as often
+    big = cv2.resize(rect, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    res, _ = _ocr()(big)
+    res = res or []
+    months, nums = [], []
+    for box, text, conf in res:
+        b = np.asarray(box, float) / 2.0
+        xc, yc = b[:, 0].mean(), b[:, 1].mean()
+        xL, h = b[:, 0].min(), b[:, 1].max() - b[:, 1].min()
+        m = _month_of(text)
+        if m is not None:
+            months.append((m, xc, yc))
+            continue
+        import re as _re
+        mt = _re.match(r"^\s*(\d{1,2})", text)
+        if mt and 1 <= int(mt.group(1)) <= DAYS and h > 4:
+            # the number's own box: a fused "01JEU" box keeps the number at its left
+            nums.append((int(mt.group(1)), xL, yc, float(conf)))
+    if len({m for m, _, _ in months}) < 4:
+        return {"month_names": len({m for m, _, _ in months}), "numbers": len(nums)}
+    line = _robust_line([m for m, _, _ in months], [x for _, x, _ in months])
+    x0, xp = line
+    if xp <= 20:
+        return {"month_names": len(months), "numbers": len(nums)}
+    header_y = float(np.median([y for _, _, y in months]))
+    # assign numbers to columns: a day number sits at the left of its column
+    cols = {m: [] for m in range(MONTHS)}
+    for n, xL, yc, cf in nums:
+        if yc < header_y:
+            continue
+        m = int(np.floor((xL - (x0 - xp / 2)) / xp + 0.05))
+        if 0 <= m < MONTHS:
+            cols[m].append((n, yc))
+    pooled = [(n, y) for m in cols for n, y in cols[m]]
+    if len(pooled) < 30:
+        return {"month_names": len(months), "numbers": len(nums)}
+    # each column on its own numbers: the left edge and the row line as
+    # straight lines in the day number, so a leaning or curled column and a
+    # pitch that changes with perspective are followed column by column
+    colx = {m: [] for m in range(MONTHS)}
+    for n, xL, yc, cf in nums:
+        if yc < header_y:
+            continue
+        m = int(np.floor((xL - (x0 - xp / 2)) / xp + 0.05))
+        if 0 <= m < MONTHS:
+            colx[m].append((n, xL, yc))
+    dd = np.arange(DAYS) + 0.5                    # the centre of day d+1, in rows
+    Lc = np.full((MONTHS, DAYS), np.nan)
+    Yc = np.full((MONTHS, DAYS), np.nan)
+    pitches = []
+    for m, t in colx.items():
+        if len(t) < 5:
+            continue
+        n_ = np.array([n - 0.5 for n, _, _ in t])
+        ly = _robust_line(n_, [y for _, _, y in t])
+        lx = _robust_line(n_, [x for _, x, _ in t])
+        if ly is None or lx is None or ly[1] <= 3:
+            continue
+        # drop misread numbers (a "91" for "01") and refit
+        res = np.abs(np.array([y for _, _, y in t]) - (ly[0] + ly[1] * n_))
+        keep = res < 0.5 * ly[1]
+        if keep.sum() >= 5 and keep.sum() < len(t):
+            ly = _robust_line(n_[keep], np.array([y for _, _, y in t])[keep])
+            lx = _robust_line(n_[keep], np.array([x for _, x, _ in t])[keep])
+        Yc[m] = ly[0] + ly[1] * dd
+        Lc[m] = lx[0] + lx[1] * dd
+        pitches.append(ly[1])
+    ok = ~np.isnan(Lc[:, 0])
+    # a column whose fit disagrees with both neighbours by more than a third
+    # of a row (or of the left-edge spacing) was fitted on misread numbers
+    for _ in range(2):
+        for m in range(MONTHS):
+            if not ok[m]:
+                continue
+            nb = [k for k in (m - 1, m + 1) if 0 <= k < MONTHS and ok[k]]
+            if len(nb) < 1:
+                continue
+            ey = np.mean([Yc[k] for k in nb], axis=0)
+            dev = np.abs(Yc[m] - ey)
+            pm = np.median([np.median(np.diff(Yc[k])) for k in nb])
+            if np.median(dev) > 0.35 * pm or dev.max() > 0.8 * pm:
+                if len(nb) == 2:
+                    ok[m] = False
+    if ok.sum() < 6:
+        return {"month_names": len(months), "numbers": len(nums)}
+    idx = np.arange(MONTHS)
+    for d in range(DAYS):                     # a column with too few numbers takes its neighbours'
+        Lc[~ok, d] = np.interp(idx[~ok], idx[ok], Lc[ok, d])
+        Yc[~ok, d] = np.interp(idx[~ok], idx[ok], Yc[ok, d])
+    yp = float(np.median(pitches))
+    pad = 0.04 * xp                           # the column rule sits just left of the number
+    left = Lc - pad
+    right = np.empty_like(left)
+    right[:-1] = left[1:]
+    right[-1] = left[-1] + np.median(np.diff(left, axis=0), axis=0)
+    rp = np.empty_like(Yc)                    # local row pitch, from the row line itself
+    rp[:, 1:-1] = (Yc[:, 2:] - Yc[:, :-2]) / 2
+    rp[:, 0], rp[:, -1] = rp[:, 1], rp[:, -2]
+    return {"x0": x0 - xp / 2, "xp": xp, "yp": yp, "left": left, "right": right,
+            "top": Yc - rp / 2, "bottom": Yc + rp / 2,
+            "month_names": len({m for m, _, _ in months}), "numbers": len(nums),
+            "numbers_used": int(sum(len(t) for t in colx.values())), "columns_fitted": int(ok.sum())}
+
+
+def read_v3(im, small, year=None, prefer=None):
+    """The v3 reading of one photograph -> dict with 'scores' (12 x 31), or
+    {'why': ...}. Orientation: the reader's own choice first, then the other
+    three rectifications, keeping the one whose month names read."""
+    if im is None:
+        return {"why": "file unreadable"}
+    q, frac = sheet_quad(small)
+    if q is None:
+        return {"why": "no sheet found"}
+    scale = im.shape[1] / small.shape[1]
+    first = analyse(im, q, scale)["k"] if prefer is None else prefer
+    best = None
+    for k in [first] + [k for k in range(4) if k != first]:
+        r = rectify(im, np.roll(q, -k, axis=0), scale)
+        g = register_ocr(r)
+        g["k"], g["rect"] = k, r
+        # a registered grid beats an unregistered one: month names stacked
+        # down the page (a sheet read turned 90 degrees) do not register
+        rank = lambda h: ("xp" in h, h.get("columns_fitted", 0), h.get("month_names", 0), h.get("numbers", 0))
+        if best is None or rank(g) > rank(best):
+            best = g
+        if "xp" in g and g["month_names"] >= 8 and g["numbers_used"] >= 100:
+            break
+    if "xp" not in best:
+        return {"why": f"grid not registered from the printed text (month names {best.get('month_names', 0)}, "
+                       f"numbers {best.get('numbers', 0)})"}
+    bb = grid_bbox(best["rect"])
+    best["gen"] = generation(best["rect"], bb)[0] if bb is not None else GEN_UNKNOWN
+    dark = v3_dark(best["rect"], best["yp"], best["xp"])
+    best["dark"] = dark
+    best["scores"] = v3_cells(dark, best, year)
+    return best
+
+
+V3_CELL = (16, 48)          # a day cell resampled to rows x columns
+V3_NUMBER_ZONE = 0.22       # the day number fills the left of the cell; the weekday follows
+
+
+def v3_box(g, m, d, inset=(0.02, 0.08)):
+    """(x0, y0, x1, y1) of day cell (m, d) on the registered grid."""
+    L, R, T, B = g["left"][m, d], g["right"][m, d], g["top"][m, d], g["bottom"][m, d]
+    ix, iy = inset[0] * (R - L), inset[1] * (B - T)
+    return L + ix, T + iy, R - ix, B - iy
+
+
+def v3_cell_stack(dark, g):
+    """Every day cell's ink, resampled to one size. -> (12, 31, h, w)."""
+    h, w = V3_CELL
+    f = dark.astype(np.float32)
+    H, W = f.shape
+    out = np.zeros((MONTHS, DAYS, h, w), np.float32)
+    for m in range(MONTHS):
+        for d in range(DAYS):
+            a, c0, b, c1 = (int(round(v)) for v in v3_box(g, m, d))
+            a, b, c0, c1 = max(0, a), min(W, b), max(0, c0), min(H, c1)
+            if b - a > 4 and c1 - c0 > 2:
+                out[m, d] = cv2.resize(f[c0:c1, a:b], (w, h), interpolation=cv2.INTER_AREA)
+    return out
+
+
+def v3_cells(dark, g, year=None):
+    """Hand-added ink per day cell: the cell less what the sheet prints there.
+
+    The printed content of a cell is its day number (the same in every month
+    column) and its weekday (the same in every cell of that weekday, shading
+    included). The template for a cell is therefore the median, over the
+    twelve months, of cells with the same day number in the number zone, and
+    the median of cells with the same weekday elsewhere. What exceeds it is
+    what someone wrote. Without a sheet year the weekday cannot be known and
+    the whole-sheet median stands in for it."""
+    import datetime as _dt
+    S = v3_cell_stack(dark, g)
+    h, w = V3_CELL
+    nz = int(round(V3_NUMBER_ZONE * w))
+    by_day = np.median(S, axis=0)                       # (31, h, w)
+    wd = np.full((MONTHS, DAYS), -1)
+    if year:
+        for m in range(MONTHS):
+            for d in range(DAYS):
+                try:
+                    wd[m, d] = _dt.date(int(year), m + 1, d + 1).weekday()
+                except ValueError:
+                    pass
+    by_wd = {k: np.median(S[wd == k], axis=0) for k in range(7) if (wd == k).sum() >= 5}
+    whole = np.median(S.reshape(-1, h, w), axis=0)
+    out = np.zeros((MONTHS, DAYS))
+    for m in range(MONTHS):
+        for d in range(DAYS):
+            t = by_wd.get(wd[m, d], whole).copy()
+            t[:, :nz] = np.maximum(t[:, :nz], by_day[d][:, :nz])
+            # printing jitters by a pixel or two from cell to cell: dilate the
+            # template and let the cell shift a little before what is left over
+            # is counted as written
+            t = cv2.dilate(t, np.ones((3, 3), np.uint8))
+            c = S[m, d]
+            best = None
+            for dy in (-1, 0, 1):
+                for dx in (-2, -1, 0, 1, 2):
+                    sh = np.roll(np.roll(c, dy, axis=0), dx, axis=1)
+                    # the right of the cell, past the day number: where a mark is
+                    # written and the printing varies least (chosen on the
+                    # odd-numbered round-1 calendars: AUC 0.957 against 0.939
+                    # for the whole cell)
+                    r = float(np.clip(sh - t, 0, None)[2:-2, int(0.3 * (w - 6)) + 3:-3].mean())
+                    best = r if best is None or r < best else best
+            out[m, d] = best
+    return out

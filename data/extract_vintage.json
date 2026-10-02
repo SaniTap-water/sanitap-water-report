@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-01",
+ "checked": "2026-10-02",
  "data_to": "2026-10-01",
  "last_record_by_source": {
   "appel_signalement_pannes.csv": "2026-10-01",
@@ -49,117 +49,117 @@
  ],
  "per_extract": {
   "appel_signalement_pannes.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-10-01",
    "pulled": "2026-10-01"
   },
   "baseline_moramanga.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-03-10",
    "pulled": "2026-10-01"
   },
   "cbn_gender.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2025-11-21",
    "pulled": "2026-10-01"
   },
   "combined_rehab.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-01-16",
    "pulled": "2026-10-01"
   },
   "enduro_points.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "first_rehab_current.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "forage_moramanga.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-08-29",
    "pulled": "2026-10-01"
   },
   "hygiene.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-03-16",
    "pulled": "2026-10-01"
   },
   "identification.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-25",
    "pulled": "2026-10-01"
   },
   "marolinta_borehole.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-08-29",
    "pulled": "2026-10-01"
   },
   "piped_point_reg.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-26",
    "pulled": "2026-10-01"
   },
   "piped_system_reg.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "piped_systems.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "pm.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-28",
    "pulled": "2026-10-01"
   },
   "pou_survey.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2025-12-12",
    "pulled": "2026-10-01"
   },
   "premiere_rehabilitation.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "repair.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-22",
    "pulled": "2026-10-01"
   },
   "reparation_apres_panne.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-22",
    "pulled": "2026-10-01"
   },
   "roof_count.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2025-08-21",
    "pulled": "2026-10-01"
   },
   "wp_madavance.csv": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": null,
    "pulled": "2026-10-01"
   },
   "wq_results.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-02-02",
    "pulled": "2026-10-01"
   },
   "wq_results_piped.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-08-24",
    "pulled": "2026-10-01"
   },
   "wq_sampling_piped.json": {
-   "age_days": 0,
+   "age_days": 1,
    "data_to": "2026-09-16",
    "pulled": "2026-10-01"
   }

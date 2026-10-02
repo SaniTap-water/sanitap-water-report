@@ -1,46 +1,28 @@
 {
  "by_site": {
   "Fort-Dauphin": {
-   "mean_do": 364.7,
-   "mean_do_before_floor": 364.6,
-   "median_do": 365,
    "point_years": 57,
    "points": 52
   },
   "Maroantsetra": {
-   "mean_do": 363.7,
-   "mean_do_before_floor": 363.4,
-   "median_do": 365.0,
    "point_years": 366,
    "points": 265
   },
   "not in the managed register": {
-   "mean_do": 365.3,
-   "mean_do_before_floor": 364.7,
-   "median_do": 365,
    "point_years": 3,
    "points": 2
   }
  },
  "by_year": {
   "2024": {
-   "mean_do": 364.3,
-   "mean_do_before_floor": 364.0,
-   "median_do": 366.0,
    "point_years": 84,
    "points": 84
   },
   "2025": {
-   "mean_do": 364.2,
-   "mean_do_before_floor": 363.7,
-   "median_do": 365,
    "point_years": 171,
    "points": 171
   },
   "2026": {
-   "mean_do": 363.4,
-   "mean_do_before_floor": 363.1,
-   "median_do": 365,
    "point_years": 171,
    "points": 171
   }
@@ -140,25 +122,11 @@
   "run_on": "2026-09-18",
   "script": "~/sdws1/calendar_extract/run_extract.py"
  },
- "floor_pct": 1.22,
  "generator": "tools/calendar_stratum.py",
  "input": "data/calendar_extraction_summary.csv",
  "input_run_on": "2026-09-20",
  "input_written_by": "tools/recompute_figures.py",
- "mean_do_by_photos": {
-  "1-2": {
-   "mean_do": 364.6,
-   "point_years": 28
-  },
-  "3-5": {
-   "mean_do": 363.6,
-   "point_years": 327
-  },
-  "6+": {
-   "mean_do": 364.8,
-   "point_years": 68
-  }
- },
+ "machine_downtime_withheld": "reader of record v2 not validated: sensitivity 0.0, specificity 0.9959 against both-human X days; machine-read downtime fields omitted (tools/reader_gate.py)",
  "note": "Gardien-calendar stratum figures, computed by rule R (see the generator's docstring) from the calendar reader's outputs. The reader is not re-run.",
  "photographs": {
   "by_question": {
@@ -172,9 +140,6 @@
   "total": 2367
  },
  "portfolio": {
-  "mean_do": 363.9,
-  "mean_do_before_floor": 363.5,
-  "median_do": 365.0,
   "point_years": 426,
   "points": 319
  },

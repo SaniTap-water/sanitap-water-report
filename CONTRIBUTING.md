@@ -1016,3 +1016,29 @@ at 4.5:1 (3:1 at 24 px and larger) against its composited background, and partne
 no taller than 220 px (Endur'O excepted). Status colours hold 4.5:1 on the page and on `--tint` in both
 themes. The header carries an Auto / Light / Dark switch (`localStorage` key `sanitap-theme`, applied
 in `<head>` before first paint).
+
+## Machine-read downtime is published only from a validated reader (1 Oct 2026)
+
+Transcription round 1 compared two human readers and the calendar machine reader on the same 68
+calendars and days. The reader detected **0 of the 40 days both humans marked X** (sensitivity 0%,
+specificity 99.6%, κ about 0 against either human). Its high "agreement" was blank days agreeing.
+Every figure computed from its marks was withdrawn the same day, from the page and from the data
+files the page inlines: the stratum days-operational averages (363.9 and the district and year rows),
+"1.1 days not operational", the observed-cell marked rate and the impossible-cell error floor, the
+count of days not operational, the implied uptime, and the 2027-sheet marked rates. Earlier editions
+carried older values of the same kind (2.41%, 4.25%, 1.84%, 8.8 days, 356.2 days, "98% of days",
+97.6%, and the 2,787 t / 3,015 t / 25,121 t "supported by evidence / resting on the estimate" split);
+the archived editions are left as issued.
+
+**The rule.** `tools/reader_gate.py` names the machine-downtime fields and the withdrawn phrasings.
+`tools/check_consistency.py` fails the build if any of them is on `index.html` or `portfolio.html`
+(as a `data-fig`, an inlined dataset field or text), or in `data/calendar_extraction_figures.json` or
+`data/calendar_stratum_figures.json`, unless `data/reader_validation.json` shows the reader of record
+validated: sensitivity ≥ 0.90 and specificity ≥ 0.99 against the days both human readers mark X, on
+all round-1 calendars **and** on the held-out (even-numbered) ones. `tools/recompute_figures.py` and
+`tools/calendar_stratum.py` omit the fields themselves while the gate is shut.
+
+`tools/reader_validation.py` writes the validation file (slow: it OCRs every round-1 photograph; the
+registrations are cached in `~/sdws1/calendar_extract/v3_cache`). It is not in the build loop; rerun
+it when the reader or the transcriptions change. Days operational stand at the registered 347 days
+either way; the only operational evidence shown is the human transcription, labelled as a sample.

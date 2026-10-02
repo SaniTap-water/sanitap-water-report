@@ -441,6 +441,16 @@ def main():
         "calendars_both_humans": len(both_h), "calendars_three_way": len(all3),
         "three_way_calendars": all3,
         "pairs": pairs, "calendar_pairs": cal_pairs, "machine_vs": machine_vs,
+        # the operational evidence that stands: X days per observed day, by
+        # human reader, on the calendars all three read (a sample, not the fleet)
+        "human_rate": (lambda days, ax, dx, bx: {
+            "calendars": len(all3), "days": days, "adriaan_x": ax, "dieu_donne_x": dx, "both_x": bx,
+            "adriaan_pct": round(100 * ax / days, 2), "dieu_donne_pct": round(100 * dx / days, 2),
+            "both_pct": round(100 * bx / days, 2)})(
+            sum(len(win[c]) for c in all3),
+            sum(1 for c in all3 for k in win[c] if val("adriaan", c, k) == "X"),
+            sum(1 for c in all3 for k in win[c] if val("dieu_donne", c, k) == "X"),
+            sum(1 for c in all3 for k in win[c] if val("adriaan", c, k) == "X" and val("dieu_donne", c, k) == "X")),
         "human_disagreements": len(dis),
         "human_disagreements_by_type": dict(collections.Counter(r["type"] for r in dis)),
         "human_disagreement_calendars": len({r["calendrier"] for r in dis}),

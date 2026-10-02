@@ -244,3 +244,37 @@ Adriaan × machine 99.3% (κ -0.0035); Dieu Donné × machine 99.2% (κ -0.0041)
 40 X both agree on); its 60 X fall on cells both read blank. This agrees with the
 30 Sep figures (missed X 20 of Adriaan's 20 in frame), which the page's "rarely misses a marked day" does not.
 Human disagreements to settle by eye: 127 days on 26 calendars.
+
+## Calendar reader: record corrected, machine downtime withdrawn, reader diagnosed (1–2 Oct 2026)
+
+**Withdrawn.** Round 1 showed the reader detected 0 of the 40 days both humans marked X. Every
+machine-derived downtime figure left the page and the data files it inlines (list in
+`docs/decision_log.md`, 1 Oct 2026 (d)); the build fails if one returns while
+`data/reader_validation.json` does not show the reader validated (`tools/reader_gate.py`).
+
+**Diagnosis** (`tools/diagnose_reader.py`, `data/reader_diagnosis/`): crops of the reader's own cell
+for the 40 both-X days and 40 seeded both-blank days, classed by eye: ink below threshold 13; column off by a whole month 9; column phase 8; row off by one 4; ink colour 4; photo blurred 1; orientation 1. The most ink v2 measured
+on any X day was 0.077, under its 0.20 mark threshold and its 0.12 illegible floor, so
+even a perfectly placed window could not call an X. Misses fall on 2024, 2025 and 2026 sheets alike; of
+the 21 sheets in the set that needed turning, v2's orientation search read all
+but one.
+
+**v3** (`tools/caltools.py` `read_v3`, `tools/reader_validation.py`): OCR registration on month names
+and day numbers, per-column fits; ink against local paper with rules removed; template subtraction.
+Registered 60 of 68 sheets. Threshold 0.1366 chosen on
+odd-numbered calendars:
+
+| reader | calendars | both-X found | sens (both) | spec (both) | κ (both) | Adriaan sens/spec/κ | Dieu Donné sens/spec/κ |
+|---|---|---|---|---|---|---|---|
+| v2 | all | 0/40 | 0.0% | 99.6% | -0.0033 | 0.0% / 99.6% / -0.0035 | 0.0% / 99.6% / -0.0041 |
+| v2 | tuning (odd calendars) | 0/17 | 0.0% | 99.7% | -0.0028 | 0.0% / 99.7% / -0.0028 | 0.0% / 99.7% / -0.0029 |
+| v2 | held out (even calendars) | 0/23 | 0.0% | 99.5% | -0.0036 | 0.0% / 99.5% / -0.0042 | 0.0% / 99.5% / -0.0052 |
+| v3 | all | 4/38 | 10.5% | 99.1% | 0.0458 | 9.1% / 99.1% / 0.0432 | 8.9% / 99.1% / 0.0503 |
+| v3 | tuning (odd calendars) | 4/16 | 25.0% | 99.5% | 0.1635 | 25.0% / 99.5% / 0.1636 | 23.5% / 99.5% / 0.16 |
+| v3 | held out (even calendars) | 0/22 | 0.0% | 98.8% | -0.0047 | 0.0% / 98.8% / -0.0057 | 2.6% / 98.8% / 0.0082 |
+
+Neither passes the gate (≥ 90% / ≥ 99% against both-human X, all and held out). The full reading of
+every photograph was **not** re-run, and v2 stays the reader of record. The v3 ranking reaches an AUC
+of about 0.96 on the tuning calendars and 0.84 on the held-out ones; the gate needs close to perfect
+ranking, so the next step is a different mark detector (or a learned one, trained on transcribed
+cells), not further threshold tuning.

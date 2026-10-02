@@ -40,6 +40,9 @@ GENERATED = {
     'NEAREST.computed': 'check_distances',
     'NEAREST.distances': 'check_distances',
     'CALS.by_site': 'calendar_stratum',
+    # the gate's note, written when machine-read downtime is withheld (tools/reader_gate.py)
+    'CALS.machine_downtime_withheld': 'calendar_stratum',
+    'CALX.machine_downtime_withheld': 'recompute_figures',
     'CALS.by_year': 'calendar_stratum',
     'CALS.evidenced_by': 'calendar_stratum',
     'CALS.evidenced_points': 'calendar_stratum',
@@ -314,6 +317,8 @@ WHOLE = {
     'TACC': ('compare_transcriptions', 'render_datasets'),
     # transcription check, round 1 (two humans and the machine)
     'TRC1': ('transcription_round1', 'render_datasets'),
+    # the calendar reader validated against round 1 (the publication gate)
+    'RVAL': ('reader_validation', 'render_datasets'),
     # the 2025 household water-quality round, SDWS 18
     'SDWS18': ('rebuild_sdws18', 'render_datasets'),
     # the PROPOSED India Mark cap per pump (not applied; act-india-mark-cap-james)
