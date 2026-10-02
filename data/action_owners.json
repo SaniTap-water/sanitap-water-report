@@ -3,541 +3,734 @@
  "owners": {
   "act-2026-recovery": {
    "deadline": "2027-01-31",
-   "owner": "Angelo Nahavitatsara / MadAvance"
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Photograph every surviving 2026 breakdown calendar at every pump"
   },
   "act-742896839": {
    "deadline": null,
-   "owner": "Lanja, mWater group administrator"
-  },
-  "act-adopt-consolidated-gardien-calendar": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-cal-handwritten-year": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-cal-working-day-ticks": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-calendar-custody": {
-   "deadline": "2026-09-26",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-calendar-v13": {
-   "deadline": "2026-10-10",
-   "owner": "Angelo Nahavitatsara"
-  },
-  "act-call-service-visit": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-close-eight-2-2": {
-   "deadline": "2026-11-30",
-   "owner": "MadAvance"
-  },
-  "act-close-out-6-5": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
-  "act-close-s4-16-car-2": {
-   "deadline": "2026-11-30",
-   "owner": "James Walker, with Angelo"
-  },
-  "act-complete-accuracy-assessment-calendar": {
-   "deadline": "2026-10-31",
-   "owner": "Adriaan Mol"
-  },
-  "act-confirm-india-mark-capacity": {
-   "deadline": null,
-   "owner": "MadAvance field teams"
-  },
-  "act-confirm-maroantsetra-fnrb-value": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-confirm-whether-ersdws-v2": {
-   "deadline": "2026-09-30",
-   "owner": "James Walker"
-  },
-  "act-dashboard-gap": {
-   "deadline": "2026-10-17",
-   "owner": "Lanja Randriamanantena / MadAvance"
-  },
-  "act-decide-how-treat-67": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker, with Jan"
-  },
-  "act-decommission-inactivity-field": {
-   "deadline": "2026-09-21",
-   "owner": "—"
-  },
-  "act-define-maintenance-record-becomes": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
-  "act-down-no-repair": {
-   "deadline": "2026-10-17",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-duplicate-codes-sweep": {
-   "deadline": "2026-09-21",
-   "owner": "Adriaan Mol"
-  },
-  "act-emergency-event-form": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-enduro-feed": {
-   "deadline": "2026-10-31",
-   "owner": "Jan de Graaf"
-  },
-  "act-enduro-move-register-fully": {
-   "deadline": "2026-10-31",
-   "owner": "Jan, with Coddy"
-  },
-  "act-establish-renewal-dates-four": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-find-source-annual-independent": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
-  "act-fleet-growth": {
-   "deadline": "2026-10-17",
-   "owner": "Jan de Graaf"
-  },
-  "act-freeze-estate-map-when": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
-  "act-gaps-doc": {
-   "deadline": "2026-10-03",
-   "owner": "Jan de Graaf"
-  },
-  "act-gs-validation-withdrawal-watch": {
-   "deadline": "2026-12-31",
-   "owner": "James Walker"
-  },
-  "act-identify-count-institutional-premises": {
-   "deadline": null,
-   "owner": "MadAvance"
-  },
-  "act-indiamark-premises": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-make-calendar-photograph-mandatory": {
-   "deadline": "2026-10-31",
-   "owner": "Lanja"
-  },
-  "act-mar-admin-fields": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-mar-functional-status": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-mar-missing-boreholes": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-mar-missing-rehabs": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-mar-technical-values": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-mar-water-quality": {
-   "deadline": null,
-   "owner": "Lanja Randriamanantena / MadAvance"
-  },
-  "act-mar-which-form": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-mor-1b-betanatanana-go-look": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-bring-back-site-lists": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-correct-two-sampling-records": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-count-draw-off-point": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-fill-three-new-fields": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-fix-type-sampled-point": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-have-those-five-records": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-households-people-served-per": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-re-take-gps-fix": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-record-what-community-drank": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-remove-reclassify-two-test": {
-   "deadline": null,
-   "owner": "Jan / Endur’O team"
-  },
-  "act-mor-submit-drafts": {
-   "deadline": "2026-10-17",
-   "owner": "Jan / Endur’O team"
-  },
-  "act-move-stroke-test-sop": {
-   "deadline": "2026-10-31",
-   "owner": "Jan"
-  },
-  "act-move-weekly-mwater-backup": {
-   "deadline": null,
-   "owner": "Adriaan"
-  },
-  "act-mwater-approval-policy": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance with Jan de Graaf"
-  },
-  "act-mwater-backup-restore-check": {
-   "deadline": "2026-10-02",
-   "owner": "Adriaan Mol"
-  },
-  "act-mwater-mg-locale": {
-   "deadline": "2026-10-03",
-   "owner": "Lanja Randriamanantena / MadAvance"
-  },
-  "act-mwater-year-required": {
-   "deadline": "2027-01-31",
-   "owner": "Adriaan Mol"
-  },
-  "act-no-works-record": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-per-diem": {
-   "deadline": "2026-10-31",
-   "owner": "Adriaan Mol"
-  },
-  "act-photo-conditional-on-presence": {
-   "deadline": "2026-09-21",
-   "owner": "Adriaan Mol"
-  },
-  "act-photo-misfiled": {
-   "deadline": "2026-10-31",
-   "owner": "Adriaan Mol"
-  },
-  "act-point-use-round-one": {
-   "deadline": null,
-   "owner": "MadAvance / Cathy"
-  },
-  "act-population-rerun": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-printed-year-meaning": {
-   "deadline": "2026-10-17",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-produce-s4-19-cl": {
-   "deadline": "2026-10-31",
-   "owner": "Adriaan, submitted by James Walker"
-  },
-  "act-put-current-methodology-vpa": {
-   "deadline": "2026-09-30",
-   "owner": "James Walker"
-  },
-  "act-put-usage-question-live": {
-   "deadline": null,
-   "owner": "Adriaan / MadAvance"
-  },
-  "act-re-run-improved-cookstove": {
-   "deadline": null,
-   "owner": "Angelo, tracked by Jan"
-  },
-  "act-reconcile-cookstove-water-programmes": {
-   "deadline": null,
-   "owner": "James Walker on method, Adriaan on data"
-  },
-  "act-recreate-gardien-calendar-controlled": {
-   "deadline": "2026-10-31",
-   "owner": "Jan"
-  },
-  "act-reduced-performance": {
-   "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-refresh-extract": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-rehab-recording": {
-   "deadline": "2026-10-03",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-reissue-calendars-new-blank": {
-   "deadline": "2026-12-31",
-   "owner": "Jan with Angelo"
-  },
-  "act-repair-time": {
-   "deadline": "2026-12-31",
-   "owner": "Jan de Graaf"
-  },
-  "act-repeat-breakdown": {
-   "deadline": null,
-   "owner": "Jan de Graaf"
-  },
-  "act-resolve-sdws-27-sdws": {
-   "deadline": "2026-10-15",
-   "owner": "James Walker"
-  },
-  "act-resolve-water-point-type": {
-   "deadline": "2026-10-31",
-   "owner": "Jan"
-  },
-  "act-restore-preventive-maintenance-visit": {
-   "deadline": "2026-11-30",
-   "owner": "Jan"
-  },
-  "act-retrain-field-teams-how": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo"
-  },
-  "act-route-plans": {
-   "deadline": "2026-10-17",
-   "owner": "Angelo Nahavitatsara"
-  },
-  "act-run-sdws-26-premises": {
-   "deadline": "2026-10-31",
-   "owner": "Angelo, tracked by Jan"
-  },
-  "act-run-stroke-test-sdws": {
-   "deadline": "2026-12-15",
-   "owner": "Angelo, tracked by Jan"
-  },
-  "act-sdws26-annual-round": {
-   "deadline": "2026-11-30",
-   "owner": "Angelo Nahavitatsara, MadAvance water team"
-  },
-  "act-sdws26-approve-2025": {
-   "deadline": null,
-   "owner": "MadAvance"
-  },
-  "act-sdws26-instrument-review": {
-   "deadline": null,
-   "owner": "James Walker"
-  },
-  "act-sdws27-basis": {
-   "deadline": "2026-10-03",
-   "owner": "James Walker"
-  },
-  "act-sdws3-operating-status": {
-   "deadline": "2026-10-17",
-   "owner": "Adriaan Mol"
-  },
-  "act-sensor-definition": {
-   "deadline": "2026-10-10",
-   "owner": "James Walker"
-  },
-  "act-sensor-sample": {
-   "deadline": "2026-10-03",
-   "owner": "Adriaan Mol"
-  },
-  "act-settle-baseline-boiling-device": {
-   "deadline": "2026-11-30",
-   "owner": "James Walker on method, Adriaan on data"
-  },
-  "act-standardised-stroke-test-basis": {
-   "deadline": null,
-   "owner": "MadAvance"
-  },
-  "act-transcription-round": {
-   "deadline": "2026-10-10",
-   "owner": "MadAvance — transcriber to be named"
-  },
-  "act-type3-cap": {
-   "deadline": null,
-   "owner": "James Walker"
-  },
-  "act-undatable": {
-   "deadline": "2026-10-17",
-   "owner": "Angelo Nahavitatsara / MadAvance"
-  },
-  "act-update-parameters-workbook-cite": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-update-sops-portfolio-figures": {
-   "deadline": "2026-10-31",
-   "owner": "Jan"
-  },
-  "act-v2-adherence": {
-   "deadline": null,
-   "owner": "James Walker"
-  },
-  "act-v2-confidence-intervals": {
-   "deadline": "2026-10-17",
-   "owner": "James Walker"
-  },
-  "act-v2-embodied": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-v2-nonclaiming": {
-   "deadline": "2026-10-17",
-   "owner": "James Walker"
-  },
-  "act-v2-sample-size": {
-   "deadline": "2026-10-10",
-   "owner": "James Walker"
-  },
-  "act-v2-stove-stacking": {
-   "deadline": "2026-10-31",
-   "owner": "James Walker"
-  },
-  "act-v2-stroke-test": {
-   "deadline": "2026-10-31",
-   "owner": "Jan"
-  },
-  "act-visit-collapse": {
-   "deadline": "2026-09-30",
-   "owner": "Jan de Graaf"
-  },
-  "act-visit-three-marolinta-points": {
-   "deadline": "2026-12-31",
-   "owner": "Angelo, tracked by Jan"
-  },
-  "act-wq-retest": {
-   "deadline": null,
-   "owner": "Lanja Randriamanantena / MadAvance"
-  },
-  "act-enduro-link-wp-systems": {
-   "deadline": null,
-   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits"
-  },
-  "act-moramanga-system-dedupe": {
-   "deadline": null,
-   "owner": "Coddy (Endur’O), with Lanja Randriamanantena (MadAvance IT)"
-  },
-  "act-moramanga-register-standposts": {
-   "deadline": null,
-   "owner": "Endur’O (Coddy), with Lanja Randriamanantena (MadAvance IT) for mWater"
-  },
-  "act-india-mark-cap-james": {
-   "deadline": null,
-   "owner": "Adriaan Mol"
-  },
-  "act-sdws18-james-rulings": {
-   "deadline": "2026-10-16",
-   "owner": "James Walker"
-  },
-  "act-pou-form-threshold": {
-   "deadline": null,
-   "owner": "Lanja Randriamanantena"
+   "owner": "Lanja, mWater group administrator",
+   "title": "Explain why pump 742896839 is outside the MadAvance mWater group"
   },
   "act-782134540-rehab-record": {
    "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara"
+   "owner": "Angelo Nahavitatsara",
+   "title": "File the rehabilitation record for pump 782134540 in Maroantsetra"
   },
-  "act-marolinta-drilling-result": {
+  "act-adopt-consolidated-gardien-calendar": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Adopt the single procedure for the guardians' breakdown calendar"
+  },
+  "act-cal-handwritten-year": {
    "deadline": null,
-   "owner": "Angelo Nahavitatsara"
+   "owner": "Adriaan Mol",
+   "title": "Read the year on calendar sheets where it is handwritten"
   },
-  "act-sop-calendar-v17-signoff": {
+  "act-cal-working-day-ticks": {
    "deadline": null,
-   "owner": "Angelo Nahavitatsara"
+   "owner": "Adriaan Mol",
+   "title": "Check calendar sheets where guardians ticked working days, not breakdowns"
   },
-  "act-usage-survey-inside-radius": {
-   "deadline": "2026-10-16",
-   "owner": "Adriaan Mol"
+  "act-calendar-custody": {
+   "deadline": "2026-09-26",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Tell field teams: photograph the old calendar before replacing it"
   },
-  "act-usage-survey-random-selection": {
-   "deadline": "2026-10-16",
-   "owner": "Adriaan Mol"
+  "act-calendar-human-sample-annual": {
+   "deadline": "2027-01-31",
+   "owner": "Angelo Nahavitatsara (transcription), Adriaan Mol (design and SOP)",
+   "source": "decision of 2 Oct 2026, commits 8abf684 and 39bda32",
+   "title": "Have two people read a random sample of calendars every year"
   },
-  "act-tana-baseline-form": {
-   "deadline": "2026-10-09",
-   "owner": "Adriaan Mol"
-  },
-  "act-tana-baseline-sample-size": {
-   "deadline": "2026-10-09",
-   "owner": "James Walker"
-  },
-  "act-tana-baseline-survey": {
-   "deadline": "2026-10-31",
-   "owner": "Endur’O (Coddy Velonizy, Ntsoa Ranaivoson)"
-  },
-  "act-tana-jirama-licence-filed": {
-   "deadline": "2026-10-16",
-   "owner": "Endur’O (Coddy Velonizy)"
-  },
-  "act-ralf-shopkeeper-waterpoint-link": {
-   "deadline": "2026-10-31",
-   "owner": "Ralf van Veenendaal (Curtech)"
-  },
-  "act-ralf-meter-install-register": {
-   "deadline": "2026-10-31",
-   "owner": "Ralf van Veenendaal (Curtech)"
-  },
-  "act-usage-survey-sop": {
-   "deadline": "2026-10-16",
-   "owner": "Adriaan Mol; sign-off James Walker"
-  },
-  "act-sampler-usage-survey-mode": {
-   "deadline": "2026-10-23",
-   "owner": "Adriaan Mol (built with Claude Code)"
-  },
-  "act-wq-incubator-sop": {
-   "deadline": "2026-10-23",
-   "owner": "Cathy Andriambololonirina (Mandie)"
-  },
-  "act-sdws18-2025-kit-sop": {
-   "deadline": "2026-10-23",
-   "owner": "Cathy Andriambololonirina",
-   "source": "James Walker, 1 Oct 2026"
+  "act-calendar-v13": {
+   "deadline": "2026-10-10",
+   "owner": "Angelo Nahavitatsara",
+   "title": "Print and hand out the new blank calendar, withdrawing old stock"
   },
   "act-call-no-followup": {
    "deadline": "2026-10-16",
    "owner": "Angelo Nahavitatsara",
-   "source": "commit 9c35dca"
+   "source": "commit 9c35dca",
+   "title": "Send a repair within a week for every pump reported down"
+  },
+  "act-call-service-visit": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Retrain the call team to log routine service visit requests"
+  },
+  "act-carbon-year-basis": {
+   "title": "Give the per-year carbon basis, or remove the per-year table"
+  },
+  "act-close-eight-2-2": {
+   "deadline": "2026-11-30",
+   "owner": "MadAvance",
+   "title": "Answer the missing control question on eight pump records (SDWS 2)"
+  },
+  "act-close-out-6-5": {
+   "deadline": null,
+   "owner": "Adriaan",
+   "title": "Explain the unexplained difference from the January population count"
+  },
+  "act-close-s4-16-car-2": {
+   "deadline": "2026-11-30",
+   "owner": "James Walker, with Angelo",
+   "title": "Correct what Gold Standard was told about pump chemical tests (SDWS 3)"
+  },
+  "act-complete-accuracy-assessment-calendar": {
+   "deadline": "2026-10-31",
+   "owner": "Adriaan Mol",
+   "title": "Check how accurately the calendars were machine-read"
+  },
+  "act-confirm-india-mark-capacity": {
+   "deadline": null,
+   "owner": "MadAvance field teams",
+   "title": "Measure depth and yield at sample India Mark pumps"
+  },
+  "act-confirm-maroantsetra-fnrb-value": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Confirm Maroantsetra's share of non-renewable firewood (fNRB)"
+  },
+  "act-confirm-whether-ersdws-v2": {
+   "deadline": "2026-09-30",
+   "owner": "James Walker",
+   "title": "Confirm whether the new Gold Standard methodology (v2.0) applies to us"
+  },
+  "act-dashboard-gap": {
+   "deadline": "2026-10-17",
+   "owner": "Lanja Randriamanantena / MadAvance",
+   "title": "Explain the gap between the MadAvance dashboard and our pump register"
+  },
+  "act-decide-how-treat-67": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker, with Jan",
+   "title": "Decide whether pumps without a usable calendar photo are excluded or estimated"
+  },
+  "act-decommission-inactivity-field": {
+   "deadline": "2026-09-21",
+   "owner": "—",
+   "title": "Keep broken pumps in the register; never retire them for inactivity"
+  },
+  "act-define-maintenance-record-becomes": {
+   "deadline": null,
+   "owner": "Adriaan",
+   "title": "Write the rule turning repair records into days out of service"
+  },
+  "act-design-change-q1-2027": {
+   "title": "Switch to methodology v2.0 at the early-2027 verification and fix the project document"
+  },
+  "act-down-no-repair": {
+   "deadline": "2026-10-17",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Record a repair, or a reason, for every pump reported down"
+  },
+  "act-duplicate-codes-sweep": {
+   "deadline": "2026-09-21",
+   "owner": "Adriaan Mol",
+   "title": "Remove the six duplicate question codes on three mWater forms"
+  },
+  "act-emergency-event-form": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Decide where emergency cleaning of pumps is recorded (SDWS 3)"
+  },
+  "act-enduro-feed": {
+   "deadline": "2026-10-31",
+   "owner": "Jan de Graaf",
+   "title": "Get a feed of every water sale from the Endur'O smart taps"
+  },
+  "act-enduro-link-wp-systems": {
+   "deadline": null,
+   "owner": "Endur’O, with Lanja Randriamanantena (MadAvance IT) for the mWater edits",
+   "title": "Link each Endur'O water point to its water system in mWater"
+  },
+  "act-enduro-move-register-fully": {
+   "deadline": "2026-10-31",
+   "owner": "Jan, with Coddy",
+   "title": "Move the whole Endur'O site list into mWater"
+  },
+  "act-enduro-onboard-1-enumerators": {
+   "title": "Add the Endur'O survey team so the registration forms open"
+  },
+  "act-enduro-onboard-2-register-sites": {
+   "title": "Register every Endur'O site and tap point in mWater"
+  },
+  "act-enduro-onboard-3-bind-taps": {
+   "title": "Link each Endur'O smart tap to its water point with a test dispense"
+  },
+  "act-enduro-onboard-5-calibration": {
+   "title": "Supply a calibration certificate for every installed Endur'O water meter"
+  },
+  "act-enduro-onboard-6-kiosk-wq": {
+   "title": "Test the water at the Antananarivo kiosk tap and record it"
+  },
+  "act-enduro-onboard-7-piped-sdws27": {
+   "title": "Record piped-system maintenance, repairs and downtime in mWater (SDWS 27)"
+  },
+  "act-enduro-people-source": {
+   "title": "Record which document gives the Endur'O people-served figure"
+  },
+  "act-enduro-refresh": {
+   "title": "Re-confirm the hand-entered Endur'O figures"
+  },
+  "act-establish-renewal-dates-four": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Find renewal dates for the four baseline cooking parameters"
+  },
+  "act-figure-residue": {
+   "title": "Give a source for every remaining unsourced figure in the report"
+  },
+  "act-find-source-annual-independent": {
+   "deadline": null,
+   "owner": "Adriaan",
+   "title": "Find an outside source to check people per household each year (SDWS 25)"
+  },
+  "act-fleet-growth": {
+   "deadline": "2026-10-17",
+   "owner": "Jan de Graaf",
+   "title": "Find out which new pumps are coming into the carbon programme"
+  },
+  "act-form-consolidation": {
+   "title": "Decide whether to merge the Marolinta borehole form into the works form"
+  },
+  "act-freeze-estate-map-when": {
+   "deadline": null,
+   "owner": "Adriaan",
+   "title": "Freeze the pump map when a report edition is archived"
+  },
+  "act-gaps-doc": {
+   "deadline": "2026-10-03",
+   "owner": "Jan de Graaf",
+   "title": "Correct the carbon data gaps document on the cookstove overlap"
+  },
+  "act-gs-validation-withdrawal-watch": {
+   "deadline": "2026-12-31",
+   "owner": "James Walker",
+   "title": "Watch for Gold Standard withdrawing the quarterly stroke-test check"
   },
   "act-hygiene-campaign-2026": {
    "deadline": "2026-11-30",
    "owner": "Angelo Nahavitatsara (sessions, 2025 evidence) and Jan de Graaf (campaign report)",
-   "source": "commit 9c35dca"
+   "source": "commit 9c35dca",
+   "title": "Run and record the 2026 hygiene campaign at the pumps (SDWS 20)"
+  },
+  "act-identify-count-institutional-premises": {
+   "deadline": null,
+   "owner": "MadAvance",
+   "title": "List and count schools and health posts near our pumps"
+  },
+  "act-india-mark-cap-james": {
+   "deadline": null,
+   "owner": "Adriaan Mol",
+   "title": "Get James's written yes or no on the India Mark people limit"
+  },
+  "act-indiamark-premises": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Agree how many people one India Mark pump serves"
   },
   "act-jmp-survey-2026": {
    "deadline": "2026-11-30",
    "owner": "Jan de Graaf with MadAvance",
    "source": "commit 9c35dca",
-   "depends_on": "act-usage-survey-sop"
+   "depends_on": "act-usage-survey-sop",
+   "title": "Run the November 2026 household hygiene survey and compare with 2025"
   },
-  "act-calendar-human-sample-annual": {
+  "act-make-calendar-photograph-mandatory": {
+   "deadline": "2026-10-31",
+   "owner": "Lanja",
+   "title": "Make the calendar photo required on maintenance and repair forms"
+  },
+  "act-mar-admin-fields": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Fill in location and pump model on the Marolinta pump records"
+  },
+  "act-mar-functional-status": {
+   "deadline": null,
+   "owner": "Adriaan Mol",
+   "title": "Record whether each new Marolinta borehole is working"
+  },
+  "act-mar-missing-boreholes": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Enter the missing new-borehole records for Marolinta"
+  },
+  "act-mar-missing-rehabs": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Enter the Marolinta rehabilitations that have no record"
+  },
+  "act-mar-new-construction-gap": {
+   "title": "Enter the Marolinta new boreholes that have no record"
+  },
+  "act-mar-technical-values": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Check the identical depth and yield figures on Marolinta boreholes"
+  },
+  "act-mar-water-quality": {
+   "deadline": null,
+   "owner": "Lanja Randriamanantena / MadAvance",
+   "title": "Test every Marolinta borehole for E. coli at the tap"
+  },
+  "act-mar-which-form": {
+   "deadline": null,
+   "owner": "Adriaan Mol",
+   "title": "Get field teams using the current first-rehabilitation form"
+  },
+  "act-marolinta-drilling-result": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara",
+   "title": "Record the drilling result on six Marolinta new boreholes"
+  },
+  "act-mor-1b-betanatanana-go-look": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Visit the open well at Betanatanana, Moramanga, and report"
+  },
+  "act-mor-bring-back-site-lists": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Bring site lists with GPS for Andaingo and Fieferana"
+  },
+  "act-mor-correct-two-sampling-records": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Correct two Moramanga water sampling records placed at wrong sites"
+  },
+  "act-mor-count-draw-off-point": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Count every tap, kiosk and house connection on the Moramanga systems"
+  },
+  "act-mor-fill-three-new-fields": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Fill the three new fields on Moramanga water test results"
+  },
+  "act-mor-fix-type-sampled-point": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Record each sampled Moramanga tap as one type, consistently"
+  },
+  "act-mor-have-those-five-records": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Share the five Moramanga borehole records with SaniTap"
+  },
+  "act-mor-households-people-served-per": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Count households and people served at each Moramanga tap"
+  },
+  "act-mor-re-take-gps-fix": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Re-take the GPS position at Amboasary Gara, Moramanga"
+  },
+  "act-mor-record-what-community-drank": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Record where each Moramanga community got water before the system"
+  },
+  "act-mor-remove-reclassify-two-test": {
+   "deadline": null,
+   "owner": "Jan / Endur’O team",
+   "title": "Remove two test records from the hand-pump register"
+  },
+  "act-mor-submit-drafts": {
+   "deadline": "2026-10-17",
+   "owner": "Jan / Endur’O team",
+   "title": "Submit the draft Moramanga new-construction records"
+  },
+  "act-moramanga-post-rehab-wq": {
+   "title": "Test water at the four Moramanga piped systems after works"
+  },
+  "act-moramanga-register-standposts": {
+   "deadline": null,
+   "owner": "Endur’O (Coddy), with Lanja Randriamanantena (MadAvance IT) for mWater",
+   "title": "Register every Moramanga public tap as a water point in mWater"
+  },
+  "act-moramanga-system-dedupe": {
+   "deadline": null,
+   "owner": "Coddy (Endur’O), with Lanja Randriamanantena (MadAvance IT)",
+   "title": "Merge duplicate Moramanga water system records around Amboasary"
+  },
+  "act-move-stroke-test-sop": {
+   "deadline": "2026-10-31",
+   "owner": "Jan",
+   "title": "Approve the pump stroke-test procedure v2.2 and file it"
+  },
+  "act-move-weekly-mwater-backup": {
+   "deadline": null,
+   "owner": "Adriaan",
+   "title": "Move the weekly mWater backup from the laptop to the server"
+  },
+  "act-mwater-approval-policy": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo Nahavitatsara / MadAvance with Jan de Graaf",
+   "title": "Define what approving an mWater record means, and use it sparingly"
+  },
+  "act-mwater-backup-restore-check": {
+   "deadline": "2026-10-02",
+   "owner": "Adriaan Mol",
+   "title": "Check what the mWater form restore brought back or lost"
+  },
+  "act-mwater-mg-locale": {
+   "deadline": "2026-10-03",
+   "owner": "Lanja Randriamanantena / MadAvance",
+   "title": "Add Malagasy as a language on the preventive maintenance form"
+  },
+  "act-mwater-year-required": {
    "deadline": "2027-01-31",
-   "owner": "Angelo Nahavitatsara (transcription), Adriaan Mol (design and SOP)",
-   "source": "decision of 2 Oct 2026, commits 8abf684 and 39bda32"
+   "owner": "Adriaan Mol",
+   "title": "Make the calendar year question required once new calendars are out"
+  },
+  "act-no-works-record": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Add a works record, or remove, every pump that has none"
+  },
+  "act-per-diem": {
+   "deadline": "2026-10-31",
+   "owner": "Adriaan Mol",
+   "title": "Pay field allowances per pump completed, not per day"
+  },
+  "act-photo-conditional-on-presence": {
+   "deadline": "2026-09-21",
+   "owner": "Adriaan Mol",
+   "title": "Ask for the calendar photo on repairs only when a calendar is there"
+  },
+  "act-photo-misfiled": {
+   "deadline": "2026-10-31",
+   "owner": "Adriaan Mol",
+   "title": "Move photos filed under the wrong question to the right one"
+  },
+  "act-piped-fnrb": {
+   "title": "Agree the firewood share (fNRB) for the piped water project"
+  },
+  "act-piped-usage-survey": {
+   "title": "Run a yearly household survey for the piped water systems"
+  },
+  "act-piped-wq-misfiled-742895333": {
+   "title": "Re-enter two water tests for pump 742895333, Sainte Luce, on the right form"
+  },
+  "act-point-use-round-one": {
+   "deadline": null,
+   "owner": "MadAvance / Cathy",
+   "title": "Run the 2026 household water quality survey with proper checks (SDWS 18)"
+  },
+  "act-population-rerun": {
+   "deadline": null,
+   "owner": "Adriaan Mol",
+   "title": "Re-run the people-served model whenever pumps are added"
+  },
+  "act-pou-form-threshold": {
+   "deadline": null,
+   "owner": "Lanja Randriamanantena",
+   "title": "Fix the pass rule on the household water test form"
+  },
+  "act-printed-year-meaning": {
+   "deadline": "2026-10-17",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Find out what the year printed on calendars is meant to mean"
+  },
+  "act-produce-s4-19-cl": {
+   "deadline": "2026-10-31",
+   "owner": "Adriaan, submitted by James Walker",
+   "title": "Produce the list of households served by each borehole"
+  },
+  "act-put-current-methodology-vpa": {
+   "deadline": "2026-09-30",
+   "owner": "James Walker",
+   "title": "Put the current methodology and project document in the shared hub"
+  },
+  "act-put-usage-question-live": {
+   "deadline": null,
+   "owner": "Adriaan / MadAvance",
+   "title": "Put the water-use question on a live form and run the survey"
+  },
+  "act-ralf-meter-install-register": {
+   "deadline": "2026-10-31",
+   "owner": "Ralf van Veenendaal (Curtech)",
+   "title": "Give us a readable list of smart tap meter installations"
+  },
+  "act-ralf-shopkeeper-waterpoint-link": {
+   "deadline": "2026-10-31",
+   "owner": "Ralf van Veenendaal (Curtech)",
+   "title": "Link each kiosk shopkeeper in Zoho to their mWater water point"
+  },
+  "act-re-run-improved-cookstove": {
+   "deadline": null,
+   "owner": "Angelo, tracked by Jan",
+   "title": "Ask the improved cookstove use question in every yearly survey"
+  },
+  "act-reconcile-cookstove-water-programmes": {
+   "deadline": null,
+   "owner": "James Walker on method, Adriaan on data",
+   "title": "Check the cookstove and water programmes do not count the same savings"
+  },
+  "act-recreate-gardien-calendar-controlled": {
+   "deadline": "2026-10-31",
+   "owner": "Jan",
+   "title": "Recreate the guardians' calendar as a controlled, versioned document"
+  },
+  "act-reduced-performance": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Check pumps reported as working poorly that are counted as working"
+  },
+  "act-refresh-extract": {
+   "deadline": null,
+   "owner": "Adriaan Mol",
+   "title": "Refresh the mWater data before each report edition"
+  },
+  "act-rehab-recording": {
+   "deadline": "2026-10-03",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Reconcile Marolinta pump counts between meeting minutes and mWater"
+  },
+  "act-reissue-calendars-new-blank": {
+   "deadline": "2026-12-31",
+   "owner": "Jan with Angelo",
+   "title": "Hand out the new blank calendars on scheduled visits"
+  },
+  "act-repair-double-entry": {
+   "title": "Decide which of two copies of one repair to keep, pump 699597809"
+  },
+  "act-repair-time": {
+   "deadline": "2026-12-31",
+   "owner": "Jan de Graaf",
+   "title": "Track how fast the call centre sends technicians and reports back"
+  },
+  "act-repeat-breakdown": {
+   "deadline": null,
+   "owner": "Jan de Graaf",
+   "title": "Decide if Ambinanibe and Andramaka need a second pump instead of repairs"
+  },
+  "act-resolve-sdws-27-sdws": {
+   "deadline": "2026-10-15",
+   "owner": "James Walker",
+   "title": "Settle the stroke-test parameter number and calibration requirement (SDWS 27/28)"
+  },
+  "act-resolve-water-point-type": {
+   "deadline": "2026-10-31",
+   "owner": "Jan",
+   "title": "Settle the water point type of one disputed point"
+  },
+  "act-restore-preventive-maintenance-visit": {
+   "deadline": "2026-11-30",
+   "owner": "Jan",
+   "title": "Bring preventive maintenance visits back to the planned rate (SDWS 27)"
+  },
+  "act-retrain-field-teams-how": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo",
+   "title": "Retrain field teams to photograph the calendar sheet up close"
+  },
+  "act-route-plans": {
+   "deadline": "2026-10-17",
+   "owner": "Angelo Nahavitatsara",
+   "title": "Make a catch-up visit route for Marolinta; keep Fort-Dauphin's current"
+  },
+  "act-run-sdws-26-premises": {
+   "deadline": "2026-10-31",
+   "owner": "Angelo, tracked by Jan",
+   "title": "Run the households-served survey and report its precision (SDWS 26)"
+  },
+  "act-run-stroke-test-sdws": {
+   "deadline": "2026-12-15",
+   "owner": "Angelo, tracked by Jan",
+   "title": "Run the pump stroke test on the sample, following the procedure (SDWS 23)"
+  },
+  "act-sampler-usage-survey-mode": {
+   "deadline": "2026-10-23",
+   "owner": "Adriaan Mol (built with Claude Code)",
+   "title": "Add a random household survey mode to the SaniTap Sampler app"
+  },
+  "act-sdws18-2025-kit-sop": {
+   "deadline": "2026-10-23",
+   "owner": "Cathy Andriambololonirina",
+   "source": "James Walker, 1 Oct 2026",
+   "title": "File the test kit and procedure for 2025 household water tests (SDWS 18)"
+  },
+  "act-sdws18-james-rulings": {
+   "deadline": "2026-10-16",
+   "owner": "James Walker",
+   "title": "Get James's rulings on the 2025 household water tests (SDWS 18)"
+  },
+  "act-sdws26-annual-round": {
+   "deadline": "2026-11-30",
+   "owner": "Angelo Nahavitatsara, MadAvance water team",
+   "title": "Run the water-use survey every year and reach enough villages (SDWS 26)"
+  },
+  "act-sdws26-approve-2025": {
+   "deadline": null,
+   "owner": "MadAvance",
+   "title": "Approve the November 2025 water-use survey answers in mWater"
+  },
+  "act-sdws26-instrument-review": {
+   "deadline": null,
+   "owner": "James Walker",
+   "title": "Review and approve the water-use survey questions before fieldwork"
+  },
+  "act-sdws27-basis": {
+   "deadline": "2026-10-03",
+   "owner": "James Walker",
+   "title": "Agree with Gold Standard how pump working days are evidenced (SDWS 27)"
+  },
+  "act-sdws3-operating-status": {
+   "deadline": "2026-10-17",
+   "owner": "Adriaan Mol",
+   "title": "Add a 'is the pump working?' question to the water test forms"
+  },
+  "act-sensor-cost-benefit": {
+   "title": "Compare the cost of a sensor on every pump with the sample only"
+  },
+  "act-sensor-definition": {
+   "deadline": "2026-10-10",
+   "owner": "James Walker",
+   "title": "Ask Gold Standard whether a stroke counter counts as a pump sensor"
+  },
+  "act-sensor-sample": {
+   "deadline": "2026-10-03",
+   "owner": "Adriaan Mol",
+   "title": "Brief Ralf at Curtech on meter numbers versus calibration sample"
+  },
+  "act-settle-baseline-boiling-device": {
+   "deadline": "2026-11-30",
+   "owner": "James Walker on method, Adriaan on data",
+   "title": "Settle what stove-owning households in Anosy used to boil water before"
+  },
+  "act-sop-calendar-v17-signoff": {
+   "deadline": null,
+   "owner": "Angelo Nahavitatsara",
+   "title": "Brief every field team in French on calendar procedure v1.7"
+  },
+  "act-standardised-stroke-test-basis": {
+   "deadline": null,
+   "owner": "MadAvance",
+   "title": "Settle the basis for the five-minute pump stroke test"
+  },
+  "act-tana-baseline-form": {
+   "deadline": "2026-10-09",
+   "owner": "Adriaan Mol",
+   "title": "Prepare the carbon baseline form for the Antananarivo kiosks"
+  },
+  "act-tana-baseline-sample-size": {
+   "deadline": "2026-10-09",
+   "owner": "James Walker",
+   "title": "Confirm how many households the Antananarivo kiosk baseline survey needs"
+  },
+  "act-tana-baseline-survey": {
+   "deadline": "2026-10-31",
+   "owner": "Endur’O (Coddy Velonizy, Ntsoa Ranaivoson)",
+   "title": "Run the carbon baseline survey around the Antananarivo kiosks"
+  },
+  "act-tana-jirama-licence-filed": {
+   "deadline": "2026-10-16",
+   "owner": "Endur’O (Coddy Velonizy)",
+   "title": "File the national water utility licence for the Antananarivo kiosks (JIRAMA)"
+  },
+  "act-transcription-round": {
+   "deadline": "2026-10-10",
+   "owner": "MadAvance — transcriber to be named",
+   "title": "Have people transcribe calendars to check the machine reading"
+  },
+  "act-type3-cap": {
+   "deadline": null,
+   "owner": "James Walker",
+   "title": "Decide what to do before reaching the yearly small-project carbon cap"
+  },
+  "act-undatable": {
+   "deadline": "2026-10-17",
+   "owner": "Angelo Nahavitatsara / MadAvance",
+   "title": "Count the pumps whose calendar sheets show no year, and reissue"
+  },
+  "act-update-parameters-workbook-cite": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Update the parameters workbook to cite the current firewood source"
+  },
+  "act-update-sops-portfolio-figures": {
+   "deadline": "2026-10-31",
+   "owner": "Jan",
+   "title": "Update the pump numbers quoted in the calendar procedure"
+  },
+  "act-usage-survey-inside-radius": {
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol",
+   "title": "Pick survey households only within the service radius of each pump"
+  },
+  "act-usage-survey-random-selection": {
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol",
+   "title": "Pick survey pumps and households at random"
+  },
+  "act-usage-survey-sop": {
+   "deadline": "2026-10-16",
+   "owner": "Adriaan Mol; sign-off James Walker",
+   "title": "Write the procedure for the yearly household water-use survey (SDWS 26)"
+  },
+  "act-v2-adherence": {
+   "deadline": null,
+   "owner": "James Walker",
+   "title": "Keep monitoring to methodology v1.0 until renewal; track v2.0 changes"
+  },
+  "act-v2-confidence-intervals": {
+   "deadline": "2026-10-17",
+   "owner": "James Walker",
+   "title": "Keep the margin of error for every sampled figure from now on"
+  },
+  "act-v2-embodied": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Record build year and technology type for every new water point"
+  },
+  "act-v2-nonclaiming": {
+   "deadline": "2026-10-17",
+   "owner": "James Walker",
+   "title": "Get individual household consent, not only the village notice"
+  },
+  "act-v2-sample-size": {
+   "deadline": "2026-10-10",
+   "owner": "James Walker",
+   "title": "Re-size every sample to the methodology v2.0 minimum"
+  },
+  "act-v2-stove-stacking": {
+   "deadline": "2026-10-31",
+   "owner": "James Walker",
+   "title": "Add a question on using several stoves to the yearly survey"
+  },
+  "act-v2-stroke-test": {
+   "deadline": "2026-10-31",
+   "owner": "Jan",
+   "title": "Update the stroke-test procedure to the new methodology's condition"
+  },
+  "act-verification-fnrb-correction": {
+   "title": "Include the Maroantsetra firewood share correction in the early-2027 verification"
+  },
+  "act-visit-collapse": {
+   "deadline": "2026-09-30",
+   "owner": "Jan de Graaf",
+   "title": "Restore maintenance visits; calendar coverage depends on them"
+  },
+  "act-visit-three-marolinta-points": {
+   "deadline": "2026-12-31",
+   "owner": "Angelo, tracked by Jan",
+   "title": "Visit the three Marolinta points with no maintenance visit"
+  },
+  "act-wq-incubator-sop": {
+   "deadline": "2026-10-23",
+   "owner": "Cathy Andriambololonirina (Mandie)",
+   "title": "Write the incubator section of the field water testing procedure"
+  },
+  "act-wq-retest": {
+   "deadline": null,
+   "owner": "Lanja Randriamanantena / MadAvance",
+   "title": "Confirm the failed E. coli test at Ambinanitelo, 833033198, was retested"
   }
  },
  "orphan_rows": {
@@ -1503,8 +1696,8 @@
    "act-transcription-round": {
     "type": "auto",
     "closes_when": "closes when 50 calendars have been transcribed",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-02",
     "first_seen": "2026-09-20"
    },
    "act-type3-cap": {
@@ -2053,6 +2246,13 @@
     "what": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.1)",
     "source": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
+   },
+   "act-transcription-round": {
+    "recorded_on": "2026-10-02",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "transcription round 1: calendars transcribed by a person, at or above the 50 the closes-when names",
+    "source": "Dieu Donné Razafimahatratra (MadAvance MERV), releves_calendriers_dieu-donne_serie1_2026-10-01.csv (sha256 8fb8317d…): 83 calendars, 73 after cleaning; round-1 comparison with Adriaan Mol and the machine reader, commit 8abf684; data/transcriptions/round1_resume.md",
+    "summary": "83 calendars transcribed (73 confirmed after cleaning, 15,738 days); human-to-human agreement and the machine comparison reported in the round-1 summary. The machine reader failed validation and is withdrawn; the annual human-read sample continues under act-calendar-human-sample-annual."
    }
   }
  }

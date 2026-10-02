@@ -229,7 +229,14 @@ def actions(idx, use_asana=True):
                 a["state"], a["label"] = "OK", ""
             elif a["state"] == "OK":
                 a["state"], a["label"] = "ACT", "closed without recorded evidence: reopened"
+        # the plain title (2 Oct 2026): the Asana task's wording where the
+        # action has a task, else data/action_owners.json "title". The old
+        # descriptive heading stays as the first sentence of the detail.
         t = pull.get(a["id"])
+        plain = (t or {}).get("title") or (rec["owners"].get(a["id"]) or {}).get("title")
+        if plain:
+            a["title"], a["title_html"] = plain, html.escape(plain, quote=False)
+            a["plain_title"] = True
         if t:
             a["asana"], a["asana_gid"] = t.get("permalink"), t.get("gid")
             a["owner"], a["lead"] = t["owner"], lead_owner(t["owner"])
@@ -502,9 +509,11 @@ def row(a, today, owner_cell=True):
         e = a["evidence"]
         det += (f'<p class="evidence muted" style="font-size:.85em;margin:8px 0 0"><b>Evidence recorded</b> '
                 f'{e.get("recorded_on") or ""}: {e.get("source") or ""}.</p>')
+    actid = (f' <span class="act-id muted mono" style="font-size:.75em">{a["id"]}</span>'
+             if a.get("plain_title") else "")
     body = (f'<details class="act-detail" id="{a["id"]}">'
-            f'<summary>{a["title_html"]}</summary>{det}</details>'
-            if det else f'<b>{a["title_html"]}</b>')
+            f'<summary>{a["title_html"]}{actid}</summary>{det}</details>'
+            if det else f'<b>{a["title_html"]}</b>{actid}')
     # a retired id lands here: one anchor per redirect, in the main list only
     alias = "".join(f'<span id="{old}" class="act-alias"></span>'
                     for old, new in REDIRECTS.items() if new == a["id"]) if owner_cell else ""
@@ -512,7 +521,8 @@ def row(a, today, owner_cell=True):
             f' data-due="{a["due"].isoformat() if a.get("due") else ""}"'
             + (f' data-asana="{a["asana_gid"]}"' if a.get("asana_gid") else "")
             + (' data-evidence="1"' if a.get("evidence") else "")
-            + (' data-auto="1"' if a.get("auto") else "")) if owner_cell else ""
+            + (' data-auto="1"' if a.get("auto") else "")
+            + f' data-title="{html.escape(a["title"], quote=True)}"') if owner_cell else ""
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"{gate}'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
             f'<td>{alias}{body}'

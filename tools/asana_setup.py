@@ -7,7 +7,9 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
      if they are not;
   2. creates the section "Weekly report actions" if it does not exist;
   3. creates one task per OPEN action on the report (state ACT or WATCH, as
-     tools/render_actions.py computes it), named "<act-id> — <title>", due on the
+     tools/render_actions.py computes it), named "<plain title> [act-id]" (the
+     title from data/action_owners.json; first named "<act-id> — <title>", and
+     renamed on the next run unless its owner has renamed it), due on the
      deadline, assigned to the owner when the owner is an Asana user in the
      workspace and to Adriaan otherwise, with a description that starts
      "Owner: <name> (not in Asana)" in that case and gives the closes-when, type,
@@ -37,7 +39,9 @@ ADRIAAN = "1132514258683237"
 # (Endur'O director) added 2 Oct 2026 (second pass). An owner "Endur'O" with a
 # person in brackets is that person; "Endur'O" with no person named is assigned
 # to Coddy and keeps "Owner: Endur'O" as the first line of the description.
-# Ralf, MadAvance and Gold Standard are not users: assigned to Adriaan.
+# An owner "MadAvance" (field teams, transcriber to be named) is Angelo, and
+# "MadAvance / Cathy" is Cathy (third pass, same day). Ralf van Veenendaal
+# (Curtech) and Gold Standard are not users: assigned to Adriaan.
 CODDY = "1209012876322233"
 NTSOA = "1211301105253477"
 PEOPLE = {"jan": ("1209565438602753", "Jan de Graaf"),
@@ -66,6 +70,14 @@ def match_owner(owner):
     first = _first(o.split()[0]) if o.split() else ""
     if first in PEOPLE:
         gid, name = PEOPLE[first]
+        return gid, name, None, None
+    if first == "madavance":
+        # (2 Oct 2026, third pass) "MadAvance / Cathy" is Cathy; "MadAvance",
+        # "MadAvance field teams" and "MadAvance — transcriber to be named" are Angelo
+        if re.search(r"/\s*Cathy\b", o):
+            gid, name = PEOPLE["cathy"]
+        else:
+            gid, name = PEOPLE["angelo"]
         return gid, name, None, None
     if first == "enduro":
         inner = re.match(r"^\S+\s*\(([^)]*)\)", o)
@@ -120,13 +132,51 @@ def action_info():
             src = f"{s['sender']}, \"{s['subject']}\", {s['date']}"
         dep = list(filter(None, [rec.get("depends_on"), parent.get(a["id"]) and f"part of {parent[a['id']]}"]))
         out[a["id"]] = dict(
-            act=a, state=a["state"], title=a["title"], deadline=rec.get("deadline"),
+            act=a, state=a["state"], title=rec.get("title") or a["title"], deadline=rec.get("deadline"),
             assignee=gid, assignee_name=name or NAME_OF[gid], not_in_asana=not_in, owner_text=owner_text,
             first_line=first_line,
             closes_when=cl.get("closes_when") or c.get("closes_when") or c.get("says") or "not stated",
             type=cl.get("type") or c.get("closure") or c.get("kind") or "not stated",
             source=src or "the report's action record (data/action_details.json)",
             depends=", ".join(dep) or "—")
+    return out
+
+
+TAG = re.compile(r"\[(act-[a-z0-9-]+)\]\s*$")
+OLD_PREFIX = re.compile(r"^(act-[a-z0-9-]+)\s+\u2014\s")
+
+
+def task_name(title, aid):
+    """The task name: the plain title, then the act-id tag (2 Oct 2026)."""
+    return f"{title} [{aid}]"[:1000]
+
+
+def tag_of(name):
+    """The act-id a task name carries: the trailing [act-id] tag, or the
+    "<act-id> — <title>" prefix of the first naming. Matching is by task gid
+    (data/asana_map.json); the tag is for people reading the list."""
+    m = TAG.search(name or "") or OLD_PREFIX.match(name or "")
+    return m.group(1) if m else None
+
+
+def plan_rename(section, amap, info):
+    """Tasks still named "<act-id> — <old title>" get "<plain title> [act-id]".
+    A task its owner has renamed keeps the owner's wording (the build copies it
+    into data/action_owners.json "title"); only a missing tag is added back."""
+    if not section:
+        return []
+    by_gid = {g: k for k, g in amap["tasks"].items()}
+    out = []
+    for t in A.get(f"/sections/{section}/tasks", {"opt_fields": "name"}):
+        aid = by_gid.get(t["gid"])
+        if not aid:
+            continue
+        name = t["name"]
+        if OLD_PREFIX.match(name):
+            if aid in info:
+                out.append((t["gid"], aid, task_name(info[aid]["title"], aid)))
+        elif not TAG.search(name):
+            out.append((t["gid"], aid, task_name(name.strip(), aid)))
     return out
 
 
@@ -159,7 +209,7 @@ def plan_reassign(section):
             i = next((j + 1 for j, l in enumerate(rest) if l.startswith("On the report: ")), len(rest))
             rest = rest[:i] + [written] + rest[i:]
         notes = "\n".join(([first_line, ""] if first_line else []) + rest)
-        aid = (re.match(r"(act-[a-z0-9-]+)\s", t["name"]) or [None, t["gid"]])[1]
+        aid = tag_of(t["name"]) or t["gid"]
         out.append((t["gid"], aid, m.group(1), gid, notes))
     return out
 
@@ -186,9 +236,9 @@ def main():
     existing = {}
     if A.SECTION_NAME in secs:
         for t in A.get(f"/sections/{secs[A.SECTION_NAME]}/tasks", {"opt_fields": "name,completed"}):
-            m = re.match(r"(act-[a-z0-9-]+)\s", t["name"])
-            if m:
-                existing.setdefault(m.group(1), []).append(t["gid"])
+            k = tag_of(t["name"])
+            if k:
+                existing.setdefault(k, []).append(t["gid"])
     todo = [k for k in want if k not in amap["tasks"] and k not in existing]
     print(f"open actions {len(open_ids)}; already mapped {sum(1 for k in want if k in amap['tasks'])}; "
           f"adopted from the section {sum(1 for k in want if k in existing and k not in amap['tasks'])}; to create {len(todo)}")
@@ -196,6 +246,8 @@ def main():
           + f"; section exists: {A.SECTION_NAME in secs}")
     adriaan = sorted(k for k in want if info.get(k, {}).get("not_in_asana"))
     print(f"assigned to Adriaan because the owner is not in Asana: {len(adriaan)}")
+    renames = plan_rename(secs.get(A.SECTION_NAME), amap, info)
+    print(f"tasks to rename to '<plain title> [act-id]': {len(renames)}")
     reassign = plan_reassign(secs.get(A.SECTION_NAME))
     for gid, aid, owner, to, _ in reassign:
         print(f"  {'would reassign' if a.dry_run else 'reassign'}: {aid} ({owner}) -> {NAME_OF[to]}")
@@ -220,7 +272,7 @@ def main():
     created = []
     for k in todo:
         v = info[k]
-        body = {"name": f"{k} — {v['title']}"[:1000], "projects": [A.PROJECT],
+        body = {"name": task_name(v["title"], k), "projects": [A.PROJECT],
                 "memberships": [{"project": A.PROJECT, "section": amap["section"]}],
                 "assignee": v["assignee"], "notes": notes_for(v["act"], v)}
         if v["deadline"]:
@@ -231,6 +283,10 @@ def main():
         json.dump(amap, open(MAP, "w", encoding="utf8"), indent=1, ensure_ascii=False)   # after every task
     for gid, aid, owner, to, notes in reassign:
         A.put(f"/tasks/{gid}", {"assignee": to, "notes": notes})
+    for gid, aid, new_name in renames:
+        A.put(f"/tasks/{gid}", {"name": new_name})
+    if renames:
+        print(f"  renamed {len(renames)} task(s)")
     for k in a.complete:
         A.put(f"/tasks/{amap['tasks'][k]}", {"completed": True})
         print(f"  completed {k}")

@@ -234,6 +234,7 @@ GENERATED = {
     'METRICS.sites_without_route_plan': 'render_datasets',
     'METRICS.stroke_test_responses': 'render_datasets',
     'METRICS.transcription_sheets_done': 'render_datasets',
+    'METRICS.calls_no_repair_7d_worst_of_two_editions': 'render_datasets',
     'METRICS.unapproved_works_records': 'render_datasets',
     'METRICS.unsourced_figures': 'render_datasets',
     'METRICS.usage_question_answers': 'render_datasets',

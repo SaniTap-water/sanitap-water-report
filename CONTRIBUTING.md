@@ -1080,3 +1080,8 @@ Completing a task in Asana does not close the action: the page shows "done in As
 until the evidence its closes-when names is recorded under `evidence` in `data/action_owners.json` (or a
 build condition is satisfied). `tools/check_asana.py` fails the publish on an open action without exactly
 one task, an owner or deadline differing from Asana, or an action closed without evidence.
+
+Tasks are matched by gid (`data/asana_map.json`), never by name. Each action's name is a plain
+title in `data/action_owners.json` ("title"): a verb first, about twelve words, codes only in brackets
+after plain words. Asana names a task "<plain title> [act-id]"; if an owner renames it, the build takes
+the new wording as the title.

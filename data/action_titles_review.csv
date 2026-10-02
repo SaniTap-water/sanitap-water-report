@@ -1,0 +1,154 @@
+act_id,old_name,new_title,owner
+act-2026-recovery,Run the 2026 calendar recovery round across the whole portfolio — not a sample.,Photograph every surviving 2026 breakdown calendar at every pump,Angelo Nahavitatsara
+act-742896839,742896839 is in mWater but not in the MadAvance group — resolved as to cause.,Explain why pump 742896839 is outside the MadAvance mWater group,"Lanja, mWater group administrator"
+act-782134540-rehab-record,"MadAvance to file the rehabilitation record for 782134540 (Maroantsetra, Canzee).",File the rehabilitation record for pump 782134540 in Maroantsetra,Angelo Nahavitatsara
+act-adopt-consolidated-gardien-calendar,Adopt the consolidated gardien calendar SOP.,Adopt the single procedure for the guardians' breakdown calendar,Angelo Nahavitatsara / MadAvance
+act-cal-handwritten-year,"Read the sheet year where it is written by hand, not printed.",Read the year on calendar sheets where it is handwritten,Adriaan Mol
+act-cal-working-day-ticks,"Check the sheets where the gardien may have ticked working days, not breakdown days.","Check calendar sheets where guardians ticked working days, not breakdowns",Adriaan Mol
+act-calendar-custody,"Standing rule, to be issued to every field team today: no calendar may be replaced until the previous one has been photographed and the photograph confirmed legible and uploaded.",Tell field teams: photograph the old calendar before replacing it,Angelo Nahavitatsara
+act-calendar-human-sample-annual,Make the calendar evidence an annual human-read sample.,Have two people read a random sample of calendars every year,Angelo Nahavitatsara
+act-calendar-v13,"Print and distribute calendar template v1.4, withdrawing year-printed stock as v1.4 reaches each district.","Print and hand out the new blank calendar, withdrawing old stock",Angelo Nahavitatsara
+act-call-no-followup,Follow up every call that reports a pump down.,Send a repair within a week for every pump reported down,Angelo Nahavitatsara
+act-call-service-visit,Retrain the call team on the routine-service-visit option.,Retrain the call team to log routine service visit requests,Angelo Nahavitatsara
+act-carbon-year-basis,"Supply the per-year carbon activity basis, or withdraw the per-year table.","Give the per-year carbon basis, or remove the per-year table",James Walker
+act-close-eight-2-2,Close the eight 2.2.1(d) records.,Answer the missing control question on eight pump records (SDWS 2),MadAvance
+act-close-out-6-5,Close out the unexplained residual against the January population run.,Explain the unexplained difference from the January population count,Adriaan Mol
+act-close-s4-16-car-2,"Correct the SDWS 3 evidence record, and commission the parallel validation round.",Correct what Gold Standard was told about pump chemical tests (SDWS 3),James Walker
+act-complete-accuracy-assessment-calendar,Complete the accuracy assessment of the calendar extraction.,Check how accurately the calendars were machine-read,Adriaan Mol
+act-confirm-india-mark-capacity,Confirm the India Mark capacity cap.,Measure depth and yield at sample India Mark pumps,MadAvance field teams
+act-confirm-maroantsetra-fnrb-value,Confirm the Maroantsetra fNRB value at %.,Confirm Maroantsetra's share of non-renewable firewood (fNRB),James Walker
+act-confirm-whether-ersdws-v2,Confirm whether ERSDWS v2.0 applies to this VPA before renewal.,Confirm whether the new Gold Standard methodology (v2.0) applies to us,James Walker
+act-dashboard-gap,Reconcile the gap between the MadAvance dashboard and our register.,Explain the gap between the MadAvance dashboard and our pump register,Lanja Randriamanantena
+act-decide-how-treat-67,"Decide how to treat the points with no usable calendar image: exclude, or estimate.",Decide whether pumps without a usable calendar photo are excluded or estimated,James Walker
+act-decommission-inactivity-field,Decided 21 September 2026: SaniTap will not decommission or retire water points for inactivity.,Keep broken pumps in the register; never retire them for inactivity,—
+act-define-maintenance-record-becomes,Define how a maintenance record becomes a days-out-of-service count.,Write the rule turning repair records into days out of service,Adriaan Mol
+act-design-change-q1-2027,"Design change with the Q1 2027 verification: apply v2.0 to 2025, and correct the VPA-DD.",Switch to methodology v2.0 at the early-2027 verification and fix the project document,James Walker
+act-down-no-repair,Close the call-centre down reports that have no repair record.,"Record a repair, or a reason, for every pump reported down",Angelo Nahavitatsara
+act-duplicate-codes-sweep,Clear the six duplicated question codes on the other three forms.,Remove the six duplicate question codes on three mWater forms,Adriaan Mol
+act-emergency-event-form,Settle where SDWS 3 emergency-event evidence is actually recorded — the form the SOP names does not exist.,Decide where emergency cleaning of pumps is recorded (SDWS 3),Angelo Nahavitatsara
+act-enduro-feed,"Endur’O onboarding: a dispensing-events feed from Curtech — device id, timestamp, litres, card and credits for every dispense.",Get a feed of every water sale from the Endur'O smart taps,Jan de Graaf
+act-enduro-link-wp-systems,Set the parent water system on Endur’O water points in mWater.,Link each Endur'O water point to its water system in mWater,Coddy Velonizy
+act-enduro-move-register-fully,"Endur’O onboarding into mWater: move the register fully into mWater, in seven steps.",Move the whole Endur'O site list into mWater,Jan de Graaf
+act-enduro-onboard-1-enumerators,Endur’O onboarding: populate the enumerator team so the two registration forms open in the field app.,Add the Endur'O survey team so the registration forms open,Coddy
+act-enduro-onboard-2-register-sites,Endur’O onboarding: register every managed Endur’O site with the System and Distribution Point forms.,Register every Endur'O site and tap point in mWater,Coddy Velonizy
+act-enduro-onboard-3-bind-taps,Endur’O onboarding: bind every smart tap to its water point by the paired-timestamp test dispense.,Link each Endur'O smart tap to its water point with a test dispense,Coddy
+act-enduro-onboard-5-calibration,"Endur’O onboarding: a calibration certificate for every installed meter, traceable to its device id (Gold Standard SDWS 23, Option 1).",Supply a calibration certificate for every installed Endur'O water meter,Ralf van Veenendaal (Curtech)
+act-enduro-onboard-6-kiosk-wq,"Endur’O onboarding: a water-quality test at the dispensing point of the managed kiosk, bound to the water point, not the system.",Test the water at the Antananarivo kiosk tap and record it,Jan de Graaf
+act-enduro-onboard-7-piped-sdws27,"Endur’O onboarding: piped maintenance, repair and days-not-operational records in mWater — the SDWS 27 evidence.","Record piped-system maintenance, repairs and downtime in mWater (SDWS 27)",Coddy Velonizy
+act-enduro-people-source,Record where the Endur'O people figure comes from.,Record which document gives the Endur'O people-served figure,Adriaan Mol
+act-enduro-refresh,Re-confirm the hand-entered Endur'O figures.,Re-confirm the hand-entered Endur'O figures,Adriaan Mol
+act-establish-renewal-dates-four,Establish renewal dates and current status for the four baseline parameters.,Find renewal dates for the four baseline cooking parameters,James Walker
+act-figure-residue,Resolve the remaining unsourced figures.,Give a source for every remaining unsourced figure in the report,Adriaan Mol
+act-find-source-annual-independent,Find a source for the annual independent cross-check of people per premises.,Find an outside source to check people per household each year (SDWS 25),Adriaan Mol
+act-fleet-growth,The carbon fleet has not grown in nine months. Establish what the pipeline actually is.,Find out which new pumps are coming into the carbon programme,Jan de Graaf
+act-form-consolidation,Decide whether to consolidate the Marolinta borehole form into the works form.,Decide whether to merge the Marolinta borehole form into the works form,Adriaan Mol
+act-freeze-estate-map-when,Freeze the estate map when an edition is archived.,Freeze the pump map when a report edition is archived,Adriaan Mol
+act-gaps-doc,"Correct the carbon-data-gaps source document: it says the cookstove overlap has not been calculated, and it has.",Correct the carbon data gaps document on the cookstove overlap,Jan de Graaf
+act-gs-validation-withdrawal-watch,Watch for Gold Standard’s correction of the v2.0 quarterly Option 3 validation.,Watch for Gold Standard withdrawing the quarterly stroke-test check,James Walker
+act-hygiene-campaign-2026,Run and document the 2026 annual hygiene campaign (SDWS 20 / v2.0 SDWS 24).,Run and record the 2026 hygiene campaign at the pumps (SDWS 20),Angelo Nahavitatsara
+act-identify-count-institutional-premises,Identify and count institutional premises inside the service areas.,List and count schools and health posts near our pumps,MadAvance
+act-india-mark-cap-james,Confirm or reject the proposed India Mark cap rule — James Walker’s written reply.,Get James's written yes or no on the India Mark people limit,Adriaan Mol
+act-indiamark-premises,Settle the India Mark premises figure — or .,Agree how many people one India Mark pump serves,James Walker
+act-jmp-survey-2026,Run the November 2026 Hygiene&San round: the JMP impact assessment.,Run the November 2026 household hygiene survey and compare with 2025,Jan de Graaf
+act-make-calendar-photograph-mandatory,Make the calendar photograph a mandatory field on both visit forms.,Make the calendar photo required on maintenance and repair forms,Lanja
+act-mar-admin-fields,Set the administrative fields and pump model on the Marolinta records in mWater.,Fill in location and pump model on the Marolinta pump records,Angelo Nahavitatsara
+act-mar-functional-status,Fill “Statut fonctionnel actuel” on the new-construction records.,Record whether each new Marolinta borehole is working,Adriaan Mol
+act-mar-missing-boreholes,Enter the Marolinta new-borehole records that are missing.,Enter the missing new-borehole records for Marolinta,Angelo Nahavitatsara
+act-mar-missing-rehabs,Record the rehabilitations that have no record at all.,Enter the Marolinta rehabilitations that have no record,Angelo Nahavitatsara
+act-mar-new-construction-gap,Record the new boreholes that have no record at all.,Enter the Marolinta new boreholes that have no record,Angelo Nahavitatsara
+act-mar-technical-values,Check the repeated technical values with the drilling supervisor.,Check the identical depth and yield figures on Marolinta boreholes,Angelo Nahavitatsara
+act-mar-water-quality,Get a passed E. coli test at the point of collection on every Marolinta borehole.,Test every Marolinta borehole for E. coli at the tap,Lanja Randriamanantena
+act-mar-which-form,Get the field teams onto the current first-rehabilitation form.,Get field teams using the current first-rehabilitation form,Adriaan Mol
+act-marolinta-drilling-result,Complete the “drilling result” question on the Marolinta new-construction records (29 Jul–3 Aug 2026).,Record the drilling result on six Marolinta new boreholes,Angelo Nahavitatsara
+act-mor-1b-betanatanana-go-look,1b. Betanatanana — go and look at this well,"Visit the open well at Betanatanana, Moramanga, and report",Jan de Graaf
+act-mor-bring-back-site-lists,10. Bring back site lists with coordinates for Andaingo and Fieferana / Manjakandriana,Bring site lists with GPS for Andaingo and Fieferana,Jan de Graaf
+act-mor-correct-two-sampling-records,8. Correct two sampling records,Correct two Moramanga water sampling records placed at wrong sites,Jan de Graaf
+act-mor-count-draw-off-point,3. Count every draw-off point on the system,"Count every tap, kiosk and house connection on the Moramanga systems",Jan de Graaf
+act-mor-fill-three-new-fields,9. Fill the three new fields on the results form from the next round,Fill the three new fields on Moramanga water test results,Jan de Graaf
+act-mor-fix-type-sampled-point,"4. Fix the type of each sampled point, once","Record each sampled Moramanga tap as one type, consistently",Jan de Graaf
+act-mor-have-those-five-records,2. Have those five records shared with SaniTap,Share the five Moramanga borehole records with SaniTap,Jan de Graaf
+act-mor-households-people-served-per,5. Households and people served per draw-off point,Count households and people served at each Moramanga tap,Jan de Graaf
+act-mor-re-take-gps-fix,1. Re-take the GPS fix at Amboasary Gara,"Re-take the GPS position at Amboasary Gara, Moramanga",Jan de Graaf
+act-mor-record-what-community-drank,6. Record what each community drank before the system,Record where each Moramanga community got water before the system,Jan de Graaf
+act-mor-remove-reclassify-two-test,7. Remove or reclassify two test records in the hand-pump register,Remove two test records from the hand-pump register,Jan de Graaf
+act-mor-submit-drafts,Submit the draft new-construction records on the Moramanga deployment.,Submit the draft Moramanga new-construction records,Jan de Graaf
+act-moramanga-post-rehab-wq,Post-rehabilitation water-quality tests on the four Moramanga piped systems; record the sampled tap on every result.,Test water at the four Moramanga piped systems after works,Jan de Graaf
+act-moramanga-register-standposts,"Register every Moramanga public standpost as a water point (Distribution Point) linked to its system of record: existing systems now, new systems at commissioning.",Register every Moramanga public tap as a water point in mWater,Coddy Velonizy
+act-moramanga-system-dedupe,"Reconcile the duplicate system records around Amboasary with the four Moramanga systems, and decide which record is the system of record.",Merge duplicate Moramanga water system records around Amboasary,"Coddy (Endur’O), with Lanja Randriamanantena (MadAvance IT)"
+act-move-stroke-test-sop,"Approve stroke-test SOP v2.2 in French and English, move the French version into the SOPs folder, and retire v2.1 and v2.0.",Approve the pump stroke-test procedure v2.2 and file it,Jan de Graaf
+act-move-weekly-mwater-backup,Move the weekly mWater backup off the laptop.,Move the weekly mWater backup from the laptop to the server,Adriaan Mol
+act-mwater-approval-policy,"Define what approving an mWater record means, then apply it only where it buys something.","Define what approving an mWater record means, and use it sparingly",Angelo Nahavitatsara
+act-mwater-backup-restore-check,"Check what the mWater backup restore brought back, and that nothing edited after it was lost.",Check what the mWater form restore brought back or lost,Adriaan Mol
+act-mwater-mg-locale,"Add the Malagasy locale to the Entretien préventif form, so Malagasy labels stop having to lead the French string.",Add Malagasy as a language on the preventive maintenance form,Lanja Randriamanantena
+act-mwater-year-required,"Make mWater question 2.15.7 required, once v1.4 stock and the SOP are in the field in both districts.",Make the calendar year question required once new calendars are out,Adriaan Mol
+act-no-works-record,"Enter a works record, or remove from the register, for every point that has neither.","Add a works record, or remove, every pump that has none",Angelo Nahavitatsara
+act-per-diem,"Redesign the per-diem system so it pays for pumps completed, not days in the field.","Pay field allowances per pump completed, not per day",Adriaan Mol
+act-photo-conditional-on-presence,"Make the calendar photograph conditional on a calendar being present on the repair-after-breakdown form, as it now is on preventive maintenance.",Ask for the calendar photo on repairs only when a calendar is there,Adriaan Mol
+act-photo-misfiled,Move the misfiled photographs to the question they belong on.,Move photos filed under the wrong question to the right one,Adriaan Mol
+act-piped-fnrb,Settle the fNRB for the piped VPA before its VPA-DD is submitted.,Agree the firewood share (fNRB) for the piped water project,James Walker
+act-piped-usage-survey,"Annual usage survey for the piped systems — separate from the hand-pump survey; JMP core questions, household size, usage and SDG questions.",Run a yearly household survey for the piped water systems,James Walker
+act-piped-wq-misfiled-742895333,Two water-quality results for hand pump 742895333 (Sainte Luce) were filed on the piped results form 0ac68d82; re-enter them on the hand-pump form 7b33c5d7 in the portal and reject the piped copies.,"Re-enter two water tests for pump 742895333, Sainte Luce, on the right form",Lanja Randriamanantena
+act-point-use-round-one,"Run the 2026 household water-quality round (SDWS 18), with the checks the 2025 round lacked.",Run the 2026 household water quality survey with proper checks (SDWS 18),MadAvance / Cathy
+act-population-rerun,Re-run the population model whenever the portfolio grows.,Re-run the people-served model whenever pumps are added,Adriaan Mol
+act-pou-form-threshold,Change the pass calculation on the household water-quality form to fewer than E. coli per 100 ml.,Fix the pass rule on the household water test form,Lanja Randriamanantena
+act-printed-year-meaning,"Establish what the year printed on a gardien calendar is meant to denote, and whether sheets are issued with a forward year deliberately.",Find out what the year printed on calendars is meant to mean,Angelo Nahavitatsara
+act-produce-s4-19-cl,Produce the installation database.,Produce the list of households served by each borehole,Adriaan Mol
+act-put-current-methodology-vpa,Put the current methodology and our VPA-DD into the Central Data Hub.,Put the current methodology and project document in the shared hub,James Walker
+act-put-usage-question-live,Put the usage question on a live mWater form and run usage survey round one.,Put the water-use question on a live form and run the survey,Adriaan Mol
+act-ralf-meter-install-register,Expose the smart tap setup app’s meter installation register as a readable list (endpoint or URL).,Give us a readable list of smart tap meter installations,Ralf van Veenendaal (Curtech)
+act-ralf-shopkeeper-waterpoint-link,Link each Zoho shopkeeper record to the mWater water point code of their kiosk.,Link each kiosk shopkeeper in Zoho to their mWater water point,Ralf van Veenendaal (Curtech)
+act-re-run-improved-cookstove,Re-run the improved-cookstove usage question every year.,Ask the improved cookstove use question in every yearly survey,Angelo Nahavitatsara
+act-reconcile-cookstove-water-programmes,Reconcile the cookstove and water programmes for double counting.,Check the cookstove and water programmes do not count the same savings,"James Walker on method, Adriaan on data"
+act-recreate-gardien-calendar-controlled,Recreate the gardien calendar as a controlled document.,"Recreate the guardians' calendar as a controlled, versioned document",Jan de Graaf
+act-reduced-performance,Check the pumps reported with reduced performance that are still counted as working.,Check pumps reported as working poorly that are counted as working,Angelo Nahavitatsara
+act-refresh-extract,Refresh the mWater extract before each edition.,Refresh the mWater data before each report edition,Adriaan Mol
+act-rehab-recording,"Reconcile the Marolinta count: the minutes say 10 and 10, the form holds and .",Reconcile Marolinta pump counts between meeting minutes and mWater,Angelo Nahavitatsara
+act-reissue-calendars-new-blank,"Reissue calendars on the new blank template, on visits already scheduled.",Hand out the new blank calendars on scheduled visits,Jan de Graaf
+act-repair-double-entry,Decide what to do with one repair recorded twice across the form migration.,"Decide which of two copies of one repair to keep, pump 699597809",Lanja Randriamanantena
+act-repair-time,"Call-centre response and report-back time — an operational performance target, explicitly not a carbon figure.",Track how fast the call centre sends technicians and reports back,Jan de Graaf
+act-repeat-breakdown,Decide whether the two repeat-breakdown pumps need a second water point rather than a fifteenth repair.,Decide if Ambinanibe and Andramaka need a second pump instead of repairs,Jan de Graaf
+act-resolve-sdws-27-sdws,"Resolve the SDWS 27 / SDWS 28 numbering, and the calibration requirement.",Settle the stroke-test parameter number and calibration requirement (SDWS 27/28),James Walker
+act-resolve-water-point-type,"Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara).",Settle the water point type of one disputed point,Jan
+act-restore-preventive-maintenance-visit,Restore the preventive-maintenance visit rate (SDWS 27).,Bring preventive maintenance visits back to the planned rate (SDWS 27),Jan de Graaf
+act-retrain-field-teams-how,Retrain field teams on how to photograph the calendar.,Retrain field teams to photograph the calendar sheet up close,Angelo Nahavitatsara
+act-route-plans,"Build a catch-up route plan for Marolinta, and keep Fort-Dauphin’s current.",Make a catch-up visit route for Marolinta; keep Fort-Dauphin's current,Angelo Nahavitatsara
+act-run-sdws-26-premises,"Run the SDWS 26 premises-served survey, and report the precision actually achieved.",Run the households-served survey and report its precision (SDWS 26),"Angelo, tracked by Jan"
+act-run-stroke-test-sdws,"Run the stroke test on the SDWS 23 sample, to the SOP.","Run the pump stroke test on the sample, following the procedure (SDWS 23)","Angelo, tracked by Jan"
+act-sampler-usage-survey-mode,Add a usage-survey mode to the SaniTap Sampler: clustered three-stage water point draw and rooftop household draw with an offline phone field view.,Add a random household survey mode to the SaniTap Sampler app,Adriaan Mol
+act-sdws18-2025-kit-sop,"File the kit, method and SOP used in the 2025 household round (SDWS 18).",File the test kit and procedure for 2025 household water tests (SDWS 18),Cathy Andriambololonirina
+act-sdws18-james-rulings,James ruled on the 2025 household water-quality round (SDWS 18).,Get James's rulings on the 2025 household water tests (SDWS 18),James Walker
+act-sdws26-annual-round,"Run the SDWS 26 usage round every year, and fix the cluster shortfall.",Run the water-use survey every year and reach enough villages (SDWS 26),Angelo Nahavitatsara
+act-sdws26-approve-2025,Approve the November 2025 usage responses in mWater.,Approve the November 2025 water-use survey answers in mWater,MadAvance
+act-sdws26-instrument-review,Review and sign off the SDWS 26 usage instrument before the field round.,Review and approve the water-use survey questions before fieldwork,James Walker
+act-sdws27-basis,Settle the SDWS 27 basis with Gold Standard.,Agree with Gold Standard how pump working days are evidenced (SDWS 27),James Walker
+act-sdws3-operating-status,Add an operating-status question to the SDWS 3 water-quality forms.,Add a 'is the pump working?' question to the water test forms,Adriaan Mol
+act-sensor-cost-benefit,Cost-benefit of a sensor on every pump against the sample of 100.,Compare the cost of a sensor on every pump with the sample only,Adriaan Mol
+act-sensor-definition,Put the sensor definition to Gold Standard.,Ask Gold Standard whether a stroke counter counts as a pump sensor,James Walker
+act-sensor-sample,Done: Ralf van Veenendaal was briefed by WhatsApp,Brief Ralf at Curtech on meter numbers versus calibration sample,Adriaan Mol
+act-settle-baseline-boiling-device,Settle the baseline boiling device for stove-holding households in Anosy.,Settle what stove-owning households in Anosy used to boil water before,"James Walker on method, Adriaan on data"
+act-sop-calendar-v17-signoff,Brief every field team in French on SOP v1.7.,Brief every field team in French on calendar procedure v1.7,Angelo Nahavitatsara
+act-standardised-stroke-test-basis,Standardised stroke test — the basis is settled.,Settle the basis for the five-minute pump stroke test,MadAvance
+act-tana-baseline-form,"Prepare the carbon baseline form (Piped Water || Baseline Cbn, 3ef4385a619244c7ad129169ac1ec71f) for the Antananarivo urban kiosks.",Prepare the carbon baseline form for the Antananarivo kiosks,Adriaan Mol
+act-tana-baseline-sample-size,Confirm the household sample size for the urban kiosk baseline.,Confirm how many households the Antananarivo kiosk baseline survey needs,James Walker
+act-tana-baseline-survey,Run the carbon baseline survey around the Antananarivo urban kiosks.,Run the carbon baseline survey around the Antananarivo kiosks,Coddy Velonizy
+act-tana-jirama-licence-filed,"File the licence from JIRAMA (Jiro sy Rano Malagasy, the national water and electricity utility) covering the Antananarivo kiosk network centrally.",File the national water utility licence for the Antananarivo kiosks (JIRAMA),Coddy Velonizy
+act-transcription-round,Run the transcription validation round.,Have people transcribe calendars to check the machine reading,MadAvance — transcriber to be named
+act-type3-cap,Decide the route before the point count reaches the small-scale Type 3 annual cap.,Decide what to do before reaching the yearly small-project carbon cap,James Walker
+act-undatable,"Quantify the water points behind the undatable sheets, and merge with the reissue list.","Count the pumps whose calendar sheets show no year, and reissue",Angelo Nahavitatsara
+act-update-parameters-workbook-cite,Update the parameters workbook to cite the applied basis.,Update the parameters workbook to cite the current firewood source,James Walker
+act-update-sops-portfolio-figures,Update the SOP’s portfolio figures.,Update the pump numbers quoted in the calendar procedure,Jan
+act-usage-survey-inside-radius,Draw every usage-survey household inside the km service area.,Pick survey households only within the service radius of each pump,Adriaan Mol
+act-usage-survey-random-selection,Select water points and households at random for the usage survey.,Pick survey pumps and households at random,Adriaan Mol
+act-usage-survey-sop,"Write the SOP for the annual usage survey sample (SDWS 26, SDWS 25, SDWS 22).",Write the procedure for the yearly household water-use survey (SDWS 26),Adriaan Mol
+act-v2-adherence,Methodology version adherence — standing item.,Keep monitoring to methodology v1.0 until renewal; track v2.0 changes,James Walker
+act-v2-confidence-intervals,"Retain confidence intervals, not just point estimates, on every sampled parameter from now on.",Keep the margin of error for every sampled figure from now on,James Walker
+act-v2-embodied,Start recording commissioning year and technology category as a monitoring output.,Record build year and technology type for every new water point,James Walker
+act-v2-nonclaiming,Close the individual-level consent gap — the community-level notice is already in place.,"Get individual household consent, not only the village notice",James Walker
+act-v2-sample-size,Re-scope every sample against the v2.0 minimum of .,Re-size every sample to the methodology v2.0 minimum,James Walker
+act-v2-stove-stacking,Add a stove-stacking question to the annual monitoring survey.,Add a question on using several stoves to the yearly survey,James Walker
+act-v2-stroke-test,"Reconcile the stroke-test SOP with v2.0, which recognises it and adds a condition.",Update the stroke-test procedure to the new methodology's condition,Jan de Graaf
+act-verification-fnrb-correction,Include the Maroantsetra fNRB correction in the Q1 2027 verification submission.,Include the Maroantsetra firewood share correction in the early-2027 verification,James Walker
+act-visit-collapse,"Maintenance visit frequency has collapsed, and calendar coverage depends on it directly.",Restore maintenance visits; calendar coverage depends on them,Jan de Graaf
+act-visit-three-marolinta-points,"Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara).",Visit the three Marolinta points with no maintenance visit,"Angelo, tracked by Jan"
+act-wq-incubator-sop,Incubation section in Mandie’s field standard operating procedure (SOP) for the low-cost incubator.,Write the incubator section of the field water testing procedure,Cathy Andriambololonirina
+act-wq-retest,Confirm the one failed E. coli test was retested.,"Confirm the failed E. coli test at Ambinanitelo, 833033198, was retested",Lanja Randriamanantena

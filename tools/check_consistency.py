@@ -4220,11 +4220,11 @@ def main():
           f"{len(own_rows)} rows; SharePoint workbook retired {_ret.get('retired_on', '?')}")
     # replaces "the workbook carries nothing the build can compute"
     stray = [k for r in own_rows.values() for k in r
-             if k not in ("owner", "deadline", "source", "depends_on")]
+             if k not in ("owner", "deadline", "source", "depends_on", "title")]
     check("the owners record carries nothing the build can compute",
-          not stray, "owner, deadline, source, depends_on only",
+          not stray, "owner, deadline, source, depends_on, title only",
           f"also {', '.join(sorted(set(stray))[:3])}" if stray
-          else "owner, deadline, source, depends_on only",
+          else "owner, deadline, source, depends_on, title only",
           "status and closure are computed, never set by hand")
     # replaces "a workbook that cannot be read says so on the page"
     _ra = read(os.path.join(repo_root, "tools", "render_actions.py"))

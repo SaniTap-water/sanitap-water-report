@@ -206,7 +206,7 @@ def _m11():
 
 
 @metric("calls_no_repair_7d_worst_of_two_editions",
-        "calls reporting a pump not working with no repair after 7 days, the larger of the last two weekly editions (not counted until two editions are on record)")
+        "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)")
 def _m_call_followup():
     hp = d("data", "call_followup_history.json")
     hist = json.load(open(hp)) if os.path.isfile(hp) else {}
@@ -290,10 +290,15 @@ def _mw4():
 @metric("transcription_sheets_done",
         "calendars transcribed in the validation round")
 def _m15():
+    # the transcription page's own store, or transcription round 1 (Dieu Donné,
+    # 1 Oct 2026; data/transcription_round1.json, calendars confirmed after
+    # cleaning), whichever is larger (2 Oct 2026)
     p = d("transcription", "transcripts.json")
-    if not os.path.isfile(p):
-        return 0
-    return len(json.load(open(p)))
+    app = len(json.load(open(p))) if os.path.isfile(p) else 0
+    r1 = os.path.join(REPO, "data", "transcription_round1.json")
+    rnd = (json.load(open(r1, encoding="utf8")).get("clean_totals") or {}).get("calendars", 0) \
+        if os.path.isfile(r1) else 0
+    return max(app, rnd)
 
 
 @metric("er_percent_of_type3_cap",

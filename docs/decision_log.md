@@ -1980,3 +1980,26 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   act-identify-count-institutional-premises, act-point-use-round-one, act-sdws26-approve-2025,
   act-transcription-round); Ralf van Veenendaal (Curtech), 3 (act-enduro-onboard-5-calibration,
   act-ralf-meter-install-register, act-ralf-shopkeeper-waterpoint-link).
+
+## 2 Oct 2026 (d) — plain titles; tasks matched by gid; MadAvance owners to Angelo and Cathy (Adriaan Mol)
+
+- **Matched by gid.** tools/asana_pull.py places each task by its gid in data/asana_map.json, so tasks can be
+  renamed freely. A task added by hand is placed by an unused "[act-id]" tag, or gets an act-id generated from
+  its name; either way it joins the map and is logged "new from Asana".
+- **Plain titles.** Every action has a "title" in data/action_owners.json (20 rows added for actions that had
+  none): what has to happen, starting with a verb, about twelve words at most, codes only in brackets after the
+  plain words. Asana task name = "<plain title> [act-id]" (121 tasks renamed from "<act-id> — <old heading>").
+  The page shows the plain title as the action's name, with the act-id small and grey after it; the old
+  descriptive heading stays as the first sentence of the detail. A task its owner renames gives the action its
+  title (copied into the record at the next build). Review list: data/action_titles_review.csv. Gate
+  (tools/check_asana.py): every action has a title equal to its task's wording, with no act-id and no code
+  outside brackets.
+- **Owners.** "MadAvance", "MadAvance field teams" and "MadAvance — transcriber to be named" map to Angelo
+  Nahavitatsara; "MadAvance / Cathy" to Cathy Andriambololonirina. Reassigned from Adriaan: act-close-eight-2-2,
+  act-confirm-india-mark-capacity, act-identify-count-institutional-premises, act-sdws26-approve-2025,
+  act-transcription-round (Angelo); act-point-use-round-one (Cathy). Still with Adriaan: Ralf van Veenendaal's
+  three (act-enduro-onboard-5-calibration, act-ralf-meter-install-register, act-ralf-shopkeeper-waterpoint-link).
+- **act-transcription-round closed.** Its closes-when is "50 calendars have been transcribed". Round 1 (Dieu
+  Donné, 1 Oct 2026; commit 8abf684; data/transcriptions/) transcribed 83, 73 confirmed after cleaning. Evidence
+  recorded; Asana task completed. The metric transcription_sheets_done read only the transcription page's own
+  store (0) and now also counts round 1.

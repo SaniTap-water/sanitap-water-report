@@ -1,6 +1,11 @@
 {
  "counted": "2026-10-02",
  "metrics": {
+  "calls_no_repair_7d_worst_of_two_editions": {
+   "says": "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)",
+   "source": "local",
+   "value": null
+  },
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
    "source": "local",
@@ -239,12 +244,12 @@
   "transcription_sheets_done": {
    "says": "calendars transcribed in the validation round",
    "source": "local",
-   "value": 0
+   "value": 73
   },
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 37
+   "value": 39
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

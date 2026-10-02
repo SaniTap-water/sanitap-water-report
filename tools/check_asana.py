@@ -12,7 +12,10 @@ local copy of the Asana read (data/asana_pull.json), the map
   3. an action is closed (OK) on the page without recorded evidence: neither a
      build condition that is satisfied this run nor an entry in
      data/action_owners.json "evidence";
-  4. the map and the pull name different tasks for the same act-id.
+  4. the map and the pull name different tasks for the same act-id;
+  5. (titles, 2 Oct 2026) an action has no plain title, its title differs from
+     its Asana task's wording, or the title contains an act-id or a bare code
+     (SDWS 18, fNRB, VPA-DD ...) that is not in brackets after plain words.
 
 Shown failing on 2 Oct 2026 by changing one task's due date in the local copy
 of the pull (not in Asana): see docs/decision_log.md.
@@ -21,6 +24,9 @@ of the pull (not in Asana): see docs/decision_log.md.
 """
 import json, os, re, sys, html
 
+# parameter codes and shorthand that may appear only in brackets
+CODE = re.compile(r"\b(SDWS\s?\d+(?:/\d+)?|ERSDWS|fNRB|VPA(?:-DD)?|JMP|SOP|IEC|MRV|CSB|PoU|POU|WQ|PM|GS|"
+                  r"S4-\d+|CAR\s?\d+|2\.2\.1)\b")
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -38,6 +44,7 @@ def main():
         get = lambda k: (re.search(k + r'="([^"]*)"', m.group(0)) or [None, None])[1]
         rows.setdefault(m.group(2), dict(state=m.group(1), owner=html.unescape(get("data-owner") or ""),
                                          due=get("data-due") or "", asana=get("data-asana"),
+                                         title=html.unescape(get("data-title") or ""),
                                          evidence="data-evidence" in attrs, auto="data-auto" in attrs))
     fails = []
     for aid, r in sorted(rows.items()):
@@ -55,6 +62,19 @@ def main():
                 fails.append(f"{aid}: deadline on the page {r['due'] or 'none'}, in Asana {t.get('due_on') or 'none'}")
             if amap.get(aid) and amap[aid] != t["gid"]:
                 fails.append(f"{aid}: map names task {amap[aid]}, the pull {t['gid']}")
+        title = r["title"]
+        if not title:
+            fails.append(f"{aid}: no plain title")
+        else:
+            if re.search(r"\bact-[a-z0-9]", title):
+                fails.append(f"{aid}: title contains an act-id: {title!r}")
+            bare = [m.group(0) for m in CODE.finditer(re.sub(r"\([^)]*\)", "", title))]
+            if len(re.sub(r"\([^)]*\)", "", title).split()) < 3:
+                fails.append(f"{aid}: title has no plain words outside its brackets: {title!r}")
+            if bare:
+                fails.append(f"{aid}: title uses {', '.join(bare)} outside brackets: {title!r}")
+            if t and t.get("title") and t["title"] != title:
+                fails.append(f"{aid}: title on the page {title!r}, in Asana {t['title']!r}")
         if r["state"] == "OK":
             built = r["auto"] and (state.get(aid) or {}).get("satisfied") is True
             if not (built or (r["evidence"] and aid in evid)):

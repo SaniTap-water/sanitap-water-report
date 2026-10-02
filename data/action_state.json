@@ -663,7 +663,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-10-02",
-   "evidence": "unapproved_works_records = 37 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 39 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
@@ -1118,10 +1118,11 @@
    "when_satisfied": "OK"
   },
   "act-transcription-round": {
+   "closed_since": "2026-10-02",
    "evaluated": "2026-10-02",
-   "evidence": "transcription_sheets_done = 0 (calendars transcribed in the validation round); target >= 50",
+   "evidence": "transcription_sheets_done = 73 (calendars transcribed in the validation round); target >= 50",
    "kind": "data",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when 50 calendars have been transcribed",
    "when_satisfied": "OK"
   },
