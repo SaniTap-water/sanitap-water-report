@@ -85,6 +85,8 @@ SETS = {
     "RVAL": ("data", "reader_validation.json"),
     # calls that reported a pump not working, and what followed (tools/call_followup.py)
     "CALLF": ("data", "call_followup.json"),
+    # pre-project eligibility, 2.2.1(d) and SDWS 12 (tools/rebuild_eligibility.py)
+    "ELIG": ("data", "eligibility.json"),
     # Endur'O's registered water systems and points, live (tools/rebuild_enduro_registry.py)
     "ENDUROREG": ("data", "enduro_registry.json"),
     # hygiene promotion and gender, by district (tools/rebuild_hygiene.py)

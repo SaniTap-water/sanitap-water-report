@@ -1,0 +1,26 @@
+{
+ "note": "The only points and systems that may stand in the managed or carbon figures WITHOUT pre-project eligibility evidence (methodology 2.2.1(d) for hand pumps: the out-of-order control answered Yes; SDWS 12 for piped systems: at least one pre-project result failing the health-based rule). Every pump flagged in data/register_corrections.json 'eligibility_flags' is also listed, as a gap with its own action. tools/check_consistency.py fails on anything in the figures that is neither evidenced nor listed here. Added 3 Oct 2026 on Adriaan Mol's instruction; an entry is removed when its evidence arrives or the point leaves the figures.",
+ "hand_pumps": [
+  {
+   "wp": "782134540",
+   "figures": "managed and carbon",
+   "reason": "No first-rehabilitation record of any kind: the one recorded exception to the fleet-entry rule (29 Sep 2026), kept on its repair, water-quality and call-centre records until 31 Oct 2026 (data/register_corrections.json). act-782134540-rehab-record.",
+   "until": "2026-10-31"
+  }
+ ],
+ "sites": [
+  {
+   "site": "Marolinta",
+   "figures": "managed only - outside the carbon portfolio",
+   "reason": "Marolinta works (new boreholes and rehabilitations) are recorded on the borehole-progress form, which carries no 2.2.1(d) control. Separately funded (Deichmann) and outside the carbon portfolio; the exception does not reach any carbon figure."
+  }
+ ],
+ "piped": [
+  {
+   "code": "1125843376",
+   "name": "the managed Antananarivo smart-tap kiosk (water point 1125843383)",
+   "figures": "managed",
+   "reason": "Admitted to the managed portfolio by decision (Adriaan Mol, 25 Sep 2026), works complete 14 Sep 2026. No water-quality test is on record for it at all - none before the works, so non-potable before the project is not shown, and none since. Evidence that exists: the decision, the System and Distribution Point registrations in mWater (responses b0b01aa0, 840ae830), commissioning on 14 Sep 2026 and the SaniTap/Curtech meters with their data in Zoho. A post-works test is act-enduro-onboard-6-kiosk-wq; a baseline can no longer be taken before works completion."
+  }
+ ]
+}

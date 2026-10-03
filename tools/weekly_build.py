@@ -77,6 +77,9 @@ STEPS = [
     # Endur'O's registered water systems and points, and samples matched to taps
     ("tools/rebuild_enduro_registry.py", ["--write"],  True),
     ("tools/render_enduro_registry.py",  ["--write"],  True),
+    # pre-project eligibility, 2.2.1(d) and SDWS 12
+    ("tools/rebuild_eligibility.py", ["--write"],      True),
+    ("tools/render_eligibility.py",  ["--write"],      True),
     # the piped water-quality figures and the join rule, before the metrics
     # that two actions close on
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),

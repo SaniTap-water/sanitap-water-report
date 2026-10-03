@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-03T13:24:28+00:00",
+ "pulled_at": "2026-10-03T15:16:50+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {

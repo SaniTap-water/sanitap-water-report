@@ -4383,6 +4383,57 @@ def main():
         check(f"{f}: inline script passes node --check", okall,
               "exit 0", "exit 0" if okall else err)
 
+    # ---- pre-project eligibility (3 Oct 2026) -------------------------------
+    # Methodology 2.2.1(d) and SDWS 12: a point or system may stand in the
+    # managed or carbon figures only with eligibility evidence - a hand pump's
+    # out-of-order control answered Yes, a piped system's pre-project result
+    # failing the health-based rule - or an explicit listed exception
+    # (data/eligibility_exceptions.json, or the 2.2.1(d) flags in
+    # data/register_corrections.json, each with its own action).
+    _ep = os.path.join(repo_root, "data", "eligibility.json")
+    _xp = os.path.join(repo_root, "data", "eligibility_exceptions.json")
+    if os.path.isfile(_ep) and os.path.isfile(_xp):
+        _el = json.load(open(_ep, encoding="utf8"))
+        _ex = json.load(open(_xp, encoding="utf8"))
+        _flags = {f["wp"] for f in json.load(open(os.path.join(repo_root, "data", "register_corrections.json"),
+                                                  encoding="utf8")).get("eligibility_flags", [])}
+        _today = datetime.date.today().isoformat()
+        _wp_exc = {e["wp"] for e in _ex.get("hand_pumps", []) if (e.get("until") or "9999") >= _today}
+        _site_managed = {e["site"] for e in _ex.get("sites", [])}
+        _site_carbon = {e["site"] for e in _ex.get("sites", []) if "outside the carbon" not in e.get("figures", "")}
+        _rows = {r["wp"]: r for r in _el["hp"]["rows"]}
+        _evid = set(_el.get("evidenced", []))
+        _fleet = {p["wp"]: p for p in PUMPS}
+        check("eligibility record covers exactly the managed fleet",
+              set(_rows) == set(_fleet), f"{len(_fleet)} pumps",
+              f"{len(set(_rows) ^ set(_fleet))} differ" if set(_rows) != set(_fleet) else f"{len(_rows)} pumps",
+              "tools/rebuild_eligibility.py reads PUMPS; re-run it after the fleet changes")
+        _bad_m, _bad_c = [], []
+        for wp, p in _fleet.items():
+            ok = (_rows.get(wp) or {}).get("status") in _evid or wp in _wp_exc or wp in _flags
+            if not (ok or p["site"] in _site_managed):
+                _bad_m.append(wp)
+            if p["site"] != "Marolinta" and not (ok or p["site"] in _site_carbon):
+                _bad_c.append(wp)
+        check("managed pumps: eligibility evidence or a listed exception (2.2.1(d))",
+              not _bad_m, "none without", ", ".join(_bad_m[:4]) or "none without",
+              f"{sum(1 for w in _fleet if (_rows.get(w) or {}).get('status') in _evid)} evidenced; "
+              f"{len(_wp_exc)} listed, {len(_flags)} flagged, sites {', '.join(sorted(_site_managed)) or 'none'}")
+        check("carbon pumps: eligibility evidence or a listed exception (2.2.1(d))",
+              not _bad_c, "none without", ", ".join(_bad_c[:4]) or "none without",
+              "a site exception for managed figures only does not reach carbon")
+        _pst = json.load(open(os.path.join(repo_root, "data", "piped_systems_status.json"), encoding="utf8"))["systems"]
+        _pel = {s["code"]: s for s in _el["piped"]}
+        _pexc = {e["code"] for e in _ex.get("piped", [])}
+        _bad_p = [c for c, s in _pst.items() if s.get("status") == "managed"
+                  and not ((_pel.get(c) or {}).get("eligible") or c in _pexc)]
+        check("managed piped systems: non-potable shown before the works, or a listed exception (SDWS 12)",
+              not _bad_p, "none without", ", ".join(_bad_p) or "none without",
+              f"{sum(1 for s in _pel.values() if s['eligible'])} eligible; {len(_pexc)} listed")
+    else:
+        check("pre-project eligibility record present", False, "data/eligibility.json", "MISSING",
+              "tools/rebuild_eligibility.py --write")
+
     # ---------------------------------------------------------------- report
     w = max(len(r[0]) for r in RESULTS) + 2
     print()

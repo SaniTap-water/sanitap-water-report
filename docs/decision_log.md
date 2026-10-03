@@ -2040,3 +2040,25 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   of its own.
 - **Data quality notes:** SMARTAP 1 missing; all 19 typed kiosk pending Coddy's confirmation they are public tap
   stands; water points without a photo (none of the 19 smart taps has one).
+
+## 3 Oct 2026 (b) — Pre-project eligibility section and gate: 2.2.1(d) and SDWS 12 (Adriaan Mol)
+
+- **Section** "Pre-project eligibility: non-functional or non-potable before the project" (tools/rebuild_eligibility.py
+  -> data/eligibility.json, ELIG; tools/render_eligibility.py), scope-aware, before Register corrections.
+- **Hand pumps:** every managed pump's first-rehabilitation record — control ea3e342a (out of order > 3 months),
+  photographs a4d23938, works date, response link. 728 of 745 carry the control answered Yes (693 with
+  photographs, 35 without); Fort-Dauphin 2 answered No; Maroantsetra 1 blank and 1 with no first-rehabilitation
+  record (782134540, the recorded exception); Marolinta 13 on the borehole-progress form, which has no such control.
+  The eight 2.2.1(d) flags (3 No, 5 blank) are listed as gaps; 3 of those pumps are in the managed fleet.
+- **Piped systems:** per system in data/piped_systems_status.json, results dated before the protocol went live
+  (22 Sep 2026 15:58 UTC) or before works completion. Amboasary gara: 43 pre-project results, 38 with E. coli above
+  0 per 100 ml — eligible: non-potable shown; framed as pre-project evidence of need, not a failure of a managed
+  system. Ambohibola, Amboanjo, Andilanatoby and the managed Tana kiosk (1125843376): no pre-project test. The kiosk
+  has no water-quality test at all; it stands in the managed figures as a listed exception (admitted by decision
+  25 Sep 2026).
+- **Gate** (check_consistency.py): every managed and carbon pump needs the control answered Yes, a listed exception
+  (data/eligibility_exceptions.json) or a 2.2.1(d) flag; every managed piped system needs a failing pre-project
+  result or a listed exception. Shown failing by emptying the exceptions list (782134540 and 1125843376 fail),
+  then restored.
+- Not done: the Asana tasks act-piped-baseline-other-systems and act-amboasary-post-works-retest — the project
+  inbox files with their titles and owners were not found on this machine.

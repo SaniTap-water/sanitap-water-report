@@ -282,6 +282,24 @@
    "extracted": "Extracts pulled <span data-fig=\"PULLS['wq_sampling_piped.json'].pulled\"></span>.",
    "filter": "Sampling points (final samples grouped by position) with no registered Endur&rsquo;O water point within the matching distance.",
    "columns": "<b>Recorded type</b>: the point type entered on the samples. <b>Nearest registered tap</b>, <b>Distance</b>: the closest registered Endur&rsquo;O water point and how far it is from the sampling point&rsquo;s centre."
+  },
+  "elig-hp": {
+   "source": "ELIG on this page, from <span class=\"mono\">data/eligibility.json</span>, written by tools/rebuild_eligibility.py from the first-rehabilitation records on the retired combined works form <span class=\"mono\">86cf66ef&hellip;</span> and its successor <span class=\"mono\">63747997&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
+   "filter": "Every pump in the managed fleet in the selected scope; where a pump has several first-rehabilitation records, the one that best evidences eligibility (Yes with photographs, then Yes, then the latest).",
+   "columns": "<b>Out of order three months before</b>: the control question <span class=\"mono\">ea3e342a&hellip;</span>, as answered. <b>Photographs</b>: photographs on <span class=\"mono\">a4d23938&hellip;</span> proving the pump was not working. <b>Works date</b>: the date the works began, else the record&rsquo;s submission date. <b>Record</b>: the response in mWater."
+  },
+  "elig-gaps": {
+   "source": "ELIG on this page, from <span class=\"mono\">data/eligibility.json</span>, written by tools/rebuild_eligibility.py, from the 2.2.1(d) flags in <span class=\"mono\">data/register_corrections.json</span> and the records they name.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
+   "filter": "The records flagged under methodology 2.2.1(d): the control answered No or left blank, in the managed fleet or not.",
+   "columns": "<b>Fleet</b>: whether the pump is in the managed fleet. <b>Photographs</b>, <b>Works date</b>, <b>Record</b>: as in the full table. <b>Action</b>: what closes the gap."
+  },
+  "elig-piped": {
+   "source": "ELIG on this page, from <span class=\"mono\">data/eligibility.json</span>, written by tools/rebuild_eligibility.py from <span class=\"mono\">data/piped_systems_status.json</span> and the piped result form <span class=\"mono\">0ac68d82&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['wq_results_piped.json'].pulled\"></span>.",
+   "filter": "Every water system in Endur&rsquo;O&rsquo;s mWater group; final results naming the system, dated before the protocol went live or before the system&rsquo;s works completion.",
+   "columns": "<b>Pre-project results</b>, <b>Dates</b>: those results. <b>With <i>E. coli</i></b>: the share above the pass maximum. <b>Eligibility</b>: non-potable shown when at least one fails. <b>Records</b>: the list of responses, each linked."
   }
  }
 }
