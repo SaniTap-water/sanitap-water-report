@@ -74,6 +74,9 @@ STEPS = [
     # registered standposts; two actions close on these counts, and the piped
     # pairing maps a standpost on a duplicate to its scheme, so this runs first
     ("tools/moramanga_dedupe.py",    ["--write"],      True),
+    # Endur'O's registered water systems and points, and samples matched to taps
+    ("tools/rebuild_enduro_registry.py", ["--write"],  True),
+    ("tools/render_enduro_registry.py",  ["--write"],  True),
     # the piped water-quality figures and the join rule, before the metrics
     # that two actions close on
     ("tools/rebuild_piped_wq.py",    ["--write"],      True),

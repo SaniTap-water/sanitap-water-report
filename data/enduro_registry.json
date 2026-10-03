@@ -1,0 +1,3693 @@
+{
+ "note": "Written by tools/rebuild_enduro_registry.py from Endur'O's own mWater group. Live registered counts; NOT reconciled to the hand-entered figures in data/enduro_manual.json, which stay the headline until they are.",
+ "group": {
+  "id": "c305b9b85f41417387b553d9a33c795b",
+  "name": "Enduro"
+ },
+ "pulled": "2026-10-03",
+ "counts": {
+  "systems": 25,
+  "systems_gps": 25,
+  "systems_photo": 10,
+  "points": 203,
+  "points_gps": 203,
+  "points_photo": 122,
+  "points_no_photo": 81,
+  "points_with_system": 23,
+  "points_no_system": 180,
+  "retired_excluded": 0,
+  "point_types": {
+   "Borehole or tubewell": 12,
+   "Unprotected dug well": 1,
+   "kiosk": 22,
+   "not set": 168
+  }
+ },
+ "compare": {
+  "systems_manual": 131,
+  "systems_registered": 25,
+  "systems_diff": -106,
+  "points_manual": 181,
+  "points_registered": 203,
+  "points_diff": 22,
+  "regsys_manual": 24,
+  "regsys_diff": 1,
+  "manual_as_at": "2026-09-16",
+  "headline_as_at": "2026-09-18"
+ },
+ "schemes": [
+  {
+   "code": "1108783538",
+   "name": "AEPG",
+   "type": "private",
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783552",
+   "name": "AEPG",
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "929469223",
+   "name": "AEPP AMBOASARY GARE",
+   "type": "private",
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 1,
+   "points_gps": 1,
+   "points_photo": 1,
+   "point_types": {
+    "Borehole or tubewell": 1
+   }
+  },
+  {
+   "code": "928471757",
+   "name": "AEPP AMBOHIBOLA",
+   "type": "private",
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 1,
+   "points_gps": 1,
+   "points_photo": 1,
+   "point_types": {
+    "Borehole or tubewell": 1
+   }
+  },
+  {
+   "code": "1108783631",
+   "name": "Amboanjo",
+   "type": "community_supply",
+   "gps": true,
+   "photo": true,
+   "status": "decommissioned",
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783648",
+   "name": "Amboanjo",
+   "type": "community_supply",
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783569",
+   "name": "Amboasary gara",
+   "type": "private",
+   "gps": true,
+   "photo": false,
+   "status": "decommissioned",
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783583",
+   "name": "Amboasary gara",
+   "type": null,
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 19,
+   "points_gps": 19,
+   "points_photo": 0,
+   "point_types": {
+    "kiosk": 19
+   }
+  },
+  {
+   "code": "1108783624",
+   "name": "Ambohibola",
+   "type": "no_mgmt",
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783655",
+   "name": "Andilanatoby",
+   "type": "community_supply",
+   "gps": true,
+   "photo": true,
+   "status": "decommissioned",
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108783662",
+   "name": "Andilanatoby",
+   "type": null,
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784278",
+   "name": "ECAR AMBOASARY",
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784120",
+   "name": "ECAR Saint Mathieu",
+   "type": "private",
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "929469247",
+   "name": "Forage Amboasary gare",
+   "type": "private",
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 1,
+   "points_gps": 1,
+   "points_photo": 1,
+   "point_types": {
+    "Borehole or tubewell": 1
+   }
+  },
+  {
+   "code": "928174397",
+   "name": "Forage Andringitra",
+   "type": "private",
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 1,
+   "points_gps": 1,
+   "points_photo": 1,
+   "point_types": {
+    "Borehole or tubewell": 1
+   }
+  },
+  {
+   "code": "1125843376",
+   "name": "Kiosk",
+   "type": null,
+   "gps": true,
+   "photo": true,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784175",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784199",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784216",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1108784223",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1110083543",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1110083574",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1110083646",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1110083653",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  },
+  {
+   "code": "1110083660",
+   "name": null,
+   "type": null,
+   "gps": true,
+   "photo": false,
+   "status": null,
+   "points": 0,
+   "points_gps": 0,
+   "points_photo": 0,
+   "point_types": {}
+  }
+ ],
+ "no_system": {
+  "points": 180,
+  "points_gps": 180,
+  "points_photo": 118,
+  "point_types": {
+   "Borehole or tubewell": 8,
+   "Unprotected dug well": 1,
+   "kiosk": 3,
+   "not set": 168
+  }
+ },
+ "smartap": {
+  "found": 19,
+  "numbers": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ],
+  "missing": [
+   1
+  ],
+  "repeated": [],
+  "kiosk": 19,
+  "linked": 19,
+  "with_device": 19,
+  "with_gps": 19,
+  "with_photo": 0,
+  "code_min": "1255186538",
+  "code_max": "1255186727",
+  "system_name": "Amboasary gara",
+  "rows": [
+   {
+    "n": 2,
+    "code": "1255186538",
+    "name": "SMARTAP 2",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0385411835",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 3,
+    "code": "1255186590",
+    "name": "SMARTAP 3",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0385808012",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 4,
+    "code": "1255186648",
+    "name": "SMARTAP 4",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0384831334",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 5,
+    "code": "1255186693",
+    "name": "SMARTAP 5",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0382382875",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 6,
+    "code": "1255186552",
+    "name": "SMARTAP 6",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0386584648",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 7,
+    "code": "1255186600",
+    "name": "SMARTAP 7",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0381733308",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 8,
+    "code": "1255186655",
+    "name": "SMARTAP 8",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0384636773",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 9,
+    "code": "1255186703",
+    "name": "SMARTAP 9",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0389607219",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 10,
+    "code": "1255186569",
+    "name": "SMARTAP 10",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0384914156",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 11,
+    "code": "1255186617",
+    "name": "SMARTAP 11",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0387633073",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 12,
+    "code": "1255186662",
+    "name": "SMARTAP 12",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0386322879",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 13,
+    "code": "1255186710",
+    "name": "SMARTAP 13",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0384172615",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 14,
+    "code": "1255186576",
+    "name": "SMARTAP 14",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0380721444",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 15,
+    "code": "1255186624",
+    "name": "SMARTAP 15",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0380706073",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 16,
+    "code": "1255186679",
+    "name": "SMARTAP 16",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0383528035",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 17,
+    "code": "1255186727",
+    "name": "SMARTAP 17",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0381857176",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 18,
+    "code": "1255186583",
+    "name": "SMARTAP 18",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0380890902",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 19,
+    "code": "1255186631",
+    "name": "SMARTAP 19",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0383987756",
+    "gps": true,
+    "photo": false
+   },
+   {
+    "n": 20,
+    "code": "1255186686",
+    "name": "SMARTAP 20",
+    "type": "kiosk",
+    "kiosk": true,
+    "system": "1108783583",
+    "linked": true,
+    "device": "0382979970",
+    "gps": true,
+    "photo": false
+   }
+  ]
+ },
+ "taps": [
+  {
+   "code": "1255186569",
+   "name": "SMARTAP 10",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.266352,
+   "lat": -18.443649,
+   "photo": null,
+   "device": "0384914156",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0384914156)"
+  },
+  {
+   "code": "1255186617",
+   "name": "SMARTAP 11",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.262491,
+   "lat": -18.442945,
+   "photo": null,
+   "device": "0387633073",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0387633073)"
+  },
+  {
+   "code": "1255186662",
+   "name": "SMARTAP 12",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.262779,
+   "lat": -18.444716,
+   "photo": null,
+   "device": "0386322879",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0386322879)"
+  },
+  {
+   "code": "1255186710",
+   "name": "SMARTAP 13",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.261315,
+   "lat": -18.443675,
+   "photo": null,
+   "device": "0384172615",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0384172615)"
+  },
+  {
+   "code": "1255186576",
+   "name": "SMARTAP 14",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.265844,
+   "lat": -18.441814,
+   "photo": null,
+   "device": "0380721444",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0380721444)"
+  },
+  {
+   "code": "1255186624",
+   "name": "SMARTAP 15",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.270471,
+   "lat": -18.441823,
+   "photo": null,
+   "device": "0380706073",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0380706073)"
+  },
+  {
+   "code": "1255186679",
+   "name": "SMARTAP 16",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.267039,
+   "lat": -18.440927,
+   "photo": null,
+   "device": "0383528035",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0383528035)"
+  },
+  {
+   "code": "1255186727",
+   "name": "SMARTAP 17",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.274522,
+   "lat": -18.439568,
+   "photo": null,
+   "device": "0381857176",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0381857176)"
+  },
+  {
+   "code": "1255186583",
+   "name": "SMARTAP 18",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.268144,
+   "lat": -18.44053,
+   "photo": null,
+   "device": "0380890902",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0380890902)"
+  },
+  {
+   "code": "1255186631",
+   "name": "SMARTAP 19",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.269067,
+   "lat": -18.440306,
+   "photo": null,
+   "device": "0383987756",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0383987756)"
+  },
+  {
+   "code": "1255186538",
+   "name": "SMARTAP 2",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.268802,
+   "lat": -18.441879,
+   "photo": null,
+   "device": "0385411835",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0385411835)"
+  },
+  {
+   "code": "1255186686",
+   "name": "SMARTAP 20",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.2633,
+   "lat": -18.443786,
+   "photo": null,
+   "device": "0382979970",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0382979970)"
+  },
+  {
+   "code": "1255186590",
+   "name": "SMARTAP 3",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.270708,
+   "lat": -18.440084,
+   "photo": null,
+   "device": "0385808012",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0385808012)"
+  },
+  {
+   "code": "1255186648",
+   "name": "SMARTAP 4",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.267801,
+   "lat": -18.442602,
+   "photo": null,
+   "device": "0384831334",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0384831334)"
+  },
+  {
+   "code": "1255186693",
+   "name": "SMARTAP 5",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.26325,
+   "lat": -18.44315,
+   "photo": null,
+   "device": "0382382875",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0382382875)"
+  },
+  {
+   "code": "1255186552",
+   "name": "SMARTAP 6",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.265585,
+   "lat": -18.444149,
+   "photo": null,
+   "device": "0386584648",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0386584648)"
+  },
+  {
+   "code": "1255186600",
+   "name": "SMARTAP 7",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.264691,
+   "lat": -18.443976,
+   "photo": null,
+   "device": "0381733308",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0381733308)"
+  },
+  {
+   "code": "1255186655",
+   "name": "SMARTAP 8",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.264163,
+   "lat": -18.443209,
+   "photo": null,
+   "device": "0384636773",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0384636773)"
+  },
+  {
+   "code": "1255186703",
+   "name": "SMARTAP 9",
+   "type": "kiosk",
+   "system": "1108783583",
+   "lon": 48.26272,
+   "lat": -18.443513,
+   "photo": null,
+   "device": "0389607219",
+   "desc": "Kiosque SMARTAP - Amboasary Gara (deviceID 0389607219)"
+  },
+  {
+   "code": "928155136",
+   "name": "Amboasary gara",
+   "type": "Borehole or tubewell",
+   "system": "928174397",
+   "lon": 47.562339,
+   "lat": -18.930437,
+   "photo": "63817512c51246eab2ce91210151d35c",
+   "device": null,
+   "desc": "Andovoka"
+  },
+  {
+   "code": "928346466",
+   "name": "Forage Ambohibola",
+   "type": "Borehole or tubewell",
+   "system": "928471757",
+   "lon": 48.267528,
+   "lat": -18.518045,
+   "photo": "5db1ab3e43ef4ec5ab8b9e189f86d627",
+   "device": null,
+   "desc": "Ambohibola source"
+  },
+  {
+   "code": "928480351",
+   "name": "Mamboasary gare forage",
+   "type": "Borehole or tubewell",
+   "system": "929469223",
+   "lon": 48.27745,
+   "lat": -18.441761,
+   "photo": "294c8bc1ad8d44a29eeb9dc8fa6ee08c",
+   "device": null,
+   "desc": "Betanatanana"
+  },
+  {
+   "code": "929469230",
+   "name": "Forage Amboasary gare",
+   "type": "Borehole or tubewell",
+   "system": "929469247",
+   "lon": 48.277508,
+   "lat": -18.442057,
+   "photo": "ad828dde35b943f3881fb0e9e4993a3e",
+   "device": null,
+   "desc": "Forage Betanatanana"
+  },
+  {
+   "code": "1126132529",
+   "name": "Alasora adilambo",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.577482,
+   "lat": -18.955152,
+   "photo": "edabb5b73a534bbd9fc579dff2d91870",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1126132512",
+   "name": "Alasora miadana epp pas de traitement pas de elec",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.569872,
+   "lat": -18.962132,
+   "photo": "bc3f0952ea2b44988b58c8ff7affff0c",
+   "device": null,
+   "desc": "Kiosque près citerne a l epp"
+  },
+  {
+   "code": "1172149665",
+   "name": "Ambalamary",
+   "type": null,
+   "system": null,
+   "lon": 44.534483,
+   "lat": -22.300775,
+   "photo": "269ab472b520484bbd82bfcb2838ed4b",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1172149672",
+   "name": "Ambalamary",
+   "type": null,
+   "system": null,
+   "lon": 44.534031,
+   "lat": -22.301914,
+   "photo": "392177264b7542c783d3775b87405687",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1172149689",
+   "name": "Ambalamary",
+   "type": null,
+   "system": null,
+   "lon": 44.53306,
+   "lat": -22.300243,
+   "photo": "9719447de56947f9af103130524f05ec",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1126132495",
+   "name": "Ambatofotsy avaradrano",
+   "type": "kiosk",
+   "system": null,
+   "lon": 47.574003,
+   "lat": -18.827594,
+   "photo": "79533c0505944d9e98295df107cf7465",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783930",
+   "name": "Ambatolampy anteroka",
+   "type": null,
+   "system": null,
+   "lon": 47.484549,
+   "lat": -18.844961,
+   "photo": "c4fba1449f7d41b494aba42322ee4365",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783947",
+   "name": "Ambohidava",
+   "type": null,
+   "system": null,
+   "lon": 47.496065,
+   "lat": -18.76623,
+   "photo": "ef781344fd994188be7ccbd9c1dfca00",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783882",
+   "name": "Ambohimanga kely",
+   "type": null,
+   "system": null,
+   "lon": 47.604182,
+   "lat": -18.870121,
+   "photo": "af47e5dbfdf84dc3a36117f0e4e7a282",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783868",
+   "name": "Ambohimarina",
+   "type": null,
+   "system": null,
+   "lon": 47.565778,
+   "lat": -18.787836,
+   "photo": "59657f85886b4344917eaa5bfe4a045c",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783806",
+   "name": "Ambohitraina",
+   "type": null,
+   "system": null,
+   "lon": 47.59437,
+   "lat": -18.839914,
+   "photo": "942187802f1b4e929336f49ca1f3fb26",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1126132536",
+   "name": "Ampahibato secteur 4",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.58527,
+   "lat": -18.954,
+   "photo": "6ba1dead7f3a4f7f9ee12f553eb9243b",
+   "device": null,
+   "desc": "Alasora"
+  },
+  {
+   "code": "1126132543",
+   "name": "Ampahibato secteur 5",
+   "type": null,
+   "system": null,
+   "lon": 47.592264,
+   "lat": -18.953637,
+   "photo": "e684297259754121806c183202f55d58",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108784027",
+   "name": "Ampandrana association loharantsoa",
+   "type": null,
+   "system": null,
+   "lon": 47.531915,
+   "lat": -18.90425,
+   "photo": "4a0d434f5c0c4b99a449d8494ecb257e",
+   "device": null,
+   "desc": "Lavoire public (réhabilité par association mikolo)"
+  },
+  {
+   "code": "1108785822",
+   "name": "Ampotaka",
+   "type": null,
+   "system": null,
+   "lon": 44.584951,
+   "lat": -22.502408,
+   "photo": "f8ee9670faab421f8592344efbd488dd",
+   "device": null,
+   "desc": "Kiosque 224"
+  },
+  {
+   "code": "1108783758",
+   "name": "Analamahintsy cite",
+   "type": null,
+   "system": null,
+   "lon": 47.546958,
+   "lat": -18.869759,
+   "photo": "6fe55be66c91408689d78a7a7048f363",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783923",
+   "name": "Andranomena",
+   "type": null,
+   "system": null,
+   "lon": 47.487275,
+   "lat": -18.851844,
+   "photo": "4ade894cae22441694a8125a4d5337f4",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783978",
+   "name": "Anjanahary association mahavonjy",
+   "type": null,
+   "system": null,
+   "lon": 47.536206,
+   "lat": -18.89386,
+   "photo": "7d9da3a3dfe243adb00af238a6bb7ca2",
+   "device": null,
+   "desc": "Arrêt bus anjanahary lalana haga mainty"
+  },
+  {
+   "code": "1108783961",
+   "name": "Anjanahary association mahavonjy tana 101",
+   "type": null,
+   "system": null,
+   "lon": 47.534513,
+   "lat": -18.896293,
+   "photo": "44159925f878450c9c25ed76802876cd",
+   "device": null,
+   "desc": "Ambanin lavoire anjanahary"
+  },
+  {
+   "code": "1108784010",
+   "name": "Ankadifotsy",
+   "type": null,
+   "system": null,
+   "lon": 47.526328,
+   "lat": -18.897804,
+   "photo": "654f8545726d4979a7a3514ccd5f6ec8",
+   "device": null,
+   "desc": "A côté marchand tailleur"
+  },
+  {
+   "code": "1108785547",
+   "name": "Ankadivato",
+   "type": null,
+   "system": null,
+   "lon": 47.535115,
+   "lat": -18.910508,
+   "photo": "f551bd2a5fef4b6e92d1e1165b955dea",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785949",
+   "name": "Ankapoaka",
+   "type": null,
+   "system": null,
+   "lon": 44.637856,
+   "lat": -22.216155,
+   "photo": "4c3604e35336488f8af92c52b50763c9",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785956",
+   "name": "Ankapoaka",
+   "type": null,
+   "system": null,
+   "lon": 44.638093,
+   "lat": -22.216895,
+   "photo": "28cb04d1dbe04560af588a4d889493e1",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785963",
+   "name": "Ankapoaka",
+   "type": null,
+   "system": null,
+   "lon": 44.632488,
+   "lat": -22.217108,
+   "photo": "319e146e3c4e49c5a5211ff5426271cb",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149634",
+   "name": "Ankerereky",
+   "type": null,
+   "system": null,
+   "lon": 44.531105,
+   "lat": -22.294379,
+   "photo": "9cf2a282a80341e99aa2d797ee3fd3db",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149641",
+   "name": "Ankerereky",
+   "type": null,
+   "system": null,
+   "lon": 44.530268,
+   "lat": -22.292038,
+   "photo": "8c21fabd99cf4e02b9e94c3426070554",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149658",
+   "name": "Ankerereky",
+   "type": null,
+   "system": null,
+   "lon": 44.529821,
+   "lat": -22.293806,
+   "photo": "7ab12ec949ba419f97e54b3f8269e14f",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1172149696",
+   "name": "Ankilifolo",
+   "type": null,
+   "system": null,
+   "lon": 44.582194,
+   "lat": -22.334702,
+   "photo": "0ea148eb8b4f4a3d9c7265067c8c3a01",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785585",
+   "name": "Ankilimasy",
+   "type": null,
+   "system": null,
+   "lon": 44.562236,
+   "lat": -22.231845,
+   "photo": "fd0a3c84e7d3426d9c3687c6d9414eaa",
+   "device": null,
+   "desc": "Kiosque ankilimasy 102"
+  },
+  {
+   "code": "1108785602",
+   "name": "Ankilimasy",
+   "type": null,
+   "system": null,
+   "lon": 44.564006,
+   "lat": -22.23221,
+   "photo": "15f7a2b9159a4b7b8cafe8af586721dd",
+   "device": null,
+   "desc": "Kiosque 93"
+  },
+  {
+   "code": "1108785626",
+   "name": "Ankilimasy",
+   "type": null,
+   "system": null,
+   "lon": 44.563975,
+   "lat": -22.232243,
+   "photo": "97bc429103b147c499c3077224b92141",
+   "device": null,
+   "desc": "6 Kiosque"
+  },
+  {
+   "code": "1108785592",
+   "name": "Ankilimasy 1",
+   "type": null,
+   "system": null,
+   "lon": 44.562171,
+   "lat": -22.231959,
+   "photo": "186c5c86b96743c687567ff849554a06",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785640",
+   "name": "Ankilimasy 1",
+   "type": null,
+   "system": null,
+   "lon": 44.55907,
+   "lat": -22.231745,
+   "photo": "2de87015807c4e6eb92be54fc3e5f19c",
+   "device": null,
+   "desc": "Kiosque 117"
+  },
+  {
+   "code": "1108785688",
+   "name": "Ankilimasy 2",
+   "type": null,
+   "system": null,
+   "lon": 44.562566,
+   "lat": -22.228709,
+   "photo": "e34c3e7072cc4ababe0acf295cef8750",
+   "device": null,
+   "desc": "Kiosque 94"
+  },
+  {
+   "code": "1108785695",
+   "name": "Ankilimasy 2",
+   "type": null,
+   "system": null,
+   "lon": 44.563784,
+   "lat": -22.227926,
+   "photo": "3facae70f10b44f39aa903cf480452af",
+   "device": null,
+   "desc": "Kiosque 102"
+  },
+  {
+   "code": "1108785705",
+   "name": "Ankilimasy 2",
+   "type": null,
+   "system": null,
+   "lon": 44.562514,
+   "lat": -22.227214,
+   "photo": "e1ff62c2f2854b3c86265587d85fdb2f",
+   "device": null,
+   "desc": "Kiosque 97"
+  },
+  {
+   "code": "1108785671",
+   "name": "Ankilmasy 1",
+   "type": null,
+   "system": null,
+   "lon": 44.563933,
+   "lat": -22.23222,
+   "photo": "5d9e93b1f3b9488dadb0779c00d6f7a6",
+   "device": null,
+   "desc": "Kiosque 93"
+  },
+  {
+   "code": "1108785750",
+   "name": "Antanimainty",
+   "type": null,
+   "system": null,
+   "lon": 45.839104,
+   "lat": -23.467502,
+   "photo": null,
+   "device": null,
+   "desc": "Kiosque 39"
+  },
+  {
+   "code": "1108783992",
+   "name": "Association masoandro 23154530070 manjakaray",
+   "type": null,
+   "system": null,
+   "lon": 47.532877,
+   "lat": -18.890332,
+   "photo": "be815ba48a4f4fc4950a1d8fcfd45052",
+   "device": null,
+   "desc": "Plaque fiagonanavfjkm manjakaray arrêt final bus 154"
+  },
+  {
+   "code": "1108784003",
+   "name": "Association masoandro près 23154530070",
+   "type": null,
+   "system": null,
+   "lon": 47.534342,
+   "lat": -18.890054,
+   "photo": "1ac231428d114be89220b1146d2a77ad",
+   "device": null,
+   "desc": "Près bloc sanitaire manjakaray"
+  },
+  {
+   "code": "1108783796",
+   "name": "Atsampandrano",
+   "type": null,
+   "system": null,
+   "lon": 47.575265,
+   "lat": -18.847295,
+   "photo": "f3767f4d39e84e269edc523c944784a6",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108785554",
+   "name": "Avaradoha",
+   "type": null,
+   "system": null,
+   "lon": 47.544723,
+   "lat": -18.898881,
+   "photo": "b2debe6c062e469e842268ec52fb9620",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783875",
+   "name": "Avarajozoro",
+   "type": null,
+   "system": null,
+   "lon": 47.51807,
+   "lat": -18.799918,
+   "photo": "4d99ecb0cca24fe78e6377f6020a0654",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785884",
+   "name": "Behisatra",
+   "type": null,
+   "system": null,
+   "lon": 45.119972,
+   "lat": -21.807571,
+   "photo": "8ecbaaf3e55049709d6d5ad4e382ef59",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785891",
+   "name": "Behisatra",
+   "type": null,
+   "system": null,
+   "lon": 45.121919,
+   "lat": -21.807099,
+   "photo": "815d581463f3431eb2ec6ecbd8e5d422",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785901",
+   "name": "Behisatra",
+   "type": null,
+   "system": null,
+   "lon": 45.12329,
+   "lat": -21.807221,
+   "photo": "0a4aef171a6445deae91aa73acc52c4b",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785767",
+   "name": "Beraketa adaka",
+   "type": null,
+   "system": null,
+   "lon": 45.839072,
+   "lat": -23.467963,
+   "photo": "103d14b77f20451584f2d9cf2122a648",
+   "device": null,
+   "desc": "Kiosque 39"
+  },
+  {
+   "code": "1108785774",
+   "name": "Beraketa adaka",
+   "type": null,
+   "system": null,
+   "lon": 45.839093,
+   "lat": -23.467503,
+   "photo": "57ea5fa2ca05482aa111d3a3f2022ee1",
+   "device": null,
+   "desc": "Kiosque 26"
+  },
+  {
+   "code": "1108785712",
+   "name": "Betapoky",
+   "type": null,
+   "system": null,
+   "lon": 45.573326,
+   "lat": -23.796387,
+   "photo": "168bf5c614a0408195f69841907cd1e9",
+   "device": null,
+   "desc": "Kiosque 32"
+  },
+  {
+   "code": "1108785729",
+   "name": "Betapoky",
+   "type": null,
+   "system": null,
+   "lon": 45.573244,
+   "lat": -23.796035,
+   "photo": "c52ae671910b4c95af3ecd7936365f8c",
+   "device": null,
+   "desc": "Kiosque 59"
+  },
+  {
+   "code": "1125843297",
+   "name": "Bloc sanitaire",
+   "type": null,
+   "system": null,
+   "lon": 47.558623,
+   "lat": -18.918359,
+   "photo": "3105f19a87dd475abd05b9c7d24f76ff",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783789",
+   "name": "Epp imamba",
+   "type": null,
+   "system": null,
+   "lon": 47.516842,
+   "lat": -18.852102,
+   "photo": "d4d254cf96ab48edbc4a787d1b140f05",
+   "device": null,
+   "desc": "Epp imamba"
+  },
+  {
+   "code": "929469254",
+   "name": "Forage II Betanatanana",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 48.277613,
+   "lat": -18.442032,
+   "photo": null,
+   "device": null,
+   "desc": "Forage II Betanatanana"
+  },
+  {
+   "code": "1108785798",
+   "name": "Fotovolo",
+   "type": null,
+   "system": null,
+   "lon": 44.573567,
+   "lat": -22.461458,
+   "photo": "f33e91380a454ed7b894bdf0280dc3fe",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785808",
+   "name": "Fotovolo",
+   "type": null,
+   "system": null,
+   "lon": 44.571793,
+   "lat": -22.462184,
+   "photo": "2091e9d111404c018f0ba6431b1ba0bc",
+   "device": null,
+   "desc": "Kiosque 222"
+  },
+  {
+   "code": "1108785815",
+   "name": "Fotovolo",
+   "type": null,
+   "system": null,
+   "lon": 44.569244,
+   "lat": -22.460832,
+   "photo": "b9888b4c506f4642a19d115d12a22d28",
+   "device": null,
+   "desc": "Kiosque 223"
+  },
+  {
+   "code": "929469261",
+   "name": "Grand puits Betanatanana",
+   "type": "Unprotected dug well",
+   "system": null,
+   "lon": 48.277597,
+   "lat": -18.442155,
+   "photo": "a183b8b15edf4f6c8ee676760caa4ab3",
+   "device": null,
+   "desc": "Puits Betanatanana Amboasary gare"
+  },
+  {
+   "code": "1108783837",
+   "name": "Iavoambony",
+   "type": null,
+   "system": null,
+   "lon": 47.539887,
+   "lat": -18.786618,
+   "photo": "a45ec589a5b6430485b9ada78ffdb716",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783772",
+   "name": "Imamba csb",
+   "type": null,
+   "system": null,
+   "lon": 47.515669,
+   "lat": -18.852131,
+   "photo": "936c773d639248f096fe367c4f383997",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108785781",
+   "name": "Isoanala",
+   "type": null,
+   "system": null,
+   "lon": 45.714074,
+   "lat": -23.833963,
+   "photo": null,
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1125843383",
+   "name": "Kiosk",
+   "type": null,
+   "system": null,
+   "lon": 47.478766,
+   "lat": -18.893168,
+   "photo": "87e9013e60ee4ae68238249ce5a3fb9c",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1125843307",
+   "name": "Kiosque",
+   "type": null,
+   "system": null,
+   "lon": 47.562318,
+   "lat": -18.916698,
+   "photo": "255d20021bad43bbb346cddebe95176c",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432439",
+   "name": "Kiosque",
+   "type": null,
+   "system": null,
+   "lon": 47.540306,
+   "lat": -18.915289,
+   "photo": "6fe0fe9d1bae4622b84935c331751240",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432518",
+   "name": "Kiosque",
+   "type": null,
+   "system": null,
+   "lon": 47.540371,
+   "lat": -18.915118,
+   "photo": "f0526522a74e4191886889f20704f010",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783679",
+   "name": "Kiosque - test",
+   "type": null,
+   "system": null,
+   "lon": 47.455269,
+   "lat": -18.790186,
+   "photo": "90bd9d5ecf294f968ed2f4ccd0faa291",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783954",
+   "name": "Kiosque association vonjy anjanahary",
+   "type": null,
+   "system": null,
+   "lon": 47.535483,
+   "lat": -18.896196,
+   "photo": "fd1b053d206a4b61b189312812df7c9b",
+   "device": null,
+   "desc": "Akaikiny fjkm tranivato anjanahary martiora"
+  },
+  {
+   "code": "1108783813",
+   "name": "Lazaina",
+   "type": null,
+   "system": null,
+   "lon": 47.556602,
+   "lat": -18.806114,
+   "photo": "4987701e4b8c4b359a890197d7b317c2",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1062056570",
+   "name": "Local",
+   "type": null,
+   "system": null,
+   "lon": 47.539971,
+   "lat": -18.925256,
+   "photo": "6421d36e481a478fbd8bc0705a7ff73e",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137611998",
+   "name": "Local de pompage",
+   "type": null,
+   "system": null,
+   "lon": 46.132528,
+   "lat": -22.40201,
+   "photo": "8e28cabc90514a97ae1783383be9dd2b",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056594",
+   "name": "Local pompage",
+   "type": null,
+   "system": null,
+   "lon": 47.53998,
+   "lat": -18.925256,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1126132550",
+   "name": "Mahitsy tena izy",
+   "type": null,
+   "system": null,
+   "lon": 47.5959,
+   "lat": -18.939116,
+   "photo": "244cdf8fc07a4150849b841f6c9cab7b",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783851",
+   "name": "Manakasina",
+   "type": null,
+   "system": null,
+   "lon": 47.553779,
+   "lat": -18.783701,
+   "photo": "f30a354496614d52bdad0454d5792688",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1126132488",
+   "name": "Manandriana 1",
+   "type": "kiosk",
+   "system": null,
+   "lon": 47.596917,
+   "lat": -18.804511,
+   "photo": "fbd6832aa34a49478e2bb490271b52de",
+   "device": null,
+   "desc": "Kiosque Forage"
+  },
+  {
+   "code": "1108783985",
+   "name": "Manjakaray II B",
+   "type": null,
+   "system": null,
+   "lon": 47.536078,
+   "lat": -18.889764,
+   "photo": "277338996acf49dfb7b73704b7a6b580",
+   "device": null,
+   "desc": "Lavoire et wc publique. Borne fontaine"
+  },
+  {
+   "code": "1108785853",
+   "name": "Maropaniry",
+   "type": null,
+   "system": null,
+   "lon": 45.111622,
+   "lat": -21.7143,
+   "photo": "57f2a88efaaf4c4daa48a43716bd77c2",
+   "device": null,
+   "desc": "Kiosque 226"
+  },
+  {
+   "code": "1108785860",
+   "name": "Maropaniry",
+   "type": null,
+   "system": null,
+   "lon": 45.112004,
+   "lat": -21.71577,
+   "photo": "a9412aa3d81543c092447294136ee9d4",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785877",
+   "name": "Maropaniry",
+   "type": null,
+   "system": null,
+   "lon": 45.112584,
+   "lat": -21.716806,
+   "photo": "9221f8d0094d467fb1ebd2303bc95c88",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783741",
+   "name": "Nanisana",
+   "type": null,
+   "system": null,
+   "lon": 47.545853,
+   "lat": -18.893831,
+   "photo": "ad5e492eab5c4383abb62063af7b6a7e",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1225560807",
+   "name": "Point d'eau Manakompy",
+   "type": "kiosk",
+   "system": null,
+   "lon": 45.391326,
+   "lat": -24.319874,
+   "photo": "129197516d9d4a4ca782e787dc4e59fc",
+   "device": null,
+   "desc": "À côté école public primaire manakompy"
+  },
+  {
+   "code": "1215212396",
+   "name": "Public tap stand",
+   "type": null,
+   "system": null,
+   "lon": 48.26325,
+   "lat": -18.44315,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432556",
+   "name": "Rasoa",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.561644,
+   "lat": -18.933149,
+   "photo": "e14b48068ead41dcb70237a238c352fb",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432563",
+   "name": "Ravao",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.572458,
+   "lat": -18.932887,
+   "photo": "eb453f84539944719e42f9f012755e85",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432525",
+   "name": "Razay Arisoa",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.564094,
+   "lat": -18.921301,
+   "photo": "7ba0c9a63aa643ec98dfb03f072c758f",
+   "device": null,
+   "desc": "Ambolikandrina 01"
+  },
+  {
+   "code": "1108783820",
+   "name": "Sahafa",
+   "type": null,
+   "system": null,
+   "lon": 47.545167,
+   "lat": -18.796985,
+   "photo": "567664cb5dbc4ac9afafd79c05bf9607",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108783765",
+   "name": "Soavimasondro",
+   "type": null,
+   "system": null,
+   "lon": 47.515726,
+   "lat": -18.86627,
+   "photo": "66d90af00a904a479f097a7d13da9e50",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783899",
+   "name": "Talatavonlonondry ambany andrefana",
+   "type": null,
+   "system": null,
+   "lon": 47.637644,
+   "lat": -18.749328,
+   "photo": "5f2e8e933c2f4e4991c7f895748ef505",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1108783916",
+   "name": "Talatavonlonondry avaratsena",
+   "type": null,
+   "system": null,
+   "lon": 47.649662,
+   "lat": -18.747944,
+   "photo": "18e2dcc4701747198d9b468383e1243f",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "1108785736",
+   "name": "Tongay",
+   "type": null,
+   "system": null,
+   "lon": 45.572098,
+   "lat": -23.504418,
+   "photo": "de3f58a56231405a8e056d0fc8e623e6",
+   "device": null,
+   "desc": "Kiosque 71"
+  },
+  {
+   "code": "1108785743",
+   "name": "Tongay",
+   "type": null,
+   "system": null,
+   "lon": 45.571977,
+   "lat": -23.504515,
+   "photo": "ce98a655456e4e7eb1988dc2c6a13276",
+   "device": null,
+   "desc": "Kiosque 56"
+  },
+  {
+   "code": "1108783844",
+   "name": "Vakinampasika",
+   "type": null,
+   "system": null,
+   "lon": 47.555948,
+   "lat": -18.779685,
+   "photo": "d51ba6979de240709d0cac53e53bf528",
+   "device": null,
+   "desc": "Kiosque"
+  },
+  {
+   "code": "988432549",
+   "name": "Vola",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.561879,
+   "lat": -18.930182,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1125843345",
+   "name": "Water kiosj",
+   "type": null,
+   "system": null,
+   "lon": 47.561248,
+   "lat": -18.998372,
+   "photo": "825b2b5b8ed948eebb55d60b81292d4c",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1125843352",
+   "name": "Water kiosk",
+   "type": null,
+   "system": null,
+   "lon": 47.523145,
+   "lat": -18.969193,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1125843369",
+   "name": "Water kiosk",
+   "type": null,
+   "system": null,
+   "lon": 47.507036,
+   "lat": -18.957888,
+   "photo": "72dd091b8e3d4e9e93d9db0089574e5a",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056374",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.485572,
+   "lat": -18.912121,
+   "photo": "72ec0ef7b3224dcca4f8a531c617ab06",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056398",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.485572,
+   "lat": -18.912149,
+   "photo": "c18218608be44df0a86c05a4733f9702",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056408",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.476432,
+   "lat": -18.917148,
+   "photo": "b8af879cb1e04f6aa1c89f521c85156d",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056415",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.461054,
+   "lat": -18.911583,
+   "photo": "6e5839a0cffe4532b7689dc2a3c96099",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056422",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.463682,
+   "lat": -18.916422,
+   "photo": "e1c95219c4f34ccb9bb3fdc66ed679bd",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056439",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.461021,
+   "lat": -18.921069,
+   "photo": "cdf70026990d4f4aa8996c7ce20de019",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056446",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.461066,
+   "lat": -18.927137,
+   "photo": "37e3f3281db94690b6787261b45e81f2",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056460",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.489558,
+   "lat": -18.921075,
+   "photo": "a102f8bf5f3a4aa59b76935033fb9c6d",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056477",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.501104,
+   "lat": -18.911837,
+   "photo": "d1f6d346b7a54ac78f85451a7ffcec75",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056484",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.46805,
+   "lat": -18.902819,
+   "photo": "d3d9e75e94ca447aa53881bed0c80597",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056491",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.471669,
+   "lat": -18.887038,
+   "photo": "51aa51eaf2504363a8d7ddf5d62f7b74",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056501",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.480713,
+   "lat": -18.8976,
+   "photo": "837c280f6ef246509ddd3012e2e5553b",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056518",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.478694,
+   "lat": -18.893253,
+   "photo": "f726015fc2de41259ed78727b0b44e81",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056525",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.445036,
+   "lat": -18.942022,
+   "photo": "c364699b4d9f4eaab35a5621fba5df13",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056532",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.48253,
+   "lat": -18.941931,
+   "photo": "d525830ae8eb4cfe9d2acdcf4cc2d37c",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056549",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.548332,
+   "lat": -18.987092,
+   "photo": "1e65e60e017441e58e8d0f0236182e95",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056659",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.721141,
+   "lat": -18.966585,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056666",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.790647,
+   "lat": -19.040211,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056673",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.748745,
+   "lat": -19.062091,
+   "photo": "5e1d7b46409b4f638ccd7cd2c9b35401",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056680",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.7487,
+   "lat": -19.062092,
+   "photo": "906fc88141054a47b46b983bcf45dee9",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056697",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.747376,
+   "lat": -19.061999,
+   "photo": "027bc003128d4b8289f9b0e4cc8bac11",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056707",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.746809,
+   "lat": -19.061539,
+   "photo": "10ecb94435e04a969e2df400e56ea129",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056721",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.771676,
+   "lat": -19.050328,
+   "photo": "f3d5c0087a8542bc958d8240f80ef38c",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056738",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.787159,
+   "lat": -19.053265,
+   "photo": "8fe963893f0a491ab96574c38caab952",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056752",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.791843,
+   "lat": -19.041391,
+   "photo": "074605cbdcf84a8a9b9a1a02ce455db5",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056783",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539982,
+   "lat": -18.92521,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1062056800",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539928,
+   "lat": -18.925163,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1125843338",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.557064,
+   "lat": -18.986836,
+   "photo": "ab78888d0ceb42fdb727197842acbbad",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1126132505",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.574101,
+   "lat": -18.827597,
+   "photo": "e84a84dceb734000af8a289d94f608d8",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067861",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539972,
+   "lat": -18.925274,
+   "photo": "9b3ab341904c4dd4bad5ea9c2c9c9873",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067878",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539972,
+   "lat": -18.925279,
+   "photo": "4a5cbea221a9449aba9be039ed1d6b70",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067885",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539976,
+   "lat": -18.925277,
+   "photo": "652e9fd8805f4d0aad5b8a4e42fec696",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067902",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.452472,
+   "lat": -18.927961,
+   "photo": "ddd8764ff8f44912811ff122f841559a",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067919",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.449028,
+   "lat": -18.927965,
+   "photo": "7f89643218e044508525c13ea6dc0195",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1131067926",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.470461,
+   "lat": -18.924211,
+   "photo": "6f4c830cba3e49029133e6546a9f2f6d",
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161832",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208668,
+   "lat": -24.683871,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161856",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208838,
+   "lat": -24.68396,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161863",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208137,
+   "lat": -24.684915,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161870",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.06372,
+   "lat": -24.710037,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161887",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.064747,
+   "lat": -24.707835,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161894",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.064664,
+   "lat": -24.707667,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161928",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.30122,
+   "lat": -24.558778,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161935",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.301217,
+   "lat": -24.558787,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161942",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.301312,
+   "lat": -24.558915,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161959",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.274813,
+   "lat": -24.548208,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161966",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.292878,
+   "lat": -24.551102,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161973",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.512198,
+   "lat": -24.655142,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136161980",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.503977,
+   "lat": -24.64925,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163937",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.711706,
+   "lat": -24.196732,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163944",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.592458,
+   "lat": -24.748094,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163951",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.64286,
+   "lat": -24.801738,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163968",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.64554,
+   "lat": -24.803541,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163975",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.655016,
+   "lat": -24.808538,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163982",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660209,
+   "lat": -24.814726,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136163999",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660057,
+   "lat": -24.814464,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164000",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660593,
+   "lat": -24.814447,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164017",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660116,
+   "lat": -24.814393,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164024",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660121,
+   "lat": -24.81445,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164031",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.660019,
+   "lat": -24.814181,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164048",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.714914,
+   "lat": -23.834043,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164062",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300675,
+   "lat": -24.558519,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164079",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300669,
+   "lat": -24.558545,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164086",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300675,
+   "lat": -24.558564,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164093",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300602,
+   "lat": -24.558591,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1136164103",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.065581,
+   "lat": -24.708429,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137611493",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.711704,
+   "lat": -24.196752,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137611503",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.71172,
+   "lat": -24.196587,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137611510",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.517733,
+   "lat": -24.927571,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612054",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.30049,
+   "lat": -24.558513,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612061",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300559,
+   "lat": -24.558481,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612078",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300548,
+   "lat": -24.558524,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612085",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300578,
+   "lat": -24.558501,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612092",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208776,
+   "lat": -24.683941,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612102",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208866,
+   "lat": -24.683919,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612119",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.208712,
+   "lat": -24.683824,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612126",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.20874,
+   "lat": -24.683861,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612133",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.164995,
+   "lat": -24.758249,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612140",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.164943,
+   "lat": -24.758246,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612157",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.164982,
+   "lat": -24.758249,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612164",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.27109,
+   "lat": -24.567988,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1137612171",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 45.300691,
+   "lat": -24.558559,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149603",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.540021,
+   "lat": -18.925281,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149610",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.539986,
+   "lat": -18.92523,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1172149627",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.540105,
+   "lat": -18.925082,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "1215212406",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 48.26272,
+   "lat": -18.443513,
+   "photo": null,
+   "device": null,
+   "desc": null
+  },
+  {
+   "code": "988432532",
+   "name": null,
+   "type": null,
+   "system": null,
+   "lon": 47.565285,
+   "lat": -18.921976,
+   "photo": null,
+   "device": null,
+   "desc": null
+  }
+ ],
+ "sampling": {
+  "samples": 59,
+  "with_gps": 49,
+  "no_gps": 10,
+  "by_code": 0,
+  "points": [
+   {
+    "id": "S01",
+    "samples": 6,
+    "first": "2026-03-23",
+    "last": "2026-08-19",
+    "types": [
+     "household connection",
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "590f7847d2c4434bbdab86894901df89",
+    "lon": 48.265527,
+    "lat": -18.444086,
+    "nearest_tap": "1255186552",
+    "nearest_name": "SMARTAP 6",
+    "nearest_m": 9.3,
+    "tap": "1255186552",
+    "method": "position"
+   },
+   {
+    "id": "S02",
+    "samples": 5,
+    "first": "2026-03-23",
+    "last": "2026-08-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "b5175a8440f743ada2793e5d093be0c3",
+    "lon": 48.268842,
+    "lat": -18.441822,
+    "nearest_tap": "1255186538",
+    "nearest_name": "SMARTAP 2",
+    "nearest_m": 7.7,
+    "tap": "1255186538",
+    "method": "position"
+   },
+   {
+    "id": "S03",
+    "samples": 4,
+    "first": "2026-03-23",
+    "last": "2026-08-19",
+    "types": [
+     "other"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "ca17c19b3d704be1882cc27141ddf208",
+    "lon": 48.278804,
+    "lat": -18.44099,
+    "nearest_tap": "928480351",
+    "nearest_name": "Mamboasary gare forage",
+    "nearest_m": 166.6,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S04",
+    "samples": 3,
+    "first": "2026-03-23",
+    "last": "2026-06-24",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "1f08743d96f6461fb8bfa9ce3aafd719",
+    "lon": 48.263088,
+    "lat": -18.442582,
+    "nearest_tap": "1255186693",
+    "nearest_name": "SMARTAP 5",
+    "nearest_m": 65.4,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S05",
+    "samples": 3,
+    "first": "2026-03-23",
+    "last": "2026-06-24",
+    "types": [
+     "institutional connection",
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "ed627c85ed0644589430ceab4300efaf",
+    "lon": 48.266302,
+    "lat": -18.44357,
+    "nearest_tap": "1255186569",
+    "nearest_name": "SMARTAP 10",
+    "nearest_m": 10.3,
+    "tap": "1255186569",
+    "method": "position"
+   },
+   {
+    "id": "S06",
+    "samples": 3,
+    "first": "2026-03-23",
+    "last": "2026-06-24",
+    "types": [
+     "household connection",
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "a8a650f5c39e4039892819ba8fdfd7e4",
+    "lon": 48.263906,
+    "lat": -18.44234,
+    "nearest_tap": "1255186655",
+    "nearest_name": "SMARTAP 8",
+    "nearest_m": 100.4,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S07",
+    "samples": 2,
+    "first": "2026-03-23",
+    "last": "2026-08-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "f3e43944db0b47308b755cd201dc5a87",
+    "lon": 48.264727,
+    "lat": -18.443926,
+    "nearest_tap": "1255186600",
+    "nearest_name": "SMARTAP 7",
+    "nearest_m": 6.8,
+    "tap": "1255186600",
+    "method": "position"
+   },
+   {
+    "id": "S08",
+    "samples": 2,
+    "first": "2026-04-30",
+    "last": "2026-05-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "e4ab9f5f10a1446aa7572c633c164b98",
+    "lon": 48.264669,
+    "lat": -18.444065,
+    "nearest_tap": "1255186600",
+    "nearest_name": "SMARTAP 7",
+    "nearest_m": 10.1,
+    "tap": "1255186600",
+    "method": "position"
+   },
+   {
+    "id": "S09",
+    "samples": 2,
+    "first": "2026-05-19",
+    "last": "2026-08-19",
+    "types": [
+     "household connection",
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "cc47071f563b4dfd9f8e6ca29e289f7a",
+    "lon": 48.263815,
+    "lat": -18.438468,
+    "nearest_tap": "1255186576",
+    "nearest_name": "SMARTAP 14",
+    "nearest_m": 429.2,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S10",
+    "samples": 2,
+    "first": "2026-05-19",
+    "last": "2026-06-24",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "e2e9c9c9564b4b258454a9ec41fe2360",
+    "lon": 48.261318,
+    "lat": -18.443684,
+    "nearest_tap": "1255186710",
+    "nearest_name": "SMARTAP 13",
+    "nearest_m": 1.1,
+    "tap": "1255186710",
+    "method": "position"
+   },
+   {
+    "id": "S11",
+    "samples": 2,
+    "first": "2026-06-24",
+    "last": "2026-06-24",
+    "types": [
+     "institutional connection",
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "dfd129c9303a4f8bab83d29176a3887c",
+    "lon": 48.263148,
+    "lat": -18.443114,
+    "nearest_tap": "1255186693",
+    "nearest_name": "SMARTAP 5",
+    "nearest_m": 11.4,
+    "tap": "1255186693",
+    "method": "position"
+   },
+   {
+    "id": "S12",
+    "samples": 1,
+    "first": "2026-03-23",
+    "last": "2026-03-23",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "dfc0da7315024abba6570d2f7eae8a7c",
+    "lon": 48.263744,
+    "lat": -18.443533,
+    "nearest_tap": "1255186686",
+    "nearest_name": "SMARTAP 20",
+    "nearest_m": 54.6,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S13",
+    "samples": 1,
+    "first": "2026-04-01",
+    "last": "2026-04-01",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "517790364"
+    ],
+    "photo": true,
+    "photo_id": "375b349ce1c24b25a655c9530cd5eb76",
+    "lon": 2.38961,
+    "lat": -1.921718,
+    "nearest_tap": "1172149641",
+    "nearest_name": "Ankerereky",
+    "nearest_m": 5081597.1,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S14",
+    "samples": 1,
+    "first": "2026-04-30",
+    "last": "2026-04-30",
+    "types": [
+     "other"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "272f50d43c794ede8116ddf5ac21044d",
+    "lon": 48.278889,
+    "lat": -18.441143,
+    "nearest_tap": "928480351",
+    "nearest_name": "Mamboasary gare forage",
+    "nearest_m": 166.6,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S15",
+    "samples": 1,
+    "first": "2026-04-30",
+    "last": "2026-04-30",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "e0b63c69bfa940d8b0bbbbe01b5c356c",
+    "lon": 48.261856,
+    "lat": -18.443082,
+    "nearest_tap": "1255186617",
+    "nearest_name": "SMARTAP 11",
+    "nearest_m": 68.6,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S16",
+    "samples": 1,
+    "first": "2026-05-19",
+    "last": "2026-05-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "5df1b341b05d4830a64b8cac1e808fcf",
+    "lon": 48.266122,
+    "lat": -18.443591,
+    "nearest_tap": "1255186569",
+    "nearest_name": "SMARTAP 10",
+    "nearest_m": 25.1,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S17",
+    "samples": 1,
+    "first": "2026-05-19",
+    "last": "2026-05-19",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "8c0465bb798242f48175462b9f46e2e3",
+    "lon": 48.261538,
+    "lat": -18.443193,
+    "nearest_tap": "1255186710",
+    "nearest_name": "SMARTAP 13",
+    "nearest_m": 58.5,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S18",
+    "samples": 1,
+    "first": "2026-05-19",
+    "last": "2026-05-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "251dd62f1bb244e4b15a26f96989441e",
+    "lon": 48.262758,
+    "lat": -18.443456,
+    "nearest_tap": "1255186703",
+    "nearest_name": "SMARTAP 9",
+    "nearest_m": 7.5,
+    "tap": "1255186703",
+    "method": "position"
+   },
+   {
+    "id": "S19",
+    "samples": 1,
+    "first": "2026-05-19",
+    "last": "2026-05-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "6d9b35ca47d044eca6c6282f3499afec",
+    "lon": 48.263889,
+    "lat": -18.443526,
+    "nearest_tap": "1255186655",
+    "nearest_name": "SMARTAP 8",
+    "nearest_m": 45.6,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S20",
+    "samples": 1,
+    "first": "2026-06-24",
+    "last": "2026-06-24",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "2b6d67db84c843a4a4bea9cff667a6ec",
+    "lon": 48.262479,
+    "lat": -18.442348,
+    "nearest_tap": "1255186617",
+    "nearest_name": "SMARTAP 11",
+    "nearest_m": 66.5,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S21",
+    "samples": 1,
+    "first": "2026-06-24",
+    "last": "2026-06-24",
+    "types": [
+     "household connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "2bb8222dc24f4ea6ba361cfe33d0a61f",
+    "lon": 48.26316,
+    "lat": -18.443347,
+    "nearest_tap": "1255186693",
+    "nearest_name": "SMARTAP 5",
+    "nearest_m": 23.8,
+    "tap": "1255186693",
+    "method": "position"
+   },
+   {
+    "id": "S22",
+    "samples": 1,
+    "first": "2026-08-19",
+    "last": "2026-08-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "b8a510dd836740379f160b2dd639dfb7",
+    "lon": 48.266261,
+    "lat": -18.443953,
+    "nearest_tap": "1255186569",
+    "nearest_name": "SMARTAP 10",
+    "nearest_m": 35.2,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S23",
+    "samples": 1,
+    "first": "2026-08-19",
+    "last": "2026-08-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "8041795de4b64af09e0c379e582b3517",
+    "lon": 48.2682,
+    "lat": -18.440448,
+    "nearest_tap": "1255186583",
+    "nearest_name": "SMARTAP 18",
+    "nearest_m": 10.9,
+    "tap": "1255186583",
+    "method": "position"
+   },
+   {
+    "id": "S24",
+    "samples": 1,
+    "first": "2026-08-19",
+    "last": "2026-08-19",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "9f8919fd73c846fda55a2d25e0f1dd89",
+    "lon": 48.267052,
+    "lat": -18.440918,
+    "nearest_tap": "1255186679",
+    "nearest_name": "SMARTAP 16",
+    "nearest_m": 1.7,
+    "tap": "1255186679",
+    "method": "position"
+   },
+   {
+    "id": "S25",
+    "samples": 1,
+    "first": "2026-09-11",
+    "last": "2026-09-11",
+    "types": [
+     "institutional connection"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "6017821603d346629d82c50d5b0a3646",
+    "lon": 49.407139,
+    "lat": -18.160982,
+    "nearest_tap": "929469254",
+    "nearest_name": "Forage II Betanatanana",
+    "nearest_m": 123271.2,
+    "tap": null,
+    "method": null
+   },
+   {
+    "id": "S26",
+    "samples": 1,
+    "first": "2026-09-16",
+    "last": "2026-09-16",
+    "types": [
+     "water kiosk"
+    ],
+    "systems": [
+     "1108783583"
+    ],
+    "photo": true,
+    "photo_id": "4c3fa827cbfc41e6a515a65ea1323e17",
+    "lon": 47.467734,
+    "lat": -18.816509,
+    "nearest_tap": "1108783679",
+    "nearest_name": "Kiosque - test",
+    "nearest_m": 3207.6,
+    "tap": null,
+    "method": null
+   }
+  ],
+  "matched": 11,
+  "unmatched": [
+   "S03",
+   "S04",
+   "S06",
+   "S09",
+   "S12",
+   "S13",
+   "S14",
+   "S15",
+   "S16",
+   "S17",
+   "S19",
+   "S20",
+   "S22",
+   "S25",
+   "S26"
+  ],
+  "match_m": 25,
+  "cluster_m": 15
+ },
+ "tap_samples": [
+  {
+   "code": "1255186538",
+   "name": "SMARTAP 2",
+   "system": "1108783583",
+   "samples": 5,
+   "first": "2026-03-23",
+   "last": "2026-08-19",
+   "points": [
+    "S02"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186552",
+   "name": "SMARTAP 6",
+   "system": "1108783583",
+   "samples": 6,
+   "first": "2026-03-23",
+   "last": "2026-08-19",
+   "points": [
+    "S01"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186569",
+   "name": "SMARTAP 10",
+   "system": "1108783583",
+   "samples": 3,
+   "first": "2026-03-23",
+   "last": "2026-06-24",
+   "points": [
+    "S05"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186583",
+   "name": "SMARTAP 18",
+   "system": "1108783583",
+   "samples": 1,
+   "first": "2026-08-19",
+   "last": "2026-08-19",
+   "points": [
+    "S23"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186600",
+   "name": "SMARTAP 7",
+   "system": "1108783583",
+   "samples": 4,
+   "first": "2026-03-23",
+   "last": "2026-08-19",
+   "points": [
+    "S07",
+    "S08"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186679",
+   "name": "SMARTAP 16",
+   "system": "1108783583",
+   "samples": 1,
+   "first": "2026-08-19",
+   "last": "2026-08-19",
+   "points": [
+    "S24"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186693",
+   "name": "SMARTAP 5",
+   "system": "1108783583",
+   "samples": 3,
+   "first": "2026-06-24",
+   "last": "2026-06-24",
+   "points": [
+    "S11",
+    "S21"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186703",
+   "name": "SMARTAP 9",
+   "system": "1108783583",
+   "samples": 1,
+   "first": "2026-05-19",
+   "last": "2026-05-19",
+   "points": [
+    "S18"
+   ],
+   "method": "position",
+   "system_results": 43
+  },
+  {
+   "code": "1255186710",
+   "name": "SMARTAP 13",
+   "system": "1108783583",
+   "samples": 2,
+   "first": "2026-05-19",
+   "last": "2026-06-24",
+   "points": [
+    "S10"
+   ],
+   "method": "position",
+   "system_results": 43
+  }
+ ],
+ "merged": {
+  "1255186600": [
+   "S07",
+   "S08"
+  ],
+  "1255186693": [
+   "S11",
+   "S21"
+  ]
+ },
+ "results_by_system": {
+  "1108783583": {
+   "name": "Amboasary gara",
+   "tests": 43,
+   "ecoli_present": 38,
+   "ecoli_ge10": 13,
+   "first": "2026-03-25",
+   "last": "2026-08-21",
+   "tap_coded": 0
+  }
+ },
+ "dq": {
+  "smartap_missing": [
+   1
+  ],
+  "kiosk_pending": 19,
+  "no_photo": [
+   "1255186569",
+   "1255186617",
+   "1255186662",
+   "1255186710",
+   "1255186576",
+   "1255186624",
+   "1255186679",
+   "1255186727",
+   "1255186583",
+   "1255186631",
+   "1255186538",
+   "1255186686",
+   "1255186590",
+   "1255186648",
+   "1255186693",
+   "1255186552",
+   "1255186600",
+   "1255186655",
+   "1255186703",
+   "1108785750",
+   "929469254",
+   "1108785781",
+   "1062056594",
+   "1215212396",
+   "988432549",
+   "1125843352",
+   "1062056659",
+   "1062056666",
+   "1062056783",
+   "1062056800",
+   "1136161832",
+   "1136161856",
+   "1136161863",
+   "1136161870",
+   "1136161887",
+   "1136161894",
+   "1136161928",
+   "1136161935",
+   "1136161942",
+   "1136161959",
+   "1136161966",
+   "1136161973",
+   "1136161980",
+   "1136163937",
+   "1136163944",
+   "1136163951",
+   "1136163968",
+   "1136163975",
+   "1136163982",
+   "1136163999",
+   "1136164000",
+   "1136164017",
+   "1136164024",
+   "1136164031",
+   "1136164048",
+   "1136164062",
+   "1136164079",
+   "1136164086",
+   "1136164093",
+   "1136164103",
+   "1137611493",
+   "1137611503",
+   "1137611510",
+   "1137612054",
+   "1137612061",
+   "1137612078",
+   "1137612085",
+   "1137612092",
+   "1137612102",
+   "1137612119",
+   "1137612126",
+   "1137612133",
+   "1137612140",
+   "1137612157",
+   "1137612164",
+   "1137612171",
+   "1172149603",
+   "1172149610",
+   "1172149627",
+   "1215212406",
+   "988432532"
+  ],
+  "smartap_no_photo": [
+   "1255186538",
+   "1255186590",
+   "1255186648",
+   "1255186693",
+   "1255186552",
+   "1255186600",
+   "1255186655",
+   "1255186703",
+   "1255186569",
+   "1255186617",
+   "1255186662",
+   "1255186710",
+   "1255186576",
+   "1255186624",
+   "1255186679",
+   "1255186727",
+   "1255186583",
+   "1255186631",
+   "1255186686"
+  ]
+ }
+}

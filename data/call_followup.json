@@ -48,9 +48,18 @@
      "call_rid": "6a3d942db8514eea9487e01dd942d513",
      "status": "partial",
      "calls_in_window": 1,
-     "next": null,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-10-02",
+      "rid": "5b76c4c95473454b89ffe193b7d2df75",
+      "days": 1
+     },
      "next_repair": null,
-     "next_pm": null,
+     "next_pm": {
+      "date": "2026-10-02",
+      "rid": "5b76c4c95473454b89ffe193b7d2df75",
+      "days": 1
+     },
      "flag": "not yet due"
     },
     {
@@ -102,17 +111,25 @@
      "site": "Maroantsetra",
      "date": "2026-10-02",
      "rid": "242cd97162b845d59f90b9f66cb2cdf8"
+    },
+    {
+     "wp": "833033253",
+     "site": "Maroantsetra",
+     "date": "2026-10-02",
+     "rid": "5b76c4c95473454b89ffe193b7d2df75"
     }
    ],
    "pumps_called": 4,
-   "pm_records": 6,
-   "pumps_visited": 6,
-   "overlap": [],
-   "overlap_n": 0,
+   "pm_records": 7,
+   "pumps_visited": 7,
+   "overlap": [
+    "833033253"
+   ],
+   "overlap_n": 1,
    "no_repair_7d": 0,
    "repaired_7d": 1,
    "not_yet_due": 3,
-   "nothing_after": 3
+   "nothing_after": 2
   },
   "window": {
    "days": 28,
@@ -561,8 +578,17 @@
      "call_rid": "e1a8089fa2a74c3d9202786eb131ef70",
      "status": "down",
      "calls_in_window": 1,
-     "next": null,
-     "next_repair": null,
+     "next": {
+      "kind": "repair",
+      "date": "2026-10-02",
+      "rid": "2fe20ebadaa14889b08eacc33b1cf5c6",
+      "days": 8
+     },
+     "next_repair": {
+      "date": "2026-10-02",
+      "rid": "2fe20ebadaa14889b08eacc33b1cf5c6",
+      "days": 8
+     },
      "next_pm": null,
      "flag": "no repair after 7 days"
     },
@@ -606,9 +632,18 @@
      "call_rid": "6a3d942db8514eea9487e01dd942d513",
      "status": "partial",
      "calls_in_window": 1,
-     "next": null,
+     "next": {
+      "kind": "preventive visit",
+      "date": "2026-10-02",
+      "rid": "5b76c4c95473454b89ffe193b7d2df75",
+      "days": 1
+     },
      "next_repair": null,
-     "next_pm": null,
+     "next_pm": {
+      "date": "2026-10-02",
+      "rid": "5b76c4c95473454b89ffe193b7d2df75",
+      "days": 1
+     },
      "flag": "not yet due"
     },
     {
@@ -678,11 +713,17 @@
      "site": "Maroantsetra",
      "date": "2026-10-02",
      "rid": "242cd97162b845d59f90b9f66cb2cdf8"
+    },
+    {
+     "wp": "833033253",
+     "site": "Maroantsetra",
+     "date": "2026-10-02",
+     "rid": "5b76c4c95473454b89ffe193b7d2df75"
     }
    ],
    "pumps_called": 27,
-   "pm_records": 9,
-   "pumps_visited": 9,
+   "pm_records": 10,
+   "pumps_visited": 10,
    "overlap": [
     "698771196",
     "698771983",
@@ -691,13 +732,14 @@
     "742896743",
     "742897672",
     "814009107",
-    "833032702"
+    "833032702",
+    "833033253"
    ],
-   "overlap_n": 8,
+   "overlap_n": 9,
    "no_repair_7d": 13,
    "repaired_7d": 11,
    "not_yet_due": 3,
-   "nothing_after": 7
+   "nothing_after": 5
   }
  }
 }

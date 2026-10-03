@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-02T16:17:05+00:00",
+ "pulled_at": "2026-10-03T13:24:28+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -28,6 +28,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
    "modified_at": "2026-10-02T14:53:03.952Z"
   },
+  "act-borehole-form-lanja-followups": {
+   "gid": "1219109377317101",
+   "name": "Finish the borehole form checks and finalise three draft borehole records [act-borehole-form-lanja-followups]",
+   "title": "Finish the borehole form checks and finalise three draft borehole records",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": "2026-10-09",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317101",
+   "modified_at": "2026-10-02T16:28:31.891Z"
+  },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
    "name": "Read the year on calendar sheets where it is handwritten [act-cal-handwritten-year]",
@@ -51,6 +63,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994732884",
    "modified_at": "2026-10-02T14:53:07.135Z"
+  },
+  "act-calendar-2027-side-list": {
+   "gid": "1219109376477976",
+   "name": "Say which side the guardian marked on nine calendars photographed on the 2027 side [act-calendar-2027-side-list]",
+   "title": "Say which side the guardian marked on nine calendars photographed on the 2027 side",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109376477976",
+   "modified_at": "2026-10-02T16:28:31.851Z"
   },
   "act-calendar-custody": {
    "gid": "1219101057894822",
@@ -160,6 +184,30 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110481086",
    "modified_at": "2026-10-02T14:53:23.213Z"
   },
+  "act-coddy-naturano-card-spec": {
+   "gid": "1219109157880491",
+   "name": "Send NatuRano card details to Ralf and agree one shared card format [act-coddy-naturano-card-spec]",
+   "title": "Send NatuRano card details to Ralf and agree one shared card format",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-09",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880491",
+   "modified_at": "2026-10-02T16:28:31.337Z"
+  },
+  "act-coddy-slack-days-card-price": {
+   "gid": "1219109294472220",
+   "name": "List quiet kiosk days from Zoho and check if the card price deters poor households [act-coddy-slack-days-card-price]",
+   "title": "List quiet kiosk days from Zoho and check if the card price deters poor households",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294472220",
+   "modified_at": "2026-10-02T16:28:31.211Z"
+  },
   "act-confirm-india-mark-capacity": {
    "gid": "1219100937078629",
    "name": "Measure depth and yield at sample India Mark pumps [act-confirm-india-mark-capacity]",
@@ -207,6 +255,42 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110579611",
    "modified_at": "2026-10-02T14:53:29.989Z"
+  },
+  "act-deichmann-ar-marolinta-photos": {
+   "gid": "1219109377306808",
+   "name": "Send Marolinta photos for the Deichmann annual report [act-deichmann-ar-marolinta-photos]",
+   "title": "Send Marolinta photos for the Deichmann annual report",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-04",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377306808",
+   "modified_at": "2026-10-02T16:28:31.472Z"
+  },
+  "act-deichmann-ar-photo-consent": {
+   "gid": "1219109377307190",
+   "name": "Confirm photographer and consent for Deichmann annual report photos 05, 07, 08, 09 [act-deichmann-ar-photo-consent]",
+   "title": "Confirm photographer and consent for Deichmann annual report photos 05, 07, 08, 09",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-04",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
+   "modified_at": "2026-10-02T16:28:31.362Z"
+  },
+  "act-deichmann-ar-send": {
+   "gid": "1219109294883405",
+   "name": "Send the Deichmann annual report water checklist and photo link to acht ideen [act-deichmann-ar-send]",
+   "title": "Send the Deichmann annual report water checklist and photo link to acht ideen",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-04",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294883405",
+   "modified_at": "2026-10-02T16:28:31.114Z"
   },
   "act-design-change-q1-2027": {
    "gid": "1219101058162842",
@@ -256,6 +340,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110649225",
    "modified_at": "2026-10-02T14:53:36.448Z"
   },
+  "act-enduro-kiosk-jirama-dependence": {
+   "gid": "1219109150431532",
+   "name": "List which Tana kiosks depend on JIRAMA water and what communes know of the World Bank project [act-enduro-kiosk-jirama-dependence]",
+   "title": "List which Tana kiosks depend on JIRAMA water and what communes know of the World Bank project",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150431532",
+   "modified_at": "2026-10-02T16:28:31.952Z"
+  },
   "act-enduro-link-wp-systems": {
    "gid": "1219100995254721",
    "name": "Link each Endur'O water point to its water system in mWater [act-enduro-link-wp-systems]",
@@ -279,6 +375,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936889481",
    "modified_at": "2026-10-02T14:53:39.696Z"
+  },
+  "act-enduro-mwater-import-integration": {
+   "gid": "1219109377282329",
+   "name": "Bring Ralf's meter and shopkeeper lists into mWater through a portal import [act-enduro-mwater-import-integration]",
+   "title": "Bring Ralf's meter and shopkeeper lists into mWater through a portal import",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-11-15",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377282329",
+   "modified_at": "2026-10-02T16:28:31.667Z"
   },
   "act-enduro-onboard-2-register-sites": {
    "gid": "1219101110601508",
@@ -339,6 +447,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755",
    "modified_at": "2026-10-02T14:53:47.738Z"
+  },
+  "act-enduro-pricing-strategy-agreement": {
+   "gid": "1219109150022438",
+   "name": "Agree the Endur'O card credits and pricing strategy with Ntsoa, Coddy and Ralf [act-enduro-pricing-strategy-agreement]",
+   "title": "Agree the Endur'O card credits and pricing strategy with Ntsoa, Coddy and Ralf",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438",
+   "modified_at": "2026-10-02T16:28:31.312Z"
   },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
@@ -410,7 +530,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058491188",
-   "modified_at": "2026-10-02T14:53:57.520Z"
+   "modified_at": "2026-10-02T21:00:11.756Z"
   },
   "act-gs-validation-withdrawal-watch": {
    "gid": "1219100995281694",
@@ -472,6 +592,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
    "modified_at": "2026-10-02T14:54:06.475Z"
   },
+  "act-jan-commune-carbon-clauses": {
+   "gid": "1219109211970137",
+   "name": "Check if Endur'O commune contracts give SaniTap carbon rights and site access [act-jan-commune-carbon-clauses]",
+   "title": "Check if Endur'O commune contracts give SaniTap carbon rights and site access",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970137",
+   "modified_at": "2026-10-02T16:28:31.186Z"
+  },
   "act-jmp-survey-2026": {
    "gid": "1219101110821715",
    "name": "Run the November 2026 household hygiene survey and compare with 2025 [act-jmp-survey-2026]",
@@ -483,6 +615,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110821715",
    "modified_at": "2026-10-02T14:54:08.300Z"
+  },
+  "act-legal-water-credit-opinion": {
+   "gid": "1219109150420909",
+   "name": "Get a Malagasy lawyer's opinion that card water credits are not electronic money [act-legal-water-credit-opinion]",
+   "title": "Get a Malagasy lawyer's opinion that card water credits are not electronic money",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-15",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150420909",
+   "modified_at": "2026-10-02T16:28:31.345Z"
   },
   "act-mar-admin-fields": {
    "gid": "1219101058585368",
@@ -818,7 +962,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
-   "modified_at": "2026-10-02T14:54:53.555Z"
+   "modified_at": "2026-10-02T21:00:11.904Z"
   },
   "act-mwater-year-required": {
    "gid": "1219101270141207",
@@ -832,6 +976,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141207",
    "modified_at": "2026-10-02T14:54:55.141Z"
   },
+  "act-naturano-import-failing": {
+   "gid": "1219109377307094",
+   "name": "Find who owns the failing NatuRano mWater import and fix or pause it [act-naturano-import-failing]",
+   "title": "Find who owns the failing NatuRano mWater import and fix or pause it",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
+   "modified_at": "2026-10-02T16:28:31.920Z"
+  },
   "act-no-works-record": {
    "gid": "1219101111479145",
    "name": "Add a works record, or remove, every pump that has none [act-no-works-record]",
@@ -843,6 +999,30 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111479145",
    "modified_at": "2026-10-02T14:54:56.698Z"
+  },
+  "act-ntsoa-kiosk-cost-data": {
+   "gid": "1219109157880427",
+   "name": "Send water utility (JIRAMA) bills and overhead budget for Tana kiosks [act-ntsoa-kiosk-cost-data]",
+   "title": "Send water utility (JIRAMA) bills and overhead budget for Tana kiosks",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880427",
+   "modified_at": "2026-10-02T16:28:31.225Z"
+  },
+  "act-ntsoa-lorentz-sites-info": {
+   "gid": "1219109211970330",
+   "name": "Get the technical sheet, contact and answers on Lorentz smart taps at UNICEF sites [act-ntsoa-lorentz-sites-info]",
+   "title": "Get the technical sheet, contact and answers on Lorentz smart taps at UNICEF sites",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-09",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970330",
+   "modified_at": "2026-10-02T16:28:31.634Z"
   },
   "act-per-diem": {
    "gid": "1219100996413584",
@@ -976,6 +1156,30 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111019443",
    "modified_at": "2026-10-02T14:55:16.288Z"
   },
+  "act-ralf-card-key-rollout": {
+   "gid": "1219109211977723",
+   "name": "Move all active Endur'O cards to their own keys and remove the old key from taps [act-ralf-card-key-rollout]",
+   "title": "Move all active Endur'O cards to their own keys and remove the old key from taps",
+   "owner": "Ralf van Veenendaal, Curtech",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-31",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
+   "modified_at": "2026-10-02T16:28:31.877Z"
+  },
+  "act-ralf-card-sales-backfill-fix": {
+   "gid": "1219109211970459",
+   "name": "Correct the card sales backfill in Zoho and log first card loads separately [act-ralf-card-sales-backfill-fix]",
+   "title": "Correct the card sales backfill in Zoho and log first card loads separately",
+   "owner": "Ralf van Veenendaal, Curtech",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970459",
+   "modified_at": "2026-10-02T16:28:31.607Z"
+  },
   "act-ralf-meter-install-register": {
    "gid": "1219100996659975",
    "name": "Give us a readable list of smart tap meter installations [act-ralf-meter-install-register]",
@@ -999,6 +1203,30 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111620085",
    "modified_at": "2026-10-02T14:55:19.663Z"
+  },
+  "act-ralf-tap-offgrid-power": {
+   "gid": "1219109377317317",
+   "name": "State the smart tap's power use and propose solar plus battery for kiosks [act-ralf-tap-offgrid-power]",
+   "title": "State the smart tap's power use and propose solar plus battery for kiosks",
+   "owner": "Ralf van Veenendaal, Curtech",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317317",
+   "modified_at": "2026-10-02T16:28:31.381Z"
+  },
+  "act-ralf-tariff-zones": {
+   "gid": "1219109377317220",
+   "name": "Set up price zones in Zoho and on cards so taps accept own-zone cards only [act-ralf-tariff-zones]",
+   "title": "Set up price zones in Zoho and on cards so taps accept own-zone cards only",
+   "owner": "Ralf van Veenendaal, Curtech",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
+   "modified_at": "2026-10-02T16:28:31.101Z"
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -1046,7 +1274,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903401",
-   "modified_at": "2026-10-02T14:55:26.491Z"
+   "modified_at": "2026-10-02T21:00:12.019Z"
   },
   "act-reissue-calendars-new-blank": {
    "gid": "1219101111758501",
@@ -1119,6 +1347,30 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270700805",
    "modified_at": "2026-10-02T14:55:36.181Z"
+  },
+  "act-rotary-tana-concept-note": {
+   "gid": "1219109150164705",
+   "name": "Prepare the Rotary Global Grant package for the Antananarivo kiosks [act-rotary-tana-concept-note]",
+   "title": "Prepare the Rotary Global Grant package for the Antananarivo kiosks",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150164705",
+   "modified_at": "2026-10-02T16:28:31.619Z"
+  },
+  "act-rotary-tana-video-call": {
+   "gid": "1219109157819435",
+   "name": "Hold the video call with both Rotary clubs on the Tana kiosk grant [act-rotary-tana-video-call]",
+   "title": "Hold the video call with both Rotary clubs on the Tana kiosk grant",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157819435",
+   "modified_at": "2026-10-02T16:28:31.577Z"
   },
   "act-sampler-usage-survey-mode": {
    "gid": "1219101107133667",
@@ -1431,6 +1683,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101060358492",
    "modified_at": "2026-10-02T14:56:19.698Z"
+  },
+  "act-wb-p174477-contact": {
+   "gid": "1219109377317005",
+   "name": "Contact the World Bank Tana water project (P174477) and JIRAMA for connection zones [act-wb-p174477-contact]",
+   "title": "Contact the World Bank Tana water project (P174477) and JIRAMA for connection zones",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317005",
+   "modified_at": "2026-10-02T16:28:31.363Z"
   },
   "act-wq-incubator-sop": {
    "gid": "1219101270891582",

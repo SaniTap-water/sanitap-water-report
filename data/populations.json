@@ -140,7 +140,7 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 21,
+   "size": 20,
    "unit": "points"
   },
   "first_rehab_confirmed_out_of_order": {
@@ -480,7 +480,7 @@
     ]
    ],
    "rule": "Every submitted response on the preventive-maintenance form - drafts and rejected responses excluded.",
-   "size": 760,
+   "size": 761,
    "unit": "records"
   },
   "pm_visits_calendar_of_record": {
@@ -499,7 +499,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
-   "size": 719,
+   "size": 720,
    "unit": "records"
   },
   "pm_visits_calendar_photo": {
@@ -518,7 +518,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
-   "size": 757,
+   "size": 758,
    "unit": "records"
   },
   "register_records": {
@@ -589,7 +589,7 @@
     ]
    ],
    "rule": "Every repair-after-breakdown record on either repair source - the retired combined form and its live successor - that is linked to a water point and was submitted on or after 1 August 2024, counted once per point and date. The de-duplication is not cosmetic: three (point, date) pairs carry two records each, one of which spans the migration boundary and is a genuine double entry.",
-   "size": 624,
+   "size": 625,
    "unit": "records"
   },
   "repairs_time_measured": {
@@ -625,7 +625,7 @@
     ]
    ],
    "rule": "Repairs since 1 August 2024 that carry BOTH a breakdown notification date and a works completion date, and whose completion is not before its notification. Only these can be timed, so only these are in the median and the mean.",
-   "size": 621,
+   "size": 622,
    "unit": "records"
   },
   "sdws18_pou_passing": {

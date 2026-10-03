@@ -81,8 +81,8 @@ COUNTED_ONLY = set()
 # who reads each extract, where it is not populations.py
 READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
            "wq_sampling_piped.json": "rebuild_piped_wq.py",
-           "enduro_points.csv": "moramanga_dedupe.py",
-           "piped_systems.csv": "rebuild_piped_wq.py",
+           "enduro_points.csv": "moramanga_dedupe.py, rebuild_enduro_registry.py",
+           "piped_systems.csv": "rebuild_piped_wq.py, rebuild_enduro_registry.py",
            "piped_system_reg.json": "rebuild_piped_wq.py",
            "piped_point_reg.json": "rebuild_piped_wq.py",
            "baseline_moramanga.json": "rebuild_piped_wq.py",

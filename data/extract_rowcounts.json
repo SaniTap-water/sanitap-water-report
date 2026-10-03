@@ -4,14 +4,14 @@
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
-  "enduro_points.csv": 184,
+  "enduro_points.csv": 203,
   "first_rehab_current.json": 0,
   "forage_moramanga.csv": 20,
   "hygiene.json": 108,
   "hygiene_san.json": 413,
   "identification.json": 57,
   "marolinta_borehole.json": 20,
-  "piped_point_reg.json": 2,
+  "piped_point_reg.json": 1,
   "piped_system_reg.json": 3,
   "piped_systems.csv": 25,
   "pm.csv": 763,
@@ -26,5 +26,5 @@
   "wq_sampling_piped.json": 77
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-10-02"
+ "recorded": "2026-10-03"
 }

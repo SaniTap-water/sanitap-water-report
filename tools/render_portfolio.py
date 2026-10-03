@@ -8,7 +8,8 @@ labels. Nothing rewrote any of it. When 742894057 joined the portfolio on 23
 September the report moved to 737 and the map stayed at 736, and the
 map-versus-report checks failed the build. This rewrites them from the
 report's own data - PUMPS for the points, WPOP for the people served - on
-every build.
+every build. The Endur'O register layer and the Moramanga sampling points
+are written from data/enduro_registry.json (3 Oct 2026).
 
 Each figure is found by an anchored pattern that must match exactly once, so
 a wording change in portfolio.html fails loudly here rather than leaving a
@@ -98,6 +99,43 @@ def build():
                      "r": REGION[p["site"]], "m": 1,
                      "cb": 0 if p["site"] == "Marolinta" else 1})
     src = src[:i] + json.dumps(keep, ensure_ascii=False, separators=(",", ":")) + src[j:]
+    return enduro_layers(src)
+
+
+def enduro_layers(src):
+    """The Endur'O register layer (EDREG) and the Moramanga sampling points
+    (MORA), from data/enduro_registry.json (tools/rebuild_enduro_registry.py),
+    3 Oct 2026. Every registered Endur'O water point with GPS is drawn once; a
+    tap Cathy sampled carries its samples and its system's results; only the
+    sampling points with no registered tap within the matching distance stay
+    as separate points. Both arrays were typed by hand before this."""
+    reg = json.load(open(os.path.join(REPO, "data", "enduro_registry.json"), encoding="utf8"))
+    res = reg["results_by_system"]
+    samp = {t["code"]: t for t in reg["tap_samples"]}
+    edreg, seen = [], set()
+    for t in reg["taps"]:
+        if t["code"] in seen:
+            sys.exit(f"render_portfolio: Endur'O tap {t['code']} would be drawn twice")
+        seen.add(t["code"])
+        e = {"x": t["lon"], "y": t["lat"], "c": t["code"], "n": t["name"], "d": t["desc"],
+             "t": t["type"], "ph": t["photo"]}
+        if t["code"] in samp:
+            s = samp[t["code"]]
+            e["s"] = {"n": s["samples"], "f": s["first"], "l": s["last"], "m": s["method"]}
+            r = res.get(t["system"] or "")
+            if r:
+                e["r"] = {"t": r["tests"], "e": r["ecoli_present"], "g": r["ecoli_ge10"]}
+        edreg.append(e)
+    mora = [{"x": p["lon"], "y": p["lat"], "t": ", ".join(p["types"]) or "Type not recorded",
+             "n": p["samples"], "f": p["first"], "l": p["last"], "ph": p["photo_id"]}
+            for p in reg["sampling"]["points"] if not p["tap"]]
+    meta = {"matched_points": reg["sampling"]["matched"], "match_m": reg["sampling"]["match_m"],
+            "tests": sum(r["tests"] for r in res.values()),
+            "ecoli": sum(r["ecoli_present"] for r in res.values()),
+            "ge10": sum(r["ecoli_ge10"] for r in res.values())}
+    for name, val in (("EDREG", edreg), ("MORA", mora), ("EDMETA", meta)):
+        i, j, _ = const(src, name, r" = ")
+        src = src[:i] + json.dumps(val, ensure_ascii=False, separators=(",", ":")) + src[j:]
     return src
 
 

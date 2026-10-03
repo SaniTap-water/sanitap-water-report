@@ -85,6 +85,8 @@ SETS = {
     "RVAL": ("data", "reader_validation.json"),
     # calls that reported a pump not working, and what followed (tools/call_followup.py)
     "CALLF": ("data", "call_followup.json"),
+    # Endur'O's registered water systems and points, live (tools/rebuild_enduro_registry.py)
+    "ENDUROREG": ("data", "enduro_registry.json"),
     # hygiene promotion and gender, by district (tools/rebuild_hygiene.py)
     "HYG": ("data", "hygiene.json"),
     # the 2025 household water-quality round, SDWS 18 (tools/rebuild_sdws18.py)

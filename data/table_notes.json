@@ -252,6 +252,36 @@
    "extracted": "Survey pulled <span data-fig=\"PULLS['pou_survey.json'].pulled\"></span>; works form pulled <span data-fig=\"PULLS['combined_rehab.json'].pulled\"></span>.",
    "filter": "Every water point sampled in the 2025 household round, by district. The rule, as ruled by James Walker on 1 Oct 2026: counted per pump from its installation or rehabilitation date, in every annual round.",
    "columns": "<b>Installed or rehabilitated</b>: the works date, from a successful first-rehabilitation record where there is one. <b>First household sample</b>: the earliest sample at that pump in the round. <b>Days after the works</b>: between the two. <b>Six-month rule</b>: inside when the sample falls at least six months after the works."
+  },
+  "enduro-reg-compare": {
+   "source": "ENDUROREG on this page, from <span class=\"mono\">data/enduro_registry.json</span>, written by tools/rebuild_enduro_registry.py from the Endur&rsquo;O mWater group&rsquo;s water systems and water points (<span class=\"mono\">piped_systems.csv</span>, <span class=\"mono\">enduro_points.csv</span>), beside the hand-entered <span class=\"mono\">data/enduro_manual.json</span>.",
+   "extracted": "Entity extracts pulled <span data-fig=\"PULLS['enduro_points.csv'].pulled\"></span>. Hand-entered figures as at the dates in the last column.",
+   "filter": "Every water system and water point managed by the Endur&rsquo;O group, whatever its status.",
+   "columns": "<b>Hand-entered</b>: the figure in <span class=\"mono\">data/enduro_manual.json</span>. <b>Registered in mWater</b>: the live count. <b>Difference</b>: registered minus hand-entered; negative means fewer are registered than the hand-entered figure."
+  },
+  "enduro-reg-schemes": {
+   "source": "ENDUROREG on this page, from <span class=\"mono\">data/enduro_registry.json</span>, written by tools/rebuild_enduro_registry.py from the Endur&rsquo;O mWater group&rsquo;s water systems and water points (<span class=\"mono\">piped_systems.csv</span>, <span class=\"mono\">enduro_points.csv</span>).",
+   "extracted": "Entity extracts pulled <span data-fig=\"PULLS['enduro_points.csv'].pulled\"></span>.",
+   "filter": "One row per registered water system, then the water points whose water system is not set, then the total.",
+   "columns": "<b>Type</b>: the system&rsquo;s mWater management type. <b>GPS</b>, <b>Photo</b>: whether the system record carries them. <b>Water points</b>: points whose water system is this one, with their mWater types; <b>With GPS</b>, <b>With photo</b>: how many of them carry each."
+  },
+  "enduro-smartap": {
+   "source": "ENDUROREG on this page, from <span class=\"mono\">data/enduro_registry.json</span>, written by tools/rebuild_enduro_registry.py from the Endur&rsquo;O mWater group&rsquo;s water systems and water points (<span class=\"mono\">piped_systems.csv</span>, <span class=\"mono\">enduro_points.csv</span>).",
+   "extracted": "Entity extracts pulled <span data-fig=\"PULLS['enduro_points.csv'].pulled\"></span>.",
+   "filter": "Endur&rsquo;O water points named SMARTAP and a number.",
+   "columns": "<b>Water system</b>: the parent system the record names. <b>deviceID</b>: the meter id read from the description. <b>GPS</b>, <b>Photo</b>: whether the record carries them."
+  },
+  "piped-wq-taps": {
+   "source": "ENDUROREG on this page, from <span class=\"mono\">data/enduro_registry.json</span>, written by tools/rebuild_enduro_registry.py from the Endur&rsquo;O mWater group&rsquo;s water systems and water points (<span class=\"mono\">piped_systems.csv</span>, <span class=\"mono\">enduro_points.csv</span>), and the piped sampling form <span class=\"mono\">ef8cf735&hellip;</span> and result form <span class=\"mono\">0ac68d82&hellip;</span>.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['wq_sampling_piped.json'].pulled\"></span>.",
+   "filter": "Registered Endur&rsquo;O taps with at least one final sample matched to them, by tap code or deviceID, or by position within the matching distance.",
+   "columns": "<b>Samples</b>, <b>First</b>, <b>Last</b>: the matched samples and their sampling days. <b>Sampling points</b>: the grouped sampling points that landed on the tap. <b>System results</b>: final results on the result form naming the tap&rsquo;s water system; results do not yet name a tap."
+  },
+  "piped-wq-unmatched": {
+   "source": "As the table above.",
+   "extracted": "Extracts pulled <span data-fig=\"PULLS['wq_sampling_piped.json'].pulled\"></span>.",
+   "filter": "Sampling points (final samples grouped by position) with no registered Endur&rsquo;O water point within the matching distance.",
+   "columns": "<b>Recorded type</b>: the point type entered on the samples. <b>Nearest registered tap</b>, <b>Distance</b>: the closest registered Endur&rsquo;O water point and how far it is from the sampling point&rsquo;s centre."
   }
  }
 }

@@ -324,6 +324,7 @@ WHOLE = {
     'CALLF': ('call_followup', 'render_datasets'),
     # hygiene-promotion sessions and the JMP-question survey, by district
     'HYG': ('rebuild_hygiene', 'render_datasets'),
+    'ENDUROREG': ('rebuild_enduro_registry', 'render_datasets'),
     # the 2025 household water-quality round, SDWS 18
     'SDWS18': ('rebuild_sdws18', 'render_datasets'),
     # the PROPOSED India Mark cap per pump (not applied; act-india-mark-cap-james)

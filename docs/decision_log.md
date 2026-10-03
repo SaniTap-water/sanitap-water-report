@@ -2016,3 +2016,27 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   each" (was "Produce the list of households served by each borehole"), on Gold Standard's clarification
   request CL#2: "Full installation database (till date) with number of households under each specific
   borehole/system shall be uploaded on GS Assurance Platform." Closes-when and detail now say the same.
+
+
+## 3 Oct 2026 — Endur'O's registered water points read live; Cathy's samples matched to the smart taps (Adriaan Mol)
+
+- **Read.** The Endur'O group (c305b9b85f41417387b553d9a33c795b, named "Enduro" in mWater) was already pulled
+  (`enduro_points.csv`, `piped_systems.csv`); tools/rebuild_enduro_registry.py now reads both at every build into
+  data/enduro_registry.json (ENDUROREG). The 19 Amboasary gara smart taps are readable: SMARTAP 2–20, codes
+  1255186538–1255186727, all typed kiosk, all linked to 1108783583 "Amboasary gara", deviceID in every description.
+- **Registered in mWater** (Endur'O card, tools/render_enduro_registry.py): 25 water systems and 203
+  water points (203 with GPS, 122 with a photo, 180 with no water system
+  set), per scheme with type, GPS and photo. The hand-entered headline (data/enduro_manual.json) stays the headline,
+  labelled as such, with the difference shown: systems 131 hand-entered against 25
+  registered; register-snapshot points 181 (as at 2026-09-16) against 203.
+- **Map.** portfolio.html's Endur'O layer (EDREG) and Moramanga sampling points (MORA) were typed by hand; both are
+  now written by tools/render_portfolio.py from the registry. Every registered point with GPS is drawn once. Cathy's
+  59 final samples (49 with GPS) form 26 sampling points (samples within
+  15 m); 11 lie within 25 m of a registered tap and are drawn on it
+  (two taps carry two points each: SMARTAP 7 and SMARTAP 5); 15 stay as sampling points and are listed.
+  No sample yet carries a tap code or deviceID.
+- **Results stay per system.** Result-form records name only the water system until question 1.2b is used, and their
+  timestamps cannot tie a result to a sample, so a tap shows its samples beside its system's results, never results
+  of its own.
+- **Data quality notes:** SMARTAP 1 missing; all 19 typed kiosk pending Coddy's confirmation they are public tap
+  stands; water points without a photo (none of the 19 smart taps has one).
