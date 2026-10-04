@@ -763,5 +763,15 @@
   "detail": "<b>File the kit, method and SOP used in the 2025 household round (SDWS 18).</b> James Walker ruled on 1 Oct 2026 that the kit and SOP details should be on file. File the kit, its lot numbers (or a statement that none were kept), the test method and the SOP used in November&ndash;December 2025 in the SDWS 18 evidence folder. <a href=\"#pousec\">See the SDWS 18 section.</a> <span class=\"muted\">Source: James Walker, &ldquo;Re: Water program dashboard &amp; actions&rdquo;, 1 Oct 2026.</span>",
   "owner": "Cathy Andriambololonirina",
   "schedule": "<span class=\"pill crit\">ACT</span>"
+ },
+ "act-piped-baseline-other-systems": {
+  "detail": "<b>Pre-project water-quality baseline at Ambohibola, Amboanjo and Andilanatoby, before their works are completed (SDWS 12).</b> None of the three piped systems has a pre-project test in mWater. Once a system&rsquo;s works are complete no test can show its starting situation any more, so the baseline must be taken before each system&rsquo;s works completion, whatever the due date says. Closes when at least one pre-project round of tap or source samples per system is in mWater, dated before that system&rsquo;s works completion. <span class=\"muted\">Raised in <a href=\"#eligsec\">Pre-project eligibility</a>; Cathy Andriambololonirina collaborates.</span>",
+  "owner": "Coddy Velonizy, with Cathy Andriambololonirina",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>24 Oct 2026</b><br><span class=\"muted\">and in any case before each system&rsquo;s works completion</span>"
+ },
+ "act-amboasary-post-works-retest": {
+  "detail": "<b>Amboasary gara: retest at the Endur&rsquo;O tap stands once the works are completed.</b> Its pre-project results are evidence of need, not a failure of a managed system. The system joins the managed portfolio only after its works are complete and its post-works tests are done. Due thirty days after works completion; Coddy Velonizy confirms the completion date. Closes when post-completion results at the Endur&rsquo;O tap stands are in mWater; the system can then join the managed portfolio. <span class=\"muted\">Raised in <a href=\"#eligsec\">Pre-project eligibility</a>.</span>",
+  "owner": "Cathy Andriambololonirina, with Coddy Velonizy (completion date)",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><span class=\"muted\" style=\"font-size:.85em\">completion date + thirty days &mdash; Coddy to give the completion date</span>"
  }
 }

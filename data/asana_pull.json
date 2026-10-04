@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-03T15:16:50+00:00",
+ "pulled_at": "2026-10-04T05:05:28+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -27,6 +27,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
    "modified_at": "2026-10-02T14:53:03.952Z"
+  },
+  "act-amboasary-post-works-retest": {
+   "gid": "1219128812565674",
+   "name": "Retest Amboasary gara at the taps once the works are completed [act-amboasary-post-works-retest]",
+   "title": "Retest Amboasary gara at the taps once the works are completed",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": null,
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128812565674",
+   "modified_at": "2026-10-04T04:46:52.306Z"
   },
   "act-borehole-form-lanja-followups": {
    "gid": "1219109377317101",
@@ -266,7 +278,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377306808",
-   "modified_at": "2026-10-02T16:28:31.472Z"
+   "modified_at": "2026-10-03T21:00:11.374Z"
   },
   "act-deichmann-ar-photo-consent": {
    "gid": "1219109377307190",
@@ -278,7 +290,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
-   "modified_at": "2026-10-02T16:28:31.362Z"
+   "modified_at": "2026-10-03T21:00:11.588Z"
   },
   "act-deichmann-ar-send": {
    "gid": "1219109294883405",
@@ -290,7 +302,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294883405",
-   "modified_at": "2026-10-02T16:28:31.114Z"
+   "modified_at": "2026-10-03T20:00:03.122Z"
   },
   "act-design-change-q1-2027": {
    "gid": "1219101058162842",
@@ -1047,6 +1059,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363",
    "modified_at": "2026-10-02T14:55:00.275Z"
+  },
+  "act-piped-baseline-other-systems": {
+   "gid": "1219128940073346",
+   "name": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed [act-piped-baseline-other-systems]",
+   "title": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-24",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128940073346",
+   "modified_at": "2026-10-04T04:46:46.626Z"
   },
   "act-piped-fnrb": {
    "gid": "1219101106837518",

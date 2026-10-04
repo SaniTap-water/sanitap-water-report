@@ -2062,3 +2062,20 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   then restored.
 - Not done: the Asana tasks act-piped-baseline-other-systems and act-amboasary-post-works-retest — the project
   inbox files with their titles and owners were not found on this machine.
+
+## 4 Oct 2026 — Adriaan Mol: eligibility Yes without a photo, the Tana kiosk exception, one explanation box at a time
+
+- **Yes without a photo passes the eligibility gate.** A Yes on the 3-month out-of-order control (2.2.1(d)) without
+  a photograph counts as eligibility evidence. The 35 pumps stay visible in the eligibility section as their own
+  status, "Yes, no photo", with their own count in the summary line (data/decisions.json `elig-yes-no-photo`).
+- **Tana kiosk (1125843376) approved as a listed exception** in data/eligibility_exceptions.json, with the reason
+  exactly as given: "Commissioned 14 Sep 2026 with no pre-project water quality test; admitted by Adriaan's
+  decision of 25 Sep 2026; post-works test tracked under act-enduro-onboard-6-kiosk-wq."
+- **Two actions added, with Asana tasks** in "Weekly report actions": act-piped-baseline-other-systems (Coddy,
+  Cathy collaborating; due 24 Oct 2026 and in any case before each system's works completion) and
+  act-amboasary-post-works-retest (Cathy, Coddy collaborating and confirming the completion date; due completion
+  date + 30 days, no date in Asana until Coddy gives it). Both close on evidence. This completes the item left
+  open on 3 Oct.
+- **Explanation boxes:** one "How this figure is produced" box at a time, for the figure last clicked; a click on
+  another figure replaces it, a second click on the same figure closes it. The active figure is outlined and the
+  box opens with "Explains: <figure and its label>". Gated in tools/check_panels.py.

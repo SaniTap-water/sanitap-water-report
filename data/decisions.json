@@ -224,6 +224,14 @@
    "decided_by": "James Walker, Carbon Lead",
    "decided_on": "2026-10-01",
    "source": "James Walker, \"Re: Water program dashboard & actions\", 1 Oct 2026 09:33 UTC"
+  },
+  "elig-yes-no-photo": {
+   "answer": "A Yes on the 3-month out-of-order control (methodology 2.2.1(d)) WITHOUT a photograph counts as eligibility evidence: the pump passes the eligibility gate. Those pumps (35 on 4 Oct 2026) stay visible in the eligibility section as a separate status, \"Yes, no photo\", with their own count in the summary line.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-04",
+   "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026",
+   "logged_on": "2026-10-04",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

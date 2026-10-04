@@ -50,6 +50,11 @@ def ids(text):
     return re.sub(r"(?<![\w.])(\d{9,10})(?![\w.])", r'<span class="mono">\1</span>', esc(text))
 
 
+def acts(text):
+    """Link action ids to their row in the action list; the words stay as written."""
+    return re.sub(r"\b(act-[a-z0-9-]+[a-z0-9])", r'<a href="#\1">\1</a>', text)
+
+
 def rlink(rid, text="record"):
     return (f'<a href="{RESP}{esc(rid)}" target="_blank" rel="noopener">{text}</a>'
             if rid else '<span class="muted">none</span>')
@@ -99,7 +104,7 @@ def block(d):
     exc_items = "".join(f'<li><span class="mono">{esc(e["wp"])}</span> ({esc(e["figures"])}): {ids(e["reason"])}</li>'
                         for e in exc["hand_pumps"])
     exc_items += "".join(f'<li>{esc(e["site"])} ({esc(e["figures"])}): {ids(e["reason"])}</li>' for e in exc["sites"])
-    exc_items += "".join(f'<li><span class="mono">{esc(e["code"])}</span>, {ids(e["name"])} ({esc(e["figures"])}): {ids(e["reason"])}</li>'
+    exc_items += "".join(f'<li><span class="mono">{esc(e["code"])}</span>, {ids(e["name"])} ({esc(e["figures"])}): {acts(ids(e["reason"]))}</li>'
                          for e in exc["piped"])
     kiosk = next((e for e in exc["piped"] if e["code"] == "1125843376"), None)
     return f"""
@@ -108,7 +113,7 @@ def block(d):
 <div class="sechead"><div><h2>Pre-project eligibility: non-functional or non-potable before the project</h2><p>Methodology 2.2.1(d) and SDWS 12: a point may count only if it was out of order, or its water was not safe, before the project. A rehabilitated hand pump must have been out of order, with no planned maintenance, for at least three months beforehand; a piped system must show water that failed the health-based rule before its works were complete. Every row links to its mWater record so a verifier can open it.</p></div></div>
 <div class="panel" data-scopes="all mad madx mar">
 <div class="eyebrow">Hand pumps &mdash; out of order for three months before the works (2.2.1(d))</div>
-<p style="margin:8px 0 0"><b>{fig("elig('evidenced')")} of the {fig("elig('total')")} managed pumps in this scope carry the control answered Yes</b> on their first-rehabilitation record: {fig("elig('yes_photo')")} with the photographs that prove it, {fig("elig('yes_no_photo')")} without. {fig("elig('no')")} answered No, {fig("elig('blank')")} left it blank, {fig("elig('no_record')")} have no first-rehabilitation record, and {fig("elig('borehole_form')")} are Marolinta works on the borehole-progress form, which carries no such control.</p>
+<p style="margin:8px 0 0"><b>{fig("elig('evidenced')")} of the {fig("elig('total')")} managed pumps in this scope carry the control answered Yes</b> on their first-rehabilitation record and pass the gate: {fig("elig('yes_photo')")} <span class="pill ok">{esc(L["yes_photo"])}</span> and {fig("elig('yes_no_photo')")} <span class="pill ok">{esc(L["yes_no_photo"])}</span>. A Yes without a photograph counts as eligibility evidence (decision of {esc(d["yes_no_photo_decision"]["decided_by"].split(",")[0])}, {esc(d["yes_no_photo_decision"]["decided_on_text"])}); those pumps are kept apart as their own status so a verifier can see them. {fig("elig('no')")} answered No, {fig("elig('blank')")} left it blank, {fig("elig('no_record')")} have no first-rehabilitation record, and {fig("elig('borehole_form')")} are Marolinta works on the borehole-progress form, which carries no such control.</p>
 <div data-scopes="all mad madx">
 <p class="note" style="margin:10px 0 0"><b>The gaps: the {fig("ELIG.gaps.length")} records already flagged under 2.2.1(d)</b> &mdash; {fig("ELIG.gaps_no")} answered No, {fig("ELIG.gaps_blank")} left blank; {fig("ELIG.gaps_in_fleet")} of the pumps are in the managed fleet. This is an eligibility question, not a data error: nothing here says the rehabilitation did not happen. <a href="#act-close-eight-2-2">The action that closes them</a>.</p>
 <div class="tablewrap"><table data-table="elig-gaps" class="ind"><thead><tr><th>Water point</th><th>Issue</th><th>Fleet</th><th>Photographs</th><th>Works date</th><th>Record</th><th>Action</th></tr></thead><tbody>
@@ -126,14 +131,14 @@ def block(d):
 <div class="panel" style="margin-top:12px" data-scopes="all enduro">
 <div class="eyebrow">Piped systems &mdash; non-potable before the works (SDWS 12)</div>
 <p style="margin:8px 0 0"><b>A piped system shows it was non-potable before the project when at least one pre-project result fails the health-based rule</b>, <i>E. coli</i> above {fig("ELIG.piped_rule.pass_max")} per 100&nbsp;ml. A result is pre-project if it is dated before the tap-level protocol went live ({fig("ELIG.piped_rule.protocol_live_text")}), or before the system&rsquo;s works completion where that date is recorded. <b>{fig("ELIG.piped_counts.eligible")} of the {fig("ELIG.piped_counts.systems")} systems</b> show it; {fig("ELIG.piped_counts.no_test")} have no pre-project test.</p>
-<p class="note" style="margin:10px 0 0"><b>The baseline must be taken before works completion.</b> Once a system&rsquo;s works are complete, no test can show its starting situation any more, so a system with no pre-project test cannot show eligibility this way after the event.</p>
-<p class="note" style="margin:10px 0 0"><b>Amboasary gara&rsquo;s results are pre-project evidence of need.</b> They record the starting situation that qualifies the system for the programme, while its upgrade is under way. They are not a failure or a risk of a managed system, and they call for no corrective action: the system joins the managed portfolio only after its works are complete and its post-works tests are done.</p>
+<p class="note" style="margin:10px 0 0"><b>The baseline must be taken before works completion.</b> Once a system&rsquo;s works are complete, no test can show its starting situation any more, so a system with no pre-project test cannot show eligibility this way after the event. For Ambohibola, Amboanjo and Andilanatoby the baseline is still possible: <a href="#act-piped-baseline-other-systems">take it before their works are completed</a>.</p>
+<p class="note" style="margin:10px 0 0"><b>Amboasary gara&rsquo;s results are pre-project evidence of need.</b> They record the starting situation that qualifies the system for the programme, while its upgrade is under way. They are not a failure or a risk of a managed system, and they call for no corrective action: the system joins the managed portfolio only after its works are complete and its post-works tests are done (<a href="#act-amboasary-post-works-retest">the retest at the taps</a>).</p>
 <div class="tablewrap"><table data-table="elig-piped" class="ind"><thead><tr><th>System</th><th>Code</th><th>Status</th><th>Works complete</th><th class="num">Pre-project results</th><th>Dates</th><th class="num">With <i>E. coli</i></th><th>Eligibility</th><th>Records</th></tr></thead><tbody>
 {chr(10).join(sysrows)}
 </tbody></table></div>
 {table_notes.render("elig-piped")}
 {chr(10).join(lists)}
-<p class="note" style="margin:10px 0 0"><b>The managed Antananarivo kiosk</b> (<span class="mono">1125843376</span>, water point <span class="mono">1125843383</span>). {ids(kiosk["reason"]) if kiosk else ""}</p>
+<p class="note" style="margin:10px 0 0"><b>The managed Antananarivo kiosk</b> (<span class="mono">1125843376</span>, water point <span class="mono">1125843383</span>). {acts(ids(kiosk["reason"])) if kiosk else ""}</p>
 </div>
 <details class="expl" id="elig-exceptions" style="margin-top:12px"><summary>Listed exceptions: what may stand in the figures without eligibility evidence</summary>
 <p class="note" style="margin-top:0">The build fails if a point or system is in the managed or carbon figures with neither eligibility evidence nor an entry here (<span class="mono">data/eligibility_exceptions.json</span>) or in the 2.2.1(d) gaps above.</p>

@@ -20,7 +20,8 @@
    "code": "1125843376",
    "name": "the managed Antananarivo smart-tap kiosk (water point 1125843383)",
    "figures": "managed",
-   "reason": "Admitted to the managed portfolio by decision (Adriaan Mol, 25 Sep 2026), works complete 14 Sep 2026. No water-quality test is on record for it at all - none before the works, so non-potable before the project is not shown, and none since. Evidence that exists: the decision, the System and Distribution Point registrations in mWater (responses b0b01aa0, 840ae830), commissioning on 14 Sep 2026 and the SaniTap/Curtech meters with their data in Zoho. A post-works test is act-enduro-onboard-6-kiosk-wq; a baseline can no longer be taken before works completion."
+   "reason": "Commissioned 14 Sep 2026 with no pre-project water quality test; admitted by Adriaan's decision of 25 Sep 2026; post-works test tracked under act-enduro-onboard-6-kiosk-wq.",
+   "approved": "Adriaan Mol, 4 Oct 2026: approved as a listed exception"
   }
  ]
 }

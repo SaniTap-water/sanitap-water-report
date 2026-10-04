@@ -1150,5 +1150,17 @@
   "closure": "evidence",
   "closes_when": "(1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology’s sampling confidence and the agreement between the readers",
   "question": "Is the evidence on file? (1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology’s sampling confidence and the agreement between the readers"
+ },
+ "act-piped-baseline-other-systems": {
+  "kind": "none",
+  "says": "no data predicate: the build cannot tell which results were taken before each system's works completion",
+  "closure": "evidence",
+  "closes_when": "at least one pre-project round of tap or source samples per system is in mWater, dated before that system's works completion"
+ },
+ "act-amboasary-post-works-retest": {
+  "kind": "none",
+  "says": "no data predicate: results are bound to the system, not the tap stand, and the completion date is not recorded",
+  "closure": "evidence",
+  "closes_when": "post-completion results at the Endur'O tap stands are in mWater; the system can then join the managed portfolio"
  }
 }

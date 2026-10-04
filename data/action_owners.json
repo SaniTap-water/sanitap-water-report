@@ -731,6 +731,18 @@
    "deadline": null,
    "owner": "Lanja Randriamanantena / MadAvance",
    "title": "Confirm the failed E. coli test at Ambinanitelo, 833033198, was retested"
+  },
+  "act-piped-baseline-other-systems": {
+   "deadline": "2026-10-24",
+   "owner": "Coddy Velonizy",
+   "title": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed",
+   "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026 (project inbox)"
+  },
+  "act-amboasary-post-works-retest": {
+   "deadline": null,
+   "owner": "Cathy Andriambololonirina",
+   "title": "Retest Amboasary gara at the taps once the works are completed",
+   "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026 (project inbox)"
   }
  },
  "orphan_rows": {
@@ -758,7 +770,7 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 60,
-   "evidence": 65,
+   "evidence": 67,
    "manual": 28
   },
   "actions": {
@@ -789,6 +801,13 @@
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-amboasary-post-works-retest": {
+    "type": "evidence",
+    "closes_when": "post-completion results at the Endur'O tap stands are in mWater; the system can then join the managed portfolio",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-04"
    },
    "act-cal-handwritten-year": {
     "type": "manual",
@@ -1363,6 +1382,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-piped-baseline-other-systems": {
+    "type": "evidence",
+    "closes_when": "at least one pre-project round of tap or source samples per system is in mWater, dated before that system's works completion",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-04"
    },
    "act-piped-fnrb": {
     "type": "evidence",

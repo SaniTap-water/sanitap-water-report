@@ -46,10 +46,13 @@ PROTOCOL_LIVE = CFG["piped"]["pairing"]["protocol_live"]
 Q_WORKS_DATE = "fd61cf9286954462a0fb1ab5de12e643"   # combined form, "Date de début des travaux"
 PIPED_RESULT_FORM = "0ac68d8274d24f54af0c28b29119b77d"
 Q_SYSTEM, Q_ECOLI, SAMPLED = "a3390d2e", "892f1d81", "630ccd46"
-LABEL = {"yes_photo": "Yes, with photographs", "yes_no_photo": "Yes, no photograph",
+LABEL = {"yes_photo": "Yes, with photographs", "yes_no_photo": "Yes, no photo",
          "no": "No", "blank": "left blank", "no_record": "no first-rehabilitation record",
          "borehole_form": "works on the borehole-progress form, which has no such control"}
+# A Yes without a photograph is eligibility evidence and passes the gate (Adriaan Mol,
+# 4 Oct 2026; data/decisions.json "elig-yes-no-photo"), shown as its own status.
 EVIDENCED = ("yes_photo", "yes_no_photo")
+DECISION_ID = "elig-yes-no-photo"
 
 
 def _q(r, prefix):
@@ -151,6 +154,12 @@ def piped():
     return out
 
 
+def _decision():
+    d = json.load(open(os.path.join(REPO, "data", "decisions.json"), encoding="utf8"))["decisions"][DECISION_ID]
+    return dict(id=DECISION_ID, decided_by=d["decided_by"], decided_on=d["decided_on"],
+                decided_on_text=datetime.date.fromisoformat(d["decided_on"]).strftime("%-d %b %Y"))
+
+
 def main():
     if "--write" not in sys.argv:
         sys.exit("usage: rebuild_eligibility.py --write")
@@ -169,7 +178,7 @@ def main():
         note="Written by tools/rebuild_eligibility.py. Pre-project eligibility under methodology 2.2.1(d) "
              "(hand pumps: out of order for more than three months before the works) and SDWS 12 (piped "
              "systems: non-potable before the works).",
-        labels=LABEL, evidenced=list(EVIDENCED), pass_max=PASS_MAX, protocol_live=PROTOCOL_LIVE,
+        labels=LABEL, evidenced=list(EVIDENCED), yes_no_photo_decision=_decision(), pass_max=PASS_MAX, protocol_live=PROTOCOL_LIVE,
         protocol_live_text=datetime.datetime.fromisoformat(PROTOCOL_LIVE.replace("Z", "+00:00"))
         .strftime("%-d %b %Y %H:%M UTC"),
         forms=dict(combined=P.F_RETIRED_COMBINED, current=P.F_FIRST_REHAB, piped_result=PIPED_RESULT_FORM),

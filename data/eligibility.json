@@ -2,7 +2,7 @@
  "note": "Written by tools/rebuild_eligibility.py. Pre-project eligibility under methodology 2.2.1(d) (hand pumps: out of order for more than three months before the works) and SDWS 12 (piped systems: non-potable before the works).",
  "labels": {
   "yes_photo": "Yes, with photographs",
-  "yes_no_photo": "Yes, no photograph",
+  "yes_no_photo": "Yes, no photo",
   "no": "No",
   "blank": "left blank",
   "no_record": "no first-rehabilitation record",
@@ -12,6 +12,12 @@
   "yes_photo",
   "yes_no_photo"
  ],
+ "yes_no_photo_decision": {
+  "id": "elig-yes-no-photo",
+  "decided_by": "Adriaan Mol, COO SaniTap",
+  "decided_on": "2026-10-04",
+  "decided_on_text": "4 Oct 2026"
+ },
  "pass_max": 0,
  "protocol_live": "2026-09-22T15:58:39Z",
  "protocol_live_text": "22 Sep 2026 15:58 UTC",
@@ -10290,7 +10296,8 @@
     "code": "1125843376",
     "name": "the managed Antananarivo smart-tap kiosk (water point 1125843383)",
     "figures": "managed",
-    "reason": "Admitted to the managed portfolio by decision (Adriaan Mol, 25 Sep 2026), works complete 14 Sep 2026. No water-quality test is on record for it at all - none before the works, so non-potable before the project is not shown, and none since. Evidence that exists: the decision, the System and Distribution Point registrations in mWater (responses b0b01aa0, 840ae830), commissioning on 14 Sep 2026 and the SaniTap/Curtech meters with their data in Zoho. A post-works test is act-enduro-onboard-6-kiosk-wq; a baseline can no longer be taken before works completion."
+    "reason": "Commissioned 14 Sep 2026 with no pre-project water quality test; admitted by Adriaan's decision of 25 Sep 2026; post-works test tracked under act-enduro-onboard-6-kiosk-wq.",
+    "approved": "Adriaan Mol, 4 Oct 2026: approved as a listed exception"
    }
   ]
  }

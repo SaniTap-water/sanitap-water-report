@@ -1068,6 +1068,13 @@ readability rule) scrolls that box so it starts in view; the rest is reached by 
 `<details>` at 1280, 1440 and 1920 px and fails on a panel that is narrow, overlapped, clipped or that
 does not push what follows down. Both run in `publish.sh`.
 
+**One box at a time (4 Oct 2026).** Clicking a figure shows one box, for that figure only; clicking another
+figure replaces it; clicking the same figure again closes it (`toggleDeriv`, `closeDeriv`, `DERIV_CUR`). The
+active figure is outlined, and the box's first line names what it explains (`derivLabel`: a tile's or card's
+caption, a donut's legend and title, a table cell's column and row, or the rest of the sentence), e.g.
+"Explains: 745 water points in scope". A box whose figure is re-rendered away (a scope change) is dropped.
+`check_panels.py` clicks a tile, a sentence and a table cell and fails if any of this does not hold.
+
 ## Actions: Asana is the list, the repo is the evidence (2 Oct 2026)
 
 Owner, deadline and completion of every action are edited in Asana (project "H2O4CO2 - CLEAN WATER",

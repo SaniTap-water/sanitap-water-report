@@ -20,6 +20,12 @@ derivAnchor), and fails when a panel:
 Then, with every <details> open, the same overlap and clipping tests are run
 on each expanded block.
 
+One box at a time (Adriaan Mol, 4 Oct 2026): clicking a figure shows one box,
+for that figure only; clicking another replaces it; clicking the same figure
+again closes it. The active figure is marked (aria-expanded, outlined) and the
+box's first line names it ("Explains: 745 water points in scope"). Tested on a
+tile, a sentence and a table cell, by real clicks.
+
 Shown failing on 1 Oct 2026 against the previous placement (the "Last
 recorded status" donut panel opened inside the 300-pixel card and ran over
 the next one).
@@ -86,6 +92,30 @@ JS_PANELS = r"""async () => {
   return {opened: n, fails: out};
 }"""
 
+JS_SINGLE = r"""async () => {
+  const sel = '[data-fig],[data-param],[data-manual],[data-quote],[data-artefact],[data-withdrawn],[data-retired]';
+  const vis = el => el.getClientRects().length > 0 && !el.closest('.deriv') && !el.closest('[hidden]');
+  const pick = [document.querySelector('#tiles [data-fig]'),
+                [...document.querySelectorAll('p ' + sel.split(',').join(', p '))].find(vis),
+                [...document.querySelectorAll('td [data-fig]')].find(vis)].filter(Boolean);
+  const out = [], tick = () => new Promise(r => setTimeout(r, 60));
+  const state = () => ({boxes: document.querySelectorAll('.deriv').length,
+    active: [...document.querySelectorAll(sel)].filter(e => e.getAttribute('aria-expanded') === 'true')});
+  if (pick.length < 3) out.push(['single box', `found ${pick.length} of 3 test figures`]);
+  for (const el of pick) {
+    el.scrollIntoView({block: 'center', behavior: 'instant'}); el.click(); await tick();
+    const s = state(), box = document.querySelector('.deriv'), ex = box && box.querySelector('.explains');
+    if (s.boxes !== 1) out.push(['single box', `${s.boxes} boxes open after clicking ${el.dataset.fig || el.textContent}`]);
+    if (s.active.length !== 1 || s.active[0] !== el) out.push(['single box', `active figure is not the one clicked (${s.active.length} marked)`]);
+    if (getComputedStyle(el).outlineStyle === 'none') out.push(['single box', 'the active figure is not outlined']);
+    if (!ex || !/^Explains:\s*\S/.test(ex.textContent.trim()) || box.firstElementChild !== ex) out.push(['single box', 'the box does not start with "Explains:" and a label']);
+  }
+  const last = pick[pick.length - 1];
+  if (last) { last.click(); await tick(); const s = state();
+    if (s.boxes || s.active.length) out.push(['single box', `clicking the same figure again left ${s.boxes} box(es) open`]); }
+  return out;
+}"""
+
 JS_DETAILS = r"""async () => {
   const out = [];
   for (const d of document.querySelectorAll('details')) {
@@ -128,6 +158,7 @@ def main():
             pg = b.new_page(viewport={"width": w, "height": h})
             pg.goto(a.url, wait_until="load")
             pg.wait_for_timeout(1200)
+            bad += [(w, "all") + tuple(f) for f in pg.evaluate(JS_SINGLE)]
             for scope in ("all", "mar"):
                 pg.evaluate(JS_PREP, scope)
                 r = pg.evaluate(JS_PANELS)
