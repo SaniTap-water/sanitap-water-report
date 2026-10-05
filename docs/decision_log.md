@@ -2104,3 +2104,17 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Open:** act-enduro-people-source stays open; act-kiosk-sdws1-run (Adriaan, 17 Oct 2026) added. The Marolinta
   scope's people figure is a field count from the works records, not an SDWS 1 allocation; the gate checks its
   source only and leaves the counts to a decision.
+
+## 5 Oct 2026 (b) — Adriaan Mol: people served from the SDWS 1 run in every scope, Marolinta included
+
+- **Decided:** the Marolinta-only scope shows the SDWS 1 allocation as people served, like every other scope. The
+  works-record field count stays as a secondary line, "field count from works records, not the people-served
+  method" (data/decisions.json `people-served-sdws1-every-scope-2026-10-05`).
+- **Figure:** Marolinta only, people served 3,130 (field count) → 1,354, the SDWS 1 allocation over its 13 points
+  (the run's per-point file, ~/sdws1/runs/fleet_20261001/barriers/sdws1_population_equal.csv, and WPOP on the page
+  agree: 13 points, 1,354 of 125,710; 125,710 − 124,356 = 1,354). The 3,130 is shown beside it as the field count.
+  Tile, partner table, impact line and the box updated.
+- **Gate:** tools/check_managed.py now applies the people-served check in the Marolinta-only scope and checks the
+  tiles add up (MadAvance — all = excl. Marolinta + Marolinta only; All SaniTap = MadAvance — all while the kiosk
+  is not yet allocated). On the published page it failed (Marolinta only 3,130 against 1,354 in the tile, partner
+  table and impact line; 124,356 + 3,130 ≠ 125,710); after the fix it passes.

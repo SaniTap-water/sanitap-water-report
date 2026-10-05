@@ -4308,7 +4308,7 @@ function scopeRow(el, expr){
   if (el.closest('[data-programme-wide]') || !(SCOPED_RE.test(expr) || endTerm(expr) || pipedTerm(expr)))
     return `<span class="muted">programme-wide: the same in every scope; the scope buttons do not change it</span>`;
   const parts = [];
-  if (SITES.length) parts.push(SCOPE==='mar' ? `the Marolinta works basis` : `${fmt(HP.length)} MadAvance hand pumps (${SITES.join(', ')})`);
+  if (SITES.length) parts.push(SCOPE==='mar' && /marBasis\(/.test(expr) ? `the Marolinta works basis` : `${fmt(HP.length)} MadAvance hand pumps (${SITES.join(', ')})`);
   if (sc.enduro) parts.push(`${fmt(PIPEDWQ.status_counts.managed)} managed piped system${PIPEDWQ.status_counts.managed===1?'':'s'} (status &ldquo;managed&rdquo; in data/piped_systems_status.json)`);
   return `<b>${sc.lab}</b>: ${parts.join(' + ') || 'nothing in this scope'}`;
 }
@@ -4431,6 +4431,8 @@ function derivPanel(el){
       try { working = (new Function('return ('+d.arith+')'))(); } catch(e){ working = '(could not be computed)'; }
       rows.push(['arithmetic', `<span class="arith">${esc2(arrive(working, expr))}</span>`]);
       if (d.why) rows.push(['why it matters', esc2(d.why)]);
+      if (/^agg\(HP\)\.wpop$/.test(expr) && SCOPE==='mar')
+        rows.push(['field count', `${fmt(marBasis().people)} people counted on the 2026 works records: shown as a secondary line, not the people-served method. People served come from the SDWS 1 run in every scope, Marolinta included (Adriaan Mol, 5 Oct 2026).`]);
       if (/^agg\(HP\)\.wpop$/.test(expr) && SCOPES[SCOPE].enduro && PIPEDWQ.status_counts.managed)
         rows.push(['managed piped', 'the managed kiosk: not yet allocated (to be run through the SDWS 1 method; act-kiosk-sdws1-run). Endur&rsquo;O&rsquo;s programme people figure is not in the managed portfolio and is not added.']);
       if (d.caveat) rows.push(['caveat', `<span class="warn">${esc2(d.caveat)}</span>`]);
@@ -4892,9 +4894,9 @@ function render(){
  $('#tiles').innerHTML=[
   [MB?F('marBasis().points'):F('agg(HP).n+(SCOPES[SCOPE].enduro?PIPEDWQ.status_counts.managed:0)'),
    MB?`water points with a 2026 works record <span class="muted">— ${F('marBasis().inReg')} in the maintained register, ${F('marBasis().notReg')} not</span>`:'water points in scope','','points'],
-  [MB?F('marBasis().people'):(A.wpop_n?F('agg(HP).wpop'):'—'),
-   MB?'people served <span class="muted">— a field count from the works records, not a WorldPop allocation</span>':(A.wpop_n?'people served <span class="muted">(allocated, not tested'+(sc.enduro?'; the kiosk not yet allocated':'')+')</span>':'people served <span class="muted">— the kiosk: not yet allocated</span>'),
-   MB?'':(A.wpop_n?'':'warn'),'people'],
+  [A.wpop_n?F('agg(HP).wpop'):'—',
+   MB?`people served <span class="muted">(allocated, not tested)</span><div class="ppall">${F('marBasis().people')} &mdash; field count from works records, not the people-served method</div>`:(A.wpop_n?'people served <span class="muted">(allocated, not tested'+(sc.enduro?'; the kiosk not yet allocated':'')+')</span>':'people served <span class="muted">— the kiosk: not yet allocated</span>'),
+   A.wpop_n?'':'warn','people'],
   [A.n?F('Math.round((agg(HP).n-agg(HP).st.down)/agg(HP).n*100)')+'%':'—',(A.n?'hand pumps not reported down':'water points not reported down')+ofReg,''],
   [A.n?F('agg(HP).st.down'):'—',(A.n?'hand pumps reported down':'water points reported down')+ofReg,A.st.down?'crit':''],
   [A.n?F('agg(HP).over6'):'—',(A.n?'hand pumps':'water points')+` with no visit in ${F('BUILDCFG.maintenance.overdue_after_months')}+ months`+ofReg,A.over6?'warn':''],
@@ -4960,8 +4962,8 @@ function donut(title,items){ // items [{l,v,c,e,na}]: e is the expression v come
 
 function renderAll(A){
 // partner table
-// Marolinta's basis is the work, so the WorldPop allocation over the
-// arbitrary five register members must not appear in this scope at all.
+// People served come from the SDWS 1 run in every scope, Marolinta included
+// (Adriaan Mol, 5 Oct 2026); the works-record field count is a secondary line.
 const MB = SCOPE==='mar' ? marBasis() : null;
 // "not in scope" read as a gap in the data rather than as a filter, so it
 // names the scope that excluded it. The figures are not missing - this view
@@ -4974,7 +4976,7 @@ const prow=[
  ['Water points under maintenance',m(FULLMAD()?`<b>${F('agg(HP).n')}</b> hand pumps in this report's maintained register<br><span class="muted">of which ${F('REG.succ')} carry a successful rehabilitation record — see the register chain below</span>`:(MB?`<b>${F('marBasis().points')}</b> water points with a 2026 works record <span class="muted">— ${F('marBasis().inReg')} in the maintained register, ${F('marBasis().notReg')} not; the register separately carries ${F('marBasis().regTotal')} Marolinta points, ${F('marBasis().regNoWork')} of them with no works record</span>`:`${F('agg(HP).n')} hand pumps in the register for this scope`)),e(`<b>${F('PIPEDWQ.status_counts.managed')}</b> in the managed portfolio, ${F('PIPEDWQ.status_counts.in_process')} upgrade or new build under way <span class="muted">— by status in data/piped_systems_status.json</span><br><span class="muted">Endur&rsquo;O&rsquo;s programme sites are not in the managed portfolio: see the <a href="#enduro-card">Endur&rsquo;O card</a>.</span><br><span class="muted">Endur&rsquo;O&rsquo;s own register reads ${MF('reg.points')} water points and ${MF('reg.systems')} water systems, of which ${MF('reg.sys_attr')} carry attributes (the dated manual figures below); mWater holds ${F("PULLS['piped_systems.csv'].rows")} piped systems, extracted ${F("PULLS['piped_systems.csv'].pulled")} &mdash; two sources, two dates</span><br>${enduroAsAt()}`),(MB?F('marBasis().points'):F('agg(HP).n*(SITES.length>0?1:0)+(SCOPES[SCOPE].enduro?PIPEDWQ.status_counts.managed:0)')),'points'],
  ['By technology',m(`Canzee ${F('agg(HP).pump.Canzee||0')} · India Mark ${F('agg(HP).pump.IndiaMark||0')}`),e(`gravity and pumped schemes, boreholes, kiosks <span class="muted">— only ${MF('reg.sys_attr')} of the ${MF('reg.systems')} systems in Endur&rsquo;O&rsquo;s own register carry technical attributes</span>`),'—'],
  ['Regions',m(SITES.map(x=>`${x} ${F(`agg(HP).site['${x}']||0`)}`).join(' · ')),e(`register water points: South ${MF('reg.south')} · Antananarivo ${MF('reg.tana')} <span class="muted">(${F("Object.values(PIPEDWQ.systems).filter(x=>x.status==='managed'&&x.admitted_by_decision).length")} kiosk onboarded and managed; the rest pipeline)</span> · other Analamanga ${MF('reg.analamanga_other')} · Moramanga axis ${MF('reg.moramanga')}`),'—'],
- ['People served',m(MB?`<b>${F('marBasis().people')}</b> <span class="muted">— field count from the works records, across all ${F('marBasis().points')} points; no WorldPop allocation is shown for Marolinta</span>`:F('agg(HP).wpop')+` (WorldPop) <span class="muted">&middot; ${F('HP.reduce((a,p)=>a+(p.wpop_prop||0),0)')} under the <a href="#imcapsec">proposed India Mark cap</a>, not applied</span>`),e(`the managed kiosk: <b>not yet allocated (to be run through the SDWS 1 method)</b><br><span class="muted">Endur&rsquo;O&rsquo;s programme people figure is not in the managed portfolio: see the <a href="#enduro-card">Endur&rsquo;O card</a>, with its source.</span>`),(MB?F('marBasis().people'):(SITES.length>0?F('agg(HP).wpop'):'—')),'people'],
+ ['People served',m(MB?`<b>${F('agg(HP).wpop')}</b> (WorldPop) <span class="muted">&middot; field count from works records, not the people-served method: ${F('marBasis().people')}, across all ${F('marBasis().points')} points with a 2026 works record</span>`:F('agg(HP).wpop')+` (WorldPop) <span class="muted">&middot; ${F('HP.reduce((a,p)=>a+(p.wpop_prop||0),0)')} under the <a href="#imcapsec">proposed India Mark cap</a>, not applied</span>`),e(`the managed kiosk: <b>not yet allocated (to be run through the SDWS 1 method)</b><br><span class="muted">Endur&rsquo;O&rsquo;s programme people figure is not in the managed portfolio: see the <a href="#enduro-card">Endur&rsquo;O card</a>, with its source.</span>`),((SITES.length>0?F('agg(HP).wpop'):'—')),'people'],
  ['Last recorded status: working / down / unknown',m(`${F('agg(HP).st.ok+agg(HP).st.partial')} / ${F('agg(HP).st.down')} / ${F('agg(HP).st.unknown')}`),e('<span class="pill na">no data yet</span>'),'—'],
  [`No maintenance visit in ${F('BUILDCFG.maintenance.overdue_after_months')}+ months`,m(A.n?`${F('agg(HP).over6')} (${F('Math.round(agg(HP).over6/agg(HP).n*100)')}%)`:'—'),e('<span class="pill na">no data yet</span>'),'—'],
  ['Water quality: passed E. coli test on file',m(`${F('agg(HP).wqp')} of ${F('agg(HP).n')}`),e(`<span class="pill na">none on a managed system yet</span> <span class="muted">&mdash; ${F('PIPEDWQ.baseline.results')} pre-project baseline results on systems whose upgrade or new build is still under way are in the piped water-quality section; they describe the water before the works and count toward no managed figure</span>`),'—'],
@@ -5157,7 +5159,7 @@ function render(){
 
 // impact
 const IMB = SCOPE==='mar' ? marBasis() : null;
-$('#impact').innerHTML=[[IMB?F('marBasis().people'):(HP.length?F('agg(HP).wpop'):'—'),IMB?'people served — a field count from the 2026 works records':'people served today (allocated, not tested)'+(SCOPES[SCOPE].enduro?` — the managed kiosk: not yet allocated (to be run through the SDWS 1 method)`:''),'people'],[IMB?F('marBasis().points'):F('agg(HP).n+(SCOPES[SCOPE].enduro?PIPEDWQ.status_counts.managed:0)'),IMB?`water points with a 2026 works record — ${F('marBasis().inReg')} of them in the maintained register`:'water points under professional maintenance','points'],[`${qq('manisa_2025','97')}–${qq('manisa_2025','100')}%`,'uptime, 2025 independent evaluation (MANISA)'],['—','FTE jobs across MadAvance, Endur\'O, SaniTap (no source on file)'],['—','DALYs averted (method to agree)'],['—','carbon revenue / O&M cost (no source yet)']]
+$('#impact').innerHTML=[[HP.length?F('agg(HP).wpop'):'—',IMB?`people served today (allocated, not tested) — ${F('marBasis().people')} field count from works records, not the people-served method`:'people served today (allocated, not tested)'+(SCOPES[SCOPE].enduro?` — the managed kiosk: not yet allocated (to be run through the SDWS 1 method)`:''),'people'],[IMB?F('marBasis().points'):F('agg(HP).n+(SCOPES[SCOPE].enduro?PIPEDWQ.status_counts.managed:0)'),IMB?`water points with a 2026 works record — ${F('marBasis().inReg')} of them in the maintained register`:'water points under professional maintenance','points'],[`${qq('manisa_2025','97')}–${qq('manisa_2025','100')}%`,'uptime, 2025 independent evaluation (MANISA)'],['—','FTE jobs across MadAvance, Endur\'O, SaniTap (no source on file)'],['—','DALYs averted (method to agree)'],['—','carbon revenue / O&M cost (no source yet)']]
  .map(([v,l,q])=>`<div class="tile"${q?` data-q="${q}"`:''}><div class="v">${v}</div><div class="l">${l}</div></div>`).join('');
 
 // indicators

@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-05T05:29:02+00:00",
+ "pulled_at": "2026-10-05T06:33:37+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -1096,6 +1096,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106837518",
    "modified_at": "2026-10-02T14:55:02.057Z"
   },
+  "act-piped-sample-tap-code": {
+   "gid": "1219147725684877",
+   "name": "Record the tap code on every piped water sample and test result (questions 1.1b, 1.2b) [act-piped-sample-tap-code]",
+   "title": "Record the tap code on every piped water sample and test result (questions 1.1b, 1.2b)",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219147725684877",
+   "modified_at": "2026-10-05T05:50:31.352Z"
+  },
   "act-piped-usage-survey": {
    "gid": "1219101059339424",
    "name": "Run a yearly household survey for the piped water systems [act-piped-usage-survey]",
@@ -1491,6 +1503,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112502869",
    "modified_at": "2026-10-02T14:55:48.324Z"
+  },
+  "act-smartap-register-complete": {
+   "gid": "1219148236288402",
+   "name": "Finish the Amboasary Gara smart tap register: confirm tap type, photograph all 19 taps, explain tap 1 [act-smartap-register-complete]",
+   "title": "Finish the Amboasary Gara smart tap register: confirm tap type, photograph all 19 taps, explain tap 1",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219148236288402",
+   "modified_at": "2026-10-05T05:50:31.338Z"
   },
   "act-sop-calendar-v17-signoff": {
    "gid": "1219119885051246",

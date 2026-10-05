@@ -30,10 +30,14 @@ This gate, called from tools/check_consistency.py, fails when:
   5. a managed figure reads an input whose source is recorded as "not
      recorded" (a hand-entered figure in data/enduro_manual.json).
 
-The Marolinta-only scope's figures stand on the 2026 works records (a field
-count, "a field count from the 2026 works records"), not on the register, and
-are labelled so; checks 3 and 4 do not apply to that scope's works-basis
-figures, and say so in their result.
+  6. the people-served tiles do not add up across scopes: MadAvance - all must
+     equal MadAvance excl. Marolinta + Marolinta only, and All SaniTap must
+     equal MadAvance - all (the managed piped system is not yet allocated).
+
+People served come from the SDWS 1 run in every scope, Marolinta included
+(Adriaan Mol, 5 Oct 2026): check 4 applies to the Marolinta-only scope too.
+That scope's water-points figure stands on the 2026 works records and is
+labelled so; check 3 does not apply to it.
 
     python3 tools/check_managed.py        # print the results, exit 1 on a failure
 """
@@ -98,7 +102,6 @@ JS = r"""(a) => {
       if (src && /not recorded/i.test(src)) out.push(['managed figure reads an input whose source is not recorded', `ENDURO.${m[1]} (${src.slice(0, 80)}) in #${where(el)}`]);
     }
   }
-  if (scope === 'mar') return {scope: sc.lab, managed: managed.length, out, note: 'Marolinta works basis: counts checked for source only'};
   const sites = SITEMAP[scope] || [];
   const pts = exp.pumps.filter(p => sites.includes(p.site));
   const wantPts = pts.length + (sc.enduro ? exp.piped_managed : 0);
@@ -107,6 +110,7 @@ JS = r"""(a) => {
   const shownVal = el => { const v = el.querySelector('.v,[data-v]') || el; return v.textContent.trim(); };
   for (const el of managed) {
     const t = shownVal(el), v = num(t), q = el.dataset.q, full = el.textContent;
+    if (q === 'points' && scope === 'mar') continue;   // works basis, labelled so
     if (q === 'points') {
       if (v !== wantPts) out.push(['water points figure is not the managed portfolio', `#${where(el)} shows ${t}; managed hand pumps in scope ${pts.length} + managed piped systems ${sc.enduro ? exp.piped_managed : 0} = ${wantPts}`]);
     } else {
@@ -115,9 +119,11 @@ JS = r"""(a) => {
       if (unalloc && !/not yet allocated/.test((el.closest('tr') || el).textContent)) out.push(['people served does not say the managed piped system is not yet allocated', `#${where(el)}: "${full.trim().slice(0, 90)}"`]);
     }
   }
-  if (lead && num(lead.textContent) !== wantPts) out.push(['scope note lead figure is not the managed portfolio', `shows ${lead.textContent.trim()}; want ${wantPts}`]);
+  if (lead && scope !== 'mar' && num(lead.textContent) !== wantPts) out.push(['scope note lead figure is not the managed portfolio', `shows ${lead.textContent.trim()}; want ${wantPts}`]);
   if (!managed.some(el => el.dataset.q === 'points' && el.closest('#tiles'))) out.push(['no water points tile found', 'expected #tiles .tile[data-q=points]']);
-  return {scope: sc.lab, managed: managed.length, out, want: {points: wantPts, people: unalloc && !pts.length ? 'not yet allocated' : wantPeople}};
+  const tp = document.querySelector('#tiles [data-q="people"]');
+  return {scope: sc.lab, managed: managed.length, out, tilePeople: tp ? num(shownVal(tp)) : null,
+          want: {points: scope === 'mar' ? 'works basis' : wantPts, people: unalloc && !pts.length ? 'not yet allocated' : wantPeople}};
 }"""
 
 
@@ -157,8 +163,10 @@ def run(page=os.path.join(REPO, "index.html")):
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto("file://" + os.path.abspath(page), wait_until="load")
         pg.wait_for_timeout(1500)
+        tiles = {}
         for s in SCOPES:
             r = pg.evaluate(JS, [s, exp])
+            tiles[s] = r.get("tilePeople")
             by = {}
             for name, detail in r["out"]:
                 by.setdefault(name, []).append(detail)
@@ -170,6 +178,11 @@ def run(page=os.path.join(REPO, "index.html")):
                         " | ".join(f"{k}: {'; '.join(v[:2])}" + (f" (+{len(v) - 2})" if len(v) > 2 else "")
                                    for k, v in by.items())[:600] or (r.get("note") or "")))
         b.close()
+    add = tiles.get("madx") is not None and tiles.get("mar") is not None and tiles.get("mad") == tiles["madx"] + tiles["mar"]
+    res.append(("people served adds up: MadAvance - all = excl. Marolinta + Marolinta only", add,
+                f"{tiles.get('madx')} + {tiles.get('mar')}", tiles.get("mad"), "the people-served tiles of the three scopes"))
+    res.append(("people served adds up: All SaniTap = MadAvance - all (the kiosk not yet allocated)",
+                tiles.get("all") == tiles.get("mad"), tiles.get("mad"), tiles.get("all"), ""))
     res.append(("managed figures: page loads without script errors", not errs, "none", "; ".join(errs[:2]) or "none", ""))
     return res
 

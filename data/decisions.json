@@ -240,6 +240,14 @@
    "source": "Adriaan Mol, go-ahead for the fix proposed after the 876 / 271,710 investigation, 5 Oct 2026",
    "logged_on": "2026-10-05",
    "logged_by": "Adriaan Mol"
+  },
+  "people-served-sdws1-every-scope-2026-10-05": {
+   "answer": "People served come from the SDWS 1 run in every scope, Marolinta included. The Marolinta-only scope shows the SDWS 1 allocation for its 13 points (1,354 on 5 Oct 2026, from the run's per-point allocation: 125,710 - 124,356), with the works-record field count (3,130) kept as a secondary line labelled \"field count from works records, not the people-served method\". Gated by tools/check_managed.py, which now covers the Marolinta-only scope and checks MadAvance - all = excl. Marolinta + Marolinta only.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-05",
+   "source": "Adriaan Mol, instruction for the water report, 5 Oct 2026",
+   "logged_on": "2026-10-05",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
