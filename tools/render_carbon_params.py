@@ -140,9 +140,10 @@ def block():
             frcell = ('<span class="muted">the build does not pull this form, '
                       'so its freshness is unknown</span>')
         elif newest:
-            d = "day" if age == 1 else "days"
-            frcell = (f'{esc(nice(newest))}<br><span class="muted">'
-                      f'{age} {d} ago</span>')
+            # the date only: "N days ago" was typed text, a number with no
+            # source, and passed the figure gate only while N happened to
+            # equal some other figure on the page (318 on 5 Oct 2026 did not)
+            frcell = f'{esc(nice(newest))}'
         else:
             frcell = ('<span class="muted">no records yet on the first form named'
                       + (' (the others named do have records)' if alt else '')

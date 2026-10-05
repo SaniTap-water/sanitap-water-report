@@ -192,6 +192,19 @@ def _m_enduro_attr():
                in ("", "not recorded", "unknown", "none"))
 
 
+@metric("kiosk_sdws1_people",
+        "the managed Antananarivo kiosk has a people-served figure from the pinned SDWS 1 run, shown on the page")
+def _m_kiosk_sdws1():
+    """1 when the kiosk's water point (1125843383) or system (1125843376) is
+    in WPOP - the pinned run's per-point allocation, which check_consistency
+    ties to data/sdws1_summary_equal.json - and the page no longer says the
+    kiosk is not yet allocated (act-kiosk-sdws1-run, 5 Oct 2026)."""
+    wpop = js("WPOP")
+    allocated = any(k in wpop for k in ("1125843383", "1125843376"))
+    shown = "the managed kiosk: not yet allocated" not in ctx["idx"]
+    return int(allocated and shown)
+
+
 @metric("extract_lag_days",
         "days the extract on this page runs behind mWater")
 def _m10():

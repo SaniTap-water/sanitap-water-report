@@ -1,87 +1,87 @@
 {
  "basis": {
   "all": {
-   "headline": "876",
-   "note": "876 water points in scope, the actively managed portfolio: 745 MadAvance hand pumps that we maintain, broken ones included, plus Endur'O's 131 southern piped si",
+   "headline": "746",
+   "note": "746 water points in scope, the actively managed portfolio: 745 MadAvance hand pumps that we maintain, broken ones included, plus 1 managed piped system (status ",
    "note_bold": [
-    "876"
+    "746"
    ],
    "q": {
     "people": [
      {
-      "l": "people served (allocated, not tested)",
-      "v": "274,634"
+      "l": "people served (allocated, not tested; the kiosk not yet allocated)",
+      "v": "125,710"
      },
      {
       "l": "People served",
-      "v": "274,634"
+      "v": "125,710"
      },
      {
-      "l": "people served today (allocated, not tested)",
-      "v": "274,634"
+      "l": "people served today (allocated, not tested) — the managed kiosk: not y",
+      "v": "125,710"
      }
     ],
     "people-per-pump": [
      {
-      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
-      "v": "324 · 142"
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 170",
+      "v": "317 · 139"
      }
     ],
     "points": [
      {
       "l": "water points in scope",
-      "v": "876"
+      "v": "746"
      },
      {
       "l": "Water points under maintenance",
-      "v": "876"
+      "v": "746"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "876"
+      "v": "746"
      }
     ]
    }
   },
   "enduro": {
-   "headline": "131",
-   "note": "131 water points in scope — Endur'O's southern piped sites. Headline figures on this page remain the agreed programme numbers (131 sites, ~146,000 people, Sep 2",
+   "headline": "1",
+   "note": "1 water point in scope: the managed piped system (status “managed” in data/piped_systems_status.json), the Antananarivo smart-tap kiosk. Its people are not yet ",
    "note_bold": [
-    "131"
+    "1"
    ],
    "q": {
     "people": [
      {
-      "l": "people served (allocated, not tested)",
-      "v": "146,000"
+      "l": "people served — the kiosk: not yet allocated",
+      "v": "—"
      },
      {
       "l": "People served",
-      "v": "146,000"
+      "v": "—"
      },
      {
-      "l": "people served today (allocated, not tested)",
-      "v": "146,000"
+      "l": "people served today (allocated, not tested) — the managed kiosk: not y",
+      "v": "—"
      }
     ],
     "people-per-pump": [
      {
-      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
-      "v": "324 · 142"
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 170",
+      "v": "317 · 139"
      }
     ],
     "points": [
      {
       "l": "water points in scope",
-      "v": "131"
+      "v": "1"
      },
      {
       "l": "Water points under maintenance",
-      "v": "131"
+      "v": "1"
      },
      {
       "l": "water points under professional maintenance",
-      "v": "131"
+      "v": "1"
      }
     ]
    }
@@ -96,21 +96,21 @@
     "people": [
      {
       "l": "people served (allocated, not tested)",
-      "v": "128,634"
+      "v": "125,710"
      },
      {
       "l": "People served",
-      "v": "128,634"
+      "v": "125,710"
      },
      {
       "l": "people served today (allocated, not tested)",
-      "v": "128,634"
+      "v": "125,710"
      }
     ],
     "people-per-pump": [
      {
-      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
-      "v": "324 · 142"
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 170",
+      "v": "317 · 139"
      }
     ],
     "points": [
@@ -139,21 +139,21 @@
     "people": [
      {
       "l": "people served (allocated, not tested)",
-      "v": "127,280"
+      "v": "124,356"
      },
      {
       "l": "People served",
-      "v": "127,280"
+      "v": "124,356"
      },
      {
       "l": "people served today (allocated, not tested)",
-      "v": "127,280"
+      "v": "124,356"
      }
     ],
     "people-per-pump": [
      {
-      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 174",
-      "v": "324 · 142"
+      "l": "people per pump · Fort-Dauphin · Maroantsetraportfolio 170",
+      "v": "317 · 139"
      }
     ],
     "points": [
@@ -224,7 +224,7 @@
   "Marolinta only",
   "Endur'O"
  ],
- "group_count": 918,
+ "group_count": 919,
  "group_count_seen": [],
  "headings": [
   "The fleet at a glance",
@@ -245,38 +245,35 @@
   "Mapping rules: how the 1 km service area is drawn",
   "Who is counted as served: the annual usage survey",
   "Household water quality (SDWS 18, share of samples passing)",
+  "Hygiene promotion and gender",
   "Gardien calendars — the days-not-operational record",
   "Emission reductions — what the programme is for",
   "The stroke test — how monitored volume gets measured",
+  "Pre-project eligibility: non-functional or non-potable before the project",
   "Register corrections and exclusions",
   "The carbon calculation — open this for the Gold Standard file",
   "Impact",
   "Data quality notes",
   "Where each figure comes from and what it counts"
  ],
- "height": 26660,
+ "height": 32414,
  "measure": 1132,
  "missing_ids": [],
  "mobile": {
-  "sw": 390,
-  "vw": 390,
-  "wide": [
-   "TABLE#ptable",
-   "COLGROUP",
-   "COL",
-   "THEAD"
-  ]
+  "sw": 1280,
+  "vw": 1280,
+  "wide": []
  },
  "off_measure": [],
  "page_errors": [],
  "partner": {
   "all": {
-   "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
-   "tot": "876"
+   "end": "1 in the managed portfolio, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s programme sites are not in the managed portfolio: see the Endur’O card.Endur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-10-03 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "tot": "746"
   },
   "enduro": {
-   "end": "131 southern piped sites — reconciled to the contractor folders, 18 Sep 2026, in data/enduro_disposition.csv1 in the managed portfolio in mWater, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-09-29 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
-   "tot": "131"
+   "end": "1 in the managed portfolio, 4 upgrade or new build under way — by status in data/piped_systems_status.jsonEndur’O’s programme sites are not in the managed portfolio: see the Endur’O card.Endur’O’s own register reads 181 water points and 24 water systems, of which 4 carry attributes (the dated manual figures below); mWater holds 25 piped systems, extracted 2026-10-03 — two sources, two datesas at 2026-09-18, supplied by Adriaan Mol, COO SaniTap",
+   "tot": "1"
   },
   "mad": {
    "end": "not in this scope — “MadAvance — all” does not cover it",
@@ -298,7 +295,7 @@
   "MadAvance — all": null,
   "Marolinta only": null
  },
- "sections": 32,
+ "sections": 34,
  "tables": {
   "chaintbl": {
    "hidden": false,
@@ -314,7 +311,7 @@
   },
   "downtbl": {
    "hidden": false,
-   "rows": 22
+   "rows": 20
   },
   "exctbl": {
    "hidden": false,
@@ -330,14 +327,14 @@
   },
   "opentbl": {
    "hidden": false,
-   "rows": 31
+   "rows": 28
   },
   "over6": {
    "hidden": false,
-   "rows": 476
+   "rows": 475
   },
   "paramstbl": {
-   "hidden": true,
+   "hidden": false,
    "rows": 93
   },
   "parttbl": {
@@ -345,7 +342,7 @@
    "rows": 52
   },
   "popstbl": {
-   "hidden": true,
+   "hidden": false,
    "rows": 32
   },
   "poptbl": {
@@ -365,15 +362,19 @@
    "rows": 5
   },
   "sdws18rec": {
-   "hidden": true,
+   "hidden": false,
    "rows": 140
+  },
+  "sdws18six": {
+   "hidden": true,
+   "rows": 20
   },
   "sdws18tbl": {
    "hidden": false,
    "rows": 2
   },
   "sdws26tbl": {
-   "hidden": true,
+   "hidden": false,
    "rows": 3
   },
   "tracetbl": {
@@ -384,12 +385,12 @@
  "tile_heights": [
   {
    "h": 100,
-   "l": "876water points in scope",
+   "l": "746water points in scope",
    "v": 29
   },
   {
-   "h": 100,
-   "l": "274,634people served (allocated, not tes",
+   "h": 121,
+   "l": "125,710people served (allocated, not tes",
    "v": 29
   },
   {
@@ -399,12 +400,12 @@
   },
   {
    "h": 121,
-   "l": "22hand pumps reported down",
+   "l": "20hand pumps reported down",
    "v": 29
   },
   {
    "h": 121,
-   "l": "476hand pumps with no visit in 6+ months",
+   "l": "475hand pumps with no visit in 6+ months",
    "v": 29
   },
   {
@@ -414,7 +415,7 @@
   },
   {
    "h": 122,
-   "l": "324 · 142people per pump · Fort-Dauphin ",
+   "l": "317 · 139people per pump · Fort-Dauphin ",
    "v": 29
   }
  ]

@@ -232,6 +232,14 @@
    "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026",
    "logged_on": "2026-10-04",
    "logged_by": "Adriaan Mol"
+  },
+  "managed-figures-2026-10-05": {
+   "answer": "Managed figures count only the managed portfolio. \"Water points in scope\" and every managed figure add only managed hand pumps plus piped systems with status \"managed\" in data/piped_systems_status.json (on 5 Oct 2026: 745 + 1, the Tana kiosk 1125843376), so All SaniTap reads 746 and Endur'O 1. People served come only from the SDWS 1 method at its pinned commit (125,710 at All SaniTap); the kiosk's people are not yet allocated (act-kiosk-sdws1-run). Endur'O's 131 programme sites and their 146,000 people (source not recorded) are not in the managed portfolio and stand only on the Endur'O card, labelled \"Endur'O programme sites, not in the managed portfolio\", with their sources as recorded. Gated by tools/check_managed.py (in check_consistency.py) and tools/check_provenance.py. act-enduro-people-source stays open.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-05",
+   "source": "Adriaan Mol, go-ahead for the fix proposed after the 876 / 271,710 investigation, 5 Oct 2026",
+   "logged_on": "2026-10-05",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

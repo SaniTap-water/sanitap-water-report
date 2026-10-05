@@ -1162,5 +1162,13 @@
   "says": "no data predicate: results are bound to the system, not the tap stand, and the completion date is not recorded",
   "closure": "evidence",
   "closes_when": "post-completion results at the Endur'O tap stands are in mWater; the system can then join the managed portfolio"
+ },
+ "act-kiosk-sdws1-run": {
+  "kind": "data",
+  "metric": "kiosk_sdws1_people",
+  "op": ">=",
+  "target": 1,
+  "says": "closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it",
+  "when_satisfied": "OK"
  }
 }

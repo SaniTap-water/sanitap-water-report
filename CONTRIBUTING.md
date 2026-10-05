@@ -1092,3 +1092,23 @@ Tasks are matched by gid (`data/asana_map.json`), never by name. Each action's n
 title in `data/action_owners.json` ("title"): a verb first, about twelve words, codes only in brackets
 after plain words. Asana names a task "<plain title> [act-id]"; if an owner renames it, the build takes
 the new wording as the title.
+
+## Managed figures count only the managed portfolio (5 Oct 2026)
+
+"Water points in scope", people served and every other managed figure (the tiles, the scope notes, the impact line,
+the partner table's portfolio column, the people donut) add only managed hand pumps plus the piped systems whose
+status in `data/piped_systems_status.json` is "managed" (`PIPEDWQ.status_counts.managed`). People served come only
+from the SDWS 1 method at its pinned commit (`WPOP`, `agg(HP).wpop`); a managed system with no SDWS 1 figure is shown
+as "not yet allocated (to be run through the SDWS 1 method)", never filled with a hand-entered number.
+
+Endur'O's hand-entered programme figures (`ENDURO.systems`, `ENDURO.people`, `data/enduro_manual.json`) are not in
+the managed portfolio. They stand on the Endur'O card only (`#enduro-card`, `data-enduro-programme`), written by
+`tools/render_enduro.py` (`enduroProgramme()`) with their sources as recorded.
+
+`tools/check_managed.py`, run inside `check_consistency.py`, fails on any `ENDURO.systems`, `ENDURO.people` or
+`MF('systems'|'people')` in page code; in each scope, on a programme figure outside the Endur'O card, a water-points
+figure (`data-q="points"`, the scope note's lead figure) that is not managed hand pumps + managed piped systems, a
+people-served figure (`data-q="people"`) that is not the SDWS 1 allocation over the points in scope, and a managed
+figure that reads an input whose source is "not recorded". `check_provenance.py` fails a managed figure whose box
+names the hand-entered file. Mark any new managed figure with `data-q="points"` or `data-q="people"` so the gate sees
+it.

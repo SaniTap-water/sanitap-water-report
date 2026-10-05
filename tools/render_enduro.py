@@ -85,6 +85,13 @@ def block(m=None, today=None):
         "stale": stale,
         "people_as_at": m["figures"]["people"]["as_at"],
         "people_by": m["figures"]["people"]["supplied_by"],
+        # the programme figures' sources, exactly as recorded, for the
+        # Endur'O card - their only home (Adriaan Mol, 5 Oct 2026)
+        "people_what": m["figures"]["people"]["what"],
+        "people_doc": m["figures"]["people"]["doc"],
+        "systems_doc": m["figures"]["systems"]["doc"],
+        "systems_by": m["figures"]["systems"]["supplied_by"],
+        "systems_as_at": m["figures"]["systems"]["as_at"],
         "reg_as_at": m["register"]["as_at"],
     }
     return (
@@ -99,6 +106,18 @@ def block(m=None, today=None):
         "${ENDURO_SRC.stale?` &mdash; <b class=\"warn\">${ENDURO_SRC.age} days "
         "old, past the ${ENDURO_SRC.max}-day limit; these figures need "
         "re-confirming</b>`:''}</span>`;\n"
+        "// The Endur'O programme figures and their sources, exactly as recorded.\n"
+        "// They stand on the Endur'O card only: neither is in the managed\n"
+        "// portfolio, and no managed figure adds them (tools/check_managed.py).\n"
+        "const enduroProgramme=()=>{const x=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));"
+        "return `<b>Endur&rsquo;O programme sites, not in the managed portfolio.</b> "
+        "<b>${F('ENDURO.systems')}</b> sites <span class=\"muted\">&mdash; "
+        "source: ${x(ENDURO_SRC.systems_doc).replace(/\\b138\\b/,'<span data-retired=\"2026-09-18\" data-was=\"an Endur&#39;O site count carried in earlier editions\">138</span>')}; supplied by ${x(ENDURO_SRC.systems_by)}, as at ${x(ENDURO_SRC.systems_as_at)}</span>. "
+        "<b>${F('ENDURO.people')}</b> people <span class=\"muted\">&mdash; ${x(ENDURO_SRC.people_what)}; "
+        "source: ${/not recorded/.test(ENDURO_SRC.people_by)?'<b>not recorded</b> &mdash; ':''}${x(ENDURO_SRC.people_doc)}; supplied by: ${x(ENDURO_SRC.people_by)}, as at ${x(ENDURO_SRC.people_as_at)}</span>. "
+        "Neither is added to any managed figure on this page: the managed portfolio counts a piped system only when its "
+        "status in <span class=\"mono\">data/piped_systems_status.json</span> is &ldquo;managed&rdquo;, and people served "
+        "come only from the SDWS 1 method <span class=\"muted\">(Adriaan Mol, 5 Oct 2026)</span>. ${enduroAsAt()}`};\n"
         f"{END}"
     )
 

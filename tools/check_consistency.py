@@ -4434,6 +4434,17 @@ def main():
         check("pre-project eligibility record present", False, "data/eligibility.json", "MISSING",
               "tools/rebuild_eligibility.py --write")
 
+    # ---- managed figures count only the managed portfolio (5 Oct 2026) --------
+    # Adriaan Mol, 5 Oct 2026: "water points in scope" and every managed figure
+    # add only managed hand pumps and systems with status "managed" in
+    # data/piped_systems_status.json; people served is the SDWS 1 run's
+    # allocation for the points in scope; no input whose source is "not
+    # recorded". The 131 Endur'O programme sites and their 146,000 people stand
+    # on the Endur'O card only. Rendered in every scope by tools/check_managed.py.
+    import check_managed as _cm
+    for _r in _cm.run(os.path.join(repo_root, "index.html")):
+        check(*_r)
+
     # ---------------------------------------------------------------- report
     w = max(len(r[0]) for r in RESULTS) + 2
     print()

@@ -743,6 +743,12 @@
    "owner": "Cathy Andriambololonirina",
    "title": "Retest Amboasary gara at the taps once the works are completed",
    "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026 (project inbox)"
+  },
+  "act-kiosk-sdws1-run": {
+   "deadline": "2026-10-17",
+   "owner": "Adriaan Mol",
+   "title": "Run the Tana kiosk through the people-served method (SDWS 1)",
+   "source": "Adriaan Mol, instruction for the water report, 5 Oct 2026"
   }
  },
  "orphan_rows": {
@@ -769,7 +775,7 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 60,
+   "auto": 61,
    "evidence": 67,
    "manual": 28
   },
@@ -1137,6 +1143,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-02"
+   },
+   "act-kiosk-sdws1-run": {
+    "type": "auto",
+    "closes_when": "closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-05"
    },
    "act-make-calendar-photograph-mandatory": {
     "type": "auto",

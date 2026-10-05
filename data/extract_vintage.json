@@ -1,6 +1,6 @@
 {
- "checked": "2026-10-04",
- "data_to": "2026-10-03",
+ "checked": "2026-10-05",
+ "data_to": "2026-10-05",
  "last_record_by_source": {
   "appel_signalement_pannes.csv": "2026-10-02",
   "baseline_moramanga.json": "2026-03-10",
@@ -21,7 +21,7 @@
   "wq_results_piped.json": "2026-08-24",
   "wq_sampling_piped.json": "2026-09-16"
  },
- "newest_pull": "2026-10-03",
+ "newest_pull": "2026-10-05",
  "note": "data_to is the OLDEST pull across every extract - the vintage floor. Stating the newest would claim a currency no single source has. last_record_by_source is a different quantity: a quiet form has an old last record and is still perfectly current.",
  "oldest_sources": [
   "appel_signalement_pannes.csv",
@@ -51,124 +51,124 @@
  ],
  "per_extract": {
   "appel_signalement_pannes.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-10-02",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "baseline_moramanga.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-03-10",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "cbn_gender.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2025-11-21",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "combined_rehab.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-01-16",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "enduro_points.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "first_rehab_current.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "forage_moramanga.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-08-29",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "hygiene.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-03-16",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "hygiene_san.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2025-11-21",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "identification.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-10-01",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "marolinta_borehole.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-08-29",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "piped_point_reg.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-09-26",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "piped_system_reg.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "piped_systems.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "pm.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-10-02",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "pou_survey.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2025-12-12",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "premiere_rehabilitation.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "repair.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-10-02",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "reparation_apres_panne.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-10-02",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "roof_count.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2025-08-21",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "wp_madavance.csv": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": null,
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "wq_results.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-02-02",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "wq_results_piped.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-08-24",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   },
   "wq_sampling_piped.json": {
-   "age_days": 1,
+   "age_days": 0,
    "data_to": "2026-09-16",
-   "pulled": "2026-10-03"
+   "pulled": "2026-10-05"
   }
  },
  "spread_days": 0

@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-04T05:05:28+00:00",
+ "pulled_at": "2026-10-05T05:29:02+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -627,6 +627,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110821715",
    "modified_at": "2026-10-02T14:54:08.300Z"
+  },
+  "act-kiosk-sdws1-run": {
+   "gid": "1219144164856225",
+   "name": "Run the Tana kiosk through the people-served method (SDWS 1) [act-kiosk-sdws1-run]",
+   "title": "Run the Tana kiosk through the people-served method (SDWS 1)",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-17",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219144164856225",
+   "modified_at": "2026-10-05T04:10:06.833Z"
   },
   "act-legal-water-credit-opinion": {
    "gid": "1219109150420909",

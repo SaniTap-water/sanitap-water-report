@@ -15,6 +15,12 @@ keeps - exactly as a click would (derivPanel). It fails when:
      in the Endur'O-only scope;
   3. a figure that adds Endur'O to the hand pumps does not show the sum,
      MadAvance figure + Endur'O figure = total, in a scope that has both;
+  5. a managed figure (the water points and people-served figures marked
+     data-q, and the scope note's lead figure) has a panel whose composite
+     names Endur'O's hand-entered file (data/enduro_manual.json: "manual
+     file", "hand-entered", its supplier or source document): the Endur'O
+     programme figures are not in the managed portfolio (Adriaan Mol,
+     5 Oct 2026);
   4. a panel has no scope row, or a figure in a programme-wide section (the
      action list, the register trace; marked data-programme-wide) has a
      panel that does not say the figure is programme-wide.
@@ -75,6 +81,9 @@ JS = r"""(scope) => {
       out.push([el.dataset.fig, "names Endur'O's manual file in a scope without Endur'O", where]);
     if (!hasMad && /portal\.mwater\.co\/#\/forms/.test(panel.innerHTML) && !/ENDURO|PIPEDWQ|piped|moramanga/i.test(el.dataset.fig))
       out.push([el.dataset.fig, 'names a MadAvance form in the Endur’O-only scope', where]);
+    const isManaged = !!el.closest('[data-q="points"],[data-q="people"]') || el === document.querySelector('#scopenote b [data-fig]') || el.closest('#scopenote b') !== null;
+    if (isManaged && (/enduro_manual\.json|manual file|hand-entered|Endur.O part|source document/i.test(text)))
+      out.push([el.dataset.fig, "managed figure's composite names Endur'O's hand-entered file (data/enduro_manual.json)", where]);
     if (sc.enduro && hasMad && /agg\(HP\)[^/]*\+\s*\(SCOPES\[SCOPE\]\.enduro\?ENDURO\.[\w.]+:0\)$/.test(el.dataset.fig) && !/\+.*=/.test(ar || ''))
       out.push([el.dataset.fig, "adds Endur'O but the arithmetic does not show MadAvance + Endur'O = total", where]);
   }

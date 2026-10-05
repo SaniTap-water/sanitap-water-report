@@ -2079,3 +2079,28 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Explanation boxes:** one "How this figure is produced" box at a time, for the figure last clicked; a click on
   another figure replaces it, a second click on the same figure closes it. The active figure is outlined and the
   box opens with "Explains: <figure and its label>". Gated in tools/check_panels.py.
+
+## 5 Oct 2026 — Adriaan Mol: managed figures count only the managed portfolio
+
+- **Found** (investigation, 5 Oct): at All SaniTap the tiles read 876 water points and 271,710 people served —
+  745 managed hand pumps + 131 Endur'O programme sites from data/enduro_manual.json, and the SDWS 1 run's 125,710 +
+  146,000 hand-entered people whose source is "not recorded". None of the 131 has a status in
+  data/piped_systems_status.json, so the 25 Sep join rule never saw them; the gates checked only that the 131 was
+  carried consistently, and check_provenance passed the composite because its arithmetic added up.
+- **Decided:** "water points in scope" and every managed figure add only managed hand pumps plus systems with status
+  "managed" in data/piped_systems_status.json; people served come only from the SDWS 1 method at its pinned commit.
+  The 131 and 146,000 stand on the Endur'O card only, labelled "Endur'O programme sites, not in the managed
+  portfolio", with their sources as recorded (146,000: source not recorded). data/decisions.json
+  `managed-figures-2026-10-05`.
+- **Figures, before → after:** All SaniTap 876 → 746 points, 271,710 → 125,710 people (+ the kiosk, not yet
+  allocated); MadAvance — all 745 / 125,710 and excl. Marolinta 732 / 124,356 unchanged; Marolinta only unchanged
+  (works basis: 13 points, 3,130 people, a field count); Endur'O 131 → 1 point, 146,000 → not yet allocated.
+- **Gate:** tools/check_managed.py, run inside check_consistency.py — no ENDURO.systems / ENDURO.people / MF in page
+  code; in every scope no programme figure outside the Endur'O card, water-points figures = managed hand pumps in
+  scope + managed piped systems, people-served figures = the SDWS 1 allocation (WPOP) over the points in scope or
+  "not yet allocated", and no managed input whose source is "not recorded". check_provenance.py fails a managed
+  figure whose composite names the hand-entered file. Shown failing on the page as published (6 of the new
+  checks; 13 provenance failures), passing after the fix.
+- **Open:** act-enduro-people-source stays open; act-kiosk-sdws1-run (Adriaan, 17 Oct 2026) added. The Marolinta
+  scope's people figure is a field count from the works records, not an SDWS 1 allocation; the gate checks its
+  source only and leaves the counts to a decision.

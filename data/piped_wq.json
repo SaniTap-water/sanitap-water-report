@@ -101,7 +101,7 @@
  },
  "pairing": {
   "after_days": 7,
-  "as_of": "2026-10-03",
+  "as_of": "2026-10-05",
   "baseline": {
    "result_list": [
     {
@@ -367,7 +367,7 @@
   "rule": "a result pairs with the most recent unpaired sample at the same water point (result 1.2b = sample 1.1b) taken within 72 h before the result was submitted; each sample pairs once",
   "samples": 0,
   "samples_pending": 0,
-  "samples_pulled": "2026-10-03",
+  "samples_pulled": "2026-10-05",
   "sampling_form": "ef8cf7353a974cf984d34860dcf2952d",
   "window_hours": 72
  },
@@ -387,7 +387,7 @@
   "systems": 0,
   "tap_recorded": 0
  },
- "pulled": "2026-10-03",
+ "pulled": "2026-10-05",
  "responses": 45,
  "status_counts": {
   "in_process": 4,

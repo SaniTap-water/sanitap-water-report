@@ -129,11 +129,11 @@ D = {
  "SUCC_CORRECTED": dict(pop="rehabilitated_successfully",
    arith="`${fmt(REG.succ)} successful in the records (the corrections written back to mWater included) + ${SUCC_CORRECTED-REG.succ} correction not yet in mWater = ${fmt(SUCC_CORRECTED)}`",
    forms=[("Clean Water || Premi\\u00e8re r\\u00e9habilitation / ...", F_COMBINED, None)]),
- "S.n+ENDURO.systems": dict(pop="managed_fleet",
-   arith="`${fmt(S.n)} MadAvance hand pumps + ${ENDURO.systems} Endur'O piped systems = ${fmt(S.n+ENDURO.systems)}`",
-   forms=[("the register", None, REGQ)],
-   caveat="The Endur'O half is hand-entered and not in mWater; it carries its "
-          "own as-at date and supplier."),
+ "S.n+PIPEDWQ.status_counts.managed": dict(pop="managed_fleet",
+   arith="`${fmt(S.n)} MadAvance hand pumps + ${PIPEDWQ.status_counts.managed} managed piped system(s), status 'managed' in data/piped_systems_status.json = ${fmt(S.n+PIPEDWQ.status_counts.managed)}`",
+   forms=[("the register", None, REGQ), ("the piped system statuses", None, "data/piped_systems_status.json")],
+   caveat="Endur'O's programme sites (the Endur'O card) are not counted: they are not in the "
+          "managed portfolio (Adriaan Mol, 5 Oct 2026)."),
  "POPS.populations['repairs_since_aug_2024'].size": dict(pop="repairs_since_aug_2024",
    arith="`${fmt(POPS.populations['repairs_since_aug_2024'].size)} repair records, "
          "linked to a point, since 1 Aug 2024, one per point and date`",
