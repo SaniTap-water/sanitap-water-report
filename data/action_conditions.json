@@ -1170,5 +1170,11 @@
   "target": 1,
   "says": "closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it",
   "when_satisfied": "OK"
+ },
+ "act-deichmann-ar-send": {
+  "kind": "none",
+  "says": "no data predicate: the email is outside anything the build reads",
+  "closure": "manual",
+  "closes_when": "email sent to Jakob Adolf and Cathrin Schneider (acht ideen) with the water checklist (Checkliste_Madagaskar_Water_SaniTap_2026-10-02.docx) and a link to the Photos folder for the Deichmann (Wort und Tat) annual report 2025"
  }
 }

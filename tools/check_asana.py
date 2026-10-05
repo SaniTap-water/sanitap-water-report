@@ -17,6 +17,14 @@ local copy of the Asana read (data/asana_pull.json), the map
      its Asana task's wording, or the title contains an act-id or a bare code
      (SDWS 18, fNRB, VPA-DD ...) that is not in brackets after plain words.
 
+  6. (evidence, 5 Oct 2026) an action closed (OK) has no evidence source - an
+     Evidence comment or a file on its Asana task (recorded "from": "asana"),
+     an entry recorded in the repository, or a build condition met - or shows
+     no evidence line; an Asana-sourced entry whose task is not completed, or
+     whose evidence the pull no longer finds; a task ticked complete without
+     evidence whose action is closed, or is open without the amber
+     "ticked in Asana, no evidence yet" mark.
+
 Shown failing on 2 Oct 2026 by changing one task's due date in the local copy
 of the pull (not in Asana): see docs/decision_log.md.
 
@@ -40,12 +48,15 @@ def main():
     tasks, dups = pull.get("tasks", {}), pull.get("duplicates", {})
     rows = {}
     for m in re.finditer(r'<tr data-state="(\w+)"[^>]*?data-act="([^"]+)"([^>]*)>', idx):
+        seg = idx[m.end():idx.find('<td class="st">', m.end())]
         attrs = m.group(3)
         get = lambda k: (re.search(k + r'="([^"]*)"', m.group(0)) or [None, None])[1]
         rows.setdefault(m.group(2), dict(state=m.group(1), owner=html.unescape(get("data-owner") or ""),
                                          due=get("data-due") or "", asana=get("data-asana"),
                                          title=html.unescape(get("data-title") or ""),
-                                         evidence="data-evidence" in attrs, auto="data-auto" in attrs))
+                                         evidence="data-evidence" in attrs, auto="data-auto" in attrs,
+                                         ticked="data-ticked" in attrs, evline='class="evline' in seg,
+                                         amber='class="ticked"' in seg))
     fails = []
     for aid, r in sorted(rows.items()):
         t = tasks.get(aid)
@@ -79,8 +90,31 @@ def main():
             built = r["auto"] and (state.get(aid) or {}).get("satisfied") is True
             if not (built or (r["evidence"] and aid in evid)):
                 fails.append(f"{aid}: closed on the page without recorded evidence")
+    # 6. evidence (5 Oct 2026): nothing closes without an evidence source
+    for aid, r in sorted(rows.items()):
+        t = tasks.get(aid) or {}
+        e = evid.get(aid)
+        built = r["auto"] and (state.get(aid) or {}).get("satisfied") is True
+        if e and e.get("from") == "asana":
+            if not t.get("completed"):
+                fails.append(f"{aid}: evidence recorded from Asana, but the task is not completed")
+            elif not t.get("evidence") or (t["evidence"].get("text") or "") != (e.get("summary") or ""):
+                fails.append(f"{aid}: evidence recorded from Asana that the pull no longer finds on the task")
+        if r["state"] == "OK":
+            if not (built or e):
+                fails.append(f"{aid}: closed without an evidence source (Evidence comment, attachment, repository entry or build condition)")
+            if not r["evline"]:
+                fails.append(f"{aid}: closed, but no evidence line is shown")
+        if t.get("completed") and not t.get("evidence") and not (built or e):
+            if r["state"] == "OK":
+                fails.append(f"{aid}: closed on a tick alone (ticked in Asana, no evidence)")
+            elif not (r["ticked"] and r["amber"]):
+                fails.append(f"{aid}: ticked in Asana without evidence, but not marked so on the page")
     n_open = sum(1 for r in rows.values() if r["state"] in ("ACT", "WATCH"))
-    print(f"  asana: {len(rows)} actions on the page, {n_open} open, {len(tasks)} Asana tasks; {len(fails)} failure(s)")
+    n_ok = sum(1 for r in rows.values() if r["state"] == "OK")
+    n_tick = sum(1 for r in rows.values() if r["ticked"])
+    print(f"  asana: {len(rows)} actions on the page, {n_open} open, {len(tasks)} Asana tasks; "
+          f"{n_ok} closed; {n_tick} ticked without evidence; {len(fails)} failure(s)")
     for f in fails[:30]:
         print("   ", f)
     for n in pull.get("new_from_asana", []):

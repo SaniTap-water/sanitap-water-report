@@ -132,6 +132,8 @@ GENERATED = {
     'ACTN.closed': 'render_datasets',
     'ACTN.nodate': 'render_datasets',
     'ACTN.nudge': 'render_datasets',
+    'ACTN.ticked': 'render_datasets',
+    'ACTN.ticked_late': 'render_datasets',
     'ACTN.open': 'render_datasets',
     'ACTN.overdue': 'render_datasets',
     'ACTN.rows': 'render_datasets',

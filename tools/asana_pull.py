@@ -17,6 +17,17 @@ from Asana" in the build log. A task whose owner renamed it gives the action
 its title: the Asana wording is copied into data/action_owners.json "title". Two tasks naming the same act-id
 are recorded under "duplicates" and fail the gate (tools/check_asana.py).
 
+Completion needs evidence (Adriaan Mol, 5 Oct 2026). For every completed task
+the pull also reads the task's history, comments and attachments. A task counts
+as closed only if it is completed AND carries evidence: a comment starting
+"Evidence:" or an attached file. The evidence (its text or file name, author,
+date and the task link) is written into data/action_owners.json "evidence"
+automatically, marked "from": "asana"; an entry recorded in the repository by
+hand is never overwritten. Who ticked the task and when comes from its
+history ("ticked_by", "ticked_at"). A tick alone closes nothing: the page shows
+"ticked in Asana, no evidence yet". An Asana-sourced entry whose task is
+reopened, or whose Evidence comment and attachments are gone, is removed.
+
 Offline or without the token, the committed copy stays as it is and the build
 says so; tools/check_asana.py still holds the page to that copy.
 
@@ -43,6 +54,64 @@ def plain_title(name):
     """The task name without its act-id: the trailing [act-id] tag, or the
     "<act-id> — " prefix of the first naming."""
     return OLD_PREFIX.sub("", TAG.sub("", name or "")).strip()
+
+
+EVIDENCE = re.compile(r"^\s*evidence\s*:\s*", re.I)
+
+
+def completion(gid, permalink):
+    """-> (ticked_by, ticked_at, evidence or None) for a completed task, from
+    its stories (history and comments) and its attachments."""
+    stories = A.get(f"/tasks/{gid}/stories", {"opt_fields": "resource_subtype,text,created_at,created_by.name"})
+    ticks = [s for s in stories if s.get("resource_subtype") == "marked_complete"]
+    tick = ticks[-1] if ticks else {}
+    by = (tick.get("created_by") or {}).get("name")
+    at = (tick.get("created_at") or "")[:10] or None
+    ev = None
+    for s in stories:                                  # the latest Evidence comment wins
+        if s.get("resource_subtype") == "comment_added" and EVIDENCE.match(s.get("text") or ""):
+            ev = {"kind": "comment", "text": EVIDENCE.sub("", s["text"]).strip(),
+                  "author": (s.get("created_by") or {}).get("name"), "date": (s.get("created_at") or "")[:10],
+                  "link": permalink}
+    if not ev:
+        files = A.get("/attachments", {"parent": gid, "opt_fields": "name,created_at,permanent_url"})
+        added = {(s.get("text") or ""): s for s in stories if s.get("resource_subtype") == "attachment_added"}
+        if files:
+            f = files[-1]
+            who = next(((s.get("created_by") or {}).get("name") for txt, s in added.items() if f["name"] in txt), None)
+            ev = {"kind": "attachment", "text": f["name"], "author": who,
+                  "date": (f.get("created_at") or "")[:10], "link": permalink, "file": f.get("permanent_url")}
+    return by, at, ev
+
+
+def sync_evidence(own, out):
+    """Asana evidence -> data/action_owners.json "evidence" (from: asana). An
+    entry recorded in the repository by hand is never touched. -> changes."""
+    evid = own.setdefault("evidence", {}).setdefault("actions", {})
+    changes = []
+    for aid, r in out.items():
+        cur = evid.get(aid)
+        if cur and cur.get("from") != "asana":
+            continue
+        e = r.get("evidence") if r["completed"] else None
+        if e:
+            what = ("an Evidence comment on the Asana task" if e["kind"] == "comment"
+                    else f"a file attached to the Asana task: {e['text']}")
+            new = {"recorded_on": e["date"], "recorded_by": "tools/asana_pull.py, from the Asana task",
+                   "what": what, "source": f"{e.get('author') or 'not recorded'}, Asana, {e['date']}",
+                   "summary": e["text"], "author": e.get("author"), "date": e["date"], "kind": e["kind"],
+                   "link": e["link"], "task": r["gid"], "from": "asana"}
+            if e.get("file"):
+                new["file"] = e["file"]
+            if cur != new:
+                evid[aid] = new
+                changes.append(f"evidence from Asana: {aid} ({e['kind']}, {e.get('author')}, {e['date']})")
+        elif cur:
+            del evid[aid]
+            changes.append(f"evidence from Asana withdrawn: {aid} (task {'reopened' if not r['completed'] else 'has no evidence any more'})")
+    if changes:
+        own["evidence"]["actions"] = dict(sorted(evid.items()))
+    return changes
 
 
 def main():
@@ -84,10 +153,14 @@ def main():
                "due_on": t.get("due_on"), "completed": bool(t.get("completed")),
                "completed_at": (t.get("completed_at") or "")[:10] or None,
                "permalink": t.get("permalink_url"), "modified_at": t.get("modified_at")}
+        if rec["completed"]:
+            by, at, ev = completion(t["gid"], t.get("permalink_url"))
+            rec.update(ticked_by=by or owner, ticked_at=at or rec["completed_at"], evidence=ev)
         if aid in out:
             dup.setdefault(aid, [out[aid]["gid"]]).append(t["gid"])
             continue
         out[aid] = rec
+    evchanges = sync_evidence(own, out)
     doc = {"note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py "
                    "at each build. The action list renders owner, deadline and completion from it.",
            "pulled_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -99,13 +172,18 @@ def main():
         amap["tasks"] = dict(sorted(amap["tasks"].items()))
         json.dump(amap, open(MAP, "w", encoding="utf8"), indent=1, ensure_ascii=False)
         open(MAP, "a").write("\n")
-    if retitled:
+    if retitled or evchanges:
         json.dump(own, open(own_path, "w", encoding="utf8"), indent=1, ensure_ascii=False)
         open(own_path, "a").write("\n")
     for aid, was, now in retitled:
         print(f"asana_pull: title from Asana: {aid}: {was!r} -> {now!r}")
     done = sum(1 for r in out.values() if r["completed"])
     print(f"asana_pull: {len(out)} tasks read ({done} completed), {len(dup)} duplicated act-id(s)")
+    for c in evchanges:
+        print(f"asana_pull: {c}")
+    noev = sorted(a for a, r in out.items() if r["completed"] and not r.get("evidence"))
+    print(f"asana_pull: completed with evidence {sum(1 for r in out.values() if r.get('evidence'))}, "
+          f"completed without evidence {len(noev)}" + (f" ({', '.join(noev)})" if noev else ""))
     for n in new:
         print(f"asana_pull: new from Asana: {n['act_id']} <- task {n['gid']} \"{n['name']}\"")
     return 0

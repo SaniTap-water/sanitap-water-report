@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-05T06:33:37+00:00",
+ "pulled_at": "2026-10-05T16:53:12+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -46,11 +46,11 @@
    "title": "Finish the borehole form checks and finalise three draft borehole records",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": "2026-10-09",
+   "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317101",
-   "modified_at": "2026-10-02T16:28:31.891Z"
+   "modified_at": "2026-10-05T11:31:55.467Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -242,7 +242,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057943681",
-   "modified_at": "2026-10-02T14:53:26.271Z"
+   "modified_at": "2026-10-05T11:27:22.722Z"
   },
   "act-decide-how-treat-67": {
    "gid": "1219100937142786",
@@ -299,10 +299,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-04",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-05",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294883405",
-   "modified_at": "2026-10-03T20:00:03.122Z"
+   "modified_at": "2026-10-05T15:54:28.901Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-05",
+   "evidence": {
+    "kind": "comment",
+    "text": "Adriaan Mol, email \"RE: Hi Leoni, Hi Adriaan\", sent 5 Oct 2026 05:58 UTC to Jakob Adolf and Leoni Bouwer, cc Cathrin Schneider (acht ideen), with attachments. Jakob acknowledged the thread on 5 Oct 07:26 (\"Very good, thank you Leoni\"). Closed by Claude on Adriaan's instruction.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-05",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294883405"
+   }
   },
   "act-design-change-q1-2027": {
    "gid": "1219101058162842",
@@ -730,11 +739,11 @@
    "title": "Test every Marolinta borehole for E. coli at the tap",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": null,
+   "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105998053",
-   "modified_at": "2026-10-02T14:54:19.741Z"
+   "modified_at": "2026-10-05T11:27:22.772Z"
   },
   "act-mar-which-form": {
    "gid": "1219101110966173",
@@ -986,7 +995,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
-   "modified_at": "2026-10-02T21:00:11.904Z"
+   "modified_at": "2026-10-05T11:25:35.608Z"
   },
   "act-mwater-year-required": {
    "gid": "1219101270141207",
@@ -1126,11 +1135,11 @@
    "title": "Re-enter two water tests for pump 742895333, Sainte Luce, on the right form",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": null,
+   "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111799659",
-   "modified_at": "2026-10-02T14:55:05.984Z"
+   "modified_at": "2026-10-05T11:27:22.785Z"
   },
   "act-point-use-round-one": {
    "gid": "1219100996389355",
@@ -1166,7 +1175,10 @@
    "completed": true,
    "completed_at": "2026-10-02",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059420262",
-   "modified_at": "2026-10-02T16:16:13.210Z"
+   "modified_at": "2026-10-05T11:25:35.317Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-02",
+   "evidence": null
   },
   "act-printed-year-meaning": {
    "gid": "1219101112069140",
@@ -1342,11 +1354,11 @@
    "title": "Decide which of two copies of one repair to keep, pump 699597809",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": null,
+   "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106519483",
-   "modified_at": "2026-10-02T14:55:29.774Z"
+   "modified_at": "2026-10-05T11:27:22.816Z"
   },
   "act-repair-time": {
    "gid": "1219101112069110",
@@ -1454,7 +1466,10 @@
    "completed": true,
    "completed_at": "2026-10-02",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059850550",
-   "modified_at": "2026-10-02T14:55:41.398Z"
+   "modified_at": "2026-10-02T14:55:41.398Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-02",
+   "evidence": null
   },
   "act-sdws26-annual-round": {
    "gid": "1219101059831406",
@@ -1586,7 +1601,10 @@
    "completed": true,
    "completed_at": "2026-10-02",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112472220",
-   "modified_at": "2026-10-02T14:56:24.875Z"
+   "modified_at": "2026-10-02T14:56:24.875Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-02",
+   "evidence": null
   },
   "act-type3-cap": {
    "gid": "1219101059887916",
@@ -1774,11 +1792,11 @@
    "title": "Confirm the failed E. coli test at Ambinanitelo, 833033198, was retested",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": null,
+   "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101271279275",
-   "modified_at": "2026-10-02T14:56:22.908Z"
+   "modified_at": "2026-10-05T11:27:22.777Z"
   }
  },
  "duplicates": {},

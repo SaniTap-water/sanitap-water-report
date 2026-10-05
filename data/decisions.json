@@ -248,6 +248,14 @@
    "source": "Adriaan Mol, instruction for the water report, 5 Oct 2026",
    "logged_on": "2026-10-05",
    "logged_by": "Adriaan Mol"
+  },
+  "asana-evidence-2026-10-05": {
+   "answer": "An Asana task counts as closed only if it is completed AND has evidence: a comment starting \"Evidence:\" or an attached file. The Asana pull reads each completed task's comments and attachments and stores the evidence text or file name, author, date and task link in data/action_owners.json automatically. An assignee's tick alone does not close an action: a task completed without evidence shows in amber as \"ticked in Asana, no evidence yet\", with who ticked it and when, stays open in every count, and after 7 days without evidence is listed under \"Ticked without evidence\" for Adriaan. Every closed action shows its evidence line, linked to the Asana task. No action counts as closed without an evidence source (Evidence comment, attachment, an existing repository entry, or a build condition met); tools/check_asana.py enforces it.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-05",
+   "source": "Adriaan Mol, instruction for the water report, 5 Oct 2026",
+   "logged_on": "2026-10-05",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

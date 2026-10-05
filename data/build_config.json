@@ -108,6 +108,7 @@
  },
  "actions": {
   "note": "The action list's 'Needs a nudge' line: evidence and manual items past their date, or undated and on the list for longer than this.",
-  "nudge_undated_days": 30
+  "nudge_undated_days": 30,
+  "ticked_no_evidence_days": 7
  }
 }

@@ -108,7 +108,8 @@ def notes_for(a, info):
         lines.append(f"Owner as written on the report: {info['owner_text']}")
     lines.append("")
     lines.append("Owner, due date and completion are read from this task by the weekly report build. "
-                 "Completing it closes the action on the report only once its evidence is recorded.")
+                 "Ticking it complete does not close the action on its own: add a comment starting "
+                 "\"Evidence:\" saying what shows it is done, or attach the file.")
     return "\n".join(lines)
 
 

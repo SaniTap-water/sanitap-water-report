@@ -211,8 +211,10 @@ def actions(idx, use_asana=True):
     # data/action_owners.json ("evidence"). Asana is the source for owner,
     # deadline and completion of every action that has a task
     # (data/asana_pull.json, read-only at build by tools/asana_pull.py); a task
-    # completed in Asana without that evidence shows as "done in Asana,
-    # evidence pending" and stays open.
+    # completed in Asana without evidence stays open and shows in amber as
+    # "ticked in Asana, no evidence yet" (5 Oct 2026). Evidence on the task (a
+    # comment starting "Evidence:" or a file) reaches "evidence" through
+    # tools/asana_pull.py.
     rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
     evid = (rec.get("evidence") or {}).get("actions", {})
     conds_all = json.load(open(os.path.join(REPO, "data", "action_conditions.json"), encoding="utf8"))
@@ -246,9 +248,13 @@ def actions(idx, use_asana=True):
                 a["deadline"] = a["due"].strftime("%-d %b %Y")
             else:
                 a["due"], a["deadline"] = None, ""
+            # a tick alone closes nothing (Adriaan Mol, 5 Oct 2026): a task
+            # completed with no evidence stays open, in amber, naming who
+            # ticked it and when (from the task's history)
             if t.get("completed") and a["state"] != "OK":
                 a["asana_done"] = True
-                a["label"] = "done in Asana, evidence pending"
+                a["ticked"] = {"by": t.get("ticked_by") or t.get("owner"),
+                               "at": t.get("ticked_at") or t.get("completed_at")}
     for a in out:
         # a date is only outstanding on something still to act on, so this is
         # recomputed after the conditions have had their say
@@ -372,6 +378,7 @@ CLOSURE = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), enco
            .get("closure", {}).get("actions", {}))
 SOURCES = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
            .get("sources", {}).get("actions", {}))
+TICKED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["ticked_no_evidence_days"]
 NUDGE_UNDATED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["nudge_undated_days"]
 CLOSURE_LABEL = {"auto": "auto &mdash; the build closes it",
                  "evidence": "evidence &mdash; closes when this exists",
@@ -402,12 +409,57 @@ def _live(text):
     return text
 
 
+def evidence_line(a):
+    """The one line under a closed action saying what closed it, linked to the
+    Asana task (5 Oct 2026): an Evidence comment or file on the task, an entry
+    recorded in the repository, or the build's own condition. The evidence
+    text is a quotation, never re-typed."""
+    e, link = a.get("evidence"), a.get("asana")
+    tl = (f' &middot; <a href="{link}" target="_blank" rel="noopener">Asana task</a>' if link else "")
+    if e:
+        key = f"evidence:{a['id']}"
+        if e.get("from") == "asana":
+            QUOTES_EXTRA[key] = {"doc": f"Asana task, {'Evidence comment' if e.get('kind') == 'comment' else 'attached file'} by {e.get('author') or 'not recorded'}",
+                                 "version": e.get("date", ""), "dated": e.get("date", ""), "says": strip(e.get("summary", "")),
+                                 "note": "Read from the Asana task by tools/asana_pull.py and recorded in data/action_owners.json (evidence)."}
+            what = "Evidence comment" if e.get("kind") == "comment" else "File attached"
+            body = (f'{what} by {html.escape(e.get("author") or "not recorded")}, {e.get("date")}: '
+                    f'<span class="quoted" data-quote="{key}">{html.escape(strip(e.get("summary", "")))}</span>')
+            src = "asana"
+        else:
+            QUOTES_EXTRA[key] = {"doc": "Evidence recorded in the repository (data/action_owners.json)",
+                                 "version": e.get("recorded_on", ""), "dated": e.get("recorded_on", ""),
+                                 "says": strip(f'{e.get("what", "")}. {e.get("source", "")}'),
+                                 "note": f"Recorded by {e.get('recorded_by') or 'not recorded'}."}
+            body = (f'recorded in the repository {e.get("recorded_on") or ""}: '
+                    f'<span class="quoted" data-quote="{key}">{html.escape(strip(e.get("what", "")))}</span>')
+            src = "repo"
+    elif a.get("auto") and (a.get("cond") or {}).get("satisfied"):
+        c = a["cond"]
+        body = ("the build&rsquo;s own condition is met"
+                + (f', closed by the build on {c["closed_since"]}' if c.get("closed_since") else ""))
+        src = "build"
+    else:
+        return ""
+    return (f'<div class="evline muted" data-evsrc="{src}" style="font-size:.82em;margin-top:4px">'
+            f'<b>Evidence</b>: {body}{tl}</div>')
+
+
 def row(a, today, owner_cell=True):
     overdue = (a["state"] == "ACT" and a["due"] is not None and a["due"] < today)
     badge = ('<span class="pill crit" style="margin-left:6px">OVERDUE</span>'
              if overdue else "")
     label = (f'<span class="muted" style="font-size:.82em;margin-left:6px">'
              f'{a["label"]}</span>' if a["label"] else "")
+    if a.get("ticked"):
+        tk = a["ticked"]
+        when = datetime.date.fromisoformat(tk["at"]).strftime("%-d %b %Y") if tk.get("at") else "date not recorded"
+        tickline = (f'<div class="ticked">ticked in Asana, no evidence yet'
+                    f'<span class="tickwho"> &mdash; by {html.escape(tk.get("by") or "not recorded")}, {when}'
+                    + (f' &middot; <a href="{a["asana"]}" target="_blank" rel="noopener">Asana task</a>' if a.get("asana") else "")
+                    + '</span></div>')
+    else:
+        tickline = ""
     dl = a["deadline"] or '<span class="muted">no date set</span>'
     if overdue:
         dl = f'<b style="color:var(--crit)">{dl}</b>'
@@ -509,6 +561,7 @@ def row(a, today, owner_cell=True):
         e = a["evidence"]
         det += (f'<p class="evidence muted" style="font-size:.85em;margin:8px 0 0"><b>Evidence recorded</b> '
                 f'{e.get("recorded_on") or ""}: {e.get("source") or ""}.</p>')
+    evline = evidence_line(a) if a["state"] == "OK" else tickline
     actid = (f' <span class="act-id muted mono" style="font-size:.75em">{a["id"]}</span>'
              if a.get("plain_title") else "")
     body = (f'<details class="act-detail" id="{a["id"]}">'
@@ -522,11 +575,12 @@ def row(a, today, owner_cell=True):
             + (f' data-asana="{a["asana_gid"]}"' if a.get("asana_gid") else "")
             + (' data-evidence="1"' if a.get("evidence") else "")
             + (' data-auto="1"' if a.get("auto") else "")
+            + (f' data-ticked="{(a["ticked"].get("at") or "")}"' if a.get("ticked") else "")
             + f' data-title="{html.escape(a["title"], quote=True)}"') if owner_cell else ""
     return (f'<tr data-state="{a["state"]}" data-own="{slug(a["lead"])}"{gate}'
             f'{" data-nodate=\"1\"" if a["nodate"] else ""}>'
             f'<td>{alias}{body}'
-            f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div></td>'
+            f'<div class="muted" style="font-size:.82em">{a["criterion"]}</div>{evline}</td>'
             + own
             + f'<td class="st"><span class="pill {CLASS[a["state"]]}">{a["state"]}</span>'
               f'{badge}{label}</td>'
@@ -599,9 +653,14 @@ def block(idx, today=None):
             nudge.append((a, f'past its date, {a["deadline"]}'))
         elif not a["due"] and (today - seen).days > NUDGE_UNDATED_DAYS:
             nudge.append((a, f'no date set, on the list since {seen.strftime("%-d %b %Y")}'))
+    # ticked in Asana without evidence: open in every count; listed for
+    # Adriaan once a tick has gone TICKED_DAYS days with no evidence
+    ticked = [a for a in acts if a.get("ticked")]
+    late = [a for a in ticked if a["ticked"].get("at")
+            and (today - datetime.date.fromisoformat(a["ticked"]["at"])).days >= TICKED_DAYS]
     json.dump({"act": n_act, "watch": n_watch, "open": n_act + n_watch,
                "overdue": n_over, "closed": n_ok, "rows": len(acts),
-               "nodate": n_nodate, "nudge": len(nudge)},
+               "nodate": n_nodate, "nudge": len(nudge), "ticked": len(ticked), "ticked_late": len(late)},
               open(os.path.join(REPO, "data", "action_counts.json"), "w",
                    encoding="utf8"), indent=1, sort_keys=True)
     F = lambda k: f'<span data-fig="ACTN.{k}"></span>'   # noqa: E731
@@ -625,6 +684,21 @@ def block(idx, today=None):
             f'<li><a href="#{a["id"]}">{a["title_html"]}</a> &mdash; {a["owner"]} '
             f'<span class="muted">&mdash; {why}</span></li>' for a, why in nudge) + '</ul>'
            if nudge else ': <span class="muted">none today.</span>')
+        + '</div>',
+        # --- ticked in Asana with no evidence, for Adriaan ---------------
+        '  <div class="nudge" id="act-ticked" style="margin:0 0 10px;font-size:.9em">'
+        f'<b>Ticked without evidence</b> ({F("ticked_late")}) '
+        '<span class="muted">&mdash; for Adriaan: Asana tasks ticked complete for '
+        f'<span data-fig="BUILDCFG.actions.ticked_no_evidence_days">{TICKED_DAYS}</span> days or more with no '
+        'Evidence comment or attached file; a tick alone closes nothing, so these stay open '
+        f'({F("ticked")} ticked without evidence in all)</span>'
+        + ('<ul style="margin:4px 0 0 18px;padding:0">' + "".join(
+            f'<li><a href="#{a["id"]}">{a["title_html"]}</a> &mdash; ticked by '
+            f'{html.escape(a["ticked"].get("by") or "not recorded")}, '
+            f'{datetime.date.fromisoformat(a["ticked"]["at"]).strftime("%-d %b %Y")}'
+            + (f' &middot; <a href="{a["asana"]}" target="_blank" rel="noopener">Asana task</a>' if a.get("asana") else "")
+            + '</li>' for a in late) + '</ul>'
+           if late else ': <span class="muted">none today.</span>')
         + '</div>',
         # --- the shape of the work, before anything is opened ------------
         '  <div class="actstats">',

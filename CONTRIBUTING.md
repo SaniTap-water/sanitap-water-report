@@ -1083,10 +1083,19 @@ renders from `data/asana_pull.json`. `tools/asana_setup.py` is the only script t
 it after adding an action to `data/action_details.json`, with `--complete <act-id>` to complete a task.
 The token lives in `~/.config/sanitap/asana_token`; never print or commit it.
 
-Completing a task in Asana does not close the action: the page shows "done in Asana, evidence pending"
-until the evidence its closes-when names is recorded under `evidence` in `data/action_owners.json` (or a
-build condition is satisfied). `tools/check_asana.py` fails the publish on an open action without exactly
-one task, an owner or deadline differing from Asana, or an action closed without evidence.
+Completing a task in Asana does not close the action on its own (Adriaan Mol, 5 Oct 2026). A task counts as
+closed only if it is completed **and** carries evidence: a comment starting "Evidence:" or an attached file.
+`tools/asana_pull.py` reads every completed task's history, comments and attachments and writes the evidence
+(text or file name, author, date, task link) into `evidence` in `data/action_owners.json`, marked
+`"from": "asana"`; an entry recorded in the repository by hand is never overwritten, and an Asana entry is
+removed if the task is reopened or its evidence deleted. A tick alone shows in amber as "ticked in Asana, no
+evidence yet", with who ticked it and when, and stays open in every count; after
+`actions.ticked_no_evidence_days` (7) days it is also listed under "Ticked without evidence" for Adriaan. Every
+closed action shows an evidence line (Asana comment or file, repository entry, or the build's own condition)
+linked to its task. `tools/check_asana.py` fails the publish on an open action without exactly
+one task, an owner or deadline differing from Asana, or an action closed without an evidence source (an
+Evidence comment or file on the task, a repository entry, or a build condition met) or without its evidence
+line, and on a tick shown as anything but open and amber.
 
 Tasks are matched by gid (`data/asana_map.json`), never by name. Each action's name is a plain
 title in `data/action_owners.json` ("title"): a verb first, about twelve words, codes only in brackets

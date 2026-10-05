@@ -778,5 +778,10 @@
   "detail": "<b>Run the managed Antananarivo kiosk through the SDWS 1 people-served method.</b> The kiosk (water system <span class=\"mono\">1125843376</span>, water point <span class=\"mono\">1125843383</span>) is in the managed portfolio, but its people served are not yet allocated: people served come only from the SDWS 1 method at its pinned commit, and the kiosk has not been through it. Until then the managed people-served figures show it as not yet allocated, and Endur&rsquo;O&rsquo;s programme people figure is never added in its place (decision of 5 Oct 2026). Closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it. <span class=\"muted\">Raised in the <a href=\"#enduro-card\">Endur&rsquo;O card</a>.</span>",
   "owner": "Adriaan Mol",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>17 Oct 2026</b><br><span class=\"muted\">a people-served figure for the kiosk from the pinned run, shown on the page</span>"
+ },
+ "act-deichmann-ar-send": {
+  "detail": "<b>Deichmann Foundation (Wort und Tat) annual report 2025: send the water checklist and the photo link to acht ideen.</b> Asked for by Jakob Adolf (acht ideen), email &ldquo;Hi Leoni, Hi Adriaan&rdquo;, 30 Sep 2026, by Sunday evening. The task was added in Asana on 2 Oct 2026 and is mirrored here so its closure is held to the same evidence rule. Closes when email sent to Jakob Adolf and Cathrin Schneider (acht ideen) with the water checklist (Checkliste_Madagaskar_Water_SaniTap_2026-10-02.docx) and a link to the Photos folder for the Deichmann (Wort und Tat) annual report 2025.",
+  "owner": "Adriaan Mol",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>4 Oct 2026</b><br><span class=\"muted\">the email sent, with the checklist and the photo link</span>"
  }
 }

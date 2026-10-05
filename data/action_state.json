@@ -6,7 +6,7 @@
   "data": 49,
   "decision": 56,
   "form": 7,
-  "none": 31
+  "none": 32
  },
  "state": {
   "act-2026-recovery": {
@@ -205,6 +205,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
+  },
+  "act-deichmann-ar-send": {
+   "evaluated": "2026-10-05",
+   "evidence": "no data predicate: the email is outside anything the build reads",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: the email is outside anything the build reads",
    "when_satisfied": "OK"
   },
   "act-design-change-q1-2027": {

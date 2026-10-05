@@ -2118,3 +2118,22 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   tiles add up (MadAvance — all = excl. Marolinta + Marolinta only; All SaniTap = MadAvance — all while the kiosk
   is not yet allocated). On the published page it failed (Marolinta only 3,130 against 1,354 in the tile, partner
   table and impact line; 124,356 + 3,130 ≠ 125,710); after the fix it passes.
+
+## 5 Oct 2026 (c) — Adriaan Mol: an Asana tick closes nothing without evidence
+
+- **Decided:** a task counts as closed only if it is completed **and** carries evidence — a comment starting
+  "Evidence:" or an attached file (data/decisions.json `asana-evidence-2026-10-05`).
+- **Built:** tools/asana_pull.py reads each completed task's history, comments and attachments; the evidence (text
+  or file name, author, date, task link) goes into data/action_owners.json `evidence`, marked `from: asana`, never
+  over a repository entry. A tick without evidence shows in amber, "ticked in Asana, no evidence yet — by <who>,
+  <date>", stays open in every count, and after 7 days (build_config `actions.ticked_no_evidence_days`) is listed
+  under "Ticked without evidence" for Adriaan. Every closed action shows an evidence line linked to its task.
+  tools/check_asana.py fails a closed action without an evidence source (Asana comment or file, repository entry, or
+  build condition) or without its evidence line, and a tick shown as closed or without the amber mark.
+- **Tested:** act-deichmann-ar-send (completed 5 Oct, Evidence comment by Adriaan Mol) closes on that comment; it was
+  added to the report as an action, mirrored from its Asana task. act-sdws18-james-rulings, act-pou-form-threshold
+  and act-transcription-round are completed in Asana with no Evidence comment or file; each keeps the evidence
+  recorded in the repository on 2 Oct (and the first and last a satisfied build condition), so each stays closed,
+  now with its evidence line. In a scratch copy, the Deichmann task stripped of its comment stayed open in amber and
+  entered the 7-day list; forcing it closed failed the check four ways; removing an evidence line failed it.
+- New Asana tasks' descriptions say how to give evidence; existing task descriptions were not edited.
