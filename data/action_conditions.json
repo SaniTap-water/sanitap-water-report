@@ -1176,5 +1176,41 @@
   "says": "no data predicate: the email is outside anything the build reads",
   "closure": "manual",
   "closes_when": "email sent to Jakob Adolf and Cathrin Schneider (acht ideen) with the water checklist (Checkliste_Madagaskar_Water_SaniTap_2026-10-02.docx) and a link to the Photos folder for the Deichmann (Wort und Tat) annual report 2025"
+ },
+ "act-dfcd-warm-reintro": {
+  "kind": "none",
+  "says": "no data predicate: a meeting and an introduction, outside anything the build reads",
+  "closure": "manual",
+  "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested"
+ },
+ "act-dfcd-concept-note": {
+  "kind": "none",
+  "says": "no data predicate: the note lives in a SharePoint folder the build does not list",
+  "closure": "manual",
+  "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell"
+ },
+ "act-dfcd-cfm-sounding": {
+  "kind": "none",
+  "says": "no data predicate: an email exchange outside anything the build reads",
+  "closure": "manual",
+  "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded"
+ },
+ "act-dfcd-nl-outreach": {
+  "kind": "none",
+  "says": "no data predicate: calls and letters outside anything the build reads",
+  "closure": "manual",
+  "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined"
+ },
+ "act-naturano-meter-data": {
+  "kind": "none",
+  "says": "no data predicate yet: the build does not read NatuRano's meter data",
+  "closure": "evidence",
+  "closes_when": "read access in place to NatuRano's meter transaction data (sites, meters, monthly volumes and revenue for <span class=\"mono\">12+</span> months, price per 20 L, collection rate, gaps) and the coverage recorded"
+ },
+ "act-carbon-clause-wording": {
+  "kind": "none",
+  "says": "no data predicate: the wording arrives by email",
+  "closure": "evidence",
+  "closes_when": "James sends standard carbon-rights and verification-access wording for (a) Endur'O commune contracts and (b) customer card signup terms"
  }
 }

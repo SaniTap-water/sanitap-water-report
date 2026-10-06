@@ -1,5 +1,5 @@
 {
- "counted": "2026-10-05",
+ "counted": "2026-10-06",
  "metrics": {
   "calls_no_repair_7d_worst_of_two_editions": {
    "says": "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)",
@@ -29,7 +29,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 17
+   "value": 18
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -254,7 +254,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 38
+   "value": 37
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

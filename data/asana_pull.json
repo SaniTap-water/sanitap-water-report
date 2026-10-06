@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-05T16:53:12+00:00",
+ "pulled_at": "2026-10-06T06:41:38+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -50,7 +50,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317101",
-   "modified_at": "2026-10-05T11:31:55.467Z"
+   "modified_at": "2026-10-05T21:00:30.123Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -147,6 +147,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994926599",
    "modified_at": "2026-10-02T14:53:16.324Z"
+  },
+  "act-carbon-clause-wording": {
+   "gid": "1219205024224853",
+   "name": "Send standard wording on carbon rights and verifier access for Endur'O commune contracts and card signup terms [act-carbon-clause-wording]",
+   "title": "Send standard wording on carbon rights and verifier access for Endur'O commune contracts and card signup terms",
+   "owner": "James Walker",
+   "assignee_gid": "1213895542888866",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205024224853",
+   "modified_at": "2026-10-06T06:00:44.253Z"
   },
   "act-carbon-year-basis": {
    "gid": "1219100770799084",
@@ -324,6 +336,54 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058162842",
    "modified_at": "2026-10-02T14:53:31.599Z"
+  },
+  "act-dfcd-cfm-sounding": {
+   "gid": "1219213949192396",
+   "name": "Sound out Climate Fund Managers (Darron Johnson) on a Climate Investor Two follow-on and in-kind sponsor equity [act-dfcd-cfm-sounding]",
+   "title": "Sound out Climate Fund Managers (Darron Johnson) on a Climate Investor Two follow-on and in-kind sponsor equity",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192396",
+   "modified_at": "2026-10-06T06:38:36.439Z"
+  },
+  "act-dfcd-concept-note": {
+   "gid": "1219202274226108",
+   "name": "Write the 2-page DFCD Origination Facility concept note [act-dfcd-concept-note]",
+   "title": "Write the 2-page DFCD Origination Facility concept note",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219202274226108",
+   "modified_at": "2026-10-06T06:00:44.133Z"
+  },
+  "act-dfcd-nl-outreach": {
+   "gid": "1219213949460939",
+   "name": "Dutch-side DFCD outreach by Claude Mansell: SNV intro call, VEI letter of intent, senior intros via Rik [act-dfcd-nl-outreach]",
+   "title": "Dutch-side DFCD outreach by Claude Mansell: SNV intro call, VEI letter of intent, senior intros via Rik",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949460939",
+   "modified_at": "2026-10-06T06:02:19.528Z"
+  },
+  "act-dfcd-warm-reintro": {
+   "gid": "1219197725175767",
+   "name": "Meet Jonty Rawlins (ex-DFCD, now Platcorp) for advice and an intro to the current DFCD Africa lead [act-dfcd-warm-reintro]",
+   "title": "Meet Jonty Rawlins (ex-DFCD, now Platcorp) for advice and an intro to the current DFCD Africa lead",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219197725175767",
+   "modified_at": "2026-10-06T06:00:43.956Z"
   },
   "act-down-no-repair": {
    "gid": "1219100994936725",
@@ -743,7 +803,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105998053",
-   "modified_at": "2026-10-05T11:27:22.772Z"
+   "modified_at": "2026-10-05T21:00:29.315Z"
   },
   "act-mar-which-form": {
    "gid": "1219101110966173",
@@ -980,10 +1040,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-02",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142",
-   "modified_at": "2026-10-02T14:54:51.972Z"
+   "modified_at": "2026-10-06T05:05:49.613Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-06",
+   "evidence": {
+    "kind": "comment",
+    "text": "Form 0ac68d8274d24f54af0c28b29119b77d, \"Piped Water || Water Quality Testing_ SDWS 3__ Result\", carries the \"Fer > 0.2 mg/l\" calculation (36d19995…). mWater restored this form on 23 Sep (John Feighery, \"Re: Piped Water survey\"). It was repaired to rev 116 the same day. It is now at rev 120 (build snapshot of 5 Oct; the MCP does not report the revision). No email gives the backup date or the revision it was restored to.\n\nThe 26 and 27 Sep \"replies from mWater support\" are mWater's daily unread reminders. They quote Lanja's own message: \"it was the calculation Fer > 0.2 mg/l who was the problem. I tried the backup and it works fine now\". That means MadAvance's organisational backup runs again. It does not mean a form was restored from a backup.\n\nNothing was lost. Checked read-only on 6 Oct against our rev 110 copy (16 Sep) and the snapshots at rev 116, 119 and 120. All 22 questions, their choices, the Temperature and pH validations, the French text on 1.2.1–1.2.3 and all 17 calculations are present.\n\n- \"Fer > 0.2 mg/l\" had no condition at rev 109 and 110 (when: null). It now reads \"If Iron > 0.2 Then 1 Else 0\", as its label says.\n- The Malagasy locale on Entretien préventif (de26d89a, rev 502 since 21 Sep, locales en and fr) was never added, so it was not lost. That is still act-mwater-mg-locale.\n- The SDWS 3 operating-status question (OPSTATUS) was added on 29 Sep, after the restore, on the sampling form 43c96af4. It is present live.\n- None of the 13 snapshot forms changed revision between 26 and 28 Sep.\n\nFull write-up: Central Data Hub - Water Documents/Evidence/mWater/form-restore-check-2026-10-06.md",
+    "author": "Adriaan Mol",
+    "date": "2026-10-06",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142"
+   }
   },
   "act-mwater-mg-locale": {
    "gid": "1219101106734654",
@@ -1020,6 +1089,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
    "modified_at": "2026-10-02T16:28:31.920Z"
+  },
+  "act-naturano-meter-data": {
+   "gid": "1219213949192332",
+   "name": "Get access to NatuRano's meter transaction data as revenue evidence [act-naturano-meter-data]",
+   "title": "Get access to NatuRano's meter transaction data as revenue evidence",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-31",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192332",
+   "modified_at": "2026-10-06T06:00:43.941Z"
   },
   "act-no-works-record": {
    "gid": "1219101111479145",
@@ -1073,13 +1154,13 @@
    "gid": "1219101111903363",
    "name": "Move photos filed under the wrong question to the right one [act-photo-misfiled]",
    "title": "Move photos filed under the wrong question to the right one",
-   "owner": "Adriaan Mol",
-   "assignee_gid": "1132514258683237",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363",
-   "modified_at": "2026-10-02T14:55:00.275Z"
+   "modified_at": "2026-10-06T05:29:19.052Z"
   },
   "act-piped-baseline-other-systems": {
    "gid": "1219128940073346",
@@ -1139,7 +1220,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111799659",
-   "modified_at": "2026-10-05T11:27:22.785Z"
+   "modified_at": "2026-10-05T21:00:29.567Z"
   },
   "act-point-use-round-one": {
    "gid": "1219100996389355",
@@ -1358,7 +1439,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106519483",
-   "modified_at": "2026-10-05T11:27:22.816Z"
+   "modified_at": "2026-10-05T21:00:29.462Z"
   },
   "act-repair-time": {
    "gid": "1219101112069110",
@@ -1796,7 +1877,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101271279275",
-   "modified_at": "2026-10-05T11:27:22.777Z"
+   "modified_at": "2026-10-05T21:00:29.656Z"
   }
  },
  "duplicates": {},

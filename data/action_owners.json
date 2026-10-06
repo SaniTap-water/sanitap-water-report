@@ -755,6 +755,42 @@
    "owner": "Adriaan Mol",
    "title": "Send the Deichmann annual report water checklist and photo link to acht ideen",
    "source": "Jakob Adolf, \"Hi Leoni, Hi Adriaan\", 30 Sep 2026"
+  },
+  "act-dfcd-warm-reintro": {
+   "deadline": "2026-10-30",
+   "owner": "Adriaan Mol",
+   "source": "chat 5 Oct 2026, DFCD reapplication; Asana task 1219197725175767",
+   "title": "Meet Jonty Rawlins (ex-DFCD, now Platcorp) for advice and an intro to the current DFCD Africa lead"
+  },
+  "act-dfcd-concept-note": {
+   "deadline": "2026-11-13",
+   "owner": "Adriaan Mol",
+   "source": "chat 5 Oct 2026; Asana task 1219202274226108",
+   "title": "Write the 2-page DFCD Origination Facility concept note"
+  },
+  "act-dfcd-cfm-sounding": {
+   "deadline": "2026-11-30",
+   "owner": "Adriaan Mol",
+   "source": "chat 5 Oct 2026 (a US$13-15m Climate Investor Two follow-on); draft email in Outlook Drafts 6 Oct; reassigned from Andrew Tanswell on 6 Oct 2026; Asana task 1219213949192396",
+   "title": "Sound out Climate Fund Managers (Darron Johnson) on a Climate Investor Two follow-on and in-kind sponsor equity"
+  },
+  "act-dfcd-nl-outreach": {
+   "deadline": "2026-11-13",
+   "owner": "Claude Mansell",
+   "source": "chat 6 Oct 2026; Asana task 1219213949460939, assigned to Adriaan because Claude Mansell has no Asana account",
+   "title": "Dutch-side DFCD outreach by Claude Mansell: SNV intro call, VEI letter of intent, senior intros via Rik"
+  },
+  "act-naturano-meter-data": {
+   "deadline": "2026-10-31",
+   "owner": "Adriaan Mol",
+   "source": "chat 6 Oct 2026; request to Ntsoa; Asana task 1219213949192332",
+   "title": "Get access to NatuRano's meter transaction data as revenue evidence"
+  },
+  "act-carbon-clause-wording": {
+   "deadline": "2026-10-16",
+   "owner": "James Walker",
+   "source": "Jan de Graaf, 2 Oct 2026; re-proposed in the checks of 2 and 5 Oct; Asana task 1219205024224853",
+   "title": "Send standard wording on carbon rights and verifier access for Endur'O commune contracts and card signup terms"
   }
  },
  "orphan_rows": {
@@ -782,8 +818,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 61,
-   "evidence": 67,
-   "manual": 29
+   "evidence": 69,
+   "manual": 33
   },
   "actions": {
    "act-2026-recovery": {
@@ -869,6 +905,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-carbon-clause-wording": {
+    "type": "evidence",
+    "closes_when": "James sends standard carbon-rights and verification-access wording for (a) Endur'O commune contracts and (b) customer card signup terms",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
    },
    "act-carbon-year-basis": {
     "type": "evidence",
@@ -967,6 +1010,34 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-26"
+   },
+   "act-dfcd-cfm-sounding": {
+    "type": "manual",
+    "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
+   },
+   "act-dfcd-concept-note": {
+    "type": "manual",
+    "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
+   },
+   "act-dfcd-nl-outreach": {
+    "type": "manual",
+    "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
+   },
+   "act-dfcd-warm-reintro": {
+    "type": "manual",
+    "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
    },
    "act-down-no-repair": {
     "type": "auto",
@@ -1380,6 +1451,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
+   },
+   "act-naturano-meter-data": {
+    "type": "evidence",
+    "closes_when": "read access in place to NatuRano's meter transaction data (sites, meters, monthly volumes and revenue for <span class=\"mono\">12+</span> months, price per 20 L, collection rate, gaps) and the coverage recorded",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
    },
    "act-no-works-record": {
     "type": "auto",
@@ -2194,6 +2272,19 @@
     "source": "Adriaan Mol to Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", sent 30 Sep 2026 11:38",
     "summary": "Superseded by act-ralf-meter-install-register. The test dispenses were removed from the Endur’O forms on 30 Sep 2026 because the smart tap setup app binds each meter to its water point; the binding is read from the app’s installation register once Curtech exposes it.",
     "ref": "data/decisions.json"
+   },
+   "act-mwater-backup-restore-check": {
+    "recorded_on": "2026-10-06",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-06",
+    "summary": "Form 0ac68d8274d24f54af0c28b29119b77d, \"Piped Water || Water Quality Testing_ SDWS 3__ Result\", carries the \"Fer > 0.2 mg/l\" calculation (36d19995…). mWater restored this form on 23 Sep (John Feighery, \"Re: Piped Water survey\"). It was repaired to rev 116 the same day. It is now at rev 120 (build snapshot of 5 Oct; the MCP does not report the revision). No email gives the backup date or the revision it was restored to.\n\nThe 26 and 27 Sep \"replies from mWater support\" are mWater's daily unread reminders. They quote Lanja's own message: \"it was the calculation Fer > 0.2 mg/l who was the problem. I tried the backup and it works fine now\". That means MadAvance's organisational backup runs again. It does not mean a form was restored from a backup.\n\nNothing was lost. Checked read-only on 6 Oct against our rev 110 copy (16 Sep) and the snapshots at rev 116, 119 and 120. All 22 questions, their choices, the Temperature and pH validations, the French text on 1.2.1–1.2.3 and all 17 calculations are present.\n\n- \"Fer > 0.2 mg/l\" had no condition at rev 109 and 110 (when: null). It now reads \"If Iron > 0.2 Then 1 Else 0\", as its label says.\n- The Malagasy locale on Entretien préventif (de26d89a, rev 502 since 21 Sep, locales en and fr) was never added, so it was not lost. That is still act-mwater-mg-locale.\n- The SDWS 3 operating-status question (OPSTATUS) was added on 29 Sep, after the restore, on the sampling form 43c96af4. It is present live.\n- None of the 13 snapshot forms changed revision between 26 and 28 Sep.\n\nFull write-up: Central Data Hub - Water Documents/Evidence/mWater/form-restore-check-2026-10-06.md",
+    "author": "Adriaan Mol",
+    "date": "2026-10-06",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142",
+    "task": "1219101269792142",
+    "from": "asana"
    },
    "act-pou-form-threshold": {
     "recorded_on": "2026-10-02",

@@ -783,5 +783,35 @@
   "detail": "<b>Deichmann Foundation (Wort und Tat) annual report 2025: send the water checklist and the photo link to acht ideen.</b> Asked for by Jakob Adolf (acht ideen), email &ldquo;Hi Leoni, Hi Adriaan&rdquo;, 30 Sep 2026, by Sunday evening. The task was added in Asana on 2 Oct 2026 and is mirrored here so its closure is held to the same evidence rule. Closes when email sent to Jakob Adolf and Cathrin Schneider (acht ideen) with the water checklist (Checkliste_Madagaskar_Water_SaniTap_2026-10-02.docx) and a link to the Photos folder for the Deichmann (Wort und Tat) annual report 2025.",
   "owner": "Adriaan Mol",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>4 Oct 2026</b><br><span class=\"muted\">the email sent, with the checklist and the photo link</span>"
+ },
+ "act-dfcd-warm-reintro": {
+  "detail": "<b>Meet Jonty Rawlins (ex-DFCD, now Platcorp) for advice and a warm introduction to the current DFCD Africa lead.</b> <span class=\"muted\">Source: chat 5 Oct 2026, DFCD reapplication.</span>",
+  "owner": "Adriaan Mol",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>30 Oct 2026</b><br><span class=\"muted\">meeting held, DFCD Africa lead named</span>"
+ },
+ "act-dfcd-concept-note": {
+  "detail": "<b>Write the two-page concept note for the DFCD Origination Facility.</b> <span class=\"muted\">Source: chat 5 Oct 2026.</span>",
+  "owner": "Adriaan Mol",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>13 Nov 2026</b><br><span class=\"muted\">concept note saved and shared</span>"
+ },
+ "act-dfcd-cfm-sounding": {
+  "detail": "<b>Sound out Climate Fund Managers (Darron Johnson) on a Climate Investor Two follow-on, and on whether the sponsor equity can be partly in kind.</b> <span class=\"muted\">Source: chat 5 Oct 2026; draft email in Outlook Drafts 6 Oct; reassigned from Andrew Tanswell on 6 Oct 2026.</span>",
+  "owner": "Adriaan Mol",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>30 Nov 2026</b><br><span class=\"muted\">CFM's view recorded</span>"
+ },
+ "act-dfcd-nl-outreach": {
+  "detail": "<b>Dutch-side DFCD outreach: an SNV introduction call, a VEI letter of intent, and senior introductions (FMO, WWF-NL) through Rik van Terwisga.</b> <span class=\"muted\">Source: chat 6 Oct 2026.</span>",
+  "owner": "Claude Mansell",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>13 Nov 2026</b><br><span class=\"muted\">SNV call, VEI answer and Rik's introductions recorded</span>"
+ },
+ "act-naturano-meter-data": {
+  "detail": "<b>Get read access to NatuRano&rsquo;s meter transaction data as revenue evidence (request to Ntsoa).</b> <span class=\"muted\">Source: chat 6 Oct 2026; request to Ntsoa.</span>",
+  "owner": "Adriaan Mol",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">read access in place, coverage recorded</span>"
+ },
+ "act-carbon-clause-wording": {
+  "detail": "<b>Send standard wording on carbon rights and verifier access for Endur&rsquo;O commune contracts and the customer card signup terms.</b> <span class=\"muted\">Source: Jan de Graaf, 2 Oct 2026; re-proposed in the checks of 2 and 5 Oct.</span>",
+  "owner": "James Walker",
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>16 Oct 2026</b><br><span class=\"muted\">wording received for (a) and (b)</span>"
  }
 }

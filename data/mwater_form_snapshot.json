@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-05",
+ "fetched": "2026-10-06",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -7910,7 +7910,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 502,
+   "rev": 505,
    "state": "active"
   },
   "repair-after-breakdown": {
@@ -8889,7 +8889,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 391,
+   "rev": 392,
    "state": "active"
   },
   "stroke-meter": {
@@ -9625,7 +9625,7 @@
      "fr": "Date et heure de l'échantillonnage (selon la fiche d'échantillonnage)",
      "group": null,
      "id": "b25338d820d94639adb3bcf4c67e4c33",
-     "required": false,
+     "required": true,
      "type": "DateQuestion"
     },
     {
@@ -9809,7 +9809,7 @@
      "type": "TextQuestion"
     }
    ],
-   "rev": 120,
+   "rev": 124,
    "state": "active"
   },
   "water-quality-sampling-sdws3": {
