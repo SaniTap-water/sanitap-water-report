@@ -2137,3 +2137,23 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   now with its evidence line. In a scratch copy, the Deichmann task stripped of its comment stayed open in amber and
   entered the 7-day list; forcing it closed failed the check four ways; removing an evidence line failed it.
 - New Asana tasks' descriptions say how to give evidence; existing task descriptions were not edited.
+
+## 6 Oct 2026 — Adriaan Mol: the non-calendar photographs stay where they are
+
+- **Decided:** the 193 photographs filed on a calendar question that are not calendars stay where they are in
+  mWater; nobody moves them. The report keeps excluding them using the reviewed list,
+  data/calendar_not_calendar.csv (new `review` column). No "left to fix" count is kept
+  (data/decisions.json `act-photo-misfiled`).
+- **Restored:** 13 of the 206 flagged photographs are real calendars (by eye, 6 Oct 2026). They are marked
+  "confirmed calendar (by eye, 6 Oct 2026)" and count in every calendar figure again; the other 193 are marked
+  "reviewed: not a calendar, left in place by decision 6 Oct 2026".
+- **Cause fixed instead:** hints in English and French added on 6 Oct to the calendar photo questions
+  (preventive maintenance de26d89a: 2.15.5, 2.15.6; repair 958b4763: 1.3.1.3); Angelo briefs the teams
+  (act-calendar-photo-briefing, Asana 1219205037087065, due 23 Oct).
+- **Closed:** act-photo-misfiled, now a decision-kind action closing on this entry; the photographs_misfiled
+  metric is retired. Reviewed list: Central Data Hub - Water Documents/Evidence/mWater/misfiled-photos-2026-10-06.xlsx.
+
+## 6 Oct 2026 (b) — Adriaan Mol: form 0ac68d82 (piped water quality result) changed in the designer
+
+- Made by hand in the mWater designer: 1.2.2 sampling date required again; arsenic and fluoride accept 0 (≥ 0);
+  manganese calculation threshold 0.05 instead of 0.5 (data/decisions.json `form-0ac68d82-designer-2026-10-06`).

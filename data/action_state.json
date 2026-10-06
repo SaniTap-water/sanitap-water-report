@@ -3,10 +3,10 @@
  "kinds": {
   "artefact": 10,
   "children": 3,
-  "data": 49,
-  "decision": 56,
+  "data": 48,
+  "decision": 57,
   "form": 7,
-  "none": 38
+  "none": 39
  },
  "state": {
   "act-2026-recovery": {
@@ -81,6 +81,14 @@
    "kind": "decision",
    "satisfied": false,
    "says": "closes when (1) SOP-MAD-SDWS27-CalendrierGardien v1.8 makes the evidence a seeded random sample per stratum, read independently by two people with the round-1 rules, replacing the v1.7 machine-reading wording; (2) the 2026 sample is drawn, transcribed by two readers, and the days-not-operational rate is published with a confidence interval at the methodology\u2019s sampling confidence and the agreement between the readers",
+   "when_satisfied": "OK"
+  },
+  "act-calendar-photo-briefing": {
+   "evaluated": "2026-10-06",
+   "evidence": "no data predicate: the briefing happens in the field",
+   "kind": "none",
+   "satisfied": null,
+   "says": "no data predicate: the briefing happens in the field",
    "when_satisfied": "OK"
   },
   "act-calendar-v13": {
@@ -192,7 +200,7 @@
   },
   "act-decide-how-treat-67": {
    "evaluated": "2026-10-06",
-   "evidence": "points_without_readable_calendar = 84 (points whose calendar photographs cannot be read); target == 0",
+   "evidence": "points_without_readable_calendar = 83 (points whose calendar photographs cannot be read); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no point is left with photographs that cannot be read",
@@ -791,11 +799,12 @@
    "when_satisfied": "OK"
   },
   "act-photo-misfiled": {
+   "closed_since": "2026-10-06",
    "evaluated": "2026-10-06",
-   "evidence": "photographs_misfiled = 206 (photographs filed on a calendar question that are not calendars); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when no photograph filed on a calendar question is something else",
+   "evidence": "decided 2026-10-06 by Adriaan Mol, COO SaniTap: The 193 photographs filed on a calendar question that are not calendars stay where they are in mWater; nobody moves them. The report keeps excluding them using the reviewed list, data/calendar_not_calendar.csv, where each is marked \"reviewed: not a calendar, left in place by decision 6 Oct 2026\". The 13 flagged photographs found on review to be real calendars are marked \"confirmed calendar (by eye, 6 Oct 2026)\" and count in every calendar figure again. No count of photographs left to fix is kept. The cause is fixed instead: on 6 Oct 2026 hints in English and French were added to the calendar photo questions (preventive maintenance form de26d89a: 2.15.5 and 2.15.6; repair form 958b4763: 1.3.1.3), and Angelo briefs the teams (act-calendar-photo-briefing, Asana 1219205037087065, due 23 Oct 2026). Evidence: Reviewed by eye 6 Oct 2026: 206 flagged, 13 real calendars restored, 193 excluded via the reviewed list and left in place by decision; form hints added 6 Oct; list at Central Data Hub - Water Documents/Evidence/mWater/misfiled-photos-2026-10-06.xlsx.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-piped-baseline-other-systems": {
@@ -1217,7 +1226,7 @@
   },
   "act-undatable": {
    "evaluated": "2026-10-06",
-   "evidence": "points_without_readable_calendar = 84 (points whose calendar photographs cannot be read); target == 0",
+   "evidence": "points_without_readable_calendar = 83 (points whose calendar photographs cannot be read); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when every point with calendar photographs has one that can be read",

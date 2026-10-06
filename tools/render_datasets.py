@@ -117,6 +117,8 @@ def block():
         if path[-1].endswith(".csv"):
             import csv as _csv, collections as _co
             rows = list(_csv.DictReader(open(os.path.join(REPO, *path), encoding="utf8")))
+            if name == "NOTCAL":         # rows confirmed by eye as calendars are not in the set
+                rows = [r for r in rows if not r.get("review", "").startswith("confirmed calendar")]
             if name == "NOUSABLE":
                 doc = {"total": len(rows),
                        "by_category": dict(sorted(_co.Counter(r["category"] for r in rows).items()))}

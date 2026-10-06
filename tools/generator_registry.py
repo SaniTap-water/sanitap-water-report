@@ -232,7 +232,6 @@ GENERATED = {
     'METRICS.marolinta_rehabs_final': 'render_datasets',
     'METRICS.marolinta_three_points_no_photograph': 'render_datasets',
     'METRICS.moramanga_draft_records': 'render_datasets',
-    'METRICS.photographs_misfiled': 'render_datasets',
     'METRICS.point_742896839_in_register': 'render_datasets',
     'METRICS.points_no_2026_calendar': 'render_datasets',
     'METRICS.points_no_calendar_ever': 'render_datasets',

@@ -791,6 +791,12 @@
    "owner": "James Walker",
    "source": "Jan de Graaf, 2 Oct 2026; re-proposed in the checks of 2 and 5 Oct; Asana task 1219205024224853",
    "title": "Send standard wording on carbon rights and verifier access for Endur'O commune contracts and card signup terms"
+  },
+  "act-calendar-photo-briefing": {
+   "deadline": "2026-10-23",
+   "owner": "Angelo Nahavitatsara",
+   "source": "Adriaan Mol, decision of 6 Oct 2026 on the non-calendar photographs; Asana task 1219205037087065",
+   "title": "Brief the maintenance teams: only the paper calendar goes under the calendar photo question"
   }
  },
  "orphan_rows": {
@@ -817,9 +823,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 61,
-   "evidence": 69,
-   "manual": 33
+   "auto": 60,
+   "evidence": 70,
+   "manual": 34
   },
   "actions": {
    "act-2026-recovery": {
@@ -884,6 +890,13 @@
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-02"
+   },
+   "act-calendar-photo-briefing": {
+    "type": "manual",
+    "closes_when": "Angelo confirms in writing that the Fort-Dauphin and Maroantsetra maintenance teams were briefed (date, who): only the paper calendar goes under the calendar photo question; pump and site photos go under \"Photos showing the pump\" (2.11.2 on preventive maintenance, 2.1.11.2 / 2.1.11.3 on repair)",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-06"
    },
    "act-calendar-v13": {
     "type": "manual",
@@ -1481,9 +1494,9 @@
     "first_seen": "2026-09-20"
    },
    "act-photo-misfiled": {
-    "type": "auto",
-    "closes_when": "closes when no photograph filed on a calendar question is something else",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "every flagged photograph reviewed by eye and marked in data/calendar_not_calendar.csv, real calendars restored, the rest left in place and excluded via the reviewed list (decision 6 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -2284,6 +2297,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142",
     "task": "1219101269792142",
+    "from": "asana"
+   },
+   "act-photo-misfiled": {
+    "recorded_on": "2026-10-06",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-06",
+    "summary": "Reviewed by eye 6 Oct 2026: 206 flagged, 13 real calendars restored, 193 excluded via the reviewed list and left in place by decision; form hints added 6 Oct; list at Central Data Hub - Water Documents/Evidence/mWater/misfiled-photos-2026-10-06.xlsx",
+    "author": "Adriaan Mol",
+    "date": "2026-10-06",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363",
+    "task": "1219101111903363",
     "from": "asana"
    },
    "act-pou-form-threshold": {

@@ -29,7 +29,9 @@ BEGIN = "<!-- BEGIN GENERATED machine-extraction :: tools/render_block.py :: do 
 END = "<!-- END GENERATED machine-extraction -->"
 
 fig = json.load(open(os.path.join(REPO, "data", "calendar_extraction_figures.json")))
-nc = list(csv.DictReader(open(os.path.join(REPO, "data", "calendar_not_calendar.csv"))))
+# rows confirmed by eye as real calendars (6 Oct 2026) stay in the file, marked, and are not in the set
+nc = [r for r in csv.DictReader(open(os.path.join(REPO, "data", "calendar_not_calendar.csv")))
+      if not r.get("review", "").startswith("confirmed calendar")]
 nu = list(csv.DictReader(open(os.path.join(REPO, "data", "calendar_no_usable_image.csv"))))
 cov = list(csv.DictReader(open(os.path.join(REPO, "data", "calendar_year_coverage.csv"))))
 SELP = os.path.join(REPO, "transcription", "validation_selection.csv")
@@ -87,6 +89,8 @@ def wp(code):
                     f'{what} for water point {code} in mWater">'
                     f'<span class="mono">{code}</span></a>')
     return f'<span class="mono">{code}</span>'
+confirmed = [r for r in csv.DictReader(open(os.path.join(REPO, "data", "calendar_not_calendar.csv")))
+             if r.get("review", "").startswith("confirmed calendar")]
 acc = [r for r in nc if r["reader"] == "accepted as a calendar"]
 rej = [r for r in nc if r["reader"] == "rejected"]
 byreason = collections.Counter(r["reason"] for r in nc)
@@ -158,7 +162,7 @@ B = f'''<div class="eyebrow" style="margin:18px 0 8px">Machine extraction from t
   <p class="note"><b>What the printed year records is the sheet&rsquo;s edition or print run, not reliably the period it covers</b> &mdash; and the template no longer prints one: from <span class="mono">Template-v1.3</span> onward the year is written on the sheet by the technician who hangs it, <span class="mono">Template-v1.4</span> is the current issue, and on older stock <b>a printed year denotes the print run only</b>. The consequence for coverage is bounded and small: attributing those sheets to the photograph&rsquo;s year instead would move water points with 2026 evidence &mdash; the <span class="mono">2026-dated-sheet basis</span>, every water point the reader read, <span data-fig="POPS.populations['calendar_evidenced_2026'].size"></span> of them in the carbon fleet &mdash; from <b>{G.fig("points_2026", PTS_2026)}</b> to <b>{G.fig("points_2026_reattributed", PTS_2026_REATTR)}</b>, because most of the <b>{G.fig("points_2027_in_2026", PTS_AFFECTED)}</b> points affected already hold another 2026 sheet. The figures here stay on the printed-year basis, which is the conservative one. <span class="muted"><a href="#act-printed-year-meaning">Establish what the printed year is meant to denote.</a> {G.fig("sheets_2024", sy.get("2024", 0))} sheets are 2024, a leap year: on those, 29 February is a real day.</span></p>
   </details>
 
-  <p class="note"><b>{G.fig("not_calendar", len(nc))} of the photographs are not calendars.</b> Every calendar photograph on file was inspected by eye. <b>{G.fig("not_calendar_accepted", len(acc))}</b> of them the reader had accepted as calendars and they are excluded from every figure here; <b>{G.fig("not_calendar_rejected", len(rej))}</b> it had already thrown out. A person holding up a calendar is counted as a calendar, however badly framed. They are listed with water point, question and reason in <span class="mono">data/calendar_not_calendar.csv</span>, and are to be moved to the right question, not deleted &mdash; <span class="muted"><a href="#act-photo-misfiled">move the misfiled photographs to the right question</a>.</span></p>
+  <p class="note"><b>{G.fig("not_calendar", len(nc))} of the photographs are not calendars.</b> Every calendar photograph on file was inspected by eye. <b>{G.fig("not_calendar_accepted", len(acc))}</b> of them the reader had accepted as calendars and they are excluded from every figure here; <b>{G.fig("not_calendar_rejected", len(rej))}</b> it had already thrown out. A person holding up a calendar is counted as a calendar, however badly framed. A second look on 6 October 2026 found <b>{G.fig("confirmed_calendar", len(confirmed))}</b> of the photographs first flagged to be real calendars after all; they are marked as such in <span class="mono">data/calendar_not_calendar.csv</span> and count in every calendar figure again. The rest are listed there with water point, question and reason, and <b>stay where they are in mWater</b> by decision of 6 October 2026: the report excludes them using that reviewed list, and the cause is addressed instead, with hints on the calendar photograph questions and a briefing of the field teams &mdash; <span class="muted"><a href="#act-calendar-photo-briefing">brief the teams on the calendar photograph</a>.</span></p>
 
   <details class="expl"><summary>What the {G.fig("not_calendar", len(nc))} non-calendar photographs are, and which question they sit on</summary>
   <p class="note"><b>{G.fig("reason_signboard", byreason["signboard"])}</b> of the blue &ldquo;Point d&rsquo;Eau Potable et P&eacute;renne&rdquo; signboard, <b>{G.fig("reason_document", byreason["document"])}</b> of a printed document other than a calendar, <b>{G.fig("reason_pump", byreason["pump"])}</b> of a standpipe or pump head, <b>{G.fig("reason_other", byreason["other"])}</b> portraits or site views with no sheet in the frame, and <b>{G.fig("reason_bottle_on_pump", byreason["bottle_on_pump"])}</b> of a sample bottle on a pump platform. By question: <b>{G.fig("q_2_15_5", byq["2.15.5"])}</b> on <span class="mono">2.15.5</span>, <b>{G.fig("q_2_15_6", byq["2.15.6"])}</b> on <span class="mono">2.15.6</span>, <b>{G.fig("q_1_3_1_3", byq["1.3.1.3"])}</b> on <span class="mono">1.3.1.3</span>.</p>

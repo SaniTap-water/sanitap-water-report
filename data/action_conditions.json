@@ -480,12 +480,11 @@
   "says": "closes when the calendar photograph on the repair form is conditional on a calendar being present"
  },
  "act-photo-misfiled": {
-  "kind": "data",
-  "metric": "photographs_misfiled",
-  "op": "==",
-  "says": "closes when no photograph filed on a calendar question is something else",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "What happens to the photographs on calendar questions that are not calendars?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "every flagged photograph reviewed by eye and marked in data/calendar_not_calendar.csv, real calendars restored, the rest left in place and excluded via the reviewed list (decision 6 Oct 2026)"
  },
  "act-piped-usage-survey": {
   "kind": "none",
@@ -1212,5 +1211,11 @@
   "says": "no data predicate: the wording arrives by email",
   "closure": "evidence",
   "closes_when": "James sends standard carbon-rights and verification-access wording for (a) Endur'O commune contracts and (b) customer card signup terms"
+ },
+ "act-calendar-photo-briefing": {
+  "kind": "none",
+  "says": "no data predicate: the briefing happens in the field",
+  "closure": "manual",
+  "closes_when": "Angelo confirms in writing that the Fort-Dauphin and Maroantsetra maintenance teams were briefed (date, who): only the paper calendar goes under the calendar photo question; pump and site photos go under \"Photos showing the pump\" (2.11.2 on preventive maintenance, 2.1.11.2 / 2.1.11.3 on repair)"
  }
 }

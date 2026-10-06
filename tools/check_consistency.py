@@ -1719,7 +1719,16 @@ def main():
               "MISSING", "every excluded image must be named, not just counted")
     elif os.path.exists(figp):
         import csv as _csv2
-        nc = list(_csv2.DictReader(open(ncp)))
+        nc_all = list(_csv2.DictReader(open(ncp)))
+        # every flagged photograph was reviewed by eye on 6 Oct 2026: a confirmed
+        # calendar is restored to every figure, the rest stay excluded and are
+        # left in place in mWater by decision (data/decisions.json act-photo-misfiled)
+        REVIEWED = {"confirmed calendar (by eye, 6 Oct 2026)",
+                    "reviewed: not a calendar, left in place by decision 6 Oct 2026"}
+        unrev = [r for r in nc_all if r.get("review") not in REVIEWED]
+        check("every flagged photograph carries its by-eye review",
+              not unrev, f"all {len(nc_all)} reviewed", f"{len(unrev)} without a review")
+        nc = [r for r in nc_all if not r.get("review", "").startswith("confirmed calendar")]
         fig = json.load(open(figp))
         # the list covers every image that is not a calendar, whether the
         # reader accepted it or threw it out. Only the accepted ones ever
@@ -3083,7 +3092,8 @@ def main():
         import csv as _csv
         _sel = list(_csv.DictReader(open(SELP, encoding="utf8")))
         _cal = json.load(open(CALP, encoding="utf8"))
-        _nc = {r["image_id"] for r in _csv.DictReader(open(NCP, encoding="utf8"))}
+        _nc = {r["image_id"] for r in _csv.DictReader(open(NCP, encoding="utf8"))
+               if not r.get("review", "").startswith("confirmed calendar")}
         _fr = {r["image_id"] for r in _csv.DictReader(open(FRP, encoding="utf8"))}
         _sy = {r["image_id"] for r in _csv.DictReader(open(SYP, encoding="utf8"))}
 

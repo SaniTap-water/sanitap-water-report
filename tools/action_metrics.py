@@ -95,10 +95,9 @@ def _m4():
     return fig.get("points_active_2026_without_evidence") or 434
 
 
-@metric("photographs_misfiled",
-        "photographs filed on a calendar question that are not calendars")
-def _m5():
-    return len(rows("data", "calendar_not_calendar.csv"))
+# photographs_misfiled retired 6 Oct 2026: the non-calendar photographs stay where
+# they are in mWater by decision and are excluded via the reviewed list, so there
+# is nothing left to count down (data/decisions.json act-photo-misfiled)
 
 
 @metric("points_without_readable_calendar",

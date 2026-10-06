@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-06T06:41:38+00:00",
+ "pulled_at": "2026-10-06T13:33:45+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -14,7 +14,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936822648",
-   "modified_at": "2026-10-02T14:53:02.371Z"
+   "modified_at": "2026-10-06T11:54:53.520Z"
   },
   "act-782134540-rehab-record": {
    "gid": "1219100936850606",
@@ -26,7 +26,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
-   "modified_at": "2026-10-02T14:53:03.952Z"
+   "modified_at": "2026-10-06T11:54:53.527Z"
   },
   "act-amboasary-post-works-retest": {
    "gid": "1219128812565674",
@@ -38,7 +38,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128812565674",
-   "modified_at": "2026-10-04T04:46:52.306Z"
+   "modified_at": "2026-10-06T11:55:57.634Z"
   },
   "act-borehole-form-lanja-followups": {
    "gid": "1219109377317101",
@@ -50,7 +50,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317101",
-   "modified_at": "2026-10-05T21:00:30.123Z"
+   "modified_at": "2026-10-06T11:55:57.553Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -62,7 +62,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100771264996",
-   "modified_at": "2026-10-02T14:53:05.524Z"
+   "modified_at": "2026-10-06T11:54:53.520Z"
   },
   "act-cal-working-day-ticks": {
    "gid": "1219100994732884",
@@ -74,7 +74,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994732884",
-   "modified_at": "2026-10-02T14:53:07.135Z"
+   "modified_at": "2026-10-06T11:54:53.545Z"
   },
   "act-calendar-2027-side-list": {
    "gid": "1219109376477976",
@@ -86,7 +86,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109376477976",
-   "modified_at": "2026-10-02T16:28:31.851Z"
+   "modified_at": "2026-10-06T11:57:42.482Z"
   },
   "act-calendar-custody": {
    "gid": "1219101057894822",
@@ -98,7 +98,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057894822",
-   "modified_at": "2026-10-02T14:53:09.345Z"
+   "modified_at": "2026-10-06T11:54:53.504Z"
   },
   "act-calendar-human-sample-annual": {
    "gid": "1219100936878436",
@@ -110,7 +110,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936878436",
-   "modified_at": "2026-10-02T14:53:11.385Z"
+   "modified_at": "2026-10-06T11:54:53.615Z"
+  },
+  "act-calendar-photo-briefing": {
+   "gid": "1219205037087065",
+   "name": "Brief the maintenance teams: only the paper calendar goes under the calendar photo question [act-calendar-photo-briefing]",
+   "title": "Brief the maintenance teams: only the paper calendar goes under the calendar photo question",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205037087065",
+   "modified_at": "2026-10-06T11:58:21.017Z"
   },
   "act-calendar-v13": {
    "gid": "1219101057814836",
@@ -122,7 +134,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057814836",
-   "modified_at": "2026-10-02T14:53:12.973Z"
+   "modified_at": "2026-10-06T11:54:53.775Z"
   },
   "act-call-no-followup": {
    "gid": "1219100770783065",
@@ -134,7 +146,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100770783065",
-   "modified_at": "2026-10-02T14:53:14.654Z"
+   "modified_at": "2026-10-06T11:54:53.557Z"
   },
   "act-call-service-visit": {
    "gid": "1219100994926599",
@@ -146,7 +158,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994926599",
-   "modified_at": "2026-10-02T14:53:16.324Z"
+   "modified_at": "2026-10-06T11:54:53.532Z"
   },
   "act-carbon-clause-wording": {
    "gid": "1219205024224853",
@@ -158,7 +170,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205024224853",
-   "modified_at": "2026-10-06T06:00:44.253Z"
+   "modified_at": "2026-10-06T11:57:09.421Z"
   },
   "act-carbon-year-basis": {
    "gid": "1219100770799084",
@@ -170,7 +182,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100770799084",
-   "modified_at": "2026-10-02T14:53:18.258Z"
+   "modified_at": "2026-10-06T11:56:24.625Z"
   },
   "act-close-eight-2-2": {
    "gid": "1219101057747055",
@@ -182,7 +194,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057747055",
-   "modified_at": "2026-10-02T14:53:19.834Z"
+   "modified_at": "2026-10-06T11:56:24.655Z"
   },
   "act-close-out-6-5": {
    "gid": "1219101110478505",
@@ -194,7 +206,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110478505",
-   "modified_at": "2026-10-02T14:53:21.588Z"
+   "modified_at": "2026-10-06T11:56:24.683Z"
   },
   "act-close-s4-16-car-2": {
    "gid": "1219101110481086",
@@ -206,7 +218,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110481086",
-   "modified_at": "2026-10-02T14:53:23.213Z"
+   "modified_at": "2026-10-06T11:56:24.611Z"
   },
   "act-coddy-naturano-card-spec": {
    "gid": "1219109157880491",
@@ -218,7 +230,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880491",
-   "modified_at": "2026-10-02T16:28:31.337Z"
+   "modified_at": "2026-10-06T11:57:42.429Z"
   },
   "act-coddy-slack-days-card-price": {
    "gid": "1219109294472220",
@@ -230,7 +242,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294472220",
-   "modified_at": "2026-10-02T16:28:31.211Z"
+   "modified_at": "2026-10-06T11:55:57.593Z"
   },
   "act-confirm-india-mark-capacity": {
    "gid": "1219100937078629",
@@ -242,7 +254,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937078629",
-   "modified_at": "2026-10-02T14:53:24.751Z"
+   "modified_at": "2026-10-06T11:56:25.391Z"
   },
   "act-dashboard-gap": {
    "gid": "1219101057943681",
@@ -254,7 +266,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057943681",
-   "modified_at": "2026-10-05T11:27:22.722Z"
+   "modified_at": "2026-10-06T11:56:24.689Z"
   },
   "act-decide-how-treat-67": {
    "gid": "1219100937142786",
@@ -266,7 +278,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937142786",
-   "modified_at": "2026-10-02T14:53:28.406Z"
+   "modified_at": "2026-10-06T11:56:24.857Z"
   },
   "act-define-maintenance-record-becomes": {
    "gid": "1219101110579611",
@@ -278,7 +290,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110579611",
-   "modified_at": "2026-10-02T14:53:29.989Z"
+   "modified_at": "2026-10-06T11:56:24.826Z"
   },
   "act-deichmann-ar-marolinta-photos": {
    "gid": "1219109377306808",
@@ -290,7 +302,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377306808",
-   "modified_at": "2026-10-03T21:00:11.374Z"
+   "modified_at": "2026-10-06T11:57:42.443Z"
   },
   "act-deichmann-ar-photo-consent": {
    "gid": "1219109377307190",
@@ -302,7 +314,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
-   "modified_at": "2026-10-03T21:00:11.588Z"
+   "modified_at": "2026-10-06T11:56:11.432Z"
   },
   "act-deichmann-ar-send": {
    "gid": "1219109294883405",
@@ -335,7 +347,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058162842",
-   "modified_at": "2026-10-02T14:53:31.599Z"
+   "modified_at": "2026-10-06T11:56:24.670Z"
   },
   "act-dfcd-cfm-sounding": {
    "gid": "1219213949192396",
@@ -347,7 +359,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192396",
-   "modified_at": "2026-10-06T06:38:36.439Z"
+   "modified_at": "2026-10-06T11:57:09.436Z"
   },
   "act-dfcd-concept-note": {
    "gid": "1219202274226108",
@@ -359,7 +371,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219202274226108",
-   "modified_at": "2026-10-06T06:00:44.133Z"
+   "modified_at": "2026-10-06T11:57:09.522Z"
   },
   "act-dfcd-nl-outreach": {
    "gid": "1219213949460939",
@@ -371,7 +383,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949460939",
-   "modified_at": "2026-10-06T06:02:19.528Z"
+   "modified_at": "2026-10-06T11:58:21.252Z"
   },
   "act-dfcd-warm-reintro": {
    "gid": "1219197725175767",
@@ -383,7 +395,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219197725175767",
-   "modified_at": "2026-10-06T06:00:43.956Z"
+   "modified_at": "2026-10-06T11:57:09.433Z"
   },
   "act-down-no-repair": {
    "gid": "1219100994936725",
@@ -395,7 +407,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994936725",
-   "modified_at": "2026-10-02T14:53:33.325Z"
+   "modified_at": "2026-10-06T11:57:43.084Z"
   },
   "act-emergency-event-form": {
    "gid": "1219101110474052",
@@ -407,7 +419,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110474052",
-   "modified_at": "2026-10-02T14:53:34.932Z"
+   "modified_at": "2026-10-06T11:57:43.060Z"
   },
   "act-enduro-feed": {
    "gid": "1219101110649225",
@@ -419,7 +431,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110649225",
-   "modified_at": "2026-10-02T14:53:36.448Z"
+   "modified_at": "2026-10-06T11:57:43.037Z"
   },
   "act-enduro-kiosk-jirama-dependence": {
    "gid": "1219109150431532",
@@ -431,7 +443,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150431532",
-   "modified_at": "2026-10-02T16:28:31.952Z"
+   "modified_at": "2026-10-06T11:55:57.503Z"
   },
   "act-enduro-link-wp-systems": {
    "gid": "1219100995254721",
@@ -443,7 +455,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995254721",
-   "modified_at": "2026-10-02T14:53:38.011Z"
+   "modified_at": "2026-10-06T11:57:43.112Z"
   },
   "act-enduro-move-register-fully": {
    "gid": "1219100936889481",
@@ -455,7 +467,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936889481",
-   "modified_at": "2026-10-02T14:53:39.696Z"
+   "modified_at": "2026-10-06T11:57:43.179Z"
   },
   "act-enduro-mwater-import-integration": {
    "gid": "1219109377282329",
@@ -467,7 +479,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377282329",
-   "modified_at": "2026-10-02T16:28:31.667Z"
+   "modified_at": "2026-10-06T11:57:42.534Z"
+  },
+  "act-enduro-nanisana-sellthrough": {
+   "gid": "1219218728385339",
+   "name": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk [act-enduro-nanisana-sellthrough]",
+   "title": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219218728385339",
+   "modified_at": "2026-10-06T13:32:16.899Z"
   },
   "act-enduro-onboard-2-register-sites": {
    "gid": "1219101110601508",
@@ -479,19 +503,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110601508",
-   "modified_at": "2026-10-02T14:53:41.295Z"
+   "modified_at": "2026-10-06T11:57:43.278Z"
   },
   "act-enduro-onboard-5-calibration": {
    "gid": "1219101110593068",
    "name": "Supply a calibration certificate for every installed Endur'O water meter [act-enduro-onboard-5-calibration]",
    "title": "Supply a calibration certificate for every installed Endur'O water meter",
-   "owner": "Ralf van Veenendaal (Curtech)",
+   "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110593068",
-   "modified_at": "2026-10-02T14:53:42.836Z"
+   "modified_at": "2026-10-06T11:57:43.092Z"
   },
   "act-enduro-onboard-6-kiosk-wq": {
    "gid": "1219101058111437",
@@ -503,7 +527,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058111437",
-   "modified_at": "2026-10-02T14:53:44.390Z"
+   "modified_at": "2026-10-06T11:57:43.077Z"
   },
   "act-enduro-onboard-7-piped-sdws27": {
    "gid": "1219100937427920",
@@ -515,7 +539,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937427920",
-   "modified_at": "2026-10-02T14:53:46.079Z"
+   "modified_at": "2026-10-06T11:57:18.012Z"
   },
   "act-enduro-people-source": {
    "gid": "1219101110893755",
@@ -527,7 +551,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755",
-   "modified_at": "2026-10-02T14:53:47.738Z"
+   "modified_at": "2026-10-06T11:57:18.009Z"
   },
   "act-enduro-pricing-strategy-agreement": {
    "gid": "1219109150022438",
@@ -539,7 +563,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438",
-   "modified_at": "2026-10-02T16:28:31.312Z"
+   "modified_at": "2026-10-06T11:55:58.075Z"
   },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
@@ -551,7 +575,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995264223",
-   "modified_at": "2026-10-02T14:53:49.425Z"
+   "modified_at": "2026-10-06T11:57:18.089Z"
   },
   "act-find-source-annual-independent": {
    "gid": "1219101058285868",
@@ -563,7 +587,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868",
-   "modified_at": "2026-10-02T14:53:51.048Z"
+   "modified_at": "2026-10-06T11:57:18.075Z"
   },
   "act-fleet-growth": {
    "gid": "1219101058383094",
@@ -575,7 +599,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058383094",
-   "modified_at": "2026-10-02T14:53:52.636Z"
+   "modified_at": "2026-10-06T11:57:18.032Z"
+  },
+  "act-fluoride-overrange-check": {
+   "gid": "1219208478747022",
+   "name": "Confirm the fluoride photometer model and check the five 1.5 mg/L readings of 15 Aug 2025 [act-fluoride-overrange-check]",
+   "title": "Confirm the fluoride photometer model and check the five 1.5 mg/L readings of 15 Aug 2025",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219208478747022",
+   "modified_at": "2026-10-06T11:44:31.865Z"
   },
   "act-form-consolidation": {
    "gid": "1219101110893781",
@@ -587,7 +623,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893781",
-   "modified_at": "2026-10-02T14:53:54.322Z"
+   "modified_at": "2026-10-06T11:57:18.051Z"
   },
   "act-freeze-estate-map-when": {
    "gid": "1219101105660866",
@@ -599,7 +635,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105660866",
-   "modified_at": "2026-10-02T14:53:55.928Z"
+   "modified_at": "2026-10-06T11:57:17.998Z"
   },
   "act-gaps-doc": {
    "gid": "1219101058491188",
@@ -611,7 +647,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058491188",
-   "modified_at": "2026-10-02T21:00:11.756Z"
+   "modified_at": "2026-10-06T11:57:18.023Z"
+  },
+  "act-gs-devrq121-upload-timing": {
+   "gid": "1219218642162481",
+   "name": "Ask the VVB/Gold Standard whether kit validation results uploaded during design review close comment 1 [act-gs-devrq121-upload-timing]",
+   "title": "Ask the VVB/Gold Standard whether kit validation results uploaded during design review close comment 1",
+   "owner": "James Walker",
+   "assignee_gid": "1213895542888866",
+   "due_on": "2026-10-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219218642162481",
+   "modified_at": "2026-10-06T11:58:20.864Z"
   },
   "act-gs-validation-withdrawal-watch": {
    "gid": "1219100995281694",
@@ -623,7 +671,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995281694",
-   "modified_at": "2026-10-02T14:53:59.152Z"
+   "modified_at": "2026-10-06T11:57:18.284Z"
   },
   "act-hygiene-campaign-2026": {
    "gid": "1219101058479110",
@@ -635,7 +683,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058479110",
-   "modified_at": "2026-10-02T14:54:00.758Z"
+   "modified_at": "2026-10-06T11:57:18.033Z"
   },
   "act-identify-count-institutional-premises": {
    "gid": "1219100937657004",
@@ -647,7 +695,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657004",
-   "modified_at": "2026-10-02T14:54:03.263Z"
+   "modified_at": "2026-10-06T11:58:54.305Z"
   },
   "act-india-mark-cap-james": {
    "gid": "1219101058577051",
@@ -659,7 +707,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058577051",
-   "modified_at": "2026-10-02T14:54:04.926Z"
+   "modified_at": "2026-10-06T11:58:54.287Z"
   },
   "act-indiamark-premises": {
    "gid": "1219100937657165",
@@ -671,7 +719,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
-   "modified_at": "2026-10-02T14:54:06.475Z"
+   "modified_at": "2026-10-06T11:58:54.243Z"
   },
   "act-jan-commune-carbon-clauses": {
    "gid": "1219109211970137",
@@ -683,7 +731,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970137",
-   "modified_at": "2026-10-02T16:28:31.186Z"
+   "modified_at": "2026-10-06T11:56:11.298Z"
   },
   "act-jmp-survey-2026": {
    "gid": "1219101110821715",
@@ -695,7 +743,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110821715",
-   "modified_at": "2026-10-02T14:54:08.300Z"
+   "modified_at": "2026-10-06T11:58:54.261Z"
   },
   "act-kiosk-sdws1-run": {
    "gid": "1219144164856225",
@@ -707,7 +755,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219144164856225",
-   "modified_at": "2026-10-05T04:10:06.833Z"
+   "modified_at": "2026-10-06T11:57:10.026Z"
+  },
+  "act-kit-validation-report-upload": {
+   "gid": "1219205107055869",
+   "name": "Produce the field kit validation report and upload it with the LHAE results to the GS Assurance Platform [act-kit-validation-report-upload]",
+   "title": "Produce the field kit validation report and upload it with the LHAE results to the GS Assurance Platform",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-11-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205107055869",
+   "modified_at": "2026-10-06T11:58:20.871Z"
   },
   "act-legal-water-credit-opinion": {
    "gid": "1219109150420909",
@@ -719,7 +779,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150420909",
-   "modified_at": "2026-10-02T16:28:31.345Z"
+   "modified_at": "2026-10-06T11:57:42.442Z"
+  },
+  "act-lhae-order-placed": {
+   "gid": "1219204407413798",
+   "name": "Place the Institut Pasteur (LHAE) order for the field kit validation [act-lhae-order-placed]",
+   "title": "Place the Institut Pasteur (LHAE) order for the field kit validation",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-09",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798",
+   "modified_at": "2026-10-06T11:58:20.909Z"
   },
   "act-mar-admin-fields": {
    "gid": "1219101058585368",
@@ -731,7 +803,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058585368",
-   "modified_at": "2026-10-02T14:54:10.309Z"
+   "modified_at": "2026-10-06T11:58:54.431Z"
   },
   "act-mar-functional-status": {
    "gid": "1219100937800778",
@@ -743,7 +815,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937800778",
-   "modified_at": "2026-10-02T14:54:11.846Z"
+   "modified_at": "2026-10-06T11:58:54.514Z"
   },
   "act-mar-missing-boreholes": {
    "gid": "1219100995694369",
@@ -755,7 +827,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995694369",
-   "modified_at": "2026-10-02T14:54:13.350Z"
+   "modified_at": "2026-10-06T11:58:54.242Z"
   },
   "act-mar-missing-rehabs": {
    "gid": "1219100937856356",
@@ -767,7 +839,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937856356",
-   "modified_at": "2026-10-02T14:54:14.926Z"
+   "modified_at": "2026-10-06T11:58:54.327Z"
   },
   "act-mar-new-construction-gap": {
    "gid": "1219101058750228",
@@ -779,7 +851,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058750228",
-   "modified_at": "2026-10-02T14:54:16.491Z"
+   "modified_at": "2026-10-06T11:58:54.322Z"
   },
   "act-mar-technical-values": {
    "gid": "1219101106325920",
@@ -791,7 +863,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106325920",
-   "modified_at": "2026-10-02T14:54:18.110Z"
+   "modified_at": "2026-10-06T11:58:54.333Z"
   },
   "act-mar-water-quality": {
    "gid": "1219101105998053",
@@ -803,7 +875,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105998053",
-   "modified_at": "2026-10-05T21:00:29.315Z"
+   "modified_at": "2026-10-06T11:59:44.659Z"
   },
   "act-mar-which-form": {
    "gid": "1219101110966173",
@@ -815,7 +887,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110966173",
-   "modified_at": "2026-10-02T14:54:21.336Z"
+   "modified_at": "2026-10-06T11:59:44.830Z"
   },
   "act-marolinta-drilling-result": {
    "gid": "1219101111155160",
@@ -827,7 +899,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111155160",
-   "modified_at": "2026-10-02T14:54:22.944Z"
+   "modified_at": "2026-10-06T11:59:44.773Z"
   },
   "act-mor-1b-betanatanana-go-look": {
    "gid": "1219100996068470",
@@ -839,7 +911,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996068470",
-   "modified_at": "2026-10-02T14:54:24.495Z"
+   "modified_at": "2026-10-06T11:59:44.632Z"
   },
   "act-mor-bring-back-site-lists": {
    "gid": "1219100996093864",
@@ -851,7 +923,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996093864",
-   "modified_at": "2026-10-02T14:54:26.291Z"
+   "modified_at": "2026-10-06T11:59:44.646Z"
   },
   "act-mor-correct-two-sampling-records": {
    "gid": "1219100937744451",
@@ -863,7 +935,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937744451",
-   "modified_at": "2026-10-02T14:54:27.973Z"
+   "modified_at": "2026-10-06T11:59:44.678Z"
   },
   "act-mor-count-draw-off-point": {
    "gid": "1219100996132530",
@@ -875,7 +947,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996132530",
-   "modified_at": "2026-10-02T14:54:29.541Z"
+   "modified_at": "2026-10-06T11:53:59.120Z"
   },
   "act-mor-fill-three-new-fields": {
    "gid": "1219100995858721",
@@ -887,7 +959,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995858721",
-   "modified_at": "2026-10-02T14:54:31.079Z"
+   "modified_at": "2026-10-06T11:53:59.125Z"
   },
   "act-mor-fix-type-sampled-point": {
    "gid": "1219101269857767",
@@ -899,7 +971,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269857767",
-   "modified_at": "2026-10-02T14:54:32.732Z"
+   "modified_at": "2026-10-06T11:53:59.135Z"
   },
   "act-mor-have-those-five-records": {
    "gid": "1219100996220438",
@@ -911,7 +983,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996220438",
-   "modified_at": "2026-10-02T14:54:34.525Z"
+   "modified_at": "2026-10-06T11:53:59.181Z"
   },
   "act-mor-households-people-served-per": {
    "gid": "1219101106493424",
@@ -923,7 +995,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106493424",
-   "modified_at": "2026-10-02T14:54:36.135Z"
+   "modified_at": "2026-10-06T11:53:59.137Z"
   },
   "act-mor-re-take-gps-fix": {
    "gid": "1219100996281956",
@@ -935,7 +1007,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996281956",
-   "modified_at": "2026-10-02T14:54:37.678Z"
+   "modified_at": "2026-10-06T11:53:59.193Z"
   },
   "act-mor-record-what-community-drank": {
    "gid": "1219101058807913",
@@ -947,7 +1019,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058807913",
-   "modified_at": "2026-10-02T14:54:39.248Z"
+   "modified_at": "2026-10-06T11:53:59.124Z"
   },
   "act-mor-remove-reclassify-two-test": {
    "gid": "1219100937856134",
@@ -959,7 +1031,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937856134",
-   "modified_at": "2026-10-02T14:54:40.793Z"
+   "modified_at": "2026-10-06T11:56:45.151Z"
   },
   "act-mor-submit-drafts": {
    "gid": "1219101058660604",
@@ -971,7 +1043,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058660604",
-   "modified_at": "2026-10-02T14:54:42.370Z"
+   "modified_at": "2026-10-06T11:53:59.178Z"
   },
   "act-moramanga-post-rehab-wq": {
    "gid": "1219101270096304",
@@ -983,7 +1055,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270096304",
-   "modified_at": "2026-10-02T14:54:43.935Z"
+   "modified_at": "2026-10-06T11:53:59.122Z"
   },
   "act-moramanga-register-standposts": {
    "gid": "1219101270051092",
@@ -995,7 +1067,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270051092",
-   "modified_at": "2026-10-02T14:54:45.661Z"
+   "modified_at": "2026-10-06T11:55:46.186Z"
   },
   "act-move-stroke-test-sop": {
    "gid": "1219101059142366",
@@ -1007,7 +1079,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059142366",
-   "modified_at": "2026-10-02T14:54:47.302Z"
+   "modified_at": "2026-10-06T11:55:46.104Z"
   },
   "act-move-weekly-mwater-backup": {
    "gid": "1219101106534470",
@@ -1019,7 +1091,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106534470",
-   "modified_at": "2026-10-02T14:54:48.838Z"
+   "modified_at": "2026-10-06T11:55:46.103Z"
   },
   "act-mwater-approval-policy": {
    "gid": "1219101111707005",
@@ -1031,7 +1103,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111707005",
-   "modified_at": "2026-10-02T14:54:50.440Z"
+   "modified_at": "2026-10-06T11:55:46.216Z"
   },
   "act-mwater-backup-restore-check": {
    "gid": "1219101269792142",
@@ -1043,7 +1115,7 @@
    "completed": true,
    "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142",
-   "modified_at": "2026-10-06T05:05:49.613Z",
+   "modified_at": "2026-10-06T12:01:01.199Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-06",
    "evidence": {
@@ -1064,7 +1136,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
-   "modified_at": "2026-10-05T11:25:35.608Z"
+   "modified_at": "2026-10-06T11:55:46.185Z"
   },
   "act-mwater-year-required": {
    "gid": "1219101270141207",
@@ -1076,7 +1148,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141207",
-   "modified_at": "2026-10-02T14:54:55.141Z"
+   "modified_at": "2026-10-06T11:55:46.091Z"
   },
   "act-naturano-import-failing": {
    "gid": "1219109377307094",
@@ -1088,7 +1160,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
-   "modified_at": "2026-10-02T16:28:31.920Z"
+   "modified_at": "2026-10-06T11:57:42.477Z"
   },
   "act-naturano-meter-data": {
    "gid": "1219213949192332",
@@ -1100,7 +1172,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192332",
-   "modified_at": "2026-10-06T06:00:43.941Z"
+   "modified_at": "2026-10-06T11:57:09.433Z"
   },
   "act-no-works-record": {
    "gid": "1219101111479145",
@@ -1112,7 +1184,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111479145",
-   "modified_at": "2026-10-02T14:54:56.698Z"
+   "modified_at": "2026-10-06T11:55:46.195Z"
   },
   "act-ntsoa-kiosk-cost-data": {
    "gid": "1219109157880427",
@@ -1124,7 +1196,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880427",
-   "modified_at": "2026-10-02T16:28:31.225Z"
+   "modified_at": "2026-10-06T11:55:57.848Z"
   },
   "act-ntsoa-lorentz-sites-info": {
    "gid": "1219109211970330",
@@ -1136,7 +1208,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970330",
-   "modified_at": "2026-10-02T16:28:31.634Z"
+   "modified_at": "2026-10-06T11:55:57.475Z"
   },
   "act-per-diem": {
    "gid": "1219100996413584",
@@ -1148,7 +1220,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996413584",
-   "modified_at": "2026-10-02T14:54:58.258Z"
+   "modified_at": "2026-10-06T11:55:46.117Z"
   },
   "act-photo-misfiled": {
    "gid": "1219101111903363",
@@ -1157,10 +1229,19 @@
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363",
-   "modified_at": "2026-10-06T05:29:19.052Z"
+   "modified_at": "2026-10-06T13:00:54.032Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-06",
+   "evidence": {
+    "kind": "comment",
+    "text": "Reviewed by eye 6 Oct 2026: 206 flagged, 13 real calendars restored, 193 excluded via the reviewed list and left in place by decision; form hints added 6 Oct; list at Central Data Hub - Water Documents/Evidence/mWater/misfiled-photos-2026-10-06.xlsx",
+    "author": "Adriaan Mol",
+    "date": "2026-10-06",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363"
+   }
   },
   "act-piped-baseline-other-systems": {
    "gid": "1219128940073346",
@@ -1172,7 +1253,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128940073346",
-   "modified_at": "2026-10-04T04:46:46.626Z"
+   "modified_at": "2026-10-06T11:57:09.678Z"
   },
   "act-piped-fnrb": {
    "gid": "1219101106837518",
@@ -1184,7 +1265,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106837518",
-   "modified_at": "2026-10-02T14:55:02.057Z"
+   "modified_at": "2026-10-06T11:55:46.087Z"
   },
   "act-piped-sample-tap-code": {
    "gid": "1219147725684877",
@@ -1196,7 +1277,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219147725684877",
-   "modified_at": "2026-10-05T05:50:31.352Z"
+   "modified_at": "2026-10-06T11:57:09.455Z"
   },
   "act-piped-usage-survey": {
    "gid": "1219101059339424",
@@ -1208,7 +1289,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059339424",
-   "modified_at": "2026-10-02T14:55:04.416Z"
+   "modified_at": "2026-10-06T11:56:45.161Z"
   },
   "act-piped-wq-misfiled-742895333": {
    "gid": "1219101111799659",
@@ -1220,7 +1301,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111799659",
-   "modified_at": "2026-10-05T21:00:29.567Z"
+   "modified_at": "2026-10-06T11:56:45.488Z"
   },
   "act-point-use-round-one": {
    "gid": "1219100996389355",
@@ -1232,7 +1313,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996389355",
-   "modified_at": "2026-10-02T14:55:07.921Z"
+   "modified_at": "2026-10-06T11:56:45.138Z"
   },
   "act-population-rerun": {
    "gid": "1219101112028795",
@@ -1244,7 +1325,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112028795",
-   "modified_at": "2026-10-02T14:55:09.600Z"
+   "modified_at": "2026-10-06T11:56:45.162Z"
   },
   "act-pou-form-threshold": {
    "gid": "1219101059420262",
@@ -1271,7 +1352,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112069140",
-   "modified_at": "2026-10-02T14:55:13.118Z"
+   "modified_at": "2026-10-06T11:56:45.155Z"
   },
   "act-produce-s4-19-cl": {
    "gid": "1219101111773731",
@@ -1283,7 +1364,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111773731",
-   "modified_at": "2026-10-02T16:16:07.692Z"
+   "modified_at": "2026-10-06T11:56:45.242Z"
   },
   "act-put-usage-question-live": {
    "gid": "1219101111019443",
@@ -1295,31 +1376,31 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111019443",
-   "modified_at": "2026-10-02T14:55:16.288Z"
+   "modified_at": "2026-10-06T11:56:02.855Z"
   },
   "act-ralf-card-key-rollout": {
    "gid": "1219109211977723",
    "name": "Move all active Endur'O cards to their own keys and remove the old key from taps [act-ralf-card-key-rollout]",
    "title": "Move all active Endur'O cards to their own keys and remove the old key from taps",
-   "owner": "Ralf van Veenendaal, Curtech",
+   "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
-   "modified_at": "2026-10-02T16:28:31.877Z"
+   "modified_at": "2026-10-06T11:57:42.543Z"
   },
   "act-ralf-card-sales-backfill-fix": {
    "gid": "1219109211970459",
    "name": "Correct the card sales backfill in Zoho and log first card loads separately [act-ralf-card-sales-backfill-fix]",
    "title": "Correct the card sales backfill in Zoho and log first card loads separately",
-   "owner": "Ralf van Veenendaal, Curtech",
+   "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970459",
-   "modified_at": "2026-10-02T16:28:31.607Z"
+   "modified_at": "2026-10-06T11:55:57.536Z"
   },
   "act-ralf-meter-install-register": {
    "gid": "1219100996659975",
@@ -1331,7 +1412,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996659975",
-   "modified_at": "2026-10-02T14:55:17.847Z"
+   "modified_at": "2026-10-06T11:56:02.959Z"
   },
   "act-ralf-shopkeeper-waterpoint-link": {
    "gid": "1219101111620085",
@@ -1343,31 +1424,43 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111620085",
-   "modified_at": "2026-10-02T14:55:19.663Z"
+   "modified_at": "2026-10-06T11:56:03.201Z"
   },
   "act-ralf-tap-offgrid-power": {
    "gid": "1219109377317317",
    "name": "State the smart tap's power use and propose solar plus battery for kiosks [act-ralf-tap-offgrid-power]",
    "title": "State the smart tap's power use and propose solar plus battery for kiosks",
-   "owner": "Ralf van Veenendaal, Curtech",
+   "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317317",
-   "modified_at": "2026-10-02T16:28:31.381Z"
+   "modified_at": "2026-10-06T11:55:57.624Z"
+  },
+  "act-ralf-tap-unit-costs": {
+   "gid": "1219212783344822",
+   "name": "Send unit cost and lifetime of smart tap, control unit and installation material [act-ralf-tap-unit-costs]",
+   "title": "Send unit cost and lifetime of smart tap, control unit and installation material",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219212783344822",
+   "modified_at": "2026-10-06T13:22:11.740Z"
   },
   "act-ralf-tariff-zones": {
    "gid": "1219109377317220",
    "name": "Set up price zones in Zoho and on cards so taps accept own-zone cards only [act-ralf-tariff-zones]",
    "title": "Set up price zones in Zoho and on cards so taps accept own-zone cards only",
-   "owner": "Ralf van Veenendaal, Curtech",
+   "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-30",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
-   "modified_at": "2026-10-02T16:28:31.101Z"
+   "modified_at": "2026-10-06T13:22:13.466Z"
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -1379,7 +1472,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111374556",
-   "modified_at": "2026-10-02T14:55:21.433Z"
+   "modified_at": "2026-10-06T11:56:03.110Z"
   },
   "act-recreate-gardien-calendar-controlled": {
    "gid": "1219101112131282",
@@ -1391,7 +1484,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112131282",
-   "modified_at": "2026-10-02T14:55:23.022Z"
+   "modified_at": "2026-10-06T11:56:03.320Z"
   },
   "act-reduced-performance": {
    "gid": "1219100996697503",
@@ -1403,7 +1496,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996697503",
-   "modified_at": "2026-10-02T14:55:24.849Z"
+   "modified_at": "2026-10-06T11:56:02.854Z"
   },
   "act-rehab-recording": {
    "gid": "1219101111903401",
@@ -1415,7 +1508,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903401",
-   "modified_at": "2026-10-02T21:00:12.019Z"
+   "modified_at": "2026-10-06T11:56:02.892Z"
   },
   "act-reissue-calendars-new-blank": {
    "gid": "1219101111758501",
@@ -1427,7 +1520,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111758501",
-   "modified_at": "2026-10-02T14:55:28.119Z"
+   "modified_at": "2026-10-06T11:56:02.856Z"
   },
   "act-repair-double-entry": {
    "gid": "1219101106519483",
@@ -1439,7 +1532,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106519483",
-   "modified_at": "2026-10-05T21:00:29.462Z"
+   "modified_at": "2026-10-06T11:56:03.232Z"
   },
   "act-repair-time": {
    "gid": "1219101112069110",
@@ -1451,7 +1544,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112069110",
-   "modified_at": "2026-10-02T14:55:31.353Z"
+   "modified_at": "2026-10-06T11:57:25.908Z"
   },
   "act-repeat-breakdown": {
    "gid": "1219101112106036",
@@ -1463,7 +1556,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112106036",
-   "modified_at": "2026-10-02T14:55:32.918Z"
+   "modified_at": "2026-10-06T11:57:26.200Z"
   },
   "act-restore-preventive-maintenance-visit": {
    "gid": "1219100996488844",
@@ -1475,7 +1568,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996488844",
-   "modified_at": "2026-10-02T14:55:34.463Z"
+   "modified_at": "2026-10-06T11:57:25.972Z"
   },
   "act-retrain-field-teams-how": {
    "gid": "1219101270700805",
@@ -1487,7 +1580,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270700805",
-   "modified_at": "2026-10-02T14:55:36.181Z"
+   "modified_at": "2026-10-06T11:57:25.948Z"
   },
   "act-rotary-tana-concept-note": {
    "gid": "1219109150164705",
@@ -1499,7 +1592,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150164705",
-   "modified_at": "2026-10-02T16:28:31.619Z"
+   "modified_at": "2026-10-06T11:57:42.475Z"
   },
   "act-rotary-tana-video-call": {
    "gid": "1219109157819435",
@@ -1511,7 +1604,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157819435",
-   "modified_at": "2026-10-02T16:28:31.577Z"
+   "modified_at": "2026-10-06T11:57:42.965Z"
   },
   "act-sampler-usage-survey-mode": {
    "gid": "1219101107133667",
@@ -1523,7 +1616,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107133667",
-   "modified_at": "2026-10-02T14:55:37.821Z"
+   "modified_at": "2026-10-06T11:57:25.960Z"
   },
   "act-sdws18-2025-kit-sop": {
    "gid": "1219101270668695",
@@ -1535,7 +1628,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270668695",
-   "modified_at": "2026-10-02T14:55:39.449Z"
+   "modified_at": "2026-10-06T11:57:25.945Z"
   },
   "act-sdws18-james-rulings": {
    "gid": "1219101059850550",
@@ -1562,7 +1655,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059831406",
-   "modified_at": "2026-10-02T14:55:43.038Z"
+   "modified_at": "2026-10-06T11:57:26.024Z"
   },
   "act-sdws26-approve-2025": {
    "gid": "1219101059675450",
@@ -1574,7 +1667,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059675450",
-   "modified_at": "2026-10-02T14:55:45.074Z"
+   "modified_at": "2026-10-06T11:57:25.936Z"
+  },
+  "act-sdws3-training-records": {
+   "gid": "1219204661952257",
+   "name": "Collect SDWS 3 field kit training records for the VVB (comment 2) [act-sdws3-training-records]",
+   "title": "Collect SDWS 3 field kit training records for the VVB (comment 2)",
+   "owner": "James Walker",
+   "assignee_gid": "1213895542888866",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204661952257",
+   "modified_at": "2026-10-06T11:58:21.013Z"
   },
   "act-sensor-cost-benefit": {
    "gid": "1219101112499037",
@@ -1586,7 +1691,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112499037",
-   "modified_at": "2026-10-02T14:55:46.691Z"
+   "modified_at": "2026-10-06T11:57:26.008Z"
   },
   "act-sensor-definition": {
    "gid": "1219101112502869",
@@ -1598,7 +1703,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112502869",
-   "modified_at": "2026-10-02T14:55:48.324Z"
+   "modified_at": "2026-10-06T11:58:38.735Z"
   },
   "act-smartap-register-complete": {
    "gid": "1219148236288402",
@@ -1610,7 +1715,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219148236288402",
-   "modified_at": "2026-10-05T05:50:31.338Z"
+   "modified_at": "2026-10-06T11:57:09.518Z"
   },
   "act-sop-calendar-v17-signoff": {
    "gid": "1219119885051246",
@@ -1622,7 +1727,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219119885051246",
-   "modified_at": "2026-10-02T14:55:49.959Z"
+   "modified_at": "2026-10-06T11:58:38.944Z"
   },
   "act-tana-baseline-form": {
    "gid": "1219100996443603",
@@ -1634,7 +1739,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996443603",
-   "modified_at": "2026-10-02T14:55:51.530Z"
+   "modified_at": "2026-10-06T11:58:38.691Z"
   },
   "act-tana-baseline-sample-size": {
    "gid": "1219101270648340",
@@ -1646,7 +1751,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270648340",
-   "modified_at": "2026-10-02T14:55:53.174Z"
+   "modified_at": "2026-10-06T11:58:39.111Z"
   },
   "act-tana-baseline-survey": {
    "gid": "1219101270910232",
@@ -1658,7 +1763,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270910232",
-   "modified_at": "2026-10-02T14:55:54.689Z"
+   "modified_at": "2026-10-06T11:58:38.963Z"
   },
   "act-tana-jirama-licence-filed": {
    "gid": "1219101107423207",
@@ -1670,7 +1775,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107423207",
-   "modified_at": "2026-10-02T14:55:56.440Z"
+   "modified_at": "2026-10-06T11:58:38.655Z"
   },
   "act-transcription-round": {
    "gid": "1219101112472220",
@@ -1697,7 +1802,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059887916",
-   "modified_at": "2026-10-02T14:55:59.639Z"
+   "modified_at": "2026-10-06T11:58:38.692Z"
   },
   "act-undatable": {
    "gid": "1219101270141172",
@@ -1709,7 +1814,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141172",
-   "modified_at": "2026-10-02T14:56:01.221Z"
+   "modified_at": "2026-10-06T11:58:38.752Z"
   },
   "act-update-parameters-workbook-cite": {
    "gid": "1219101112472241",
@@ -1721,7 +1826,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112472241",
-   "modified_at": "2026-10-02T14:56:02.968Z"
+   "modified_at": "2026-10-06T11:54:53.585Z"
   },
   "act-usage-survey-inside-radius": {
    "gid": "1219100995666861",
@@ -1733,7 +1838,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995666861",
-   "modified_at": "2026-10-02T14:56:04.557Z"
+   "modified_at": "2026-10-06T11:54:53.592Z"
   },
   "act-usage-survey-random-selection": {
    "gid": "1219100997286341",
@@ -1745,7 +1850,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997286341",
-   "modified_at": "2026-10-02T14:56:06.258Z"
+   "modified_at": "2026-10-06T11:54:53.601Z"
   },
   "act-usage-survey-sop": {
    "gid": "1219101107234828",
@@ -1757,7 +1862,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107234828",
-   "modified_at": "2026-10-02T14:56:07.884Z"
+   "modified_at": "2026-10-06T11:54:53.702Z"
   },
   "act-v2-adherence": {
    "gid": "1219101107602706",
@@ -1769,7 +1874,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107602706",
-   "modified_at": "2026-10-02T14:56:09.732Z"
+   "modified_at": "2026-10-06T11:54:53.594Z"
   },
   "act-v2-confidence-intervals": {
    "gid": "1219101270938372",
@@ -1781,7 +1886,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270938372",
-   "modified_at": "2026-10-02T14:56:11.304Z"
+   "modified_at": "2026-10-06T11:54:53.625Z"
   },
   "act-v2-embodied": {
    "gid": "1219101112758351",
@@ -1793,7 +1898,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112758351",
-   "modified_at": "2026-10-02T14:56:12.950Z"
+   "modified_at": "2026-10-06T11:54:53.570Z"
   },
   "act-v2-stove-stacking": {
    "gid": "1219101107616621",
@@ -1805,7 +1910,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107616621",
-   "modified_at": "2026-10-02T14:56:14.536Z"
+   "modified_at": "2026-10-06T11:56:11.476Z"
   },
   "act-v2-stroke-test": {
    "gid": "1219100997161767",
@@ -1817,7 +1922,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997161767",
-   "modified_at": "2026-10-02T14:56:16.098Z"
+   "modified_at": "2026-10-06T11:56:11.732Z"
   },
   "act-verification-fnrb-correction": {
    "gid": "1219101271060660",
@@ -1829,7 +1934,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101271060660",
-   "modified_at": "2026-10-02T14:56:17.859Z"
+   "modified_at": "2026-10-06T11:56:11.348Z"
   },
   "act-visit-collapse": {
    "gid": "1219101060358492",
@@ -1841,7 +1946,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101060358492",
-   "modified_at": "2026-10-02T14:56:19.698Z"
+   "modified_at": "2026-10-06T11:56:11.400Z"
+  },
+  "act-vpadd-protocol-10-2-ref": {
+   "gid": "1219207278870610",
+   "name": "Reference Water Quality Testing Protocol v2.3 Section 10.2 in the VPA-DD SDWS 3 QA/QC [act-vpadd-protocol-10-2-ref]",
+   "title": "Reference Water Quality Testing Protocol v2.3 Section 10.2 in the VPA-DD SDWS 3 QA/QC",
+   "owner": "James Walker",
+   "assignee_gid": "1213895542888866",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219207278870610",
+   "modified_at": "2026-10-06T11:58:20.825Z"
   },
   "act-wb-p174477-contact": {
    "gid": "1219109377317005",
@@ -1853,7 +1970,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317005",
-   "modified_at": "2026-10-02T16:28:31.363Z"
+   "modified_at": "2026-10-06T11:56:11.276Z"
   },
   "act-wq-incubator-sop": {
    "gid": "1219101270891582",
@@ -1865,7 +1982,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270891582",
-   "modified_at": "2026-10-02T14:56:21.232Z"
+   "modified_at": "2026-10-06T11:56:11.337Z"
   },
   "act-wq-retest": {
    "gid": "1219101271279275",
@@ -1877,9 +1994,20 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101271279275",
-   "modified_at": "2026-10-05T21:00:29.656Z"
+   "modified_at": "2026-10-06T11:56:11.400Z"
   }
  },
  "duplicates": {},
- "new_from_asana": []
+ "new_from_asana": [
+  {
+   "act_id": "act-ralf-tap-unit-costs",
+   "gid": "1219212783344822",
+   "name": "Send unit cost and lifetime of smart tap, control unit and installation material [act-ralf-tap-unit-costs]"
+  },
+  {
+   "act_id": "act-enduro-nanisana-sellthrough",
+   "gid": "1219218728385339",
+   "name": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk [act-enduro-nanisana-sellthrough]"
+  }
+ ]
 }

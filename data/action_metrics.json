@@ -141,11 +141,6 @@
    "source": "local",
    "value": 4
   },
-  "photographs_misfiled": {
-   "says": "photographs filed on a calendar question that are not calendars",
-   "source": "local",
-   "value": 206
-  },
   "piped_form_hand_pump_results": {
    "says": "hand-pump water-quality results filed on the piped result form 0ac68d82",
    "source": "local",
@@ -194,7 +189,7 @@
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
    "source": "local",
-   "value": 84
+   "value": 83
   },
   "pumps_reduced_performance": {
    "says": "pumps reported with a mechanical or yield fault, still counted working",

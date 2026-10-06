@@ -604,7 +604,7 @@ RULES = [
       forms=[("the SDWS 1 WorldPop allocation run", None, "WPOP on this page: allocation, capped value and cap per point")],
       why="How much of the people-served figure rests on the choice of capacity ceiling."),
  dict(re=r"^NOTCAL\.", pop="pm_visits_calendar_photo",
-      what="counted from data/calendar_not_calendar.csv: every calendar photograph on file inspected by eye, those that are not calendars, by what they show and by the question they sit on",
+      what="counted from data/calendar_not_calendar.csv: every calendar photograph on file inspected by eye, those that are not calendars (rows confirmed as calendars on 6 Oct 2026 are left out), by what they show and by the question they sit on",
       forms=[("Entretien préventif (preventive maintenance)", F_PM, "calendar questions 2.15.5 and 2.15.6"), ("Réparation après panne (repair)", F_REP, "calendar question 1.3.1.3")], why=None),
  dict(re=r"^NOUSABLE\.", pop="managed_fleet",
       what="counted from data/calendar_no_usable_image.csv: points none of whose calendar photographs can be read, by cause",
