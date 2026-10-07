@@ -98,6 +98,8 @@ SETS = {
     "IMCAP": ("data", "india_mark_cap.json"),
     # parent actions: how many of their steps have closed (tools/eval_conditions.py)
     "ACTKIDS": ("data", "action_state.json"),
+    # changes this week and what waits for approval (tools/change_review.py, 7 Oct 2026)
+    "CHG": ("data", "change_review.json"),
 }
 
 

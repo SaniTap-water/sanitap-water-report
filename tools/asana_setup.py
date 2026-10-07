@@ -18,7 +18,10 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
      (Coddy, Ntsoa, Endur'O), removing that first description line;
   5. completes the tasks of actions named with --complete;
   6. --retitle renames named tasks to their title in data/action_owners.json,
-     and --section-top moves the section above the project's first section.
+     and --section-top moves the section above the project's first section;
+  7. --approval (7 Oct 2026) creates or updates the week's approval task for
+     major mWater changes (tools/change_review.py), assigned to Adriaan with
+     Jan following.
 
 Idempotent: data/asana_map.json maps act-id to task gid, and a task already in
 the section whose name starts with the act-id is adopted rather than
@@ -222,17 +225,81 @@ def plan_reassign(section):
     return out
 
 
+JAN = PEOPLE["jan"][0]
+APPROVALS = os.path.join(REPO, "data", "approvals.json")
+CHANGES = os.path.join(REPO, "data", "change_review.json")
+
+
+def approval_task():
+    """(7 Oct 2026) One Asana approval task per week with major changes, in the
+    section, assigned to Adriaan with Jan following. Created once; its
+    description is brought up to date on later builds of the same week. The
+    approval itself is read back by tools/change_review.py."""
+    if not os.path.isfile(APPROVALS):
+        print("approval: no data/approvals.json - nothing flagged")
+        return 0
+    appr = json.load(open(APPROVALS, encoding="utf8"))
+    res = json.load(open(CHANGES, encoding="utf8")) if os.path.isfile(CHANGES) else {}
+    key = f"{res.get('year')}-W{res.get('week', 0):02d}"
+    w = appr["weeks"].get(key)
+    if not w or w.get("status") == "approved" or not w.get("flags"):
+        print(f"approval: nothing to approve for {key}")
+        return 0
+    fig = w.get("figures") or {}
+    lab = {"tco2e": "Carbon credits (tCO2e a year)", "points": "Water points in scope",
+           "people": "People served", "days_operational": "Days operational (applied)"}
+    lines = [f"Major changes in the mWater data, week {res.get('week')} (against the edition of "
+             f"{(res.get('baseline') or {}).get('published')}). They are on the report as PROVISIONAL until "
+             "Adriaan or Jan approves this task. Approve: they become final at the next build. "
+             "Reject or request changes, with a comment: they stay provisional and the comment is shown.", "",
+             "Headline figures, last week -> this week:"]
+    lines += [f"  {lab[k]}: {v.get('before')} -> {v.get('after')}" for k, v in fig.items()]
+    fl = w["flags"]
+    if fl.get("a"):
+        lines += ["", "(a) Existing records edited so that credits or eligibility go up:"]
+        lines += [f"  water point {r['wp']}: {', '.join(r['up'])}; record(s) "
+                  + ", ".join(f"https://portal.mwater.co/#/responses/{i}" for i in r["records"]) for r in fl["a"]]
+    if fl.get("b"):
+        lines += ["", "(b) Records deleted:"]
+        lines += [f"  {d['count']} from {d['file']}" + (f": {', '.join(d['ids'])}" if d.get("ids") else "") for d in fl["b"]]
+    if fl.get("c"):
+        lines += ["", "(c) Week-on-week moves above the threshold carried by edited records:"]
+        lines += [f"  {lab[c['figure']]}: {c['carried']} ({c['pct']}%)" for c in fl["c"]]
+    lines += ["", f"On the report: {A.REPORT_URL}#changes"]
+    notes = "\n".join(lines)
+    name = f"Approve: major changes [week {res.get('week')}]"
+    if w.get("task"):
+        A.put(f"/tasks/{w['task']}", {"notes": notes})
+        print(f"approval: updated {name} ({w['task']})")
+    else:
+        secs = {s["name"]: s["gid"] for s in A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})}
+        t = A.post("/tasks", {"name": name, "resource_subtype": "approval", "assignee": ADRIAAN,
+                              "followers": [JAN], "notes": notes, "projects": [A.PROJECT],
+                              "workspace": A.WORKSPACE})
+        if A.SECTION_NAME in secs:
+            A.post(f"/sections/{secs[A.SECTION_NAME]}/addTask", {"task": t["gid"]})
+        gid = t["gid"]
+        w.update(task=gid)
+        print(f"approval: created {name} ({gid})")
+    json.dump(appr, open(APPROVALS, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--dry-run", action="store_true")
     g.add_argument("--write", action="store_true")
+    g.add_argument("--approval", action="store_true",
+                   help="create or update this week's approval task from data/approvals.json (rule of 7 Oct 2026)")
     ap.add_argument("--complete", nargs="*", default=[])
     ap.add_argument("--retitle", nargs="*", default=[],
                     help="rename these act-ids' tasks to '<title> [act-id]' from data/action_owners.json")
     ap.add_argument("--section-top", action="store_true",
                     help="move the section 'Weekly report actions' above the project's first section")
     a = ap.parse_args()
+    if a.approval:
+        return approval_task()
     info = action_info()
     open_ids = [k for k, v in info.items() if v["state"] in ("ACT", "WATCH")]
     want = sorted(set(open_ids) | set(a.complete))

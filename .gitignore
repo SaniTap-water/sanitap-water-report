@@ -6,3 +6,4 @@ logs/.publisher.local
 logs/publisher.log
 logs/last_run_started
 .prerender.html
+.change-baseline-*.html

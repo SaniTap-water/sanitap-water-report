@@ -300,6 +300,30 @@
    "extracted": "Extracts pulled <span data-fig=\"PULLS['wq_results_piped.json'].pulled\"></span>.",
    "filter": "Every water system in Endur&rsquo;O&rsquo;s mWater group; final results naming the system, dated before the protocol went live or before the system&rsquo;s works completion.",
    "columns": "<b>Pre-project results</b>, <b>Dates</b>: those results. <b>With <i>E. coli</i></b>: the share above the pass maximum. <b>Eligibility</b>: non-potable shown when at least one fails. <b>Records</b>: the list of responses, each linked."
+  },
+  "chgfig": {
+   "source": "<span class=\"mono\">data/change_review.json</span>, written each build by tools/change_review.py: the four headline figures as the page computes them, on last week&rsquo;s edition and on this one.",
+   "extracted": "Both pages are evaluated in the headless browser at build time; last week&rsquo;s edition is the last one published before this Monday.",
+   "filter": "The four headline figures, in the default scope (all water points in scope).",
+   "columns": "<b>Last week</b> and <b>This week</b>: the figure on each edition. Days operational is the applied value."
+  },
+  "chgcause": {
+   "source": "<span class=\"mono\">data/change_review.json</span>, written each build by tools/change_review.py, from each moved point&rsquo;s mWater records and their history (created, submitted, edited, approved, rejected; who and when).",
+   "extracted": "From the extracts pulled for this build.",
+   "filter": "Water points whose portfolio membership, people served, water test, works date, status or eligibility differs from last week&rsquo;s edition.",
+   "columns": "<b>Water points</b>: how many moved for each cause."
+  },
+  "chgpts": {
+   "source": "<span class=\"mono\">data/change_review.json</span>, written each build by tools/change_review.py.",
+   "extracted": "From the extracts pulled for this build, against last week&rsquo;s edition.",
+   "filter": "Every water point that moved; a very long week is cut short and its full list kept in data/change_review.json.",
+   "columns": "<b>What changed</b>: last week &rarr; this week. <b>Cause</b>: the record behind the change, or a repository edit where no record changed."
+  },
+  "chgflags": {
+   "source": "<span class=\"mono\">data/approvals.json</span> and each week&rsquo;s Asana approval task, read by tools/change_review.py.",
+   "extracted": "Approval state read from Asana at each build.",
+   "filter": "Weeks with changes of major impact (a, b or c) not yet approved by Adriaan or Jan.",
+   "columns": "<b>Status</b>: the approval state and who gave it; <b>What waits</b>: each flagged change."
   }
  }
 }

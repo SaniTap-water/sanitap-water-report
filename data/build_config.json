@@ -110,5 +110,9 @@
   "note": "The action list's 'Needs a nudge' line: evidence and manual items past their date, or undated and on the list for longer than this.",
   "nudge_undated_days": 30,
   "ticked_no_evidence_days": 7
+ },
+ "changes": {
+  "note": "Rule of 7 Oct 2026 (tools/change_review.py): a week-on-week move of more than this share of tCO2e, water points in scope or people served, carried by edited or deleted mWater records, is provisional until Adriaan or Jan approves.",
+  "major_move_pct": 2
  }
 }

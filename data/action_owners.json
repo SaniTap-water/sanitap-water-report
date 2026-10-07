@@ -2343,6 +2343,32 @@
     "task": "1219101110893781",
     "from": "asana"
    },
+   "act-india-mark-cap-james": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "decided at 300 people per India Mark for now, to be revisited with StrokeMeter volumes. James Walker, 1 Oct 2026, \"Re: Water program dashboard & actions\": the survey medians of about 20 litres per person \"look reasonable\". Adriaan Mol, 5 Oct 2026 06:13, same thread: \"Until then the report stays at 300 per India Mark.\" James raised no objection. Closed by Adriaan on 6 Oct.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058577051",
+    "task": "1219101058577051",
+    "from": "asana"
+   },
+   "act-indiamark-premises": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "decided at 300 people per India Mark for now (source: the 2025 survey, median of about 20 litres per person per day), to be revisited with StrokeMeter volumes. James Walker, 1 Oct 2026, \"Re: Water program dashboard & actions\": the medians \"look reasonable\". Adriaan Mol, 5 Oct 2026 06:13, same thread: \"Until then the report stays at 300 per India Mark.\" James raised no objection. Closed by Adriaan on 6 Oct.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
+    "task": "1219100937657165",
+    "from": "asana"
+   },
    "act-mwater-backup-restore-check": {
     "recorded_on": "2026-10-06",
     "recorded_by": "tools/asana_pull.py, from the Asana task",

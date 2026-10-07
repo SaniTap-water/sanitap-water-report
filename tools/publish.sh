@@ -136,6 +136,20 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   # Every figure's value is written into the static HTML, so a reader without
   # JavaScript never sees an empty span. The generators above write their
   # regions with empty spans; this fills them, after them and before any gate.
+  # Changes this week (rule of 7 Oct 2026): headline figures against last week's
+  # edition, every moved point traced to its mWater records; major changes
+  # (edited upward, deleted, or a large move carried by edits) wait for Adriaan
+  # or Jan in one Asana approval task per week. tools/change_review.py.
+  say "reviewing this week's changes to the headline figures ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/change_review.py --compute \
+    && python3 tools/asana_setup.py --approval \
+    && python3 tools/render_datasets.py --write \
+    && python3 tools/change_review.py --write
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the change review could not run (exit $RC). Nothing committed."
+    exit 1
+  fi
   say "prerendering every figure into the static HTML ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --write
   RC=$?
@@ -290,6 +304,12 @@ fi
 
 say ""
 say "checking that every embedded figure has a generator ..."
+python3 tools/change_review.py --check
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the change review failed: a repository move without a decision, an approval not by Adriaan or Jan, or a stale review (exit $RC)."
+  exit 1
+fi
 python3 tools/check_generators.py
 RC=$?
 if [ "$RC" -ne 0 ]; then

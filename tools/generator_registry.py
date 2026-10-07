@@ -331,6 +331,7 @@ WHOLE = {
     'CALLF': ('call_followup', 'render_datasets'),
     # hygiene-promotion sessions and the JMP-question survey, by district
     'HYG': ('rebuild_hygiene', 'render_datasets'),
+    'CHG': ('change_review', 'render_datasets'),
     'ENDUROREG': ('rebuild_enduro_registry', 'render_datasets'),
     'ELIG': ('rebuild_eligibility', 'render_datasets'),
     # the 2025 household water-quality round, SDWS 18

@@ -106,7 +106,7 @@ REACH = r"""() => {
   };
   for (const n of ['S', 'REG', 'TTR', 'WPOPMETA', 'CORR', 'ROUTES', 'ENDURO',
                    'TRACE', 'SCOPES', 'DOWN', 'OPENREP', 'PARTIAL', 'PUMPS',
-                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH', 'NEAREST', 'CALS', 'WPOPX', 'TTRQ', 'FORMSNAP'])
+                   'WPOP', 'PHOTOS', 'CALLS', 'ACTS', 'CALX', 'METRICS', 'CARBON', 'ACTN', 'POPS', 'DERIV', 'FRESH', 'NEAREST', 'CALS', 'WPOPX', 'TTRQ', 'FORMSNAP', 'CHG'])
     { const v = g(n); if (v !== undefined) walk(v, n, 0); }
 
   // A computed artefact's own field values, and nothing derived from them.

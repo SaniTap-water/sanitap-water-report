@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T09:03:47+00:00",
+ "pulled_at": "2026-10-07T10:27:56+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -767,10 +767,16 @@
    "completed": true,
    "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058577051",
-   "modified_at": "2026-10-06T13:59:08.611Z",
+   "modified_at": "2026-10-07T09:25:34.654Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-06",
-   "evidence": null
+   "evidence": {
+    "kind": "comment",
+    "text": "decided at 300 people per India Mark for now, to be revisited with StrokeMeter volumes. James Walker, 1 Oct 2026, \"Re: Water program dashboard & actions\": the survey medians of about 20 litres per person \"look reasonable\". Adriaan Mol, 5 Oct 2026 06:13, same thread: \"Until then the report stays at 300 per India Mark.\" James raised no objection. Closed by Adriaan on 6 Oct.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058577051"
+   }
   },
   "act-indiamark-premises": {
    "gid": "1219100937657165",
@@ -782,10 +788,16 @@
    "completed": true,
    "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
-   "modified_at": "2026-10-06T13:59:08.732Z",
+   "modified_at": "2026-10-07T09:25:37.536Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-06",
-   "evidence": null
+   "evidence": {
+    "kind": "comment",
+    "text": "decided at 300 people per India Mark for now (source: the 2025 survey, median of about 20 litres per person per day), to be revisited with StrokeMeter volumes. James Walker, 1 Oct 2026, \"Re: Water program dashboard & actions\": the medians \"look reasonable\". Adriaan Mol, 5 Oct 2026 06:13, same thread: \"Until then the report stays at 300 per India Mark.\" James raised no objection. Closed by Adriaan on 6 Oct.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165"
+   }
   },
   "act-jan-commune-carbon-clauses": {
    "gid": "1219109211970137",

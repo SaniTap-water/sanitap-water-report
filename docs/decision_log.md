@@ -2210,3 +2210,33 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Not changed:** the SDWS 25 section still says people per premises is taken from RGPH-3 national rural 4.3 (the
   hh_size_rural parameter, confirmed with James Walker on 18 Sep 2026), while the model's registered values (4.5 /
   3.7) come from the project survey. Which one is the value of record is left for Adriaan and James.
+
+## 7 Oct 2026 (d) — Adriaan Mol: major changes to the headline figures wait for Adriaan or Jan
+
+- **Rule, kept light.** Every build compares the four headline figures (carbon credits tCO2e, water points in
+  scope, people served, days operational) with the last edition of the previous week, and traces each moved point to
+  its mWater records using the records' own history (created; draft, submit, edit, approve, reject; who and when).
+  Business as usual goes live and is listed under "Changes this week" (new section under the headline tiles).
+- **Provisional until approved** (one Asana approval task per week, "Approve: major changes [week NN]", assigned to
+  Adriaan, Jan following; none when nothing is flagged): (a) an existing record edited so that credits or
+  eligibility go up (joins the portfolio, test fail or none → pass, works or test date earlier, 3-month control
+  cleared, rejected record set to final); (b) a record deleted (row count fell by more than the records created;
+  data/record_ledger.json names the ids from next week on); (c) a move of more than 2% (build_config
+  changes.major_move_pct) in tCO2e, points or people carried by edited records. Pumps abandoned, removed or
+  non-functional with a supporting record pass. Changes by Adriaan's or Jan's mWater accounts are ignored (Jan:
+  Jan_Sanitap; Adriaan: the account behind the register writes he requested on 22–23 Sep, a77264…).
+- **Repository edits are never held**, but one that moves a headline figure must carry a decision in
+  data/decisions.json with `instructed_by` (Adriaan Mol or Jan de Graaf) and `headline` before/after; the build
+  fails without one. An approval is recorded as `approval-major-changes-<week>`, and the build fails if a week is
+  marked approved without an approval by Adriaan or Jan, or if a flagged week is not shown as provisional.
+- **Built:** tools/change_review.py (--compute, --write, --check, --history), tools/asana_setup.py --approval (still
+  the only Asana writer), data/change_review.json, data/approvals.json, data/record_ledger.json; wired into
+  tools/publish.sh. The first draft of this rule (gate Asana closures and evidence) was dropped: no headline figure
+  reads Asana, evidence or decisions, so it could never fire.
+- **Dry run, last four weeks** (archived editions wk37 10 Sep, wk38 16 Sep, wk39 26 Sep, wk40 4 Oct, and 7 Oct):
+  0 approval tasks. No edited record moved credits or eligibility up, no deletion where row counts are on record
+  (from 22 Sep; not evaluable for the first two weeks), no large move carried by edits. The figure moves were
+  repository edits (fleet 751 → 736 → 737 → 745, people served 128,721 → 125,710 with the WorldPop rerun), each in
+  this log; under the rule each would have needed an `instructed_by` decision. Status changes were backed by visit,
+  repair or call records. A synthetic test confirmed each of (a), (b), (c) fires and that new records and Adriaan's
+  or Jan's edits do not.

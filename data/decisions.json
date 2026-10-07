@@ -304,6 +304,15 @@
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026; INSTAT RGPH-3 Tomes 1 and 2, TBSE Analanjirofo Dec 2025, EDS-V 2021",
    "logged_on": "2026-10-07",
    "logged_by": "Adriaan Mol"
+  },
+  "rule-major-changes-approval-2026-10-07": {
+   "answer": "Changes that move the headline figures (carbon credits tCO2e, water points in scope, people served, days operational) are reviewed every build against last week's edition (tools/change_review.py). Repository edits are never held, being made on Adriaan's or Jan's instruction, but one that moves a headline figure must carry a decision in data/decisions.json with 'instructed_by' (Adriaan Mol or Jan de Graaf) and 'headline' before/after figures; the build fails without one. mWater changes go live and are listed under 'Changes this week', except three, which are provisional until Adriaan or Jan approves one Asana approval task per week ('Approve: major changes [week NN]', assigned to Adriaan, Jan following): (a) an existing record edited so that credits or eligibility go up; (b) a record deleted; (c) a week-on-week move of more than 2% in tCO2e, points in scope or people served not explained by new records or by status changes backed by a record. Pumps marked abandoned, removed or non-functional with a supporting record pass without approval. Changes made by Adriaan or Jan are ignored. No flag, no task. Approvals are recorded in data/decisions.json as approval-major-changes-<week>.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "instructed_by": "Adriaan Mol",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026 (replacing the first draft of the same day, which gated Asana closures)",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
