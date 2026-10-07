@@ -968,10 +968,11 @@
   "closes_when": "every sheet listed in docs/transcription_round_notes.md checked against its photograph and recorded there as breakdown marks or as a working-day tick convention"
  },
  "act-cal-handwritten-year": {
-  "kind": "none",
-  "says": "no closing condition: a photograph is looked at by a person, or it is not",
-  "closure": "manual",
-  "closes_when": "the year reader falls back on the printed weekday layout where it finds no printed year, and this sheet reads 2024"
+  "kind": "decision",
+  "question": "Is the machine reader's year fallback for handwritten years still to be built?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "retired by decision 7 Oct 2026: the machine reader is parked; handwritten years are read by people in the annual transcription sample"
  },
  "act-enduro-link-wp-systems": {
   "kind": "data",

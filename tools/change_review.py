@@ -62,9 +62,9 @@ PAGE = os.path.join(REPO, "index.html")
 BEGIN = "<!-- BEGIN GENERATED changes-this-week :: tools/change_review.py :: do not edit between these markers -->"
 END = "<!-- END GENERATED changes-this-week -->"
 
-# mWater accounts whose changes are ignored. Jan: "Jan_Sanitap". Adriaan: the
-# account that made the register writes he requested on 22-23 Sep 2026
-# (data/register_write_log.json; its _modified_by in data/mwater_backups).
+# mWater accounts whose changes are ignored, confirmed 7 Oct 2026 by a read of
+# the mWater users table: "AdriaanMol" and "Jan_Sanitap" (data/decisions.json
+# rule-major-changes-approval-2026-10-07, exempt_mwater_accounts).
 EXEMPT = {"a77264134a1d4e7486a04e8c8e07228e": "Adriaan Mol",
           "080b964a728a44758b86b8bd2afe6292": "Jan de Graaf"}
 APPROVERS = {"Adriaan Mol", "Jan de Graaf"}

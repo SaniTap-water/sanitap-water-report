@@ -37,7 +37,7 @@ import datetime, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import asana_api as A  # noqa: E402
-from asana_setup import NAME_OF, TAG, OLD_PREFIX, tag_of  # noqa: E402
+from asana_setup import NAME_OF, TAG, OLD_PREFIX, tag_of, match_owner  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "asana_pull.json")
@@ -126,6 +126,7 @@ def main():
         print(f"asana_pull: Asana not readable ({str(e)[:120]}); the committed data/asana_pull.json stays as it is")
         return 0
     out, dup, new = {}, {}, []
+    prev = (json.load(open(OUT, encoding="utf8")).get("tasks", {}) if os.path.isfile(OUT) else {})
     own_path = os.path.join(REPO, "data", "action_owners.json")
     own = json.load(open(own_path, encoding="utf8"))
     retitled = []
@@ -161,6 +162,22 @@ def main():
             continue
         out[aid] = rec
     evchanges = sync_evidence(own, out)
+    # Owners (7 Oct 2026): Asana is the single source. A task reassigned IN
+    # ASANA since the last pull rewrites the repository owner; a repository
+    # owner change is pushed to Asana by tools/asana_setup.py --push-owners in
+    # the same run, and tools/check_asana.py fails any open action whose two
+    # owners still differ.
+    owner_changes = []
+    det = json.load(open(os.path.join(REPO, "data", "action_details.json"), encoding="utf8"))
+    for aid, r in out.items():
+        row = own["owners"].get(aid)
+        if row is None or r["completed"] or not r["assignee_gid"]:
+            continue
+        if match_owner(row.get("owner") or (det.get(aid) or {}).get("owner"))[0] != r["assignee_gid"] \
+                and (prev.get(aid) or {}).get("assignee_gid") != r["assignee_gid"]:
+            was = row.get("owner")
+            row["owner"] = NAME_OF.get(r["assignee_gid"]) or r["owner"]
+            owner_changes.append(f"owner from Asana: {aid}: {was!r} -> {row['owner']!r}")
     doc = {"note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py "
                    "at each build. The action list renders owner, deadline and completion from it.",
            "pulled_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -172,14 +189,14 @@ def main():
         amap["tasks"] = dict(sorted(amap["tasks"].items()))
         json.dump(amap, open(MAP, "w", encoding="utf8"), indent=1, ensure_ascii=False)
         open(MAP, "a").write("\n")
-    if retitled or evchanges:
+    if retitled or evchanges or owner_changes:
         json.dump(own, open(own_path, "w", encoding="utf8"), indent=1, ensure_ascii=False)
         open(own_path, "a").write("\n")
     for aid, was, now in retitled:
         print(f"asana_pull: title from Asana: {aid}: {was!r} -> {now!r}")
     done = sum(1 for r in out.values() if r["completed"])
     print(f"asana_pull: {len(out)} tasks read ({done} completed), {len(dup)} duplicated act-id(s)")
-    for c in evchanges:
+    for c in evchanges + owner_changes:
         print(f"asana_pull: {c}")
     noev = sorted(a for a, r in out.items() if r["completed"] and not r.get("evidence"))
     print(f"asana_pull: completed with evidence {sum(1 for r in out.values() if r.get('evidence'))}, "

@@ -24,7 +24,7 @@
   "act-cal-handwritten-year": {
    "deadline": null,
    "owner": "Adriaan Mol",
-   "title": "Read the year on calendar sheets where it is handwritten"
+   "title": "Retired: machine reader year fallback (years read by hand)"
   },
   "act-cal-working-day-ticks": {
    "deadline": null,
@@ -824,8 +824,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 60,
-   "evidence": 72,
-   "manual": 32
+   "evidence": 73,
+   "manual": 31
   },
   "actions": {
    "act-2026-recovery": {
@@ -864,9 +864,9 @@
     "first_seen": "2026-10-04"
    },
    "act-cal-handwritten-year": {
-    "type": "manual",
-    "closes_when": "the year reader falls back on the printed weekday layout where it finds no printed year, and this sheet reads 2024",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "retired by decision 7 Oct 2026: the machine reader is parked; handwritten years are read by people in the annual transcription sample",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-28"
    },
@@ -2232,6 +2232,19 @@
     "what": "SOP-MAD-SDWS27-CalendrierGardien v1.7 is filed in Water Documents/SOPs",
     "source": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
+   },
+   "act-cal-handwritten-year": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "retired by decision of Adriaan Mol, 7 Oct 2026. The machine calendar reader is parked, so no year-reader fallback will be built. Handwritten years, such as 2024 on the sheet for water point 742895508, are read by people in the annual human transcription sample (act-calendar-human-sample-annual).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100771264996",
+    "task": "1219100771264996",
+    "from": "asana"
    },
    "act-coddy-naturano-card-spec": {
     "recorded_on": "2026-10-07",

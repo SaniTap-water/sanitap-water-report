@@ -25,6 +25,10 @@ local copy of the Asana read (data/asana_pull.json), the map
      evidence whose action is closed, or is open without the amber
      "ticked in Asana, no evidence yet" mark.
 
+  7. (owners, 7 Oct 2026) an open action's owner in data/action_owners.json,
+     mapped to an Asana user as tools/asana_setup.py maps it, is not its
+     task's assignee.
+
 Shown failing on 2 Oct 2026 by changing one task's due date in the local copy
 of the pull (not in Asana): see docs/decision_log.md.
 
@@ -46,6 +50,10 @@ def main():
     evid = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
             .get("evidence") or {}).get("actions", {})
     tasks, dups = pull.get("tasks", {}), pull.get("duplicates", {})
+    sys.path.insert(0, os.path.join(REPO, "tools"))
+    from asana_setup import match_owner, NAME_OF
+    owners = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))["owners"]
+    details = json.load(open(os.path.join(REPO, "data", "action_details.json"), encoding="utf8"))
     rows = {}
     for m in re.finditer(r'<tr data-state="(\w+)"[^>]*?data-act="([^"]+)"([^>]*)>', idx):
         seg = idx[m.end():idx.find('<td class="st">', m.end())]
@@ -66,6 +74,15 @@ def main():
                 continue
             if aid in dups:
                 fails.append(f"{aid}: {len(dups[aid])} Asana tasks name it")
+            # 7. (7 Oct 2026) Asana is the single source for owners: the
+            # repository owner, mapped as tools/asana_setup.py maps it, must be
+            # the task's assignee (asana_pull.py takes in Asana's changes;
+            # asana_setup.py --push-owners pushes the repository's)
+            otext = (owners.get(aid) or {}).get("owner") or (details.get(aid) or {}).get("owner")
+            want = match_owner(otext)[0]
+            if not t.get("completed") and want != t.get("assignee_gid"):
+                fails.append(f"{aid}: owner in the repository {otext!r} "
+                             f"({NAME_OF.get(want, want)}), Asana assignee {t.get('owner')!r}")
         if t:
             if r["owner"] != t["owner"]:
                 fails.append(f"{aid}: owner on the page {r['owner']!r}, in Asana {t['owner']!r}")

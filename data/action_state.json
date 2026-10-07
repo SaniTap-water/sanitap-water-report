@@ -4,9 +4,9 @@
   "artefact": 10,
   "children": 3,
   "data": 48,
-  "decision": 57,
+  "decision": 58,
   "form": 7,
-  "none": 39
+  "none": 38
  },
  "state": {
   "act-2026-recovery": {
@@ -52,11 +52,12 @@
    "when_satisfied": "OK"
   },
   "act-cal-handwritten-year": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: a photograph is looked at by a person, or it is not",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: a photograph is looked at by a person, or it is not",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Retired. The machine calendar reader is parked, so no fallback on the printed weekday layout will be built for sheets with a handwritten year. Handwritten years (such as 2024 on the sheet for 742895508) are read by people in the annual human transcription sample (act-calendar-human-sample-annual). Closed in Asana with an Evidence comment; task renamed 'Retired: machine reader year fallback (years read by hand)'.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-cal-working-day-ticks": {

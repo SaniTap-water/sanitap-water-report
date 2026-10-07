@@ -19,6 +19,9 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
   5. completes the tasks of actions named with --complete;
   6. --retitle renames named tasks to their title in data/action_owners.json,
      and --section-top moves the section above the project's first section;
+  8. --push-owners (7 Oct 2026) sets each open task's assignee to its owner in
+     data/action_owners.json, after tools/asana_pull.py has taken in changes
+     made in Asana: Asana is the single source for owners;
   7. --approval (7 Oct 2026) creates or updates the week's approval task for
      major mWater changes (tools/change_review.py), assigned to Adriaan with
      Jan following.
@@ -230,6 +233,33 @@ APPROVALS = os.path.join(REPO, "data", "approvals.json")
 CHANGES = os.path.join(REPO, "data", "change_review.json")
 
 
+PULL = os.path.join(REPO, "data", "asana_pull.json")
+
+
+def push_owners():
+    """(7 Oct 2026) Asana is the single source for owners. Run after
+    tools/asana_pull.py has taken in any reassignment made in Asana: what still
+    differs is an owner changed in the repository, and it is pushed to the task
+    here, in the same run. Open actions only; the pull file is updated to match."""
+    info = action_info()
+    pull = json.load(open(PULL, encoding="utf8"))
+    pushed = 0
+    for aid, t in pull["tasks"].items():
+        v = info.get(aid)
+        if not v or v["state"] not in ("ACT", "WATCH") or t.get("completed"):
+            continue
+        if v["assignee"] != t.get("assignee_gid"):
+            A.put(f"/tasks/{t['gid']}", {"assignee": v["assignee"]})
+            print(f"  owner pushed to Asana: {aid}: {t.get('owner')} -> {NAME_OF.get(v['assignee'], v['assignee'])}")
+            t.update(assignee_gid=v["assignee"], owner=v.get("not_in_asana") and t["owner"] or NAME_OF.get(v["assignee"], t["owner"]))
+            pushed += 1
+    if pushed:
+        json.dump(pull, open(PULL, "w", encoding="utf8"), indent=1, ensure_ascii=False)
+        open(PULL, "a").write("\n")
+    print(f"push-owners: {pushed} task(s) reassigned to their repository owner")
+    return 0
+
+
 def approval_task():
     """(7 Oct 2026) One Asana approval task per week with major changes, in the
     section, assigned to Adriaan with Jan following. Created once; its
@@ -290,6 +320,8 @@ def main():
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--dry-run", action="store_true")
     g.add_argument("--write", action="store_true")
+    g.add_argument("--push-owners", action="store_true",
+                   help="set each open task's assignee to its owner in data/action_owners.json (7 Oct 2026)")
     g.add_argument("--approval", action="store_true",
                    help="create or update this week's approval task from data/approvals.json (rule of 7 Oct 2026)")
     ap.add_argument("--complete", nargs="*", default=[])
@@ -300,6 +332,8 @@ def main():
     a = ap.parse_args()
     if a.approval:
         return approval_task()
+    if a.push_owners:
+        return push_owners()
     info = action_info()
     open_ids = [k for k, v in info.items() if v["state"] in ("ACT", "WATCH")]
     want = sorted(set(open_ids) | set(a.complete))

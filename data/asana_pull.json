@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T10:27:56+00:00",
+ "pulled_at": "2026-10-07T12:30:16+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -66,15 +66,24 @@
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
-   "name": "Read the year on calendar sheets where it is handwritten [act-cal-handwritten-year]",
-   "title": "Read the year on calendar sheets where it is handwritten",
+   "name": "Retired: machine reader year fallback (years read by hand) [act-cal-handwritten-year]",
+   "title": "Retired: machine reader year fallback (years read by hand)",
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100771264996",
-   "modified_at": "2026-10-06T11:54:53.520Z"
+   "modified_at": "2026-10-07T12:25:39.581Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "retired by decision of Adriaan Mol, 7 Oct 2026. The machine calendar reader is parked, so no year-reader fallback will be built. Handwritten years, such as 2024 on the sheet for water point 742895508, are read by people in the annual human transcription sample (act-calendar-human-sample-annual).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100771264996"
+   }
   },
   "act-cal-working-day-ticks": {
    "gid": "1219100994732884",

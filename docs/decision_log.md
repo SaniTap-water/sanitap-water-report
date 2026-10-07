@@ -2240,3 +2240,29 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   this log; under the rule each would have needed an `instructed_by` decision. Status changes were backed by visit,
   repair or call records. A synthetic test confirmed each of (a), (b), (c) fires and that new records and Adriaan's
   or Jan's edits do not.
+
+## 7 Oct 2026 (e) — Adriaan Mol: exemption accounts confirmed; owners from Asana; handwritten-year task retired; 347 is the ceiling
+
+- **Approval-gate exemption accounts confirmed** by one read-only query of the mWater users table:
+  a77264134a1d4e7486a04e8c8e07228e is "AdriaanMol", 080b964a728a44758b86b8bd2afe6292 is "Jan_Sanitap". The table
+  exposes no email to this connection, so the email addresses were not read. Kept as they were; logged under
+  `rule-major-changes-approval-2026-10-07` (`exempt_mwater_accounts`). The dry run is unchanged (0 approval tasks).
+- **Owners: Asana is the single source.** All 121 open actions compared, repository owner (mapped as
+  tools/asana_setup.py maps it, including the 2 Oct moves to Angelo and Cathy, commit 58050b0) against the Asana
+  assignee: 0 mismatches, nothing reassigned. From now on tools/asana_pull.py takes in reassignments made in Asana,
+  tools/asana_setup.py --push-owners pushes repository owner changes in the same run (tools/publish.sh, straight
+  after the pull), and tools/check_asana.py fails the build on any open action whose owners differ (shown failing
+  on a local edit of act-close-eight-2-2).
+- **act-cal-handwritten-year retired.** The machine calendar reader is parked; handwritten years are read by
+  people in the annual transcription sample (act-calendar-human-sample-annual). Evidence comment posted, task
+  completed and renamed "Retired: machine reader year fallback (years read by hand)"; closing rule is now the logged
+  decision. Not retired, for Adriaan to decide: act-undatable (its count of undatable sheets is the parked
+  reader's year reading). Affected but not software tasks: act-decide-how-treat-67 and act-2026-recovery close on
+  counts frozen at the reader's last run (data/calendar_extraction_figures.json).
+- **SDWS 27: 347 is the ceiling** for every pump without an operation sensor, calendar or not; calendars protect
+  it, never raise it; the only route above is the StrokeMeter; the human-read rate (~362 days) is operational
+  evidence only. Wording corrected: the maintenance panel no longer says "the stratum reading already sits above
+  the 347-day cap"; the sensor-sizing note names the StrokeMeter. No stored or computed claimable value above 347
+  was found. New gate in tools/check_consistency.py: the cap is 347; no embedded days-operational value above 347
+  without a sensor flag; the headline days-operational figure not above 347; no sentence presenting more than 347
+  days as claimable without a sensor.

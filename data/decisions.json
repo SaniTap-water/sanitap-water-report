@@ -312,6 +312,41 @@
    "instructed_by": "Adriaan Mol",
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026 (replacing the first draft of the same day, which gated Asana closures)",
    "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "exempt_mwater_accounts": {
+    "a77264134a1d4e7486a04e8c8e07228e": {
+     "username": "AdriaanMol",
+     "person": "Adriaan Mol"
+    },
+    "080b964a728a44758b86b8bd2afe6292": {
+     "username": "Jan_Sanitap",
+     "person": "Jan de Graaf"
+    }
+   },
+   "exempt_accounts_confirmed": "7 Oct 2026: read-only lookup of the mWater users table (one query, both ids) returned usernames AdriaanMol and Jan_Sanitap. The users table exposes no email to this connection, so the emails adriaan.mol@sanitap.org and jan.degraaf@sanitap.org could not be read; the usernames name the people."
+  },
+  "act-cal-handwritten-year": {
+   "answer": "Retired. The machine calendar reader is parked, so no fallback on the printed weekday layout will be built for sheets with a handwritten year. Handwritten years (such as 2024 on the sheet for 742895508) are read by people in the annual human transcription sample (act-calendar-human-sample-annual). Closed in Asana with an Evidence comment; task renamed 'Retired: machine reader year fallback (years read by hand)'.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "sdws27-ceiling-347-2026-10-07": {
+   "answer": "347 days is the ceiling for every pump without an operation sensor, including pumps with a calendar. Calendars protect the 347 from being cut; they never raise it, and no weighted or portfolio figure above 347 may be shown as claimable. The only route above 347 is the StrokeMeter (sensor). The human-read rate (about 362 days, 0.3 to 0.4% of days marked down) may appear only as operational evidence. Enforced by tools/check_consistency.py (four SDWS 27 checks).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "owners-asana-single-source-2026-10-07": {
+   "answer": "Asana is the single source for action owners. A reassignment made in Asana is taken into data/action_owners.json by tools/asana_pull.py; an owner changed in the repository is pushed to its Asana task in the same run by tools/asana_setup.py --push-owners; tools/check_asana.py fails the build if an open action's repository owner differs from its Asana assignee. Comparison on 7 Oct 2026: all 121 open actions agreed (including the 2 Oct moves to Angelo and Cathy), so nothing was reassigned.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
    "logged_by": "Adriaan Mol"
   }
  },

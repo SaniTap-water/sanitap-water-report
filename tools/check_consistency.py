@@ -4456,6 +4456,52 @@ def main():
         check(*_r)
 
     # ---------------------------------------------------------------- report
+    # ---- SDWS 27: nothing above 347 without a sensor (Adriaan Mol, 7 Oct 2026)
+    # 347 days is the ceiling for every pump without an operation sensor,
+    # calendar or not. Calendars protect the 347 from being cut; they never
+    # raise it. The only route above 347 is the StrokeMeter. The human-read
+    # rate (about 362 days) may appear only as operational evidence.
+    _m = re.search(r"\bdo_cap:\{v:([\d.]+)", idx_raw)
+    check("SDWS 27: the applied days-operational cap is 347",
+          bool(_m) and float(_m.group(1)) == 347, "347", _m.group(1) if _m else "MISSING",
+          "the registered ceiling without an operation sensor (decision 7 Oct 2026)")
+    import embedded_fields as _EF
+    _DOKEY = re.compile(r"^(do|dop|do_p|do_py|days_operational|days_op|operational_days|claimable_days)$", re.I)
+    _over = []
+    def _walk(o, path, sensor=False):
+        if isinstance(o, dict):
+            sensor = sensor or bool(o.get("sensor") or o.get("strokemeter"))
+            for k, v in o.items():
+                if _DOKEY.match(str(k)) and isinstance(v, (int, float)) and not isinstance(v, bool) \
+                        and v > 347 and not sensor:
+                    _over.append(f"{path}.{k}={v}")
+                _walk(v, f"{path}.{k}", sensor)
+        elif isinstance(o, list):
+            for v in o:
+                _walk(v, path + "[]", sensor)
+    for _name, _line, _val in _EF.objects(idx_raw):
+        _walk(_val, _name)
+    check("SDWS 27: no embedded days-operational value above 347 for a point without a sensor",
+          not _over, "none", f"{len(_over)}: " + ", ".join(_over[:3]) if _over else "none",
+          "only a sensor-measured (StrokeMeter) value may exceed 347")
+    try:
+        _chg = json.load(open(os.path.join(repo_root, "data", "change_review.json"), encoding="utf8"))
+        _hd = _chg["figures"]["days_operational"]["after"]
+    except (OSError, KeyError, ValueError):
+        _hd = None
+    check("SDWS 27: the headline days-operational figure is not above 347",
+          _hd is not None and _hd <= 347, "<= 347", _hd, "data/change_review.json, as the page computes it")
+    _txt = re.sub(r"\s+", " ", _html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<script\b.*?</script>", " ", idx_raw + prt, flags=re.S))))
+    _claim = []
+    for _sent in re.split(r"(?<=[.!?])\s+", _txt):
+        for _n in re.findall(r"\b(3(?:4[89]|5\d|6[0-6])(?:\.\d+)?)\s*(?:days|-day)", _sent):
+            if re.search(r"\b(claim|claimable|credit|carbon basis|applied|apply)", _sent, re.I) \
+                    and not re.search(r"sensor|StrokeMeter|operational evidence|not claimable|never|cannot|may not|no more claimable|withdrawn|only (?:where|when|on)", _sent, re.I):
+                _claim.append(f"{_n}: {_sent[:90]}")
+    check("SDWS 27: no sentence presents more than 347 days as claimable without a sensor",
+          not _claim, "none", f"{len(_claim)}: {_claim[0]}" if _claim else "none",
+          "calendars protect the 347; they never raise it (decision 7 Oct 2026)")
+
     w = max(len(r[0]) for r in RESULTS) + 2
     print()
     print(f"  {'CHECK'.ljust(w)} {'':6} {'EXPECTED'.ljust(26)} {'ACTUAL'.ljust(26)} NOTE")

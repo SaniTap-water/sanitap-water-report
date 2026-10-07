@@ -99,6 +99,14 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr
     say "ABORT: $gen failed (exit $RC). Nothing committed."
     exit 2
   fi
+  # owners (7 Oct 2026): Asana is the single source. The pull has taken in
+  # reassignments made in Asana; an owner changed in the repository is pushed
+  # to its task now, in the same run, before the action list is rendered.
+  if [ "$gen" = "tools/asana_pull.py" ]; then
+    python3 tools/asana_setup.py --push-owners
+    RC=$?
+    if [ "$RC" -ne 0 ]; then say "ABORT: pushing owners to Asana failed (exit $RC). Nothing committed."; exit 2; fi
+  fi
 done
 
 # ---- 1b. Asana gate (2 Oct 2026) ---------------------------------------------
