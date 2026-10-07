@@ -2171,3 +2171,42 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   act-enduro-nanisana-firmware. Follower added: act-amboasary-post-works-retest, "Sous-activité 3.2 Gestion de
   stock", "Préparer un courte note … roof count". Completed tasks and work outside the project stay on the old
   account (data/decisions.json `asana-coddy-account-2026-10-07`).
+
+## 7 Oct 2026 (b) — Adriaan Mol: repair records are not a days-operational source; the form consolidation was settled on 22 Sep
+
+- **act-define-maintenance-record-becomes — retired.** Days operational (SDWS 27) is evidenced by the gardien
+  calendars (the operation-and-maintenance log) and the annual human transcription sample
+  (act-calendar-human-sample-annual), not by converting repair records. Reconciling the two would double-count travel
+  and repair days in remote areas for no gain. Repair and call-centre records stay operational records (repair time,
+  dispatch). The SDWS 27 note under the calendar dimensions table no longer says days are computed from "the
+  maintenance history" or that "the repair records show the days deducted".
+- **act-form-consolidation — settled 22 Sep 2026.** The merge rested on a wrong premise: 86cf66ef is the retired
+  combined form, not the standard works form, and every branch has its own live form. The Marolinta borehole form
+  8764843c was rebuilt in place (revision 261 to 268); wording and validations finished 30 Sep 2026.
+- Both closed in Asana by Adriaan Mol with an Evidence comment (7 Oct 2026, 08:20 UTC); data/decisions.json carries
+  both answers, and data/action_conditions.json states each closing rule as the logged decision, so the build keeps
+  them closed.
+- Evidence recorded in the repository for two tasks Adriaan ticked on 7 Oct with the evidence in an ordinary comment
+  (not starting "Evidence:"): act-coddy-naturano-card-spec and act-enduro-nanisana-sellthrough, both on Coddy's
+  email "Re: Nanisana (R129)...", 6 Oct 2026. Angelo's tick on act-deichmann-ar-marolinta-photos (7 Oct, 02:30 UTC)
+  has no comment or file and is left without evidence.
+
+## 7 Oct 2026 (c) — Adriaan Mol: the SDWS 25 annual independent cross-check is INSTAT RGPH-3
+
+- **Source.** INSTAT RGPH-3, census of June 2018, the most recent official household size by region. Anosy 4.3
+  (Tome 1, Tableau 26, p.41), Taolagnaro district 4.3 (Tome 2, Tableau 14, p.160), urban commune of Fort Dauphin
+  4.0 (Tome 2, Tableau 16, p.213); Analanjirofo 3.6 (Tableau 26, p.41), Maroantsetra district 3.6 (Tableau 14,
+  p.159), urban commune of Maroantsetra 3.3 (Tableau 16, p.195).
+- **Checked first, in the order asked.** INSTAT TBSE December 2025: the Analanjirofo edition (Tableau 4, PDF p.20)
+  reprints the 2018 census sizes and prints 3,5 for the region, where the census counts round to 3.6; no Anosy
+  edition exists. EDS-V 2021 (household composition table) gives national 4.3, urban 4.0 and rural 4.4 only. MICS6 not needed.
+- **Comparison with the November 2025 survey** (people per premises): Fort-Dauphin 4.47 is +0.17 (+4%) above Anosy
+  and Taolagnaro and +0.47 (+12%) above the town; Maroantsetra 3.66 is +0.06 (+2%) above Analanjirofo and the
+  district and +0.36 (+11%) above the town. The census counts people per ordinary household, the survey people per
+  premises. No census figure is scaled for growth: growth changes the number of households, not their size.
+- Added to the SDWS 25 section (`#sdws25-crosscheck`), with the official figures declared in PARAMS. The PDFs are in
+  Central Data Hub - Water Documents/Evidence/SDWS25 household size/. act-find-source-annual-independent closed;
+  Evidence comment on Asana task 1219101058285868.
+- **Not changed:** the SDWS 25 section still says people per premises is taken from RGPH-3 national rural 4.3 (the
+  hh_size_rural parameter, confirmed with James Walker on 18 Sep 2026), while the model's registered values (4.5 /
+  3.7) come from the project survey. Which one is the value of record is left for Adriaan and James.

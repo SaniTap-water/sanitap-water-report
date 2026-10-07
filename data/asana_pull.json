@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T08:03:23+00:00",
+ "pulled_at": "2026-10-07T09:03:47+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -302,10 +302,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110579611",
-   "modified_at": "2026-10-06T11:56:24.826Z"
+   "modified_at": "2026-10-07T08:20:49.061Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "retired by decision of Adriaan, 7 Oct 2026. Days operational (SDWS 27) is evidenced by the caretaker calendars (with the annual human transcription sample), not by converting repair records into days out of service. Reconciling the two would double-count travel and repair days in remote areas and cost a lot of time for no gain.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110579611"
+   }
   },
   "act-deichmann-ar-marolinta-photos": {
    "gid": "1219109377306808",
@@ -501,15 +510,15 @@
   },
   "act-enduro-nanisana-firmware": {
    "gid": "1219243900466998",
-   "name": "Update the Nanisana (R129) firmware so card top-ups stop being lost, and check other NatuRano kiosks [act-enduro-nanisana-firmware]",
-   "title": "Update the Nanisana (R129) firmware so card top-ups stop being lost, and check other NatuRano kiosks",
+   "name": "Put the stable firmware on Nanisana (R129) and the southern rechargeurs so card top-ups stop being lost [act-enduro-nanisana-firmware]",
+   "title": "Put the stable firmware on Nanisana (R129) and the southern rechargeurs so card top-ups stop being lost",
    "owner": "Coddy Velonizy",
    "assignee_gid": "1219154315843358",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243900466998",
-   "modified_at": "2026-10-07T07:08:56.489Z"
+   "modified_at": "2026-10-07T08:29:37.072Z"
   },
   "act-enduro-nanisana-sellthrough": {
    "gid": "1219218728385339",
@@ -540,15 +549,15 @@
   },
   "act-enduro-onboard-5-calibration": {
    "gid": "1219101110593068",
-   "name": "Supply a calibration certificate for every installed Endur'O water meter [act-enduro-onboard-5-calibration]",
-   "title": "Supply a calibration certificate for every installed Endur'O water meter",
+   "name": "Get calibration certificates with the next water meter order [act-enduro-onboard-5-calibration]",
+   "title": "Get calibration certificates with the next water meter order",
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110593068",
-   "modified_at": "2026-10-06T11:57:43.092Z"
+   "modified_at": "2026-10-07T08:21:04.394Z"
   },
   "act-enduro-onboard-6-kiosk-wq": {
    "gid": "1219101058111437",
@@ -617,10 +626,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868",
-   "modified_at": "2026-10-06T11:57:18.075Z"
+   "modified_at": "2026-10-07T08:31:21.927Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "annual independent cross-check of people per premises (SDWS 25), 7 Oct 2026.\n\nSource: INSTAT RGPH-3, census of June 2018 — the most recent official household size by region.\n• Anosy 4.3 (Tome 1, Tableau 26, p.41); Taolagnaro district 4.3 (Tome 2, Tableau 14, p.160); urban commune of Fort Dauphin 4.0 (Tome 2, Tableau 16, p.213).\n• Analanjirofo 3.6 (Tome 1, Tableau 26, p.41); Maroantsetra district 3.6 (Tome 2, Tableau 14, p.159); urban commune of Maroantsetra 3.3 (Tome 2, Tableau 16, p.195).\n\nChecked first, in order: INSTAT TBSE Dec 2025 — the Analanjirofo edition (Tableau 4, PDF p.20) only reprints the 2018 census sizes (it prints 3,5 for the region; the census counts themselves round to 3.6); no Anosy edition exists. EDS-V 2021 (household composition table) gives national 4.3, urban 4.0, rural 4.4 only.\n\nComparison with the project survey, Nov 2025 (people per premises):\n• Fort-Dauphin 4.47: +0.17 (+4%) above Anosy and Taolagnaro; +0.47 (+12%) above Fort Dauphin town.\n• Maroantsetra 3.66: +0.06 (+2%) above Analanjirofo and the district; +0.36 (+11%) above Maroantsetra town.\nCensus figures not scaled for growth (growth changes the number of households, not their size). The census counts ordinary households; the survey counts premises, which can hold more than one household.\n\nFiles: Central Data Hub - Water Documents/Evidence/SDWS25 household size/ (RGPH-3 Tome 1 and Tome 2, RGPH-3 household characteristics report, TBSE Analanjirofo Dec 2025, EDS-V 2021 FR376). On the report: SDWS 25 section, #sdws25-crosscheck.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868"
+   }
   },
   "act-fleet-growth": {
    "gid": "1219101058383094",
@@ -653,10 +671,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893781",
-   "modified_at": "2026-10-06T11:57:18.051Z"
+   "modified_at": "2026-10-07T08:20:49.358Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "settled on 22 Sep 2026. The merge was based on a wrong premise: form 86cf66ef is the retired combined form, not the standard works form, and every branch already has its own live form. The Marolinta borehole form (8764843c) was rebuilt in place instead (revision 261 to 268, 22 Sep; wording and validations finished 30 Sep). No merge needed. See project notes \"Borehole form rebuild, and Marolinta drilling quality, 22 Sep 2026\" and \"borehole-form-wording-validations-done-2026-09-30\". Closed on Adriaan's instruction, 7 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893781"
+   }
   },
   "act-freeze-estate-map-when": {
    "gid": "1219101105660866",
@@ -1211,7 +1238,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
-   "modified_at": "2026-10-07T07:08:31.379Z"
+   "modified_at": "2026-10-07T08:29:34.095Z"
   },
   "act-naturano-meter-data": {
    "gid": "1219213949192332",
@@ -1448,10 +1475,13 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970459",
-   "modified_at": "2026-10-06T11:55:57.536Z"
+   "modified_at": "2026-10-07T08:21:01.471Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": null
   },
   "act-ralf-meter-install-register": {
    "gid": "1219100996659975",
@@ -1463,7 +1493,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996659975",
-   "modified_at": "2026-10-06T11:56:02.959Z"
+   "modified_at": "2026-10-07T08:21:07.229Z"
   },
   "act-ralf-shopkeeper-waterpoint-link": {
    "gid": "1219101111620085",

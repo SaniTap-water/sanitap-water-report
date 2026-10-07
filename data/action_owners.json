@@ -159,7 +159,7 @@
    "title": "Link each Endur'O smart tap to its water point with a test dispense"
   },
   "act-enduro-onboard-5-calibration": {
-   "title": "Supply a calibration certificate for every installed Endur'O water meter"
+   "title": "Get calibration certificates with the next water meter order"
   },
   "act-enduro-onboard-6-kiosk-wq": {
    "title": "Test the water at the Antananarivo kiosk tap and record it"
@@ -824,8 +824,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 60,
-   "evidence": 70,
-   "manual": 34
+   "evidence": 72,
+   "manual": 32
   },
   "actions": {
    "act-2026-recovery": {
@@ -1004,9 +1004,9 @@
     "first_seen": "2026-09-20"
    },
    "act-define-maintenance-record-becomes": {
-    "type": "manual",
-    "closes_when": "Adriaan defines the rule and marks it done",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "retired by decision 7 Oct 2026: days operational is evidenced by the gardien calendars and the annual human transcription sample, not by converting repair records",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1166,8 +1166,8 @@
    },
    "act-find-source-annual-independent": {
     "type": "evidence",
-    "closes_when": "a named source for the annual independent cross-check of people per premises",
-    "closed": false,
+    "closes_when": "a named source for the annual independent cross-check of people per premises: INSTAT RGPH-3 (2018), compared with the November 2025 survey on 7 Oct 2026",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1179,9 +1179,9 @@
     "first_seen": "2026-09-21"
    },
    "act-form-consolidation": {
-    "type": "manual",
-    "closes_when": "Adriaan chooses option A or B and marks it done",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "settled 22 Sep 2026 (decision logged 7 Oct 2026): borehole form 8764843c rebuilt in place, rev 261 to 268, wording and validations finished 30 Sep; the works form 86cf66ef is the retired combined form",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-22"
    },
@@ -2233,6 +2233,15 @@
     "source": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
    },
+   "act-coddy-naturano-card-spec": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "Coddy Velonizy's written confirmation that the shared card format is agreed with Ralf, quoted in Adriaan Mol's closing comment on the Asana task",
+    "source": "Coddy Velonizy, email \"Re: Nanisana (R129)...\", 6 Oct 2026; Adriaan Mol, comment on Asana task 1219109157880491, 7 Oct 2026",
+    "summary": "Coddy (email \"Re: Nanisana (R129)...\", 6 Oct 2026): \"Ralf and I have already confirmed the shared format together. The NatuRano and Curtech cards work on both sides.\" The remaining pricing points (credits on NatuRano cards, balance conversion at zone price) follow under act-enduro-pricing-strategy-agreement and act-ralf-tariff-zones.",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880491",
+    "task": "1219109157880491"
+   },
    "act-complete-accuracy-assessment-calendar": {
     "recorded_on": "2026-09-29",
     "recorded_by": "Adriaan Mol, COO SaniTap",
@@ -2265,6 +2274,19 @@
     "summary": "No. SaniTap will not decommission or retire water points for inactivity. A pump with no recent activity is a maintenance question, not a register question.",
     "ref": "data/decisions.json"
    },
+   "act-define-maintenance-record-becomes": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "retired by decision of Adriaan, 7 Oct 2026. Days operational (SDWS 27) is evidenced by the caretaker calendars (with the annual human transcription sample), not by converting repair records into days out of service. Reconciling the two would double-count travel and repair days in remote areas and cost a lot of time for no gain.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110579611",
+    "task": "1219101110579611",
+    "from": "asana"
+   },
    "act-deichmann-ar-send": {
     "recorded_on": "2026-10-05",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2278,6 +2300,15 @@
     "task": "1219109294883405",
     "from": "asana"
    },
+   "act-enduro-nanisana-sellthrough": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "Coddy Velonizy's written explanation of the Nanisana (R129) top-up gap, quoted in Adriaan Mol's closing comment on the Asana task",
+    "source": "Coddy Velonizy, email \"Re: Nanisana (R129)...\", 6 Oct 2026; Adriaan Mol, comment on Asana task 1219218728385339, 7 Oct 2026",
+    "summary": "Coddy (email \"Re: Nanisana (R129)...\", 6 Oct 2026): top-ups are made but lost before reaching the back office because the kiosk firmware has not been updated; the lost data cannot be recovered. R129 Nanisana is a NatuRano kiosk, not the Curtech SmartTap kiosk. Follow-up: act-enduro-nanisana-firmware.",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219218728385339",
+    "task": "1219218728385339"
+   },
    "act-enduro-onboard-3-bind-taps": {
     "recorded_on": "2026-09-30",
     "recorded_by": "Adriaan Mol, COO SaniTap",
@@ -2285,6 +2316,32 @@
     "source": "Adriaan Mol to Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", sent 30 Sep 2026 11:38",
     "summary": "Superseded by act-ralf-meter-install-register. The test dispenses were removed from the Endur’O forms on 30 Sep 2026 because the smart tap setup app binds each meter to its water point; the binding is read from the app’s installation register once Curtech exposes it.",
     "ref": "data/decisions.json"
+   },
+   "act-find-source-annual-independent": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "annual independent cross-check of people per premises (SDWS 25), 7 Oct 2026.\n\nSource: INSTAT RGPH-3, census of June 2018 — the most recent official household size by region.\n• Anosy 4.3 (Tome 1, Tableau 26, p.41); Taolagnaro district 4.3 (Tome 2, Tableau 14, p.160); urban commune of Fort Dauphin 4.0 (Tome 2, Tableau 16, p.213).\n• Analanjirofo 3.6 (Tome 1, Tableau 26, p.41); Maroantsetra district 3.6 (Tome 2, Tableau 14, p.159); urban commune of Maroantsetra 3.3 (Tome 2, Tableau 16, p.195).\n\nChecked first, in order: INSTAT TBSE Dec 2025 — the Analanjirofo edition (Tableau 4, PDF p.20) only reprints the 2018 census sizes (it prints 3,5 for the region; the census counts themselves round to 3.6); no Anosy edition exists. EDS-V 2021 (household composition table) gives national 4.3, urban 4.0, rural 4.4 only.\n\nComparison with the project survey, Nov 2025 (people per premises):\n• Fort-Dauphin 4.47: +0.17 (+4%) above Anosy and Taolagnaro; +0.47 (+12%) above Fort Dauphin town.\n• Maroantsetra 3.66: +0.06 (+2%) above Analanjirofo and the district; +0.36 (+11%) above Maroantsetra town.\nCensus figures not scaled for growth (growth changes the number of households, not their size). The census counts ordinary households; the survey counts premises, which can hold more than one household.\n\nFiles: Central Data Hub - Water Documents/Evidence/SDWS25 household size/ (RGPH-3 Tome 1 and Tome 2, RGPH-3 household characteristics report, TBSE Analanjirofo Dec 2025, EDS-V 2021 FR376). On the report: SDWS 25 section, #sdws25-crosscheck.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868",
+    "task": "1219101058285868",
+    "from": "asana"
+   },
+   "act-form-consolidation": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "settled on 22 Sep 2026. The merge was based on a wrong premise: form 86cf66ef is the retired combined form, not the standard works form, and every branch already has its own live form. The Marolinta borehole form (8764843c) was rebuilt in place instead (revision 261 to 268, 22 Sep; wording and validations finished 30 Sep). No merge needed. See project notes \"Borehole form rebuild, and Marolinta drilling quality, 22 Sep 2026\" and \"borehole-form-wording-validations-done-2026-09-30\". Closed on Adriaan's instruction, 7 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893781",
+    "task": "1219101110893781",
+    "from": "asana"
    },
    "act-mwater-backup-restore-check": {
     "recorded_on": "2026-10-06",

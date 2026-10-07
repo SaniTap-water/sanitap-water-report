@@ -122,10 +122,10 @@
  },
  "act-define-maintenance-record-becomes": {
   "kind": "decision",
-  "question": "How does a maintenance record become a days-out-of-service count?",
+  "question": "How is days operational (SDWS 27) evidenced, and do repair records become a days-out-of-service count?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan defines the rule and marks it done"
+  "closure": "evidence",
+  "closes_when": "retired by decision 7 Oct 2026: days operational is evidenced by the gardien calendars and the annual human transcription sample, not by converting repair records"
  },
  "act-down-no-repair": {
   "kind": "data",
@@ -208,7 +208,7 @@
   "question": "What is the source for the annual independent cross-check of people per premises?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "a named source for the annual independent cross-check of people per premises"
+  "closes_when": "a named source for the annual independent cross-check of people per premises: INSTAT RGPH-3 (2018), compared with the November 2025 survey on 7 Oct 2026"
  },
  "act-fleet-growth": {
   "kind": "decision",
@@ -219,9 +219,10 @@
  },
  "act-form-consolidation": {
   "kind": "decision",
-  "says": "closes on a logged decision in data/decisions.json choosing option A or B",
-  "closure": "manual",
-  "closes_when": "Adriaan chooses option A or B and marks it done"
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "settled 22 Sep 2026 (decision logged 7 Oct 2026): borehole form 8764843c rebuilt in place, rev 261 to 268, wording and validations finished 30 Sep; the works form 86cf66ef is the retired combined form",
+  "question": "Is the Marolinta borehole form consolidated into the works form?"
  },
  "act-freeze-estate-map-when": {
   "kind": "artefact",

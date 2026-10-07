@@ -216,10 +216,11 @@
    "when_satisfied": "OK"
   },
   "act-define-maintenance-record-becomes": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Retired. Days operational (SDWS 27) is evidenced by the gardien calendars, which are the operation-and-maintenance log, together with the annual human transcription sample (act-calendar-human-sample-annual), not by converting repair records. Repair and call-centre records are not turned into a days-out-of-service count, and no such rule will be written; they remain operational records (repair time, dispatch). Reconciling the two would double-count travel and repair days in remote areas and cost a lot of time for no gain. Closed in Asana with an Evidence comment (Adriaan Mol, 7 Oct 2026, task 1219101110579611).",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -416,10 +417,11 @@
    "when_satisfied": "OK"
   },
   "act-find-source-annual-independent": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: The annual independent cross-check of people per premises (SDWS 25) is INSTAT RGPH-3, the census of June 2018: Anosy 4.3 (region, Tome 1 Tableau 26 p.41; Taolagnaro district 4.3, Tome 2 Tableau 14 p.160; urban commune of Fort Dauphin 4.0, Tome 2 Tableau 16 p.213) and Analanjirofo 3.6 (region, Tome 1 Tableau 26 p.41; Maroantsetra district 3.6, Tome 2 Tableau 14 p.159; urban commune of Maroantsetra 3.3, Tome 2 Tableau 16 p.195). No newer source gives a regional figure: the INSTAT TBSE Analanjirofo of December 2025 (Tableau 4, PDF p.20) reprints the 2018 sizes (it prints 3,5 for the region, where the census counts themselves round to 3.6), no TBSE exists for Anosy, and EDS-V 2021 gives only national 4.3, urban 4.0 and rural 4.4. Compared with the project survey of November 2025 (Fort-Dauphin 4.47, Maroantsetra 3.66 people per premises): Fort-Dauphin is +0.17 (+4%) above Anosy and Taolagnaro and +0.47 (+12%) above the town; Maroantsetra is +0.06 (+2%) above Analanjirofo and the district and +0.36 (+11%) above the town. Census figures are not scaled for population growth, which changes the number of households, not their size. Sources filed in Central Data Hub - Water Documents/Evidence/SDWS25 household size/.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -432,11 +434,12 @@
    "when_satisfied": "OK"
   },
   "act-form-consolidation": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Settled 22 Sep 2026; no merge. The merge rested on a wrong premise: form 86cf66ef is the retired combined form, not the standard works form, and every branch already has its own live form. The Marolinta borehole form 8764843c was rebuilt in place instead (revision 261 to 268, 22 Sep 2026), with its wording and validations finished on 30 Sep 2026. Closed in Asana with an Evidence comment (Adriaan Mol, 7 Oct 2026, task 1219101110893781).",
    "kind": "decision",
-   "satisfied": false,
-   "says": "closes on a logged decision in data/decisions.json choosing option A or B",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-freeze-estate-map-when": {
