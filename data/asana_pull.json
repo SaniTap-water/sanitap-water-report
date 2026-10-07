@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T12:30:16+00:00",
+ "pulled_at": "2026-10-07T12:48:05+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -661,6 +661,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058383094",
    "modified_at": "2026-10-06T11:57:18.032Z"
   },
+  "act-fluoride-five-pumps-status": {
+   "gid": "1219254664501109",
+   "name": "Decide how the five Ambinanitelo pumps with fluoride above 1.5 mg/L are treated in the SDWS 3 count [act-fluoride-five-pumps-status]",
+   "title": "Decide how the five Ambinanitelo pumps with fluoride above 1.5 mg/L are treated in the SDWS 3 count",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254664501109",
+   "modified_at": "2026-10-07T12:46:43.174Z"
+  },
   "act-fluoride-overrange-check": {
    "gid": "1219208478747022",
    "name": "Confirm the fluoride photometer model and check the five 1.5 mg/L readings of 15 Aug 2025 [act-fluoride-overrange-check]",
@@ -671,7 +683,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219208478747022",
-   "modified_at": "2026-10-06T11:44:31.865Z"
+   "modified_at": "2026-10-07T12:46:29.147Z"
+  },
+  "act-fluoride-overrange-mwater-flag": {
+   "gid": "1219254583173041",
+   "name": "Mark the five over-range fluoride results as above 1.5 mg/L in mWater and add an over-range option to the SDWS 3 result form [act-fluoride-overrange-mwater-flag]",
+   "title": "Mark the five over-range fluoride results as above 1.5 mg/L in mWater and add an over-range option to the SDWS 3 result form",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": "2026-10-21",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254583173041",
+   "modified_at": "2026-10-07T12:46:43.517Z"
   },
   "act-form-consolidation": {
    "gid": "1219101110893781",
@@ -2112,5 +2136,16 @@
   }
  },
  "duplicates": {},
- "new_from_asana": []
+ "new_from_asana": [
+  {
+   "act_id": "act-fluoride-five-pumps-status",
+   "gid": "1219254664501109",
+   "name": "Decide how the five Ambinanitelo pumps with fluoride above 1.5 mg/L are treated in the SDWS 3 count [act-fluoride-five-pumps-status]"
+  },
+  {
+   "act_id": "act-fluoride-overrange-mwater-flag",
+   "gid": "1219254583173041",
+   "name": "Mark the five over-range fluoride results as above 1.5 mg/L in mWater and add an over-range option to the SDWS 3 result form [act-fluoride-overrange-mwater-flag]"
+  }
+ ]
 }
