@@ -1,0 +1,139 @@
+{
+ "note": "act-cal-working-day-ticks: the checklist Angelo fills in, and the answers copied from it at each build (tools/calendar_check.py). Generated; do not edit.",
+ "workbook": "https://sanitap.sharepoint.com/sites/CentralDataHub/Water%20Documents/Work%20in%20Progress/Calendar%20check%20-%20breakdown%20marks%20or%20working-day%20ticks.xlsx",
+ "rows": [
+  {
+   "calendar": 43,
+   "image": "7002fe633d6c4202b2446fcaee698487",
+   "wp": "742895168",
+   "site": "Fort-Dauphin",
+   "photo_date": "2026-09-10",
+   "year": "2026",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/img/43.jpg",
+   "name": "IndiaMark"
+  },
+  {
+   "calendar": null,
+   "image": "767469f0ce7646a28d8cb69749fb0665",
+   "wp": "820198370",
+   "site": "Maroantsetra",
+   "photo_date": "2026-06-16",
+   "year": "2026",
+   "run": "23 days marked in a row, 2026-01-08 to 2026-01-30",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/767469f0ce7646a28d8cb69749fb0665.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "1f02774e423246b3b469c7a521eb5033",
+   "wp": "814009107",
+   "site": "Maroantsetra",
+   "photo_date": "2026-06-24",
+   "year": "",
+   "run": "20 days marked in a row, 2026-01-12 to 2026-01-31",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/1f02774e423246b3b469c7a521eb5033.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "3f4d6acc82de4813851f96898836df87",
+   "wp": "814009107",
+   "site": "Maroantsetra",
+   "photo_date": "2026-06-24",
+   "year": "",
+   "run": "20 days marked in a row, 2026-01-12 to 2026-01-31",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/3f4d6acc82de4813851f96898836df87.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "10d9cce997e745db8f3a80c318f7b755",
+   "wp": "742895869",
+   "site": "Maroantsetra",
+   "photo_date": "2025-11-05",
+   "year": "",
+   "run": "16 days marked in a row, 2025-01-18 to 2025-02-02",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/10d9cce997e745db8f3a80c318f7b755.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "200136b2366f4bd989c5d1a2761e798a",
+   "wp": "742894851",
+   "site": "Fort-Dauphin",
+   "photo_date": "2025-12-05",
+   "year": "",
+   "run": "16 days marked in a row, 2025-01-01 to 2025-01-16",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/200136b2366f4bd989c5d1a2761e798a.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "1ce48bc7587c4b698fb04b12a60affaf",
+   "wp": "742893850",
+   "site": "Fort-Dauphin",
+   "photo_date": "2026-01-28",
+   "year": "2026",
+   "run": "14 days marked in a row, 2026-01-01 to 2026-01-14",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/1ce48bc7587c4b698fb04b12a60affaf.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "fcd5e3f6964e427f94f74cedd8ff7229",
+   "wp": "699595979",
+   "site": "Maroantsetra",
+   "photo_date": "2025-12-11",
+   "year": "",
+   "run": "14 days marked in a row, 2025-09-22 to 2025-10-05",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/fcd5e3f6964e427f94f74cedd8ff7229.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "65932d79698847ea8430a8c4a383bdd8",
+   "wp": "742895515",
+   "site": "Maroantsetra",
+   "photo_date": "2025-11-14",
+   "year": "",
+   "run": "13 days marked in a row, 2025-03-01 to 2025-03-13",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/65932d79698847ea8430a8c4a383bdd8.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "e9c26d924f8d46ea928ffd78fc437ebd",
+   "wp": "698772001",
+   "site": "Maroantsetra",
+   "photo_date": "2026-01-15",
+   "year": "2024",
+   "run": "11 days marked in a row, 2026-01-01 to 2026-01-11",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/e9c26d924f8d46ea928ffd78fc437ebd.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "28fe578e85d84188b79b1175980331e7",
+   "wp": "742897029",
+   "site": "Maroantsetra",
+   "photo_date": "2025-10-29",
+   "year": "",
+   "run": "10 days marked in a row, 2025-10-20 to 2025-10-29",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/28fe578e85d84188b79b1175980331e7.jpg",
+   "name": "Canzee"
+  },
+  {
+   "calendar": null,
+   "image": "b612c08cd63c4812b27db81d4ad3de04",
+   "wp": "742895821",
+   "site": "Fort-Dauphin",
+   "photo_date": "2025-12-12",
+   "year": "",
+   "run": "10 days marked in a row, 2025-01-23 to 2025-02-01",
+   "url": "https://sanitap-water.github.io/sanitap-water-report/transcription/check/b612c08cd63c4812b27db81d4ad3de04.jpg",
+   "name": "Canzee"
+  }
+ ],
+ "answers": {},
+ "read_on": null
+}

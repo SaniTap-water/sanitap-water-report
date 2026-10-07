@@ -963,9 +963,9 @@
  },
  "act-cal-working-day-ticks": {
   "kind": "none",
-  "says": "no closing condition: a photograph is looked at by a person, or it is not",
-  "closure": "manual",
-  "closes_when": "every sheet listed in docs/transcription_round_notes.md checked against its photograph and recorded there as breakdown marks or as a working-day tick convention"
+  "says": "no data predicate: the answers are given in the checklist workbook, and the build copies them into docs/transcription_round_notes.md",
+  "closure": "evidence",
+  "closes_when": "every row of the checklist workbook (Water Documents/Work in Progress/Calendar check - breakdown marks or working-day ticks.xlsx) has a choice, and the workbook link is posted on the task as an \"Evidence:\" comment"
  },
  "act-cal-handwritten-year": {
   "kind": "decision",

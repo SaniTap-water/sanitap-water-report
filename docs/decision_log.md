@@ -2266,3 +2266,23 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   was found. New gate in tools/check_consistency.py: the cap is 347; no embedded days-operational value above 347
   without a sensor flag; the headline days-operational figure not above 347; no sentence presenting more than 347
   days as claimable without a sensor.
+
+## 7 Oct 2026 (f) — Adriaan Mol: the working-day ticks check goes to Angelo as a workbook; Asana descriptions trimmed
+
+- **act-cal-working-day-ticks → Angelo Nahavitatsara, due 23 Oct 2026.** Checklist workbook "Calendar check -
+  breakdown marks or working-day ticks.xlsx" in Water Documents/Work in Progress: one row per sheet listed in
+  docs/transcription_round_notes.md (calendar 43 and the 11 images with runs of 10+ marked days), French and English
+  instruction, a link to each full-size photograph (calendar 43 on the transcription page; the 11 images not in the
+  transcription set published under transcription/check/, same size and quality), a drop-down "Marks are"
+  (Breakdown marks / Working-day ticks / Can't tell) and a comment column. Printed year as the year reader read it;
+  where it read none (9 rows) the row says so and gives the year the run was dated with. tools/calendar_check.py
+  copies the answers into docs/transcription_round_notes.md (generated region) and data/calendar_check.json every
+  build (tools/publish.sh); the workbook is never overwritten. Asana task reassigned, due date set and description
+  rewritten in plain language (tools/asana_setup.py --rewrite-task, from data/asana_notes.json).
+  Closes when every row has a choice and the workbook link is posted as an Evidence comment.
+- **Asana descriptions trimmed:** 168 of 254 in project 1209455787942089 (every report task; no other task
+  changed). Removed: Type; Source where it is an internal file path or the default action record; "Depends on:
+  none"; an "On the report" link already under Links; "Questions to" and "Owner as written on the report" naming
+  only the assignee; the old footer, replaced by one line. Glossary entries kept only for terms the description
+  uses. New tasks follow the same format (notes_for); nothing in the build rewrites a description
+  (data/decisions.json `asana-description-format-2026-10-07`).

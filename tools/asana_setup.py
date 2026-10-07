@@ -19,6 +19,11 @@ Project "H2O4CO2 - CLEAN WATER" (1209455787942089):
   5. completes the tasks of actions named with --complete;
   6. --retitle renames named tasks to their title in data/action_owners.json,
      and --section-top moves the section above the project's first section;
+  9. --trim-notes strips the bookkeeping lines from every description in the
+     project, and --rewrite-task <act-id> sets one task's assignee, due date and
+     description (data/asana_notes.json) (7 Oct 2026). New tasks
+     get the short format of notes_for(); nothing in the build rewrites a
+     description;
   8. --push-owners (7 Oct 2026) sets each open task's assignee to its owner in
      data/action_owners.json, after tools/asana_pull.py has taken in changes
      made in Asana: Asana is the single source for owners;
@@ -102,26 +107,112 @@ def match_owner(owner):
     return ADRIAAN, None, (o if o and o not in ("—", "&mdash;") else "none set"), None
 
 
+FOOTER = ("Owner, due date and completion on the weekly report come from this task; ticking it closes the "
+          "action only once evidence is posted (an 'Evidence:' comment or a file).")
+_INTERNAL = re.compile(r"\b(data/|docs/|tools/|commit\b|[0-9a-f]{7,40}\b|\.json\b|\.csv\b|\.py\b|action record)", re.I)
+
+
 def notes_for(a, info):
+    """A new task's description (format of 7 Oct 2026): no bookkeeping lines."""
     lines = []
     if info.get("first_line"):
-        lines.append(info["first_line"])
-        lines.append("")
+        lines += [info["first_line"], ""]
     if info["not_in_asana"]:
-        lines.append(f"Owner: {info['not_in_asana']} (not in Asana)")
-        lines.append("")
+        lines += [f"Owner: {info['not_in_asana']} (not in Asana)", ""]
     lines.append(f"Closes when: {info['closes_when']}")
-    lines.append(f"Type: {info['type']}")
-    lines.append(f"Source: {info['source']}")
-    lines.append(f"Depends on: {info['depends']}")
-    lines.append(f"On the report: {A.REPORT_URL}#{a['id']}")
-    if info["owner_text"] and not info["not_in_asana"] and info["owner_text"] != info["assignee_name"]:
-        lines.append(f"Owner as written on the report: {info['owner_text']}")
-    lines.append("")
-    lines.append("Owner, due date and completion are read from this task by the weekly report build. "
-                 "Ticking it complete does not close the action on its own: add a comment starting "
-                 "\"Evidence:\" saying what shows it is done, or attach the file.")
+    if info["depends"] and info["depends"] not in ("—", "none"):
+        lines.append(f"Depends on: {info['depends']}")
+    if info["source"] and not _INTERNAL.search(info["source"]):
+        lines.append(f"Source: {info['source']}")
+    lines += ["", "Links", f"    {A.REPORT_URL}#{a['id']} (live status)", "", FOOTER]
     return "\n".join(lines)
+
+
+def _people_in(text):
+    """Asana gids of the people a line names, by first name."""
+    return {PEOPLE[w][0] for w in (_first(x) for x in re.split(r"[\s,/;()]+", text)) if w in PEOPLE}
+
+
+def trim_notes(notes, assignee_gid, is_action):
+    """Strip the bookkeeping from a description (7 Oct 2026). Kept: everything a
+    person wrote. Removed: Type; Source when it is an internal file path;
+    'Depends on: none'; an 'On the report' link the Links already carry;
+    'Questions to' and 'Owner as written on the report' when they name only the
+    assignee; the old footer (replaced by FOOTER on action tasks); glossary
+    entries for terms the description does not use."""
+    lines = (notes or "").split("\n")
+    body_end = next((k for k, l in enumerate(lines) if l.strip() == "Glossary"), len(lines))
+    body, gloss = lines[:body_end], lines[body_end + 1:]
+    stop = next((k for k, l in enumerate(gloss) if not l.strip()), len(gloss))
+    body, gloss = body + gloss[stop:], gloss[:stop]      # the glossary ends at its first blank line
+    text_wo = "\n".join(body)
+    out = []
+    for l in body:
+        st = l.strip()
+        if re.match(r"^Type:", st):
+            continue
+        if re.match(r"^Source:", st) and (_INTERNAL.search(st) or "action record" in st):
+            continue
+        if re.match(r"^Depends on:\s*(none|—|-)?\.?\s*$", st, re.I):
+            continue
+        if st.startswith("On the report:"):
+            url = st.split(":", 1)[1].strip().rstrip(".")
+            if text_wo.count(url) > 1:
+                continue
+        if st.startswith("Questions to:") or st.startswith("Owner as written on the report:"):
+            named = _people_in(st.split(":", 1)[1])
+            if named and named <= {assignee_gid}:
+                continue
+        if st.startswith("Owner, due date and completion are read from this task") or st == FOOTER \
+                or st.startswith("Ticking it complete does not close"):
+            continue
+        out.append(l.rstrip())
+    used = "\n".join(out)
+    def needed(term):
+        parts = [x for x in re.split(r"\s*(?:/|,|;| and |\(|\))\s*", term) if len(x.strip()) >= 3]
+        codes = re.findall(r"[A-Za-z]*\d[\w.]*", term)
+        return any(x.strip().lower() in used.lower() for x in parts or [term]) \
+            or any(len(c) >= 3 and c.rstrip(".") in used for c in codes)
+    keep = [g for g in gloss if g.strip() and ":" in g and needed(g.split(":", 1)[0].strip())]
+    if keep:
+        out += ["", "Glossary"] + keep
+    if is_action:
+        out += ["", FOOTER]
+    txt = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
+    return txt
+
+
+def trim_all(dry):
+    """Every task in the project, action or not."""
+    ts = A.get(f"/projects/{A.PROJECT}/tasks", {"opt_fields": "name,notes,assignee.gid", "limit": 100})
+    changed = 0
+    for t in ts:
+        old = t.get("notes") or ""
+        new = trim_notes(old, (t.get("assignee") or {}).get("gid"), bool(tag_of(t["name"])))
+        norm = lambda x: re.sub(r"\n{3,}", "\n\n", "\n".join(l.rstrip() for l in x.split("\n"))).strip()
+        if new != norm(old):                     # whitespace alone is not a change
+            changed += 1
+            if not dry:
+                A.put(f"/tasks/{t['gid']}", {"notes": new})
+    print(f"trim-notes: {changed} of {len(ts)} descriptions {'would be ' if dry else ''}trimmed")
+    return 0
+
+
+def rewrite_task(aid):
+    """One action's task from the repository: owner, deadline and, where
+    data/asana_notes.json carries one, its description."""
+    amap = json.load(open(MAP, encoding="utf8"))["tasks"]
+    rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))["owners"][aid]
+    gid, _n, _x, _f = match_owner(rec.get("owner"))
+    body = {"assignee": gid, "due_on": rec.get("deadline")}
+    custom = os.path.join(REPO, "data", "asana_notes.json")
+    lines = (json.load(open(custom, encoding="utf8"))["tasks"].get(aid) if os.path.isfile(custom) else None)
+    if lines:
+        body["notes"] = "\n".join(lines)
+    A.put(f"/tasks/{amap[aid]}", body)
+    print(f"rewrite-task: {aid} -> {NAME_OF.get(gid, gid)}, due {rec.get('deadline')}"
+          + (", description rewritten" if "notes" in body else ""))
+    return 0
 
 
 def action_info():
@@ -219,7 +310,7 @@ def plan_reassign(section):
         while rest and not rest[0].strip():
             rest = rest[1:]
         written = f"Owner as written on the report: {m.group(1)}"
-        if written not in rest:
+        if written not in rest and not _people_in(m.group(1)) <= {gid}:
             i = next((j + 1 for j, l in enumerate(rest) if l.startswith("On the report: ")), len(rest))
             rest = rest[:i] + [written] + rest[i:]
         notes = "\n".join(([first_line, ""] if first_line else []) + rest)
@@ -322,6 +413,10 @@ def main():
     g.add_argument("--write", action="store_true")
     g.add_argument("--push-owners", action="store_true",
                    help="set each open task's assignee to its owner in data/action_owners.json (7 Oct 2026)")
+    g.add_argument("--trim-notes", action="store_true",
+                   help="strip bookkeeping lines from every task description in the project (7 Oct 2026)")
+    g.add_argument("--rewrite-task", metavar="ACT_ID",
+                   help="set one task's assignee, due date and (asana_notes) description from the repository")
     g.add_argument("--approval", action="store_true",
                    help="create or update this week's approval task from data/approvals.json (rule of 7 Oct 2026)")
     ap.add_argument("--complete", nargs="*", default=[])
@@ -334,6 +429,10 @@ def main():
         return approval_task()
     if a.push_owners:
         return push_owners()
+    if a.trim_notes:
+        return trim_all(dry="--dry" in sys.argv)
+    if a.rewrite_task:
+        return rewrite_task(a.rewrite_task)
     info = action_info()
     open_ids = [k for k, v in info.items() if v["state"] in ("ACT", "WATCH")]
     want = sorted(set(open_ids) | set(a.complete))

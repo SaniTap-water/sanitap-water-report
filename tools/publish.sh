@@ -158,6 +158,14 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
     say "ABORT: the change review could not run (exit $RC). Nothing committed."
     exit 1
   fi
+  # act-cal-working-day-ticks (7 Oct 2026): Angelo's answers in the checklist
+  # workbook are copied into docs/transcription_round_notes.md every build.
+  "$PYBIN" tools/calendar_check.py --write && "$PYBIN" tools/calendar_check.py --check
+  RC=$?
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the calendar checklist answers could not be copied (exit $RC). Nothing committed."
+    exit 1
+  fi
   say "prerendering every figure into the static HTML ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --write
   RC=$?
@@ -217,7 +225,8 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   fi
   say ""
   say "testing the transcription page in the browser ..."
-  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_transcription_page.py | tail -4
+  # every failing assertion is printed, not only the last lines (7 Oct 2026)
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_transcription_page.py | grep -v "^  PASS" | tail -12
   RC=${PIPESTATUS[0]}
   if [ "$RC" -ne 0 ]; then
     say "ABORT: the transcription page fails its browser test (exit $RC)."

@@ -1,0 +1,23 @@
+{
+ "note": "Hand-written Asana task descriptions, by act-id: tools/asana_setup.py --rewrite-task <act-id> puts one on its task. Nothing else in the build writes a description.",
+ "tasks": {
+  "act-cal-working-day-ticks": [
+   "What and why",
+   "On some calendar sheets the guardian may have ticked the days the pump worked, instead of marking the days it was broken.",
+   "Read as breakdowns, those ticks would count working days as downtime, so a person has to look at each listed sheet and say which it is.",
+   "",
+   "What to do",
+   "1. Open the workbook (link below).",
+   "2. For each row, click \"Open photo\" and look at the guardian's marks.",
+   "3. In \"Marks are\", choose one option per row: Breakdown marks, Working-day ticks or Can't tell. Add a comment if it helps.",
+   "",
+   "Closes when: every row has a choice and the workbook link is posted here as a comment starting \"Evidence:\".",
+   "",
+   "Links",
+   "    https://sanitap.sharepoint.com/sites/CentralDataHub/Water%20Documents/Work%20in%20Progress/Calendar%20check%20-%20breakdown%20marks%20or%20working-day%20ticks.xlsx (workbook)",
+   "    https://sanitap-water.github.io/sanitap-water-report/#act-cal-working-day-ticks (live status)",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ]
+ }
+}

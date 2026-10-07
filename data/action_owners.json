@@ -27,9 +27,10 @@
    "title": "Retired: machine reader year fallback (years read by hand)"
   },
   "act-cal-working-day-ticks": {
-   "deadline": null,
-   "owner": "Adriaan Mol",
-   "title": "Check calendar sheets where guardians ticked working days, not breakdowns"
+   "deadline": "2026-10-23",
+   "owner": "Angelo Nahavitatsara",
+   "title": "Check calendar sheets where guardians ticked working days, not breakdowns",
+   "source": "Adriaan Mol, instruction of 7 Oct 2026: checklist workbook for Angelo"
   },
   "act-calendar-custody": {
    "deadline": "2026-09-26",
@@ -824,8 +825,8 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 60,
-   "evidence": 73,
-   "manual": 31
+   "evidence": 74,
+   "manual": 30
   },
   "actions": {
    "act-2026-recovery": {
@@ -871,8 +872,8 @@
     "first_seen": "2026-09-28"
    },
    "act-cal-working-day-ticks": {
-    "type": "manual",
-    "closes_when": "every sheet listed in docs/transcription_round_notes.md checked against its photograph and recorded there as breakdown marks or as a working-day tick convention",
+    "type": "evidence",
+    "closes_when": "every row of the checklist workbook (Water Documents/Work in Progress/Calendar check - breakdown marks or working-day ticks.xlsx) has a choice, and the workbook link is posted on the task as an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-28"

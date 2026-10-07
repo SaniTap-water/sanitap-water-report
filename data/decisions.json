@@ -348,6 +348,22 @@
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
    "logged_on": "2026-10-07",
    "logged_by": "Adriaan Mol"
+  },
+  "calendar-check-workbook-2026-10-07": {
+   "answer": "act-cal-working-day-ticks is done by Angelo Nahavitatsara (due 23 Oct 2026) without access to the repository, in the workbook 'Calendar check - breakdown marks or working-day ticks.xlsx' (Central Data Hub, Water Documents/Work in Progress): one row per sheet listed in docs/transcription_round_notes.md (calendar 43 and the 11 images with runs of 10+ marked days), a link to the full-size photograph on the published transcription page (the 11 images not in the transcription set are published under transcription/check/), a drop-down Breakdown marks / Working-day ticks / Can't tell, and a comment. The printed year is shown as read by the year reader; where it read none, the row says so and gives the year the run was dated with. tools/calendar_check.py copies the answers into docs/transcription_round_notes.md and data/calendar_check.json at every build. Closes when every row has a choice and the workbook link is posted as an Evidence comment.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "asana-description-format-2026-10-07": {
+   "answer": "Asana task descriptions carry no bookkeeping. Removed from every task in project 1209455787942089: 'Type:'; 'Source:' where it is an internal file path or the default action record (a source naming a person or an email is kept); 'Depends on: none'; an 'On the report' link already given under Links; 'Questions to:' and 'Owner as written on the report:' when they name only the assignee; the old footer, replaced on action tasks by one line: \"Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file).\" Glossary entries are kept only for terms the description uses (the glossary ends at its first blank line). Everything else a person wrote is kept; non-action tasks are not touched. tools/asana_setup.py notes_for() writes new tasks in this format; --trim-notes applies it; nothing in the build rewrites a description.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

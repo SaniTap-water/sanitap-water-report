@@ -62,10 +62,10 @@
   },
   "act-cal-working-day-ticks": {
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: a photograph is looked at by a person, or it is not",
+   "evidence": "no data predicate: the answers are given in the checklist workbook, and the build copies them into docs/transcription_round_notes.md",
    "kind": "none",
    "satisfied": null,
-   "says": "no closing condition: a photograph is looked at by a person, or it is not",
+   "says": "no data predicate: the answers are given in the checklist workbook, and the build copies them into docs/transcription_round_notes.md",
    "when_satisfied": "OK"
   },
   "act-calendar-custody": {
