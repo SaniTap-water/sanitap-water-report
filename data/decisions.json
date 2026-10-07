@@ -364,26 +364,210 @@
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
    "logged_on": "2026-10-07",
    "logged_by": "Adriaan Mol"
+  },
+  "act-marolinta-drilling-result": {
+   "answer": "Merged into act-mar-functional-status: both ask what became of the six new Marolinta boreholes. Their final construction records (borehole-progress form, 25-29 Aug 2026) carry a photograph of an installed hand pump on a finished apron for each of 1052525198, 1052525260, 1052525284, 893673000, 893673127 and 893673158, so each is drilled positive and equipped. No record shows any of them working: that is what stays open.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-mar-functional-status"
+  },
+  "act-mar-new-construction-gap": {
+   "answer": "Merged into act-mar-missing-boreholes: the same gap (new boreholes with no record), already tracked by the same count.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-mar-missing-boreholes"
+  },
+  "act-rehab-recording": {
+   "answer": "Merged into act-mar-missing-boreholes: the minutes-versus-form reconciliation is the two counts act-mar-missing-boreholes (new boreholes) and act-mar-missing-rehabs (rehabilitations) already track.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-mar-missing-boreholes"
+  },
+  "act-visit-collapse": {
+   "answer": "Merged into act-restore-preventive-maintenance-visit: both ask for the preventive-maintenance visits to be restored; calendar coverage follows the visits.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-restore-preventive-maintenance-visit"
+  },
+  "act-reissue-calendars-new-blank": {
+   "answer": "Merged into act-calendar-v13: both ask for the new blank calendar (v1.4) to be handed out; it goes out on visits already scheduled, withdrawing year-printed stock.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-calendar-v13"
+  },
+  "act-calendar-custody": {
+   "answer": "Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers the custody rule (photograph the old sheet before replacing it).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-sop-calendar-v17-signoff"
+  },
+  "act-retrain-field-teams-how": {
+   "answer": "Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers photographing the sheet flat and filling the frame.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-sop-calendar-v17-signoff"
+  },
+  "act-calendar-photo-briefing": {
+   "answer": "Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers putting only the paper calendar under the calendar photo question.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-sop-calendar-v17-signoff"
+  },
+  "act-down-no-repair": {
+   "answer": "Merged into act-call-no-followup: both ask that every pump reported down gets a repair (or a note why none was needed).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-call-no-followup"
+  },
+  "act-amboasary-post-works-retest": {
+   "answer": "Merged into act-moramanga-post-rehab-wq: Amboasary gara is one of the four Moramanga systems whose post-works tests that task covers; due thirty days after works completion, Coddy Velonizy confirms the completion date.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-moramanga-post-rehab-wq"
+  },
+  "act-v2-stroke-test": {
+   "answer": "Merged into act-move-stroke-test-sop: stroke-test SOP v2.2 carries the reconciliation with methodology v2.0; its sign-off closes both.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-move-stroke-test-sop"
+  },
+  "act-usage-survey-random-selection": {
+   "answer": "Merged into act-usage-survey-sop: the random selection of water points and households is written into the usage-survey SOP, and closes with it.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-usage-survey-sop"
+  },
+  "act-usage-survey-inside-radius": {
+   "answer": "Merged into act-usage-survey-sop: the rule that survey households lie inside the service radius is written into the usage-survey SOP, and closes with it.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol",
+   "merged_into": "act-usage-survey-sop"
+  },
+  "act-population-rerun": {
+   "answer": "Closed: automated. Since 23 Sep 2026 (commit 52daca4) a pump joining the managed fleet gets its WorldPop allocation, water-quality result and roof count in the same build (tools/rerun_wpop.py, logged in data/wpop_rerun_log.json); a person no longer has to remember to re-run it.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-close-out-6-5": {
+   "answer": "The January 2026 population figures (Water Point Population Data 22 Jan 26.xlsx) are formally retired, not reconciled. The January run left no raster checksum and WorldPop R2025A is an alpha release that has changed since, so the residual cannot be recovered; no figure on the report uses the January run, and people served come only from the SDWS 1 run of record.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-freeze-estate-map-when": {
+   "answer": "Retired as obsolete: archived pages and maps are not read. The build no longer writes frozen HTML pages or maps for archived editions; the weekly data snapshot the approval gate compares against (the published commit, with data/change_review.json and data/record_ledger.json) is kept as the audit trail.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "split-act-put-usage-question-live": {
+   "answer": "act-put-usage-question-live split: its form part is already done (question A9, id 6147470c, is live and required on the point-of-use form db0bcbf2 with active deployments, read from the form snapshot of 7 Oct 2026), so no Cowork change is needed; the task becomes the survey round, assigned to Angelo Nahavitatsara, closing when 100 households have answered A9.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "assignment-rules-2026-10-07": {
+   "answer": "Assignment rules: Cathy Andriambololonirina - water-quality testing, test-result fields, lab and kit; Angelo Nahavitatsara - hand-pump field work, caretakers, calendars, MadAvance field teams; Coddy Velonizy - Endur'O piped systems and Moramanga operations, excluding water quality; Lanja Randriamanantena - mWater administration and data clean-up in the portal; James Walker - carbon methodology and verifier questions; Jan de Graaf - overall manager, no field or data-entry tasks (may follow); Adriaan Mol - decisions and approvals only. Never Andrew Tanswell. Recorded in data/assignment_rules.json and applied by tools/asana_setup.py when it creates a task. Applied to every open task on 7 Oct 2026: act-enduro-feed -> Coddy Velonizy; act-enduro-move-register-fully -> Coddy Velonizy; act-enduro-onboard-5-calibration -> Coddy Velonizy; act-enduro-onboard-6-kiosk-wq -> Cathy Andriambololonirina; act-gaps-doc -> James Walker; act-jmp-survey-2026 -> Angelo Nahavitatsara; act-mar-functional-status -> Angelo Nahavitatsara; act-mar-water-quality -> Cathy Andriambololonirina; act-mar-which-form -> Angelo Nahavitatsara; act-mar-admin-fields -> Lanja Randriamanantena; act-mor-1b-betanatanana-go-look -> Coddy Velonizy; act-mor-bring-back-site-lists -> Coddy Velonizy; act-mor-correct-two-sampling-records -> Cathy Andriambololonirina; act-mor-count-draw-off-point -> Coddy Velonizy; act-mor-fill-three-new-fields -> Cathy Andriambololonirina; act-mor-fix-type-sampled-point -> Cathy Andriambololonirina; act-mor-have-those-five-records -> Coddy Velonizy; act-mor-households-people-served-per -> Coddy Velonizy; act-mor-re-take-gps-fix -> Coddy Velonizy; act-mor-record-what-community-drank -> Coddy Velonizy; act-mor-remove-reclassify-two-test -> Lanja Randriamanantena; act-mor-submit-drafts -> Coddy Velonizy; act-moramanga-post-rehab-wq -> Cathy Andriambololonirina; act-move-stroke-test-sop -> Adriaan Mol; act-move-weekly-mwater-backup -> Lanja Randriamanantena; act-mwater-approval-policy -> Lanja Randriamanantena; act-mwater-mg-locale -> Adriaan Mol; act-naturano-meter-data -> Coddy Velonizy; act-piped-usage-survey -> Coddy Velonizy; act-piped-wq-misfiled-742895333 -> Cathy Andriambololonirina; act-ralf-meter-install-register -> Coddy Velonizy; act-ralf-shopkeeper-waterpoint-link -> Coddy Velonizy; act-repeat-breakdown -> Adriaan Mol; act-restore-preventive-maintenance-visit -> Angelo Nahavitatsara; act-recreate-gardien-calendar-controlled -> Angelo Nahavitatsara; act-wq-retest -> Cathy Andriambololonirina; act-emergency-event-form -> Cathy Andriambololonirina; act-enduro-people-source -> Coddy Velonizy; act-v2-stove-stacking -> Adriaan Mol; act-usage-survey-sop -> James Walker; act-put-usage-question-live -> Angelo Nahavitatsara. Kept with Adriaan though not a decision: the four DFCD tasks (his own outreach; no one else can take them).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "asana-description-lean-2026-10-07": {
+   "answer": "Lean task descriptions: no link that only points to the report (the task's own live status or another anchor), no 'Owner as written on the report' line, no 'On the report' line, 'What and why' at most two sentences, 'Closes when' always names evidence (an 'Evidence:' comment, a file or a record) - 13 say-so rules rewritten. Kept: what to do, helpful links (photos, forms, workbooks, documents, records, named emails), 'Questions to' when it names someone other than the assignee, glossary entries for terms used, the one-line footer. A stale 'Owner: X (not in Asana)' line is dropped once the task has a real assignee. tools/asana_setup.py notes_for() writes new tasks this way; nothing in the build writes the removed lines back.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "marolinta-six-new-boreholes-2026-10-07": {
+   "answer": "The six new Marolinta boreholes (1052525198, 1052525260, 1052525284, 893673000, 893673127, 893673158) are drilled positive and equipped: each final new-construction record on the borehole-progress form (25-29 Aug 2026) carries 19-22 photographs, among them the borehole head (2.14) and the installed hand pump on a finished apron (3.2.3), checked by eye on 7 Oct 2026. Their drilling-result (1.3b) and functional-status (1.4) answers are blank (the questions were added after filing), and no maintenance, repair, call or water-quality record exists for any of them, so no record shows a borehole working. act-marolinta-drilling-result is closed into act-mar-functional-status, which stays open for the working status.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "mWater extract of 7 Oct 2026 (marolinta_borehole.json and the other headline extracts), photographs in the image backup",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "archived-editions-data-only-2026-10-07": {
+   "answer": "Archived editions are data only from 7 Oct 2026: tools/archive_edition.py writes one JSON snapshot per outgoing edition (editions/<date>-wk<NN>-ed<N>.json: commit, S, headline figures, per-point status, test, works date and people served) and no frozen HTML pages or maps. The pages archived before stay. The masthead edition counter and the fleet-churn check read the snapshots; no other check used the frozen pages. act-freeze-estate-map-when retired.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "changes-panel-collapsed-2026-10-07": {
+   "answer": "The 'Changes this week' panel is one closed line under the headline tiles ('Changes since last week: none waiting for approval'), with the figures table, its footnote and 'What moved, and why' inside. When something waits for approval, one short visible banner ('N change(s) wait for approval, see the Asana task') shows above it, with the details still inside. The gate logic is unchanged.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
  "merges": {
   "act-v2-stroke-test": {
-   "merged_into": "act-move-stroke-test-sop",
-   "decided_by": "Adriaan Mol, COO SaniTap",
-   "decided_on": "2026-09-28",
-   "source": "Adriaan Mol, instruction for the water report, 2026-09-28",
-   "reason": "The reconciliation of the stroke-test SOP with methodology v2.0 is done in the v2.2 drafts (SDWS 28 / Option 3, 50 calibrations a year, annual re-verification, 5-minute test). What remains is the signature, which act-move-stroke-test-sop already asks for.",
-   "closes_on": "the signed stroke-test SOP v2.2 logged for act-move-stroke-test-sop; act-v2-stroke-test is its child (kind children) and closes with it",
-   "owner_and_deadline": "aligned to act-move-stroke-test-sop: Jan, 2026-10-31 (was James Walker, 2026-10-10)"
+   "from": "act-v2-stroke-test",
+   "into": "act-move-stroke-test-sop",
+   "on": "2026-10-07",
+   "why": "stroke-test SOP v2.2 carries the reconciliation with methodology v2.0; its sign-off closes both."
   },
   "act-mar-new-construction-gap": {
-   "merged_into": "act-mar-missing-boreholes",
-   "decided_by": "Adriaan Mol, COO SaniTap",
-   "decided_on": "2026-09-28",
-   "source": "Adriaan Mol, instruction for the water report, 2026-09-28 (workbook reconciliation)",
-   "reason": "Both tracked the same Marolinta new-borehole gap (records on the borehole-progress form against the ten reported), both closing automatically at ten. act-mar-missing-boreholes survives: its count is a register population recomputed every build; act-mar-new-construction-gap read data/marolinta_works.json, which the build had not refreshed since 21 Sep.",
-   "closes_on": "act-mar-missing-boreholes closing; act-mar-new-construction-gap is its child (kind children) and closes with it"
+   "from": "act-mar-new-construction-gap",
+   "into": "act-mar-missing-boreholes",
+   "on": "2026-10-07",
+   "why": "the same gap (new boreholes with no record), already tracked by the same count."
   },
   "act-establish-renewal-dates-current": {
    "merged_into": "act-establish-renewal-dates-four",
@@ -394,6 +578,72 @@
    "reason": "The same action twice: 'Establish renewal dates and current status for the four baseline parameters' and 'Establish renewal dates for the four baseline parameters' (SDWS 6, 8, 11, 12). Both entered the page in the same commit (9df688b, 18 Sep 2026); act-establish-renewal-dates-four stood first on that page and is kept as the older id.",
    "closes_on": "the survivor carries the fuller text, the stricter closing condition (renewal date AND current status of each parameter, in writing from James Walker) and the 31 Oct 2026 deadline, which the survivor lacked; owner James Walker on both",
    "owner_and_deadline": "James Walker, 2026-10-31"
+  },
+  "act-marolinta-drilling-result": {
+   "from": "act-marolinta-drilling-result",
+   "into": "act-mar-functional-status",
+   "on": "2026-10-07",
+   "why": "both ask what became of the six new Marolinta boreholes. Their final construction records (borehole-progress form, 25-29 Aug 2026) carry a photograph of an installed hand pump on a finished apron for each of 1052525198, 1052525260, 1052525284, 893673000, 893673127 and 893673158, so each is drilled positive and equipped. No record shows any of them working: that is what stays open."
+  },
+  "act-rehab-recording": {
+   "from": "act-rehab-recording",
+   "into": "act-mar-missing-boreholes",
+   "on": "2026-10-07",
+   "why": "the minutes-versus-form reconciliation is the two counts act-mar-missing-boreholes (new boreholes) and act-mar-missing-rehabs (rehabilitations) already track."
+  },
+  "act-visit-collapse": {
+   "from": "act-visit-collapse",
+   "into": "act-restore-preventive-maintenance-visit",
+   "on": "2026-10-07",
+   "why": "both ask for the preventive-maintenance visits to be restored; calendar coverage follows the visits."
+  },
+  "act-reissue-calendars-new-blank": {
+   "from": "act-reissue-calendars-new-blank",
+   "into": "act-calendar-v13",
+   "on": "2026-10-07",
+   "why": "both ask for the new blank calendar (v1.4) to be handed out; it goes out on visits already scheduled, withdrawing year-printed stock."
+  },
+  "act-calendar-custody": {
+   "from": "act-calendar-custody",
+   "into": "act-sop-calendar-v17-signoff",
+   "on": "2026-10-07",
+   "why": "one French briefing per field team on calendar SOP v1.7 covers the custody rule (photograph the old sheet before replacing it)."
+  },
+  "act-retrain-field-teams-how": {
+   "from": "act-retrain-field-teams-how",
+   "into": "act-sop-calendar-v17-signoff",
+   "on": "2026-10-07",
+   "why": "one French briefing per field team on calendar SOP v1.7 covers photographing the sheet flat and filling the frame."
+  },
+  "act-calendar-photo-briefing": {
+   "from": "act-calendar-photo-briefing",
+   "into": "act-sop-calendar-v17-signoff",
+   "on": "2026-10-07",
+   "why": "one French briefing per field team on calendar SOP v1.7 covers putting only the paper calendar under the calendar photo question."
+  },
+  "act-down-no-repair": {
+   "from": "act-down-no-repair",
+   "into": "act-call-no-followup",
+   "on": "2026-10-07",
+   "why": "both ask that every pump reported down gets a repair (or a note why none was needed)."
+  },
+  "act-amboasary-post-works-retest": {
+   "from": "act-amboasary-post-works-retest",
+   "into": "act-moramanga-post-rehab-wq",
+   "on": "2026-10-07",
+   "why": "Amboasary gara is one of the four Moramanga systems whose post-works tests that task covers; due thirty days after works completion, Coddy Velonizy confirms the completion date."
+  },
+  "act-usage-survey-random-selection": {
+   "from": "act-usage-survey-random-selection",
+   "into": "act-usage-survey-sop",
+   "on": "2026-10-07",
+   "why": "the random selection of water points and households is written into the usage-survey SOP, and closes with it."
+  },
+  "act-usage-survey-inside-radius": {
+   "from": "act-usage-survey-inside-radius",
+   "into": "act-usage-survey-sop",
+   "on": "2026-10-07",
+   "why": "the rule that survey households lie inside the service radius is written into the usage-survey SOP, and closes with it."
   }
  },
  "merges_note": "Actions merged into another. A merged action keeps its id and row and closes with the action it merged into (kind children in data/action_conditions.json); a merge never closes anything on its own."

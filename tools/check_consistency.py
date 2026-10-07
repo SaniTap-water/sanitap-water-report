@@ -861,11 +861,18 @@ def main():
         try: return {x["wp"] for x in json.loads(h[i0:jj + 1])}
         except Exception: return None
     eds = []
-    for f in sorted(_glob.glob(os.path.join(repo_root, "editions", "*.html"))):
+    # editions to 6 Oct 2026 are frozen pages; from 7 Oct, JSON data snapshots
+    for f in sorted(_glob.glob(os.path.join(repo_root, "editions", "*.html"))
+                    + _glob.glob(os.path.join(repo_root, "editions", "*.json"))):
         if "-routes" in f or "-portfolio" in f:
             continue
-        sp = _pumps(read(f))
+        if f.endswith(".json"):
+            try: sp = {x["wp"] for x in json.loads(read(f)).get("pumps") or []}
+            except ValueError: sp = None
+        else:
+            sp = _pumps(read(f))
         if sp: eds.append((os.path.basename(f), sp))
+    eds.sort(key=lambda e: e[0])
     cur_set = _pumps(idx)
     if eds and cur_set:
         excluded = ({x["wp"] for x in (rc.get("excluded") or [])}

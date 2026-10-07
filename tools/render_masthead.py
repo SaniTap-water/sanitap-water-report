@@ -71,7 +71,7 @@ def edition():
     if os.path.isdir(d):
         from_archive = len({f.split("-ed")[0] for f in os.listdir(d)
                             if f.startswith(today.strftime("%Y-"))
-                            and f"wk{wk}" in f and f.endswith(".html")})
+                            and f"wk{wk}" in f and f.endswith((".html", ".json"))})
     from_ledger = 0
     lp = os.path.join(REPO, LEDGER)
     if os.path.isfile(lp):

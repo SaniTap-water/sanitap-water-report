@@ -24,16 +24,17 @@
   "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.7 is filed in Water Documents/SOPs"
  },
  "act-calendar-custody": {
-  "kind": "none",
-  "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
-  "closure": "manual",
-  "closes_when": "standing field rule: Adriaan marks it issued to every team"
+  "kind": "decision",
+  "question": "Is act-calendar-custody a duplicate of act-sop-calendar-v17-signoff?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)"
  },
  "act-calendar-v13": {
   "kind": "none",
   "says": "no closing condition: whether printed stock has reached each district is not observable from any system we hold, so a person has to confirm it",
-  "closure": "manual",
-  "closes_when": "Angelo marks v1.4 stock distributed to each district"
+  "closure": "evidence",
+  "closes_when": "an \"Evidence:\" comment per district giving the date v1.4 stock arrived and old year-printed stock was withdrawn, with a photo or delivery note"
  },
  "act-call-service-visit": {
   "kind": "data",
@@ -52,15 +53,15 @@
  "act-close-eight-2-2": {
   "kind": "none",
   "says": "no closing condition yet: the 2.2.1(d) control is answered on the original record, which no count on this page reads",
-  "closure": "manual",
-  "closes_when": "Adriaan marks each of the eight records settled or removed"
+  "closure": "evidence",
+  "closes_when": "each of the eight records settled on the original record in mWater (control answered) or removed, listed with links in an \"Evidence:\" comment"
  },
  "act-close-out-6-5": {
   "kind": "decision",
   "question": "Are the January population figures reconciled or formally retired?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the residual closed out"
+  "closure": "evidence",
+  "closes_when": "the January figures formally retired (decision 7 Oct 2026)"
  },
  "act-close-s4-16-car-2": {
   "kind": "decision",
@@ -128,12 +129,11 @@
   "closes_when": "retired by decision 7 Oct 2026: days operational is evidenced by the gardien calendars and the annual human transcription sample, not by converting repair records"
  },
  "act-down-no-repair": {
-  "kind": "data",
-  "metric": "downs_without_repair",
-  "op": "==",
-  "says": "closes when every call-centre down report has a repair record or a closure note",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Is act-down-no-repair a duplicate of act-call-no-followup?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-call-no-followup (decision 7 Oct 2026)"
  },
  "act-duplicate-codes-sweep": {
   "kind": "data",
@@ -225,10 +225,11 @@
   "question": "Is the Marolinta borehole form consolidated into the works form?"
  },
  "act-freeze-estate-map-when": {
-  "kind": "artefact",
-  "path": "tools/freeze_map.py",
-  "says": "closes when the build can freeze the estate map into an archived edition",
-  "where": "repo"
+  "kind": "decision",
+  "question": "Is the archived estate map still to be frozen?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "retired by decision 7 Oct 2026: archived pages and maps are not read"
  },
  "act-gaps-doc": {
   "kind": "decision",
@@ -304,13 +305,11 @@
   "when_satisfied": "OK"
  },
  "act-mar-new-construction-gap": {
-  "kind": "children",
-  "children": [
-   "act-mar-missing-boreholes"
-  ],
-  "says": "closes with the Marolinta new-borehole item: when the progress form holds ten new-borehole records",
-  "when_satisfied": "OK",
-  "merged_into": "act-mar-missing-boreholes"
+  "kind": "decision",
+  "question": "Is act-mar-new-construction-gap a duplicate of act-mar-missing-boreholes?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-mar-missing-boreholes (decision 7 Oct 2026)"
  },
  "act-mar-technical-values": {
   "kind": "decision",
@@ -331,14 +330,14 @@
   "kind": "decision",
   "question": "Which form is the record of truth for first rehabilitations?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan confirms the field teams are on the current first-rehabilitation form"
+  "closure": "evidence",
+  "closes_when": "a record from each field team on the current first-rehabilitation form (Première réhabilitation) in mWater, linked in an \"Evidence:\" comment"
  },
  "act-mor-1b-betanatanana-go-look": {
   "kind": "none",
   "says": "no closing condition: a site visit is not recorded anywhere this build can read",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the site visit done"
+  "closure": "evidence",
+  "closes_when": "an \"Evidence:\" comment with the visit report for the open well at Betanatanana (date, who, photographs)"
  },
  "act-mor-bring-back-site-lists": {
   "kind": "none",
@@ -349,8 +348,8 @@
  "act-mor-correct-two-sampling-records": {
   "kind": "none",
   "says": "no closing condition: the two records are corrected in place, leaving no count to fall",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the two sampling records corrected"
+  "closure": "evidence",
+  "closes_when": "the two Moramanga sampling records corrected to their right sites in mWater, linked in an \"Evidence:\" comment"
  },
  "act-mor-count-draw-off-point": {
   "kind": "decision",
@@ -370,8 +369,8 @@
  "act-mor-fix-type-sampled-point": {
   "kind": "none",
   "says": "no closing condition: the sampled-tap type contradiction spans rounds and has no single field to test",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the sampled-point types fixed"
+  "closure": "evidence",
+  "closes_when": "the corrected Moramanga sampling records in mWater, each sampled tap recorded as one type, linked in an \"Evidence:\" comment"
  },
  "act-mor-have-those-five-records": {
   "kind": "decision",
@@ -390,8 +389,8 @@
  "act-mor-re-take-gps-fix": {
   "kind": "none",
   "says": "no closing condition: a re-taken fix replaces the old one and leaves no discrepancy to measure",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the Amboasary Gara fix re-taken"
+  "closure": "evidence",
+  "closes_when": "the re-taken GPS fix on the Amboasary Gara record in mWater, linked in an \"Evidence:\" comment"
  },
  "act-mor-record-what-community-drank": {
   "kind": "decision",
@@ -428,8 +427,8 @@
  "act-move-weekly-mwater-backup": {
   "kind": "none",
   "says": "no closing condition: where the backup runs from is not visible to this build",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the backup moved to the server"
+  "closure": "evidence",
+  "closes_when": "an \"Evidence:\" comment giving the server path and the first weekly backup file written there"
  },
  "act-mwater-approval-policy": {
   "kind": "data",
@@ -468,8 +467,8 @@
   "kind": "decision",
   "question": "What replaces the per-diem system so it pays for pumps completed?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the redesigned per-diem system adopted"
+  "closure": "evidence",
+  "closes_when": "the adopted per-diem rule filed as a document, linked in an \"Evidence:\" comment"
  },
  "act-photo-conditional-on-presence": {
   "form": "repair-after-breakdown",
@@ -490,8 +489,8 @@
  "act-piped-usage-survey": {
   "kind": "none",
   "says": "no closing condition yet: the piped usage survey has no mWater form to observe until the piped programme starts; closes when its first annual round has run",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the first annual piped usage round run"
+  "closure": "evidence",
+  "closes_when": "the first annual piped usage round's records in mWater, linked in an \"Evidence:\" comment"
  },
  "act-point-use-round-one": {
   "kind": "data",
@@ -502,10 +501,11 @@
   "when_satisfied": "OK"
  },
  "act-population-rerun": {
-  "kind": "none",
-  "says": "no closing condition: a standing item that recurs whenever the portfolio grows",
-  "closure": "manual",
-  "closes_when": "standing: Adriaan marks each re-run done"
+  "kind": "decision",
+  "question": "Is the people-served re-run still a manual step?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "automated by the build (decision 7 Oct 2026)"
  },
  "act-printed-year-meaning": {
   "kind": "decision",
@@ -515,13 +515,12 @@
   "closes_when": "MadAvance's written answer on what the printed calendar year denotes"
  },
  "act-produce-s4-19-cl": {
-  "folder": "Water Documents",
   "kind": "artefact",
-  "name_contains": "installation database",
+  "where": "hub",
+  "path": "Report/Installation database v1.0 2026-10-07.xlsx",
   "says": "closes when the installation database file exists",
-  "where": "sharepoint",
   "closure": "evidence",
-  "closes_when": "the installation database (every borehole and system installed to date, with the number of households under each, as Gold Standard's clarification request CL#2 asks) is filed in Water Documents"
+  "closes_when": "the installation database (every installed borehole with the households under each, derivation on its face) is filed in Water Documents/Report"
  },
  "act-put-current-methodology-vpa": {
   "kind": "artefact",
@@ -543,8 +542,8 @@
  "act-re-run-improved-cookstove": {
   "kind": "none",
   "says": "no closing condition: an annual recurrence, not a task that finishes",
-  "closure": "manual",
-  "closes_when": "recurring: Adriaan marks each year's round done"
+  "closure": "evidence",
+  "closes_when": "each year: the round's records answering WS1.31 / WS1.52, linked in an \"Evidence:\" comment"
  },
  "act-reconcile-cookstove-water-programmes": {
   "kind": "decision",
@@ -576,18 +575,18 @@
   "when_satisfied": "OK"
  },
  "act-rehab-recording": {
-  "kind": "data",
-  "metric": "marolinta_new_borehole_records",
-  "op": ">=",
-  "says": "closes when the form holds the ten new boreholes the minutes report",
-  "target": 10,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "Is act-rehab-recording a duplicate of act-mar-missing-boreholes?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-mar-missing-boreholes (decision 7 Oct 2026)"
  },
  "act-reissue-calendars-new-blank": {
-  "kind": "none",
-  "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the reissue complete"
+  "kind": "decision",
+  "question": "Is act-reissue-calendars-new-blank a duplicate of act-calendar-v13?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-calendar-v13 (decision 7 Oct 2026)"
  },
  "act-repair-double-entry": {
   "kind": "none",
@@ -599,15 +598,15 @@
   "kind": "decision",
   "question": "What response and report-back time is the operational target?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the call-centre response target set"
+  "closure": "evidence",
+  "closes_when": "the call-centre response and report-back target logged in data/decisions.json, quoted in an \"Evidence:\" comment"
  },
  "act-repeat-breakdown": {
   "kind": "decision",
   "question": "Do the two repeat-breakdown villages get a second water point?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the decision on the two repeat-breakdown pumps taken"
+  "closure": "evidence",
+  "closes_when": "the decision on Ambinanibe and Andramaka logged in data/decisions.json, quoted in an \"Evidence:\" comment"
  },
  "act-resolve-sdws-27-sdws": {
   "kind": "decision",
@@ -632,10 +631,11 @@
   "when_satisfied": "OK"
  },
  "act-retrain-field-teams-how": {
-  "kind": "none",
-  "says": "no closing condition: training delivery is not recorded in any system we read",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the retraining delivered"
+  "kind": "decision",
+  "question": "Is act-retrain-field-teams-how a duplicate of act-sop-calendar-v17-signoff?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)"
  },
  "act-route-plans": {
   "kind": "data",
@@ -663,8 +663,8 @@
  "act-sdws26-annual-round": {
   "kind": "none",
   "says": "recurring annually: closes for a monitoring period when that period's round has run with at least 8 clusters per scenario, and reopens for the next period",
-  "closure": "manual",
-  "closes_when": "recurring: Adriaan marks each year's round run with enough clusters"
+  "closure": "evidence",
+  "closes_when": "each year: the round's records in mWater, at least 8 clusters per scenario, linked in an \"Evidence:\" comment"
  },
  "act-sdws26-approve-2025": {
   "kind": "data",
@@ -769,8 +769,8 @@
  "act-v2-adherence": {
   "kind": "none",
   "says": "no closing condition: a standing item that runs until the methodology version is settled",
-  "closure": "manual",
-  "closes_when": "standing: Adriaan closes it when the methodology version is settled"
+  "closure": "evidence",
+  "closes_when": "the methodology version decision (v1.0 until renewal, or v2.0 from the early-2027 verification) logged in data/decisions.json, quoted in an \"Evidence:\" comment"
  },
  "act-v2-confidence-intervals": {
   "kind": "decision",
@@ -811,21 +811,18 @@
   "says": "closes when the survey form carries a stove-stacking question"
  },
  "act-v2-stroke-test": {
-  "kind": "children",
-  "children": [
-   "act-move-stroke-test-sop"
-  ],
-  "says": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
-  "when_satisfied": "OK",
-  "merged_into": "act-move-stroke-test-sop"
+  "kind": "decision",
+  "question": "Is act-v2-stroke-test a duplicate of act-move-stroke-test-sop?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-move-stroke-test-sop (decision 7 Oct 2026)"
  },
  "act-visit-collapse": {
-  "kind": "data",
-  "metric": "points_over_6_months",
-  "op": "<=",
-  "says": "closes when fewer than 50 points are more than six months without a visit",
-  "target": 50,
-  "when_satisfied": "WATCH"
+  "kind": "decision",
+  "question": "Is act-visit-collapse a duplicate of act-restore-preventive-maintenance-visit?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-restore-preventive-maintenance-visit (decision 7 Oct 2026)"
  },
  "act-visit-three-marolinta-points": {
   "kind": "decision",
@@ -931,8 +928,8 @@
  "act-sensor-cost-benefit": {
   "kind": "none",
   "says": "no closing condition: a cost-benefit judgement is a decision a person makes",
-  "closure": "manual",
-  "closes_when": "Adriaan marks the cost-benefit decision made"
+  "closure": "evidence",
+  "closes_when": "the cost-benefit decision logged in data/decisions.json, quoted in an \"Evidence:\" comment"
  },
  "act-piped-fnrb": {
   "kind": "decision",
@@ -946,7 +943,7 @@
   "question": "Has every field team been briefed in French on calendar SOP v1.7?",
   "says": "closes when Angelo's written confirmation for every field team is logged in data/decisions.json",
   "closure": "evidence",
-  "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given"
+  "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given (date, who), covering the custody rule, close-up photographs of the sheet and only the calendar under the calendar photo question, posted as an \"Evidence:\" comment"
  },
  "act-gs-validation-withdrawal-watch": {
   "kind": "decision",
@@ -1029,36 +1026,31 @@
   "closes_when": "a final rehabilitation record for 782134540 appears in mWater (read every build)"
  },
  "act-marolinta-drilling-result": {
-  "kind": "data",
-  "metric": "marolinta_new_without_drilling_result",
-  "op": "==",
-  "target": 0,
-  "says": "closes when all six Marolinta new-construction records carry a drilling result",
-  "when_satisfied": "OK",
+  "kind": "decision",
+  "question": "Is act-marolinta-drilling-result a duplicate of act-mar-functional-status?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "all six new-construction records answer 'Résultat de la foration' (read every build)"
+  "closes_when": "merged into act-mar-functional-status (decision 7 Oct 2026)"
  },
  "act-usage-survey-inside-radius": {
-  "kind": "artefact",
-  "where": "hub",
-  "path": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx",
-  "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+  "kind": "decision",
+  "question": "Is act-usage-survey-inside-radius a duplicate of act-usage-survey-sop?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off"
+  "closes_when": "merged into act-usage-survey-sop (decision 7 Oct 2026)"
  },
  "act-usage-survey-random-selection": {
-  "kind": "artefact",
-  "where": "hub",
-  "path": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx",
-  "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+  "kind": "decision",
+  "question": "Is act-usage-survey-random-selection a duplicate of act-usage-survey-sop?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off"
+  "closes_when": "merged into act-usage-survey-sop (decision 7 Oct 2026)"
  },
  "act-tana-baseline-form": {
   "kind": "none",
   "says": "no closing condition the build can read: the form changes are checked by a person in the portal designer",
-  "closure": "manual",
-  "closes_when": "the form has a &ldquo;Baseline (Tana kiosks)&rdquo; deployment; hand-pump question <span class=\"mono\">3.1.1</span> is removed or conditioned; the pre-project water-source options cover urban sources (JIRAMA standpipe, neighbour&rsquo;s connection, water vendor); the fuel-question tenses are fixed"
+  "closure": "evidence",
+  "closes_when": "the four form changes saved in the designer (deployment \"Baseline (Tana kiosks)\", 3.1.1 removed or conditioned, urban water-source options, consistent fuel tenses), with the form revision in an \"Evidence:\" comment"
  },
  "act-tana-baseline-sample-size": {
   "kind": "decision",
@@ -1159,10 +1151,11 @@
   "closes_when": "at least one pre-project round of tap or source samples per system is in mWater, dated before that system's works completion"
  },
  "act-amboasary-post-works-retest": {
-  "kind": "none",
-  "says": "no data predicate: results are bound to the system, not the tap stand, and the completion date is not recorded",
+  "kind": "decision",
+  "question": "Is act-amboasary-post-works-retest a duplicate of act-moramanga-post-rehab-wq?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "post-completion results at the Endur'O tap stands are in mWater; the system can then join the managed portfolio"
+  "closes_when": "merged into act-moramanga-post-rehab-wq (decision 7 Oct 2026)"
  },
  "act-kiosk-sdws1-run": {
   "kind": "data",
@@ -1181,26 +1174,26 @@
  "act-dfcd-warm-reintro": {
   "kind": "none",
   "says": "no data predicate: a meeting and an introduction, outside anything the build reads",
-  "closure": "manual",
-  "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested"
+  "closure": "evidence",
+  "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested, shown in an \"Evidence:\" comment (the email, note or file)"
  },
  "act-dfcd-concept-note": {
   "kind": "none",
   "says": "no data predicate: the note lives in a SharePoint folder the build does not list",
-  "closure": "manual",
-  "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell"
+  "closure": "evidence",
+  "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell, shown in an \"Evidence:\" comment (the email, note or file)"
  },
  "act-dfcd-cfm-sounding": {
   "kind": "none",
   "says": "no data predicate: an email exchange outside anything the build reads",
-  "closure": "manual",
-  "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded"
+  "closure": "evidence",
+  "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded, shown in an \"Evidence:\" comment (the email, note or file)"
  },
  "act-dfcd-nl-outreach": {
   "kind": "none",
   "says": "no data predicate: calls and letters outside anything the build reads",
-  "closure": "manual",
-  "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined"
+  "closure": "evidence",
+  "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined, shown in an \"Evidence:\" comment (the email, note or file)"
  },
  "act-naturano-meter-data": {
   "kind": "none",
@@ -1215,9 +1208,10 @@
   "closes_when": "James sends standard carbon-rights and verification-access wording for (a) Endur'O commune contracts and (b) customer card signup terms"
  },
  "act-calendar-photo-briefing": {
-  "kind": "none",
-  "says": "no data predicate: the briefing happens in the field",
-  "closure": "manual",
-  "closes_when": "Angelo confirms in writing that the Fort-Dauphin and Maroantsetra maintenance teams were briefed (date, who): only the paper calendar goes under the calendar photo question; pump and site photos go under \"Photos showing the pump\" (2.11.2 on preventive maintenance, 2.1.11.2 / 2.1.11.3 on repair)"
+  "kind": "decision",
+  "question": "Is act-calendar-photo-briefing a duplicate of act-sop-calendar-v17-signoff?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)"
  }
 }

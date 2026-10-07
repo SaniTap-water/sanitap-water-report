@@ -1,5 +1,5 @@
 {
- "note": "Hand-written Asana task descriptions, by act-id: tools/asana_setup.py --rewrite-task <act-id> puts one on its task. Nothing else in the build writes a description.",
+ "note": "Hand-written Asana task descriptions by act-id (tasks; tools/asana_setup.py --rewrite-task), and 'Closes when' wording that replaces a say-so rule in the task description (closes_when; applied by --trim-notes). Nothing else in the build writes a description.",
  "tasks": {
   "act-cal-working-day-ticks": [
    "What and why",
@@ -18,6 +18,84 @@
    "    https://sanitap-water.github.io/sanitap-water-report/#act-cal-working-day-ticks (live status)",
    "",
    "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-mwater-year-required": [
+   "What and why",
+   "Question 2.15.7 records the year written on the calendar sheet; it is optional today, which is right until v1.4 stock and the SOP are in the field in both districts.",
+   "",
+   "What to do",
+   "In Adriaan's Cowork session, Claude makes the change in the mWater portal designer; Adriaan checks it and clicks Save. No change is made through the API.",
+   "Form: Entretien préventif (preventive maintenance), de26d89a5c8a4452b42158c622be20d0",
+   "Change: question 2.15.7 (id 3393e25651c047d0b8a29f34cdcf12d9): set Required on. Only once v1.4 stock and SOP v1.7 have reached both districts (act-calendar-v13).",
+   "",
+   "Closes when: the build's form snapshot shows 2.15.7 required, and an \"Evidence:\" comment gives the form revision.",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-mwater-mg-locale": [
+   "What and why",
+   "The preventive maintenance form declares only English and French, so the Malagasy wording of 2.15.7 is squeezed into the French label.",
+   "",
+   "What to do",
+   "In Adriaan's Cowork session, Claude makes the change in the mWater portal designer; Adriaan checks it and clicks Save. No change is made through the API.",
+   "Form: Entretien préventif (preventive maintenance), de26d89a5c8a4452b42158c622be20d0",
+   "Change: add Malagasy (mg) to the form's languages; move the Malagasy half of 2.15.7's label and hint (\"Taona voarakitra amin'ity teti-andro ity ...\") into the mg fields, leaving the French fields French.",
+   "",
+   "Closes when: the build's form snapshot shows the mg locale on the form, and an \"Evidence:\" comment gives the form revision.",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-tana-baseline-form": [
+   "What and why",
+   "The carbon baseline form must fit the Antananarivo urban kiosks before the baseline survey can run.",
+   "",
+   "What to do",
+   "In Adriaan's Cowork session, Claude makes the change in the mWater portal designer; Adriaan checks it and clicks Save. No change is made through the API.",
+   "Form: Piped Water || Baseline Cbn, 3ef4385a619244c7ad129169ac1ec71f",
+   "Change: (1) add a deployment \"Baseline (Tana kiosks)\"; (2) remove hand-pump question 3.1.1 (\"Is the project pump currently being used\") or condition it off for kiosks; (3) add pre-project water-source options JIRAMA standpipe, a neighbour's connection, a water vendor; (4) make the tenses in the fuel questions consistent.",
+   "",
+   "Closes when: the four changes are saved and an \"Evidence:\" comment gives the form revision and the new deployment's name.",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-v2-stove-stacking": [
+   "What and why",
+   "Methodology v2.0 asks every year whether households keep using their old stoves alongside the project technology (stove stacking); without the question now there is no time series at renewal.",
+   "",
+   "What to do",
+   "In Adriaan's Cowork session, Claude makes the change in the mWater portal designer; Adriaan checks it and clicks Save. No change is made through the API.",
+   "Form: Clean Water || project SDWS18 || Survey (point-of-use survey), db0bcbf2e7ea44b280aed653a715553e",
+   "Change: add one question after A11: \"Besides boiling with [project technology], does this household still use another stove or fire to treat or boil drinking water? Which, and how often?\" (choices: no other stove / three-stone fire / charcoal stove / other; frequency: daily / weekly / rarely). French and English.",
+   "",
+   "Closes when: the build's form snapshot shows a stove question on the survey form, and an \"Evidence:\" comment gives the form revision.",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
   ]
+ },
+ "closes_when": {
+  "act-calendar-v13": "an \"Evidence:\" comment per district giving the date v1.4 stock arrived and old year-printed stock was withdrawn, with a photo or delivery note.",
+  "act-mar-which-form": "a record from each field team on the current first-rehabilitation form (Première réhabilitation) in mWater, linked in an \"Evidence:\" comment.",
+  "act-mor-1b-betanatanana-go-look": "an \"Evidence:\" comment with the visit report for the open well at Betanatanana (date, who, photographs).",
+  "act-mor-fix-type-sampled-point": "the corrected Moramanga sampling records in mWater, each sampled tap recorded as one type, linked in an \"Evidence:\" comment.",
+  "act-mor-re-take-gps-fix": "the re-taken GPS fix on the Amboasary Gara record in mWater, linked in an \"Evidence:\" comment.",
+  "act-move-weekly-mwater-backup": "an \"Evidence:\" comment giving the server path and the first weekly backup file written there.",
+  "act-per-diem": "the adopted per-diem rule filed as a document, linked in an \"Evidence:\" comment.",
+  "act-piped-usage-survey": "the first annual piped usage round's records in mWater, linked in an \"Evidence:\" comment.",
+  "act-re-run-improved-cookstove": "each year, the round's records answering WS1.31 / WS1.52, linked in an \"Evidence:\" comment.",
+  "act-repair-time": "the call-centre response and report-back target logged in data/decisions.json, quoted in an \"Evidence:\" comment.",
+  "act-repeat-breakdown": "the decision on Ambinanibe and Andramaka logged in data/decisions.json, quoted in an \"Evidence:\" comment.",
+  "act-sdws26-annual-round": "each year, the round's records in mWater, at least 8 clusters per scenario, linked in an \"Evidence:\" comment.",
+  "act-sensor-cost-benefit": "the cost-benefit decision logged in data/decisions.json, quoted in an \"Evidence:\" comment.",
+  "act-sop-calendar-v17-signoff": "Angelo's written confirmation, per field team (date, who), that the French briefing on SOP v1.7 was given, covering the custody rule, close-up photographs of the sheet and only the calendar under the calendar photo question, posted as an \"Evidence:\" comment.",
+  "act-put-usage-question-live": "at least 100 households have answered usage question A9 on the point-of-use form, counted by the build.",
+  "act-close-eight-2-2": "each of the eight records settled on the original record in mWater (control answered) or removed, listed with links in an \"Evidence:\" comment.",
+  "act-mor-correct-two-sampling-records": "the two Moramanga sampling records corrected to their right sites in mWater, linked in an \"Evidence:\" comment.",
+  "act-deichmann-ar-photo-consent": "MadAvance's written answer, posted as an \"Evidence:\" comment, on who took 05 (Marolinta, July 2026, iPhone), 07 and 08 (Maroantsetra, August 2025, iPhone) and 09 (August 2024, Sony), that MadAvance holds usage rights, and per photo whether consent was given (including guardians for children); photos without consent are dropped. (01-02 Adriaan Mol, 03-04 Jeremy Mol, verbal consent; 06 Rigobert Zica Ratsimbazafy per metadata.)",
+  "act-dfcd-cfm-sounding": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded, shown in an \"Evidence:\" comment (the email, note or file).",
+  "act-dfcd-concept-note": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell, shown in an \"Evidence:\" comment (the email, note or file).",
+  "act-dfcd-nl-outreach": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined, shown in an \"Evidence:\" comment (the email, note or file).",
+  "act-dfcd-warm-reintro": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested, shown in an \"Evidence:\" comment (the email, note or file).",
+  "act-v2-adherence": "the methodology version decision (v1.0 until renewal, or v2.0 from the early-2027 verification) logged in data/decisions.json, quoted in an \"Evidence:\" comment.",
+  "act-tana-baseline-form": "the four form changes saved in the designer (deployment \"Baseline (Tana kiosks)\", 3.1.1 removed or conditioned, urban water-source options, consistent fuel tenses), with the form revision in an \"Evidence:\" comment."
  }
 }

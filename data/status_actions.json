@@ -10,14 +10,14 @@
    "table": "mapping-rules",
    "requirement": "Survey households must lie inside the",
    "status": "partial",
-   "action": "act-usage-survey-inside-radius",
+   "action": "act-usage-survey-sop",
    "created": true
   },
   {
    "table": "usage-survey",
    "requirement": "Randomised selection of water points and of households",
    "status": "partial",
-   "action": "act-usage-survey-random-selection",
+   "action": "act-usage-survey-sop",
    "created": true
   },
   {

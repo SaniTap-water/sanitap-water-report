@@ -81,6 +81,17 @@ def _first(word):
     return re.sub(r"[^a-zé]", "", word.lower())
 
 
+def rule_owner(text):
+    """(7 Oct 2026) The assignee data/assignment_rules.json gives this task, or None."""
+    p = os.path.join(REPO, "data", "assignment_rules.json")
+    if not os.path.isfile(p):
+        return None
+    for r in json.load(open(p, encoding="utf8"))["rules"]:
+        if re.search(r["pattern"], text or "", re.I):
+            return PEOPLE[r["owner"]][0]
+    return None
+
+
 def match_owner(owner):
     """-> (assignee gid, canonical name or None, owner text when not in Asana,
     first description line or None)."""
@@ -124,7 +135,7 @@ def notes_for(a, info):
         lines.append(f"Depends on: {info['depends']}")
     if info["source"] and not _INTERNAL.search(info["source"]):
         lines.append(f"Source: {info['source']}")
-    lines += ["", "Links", f"    {A.REPORT_URL}#{a['id']} (live status)", "", FOOTER]
+    lines += ["", FOOTER]
     return "\n".join(lines)
 
 
@@ -133,7 +144,13 @@ def _people_in(text):
     return {PEOPLE[w][0] for w in (_first(x) for x in re.split(r"[\s,/;()]+", text)) if w in PEOPLE}
 
 
-def trim_notes(notes, assignee_gid, is_action):
+def _two_sentences(block):
+    txt = " ".join(l.strip() for l in block if l.strip())
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9“\"(])", txt)
+    return [" ".join(parts[:2])] if txt else []
+
+
+def trim_notes(notes, assignee_gid, is_action, own_url=None, closes_when=None):
     """Strip the bookkeeping from a description (7 Oct 2026). Kept: everything a
     person wrote. Removed: Type; Source when it is an internal file path;
     'Depends on: none'; an 'On the report' link the Links already carry;
@@ -145,10 +162,24 @@ def trim_notes(notes, assignee_gid, is_action):
     body, gloss = lines[:body_end], lines[body_end + 1:]
     stop = next((k for k, l in enumerate(gloss) if not l.strip()), len(gloss))
     body, gloss = body + gloss[stop:], gloss[:stop]      # the glossary ends at its first blank line
+    # (7 Oct 2026, lean) "What and why" keeps two sentences
+    if body and body[0].strip() == "What and why":
+        end = next((k for k in range(1, len(body)) if not body[k].strip()), len(body))
+        body = [body[0]] + _two_sentences(body[1:end]) + body[end:]
     text_wo = "\n".join(body)
     out = []
     for l in body:
         st = l.strip()
+        # links that only point back at the report (its own live status, or another anchor)
+        if re.match(r"^(https?://sanitap-water\.github\.io/sanitap-water-report/(index\.html)?(#[\w-]*)?)(\s*\(.*\))?\.?$", st):
+            continue
+        if st.startswith("Owner as written on the report:"):
+            continue
+        if NOT_IN_LINE.match(st) and assignee_gid and assignee_gid != ADRIAAN:
+            continue                                  # stale: the task now has a real assignee
+        if closes_when and st.startswith("Closes when:"):
+            l = f"Closes when: {closes_when[0].upper() + closes_when[1:]}"
+            st = l
         if re.match(r"^Type:", st):
             continue
         if re.match(r"^Source:", st) and (_INTERNAL.search(st) or "action record" in st):
@@ -156,10 +187,8 @@ def trim_notes(notes, assignee_gid, is_action):
         if re.match(r"^Depends on:\s*(none|—|-)?\.?\s*$", st, re.I):
             continue
         if st.startswith("On the report:"):
-            url = st.split(":", 1)[1].strip().rstrip(".")
-            if text_wo.count(url) > 1:
-                continue
-        if st.startswith("Questions to:") or st.startswith("Owner as written on the report:"):
+            continue
+        if st.startswith("Questions to:"):
             named = _people_in(st.split(":", 1)[1])
             if named and named <= {assignee_gid}:
                 continue
@@ -167,6 +196,13 @@ def trim_notes(notes, assignee_gid, is_action):
                 or st.startswith("Ticking it complete does not close"):
             continue
         out.append(l.rstrip())
+    # a "Links" header left with nothing under it goes too
+    k = 0
+    while k < len(out):
+        if out[k].strip() == "Links" and (k + 1 >= len(out) or not out[k + 1].strip()):
+            del out[k]
+            continue
+        k += 1
     used = "\n".join(out)
     def needed(term):
         parts = [x for x in re.split(r"\s*(?:/|,|;| and |\(|\))\s*", term) if len(x.strip()) >= 3]
@@ -182,13 +218,20 @@ def trim_notes(notes, assignee_gid, is_action):
     return txt
 
 
+OVERRIDES = {}
+_OV = os.path.join(REPO, "data", "asana_notes.json")
+if os.path.isfile(_OV):
+    OVERRIDES = json.load(open(_OV, encoding="utf8")).get("closes_when", {})
+
+
 def trim_all(dry):
     """Every task in the project, action or not."""
     ts = A.get(f"/projects/{A.PROJECT}/tasks", {"opt_fields": "name,notes,assignee.gid", "limit": 100})
     changed = 0
     for t in ts:
         old = t.get("notes") or ""
-        new = trim_notes(old, (t.get("assignee") or {}).get("gid"), bool(tag_of(t["name"])))
+        aid = tag_of(t["name"])
+        new = trim_notes(old, (t.get("assignee") or {}).get("gid"), bool(aid), closes_when=OVERRIDES.get(aid))
         norm = lambda x: re.sub(r"\n{3,}", "\n\n", "\n".join(l.rstrip() for l in x.split("\n"))).strip()
         if new != norm(old):                     # whitespace alone is not a change
             changed += 1
@@ -198,13 +241,42 @@ def trim_all(dry):
     return 0
 
 
+def close_task(aid, evidence, name=None):
+    """Post an "Evidence:" comment and complete the task (7 Oct 2026)."""
+    gid = json.load(open(MAP, encoding="utf8"))["tasks"][aid]
+    A.post(f"/tasks/{gid}/stories", {"text": "Evidence: " + evidence})
+    body = {"completed": True}
+    if name:
+        body["name"] = f"{name} [{aid}]"
+    A.put(f"/tasks/{gid}", body)
+    print(f"closed: {aid} ({gid})")
+    return 0
+
+
+def merge_task(src, dst, why):
+    """Carry src's comments to dst, then close src as merged (7 Oct 2026)."""
+    amap = json.load(open(MAP, encoding="utf8"))["tasks"]
+    gs, gd = amap[src], amap[dst]
+    st = [x for x in A.get(f"/tasks/{gs}/stories", {"opt_fields": "resource_subtype,text,created_at,created_by.name"})
+          if x.get("resource_subtype") == "comment_added"]
+    carried = [f"- {x['created_at'][:10]}, {(x.get('created_by') or {}).get('name')}: {x['text']}" for x in st]
+    A.post(f"/tasks/{gd}/stories", {"text": f"Merged in from [{src}] (decision of Adriaan Mol, 7 Oct 2026): {why}"
+                                    + ("\n\nComments carried over:\n" + "\n".join(carried) if carried else "")})
+    A.post(f"/tasks/{gs}/stories", {"text": f"Evidence: Merged into [{dst}] (decision of Adriaan Mol, 7 Oct 2026). {why}"})
+    A.put(f"/tasks/{gs}", {"completed": True})
+    print(f"merged: {src} -> {dst} ({len(carried)} comment(s) carried)")
+    return 0
+
+
 def rewrite_task(aid):
     """One action's task from the repository: owner, deadline and, where
     data/asana_notes.json carries one, its description."""
     amap = json.load(open(MAP, encoding="utf8"))["tasks"]
     rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))["owners"][aid]
     gid, _n, _x, _f = match_owner(rec.get("owner"))
-    body = {"assignee": gid, "due_on": rec.get("deadline")}
+    body = {"assignee": gid}
+    if rec.get("deadline"):
+        body["due_on"] = rec["deadline"]            # never clears a due date set in Asana
     custom = os.path.join(REPO, "data", "asana_notes.json")
     lines = (json.load(open(custom, encoding="utf8"))["tasks"].get(aid) if os.path.isfile(custom) else None)
     if lines:
@@ -240,6 +312,10 @@ def action_info():
             act=a, state=a["state"], title=rec.get("title") or a["title"], deadline=rec.get("deadline"),
             assignee=gid, assignee_name=name or NAME_OF[gid], not_in_asana=not_in, owner_text=owner_text,
             first_line=first_line,
+            # assignment rules (7 Oct 2026): a team, Jan or Adriaan as owner gives way to the rule
+            rule_assignee=(rule_owner((rec.get("title") or a["title"]) + " " + re.sub(r"<[^>]+>", " ", (a.get("detail") or "")[:600]))
+                           if gid in (ADRIAAN, PEOPLE["jan"][0]) or re.match(r"^\s*(MadAvance|Endur.?O)\b", owner_text or "", re.I) and not name
+                           else None),
             closes_when=cl.get("closes_when") or c.get("closes_when") or c.get("says") or "not stated",
             type=cl.get("type") or c.get("closure") or c.get("kind") or "not stated",
             source=src or "the report's action record (data/action_details.json)",
@@ -417,6 +493,13 @@ def main():
                    help="strip bookkeeping lines from every task description in the project (7 Oct 2026)")
     g.add_argument("--rewrite-task", metavar="ACT_ID",
                    help="set one task's assignee, due date and (asana_notes) description from the repository")
+    g.add_argument("--assign", nargs=2, metavar=("ACT_ID", "PERSON"),
+                   help="assign a task that has no row on the report (Asana-only) to a person by first name")
+    g.add_argument("--close", nargs=2, metavar=("ACT_ID", "EVIDENCE"),
+                   help="post 'Evidence: <text>' on the task and complete it")
+    g.add_argument("--merge", nargs=3, metavar=("FROM", "INTO", "WHY"),
+                   help="carry FROM's comments to INTO and close FROM as merged")
+    ap.add_argument("--rename", help="with --close: the new task name, without the [act-id]")
     g.add_argument("--approval", action="store_true",
                    help="create or update this week's approval task from data/approvals.json (rule of 7 Oct 2026)")
     ap.add_argument("--complete", nargs="*", default=[])
@@ -429,6 +512,16 @@ def main():
         return approval_task()
     if a.push_owners:
         return push_owners()
+    if a.assign:
+        gid = json.load(open(MAP, encoding="utf8"))["tasks"][a.assign[0]]
+        who = PEOPLE[_first(a.assign[1])][0]
+        A.put(f"/tasks/{gid}", {"assignee": who})
+        print(f"assigned: {a.assign[0]} -> {NAME_OF[who]}")
+        return 0
+    if a.close:
+        return close_task(a.close[0], a.close[1], a.rename)
+    if a.merge:
+        return merge_task(*a.merge)
     if a.trim_notes:
         return trim_all(dry="--dry" in sys.argv)
     if a.rewrite_task:
@@ -486,7 +579,7 @@ def main():
         v = info[k]
         body = {"name": task_name(v["title"], k), "projects": [A.PROJECT],
                 "memberships": [{"project": A.PROJECT, "section": amap["section"]}],
-                "assignee": v["assignee"], "notes": notes_for(v["act"], v)}
+                "assignee": v["rule_assignee"] or v["assignee"], "notes": notes_for(v["act"], v)}
         if v["deadline"]:
             body["due_on"] = v["deadline"]
         t = A.post("/tasks", body)

@@ -132,12 +132,12 @@
   },
   "act-emergency-event-form": {
    "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance",
+   "owner": "Cathy Andriambololonirina",
    "title": "Decide where emergency cleaning of pumps is recorded (SDWS 3)"
   },
   "act-enduro-feed": {
    "deadline": "2026-10-31",
-   "owner": "Jan de Graaf",
+   "owner": "Coddy Velonizy",
    "title": "Get a feed of every water sale from the Endur'O smart taps"
   },
   "act-enduro-link-wp-systems": {
@@ -147,7 +147,7 @@
   },
   "act-enduro-move-register-fully": {
    "deadline": "2026-10-31",
-   "owner": "Jan, with Coddy",
+   "owner": "Coddy Velonizy",
    "title": "Move the whole Endur'O site list into mWater"
   },
   "act-enduro-onboard-1-enumerators": {
@@ -160,16 +160,19 @@
    "title": "Link each Endur'O smart tap to its water point with a test dispense"
   },
   "act-enduro-onboard-5-calibration": {
-   "title": "Get calibration certificates with the next water meter order"
+   "title": "Get calibration certificates with the next water meter order",
+   "owner": "Coddy Velonizy"
   },
   "act-enduro-onboard-6-kiosk-wq": {
-   "title": "Test the water at the Antananarivo kiosk tap and record it"
+   "title": "Test the water at the Antananarivo kiosk tap and record it",
+   "owner": "Cathy Andriambololonirina"
   },
   "act-enduro-onboard-7-piped-sdws27": {
    "title": "Record piped-system maintenance, repairs and downtime in mWater (SDWS 27)"
   },
   "act-enduro-people-source": {
-   "title": "Record which document gives the Endur'O people-served figure"
+   "title": "Record which document gives the Endur'O people-served figure",
+   "owner": "Coddy Velonizy"
   },
   "act-enduro-refresh": {
    "title": "Re-confirm the hand-entered Endur'O figures"
@@ -198,11 +201,11 @@
   "act-freeze-estate-map-when": {
    "deadline": null,
    "owner": "Adriaan",
-   "title": "Freeze the pump map when a report edition is archived"
+   "title": "Retired: freeze the pump map in archived editions (archives are data only now)"
   },
   "act-gaps-doc": {
    "deadline": "2026-10-03",
-   "owner": "Jan de Graaf",
+   "owner": "James Walker",
    "title": "Correct the carbon data gaps document on the cookstove overlap"
   },
   "act-gs-validation-withdrawal-watch": {
@@ -233,7 +236,7 @@
   },
   "act-jmp-survey-2026": {
    "deadline": "2026-11-30",
-   "owner": "Jan de Graaf with MadAvance",
+   "owner": "Angelo Nahavitatsara",
    "source": "commit 9c35dca",
    "depends_on": "act-usage-survey-sop",
    "title": "Run the November 2026 household hygiene survey and compare with 2025"
@@ -245,12 +248,12 @@
   },
   "act-mar-admin-fields": {
    "deadline": null,
-   "owner": "Angelo Nahavitatsara / MadAvance",
+   "owner": "Lanja Randriamanantena",
    "title": "Fill in location and pump model on the Marolinta pump records"
   },
   "act-mar-functional-status": {
    "deadline": null,
-   "owner": "Adriaan Mol",
+   "owner": "Angelo Nahavitatsara",
    "title": "Record whether each new Marolinta borehole is working"
   },
   "act-mar-missing-boreholes": {
@@ -273,12 +276,12 @@
   },
   "act-mar-water-quality": {
    "deadline": null,
-   "owner": "Lanja Randriamanantena / MadAvance",
+   "owner": "Cathy Andriambololonirina",
    "title": "Test every Marolinta borehole for E. coli at the tap"
   },
   "act-mar-which-form": {
    "deadline": null,
-   "owner": "Adriaan Mol",
+   "owner": "Angelo Nahavitatsara",
    "title": "Get field teams using the current first-rehabilitation form"
   },
   "act-marolinta-drilling-result": {
@@ -288,66 +291,67 @@
   },
   "act-mor-1b-betanatanana-go-look": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Visit the open well at Betanatanana, Moramanga, and report"
   },
   "act-mor-bring-back-site-lists": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Bring site lists with GPS for Andaingo and Fieferana"
   },
   "act-mor-correct-two-sampling-records": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Lanja Randriamanantena",
    "title": "Correct two Moramanga water sampling records placed at wrong sites"
   },
   "act-mor-count-draw-off-point": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Count every tap, kiosk and house connection on the Moramanga systems"
   },
   "act-mor-fill-three-new-fields": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Cathy Andriambololonirina",
    "title": "Fill the three new fields on Moramanga water test results"
   },
   "act-mor-fix-type-sampled-point": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Cathy Andriambololonirina",
    "title": "Record each sampled Moramanga tap as one type, consistently"
   },
   "act-mor-have-those-five-records": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Share the five Moramanga borehole records with SaniTap"
   },
   "act-mor-households-people-served-per": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Count households and people served at each Moramanga tap"
   },
   "act-mor-re-take-gps-fix": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Re-take the GPS position at Amboasary Gara, Moramanga"
   },
   "act-mor-record-what-community-drank": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Record where each Moramanga community got water before the system"
   },
   "act-mor-remove-reclassify-two-test": {
    "deadline": null,
-   "owner": "Jan / Endur’O team",
+   "owner": "Lanja Randriamanantena",
    "title": "Remove two test records from the hand-pump register"
   },
   "act-mor-submit-drafts": {
    "deadline": "2026-10-17",
-   "owner": "Jan / Endur’O team",
+   "owner": "Coddy Velonizy",
    "title": "Submit the draft Moramanga new-construction records"
   },
   "act-moramanga-post-rehab-wq": {
-   "title": "Test water at the four Moramanga piped systems after works"
+   "title": "Test water at the four Moramanga piped systems after works",
+   "owner": "Cathy Andriambololonirina"
   },
   "act-moramanga-register-standposts": {
    "deadline": null,
@@ -361,17 +365,17 @@
   },
   "act-move-stroke-test-sop": {
    "deadline": "2026-10-31",
-   "owner": "Jan",
+   "owner": "Adriaan Mol",
    "title": "Approve the pump stroke-test procedure v2.2 and file it"
   },
   "act-move-weekly-mwater-backup": {
    "deadline": null,
-   "owner": "Adriaan",
+   "owner": "Lanja Randriamanantena",
    "title": "Move the weekly mWater backup from the laptop to the server"
   },
   "act-mwater-approval-policy": {
    "deadline": "2026-10-31",
-   "owner": "Angelo Nahavitatsara / MadAvance with Jan de Graaf",
+   "owner": "Adriaan Mol",
    "title": "Define what approving an mWater record means, and use it sparingly"
   },
   "act-mwater-backup-restore-check": {
@@ -381,7 +385,7 @@
   },
   "act-mwater-mg-locale": {
    "deadline": "2026-10-03",
-   "owner": "Lanja Randriamanantena / MadAvance",
+   "owner": "Adriaan Mol",
    "title": "Add Malagasy as a language on the preventive maintenance form"
   },
   "act-mwater-year-required": {
@@ -413,10 +417,12 @@
    "title": "Agree the firewood share (fNRB) for the piped water project"
   },
   "act-piped-usage-survey": {
-   "title": "Run a yearly household survey for the piped water systems"
+   "title": "Run a yearly household survey for the piped water systems",
+   "owner": "Coddy Velonizy"
   },
   "act-piped-wq-misfiled-742895333": {
-   "title": "Re-enter two water tests for pump 742895333, Sainte Luce, on the right form"
+   "title": "Re-enter two water tests for pump 742895333, Sainte Luce, on the right form",
+   "owner": "Cathy Andriambololonirina"
   },
   "act-point-use-round-one": {
    "deadline": null,
@@ -450,17 +456,17 @@
   },
   "act-put-usage-question-live": {
    "deadline": null,
-   "owner": "Adriaan / MadAvance",
-   "title": "Put the water-use question on a live form and run the survey"
+   "owner": "Angelo Nahavitatsara",
+   "title": "Run usage survey round one on the point-of-use form (usage question A9)"
   },
   "act-ralf-meter-install-register": {
    "deadline": "2026-10-31",
-   "owner": "Ralf van Veenendaal (Curtech)",
+   "owner": "Coddy Velonizy",
    "title": "Give us a readable list of smart tap meter installations"
   },
   "act-ralf-shopkeeper-waterpoint-link": {
    "deadline": "2026-10-31",
-   "owner": "Ralf van Veenendaal (Curtech)",
+   "owner": "Coddy Velonizy",
    "title": "Link each kiosk shopkeeper in Zoho to their mWater water point"
   },
   "act-re-run-improved-cookstove": {
@@ -475,7 +481,7 @@
   },
   "act-recreate-gardien-calendar-controlled": {
    "deadline": "2026-10-31",
-   "owner": "Jan",
+   "owner": "Angelo Nahavitatsara",
    "title": "Recreate the guardians' calendar as a controlled, versioned document"
   },
   "act-reduced-performance": {
@@ -503,12 +509,12 @@
   },
   "act-repair-time": {
    "deadline": "2026-12-31",
-   "owner": "Jan de Graaf",
+   "owner": "Adriaan Mol",
    "title": "Track how fast the call centre sends technicians and reports back"
   },
   "act-repeat-breakdown": {
    "deadline": null,
-   "owner": "Jan de Graaf",
+   "owner": "Adriaan Mol",
    "title": "Decide if Ambinanibe and Andramaka need a second pump instead of repairs"
   },
   "act-resolve-sdws-27-sdws": {
@@ -523,7 +529,7 @@
   },
   "act-restore-preventive-maintenance-visit": {
    "deadline": "2026-11-30",
-   "owner": "Jan",
+   "owner": "Angelo Nahavitatsara",
    "title": "Bring preventive maintenance visits back to the planned rate (SDWS 27)"
   },
   "act-retrain-field-teams-how": {
@@ -672,7 +678,7 @@
   },
   "act-usage-survey-sop": {
    "deadline": "2026-10-16",
-   "owner": "Adriaan Mol; sign-off James Walker",
+   "owner": "James Walker",
    "title": "Write the procedure for the yearly household water-use survey (SDWS 26)"
   },
   "act-v2-adherence": {
@@ -702,7 +708,7 @@
   },
   "act-v2-stove-stacking": {
    "deadline": "2026-10-31",
-   "owner": "James Walker",
+   "owner": "Adriaan Mol",
    "title": "Add a question on using several stoves to the yearly survey"
   },
   "act-v2-stroke-test": {
@@ -730,7 +736,7 @@
   },
   "act-wq-retest": {
    "deadline": null,
-   "owner": "Lanja Randriamanantena / MadAvance",
+   "owner": "Cathy Andriambololonirina",
    "title": "Confirm the failed E. coli test at Ambinanitelo, 833033198, was retested"
   },
   "act-piped-baseline-other-systems": {
@@ -783,7 +789,7 @@
   },
   "act-naturano-meter-data": {
    "deadline": "2026-10-31",
-   "owner": "Adriaan Mol",
+   "owner": "Coddy Velonizy",
    "source": "chat 6 Oct 2026; request to Ntsoa; Asana task 1219213949192332",
    "title": "Get access to NatuRano's meter transaction data as revenue evidence"
   },
@@ -824,9 +830,9 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 60,
-   "evidence": 74,
-   "manual": 30
+   "auto": 53,
+   "evidence": 108,
+   "manual": 3
   },
   "actions": {
    "act-2026-recovery": {
@@ -859,8 +865,8 @@
    },
    "act-amboasary-post-works-retest": {
     "type": "evidence",
-    "closes_when": "post-completion results at the Endur'O tap stands are in mWater; the system can then join the managed portfolio",
-    "closed": false,
+    "closes_when": "merged into act-moramanga-post-rehab-wq (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-10-04"
    },
@@ -879,9 +885,9 @@
     "first_seen": "2026-09-28"
    },
    "act-calendar-custody": {
-    "type": "manual",
-    "closes_when": "standing field rule: Adriaan marks it issued to every team",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -893,15 +899,15 @@
     "first_seen": "2026-10-02"
    },
    "act-calendar-photo-briefing": {
-    "type": "manual",
-    "closes_when": "Angelo confirms in writing that the Fort-Dauphin and Maroantsetra maintenance teams were briefed (date, who): only the paper calendar goes under the calendar photo question; pump and site photos go under \"Photos showing the pump\" (2.11.2 on preventive maintenance, 2.1.11.2 / 2.1.11.3 on repair)",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-10-06"
    },
    "act-calendar-v13": {
-    "type": "manual",
-    "closes_when": "Angelo marks v1.4 stock distributed to each district",
+    "type": "evidence",
+    "closes_when": "an \"Evidence:\" comment per district giving the date v1.4 stock arrived and old year-printed stock was withdrawn, with a photo or delivery note",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
@@ -935,16 +941,16 @@
     "first_seen": "2026-09-22"
    },
    "act-close-eight-2-2": {
-    "type": "manual",
-    "closes_when": "Adriaan marks each of the eight records settled or removed",
+    "type": "evidence",
+    "closes_when": "each of the eight records settled on the original record in mWater (control answered) or removed, listed with links in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
    "act-close-out-6-5": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the residual closed out",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "the January figures formally retired (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1026,37 +1032,37 @@
     "first_seen": "2026-09-26"
    },
    "act-dfcd-cfm-sounding": {
-    "type": "manual",
-    "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded",
+    "type": "evidence",
+    "closes_when": "email sent and CFM's view on ticket size, instrument and whether the <span class=\"mono\">25%</span> sponsor equity can be partly in kind is recorded, shown in an \"Evidence:\" comment (the email, note or file)",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-06"
    },
    "act-dfcd-concept-note": {
-    "type": "manual",
-    "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell",
+    "type": "evidence",
+    "closes_when": "concept note saved in PumpPrime/Investors Partners Pumprime/WWF - DFCD and shared with Andrew and Claude Mansell, shown in an \"Evidence:\" comment (the email, note or file)",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-06"
    },
    "act-dfcd-nl-outreach": {
-    "type": "manual",
-    "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined",
+    "type": "evidence",
+    "closes_when": "SNV call held or scheduled, Toine Ramaker's answer on a VEI letter of intent recorded, and Rik's introductions (FMO, WWF-NL) made or declined, shown in an \"Evidence:\" comment (the email, note or file)",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-06"
    },
    "act-dfcd-warm-reintro": {
-    "type": "manual",
-    "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested",
+    "type": "evidence",
+    "closes_when": "meeting held and the name of the current DFCD Africa lead (WWF-NL or SNV) recorded, with an introduction requested, shown in an \"Evidence:\" comment (the email, note or file)",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-10-06"
    },
    "act-down-no-repair": {
-    "type": "auto",
-    "closes_when": "closes when every call-centre down report has a repair record or a closure note",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-call-no-followup (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1187,9 +1193,9 @@
     "first_seen": "2026-09-22"
    },
    "act-freeze-estate-map-when": {
-    "type": "auto",
-    "closes_when": "closes when the build can freeze the estate map into an archived edition",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "retired by decision 7 Oct 2026: archived pages and maps are not read",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1285,9 +1291,9 @@
     "first_seen": "2026-09-21"
    },
    "act-mar-new-construction-gap": {
-    "type": "auto",
-    "closes_when": "closes with the Marolinta new-borehole item: when the progress form holds ten new-borehole records",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-mar-missing-boreholes (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1306,22 +1312,22 @@
     "first_seen": "2026-09-21"
    },
    "act-mar-which-form": {
-    "type": "manual",
-    "closes_when": "Adriaan confirms the field teams are on the current first-rehabilitation form",
+    "type": "evidence",
+    "closes_when": "a record from each field team on the current first-rehabilitation form (Première réhabilitation) in mWater, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
    "act-marolinta-drilling-result": {
-    "type": "auto",
-    "closes_when": "closes when all six Marolinta new-construction records carry a drilling result",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-mar-functional-status (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-29"
    },
    "act-mor-1b-betanatanana-go-look": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the site visit done",
+    "type": "evidence",
+    "closes_when": "an \"Evidence:\" comment with the visit report for the open well at Betanatanana (date, who, photographs)",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1334,8 +1340,8 @@
     "first_seen": "2026-09-21"
    },
    "act-mor-correct-two-sampling-records": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the two sampling records corrected",
+    "type": "evidence",
+    "closes_when": "the two Moramanga sampling records corrected to their right sites in mWater, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1355,8 +1361,8 @@
     "first_seen": "2026-09-21"
    },
    "act-mor-fix-type-sampled-point": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the sampled-point types fixed",
+    "type": "evidence",
+    "closes_when": "the corrected Moramanga sampling records in mWater, each sampled tap recorded as one type, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1376,8 +1382,8 @@
     "first_seen": "2026-09-21"
    },
    "act-mor-re-take-gps-fix": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the Amboasary Gara fix re-taken",
+    "type": "evidence",
+    "closes_when": "the re-taken GPS fix on the Amboasary Gara record in mWater, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1432,8 +1438,8 @@
     "first_seen": "2026-09-21"
    },
    "act-move-weekly-mwater-backup": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the backup moved to the server",
+    "type": "evidence",
+    "closes_when": "an \"Evidence:\" comment giving the server path and the first weekly backup file written there",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1481,8 +1487,8 @@
     "first_seen": "2026-09-21"
    },
    "act-per-diem": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the redesigned per-diem system adopted",
+    "type": "evidence",
+    "closes_when": "the adopted per-diem rule filed as a document, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1516,8 +1522,8 @@
     "first_seen": "2026-09-26"
    },
    "act-piped-usage-survey": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the first annual piped usage round run",
+    "type": "evidence",
+    "closes_when": "the first annual piped usage round's records in mWater, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-25"
@@ -1537,9 +1543,9 @@
     "first_seen": "2026-09-21"
    },
    "act-population-rerun": {
-    "type": "manual",
-    "closes_when": "standing: Adriaan marks each re-run done",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "automated by the build (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1559,8 +1565,8 @@
    },
    "act-produce-s4-19-cl": {
     "type": "evidence",
-    "closes_when": "the installation database (every borehole and system installed to date, with the number of households under each, as Gold Standard's clarification request CL#2 asks) is filed in Water Documents",
-    "closed": false,
+    "closes_when": "the installation database (every installed borehole with the households under each, derivation on its face) is filed in Water Documents/Report",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1593,8 +1599,8 @@
     "first_seen": "2026-09-30"
    },
    "act-re-run-improved-cookstove": {
-    "type": "manual",
-    "closes_when": "recurring: Adriaan marks each year's round done",
+    "type": "evidence",
+    "closes_when": "each year: the round's records answering WS1.31 / WS1.52, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1628,16 +1634,16 @@
     "first_seen": "2026-09-21"
    },
    "act-rehab-recording": {
-    "type": "auto",
-    "closes_when": "closes when the form holds the ten new boreholes the minutes report",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-mar-missing-boreholes (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
    "act-reissue-calendars-new-blank": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the reissue complete",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-calendar-v13 (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1649,15 +1655,15 @@
     "first_seen": "2026-09-22"
    },
    "act-repair-time": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the call-centre response target set",
+    "type": "evidence",
+    "closes_when": "the call-centre response and report-back target logged in data/decisions.json, quoted in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
    "act-repeat-breakdown": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the decision on the two repeat-breakdown pumps taken",
+    "type": "evidence",
+    "closes_when": "the decision on Ambinanibe and Andramaka logged in data/decisions.json, quoted in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -1684,9 +1690,9 @@
     "first_seen": "2026-09-21"
    },
    "act-retrain-field-teams-how": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the retraining delivered",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1733,8 +1739,8 @@
     "first_seen": "2026-09-29"
    },
    "act-sdws26-annual-round": {
-    "type": "manual",
-    "closes_when": "recurring: Adriaan marks each year's round run with enough clusters",
+    "type": "evidence",
+    "closes_when": "each year: the round's records in mWater, at least 8 clusters per scenario, linked in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-23"
@@ -1768,8 +1774,8 @@
     "first_seen": "2026-09-21"
    },
    "act-sensor-cost-benefit": {
-    "type": "manual",
-    "closes_when": "Adriaan marks the cost-benefit decision made",
+    "type": "evidence",
+    "closes_when": "the cost-benefit decision logged in data/decisions.json, quoted in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-26"
@@ -1797,7 +1803,7 @@
    },
    "act-sop-calendar-v17-signoff": {
     "type": "evidence",
-    "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given",
+    "closes_when": "Angelo Nahavitatsara's written confirmation, per field team, that the French briefing on SOP v1.7 was given (date, who), covering the custody rule, close-up photographs of the sheet and only the calendar under the calendar photo question, posted as an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-26"
@@ -1810,8 +1816,8 @@
     "first_seen": "2026-09-21"
    },
    "act-tana-baseline-form": {
-    "type": "manual",
-    "closes_when": "the form has a &ldquo;Baseline (Tana kiosks)&rdquo; deployment; hand-pump question <span class=\"mono\">3.1.1</span> is removed or conditioned; the pre-project water-source options cover urban sources (JIRAMA standpipe, neighbour&rsquo;s connection, water vendor); the fuel-question tenses are fixed",
+    "type": "evidence",
+    "closes_when": "the four form changes saved in the designer (deployment \"Baseline (Tana kiosks)\", 3.1.1 removed or conditioned, urban water-source options, consistent fuel tenses), with the form revision in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-30"
@@ -1874,15 +1880,15 @@
    },
    "act-usage-survey-inside-radius": {
     "type": "evidence",
-    "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off",
-    "closed": false,
+    "closes_when": "merged into act-usage-survey-sop (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-30"
    },
    "act-usage-survey-random-selection": {
     "type": "evidence",
-    "closes_when": "SOP-MAD-SDWS26-EnqueteUsage v1.0 (French and English) is filed in Central Data Hub &gt; Water Documents &gt; SOPs with James Walker&rsquo;s written sign-off",
-    "closed": false,
+    "closes_when": "merged into act-usage-survey-sop (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-30"
    },
@@ -1894,8 +1900,8 @@
     "first_seen": "2026-09-30"
    },
    "act-v2-adherence": {
-    "type": "manual",
-    "closes_when": "standing: Adriaan closes it when the methodology version is settled",
+    "type": "evidence",
+    "closes_when": "the methodology version decision (v1.0 until renewal, or v2.0 from the early-2027 verification) logged in data/decisions.json, quoted in an \"Evidence:\" comment",
     "closed": false,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
@@ -1936,9 +1942,9 @@
     "first_seen": "2026-09-20"
    },
    "act-v2-stroke-test": {
-    "type": "auto",
-    "closes_when": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-move-stroke-test-sop (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -1950,9 +1956,9 @@
     "first_seen": "2026-09-26"
    },
    "act-visit-collapse": {
-    "type": "auto",
-    "closes_when": "closes when fewer than 50 points are more than six months without a visit",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "merged into act-restore-preventive-maintenance-visit (decision 7 Oct 2026)",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -2234,6 +2240,19 @@
     "source": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.7-2026.docx is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
    },
+   "act-amboasary-post-works-retest": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-moramanga-post-rehab-wq] (decision of Adriaan Mol, 7 Oct 2026). Amboasary gara is one of the four Moramanga systems whose post-works tests that task covers; due thirty days after works completion, Coddy Velonizy confirms the completion date.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128812565674",
+    "task": "1219128812565674",
+    "from": "asana"
+   },
    "act-cal-handwritten-year": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2245,6 +2264,45 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100771264996",
     "task": "1219100771264996",
+    "from": "asana"
+   },
+   "act-calendar-custody": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-sop-calendar-v17-signoff] (decision of Adriaan Mol, 7 Oct 2026). one French briefing per field team on calendar SOP v1.7 covers the custody rule (photograph the old sheet before replacing it).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057894822",
+    "task": "1219101057894822",
+    "from": "asana"
+   },
+   "act-calendar-photo-briefing": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-sop-calendar-v17-signoff] (decision of Adriaan Mol, 7 Oct 2026). one French briefing per field team on calendar SOP v1.7 covers putting only the paper calendar under the calendar photo question.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205037087065",
+    "task": "1219205037087065",
+    "from": "asana"
+   },
+   "act-close-out-6-5": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "The January 2026 population figures (Water Point Population Data 22 Jan 26.xlsx) are formally retired, not reconciled: the January run left no raster checksum and WorldPop R2025A, an alpha release, has changed since, so the residual cannot be recovered. No figure on the report uses the January run; people served come only from the SDWS 1 run of record. Logged in data/decisions.json (act-close-out-6-5), 7 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110478505",
+    "task": "1219101110478505",
     "from": "asana"
    },
    "act-coddy-naturano-card-spec": {
@@ -2314,6 +2372,19 @@
     "task": "1219109294883405",
     "from": "asana"
    },
+   "act-down-no-repair": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-call-no-followup] (decision of Adriaan Mol, 7 Oct 2026). both ask that every pump reported down gets a repair (or a note why none was needed).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994936725",
+    "task": "1219100994936725",
+    "from": "asana"
+   },
    "act-enduro-nanisana-sellthrough": {
     "recorded_on": "2026-10-07",
     "recorded_by": "Claude, on Adriaan Mol's instruction",
@@ -2357,6 +2428,19 @@
     "task": "1219101110893781",
     "from": "asana"
    },
+   "act-freeze-estate-map-when": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Retired as obsolete by decision of Adriaan Mol, 7 Oct 2026: archived pages and maps are not read. The build no longer writes frozen HTML pages or maps for archived editions; it keeps a weekly data snapshot (editions/<date>-wk<NN>-ed<N>.json, plus the published commit) as the audit trail the approval gate compares against.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105660866",
+    "task": "1219101105660866",
+    "from": "asana"
+   },
    "act-india-mark-cap-james": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2381,6 +2465,32 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
     "task": "1219100937657165",
+    "from": "asana"
+   },
+   "act-mar-new-construction-gap": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-mar-missing-boreholes] (decision of Adriaan Mol, 7 Oct 2026). the same gap (new boreholes with no record), already tracked by the same count.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058750228",
+    "task": "1219101058750228",
+    "from": "asana"
+   },
+   "act-marolinta-drilling-result": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-mar-functional-status] (decision of Adriaan Mol, 7 Oct 2026). both ask what became of the six new Marolinta boreholes. Their final construction records (borehole-progress form, 25-29 Aug 2026) carry a photograph of an installed hand pump on a finished apron for each of 1052525198, 1052525260, 1052525284, 893673000, 893673127 and 893673158, so each is drilled positive and equipped. No record shows any of them working: that is what stays open.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111155160",
+    "task": "1219101111155160",
     "from": "asana"
    },
    "act-mwater-backup-restore-check": {
@@ -2409,12 +2519,38 @@
     "task": "1219101111903363",
     "from": "asana"
    },
+   "act-population-rerun": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Automated, so nothing is left for a person to do. Since 23 Sep 2026 (commit 52daca4) every pump that joins the managed fleet gets its WorldPop allocation, water-quality result and roof count in the same build (tools/rerun_wpop.py; each run logged in data/wpop_rerun_log.json). Closed by Claude Code, decision of Adriaan Mol, 7 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112028795",
+    "task": "1219101112028795",
+    "from": "asana"
+   },
    "act-pou-form-threshold": {
     "recorded_on": "2026-10-02",
     "recorded_by": "Claude, on Adriaan Mol's instruction",
     "what": "Lanja's written confirmation that the household water test form's pass field (J1) already applies the protocol rule",
     "source": "Lanja Randriamanantena, \"RE: PoU form updated again (piped water)…\", 1 Oct 2026, 14:44 UTC",
     "summary": "J1 already applies the protocol rule: a household sample with 5 E. coli per 100 ml shows \"Pass – PoU\"; a source sample with 5 shows \"Fail – PoC\". Only the disabled old question 8 checked against 0, and the 2025 records stay as entered."
+   },
+   "act-produce-s4-19-cl": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Installation database v1.0, cut-off 7 Oct 2026: Water Documents / Report / Installation database v1.0 2026-10-07.xlsx (Central Data Hub) - all 745 managed water points with district, commune, fokontany, pump model, works date and GPS; households served = WorldPop people served (applied allocation) / registered SDWS 25 people per premises (Anosy 4.5, Analanjirofo 3.7), 31,691 households across the carbon programme; derivation stated on the sheet; Marolinta listed, households not computed (outside the carbon programme). Produced by Claude Code. Whether to submit it now or at verification is James Walker's call.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111773731",
+    "task": "1219101111773731",
+    "from": "asana"
    },
    "act-put-current-methodology-vpa": {
     "recorded_on": "2026-09-26",
@@ -2431,6 +2567,32 @@
     "summary": "The methodology provides for cookstove and safe-water cross-effects; the stacking prohibition applies to Impact Statements only, not to credits.",
     "ref": "data/decisions.json"
    },
+   "act-rehab-recording": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-mar-missing-boreholes] (decision of Adriaan Mol, 7 Oct 2026). the minutes-versus-form reconciliation is the two counts act-mar-missing-boreholes (new boreholes) and act-mar-missing-rehabs (rehabilitations) already track.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903401",
+    "task": "1219101111903401",
+    "from": "asana"
+   },
+   "act-reissue-calendars-new-blank": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-calendar-v13] (decision of Adriaan Mol, 7 Oct 2026). both ask for the new blank calendar (v1.4) to be handed out; it goes out on visits already scheduled, withdrawing year-printed stock.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111758501",
+    "task": "1219101111758501",
+    "from": "asana"
+   },
    "act-resolve-sdws-27-sdws": {
     "recorded_on": "2026-09-21",
     "recorded_by": "James Walker, Carbon Lead",
@@ -2446,6 +2608,19 @@
     "source": "decision register-fleet-entry-rule, 29 Sep 2026 (Angelo Nahavitatsara's statement, as relayed by Adriaan Mol)",
     "summary": "Closed: point excluded from the managed fleet: survey record only (decision 29 Sep 2026, Angelo Nahavitatsara). 987623517 was excluded on 29 Sep 2026, so its water-point type no longer bears on any figure. The misfiled photograph on 742896114 (image 4fbe6247) that this action also carried is one of the misfiled photographs tracked by act-photo-misfiled, which stays open.",
     "ref": "data/decisions.json"
+   },
+   "act-retrain-field-teams-how": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-sop-calendar-v17-signoff] (decision of Adriaan Mol, 7 Oct 2026). one French briefing per field team on calendar SOP v1.7 covers photographing the sheet flat and filling the frame.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270700805",
+    "task": "1219101270700805",
+    "from": "asana"
    },
    "act-run-sdws-26-premises": {
     "recorded_on": "2026-09-23",
@@ -2516,6 +2691,32 @@
     "source": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
    },
+   "act-usage-survey-inside-radius": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-usage-survey-sop] (decision of Adriaan Mol, 7 Oct 2026). the rule that survey households lie inside the service radius is written into the usage-survey SOP, and closes with it.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995666861",
+    "task": "1219100995666861",
+    "from": "asana"
+   },
+   "act-usage-survey-random-selection": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-usage-survey-sop] (decision of Adriaan Mol, 7 Oct 2026). the random selection of water points and households is written into the usage-survey SOP, and closes with it.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997286341",
+    "task": "1219100997286341",
+    "from": "asana"
+   },
    "act-v2-nonclaiming": {
     "recorded_on": "2026-09-21",
     "recorded_by": "James Walker, Carbon Lead",
@@ -2531,6 +2732,32 @@
     "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-21",
     "summary": "50 per stratum for sampling, to be safe.",
     "ref": "data/decisions.json"
+   },
+   "act-v2-stroke-test": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-move-stroke-test-sop] (decision of Adriaan Mol, 7 Oct 2026). stroke-test SOP v2.2 carries the reconciliation with methodology v2.0; its sign-off closes both.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997161767",
+    "task": "1219100997161767",
+    "from": "asana"
+   },
+   "act-visit-collapse": {
+    "recorded_on": "2026-10-07",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-07",
+    "summary": "Merged into [act-restore-preventive-maintenance-visit] (decision of Adriaan Mol, 7 Oct 2026). both ask for the preventive-maintenance visits to be restored; calendar coverage follows the visits.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101060358492",
+    "task": "1219101060358492",
+    "from": "asana"
    },
    "act-visit-three-marolinta-points": {
     "recorded_on": "2026-09-29",

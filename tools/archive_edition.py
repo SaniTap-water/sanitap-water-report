@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Freeze the outgoing edition before index.html is overwritten.
+"""Freeze the outgoing edition's DATA before index.html is overwritten.
+
+7 Oct 2026: a JSON data snapshot per edition (editions/<date>-wk<NN>-ed<N>.json),
+no longer frozen HTML pages and maps; the pages archived before then stay.
 
 WHY THIS EXISTS AS ITS OWN TOOL
 -------------------------------
@@ -48,9 +51,35 @@ def masthead_of(path):
 
 
 def names(d, wk, ed):
-    for src, suffix in (("index.html", ""), ("routes.html", "-routes"),
-                        ("portfolio.html", "-portfolio")):
-        yield src, f"{d.isoformat()}-wk{wk}-ed{ed}{suffix}.html"
+    """(7 Oct 2026) One data snapshot per outgoing edition. Frozen HTML pages
+    and maps are no longer written: archived pages are not read (decision of
+    Adriaan Mol, 7 Oct 2026). The snapshot is what the approval gate and the
+    fleet-churn check compare against, and the audit trail."""
+    yield "index.html", f"{d.isoformat()}-wk{wk}-ed{ed}.json"
+
+
+def snapshot(page_path, d, wk, ed):
+    """Per-point data and headline inputs of the outgoing edition, from its page."""
+    import json, subprocess
+    h = io.open(page_path, encoding="utf8").read()
+    def obj(name):
+        m = re.search(r"^const " + name + r"\s*=\s*", h, re.M)
+        if not m:
+            return None
+        i = m.end(); close = "};" if h[i] == "{" else "];"
+        try:
+            return json.loads(h[i:h.index(close, i) + 1])
+        except ValueError:
+            return None
+    pumps = obj("PUMPS") or []
+    wpop = obj("WPOP") or {}
+    sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=REPO, capture_output=True, text=True).stdout.strip()
+    chg = subprocess.run(["git", "show", "HEAD:data/change_review.json"], cwd=REPO, capture_output=True, text=True).stdout
+    return {"edition": f"{d.isoformat()} wk{wk} ed{ed}", "commit": sha, "S": obj("S"),
+            "headline": (json.loads(chg).get("figures") if chg else None),
+            "pumps": [{"wp": p["wp"], "site": p.get("site"), "status": p.get("status"), "wq": p.get("wq"),
+                       "wq_date": p.get("wq_date"), "comm": p.get("comm"),
+                       "wpop": (wpop.get(p["wp"]) or [None, None])[1]} for p in pumps]}
 
 
 def from_head(name):
@@ -105,11 +134,12 @@ def main():
 
     os.makedirs(ED, exist_ok=True)
     done = []
+    import json
     for src, n in want:
         dst = os.path.join(ED, n)
         if os.path.isfile(dst):
             continue
-        shutil.copy2(srcs[src], dst)
+        json.dump(snapshot(srcs[src], d, wk, ed), open(dst, "w", encoding="utf8"), ensure_ascii=False)
         done.append(n)
     if done:
         print(f"archived {d.isoformat()} wk{wk} ed{ed}: " + ", ".join(done))

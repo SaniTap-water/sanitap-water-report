@@ -2286,3 +2286,40 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   only the assignee; the old footer, replaced by one line. Glossary entries kept only for terms the description
   uses. New tasks follow the same format (notes_for); nothing in the build rewrites a description
   (data/decisions.json `asana-description-format-2026-10-07`).
+
+## 7 Oct 2026 (g) — Adriaan Mol: the action list cleaned up — owners, duplicates, lean descriptions, evidence-only closing
+
+- **Assignment rules** (data/assignment_rules.json, applied by tools/asana_setup.py when it creates a task): Cathy —
+  water-quality testing, result fields, lab and kit; Angelo — hand-pump field work, caretakers, calendars, MadAvance
+  field teams; Coddy — Endur'O piped systems and Moramanga operations, not water quality; Lanja — mWater
+  administration and portal clean-up; James — carbon methodology and verifier questions; Jan — overall manager, no
+  field or data-entry tasks; Adriaan — decisions and approvals. Never Andrew Tanswell. 42 open tasks reassigned
+  (data/decisions.json `assignment-rules-2026-10-07`), four Curtech tasks reassigned to Coddy in Asana. Two
+  reassignments Adriaan had made in Asana the same afternoon stand (Asana wins): act-mor-correct-two-sampling-records
+  to Lanja, act-mwater-approval-policy to Adriaan. Kept with Adriaan though not decisions: his fundraising tasks (DFCD,
+  AWF, Volatiana, Nary) and the legal opinion; kept with Jan: fleet growth, commune carbon clauses, Rotary, World Bank.
+- **Duplicates merged** (13, each closed with "Evidence: Merged into [act-id]", comments carried over; decisions
+  `merged_into`): drilling result → functional status (Marolinta); new-construction gap and minutes reconciliation →
+  missing boreholes; visit collapse → restore preventive visits; calendar reissue → v1.4 distribution; custody rule,
+  close-up photographs and calendar-only photo → the SOP v1.7 briefing; down without repair → follow-up within a week;
+  Amboasary retest → Moramanga post-works tests; v2.0 stroke-test reconciliation → stroke-test SOP v2.2 sign-off;
+  random selection and inside-radius → the usage-survey SOP. A merged action now closes at once (it used to wait for
+  its target).
+- **Marolinta, six new boreholes:** drilled positive and equipped on their construction records' photographs (each
+  checked by eye); no record shows any working. Drilling-result task closed into act-mar-functional-status, which stays
+  open (data/decisions.json `marolinta-six-new-boreholes-2026-10-07`).
+- **Done by Claude Code and closed with evidence:** act-produce-s4-19-cl (Installation database v1.0 2026-10-07.xlsx,
+  Water Documents/Report: 745 points, 31,691 households in the carbon programme); act-population-rerun (automated
+  since commit 52daca4); act-close-out-6-5 (January population figures formally retired). Not done: the citation
+  fix in Gold standard parameters.xlsx (E31) — editing that shared document was not permitted; the exact change is on
+  act-update-parameters-workbook-cite for James.
+- **Form changes for Adriaan's Cowork session** (assigned to Adriaan; Claude makes the change in the designer,
+  Adriaan clicks Save): act-mwater-year-required, act-mwater-mg-locale, act-tana-baseline-form, act-v2-stove-stacking.
+  act-put-usage-question-live split: its form half is already live (A9 required on db0bcbf2), so it is now the survey
+  round, with Angelo.
+- **Lean descriptions:** report-only links, "On the report" and "Owner as written" lines removed; "What and why" at
+  most two sentences; every "Closes when" names evidence (21 say-so rules rewritten, data/asana_notes.json
+  `closes_when`); stale "Owner: X (not in Asana)" lines dropped. 162 + 9 descriptions trimmed; new tasks follow
+  notes_for(); nothing in the build adds the lines back.
+- **Archived editions:** data snapshots only (`archived-editions-data-only-2026-10-07`); act-freeze-estate-map-when
+  retired. **Changes panel:** one closed line, a banner only when something waits (`changes-panel-collapsed-2026-10-07`).

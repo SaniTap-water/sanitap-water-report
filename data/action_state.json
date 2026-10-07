@@ -1,12 +1,12 @@
 {
  "evaluated": "2026-10-07",
  "kinds": {
-  "artefact": 10,
-  "children": 3,
-  "data": 48,
-  "decision": 58,
+  "artefact": 7,
+  "children": 1,
+  "data": 44,
+  "decision": 73,
   "form": 7,
-  "none": 38
+  "none": 32
  },
  "state": {
   "act-2026-recovery": {
@@ -44,11 +44,12 @@
    "when_satisfied": "OK"
   },
   "act-amboasary-post-works-retest": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no data predicate: results are bound to the system, not the tap stand, and the completion date is not recorded",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no data predicate: results are bound to the system, not the tap stand, and the completion date is not recorded",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-moramanga-post-rehab-wq: Amboasary gara is one of the four Moramanga systems whose post-works tests that task covers; due thirty days after works completion, Coddy Velonizy confirms the completion date.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-cal-handwritten-year": {
@@ -69,11 +70,12 @@
    "when_satisfied": "OK"
   },
   "act-calendar-custody": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: a standing field rule has nothing to reach zero - it is observed or it is not, and only a field audit can say which",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers the custody rule (photograph the old sheet before replacing it).",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-calendar-human-sample-annual": {
@@ -85,11 +87,12 @@
    "when_satisfied": "OK"
   },
   "act-calendar-photo-briefing": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no data predicate: the briefing happens in the field",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no data predicate: the briefing happens in the field",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers putting only the paper calendar under the calendar photo question.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-calendar-v13": {
@@ -141,10 +144,11 @@
    "when_satisfied": "OK"
   },
   "act-close-out-6-5": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: The January 2026 population figures (Water Point Population Data 22 Jan 26.xlsx) are formally retired, not reconciled. The January run left no raster checksum and WorldPop R2025A is an alpha release that has changed since, so the residual cannot be recovered; no figure on the report uses the January run, and people served come only from the SDWS 1 run of record.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -274,11 +278,12 @@
    "when_satisfied": "OK"
   },
   "act-down-no-repair": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "downs_without_repair = 31 (managed pumps reported down to the call centre since 1 March with no repair record since); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when every call-centre down report has a repair record or a closure note",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-call-no-followup: both ask that every pump reported down gets a repair (or a note why none was needed).",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-duplicate-codes-sweep": {
@@ -444,11 +449,12 @@
    "when_satisfied": "OK"
   },
   "act-freeze-estate-map-when": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "tools/freeze_map.py does not exist in the repository",
-   "kind": "artefact",
-   "satisfied": false,
-   "says": "closes when the build can freeze the estate map into an archived edition",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Retired as obsolete: archived pages and maps are not read. The build no longer writes frozen HTML pages or maps for archived editions; the weekly data snapshot the approval gate compares against (the published commit, with data/change_review.json and data/record_ledger.json) is kept as the audit trail.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-gaps-doc": {
@@ -557,15 +563,12 @@
    "when_satisfied": "OK"
   },
   "act-mar-new-construction-gap": {
-   "children": [
-    "act-mar-missing-boreholes"
-   ],
-   "children_closed": 0,
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "0 of 1 steps closed",
-   "kind": "children",
-   "satisfied": false,
-   "says": "closes with the Marolinta new-borehole item: when the progress form holds ten new-borehole records",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-mar-missing-boreholes: the same gap (new boreholes with no record), already tracked by the same count.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-mar-technical-values": {
@@ -593,11 +596,12 @@
    "when_satisfied": "OK"
   },
   "act-marolinta-drilling-result": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "marolinta_new_without_drilling_result = 6 (final Marolinta new-construction records (29 Jul-3 Aug 2026) with no answer to 'R\u00e9sultat de la foration'); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when all six Marolinta new-construction records carry a drilling result",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-mar-functional-status: both ask what became of the six new Marolinta boreholes. Their final construction records (borehole-progress form, 25-29 Aug 2026) carry a photograph of an installed hand pump on a finished apron for each of 1052525198, 1052525260, 1052525284, 893673000, 893673127 and 893673158, so each is drilled positive and equipped. No record shows any of them working: that is what stays open.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-mor-1b-betanatanana-go-look": {
@@ -852,11 +856,12 @@
    "when_satisfied": "OK"
   },
   "act-population-rerun": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: a standing item that recurs whenever the portfolio grows",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: a standing item that recurs whenever the portfolio grows",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Closed: automated. Since 23 Sep 2026 (commit 52daca4) a pump joining the managed fleet gets its WorldPop allocation, water-quality result and roof count in the same build (tools/rerun_wpop.py, logged in data/wpop_rerun_log.json); a person no longer has to remember to re-run it.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-pou-form-threshold": {
@@ -876,10 +881,11 @@
    "when_satisfied": "OK"
   },
   "act-produce-s4-19-cl": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "nothing matching \"installation database\" in Water Documents",
+   "evidence": "Report/Installation database v1.0 2026-10-07.xlsx is in the Central Data Hub (Water Documents)",
    "kind": "artefact",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the installation database file exists",
    "when_satisfied": "OK"
   },
@@ -959,19 +965,21 @@
    "when_satisfied": "OK"
   },
   "act-rehab-recording": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "marolinta_new_borehole_records = 6 (new-borehole records on the Marolinta progress form); target >= 10",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when the form holds the ten new boreholes the minutes report",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-mar-missing-boreholes: the minutes-versus-form reconciliation is the two counts act-mar-missing-boreholes (new boreholes) and act-mar-missing-rehabs (rehabilitations) already track.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-reissue-calendars-new-blank": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: whether new blank stock reached a scheduled visit is not recorded on the visit",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-calendar-v13: both ask for the new blank calendar (v1.4) to be handed out; it goes out on visits already scheduled, withdrawing year-printed stock.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-repair-double-entry": {
@@ -1025,11 +1033,12 @@
    "when_satisfied": "OK"
   },
   "act-retrain-field-teams-how": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no closing condition: training delivery is not recorded in any system we read",
-   "kind": "none",
-   "satisfied": null,
-   "says": "no closing condition: training delivery is not recorded in any system we read",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-sop-calendar-v17-signoff: one French briefing per field team on calendar SOP v1.7 covers photographing the sheet flat and filling the frame.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-route-plans": {
@@ -1254,19 +1263,21 @@
    "when_satisfied": "OK"
   },
   "act-usage-survey-inside-radius": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx is not in the Central Data Hub (Water Documents)",
-   "kind": "artefact",
-   "satisfied": false,
-   "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-usage-survey-sop: the rule that survey households lie inside the service radius is written into the usage-survey SOP, and closes with it.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-usage-survey-random-selection": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "SOPs/SOP-MAD-SDWS26-EnqueteUsage-v1.0-2026.docx is not in the Central Data Hub (Water Documents)",
-   "kind": "artefact",
-   "satisfied": false,
-   "says": "closes with act-usage-survey-sop: SOP-MAD-SDWS26-EnqueteUsage v1.0 filed with James Walker&rsquo;s sign-off",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-usage-survey-sop: the random selection of water points and households is written into the usage-survey SOP, and closes with it.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-usage-survey-sop": {
@@ -1328,15 +1339,12 @@
    "when_satisfied": "OK"
   },
   "act-v2-stroke-test": {
-   "children": [
-    "act-move-stroke-test-sop"
-   ],
-   "children_closed": 0,
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "0 of 1 steps closed",
-   "kind": "children",
-   "satisfied": false,
-   "says": "closes with the stroke-test SOP sign-off: when the signed v2.2 is logged there",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-move-stroke-test-sop: stroke-test SOP v2.2 carries the reconciliation with methodology v2.0; its sign-off closes both.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-verification-fnrb-correction": {
@@ -1348,12 +1356,13 @@
    "when_satisfied": "OK"
   },
   "act-visit-collapse": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "points_over_6_months = 475 (points with no maintenance visit for more than six months); target <= 50",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when fewer than 50 points are more than six months without a visit",
-   "when_satisfied": "WATCH"
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Merged into act-restore-preventive-maintenance-visit: both ask for the preventive-maintenance visits to be restored; calendar coverage follows the visits.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
+   "when_satisfied": "OK"
   },
   "act-visit-three-marolinta-points": {
    "closed_since": "2026-09-29",

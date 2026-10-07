@@ -1,0 +1,30 @@
+{
+ "note": "Assignment rules (Adriaan Mol, 7 Oct 2026). tools/asana_setup.py applies them when it creates a task whose owner on the report is unnamed, a team (MadAvance, Endur'O), Jan de Graaf (overall manager: no field or data-entry tasks) or Adriaan Mol (decisions and approvals only): the first rule whose pattern matches the title and detail names the assignee. Jan may stay a follower. Never assign to Andrew Tanswell.",
+ "rules": [
+  {
+   "owner": "cathy",
+   "why": "water-quality testing, test-result fields, lab or kit",
+   "pattern": "water[- ]quality|E\\. ?coli|\\btest(s|ing|ed)?\\b|sampl|result field|\\blab\\b|\\bkit\\b|incubator|SDWS ?3\\b|SDWS ?18\\b"
+  },
+  {
+   "owner": "coddy",
+   "why": "Endur'O piped systems and Moramanga operations, excluding water quality",
+   "pattern": "Endur.?O|Moramanga|piped|kiosk|smart ?tap|NatuRano|Curtech|Zoho|JIRAMA|Amboasary|Tana\\b|Antananarivo"
+  },
+  {
+   "owner": "angelo",
+   "why": "hand-pump field work, caretakers, calendars, MadAvance field teams",
+   "pattern": "calendar|gardien|caretaker|guardian|field team|hand[- ]pump|pump|visit|repair|Marolinta|borehole|survey round|household survey"
+  },
+  {
+   "owner": "lanja",
+   "why": "mWater administration and data clean-up in the portal",
+   "pattern": "mWater (record|register|admin|group|backup)|duplicate|clean[- ]up|re-enter|misfiled|approv(e|al) .*mWater"
+  },
+  {
+   "owner": "james",
+   "why": "carbon methodology and verifier questions",
+   "pattern": "methodology|Gold Standard|verif|fNRB|VPA|ERSDWS|carbon"
+  }
+ ]
+}

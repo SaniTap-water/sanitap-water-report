@@ -375,6 +375,7 @@ def compute():
         del appr["weeks"][key]                       # flagged earlier this week, no longer
     _read_approval_status(appr)
     res["provisional"] = sorted(k for k, v in appr["weeks"].items() if v.get("status") != "approved")
+    res["provisional_items"] = sum(len((appr["weeks"][k].get("flags") or {}).get(x) or []) for k in res["provisional"] for x in "abc")
     json.dump(appr, open(APPROVALS, "w", encoding="utf8"), indent=1, ensure_ascii=False)
     json.dump(cur_ledger, open(LEDGER, "w", encoding="utf8"), indent=0, sort_keys=True)
     json.dump(res, open(OUT, "w", encoding="utf8"), indent=1, ensure_ascii=False)
@@ -470,31 +471,37 @@ def render(res):
         what += [f'(c) {LABEL[c["figure"]]}: {c["carried"]} carried by edited records ({c["pct"]}%)' for c in fl.get("c", [])]
         flagrows.append(f'<tr><td class="mono">{key}</td><td><span class="pill warn">provisional</span> {st}{link}</td>'
                         f'<td>{"<br>".join(what)}</td></tr>')
+    # (Adriaan Mol, 7 Oct 2026) one closed line under the headline tiles; a single
+    # visible banner only when something waits for approval. Gate logic unchanged.
+    inside = ('<p class="note muted">Against the edition of ' + res["baseline"]["published"] + '.</p>'
+              '<div class="tablewrap"><table class="ind" data-table="chgfig"><thead><tr><th>Headline figure</th>'
+              f'<th class="num">Last week</th><th class="num">This week</th></tr></thead><tbody>{figrows}</tbody></table></div>'
+              f'{tablenote("chgfig")}'
+              '<details class="expl"><summary>What moved, and why</summary>'
+              '<div class="tablewrap"><table class="ind" data-table="chgcause"><thead><tr><th>Cause</th>'
+              f'<th class="num">Water points</th></tr></thead><tbody>{causerows}</tbody></table></div>{tablenote("chgcause")}'
+              '<div class="tablewrap"><table class="ind" data-table="chgpts"><thead><tr><th>Water point</th><th>Site</th>'
+              f'<th>What changed</th><th>Cause</th></tr></thead><tbody>{ptrows}</tbody></table></div>{tablenote("chgpts")}'
+              '<p class="note muted">Business as usual goes live. Provisional until Adriaan or Jan approves: (a) an existing record '
+              'edited so that credits or eligibility go up; (b) a record deleted; (c) a large week-on-week move in carbon credits, '
+              'points in scope or people served carried by edited records. Abandoned, removed or non-functional pumps with a '
+              'supporting record pass without approval. A repository edit that moves a headline figure carries a decision in '
+              'data/decisions.json naming who instructed it (rule of 7 Oct 2026).</p>'
+              '</details>')
     if flagrows:
-        banner = ('<p class="note"><b>Provisional.</b> The changes of major impact below wait for approval by Adriaan or Jan; '
-                  'the headline figures include them until then.</p>'
-                  '<div class="tablewrap"><table class="ind" data-table="chgflags"><thead><tr><th>Week</th><th>Status</th>'
-                  f'<th>What waits</th></tr></thead><tbody>{"".join(flagrows)}</tbody></table></div>{tablenote("chgflags")}')
+        n = res.get("provisional_items") or len(flagrows)
+        task = next((appr[k].get("task") for k in res.get("provisional") or [] if appr[k].get("task")), None)
+        link = f' <a href="https://app.asana.com/0/0/{task}">see the Asana task</a>' if task else ""
+        banner = (f'<p class="note" id="changes-banner"><span class="pill warn">provisional</span> '
+                  f'<b><span data-fig="CHG.provisional_items">{n}</span> change(s) wait for approval</b>,{link}.</p>')
+        inside = ('<div class="tablewrap"><table class="ind" data-table="chgflags"><thead><tr><th>Week</th><th>Status</th>'
+                  f'<th>What waits</th></tr></thead><tbody>{"".join(flagrows)}</tbody></table></div>{tablenote("chgflags")}' + inside)
+        summary = "Changes since last week: details of what waits"
     else:
-        banner = ('<p class="note muted">Nothing waits for approval: no record edited so that credits or eligibility go up, '
-                  'no record deleted, no large move carried by edited records.</p>')
-    return (f'<div class="panel" id="changes" data-scopes="all mad madx mar" style="margin-top:12px">'
-            f'<div class="eyebrow">Changes this week, against the edition of {res["baseline"]["published"]}</div>'
-            f'{banner}'
-            '<div class="tablewrap"><table class="ind" data-table="chgfig"><thead><tr><th>Headline figure</th>'
-            f'<th class="num">Last week</th><th class="num">This week</th></tr></thead><tbody>{figrows}</tbody></table></div>'
-            f'{tablenote("chgfig")}'
-            '<details class="expl"><summary>What moved, and why</summary>'
-            '<div class="tablewrap"><table class="ind" data-table="chgcause"><thead><tr><th>Cause</th>'
-            f'<th class="num">Water points</th></tr></thead><tbody>{causerows}</tbody></table></div>{tablenote("chgcause")}'
-            '<div class="tablewrap"><table class="ind" data-table="chgpts"><thead><tr><th>Water point</th><th>Site</th>'
-            f'<th>What changed</th><th>Cause</th></tr></thead><tbody>{ptrows}</tbody></table></div>{tablenote("chgpts")}'
-            '<p class="note muted">Business as usual goes live. Provisional until Adriaan or Jan approves: (a) an existing record '
-            'edited so that credits or eligibility go up; (b) a record deleted; (c) a large week-on-week move in carbon credits, '
-            'points in scope or people served carried by edited records. Abandoned, removed or non-functional pumps with a '
-            'supporting record pass without approval. A repository edit that moves a headline figure carries a decision in '
-            'data/decisions.json naming who instructed it (rule of 7 Oct 2026).</p>'
-            '</details></div>')
+        banner = ""
+        summary = "Changes since last week: none waiting for approval"
+    return (f'<div id="changes" data-scopes="all mad madx mar" style="margin-top:8px">{banner}'
+            f'<details class="expl"><summary>{summary}</summary>{inside}</details></div>')
 
 
 def region(idx, body):
