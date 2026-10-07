@@ -272,6 +272,14 @@
    "source": "Adriaan Mol, instruction for the water report, 6 Oct 2026 (changes made in the mWater portal designer, not through the API)",
    "logged_on": "2026-10-06",
    "logged_by": "Adriaan Mol"
+  },
+  "asana-coddy-account-2026-10-07": {
+   "answer": "Coddy Velonizy (Endur'O) cannot use the old MadAvance Asana account \"IT Assistant\" (coddy@madavance.org, 1209012876322233). From 7 Oct 2026 his tasks are assigned to coddy.velonizy@enduro.mg (Asana user 1219154315843358, a guest in the sanitap.org workspace; editor on project H2O4CO2 - CLEAN WATER). The 12 open tasks in the project assigned to the old account were moved to the new one: act-enduro-link-wp-systems, act-enduro-onboard-2-register-sites, act-enduro-onboard-7-piped-sdws27, act-moramanga-register-standposts, act-tana-baseline-survey, act-tana-jirama-licence-filed, act-naturano-import-failing, act-enduro-mwater-import-integration, act-coddy-slack-days-card-price, act-piped-baseline-other-systems, act-smartap-register-complete, act-enduro-nanisana-firmware. The new account was added as a follower where the old one follows: act-amboasary-post-works-retest, \"Sous-activité 3.2 Gestion de stock\" and \"Préparer un courte note sur la méthodo utilisée pour le roof count\". Completed tasks (act-coddy-naturano-card-spec and the Nanisana R129 credit task) and work outside the project stay on the old account. tools/asana_setup.py assigns Coddy (and Endur'O with no person named) to the new gid; the build still reads the old gid as Coddy Velonizy for the completed tasks.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

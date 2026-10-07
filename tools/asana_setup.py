@@ -37,14 +37,18 @@ MAP = os.path.join(REPO, "data", "asana_map.json")
 ANGELO = "1207774235226712"
 ADRIAAN = "1132514258683237"
 # owner (first name on the report) -> Asana user gid, workspace sanitap.org.
-# Coddy Velonizy ("IT Assistant", coddy@madavance.org) and Ntsoa Ranaivoson
-# (Endur'O director) added 2 Oct 2026 (second pass). An owner "Endur'O" with a
+# Coddy Velonizy and Ntsoa Ranaivoson (Endur'O director) added 2 Oct 2026
+# (second pass). Since 7 Oct 2026 Coddy is coddy.velonizy@enduro.mg (guest,
+# 1219154315843358): he cannot use the old MadAvance account "IT Assistant"
+# (coddy@madavance.org, CODDY_OLD), which keeps only his completed tasks and
+# work outside this project; NAME_OF still reads it as Coddy for those. An owner "Endur'O" with a
 # person in brackets is that person; "Endur'O" with no person named is assigned
 # to Coddy and keeps "Owner: Endur'O" as the first line of the description.
 # An owner "MadAvance" (field teams, transcriber to be named) is Angelo, and
 # "MadAvance / Cathy" is Cathy (third pass, same day). Ralf van Veenendaal
 # (Curtech) and Gold Standard are not users: assigned to Adriaan.
-CODDY = "1209012876322233"
+CODDY = "1219154315843358"
+CODDY_OLD = "1209012876322233"
 NTSOA = "1211301105253477"
 PEOPLE = {"jan": ("1209565438602753", "Jan de Graaf"),
           "angelo": (ANGELO, "Angelo Nahavitatsara"),
@@ -57,6 +61,7 @@ PEOPLE = {"jan": ("1209565438602753", "Jan de Graaf"),
           "coddy": (CODDY, "Coddy Velonizy"),
           "ntsoa": (NTSOA, "Ntsoa Ranaivoson")}
 NAME_OF = {gid: name for gid, name in PEOPLE.values()}
+NAME_OF[CODDY_OLD] = "Coddy Velonizy"
 MEMBERS = [ANGELO, CODDY, NTSOA]
 ENDURO_LINE = "Owner: Endur'O"
 

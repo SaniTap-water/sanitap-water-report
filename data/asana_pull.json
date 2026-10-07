@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-06T13:33:45+00:00",
+ "pulled_at": "2026-10-07T08:03:23+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -38,7 +38,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128812565674",
-   "modified_at": "2026-10-06T11:55:57.634Z"
+   "modified_at": "2026-10-07T07:08:59.744Z"
+  },
+  "act-awf-2027-call-timing": {
+   "gid": "1219245863958123",
+   "name": "Ask the African Water Facility when the 2027 call opens and who signs the national endorsement [act-awf-2027-call-timing]",
+   "title": "Ask the African Water Facility when the 2027 call opens and who signs the national endorsement",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219245863958123",
+   "modified_at": "2026-10-07T06:47:56.942Z"
   },
   "act-borehole-form-lanja-followups": {
    "gid": "1219109377317101",
@@ -206,7 +218,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110478505",
-   "modified_at": "2026-10-06T11:56:24.683Z"
+   "modified_at": "2026-10-07T07:13:22.962Z"
   },
   "act-close-s4-16-car-2": {
    "gid": "1219101110481086",
@@ -227,22 +239,25 @@
    "owner": "Coddy Velonizy",
    "assignee_gid": "1209012876322233",
    "due_on": "2026-10-09",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109157880491",
-   "modified_at": "2026-10-06T11:57:42.429Z"
+   "modified_at": "2026-10-07T05:45:54.462Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": null
   },
   "act-coddy-slack-days-card-price": {
    "gid": "1219109294472220",
    "name": "List quiet kiosk days from Zoho and check if the card price deters poor households [act-coddy-slack-days-card-price]",
    "title": "List quiet kiosk days from Zoho and check if the card price deters poor households",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-23",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109294472220",
-   "modified_at": "2026-10-06T11:55:57.593Z"
+   "modified_at": "2026-10-07T07:08:41.292Z"
   },
   "act-confirm-india-mark-capacity": {
    "gid": "1219100937078629",
@@ -299,10 +314,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-04",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377306808",
-   "modified_at": "2026-10-06T11:57:42.443Z"
+   "modified_at": "2026-10-07T02:30:18.210Z",
+   "ticked_by": "Angelo NAHAVITATSARA",
+   "ticked_at": "2026-10-07",
+   "evidence": null
   },
   "act-deichmann-ar-photo-consent": {
    "gid": "1219109377307190",
@@ -314,7 +332,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
-   "modified_at": "2026-10-06T11:56:11.432Z"
+   "modified_at": "2026-10-07T02:31:09.541Z"
   },
   "act-deichmann-ar-send": {
    "gid": "1219109294883405",
@@ -450,12 +468,12 @@
    "name": "Link each Endur'O water point to its water system in mWater [act-enduro-link-wp-systems]",
    "title": "Link each Endur'O water point to its water system in mWater",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995254721",
-   "modified_at": "2026-10-06T11:57:43.112Z"
+   "modified_at": "2026-10-07T07:08:02.179Z"
   },
   "act-enduro-move-register-fully": {
    "gid": "1219100936889481",
@@ -474,36 +492,51 @@
    "name": "Bring Ralf's meter and shopkeeper lists into mWater through a portal import [act-enduro-mwater-import-integration]",
    "title": "Bring Ralf's meter and shopkeeper lists into mWater through a portal import",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-11-15",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377282329",
-   "modified_at": "2026-10-06T11:57:42.534Z"
+   "modified_at": "2026-10-07T07:08:36.238Z"
   },
-  "act-enduro-nanisana-sellthrough": {
-   "gid": "1219218728385339",
-   "name": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk [act-enduro-nanisana-sellthrough]",
-   "title": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk",
-   "owner": "Adriaan Mol",
-   "assignee_gid": "1132514258683237",
+  "act-enduro-nanisana-firmware": {
+   "gid": "1219243900466998",
+   "name": "Update the Nanisana (R129) firmware so card top-ups stop being lost, and check other NatuRano kiosks [act-enduro-nanisana-firmware]",
+   "title": "Update the Nanisana (R129) firmware so card top-ups stop being lost, and check other NatuRano kiosks",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243900466998",
+   "modified_at": "2026-10-07T07:08:56.489Z"
+  },
+  "act-enduro-nanisana-sellthrough": {
+   "gid": "1219218728385339",
+   "name": "Explain why Nanisana (R129) bought 1.02m Ar of credit in Sep and Oct but recorded only 55,300 Ar of card top-ups [act-enduro-nanisana-sellthrough]",
+   "title": "Explain why Nanisana (R129) bought 1.02m Ar of credit in Sep and Oct but recorded only 55,300 Ar of card top-ups",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-16",
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219218728385339",
-   "modified_at": "2026-10-06T13:32:16.899Z"
+   "modified_at": "2026-10-07T05:45:54.399Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": null
   },
   "act-enduro-onboard-2-register-sites": {
    "gid": "1219101110601508",
    "name": "Register every Endur'O site and tap point in mWater [act-enduro-onboard-2-register-sites]",
    "title": "Register every Endur'O site and tap point in mWater",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110601508",
-   "modified_at": "2026-10-06T11:57:43.278Z"
+   "modified_at": "2026-10-07T07:08:06.955Z"
   },
   "act-enduro-onboard-5-calibration": {
    "gid": "1219101110593068",
@@ -534,12 +567,12 @@
    "name": "Record piped-system maintenance, repairs and downtime in mWater (SDWS 27) [act-enduro-onboard-7-piped-sdws27]",
    "title": "Record piped-system maintenance, repairs and downtime in mWater (SDWS 27)",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937427920",
-   "modified_at": "2026-10-06T11:57:18.012Z"
+   "modified_at": "2026-10-07T07:08:12.251Z"
   },
   "act-enduro-people-source": {
    "gid": "1219101110893755",
@@ -551,7 +584,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755",
-   "modified_at": "2026-10-06T11:57:18.009Z"
+   "modified_at": "2026-10-07T07:19:17.117Z"
   },
   "act-enduro-pricing-strategy-agreement": {
    "gid": "1219109150022438",
@@ -704,10 +737,13 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058577051",
-   "modified_at": "2026-10-06T11:58:54.287Z"
+   "modified_at": "2026-10-06T13:59:08.611Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-06",
+   "evidence": null
   },
   "act-indiamark-premises": {
    "gid": "1219100937657165",
@@ -716,10 +752,13 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165",
-   "modified_at": "2026-10-06T11:58:54.243Z"
+   "modified_at": "2026-10-06T13:59:08.732Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-06",
+   "evidence": null
   },
   "act-jan-commune-carbon-clauses": {
    "gid": "1219109211970137",
@@ -1062,12 +1101,12 @@
    "name": "Register every Moramanga public tap as a water point in mWater [act-moramanga-register-standposts]",
    "title": "Register every Moramanga public tap as a water point in mWater",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270051092",
-   "modified_at": "2026-10-06T11:55:46.186Z"
+   "modified_at": "2026-10-07T07:08:17.209Z"
   },
   "act-move-stroke-test-sop": {
    "gid": "1219101059142366",
@@ -1150,17 +1189,29 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141207",
    "modified_at": "2026-10-06T11:55:46.091Z"
   },
+  "act-nary-awf-sounding": {
+   "gid": "1219243061362113",
+   "name": "Sound out Nary at the water ministry on an African Water Facility preparation request [act-nary-awf-sounding]",
+   "title": "Sound out Nary at the water ministry on an African Water Facility preparation request",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243061362113",
+   "modified_at": "2026-10-07T06:38:47.630Z"
+  },
   "act-naturano-import-failing": {
    "gid": "1219109377307094",
    "name": "Find who owns the failing NatuRano mWater import and fix or pause it [act-naturano-import-failing]",
    "title": "Find who owns the failing NatuRano mWater import and fix or pause it",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
-   "modified_at": "2026-10-06T11:57:42.477Z"
+   "modified_at": "2026-10-07T07:08:31.379Z"
   },
   "act-naturano-meter-data": {
    "gid": "1219213949192332",
@@ -1232,7 +1283,7 @@
    "completed": true,
    "completed_at": "2026-10-06",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111903363",
-   "modified_at": "2026-10-06T13:00:54.032Z",
+   "modified_at": "2026-10-06T13:50:20.193Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-06",
    "evidence": {
@@ -1248,12 +1299,12 @@
    "name": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed [act-piped-baseline-other-systems]",
    "title": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-24",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128940073346",
-   "modified_at": "2026-10-06T11:57:09.678Z"
+   "modified_at": "2026-10-07T07:08:46.723Z"
   },
   "act-piped-fnrb": {
    "gid": "1219101106837518",
@@ -1460,7 +1511,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
-   "modified_at": "2026-10-06T13:22:13.466Z"
+   "modified_at": "2026-10-06T13:43:37.077Z"
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -1710,12 +1761,12 @@
    "name": "Finish the Amboasary Gara smart tap register: confirm tap type, photograph all 19 taps, explain tap 1 [act-smartap-register-complete]",
    "title": "Finish the Amboasary Gara smart tap register: confirm tap type, photograph all 19 taps, explain tap 1",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219148236288402",
-   "modified_at": "2026-10-06T11:57:09.518Z"
+   "modified_at": "2026-10-07T07:08:51.469Z"
   },
   "act-sop-calendar-v17-signoff": {
    "gid": "1219119885051246",
@@ -1758,24 +1809,24 @@
    "name": "Run the carbon baseline survey around the Antananarivo kiosks [act-tana-baseline-survey]",
    "title": "Run the carbon baseline survey around the Antananarivo kiosks",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270910232",
-   "modified_at": "2026-10-06T11:58:38.963Z"
+   "modified_at": "2026-10-07T07:08:21.888Z"
   },
   "act-tana-jirama-licence-filed": {
    "gid": "1219101107423207",
    "name": "File the national water utility licence for the Antananarivo kiosks (JIRAMA) [act-tana-jirama-licence-filed]",
    "title": "File the national water utility licence for the Antananarivo kiosks (JIRAMA)",
    "owner": "Coddy Velonizy",
-   "assignee_gid": "1209012876322233",
+   "assignee_gid": "1219154315843358",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107423207",
-   "modified_at": "2026-10-06T11:58:38.655Z"
+   "modified_at": "2026-10-07T07:08:26.622Z"
   },
   "act-transcription-round": {
    "gid": "1219101112472220",
@@ -1787,7 +1838,7 @@
    "completed": true,
    "completed_at": "2026-10-02",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112472220",
-   "modified_at": "2026-10-02T14:56:24.875Z",
+   "modified_at": "2026-10-07T02:33:23.164Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-02",
    "evidence": null
@@ -1948,6 +1999,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101060358492",
    "modified_at": "2026-10-06T11:56:11.400Z"
   },
+  "act-volatiana-awf-concept-review": {
+   "gid": "1219245864015440",
+   "name": "Share the water service areas concept note with Volatiana and get her view [act-volatiana-awf-concept-review]",
+   "title": "Share the water service areas concept note with Volatiana and get her view",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219245864015440",
+   "modified_at": "2026-10-07T06:47:56.948Z"
+  },
   "act-vpadd-protocol-10-2-ref": {
    "gid": "1219207278870610",
    "name": "Reference Water Quality Testing Protocol v2.3 Section 10.2 in the VPA-DD SDWS 3 QA/QC [act-vpadd-protocol-10-2-ref]",
@@ -1998,16 +2061,5 @@
   }
  },
  "duplicates": {},
- "new_from_asana": [
-  {
-   "act_id": "act-ralf-tap-unit-costs",
-   "gid": "1219212783344822",
-   "name": "Send unit cost and lifetime of smart tap, control unit and installation material [act-ralf-tap-unit-costs]"
-  },
-  {
-   "act_id": "act-enduro-nanisana-sellthrough",
-   "gid": "1219218728385339",
-   "name": "Explain the Nanisana credit gap and confirm whether R129 is the SmartTap kiosk [act-enduro-nanisana-sellthrough]"
-  }
- ]
+ "new_from_asana": []
 }

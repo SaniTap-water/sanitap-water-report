@@ -1,46 +1,13 @@
 {
  "note": "Written by tools/call_followup.py. Pumps a call reported not working (down, or partially working for a reason other than a routine service request), first qualifying call per pump in each window, and the next submitted repair or preventive-maintenance record after it in mWater.",
- "asof": "2026-10-02",
+ "asof": "2026-10-05",
  "followup_days": 7,
  "windows": {
   "week": {
    "days": 7,
-   "from_excl": "2026-09-25",
-   "to": "2026-10-02",
+   "from_excl": "2026-09-28",
+   "to": "2026-10-05",
    "calls": [
-    {
-     "wp": "699597407",
-     "site": "Maroantsetra",
-     "call_date": "2026-09-28",
-     "call_rid": "1e0b88b234b74dd4951cf7ef3c8a6e6b",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "repair",
-      "date": "2026-10-02",
-      "rid": "40ac740feea5484cbb2902e564beb64a",
-      "days": 4
-     },
-     "next_repair": {
-      "date": "2026-10-02",
-      "rid": "40ac740feea5484cbb2902e564beb64a",
-      "days": 4
-     },
-     "next_pm": null,
-     "flag": "repaired within 7 days"
-    },
-    {
-     "wp": "742893922",
-     "site": "Fort-Dauphin",
-     "call_date": "2026-09-28",
-     "call_rid": "c3aa09ed5937460b9ca0b240ed0cad10",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": null,
-     "next_repair": null,
-     "next_pm": null,
-     "flag": "not yet due"
-    },
     {
      "wp": "833033253",
      "site": "Maroantsetra",
@@ -50,15 +17,15 @@
      "calls_in_window": 1,
      "next": {
       "kind": "preventive visit",
-      "date": "2026-10-02",
+      "date": "2026-10-05",
       "rid": "5b76c4c95473454b89ffe193b7d2df75",
-      "days": 1
+      "days": 4
      },
      "next_repair": null,
      "next_pm": {
-      "date": "2026-10-02",
+      "date": "2026-10-05",
       "rid": "5b76c4c95473454b89ffe193b7d2df75",
-      "days": 1
+      "days": 4
      },
      "flag": "not yet due"
     },
@@ -73,39 +40,45 @@
      "next_repair": null,
      "next_pm": null,
      "flag": "not yet due"
+    },
+    {
+     "wp": "698771110",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-05",
+     "call_rid": "9b7141656ff74556849efb8e16d1f4ea",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "742893946",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-10-05",
+     "call_rid": "635483bf3e2f48279d92b7ef791c8183",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "833033181",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-05",
+     "call_rid": "51bd669956f341d3ab7fe1c99ebd5940",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
     }
    ],
    "pm_visits": [
-    {
-     "wp": "698771983",
-     "site": "Maroantsetra",
-     "date": "2026-09-28",
-     "rid": "ef245bbb92644b52b3b15471af20536e"
-    },
-    {
-     "wp": "742896011",
-     "site": "Maroantsetra",
-     "date": "2026-09-28",
-     "rid": "2abe847bfff34ec9be8af06819cf82d1"
-    },
-    {
-     "wp": "742896028",
-     "site": "Maroantsetra",
-     "date": "2026-09-28",
-     "rid": "6c530bb7f8e44b61aa152f474bde444d"
-    },
-    {
-     "wp": "814009107",
-     "site": "Maroantsetra",
-     "date": "2026-09-28",
-     "rid": "7fa12d424e6645d7a0c01fdcbab37715"
-    },
-    {
-     "wp": "833032702",
-     "site": "Maroantsetra",
-     "date": "2026-09-28",
-     "rid": "c8954dedc0f74f7989105b2b84fac9d4"
-    },
     {
      "wp": "698771196",
      "site": "Maroantsetra",
@@ -115,90 +88,27 @@
     {
      "wp": "833033253",
      "site": "Maroantsetra",
-     "date": "2026-10-02",
+     "date": "2026-10-05",
      "rid": "5b76c4c95473454b89ffe193b7d2df75"
     }
    ],
-   "pumps_called": 4,
-   "pm_records": 7,
-   "pumps_visited": 7,
+   "pumps_called": 5,
+   "pm_records": 2,
+   "pumps_visited": 2,
    "overlap": [
     "833033253"
    ],
    "overlap_n": 1,
    "no_repair_7d": 0,
-   "repaired_7d": 1,
-   "not_yet_due": 3,
-   "nothing_after": 2
+   "repaired_7d": 0,
+   "not_yet_due": 5,
+   "nothing_after": 4
   },
   "window": {
    "days": 28,
-   "from_excl": "2026-09-04",
-   "to": "2026-10-02",
+   "from_excl": "2026-09-07",
+   "to": "2026-10-05",
    "calls": [
-    {
-     "wp": "742893867",
-     "site": "Fort-Dauphin",
-     "call_date": "2026-09-06",
-     "call_rid": "a2fd17e8b954469ca40ba169f06e35d2",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "repair",
-      "date": "2026-09-07",
-      "rid": "cd305fbfa3804de0813a55aca5f7f266",
-      "days": 1
-     },
-     "next_repair": {
-      "date": "2026-09-07",
-      "rid": "cd305fbfa3804de0813a55aca5f7f266",
-      "days": 1
-     },
-     "next_pm": null,
-     "flag": "repaired within 7 days"
-    },
-    {
-     "wp": "742893953",
-     "site": "Fort-Dauphin",
-     "call_date": "2026-09-06",
-     "call_rid": "887ffe30354f4535818a92e172f80f0a",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "repair",
-      "date": "2026-09-07",
-      "rid": "3d16d40d016c407599688805686f6e47",
-      "days": 1
-     },
-     "next_repair": {
-      "date": "2026-09-07",
-      "rid": "3d16d40d016c407599688805686f6e47",
-      "days": 1
-     },
-     "next_pm": null,
-     "flag": "repaired within 7 days"
-    },
-    {
-     "wp": "742897720",
-     "site": "Maroantsetra",
-     "call_date": "2026-09-07",
-     "call_rid": "28c40aa3865341b2bd7be7beaca8ddef",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "repair",
-      "date": "2026-09-10",
-      "rid": "bd3b1c6b6c6540dea5fd94096027763e",
-      "days": 3
-     },
-     "next_repair": {
-      "date": "2026-09-10",
-      "rid": "bd3b1c6b6c6540dea5fd94096027763e",
-      "days": 3
-     },
-     "next_pm": null,
-     "flag": "repaired within 7 days"
-    },
     {
      "wp": "670401990",
      "site": "Fort-Dauphin",
@@ -623,7 +533,7 @@
      "next": null,
      "next_repair": null,
      "next_pm": null,
-     "flag": "not yet due"
+     "flag": "no repair after 7 days"
     },
     {
      "wp": "833033253",
@@ -634,15 +544,15 @@
      "calls_in_window": 1,
      "next": {
       "kind": "preventive visit",
-      "date": "2026-10-02",
+      "date": "2026-10-05",
       "rid": "5b76c4c95473454b89ffe193b7d2df75",
-      "days": 1
+      "days": 4
      },
      "next_repair": null,
      "next_pm": {
-      "date": "2026-10-02",
+      "date": "2026-10-05",
       "rid": "5b76c4c95473454b89ffe193b7d2df75",
-      "days": 1
+      "days": 4
      },
      "flag": "not yet due"
     },
@@ -651,6 +561,42 @@
      "site": "Fort-Dauphin",
      "call_date": "2026-10-02",
      "call_rid": "c0cc3daf23c64bcd862a2314fff7d7c0",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "698771110",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-05",
+     "call_rid": "9b7141656ff74556849efb8e16d1f4ea",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "742893946",
+     "site": "Fort-Dauphin",
+     "call_date": "2026-10-05",
+     "call_rid": "635483bf3e2f48279d92b7ef791c8183",
+     "status": "down",
+     "calls_in_window": 1,
+     "next": null,
+     "next_repair": null,
+     "next_pm": null,
+     "flag": "not yet due"
+    },
+    {
+     "wp": "833033181",
+     "site": "Maroantsetra",
+     "call_date": "2026-10-05",
+     "call_rid": "51bd669956f341d3ab7fe1c99ebd5940",
      "status": "down",
      "calls_in_window": 1,
      "next": null,
@@ -717,7 +663,7 @@
     {
      "wp": "833033253",
      "site": "Maroantsetra",
-     "date": "2026-10-02",
+     "date": "2026-10-05",
      "rid": "5b76c4c95473454b89ffe193b7d2df75"
     }
    ],
@@ -736,10 +682,10 @@
     "833033253"
    ],
    "overlap_n": 9,
-   "no_repair_7d": 13,
-   "repaired_7d": 11,
-   "not_yet_due": 3,
-   "nothing_after": 5
+   "no_repair_7d": 14,
+   "repaired_7d": 8,
+   "not_yet_due": 5,
+   "nothing_after": 8
   }
  }
 }

@@ -1,10 +1,10 @@
 {
- "counted": "2026-10-06",
+ "counted": "2026-10-07",
  "metrics": {
   "calls_no_repair_7d_worst_of_two_editions": {
    "says": "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)",
    "source": "local",
-   "value": null
+   "value": 14
   },
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -19,7 +19,7 @@
   "downs_without_repair": {
    "says": "managed pumps reported down to the call centre since 1 March with no repair record since",
    "source": "local",
-   "value": 28
+   "value": 31
   },
   "duplicate_question_codes": {
    "says": "question codes reused inside a single mWater form",
@@ -29,7 +29,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 18
+   "value": 19
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -249,7 +249,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 37
+   "value": 36
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

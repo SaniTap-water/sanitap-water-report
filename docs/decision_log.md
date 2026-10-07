@@ -2157,3 +2157,17 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 
 - Made by hand in the mWater designer: 1.2.2 sampling date required again; arsenic and fluoride accept 0 (≥ 0);
   manganese calculation threshold 0.05 instead of 0.5 (data/decisions.json `form-0ac68d82-designer-2026-10-06`).
+
+## 7 Oct 2026 — Adriaan Mol: Coddy Velonizy's Asana tasks move to coddy.velonizy@enduro.mg
+
+- Coddy cannot use the old MadAvance account "IT Assistant" (coddy@madavance.org, 1209012876322233). He is now
+  coddy.velonizy@enduro.mg (1219154315843358), a guest in the sanitap.org workspace and an editor on
+  H2O4CO2 - CLEAN WATER. tools/asana_setup.py `CODDY` is the new gid; `CODDY_OLD` is kept in NAME_OF only, so
+  the completed tasks left on the old account still read as Coddy Velonizy.
+- Moved, all open: act-enduro-link-wp-systems, act-enduro-onboard-2-register-sites,
+  act-enduro-onboard-7-piped-sdws27, act-moramanga-register-standposts, act-tana-baseline-survey,
+  act-tana-jirama-licence-filed, act-naturano-import-failing, act-enduro-mwater-import-integration,
+  act-coddy-slack-days-card-price, act-piped-baseline-other-systems, act-smartap-register-complete,
+  act-enduro-nanisana-firmware. Follower added: act-amboasary-post-works-retest, "Sous-activité 3.2 Gestion de
+  stock", "Préparer un courte note … roof count". Completed tasks and work outside the project stay on the old
+  account (data/decisions.json `asana-coddy-account-2026-10-07`).
