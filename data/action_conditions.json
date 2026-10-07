@@ -173,12 +173,11 @@
   "when_satisfied": "OK"
  },
  "act-enduro-people-source": {
-  "kind": "data",
-  "metric": "enduro_figures_unattributed",
-  "op": "==",
-  "says": "closes when every hand-entered Endur'O figure names the document behind it",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "What is the source of the Endur'O programme people figure?",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "retired by decision 7 Oct 2026: the figure is from the Zayed Prize application responses, not measured"
  },
  "act-enduro-refresh": {
   "kind": "data",
@@ -596,17 +595,17 @@
  },
  "act-repair-time": {
   "kind": "decision",
-  "question": "What response and report-back time is the operational target?",
+  "question": "What are the repair and report-to-repair times?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "the call-centre response and report-back target logged in data/decisions.json, quoted in an \"Evidence:\" comment"
+  "closes_when": "the repair-time and report-to-repair figures computed from the records and shown on the report (decision 7 Oct 2026)"
  },
  "act-repeat-breakdown": {
   "kind": "decision",
-  "question": "Do the two repeat-breakdown villages get a second water point?",
+  "question": "How often do the repeat-breakdown pumps fail?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "the decision on Ambinanibe and Andramaka logged in data/decisions.json, quoted in an \"Evidence:\" comment"
+  "closes_when": "the repeat-breakdown figures computed from the repair records and shown on the report (decision 7 Oct 2026)"
  },
  "act-resolve-sdws-27-sdws": {
   "kind": "decision",
@@ -1162,7 +1161,7 @@
   "metric": "kiosk_sdws1_people",
   "op": ">=",
   "target": 1,
-  "says": "closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it",
+  "says": "closes when the kiosk's people served, counted from its card data (data/kiosk_people.json), are shown on the page",
   "when_satisfied": "OK"
  },
  "act-deichmann-ar-send": {

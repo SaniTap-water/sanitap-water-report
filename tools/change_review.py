@@ -99,11 +99,14 @@ SNAP_JS = """() => {
   (ev("HP") || ev("PUMPS") || []).forEach(p => { pts[p.wp] = {site: p.site, wpop: p.wpop == null ? null : p.wpop,
       wq: p.wq || null, wq_date: p.wq_date || null, comm: p.comm || null,
       status: p.status || null, status_src: p.status_src || null, status_date: p.status_date || null}; });
+  const k = ev("KIOSK");                       // the managed kiosk, counted from its card data
+  if (k) pts[k.water_point] = {site: "Antananarivo (kiosk)", wpop: k.people, wq: null, wq_date: null, comm: null,
+                               status: null, status_src: null, status_date: null};
   const gaps = {};
   (ev("ELIG.gaps") || []).forEach(g => { gaps[g.wp] = g.status || g.issue || 'gap'; });
   return {figures: {
       tco2e: ev("Math.round(S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v))"),
-      points: ev("S.n"), people: ev("agg(HP).wpop"), days_operational: ev("PARAMS.do_cap.v")},
+      points: ev("S.n"), people: (ev("agg(HP).wpop") || 0) + (ev("KIOSK.people") || 0), days_operational: ev("PARAMS.do_cap.v")},
     er, points: pts, gaps: ev("ELIG.gaps") ? gaps : null};
 }"""
 

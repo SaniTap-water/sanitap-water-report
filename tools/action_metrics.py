@@ -199,7 +199,10 @@ def _m_kiosk_sdws1():
     ties to data/sdws1_summary_equal.json - and the page no longer says the
     kiosk is not yet allocated (act-kiosk-sdws1-run, 5 Oct 2026)."""
     wpop = js("WPOP")
-    allocated = any(k in wpop for k in ("1125843383", "1125843376"))
+    # 7 Oct 2026: a metered piped system is counted from its card data, not WorldPop
+    kp = d("data", "kiosk_people.json")
+    allocated = any(k in wpop for k in ("1125843383", "1125843376")) or (
+        os.path.isfile(kp) and json.load(open(kp, encoding="utf8")).get("people", 0) > 0)
     shown = "the managed kiosk: not yet allocated" not in ctx["idx"]
     return int(allocated and shown)
 

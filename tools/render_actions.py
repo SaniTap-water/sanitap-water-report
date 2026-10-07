@@ -380,6 +380,8 @@ SOURCES = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), enco
            .get("sources", {}).get("actions", {}))
 TICKED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["ticked_no_evidence_days"]
 NUDGE_UNDATED_DAYS = json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"]["nudge_undated_days"]
+# Curtech tasks (7 Oct 2026): Ralf's work, Coddy tracks; nobody chases them
+NO_CHASERS = set(json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"].get("no_chasers", []))
 CLOSURE_LABEL = {"auto": "auto &mdash; the build closes it",
                  "evidence": "evidence &mdash; closes when this exists",
                  "manual": "manual &mdash; Adriaan marks it done"}
@@ -446,7 +448,8 @@ def evidence_line(a):
 
 
 def row(a, today, owner_cell=True):
-    overdue = (a["state"] == "ACT" and a["due"] is not None and a["due"] < today)
+    overdue = (a["state"] == "ACT" and a["due"] is not None and a["due"] < today
+               and a["id"] not in NO_CHASERS)
     badge = ('<span class="pill crit" style="margin-left:6px">OVERDUE</span>'
              if overdue else "")
     label = (f'<span class="muted" style="font-size:.82em;margin-left:6px">'
@@ -611,7 +614,7 @@ def block(idx, today=None):
     n_watch = sum(1 for a in acts if a["state"] == "WATCH")
     n_ok = sum(1 for a in acts if a["state"] == "OK")
     n_over = sum(1 for a in acts
-                 if a["state"] == "ACT" and a["due"] and a["due"] < today)
+                 if a["state"] == "ACT" and a["due"] and a["due"] < today and a["id"] not in NO_CHASERS)
     n_nodate = sum(1 for a in acts if a["nodate"])
     by_lead = collections.OrderedDict()
     for a in sorted(acts, key=lambda a: (-sum(1 for x in acts
@@ -646,7 +649,7 @@ def block(idx, today=None):
     nudge = []
     for a in acts:
         cl = CLOSURE.get(a["id"]) or {}
-        if cl.get("type") not in ("evidence", "manual") or a["state"] == "OK":
+        if cl.get("type") not in ("evidence", "manual") or a["state"] == "OK" or a["id"] in NO_CHASERS:
             continue
         seen = datetime.date.fromisoformat(cl["first_seen"]) if cl.get("first_seen") else today
         if a["due"] and a["due"] < today:
@@ -656,7 +659,7 @@ def block(idx, today=None):
     # ticked in Asana without evidence: open in every count; listed for
     # Adriaan once a tick has gone TICKED_DAYS days with no evidence
     ticked = [a for a in acts if a.get("ticked")]
-    late = [a for a in ticked if a["ticked"].get("at")
+    late = [a for a in ticked if a["ticked"].get("at") and a["id"] not in NO_CHASERS
             and (today - datetime.date.fromisoformat(a["ticked"]["at"])).days >= TICKED_DAYS]
     json.dump({"act": n_act, "watch": n_watch, "open": n_act + n_watch,
                "overdue": n_over, "closed": n_ok, "rows": len(acts),

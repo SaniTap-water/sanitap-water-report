@@ -100,6 +100,10 @@ SETS = {
     "ACTKIDS": ("data", "action_state.json"),
     # changes this week and what waits for approval (tools/change_review.py, 7 Oct 2026)
     "CHG": ("data", "change_review.json"),
+    # people served at the managed Tana kiosk, from its card data (act-kiosk-sdws1-run, 7 Oct 2026)
+    "KIOSK": ("data", "kiosk_people.json"),
+    # repeat breakdowns and report-to-repair time (tools/repeat_breakdowns.py, 7 Oct 2026)
+    "RB": ("data", "repeat_breakdowns.json"),
 }
 
 

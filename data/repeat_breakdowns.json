@@ -1,0 +1,229 @@
+{
+ "note": "Written by tools/repeat_breakdowns.py from the mWater repair and call-centre extracts (7 Oct 2026). act-repeat-breakdown and act-repair-time.",
+ "asof": "2026-10-02",
+ "window_from_excl": "2025-10-02",
+ "repeat_min": 4,
+ "pumps_with_repairs": 332,
+ "repeat": [
+  {
+   "wp": "742893953",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 14,
+   "repairs_12m": 7,
+   "first": "2025-01-08",
+   "last": "2026-09-06",
+   "median_gap_days": 45
+  },
+  {
+   "wp": "742893805",
+   "site": "Fort-Dauphin",
+   "commune": "Fort-Dauphin",
+   "repairs": 14,
+   "repairs_12m": 5,
+   "first": "2024-10-26",
+   "last": "2026-04-30",
+   "median_gap_days": 43
+  },
+  {
+   "wp": "742893946",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 9,
+   "repairs_12m": 5,
+   "first": "2025-01-12",
+   "last": "2026-08-31",
+   "median_gap_days": 57.0
+  },
+  {
+   "wp": "742894930",
+   "site": "Fort-Dauphin",
+   "commune": "Ranopiso",
+   "repairs": 8,
+   "repairs_12m": 4,
+   "first": "2024-10-17",
+   "last": "2026-09-01",
+   "median_gap_days": 84
+  },
+  {
+   "wp": "670402214",
+   "site": "Fort-Dauphin",
+   "commune": "Ifarantsa",
+   "repairs": 6,
+   "repairs_12m": 4,
+   "first": "2024-09-12",
+   "last": "2026-06-05",
+   "median_gap_days": 98
+  },
+  {
+   "wp": "742895742",
+   "site": "Fort-Dauphin",
+   "commune": "Manantenina",
+   "repairs": 5,
+   "repairs_12m": 4,
+   "first": "2025-09-24",
+   "last": "2026-09-07",
+   "median_gap_days": 44.5
+  }
+ ],
+ "top": [
+  {
+   "wp": "742893953",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 14,
+   "repairs_12m": 7,
+   "first": "2025-01-08",
+   "last": "2026-09-06",
+   "median_gap_days": 45
+  },
+  {
+   "wp": "742893805",
+   "site": "Fort-Dauphin",
+   "commune": "Fort-Dauphin",
+   "repairs": 14,
+   "repairs_12m": 5,
+   "first": "2024-10-26",
+   "last": "2026-04-30",
+   "median_gap_days": 43
+  },
+  {
+   "wp": "742893946",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 9,
+   "repairs_12m": 5,
+   "first": "2025-01-12",
+   "last": "2026-08-31",
+   "median_gap_days": 57.0
+  },
+  {
+   "wp": "742894930",
+   "site": "Fort-Dauphin",
+   "commune": "Ranopiso",
+   "repairs": 8,
+   "repairs_12m": 4,
+   "first": "2024-10-17",
+   "last": "2026-09-01",
+   "median_gap_days": 84
+  },
+  {
+   "wp": "670402214",
+   "site": "Fort-Dauphin",
+   "commune": "Ifarantsa",
+   "repairs": 6,
+   "repairs_12m": 4,
+   "first": "2024-09-12",
+   "last": "2026-06-05",
+   "median_gap_days": 98
+  },
+  {
+   "wp": "742895742",
+   "site": "Fort-Dauphin",
+   "commune": "Manantenina",
+   "repairs": 5,
+   "repairs_12m": 4,
+   "first": "2025-09-24",
+   "last": "2026-09-07",
+   "median_gap_days": 44.5
+  },
+  {
+   "wp": "742893850",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 6,
+   "repairs_12m": 3,
+   "first": "2024-12-26",
+   "last": "2026-01-28",
+   "median_gap_days": 41
+  },
+  {
+   "wp": "742894284",
+   "site": "Fort-Dauphin",
+   "commune": "Mandiso",
+   "repairs": 6,
+   "repairs_12m": 3,
+   "first": "2024-10-18",
+   "last": "2026-09-04",
+   "median_gap_days": 116
+  },
+  {
+   "wp": "742894648",
+   "site": "Fort-Dauphin",
+   "commune": "Manambaro",
+   "repairs": 5,
+   "repairs_12m": 3,
+   "first": "2025-02-12",
+   "last": "2026-09-01",
+   "median_gap_days": 128.5
+  },
+  {
+   "wp": "742895814",
+   "site": "Fort-Dauphin",
+   "commune": "Manantenina",
+   "repairs": 5,
+   "repairs_12m": 3,
+   "first": "2024-08-20",
+   "last": "2026-05-13",
+   "median_gap_days": 110.5
+  },
+  {
+   "wp": "905251279",
+   "site": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "repairs": 5,
+   "repairs_12m": 3,
+   "first": "2025-06-03",
+   "last": "2026-05-21",
+   "median_gap_days": 85.0
+  },
+  {
+   "wp": "742893960",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 4,
+   "repairs_12m": 3,
+   "first": "2025-09-30",
+   "last": "2026-08-31",
+   "median_gap_days": 93
+  }
+ ],
+ "named": {
+  "742893805": {
+   "wp": "742893805",
+   "site": "Fort-Dauphin",
+   "commune": "Fort-Dauphin",
+   "repairs": 14,
+   "repairs_12m": 5,
+   "first": "2024-10-26",
+   "last": "2026-04-30",
+   "median_gap_days": 43
+  },
+  "742893953": {
+   "wp": "742893953",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "repairs": 14,
+   "repairs_12m": 7,
+   "first": "2025-01-08",
+   "last": "2026-09-06",
+   "median_gap_days": 45
+  }
+ },
+ "call_to_repair": {
+  "calls": 613,
+  "with_repair": 249,
+  "no_repair_yet": 364,
+  "median_days": 4,
+  "p90_days": 104,
+  "within_7": 144,
+  "within_30": 173
+ },
+ "repair_time": {
+  "max": 55,
+  "mean": 4.8,
+  "median": 1,
+  "n": 192,
+  "p90": 12
+ }
+}

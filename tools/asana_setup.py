@@ -150,7 +150,11 @@ def _two_sentences(block):
     return [" ".join(parts[:2])] if txt else []
 
 
-def trim_notes(notes, assignee_gid, is_action, own_url=None, closes_when=None):
+NO_CHASER_LINE = "Ralf's work; Coddy tracks; no chasers."
+NO_CHASERS = set(json.load(open(os.path.join(REPO, "data", "build_config.json"), encoding="utf8"))["actions"].get("no_chasers", []))
+
+
+def trim_notes(notes, assignee_gid, is_action, own_url=None, closes_when=None, aid_hint=None):
     """Strip the bookkeeping from a description (7 Oct 2026). Kept: everything a
     person wrote. Removed: Type; Source when it is an internal file path;
     'Depends on: none'; an 'On the report' link the Links already carry;
@@ -212,6 +216,10 @@ def trim_notes(notes, assignee_gid, is_action, own_url=None, closes_when=None):
     keep = [g for g in gloss if g.strip() and ":" in g and needed(g.split(":", 1)[0].strip())]
     if keep:
         out += ["", "Glossary"] + keep
+    # Curtech tasks (7 Oct 2026): one line at the top, so nobody chases Ralf
+    if aid_hint in NO_CHASERS:
+        out = [l for l in out if l.strip() != NO_CHASER_LINE]
+        out = [NO_CHASER_LINE, ""] + out
     if is_action:
         out += ["", FOOTER]
     txt = re.sub(r"\n{3,}", "\n\n", "\n".join(out)).strip()
@@ -231,7 +239,7 @@ def trim_all(dry):
     for t in ts:
         old = t.get("notes") or ""
         aid = tag_of(t["name"])
-        new = trim_notes(old, (t.get("assignee") or {}).get("gid"), bool(aid), closes_when=OVERRIDES.get(aid))
+        new = trim_notes(old, (t.get("assignee") or {}).get("gid"), bool(aid), closes_when=OVERRIDES.get(aid), aid_hint=aid)
         norm = lambda x: re.sub(r"\n{3,}", "\n\n", "\n".join(l.rstrip() for l in x.split("\n"))).strip()
         if new != norm(old):                     # whitespace alone is not a change
             changed += 1

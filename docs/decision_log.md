@@ -2323,3 +2323,27 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   notes_for(); nothing in the build adds the lines back.
 - **Archived editions:** data snapshots only (`archived-editions-data-only-2026-10-07`); act-freeze-estate-map-when
   retired. **Changes panel:** one closed line, a banner only when something waits (`changes-panel-collapsed-2026-10-07`).
+
+## 7 Oct 2026 (h) — Adriaan Mol: parked items closed out
+
+- **act-enduro-people-source retired.** The 146,000 came from the Zayed Prize application responses
+  (SaniTap_Zayed_Prize_Responses_v3.docx, Amber Bloomer, "Re: Remaining questions Zayed", June 2026): a
+  prize-application number, not measured, outside every managed figure since 5 Oct. data/enduro_manual.json now
+  names that source; the Endur'O card still shows it, labelled as a prize-application figure.
+- **act-kiosk-sdws1-run done.** The managed Tana kiosk (1125843376) is a metered piped system, so its people served
+  come from its card data, not WorldPop: 126 registered NFC cards (Curtech/Zoho, 1 Oct 2026; 123 with purchases,
+  426 recharges, 14–26 Sep), one card per household, × 3.9 (Analamanga urban, RGPH-3) = **491**. data/kiosk_people.json,
+  dataset KIOSK, shown with its derivation; check_managed now expects All SaniTap = MadAvance + the kiosk. Approval
+  gate: a new point, so not case (a), (b) or (c) and no approval task; it is a repository move of people served
+  (125,710 → 126,201), logged with `instructed_by` Adriaan Mol (decision `act-kiosk-sdws1-run`).
+- **E31 corrected** in Gold standard parameters.xlsx with Adriaan's approval: MoFuSS per the GS fNRB Rule Update
+  §2.3.1 replaces CDM TOOL30, cell comment "citation corrected 7 Oct 2026"; patched at the file level so the
+  SharePoint metadata and everything else are unchanged.
+- **act-repeat-breakdown and act-repair-time done from the records** (tools/repeat_breakdowns.py, region beside the
+  repair-time table): Ambinanibe and Andramaka 14 repairs each (5 and 7 in twelve months); 6 managed pumps with 4+
+  repairs in twelve months. Repair time median 1 day, p90 12; report to repair median 4 days, p90 104, with 364 of 613
+  not-working calls followed by no repair yet. Dispatch is recorded on no form. Not decided here: a second water
+  point at either site, and a response-time target.
+- **Curtech tasks: no chasers.** The six stay with Coddy; excluded from the overdue count, the nudge list and the
+  ticked-without-evidence list (build_config actions.no_chasers); each description starts "Ralf's work; Coddy
+  tracks; no chasers."

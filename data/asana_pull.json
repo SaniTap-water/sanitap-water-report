@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T15:38:11+00:00",
+ "pulled_at": "2026-10-07T17:18:34+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -644,10 +644,19 @@
    "owner": "Coddy Velonizy",
    "assignee_gid": "1219154315843358",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755",
-   "modified_at": "2026-10-07T15:02:01.788Z"
+   "modified_at": "2026-10-07T16:53:55.483Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "Retired by decision of Adriaan Mol, 7 Oct 2026. The 146,000 figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application number, not a measured one. It has been outside every managed figure since 5 Oct 2026; data/enduro_manual.json now names this source.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755"
+   }
   },
   "act-enduro-pricing-strategy-agreement": {
    "gid": "1219109150022438",
@@ -917,10 +926,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-17",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219144164856225",
-   "modified_at": "2026-10-07T15:05:42.071Z"
+   "modified_at": "2026-10-07T16:53:59.386Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "491 people served at the managed Tana kiosk (water system 1125843376), counted from its card data, not WorldPop, because it is a metered piped system: 126 NFC cards registered at the kiosk (Curtech/Zoho, Ralf van Veenendaal, 1 Oct 2026; 123 made purchases, 426 recharges, 14-26 Sep), one card per household, x 3.9 people per household (Analamanga urban, INSTAT RGPH-3 Tableau 26). On the report with its derivation (data/kiosk_people.json). The approval gate sees a new point: not an approval case; logged as a repository move with its decision (instructed by Adriaan Mol).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219144164856225"
+   }
   },
   "act-kit-validation-report-upload": {
    "gid": "1219205107055869",
@@ -1601,7 +1619,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
-   "modified_at": "2026-10-07T15:09:25.022Z"
+   "modified_at": "2026-10-07T16:54:25.421Z"
   },
   "act-ralf-card-sales-backfill-fix": {
    "gid": "1219109211970459",
@@ -1628,7 +1646,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996659975",
-   "modified_at": "2026-10-07T15:03:44.890Z"
+   "modified_at": "2026-10-07T16:54:19.399Z"
   },
   "act-ralf-shopkeeper-waterpoint-link": {
    "gid": "1219101111620085",
@@ -1640,7 +1658,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111620085",
-   "modified_at": "2026-10-07T15:03:46.855Z"
+   "modified_at": "2026-10-07T16:54:21.372Z"
   },
   "act-ralf-tap-offgrid-power": {
    "gid": "1219109377317317",
@@ -1652,7 +1670,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317317",
-   "modified_at": "2026-10-07T15:09:27.297Z"
+   "modified_at": "2026-10-07T16:54:27.310Z"
   },
   "act-ralf-tap-unit-costs": {
    "gid": "1219212783344822",
@@ -1664,7 +1682,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219212783344822",
-   "modified_at": "2026-10-07T15:09:29.388Z"
+   "modified_at": "2026-10-07T16:54:29.108Z"
   },
   "act-ralf-tariff-zones": {
    "gid": "1219109377317220",
@@ -1676,7 +1694,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
-   "modified_at": "2026-10-07T15:09:31.529Z"
+   "modified_at": "2026-10-07T16:54:23.483Z"
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -1775,10 +1793,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-12-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112069110",
-   "modified_at": "2026-10-07T15:11:10.486Z"
+   "modified_at": "2026-10-07T16:54:10.922Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "Computed from the mWater repair and call-centre records, 7 Oct 2026. Repair time (notified to completed, on the repair record): median 1 day, p90 12 days, 192 repairs. Report to repair: of 613 calls in twelve months reporting a managed pump not working, 249 were followed by a repair, median 4 days later (p90 104); 364 have none yet. Dispatch is recorded on no form, so report-to-dispatch cannot be measured. On the report beside the repair-time table. No target set.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112069110"
+   }
   },
   "act-repeat-breakdown": {
    "gid": "1219101112106036",
@@ -1787,10 +1814,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112106036",
-   "modified_at": "2026-10-07T15:04:02.471Z"
+   "modified_at": "2026-10-07T16:54:07.035Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "Computed from the mWater repair records (both repair sources), 7 Oct 2026: Ambinanibe 742893805 - 14 repairs on file, 2024-10-26 to 2026-04-30, median 43 days apart, 5 in the last twelve months; Andramaka 742893953 - 14 repairs, 2025-01-08 to 2026-09-06, median 45 days apart, 7 in twelve months. 6 managed pumps had 4+ repairs in twelve months. On the report: Maintenance, repeat breakdowns (tools/repeat_breakdowns.py). Whether either site gets a second water point is Adriaan's decision.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112106036"
+   }
   },
   "act-restore-preventive-maintenance-visit": {
    "gid": "1219100996488844",
@@ -2066,10 +2102,19 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112472241",
-   "modified_at": "2026-10-07T15:04:35.111Z"
+   "modified_at": "2026-10-07T16:54:03.225Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-07",
+   "evidence": {
+    "kind": "comment",
+    "text": "Gold standard parameters.xlsx (Water Documents / CW-project survey_112025), Sheet1, E31 now reads: \"MoFuSS, applied per GS Rule Update: fNRB Application for GS4GG Certification V1.0 §2.3.1 (the registered basis for SDWS 21). CDM TOOL30 is withdrawn from 1 January 2026.\" (was \"CDM TOOL30\"); cell comment \"citation corrected 7 Oct 2026\". Edit approved by Adriaan Mol, 7 Oct 2026; nothing else in the workbook changed.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-07",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112472241"
+   }
   },
   "act-usage-survey-inside-radius": {
    "gid": "1219100995666861",

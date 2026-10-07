@@ -34,7 +34,7 @@
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
    "source": "local",
-   "value": 1
+   "value": 0
   },
   "enduro_points_total": {
    "says": "water points in Endur'O's mWater group",
@@ -74,7 +74,7 @@
   "kiosk_sdws1_people": {
    "says": "the managed Antananarivo kiosk has a people-served figure from the pinned SDWS 1 run, shown on the page",
    "source": "local",
-   "value": 0
+   "value": 1
   },
   "managed_kiosk_wq_results": {
    "says": "water-quality results bound to the managed kiosk's water point",
@@ -249,7 +249,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 36
+   "value": 38
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

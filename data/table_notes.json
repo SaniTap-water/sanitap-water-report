@@ -324,6 +324,12 @@
    "extracted": "Approval state read from Asana at each build.",
    "filter": "Weeks with changes of major impact (a, b or c) not yet approved by Adriaan or Jan.",
    "columns": "<b>Status</b>: the approval state and who gave it; <b>What waits</b>: each flagged change."
+  },
+  "repeatbd": {
+   "source": "<span class=\"mono\">data/repeat_breakdowns.json</span>, written each build by tools/repeat_breakdowns.py from the repair records on both repair sources (the retired combined form and the live repair form).",
+   "extracted": "From the repair extracts pulled for this build.",
+   "filter": "Managed hand pumps, ranked by repairs in the last twelve months; the twelve with the most.",
+   "columns": "<b>Repairs, past year</b> (the twelve months to the latest repair on file) and <b>Repairs, all</b>: final or pending repair records naming the pump, by completion date (else notification, else submission date). <b>Last</b>: the latest."
   }
  }
 }

@@ -14,7 +14,7 @@
   },
   "people": {
    "before": 125710,
-   "after": 125710
+   "after": 126201
   },
   "days_operational": {
    "before": 347,
@@ -22,6 +22,29 @@
   }
  },
  "points": [
+  {
+   "wp": "1125843383",
+   "site": "Antananarivo (kiosk)",
+   "moves": [
+    "joined the portfolio"
+   ],
+   "cause": "no mWater change",
+   "wpop": [
+    null,
+    491
+   ],
+   "case_a": false,
+   "up": [
+    "joined the portfolio"
+   ],
+   "delta": {
+    "tco2e": 0,
+    "points": 1,
+    "people": 491
+   },
+   "records": [],
+   "by": []
+  },
   {
    "wp": "698771110",
    "site": "Maroantsetra",
@@ -100,9 +123,15 @@
  ],
  "deleted": [],
  "counts": {
+  "no mWater change": 1,
   "status record": 3
  },
  "by_cause": {
+  "no mWater change": {
+   "tco2e": 0,
+   "points": 1,
+   "people": 491
+  },
   "status record": {
    "tco2e": 0.0,
    "points": 0,
@@ -112,11 +141,11 @@
  "case_a": [],
  "case_b": [],
  "case_c": [],
- "repo_moved": false,
+ "repo_moved": true,
  "repo": {
   "tco2e": 0,
-  "points": 0,
-  "people": 0
+  "points": 1,
+  "people": 491
  },
  "params_changed": false,
  "week": 41,

@@ -3,8 +3,8 @@
  "kinds": {
   "artefact": 7,
   "children": 1,
-  "data": 44,
-  "decision": 73,
+  "data": 43,
+  "decision": 74,
   "form": 7,
   "none": 32
  },
@@ -389,11 +389,12 @@
    "when_satisfied": "OK"
   },
   "act-enduro-people-source": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "enduro_figures_unattributed = 1 (hand-entered Endur'O figures with no document recorded behind them); target == 0",
-   "kind": "data",
-   "satisfied": false,
-   "says": "closes when every hand-entered Endur'O figure names the document behind it",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Retired. The 146,000 Endur'O programme people figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026). It was a prize-application number, not a measured one, and has been outside every managed figure since 5 Oct 2026 (decision managed-figures). data/enduro_manual.json now names that source; the Endur'O card shows it as a prize-application figure.",
+   "kind": "decision",
+   "satisfied": true,
+   "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-enduro-refresh": {
@@ -514,11 +515,12 @@
    "when_satisfied": "OK"
   },
   "act-kiosk-sdws1-run": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "kiosk_sdws1_people = 0 (the managed Antananarivo kiosk has a people-served figure from the pinned SDWS 1 run, shown on the page); target >= 1",
+   "evidence": "kiosk_sdws1_people = 1 (the managed Antananarivo kiosk has a people-served figure from the pinned SDWS 1 run, shown on the page); target >= 1",
    "kind": "data",
-   "satisfied": false,
-   "says": "closes when the kiosk has a people-served figure from the pinned method in data/sdws1_summary_equal.json (or its successor) and the page shows it",
+   "satisfied": true,
+   "says": "closes when the kiosk's people served, counted from its card data (data/kiosk_people.json), are shown on the page",
    "when_satisfied": "OK"
   },
   "act-make-calendar-photograph-mandatory": {
@@ -743,7 +745,7 @@
   },
   "act-mwater-approval-policy": {
    "evaluated": "2026-10-07",
-   "evidence": "unapproved_works_records = 36 (submitted works records with no approval, last 180 days); target == 0",
+   "evidence": "unapproved_works_records = 38 (submitted works records with no approval, last 180 days); target == 0",
    "kind": "data",
    "satisfied": false,
    "says": "closes when no submitted works record is left unapproved",
@@ -991,18 +993,20 @@
    "when_satisfied": "OK"
   },
   "act-repair-time": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Computed from the mWater repair and call-centre records, 7 Oct 2026. Repair time, breakdown notified to repair completed, on the repair record: median 1 day, p90 12 days, over 192 repairs (the TTR table). Report to repair: of 613 calls in the twelve months to 2026-10-02 that reported a managed pump not working, 249 were followed by a repair record, a median 4 days later (p90 104); 364 have none yet. Report-to-dispatch cannot be measured: no form records dispatch. On the report beside the TTR table. No target is set here.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
   "act-repeat-breakdown": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Computed from the mWater repair records (both repair sources), 7 Oct 2026: Ambinanibe 742893805 has 14 repairs on file (2024-10-26 to 2026-04-30, a median 43 days apart, 5 in the last twelve months); Andramaka 742893953 has 14 (2025-01-08 to 2026-09-06, median 45 days apart, 7 in twelve months). 6 managed pumps had 4 or more repairs in the twelve months to 2026-10-02. The figures are on the report (section Maintenance, repeat breakdowns, tools/repeat_breakdowns.py). Whether either site gets a second water point is not decided here.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },
@@ -1246,10 +1250,11 @@
    "when_satisfied": "OK"
   },
   "act-update-parameters-workbook-cite": {
+   "closed_since": "2026-10-07",
    "evaluated": "2026-10-07",
-   "evidence": "no answer logged",
+   "evidence": "decided 2026-10-07 by Adriaan Mol, COO SaniTap: Done with Adriaan Mol's approval, 7 Oct 2026: Gold standard parameters.xlsx (Water Documents / CW-project survey_112025), Sheet1, cell E31 (SDWS 21, fNRB) now reads \"MoFuSS, applied per GS Rule Update: fNRB Application for GS4GG Certification V1.0 \u00a72.3.1 (the registered basis for SDWS 21). CDM TOOL30 is withdrawn from 1 January 2026.\" (was \"CDM TOOL30\"), with the cell comment \"citation corrected 7 Oct 2026\". Edited at the file level so nothing else in the workbook changed; the previous version is in OneDrive version history.",
    "kind": "decision",
-   "satisfied": false,
+   "satisfied": true,
    "says": "closes when the answer is logged in data/decisions.json with its date and source",
    "when_satisfied": "OK"
   },

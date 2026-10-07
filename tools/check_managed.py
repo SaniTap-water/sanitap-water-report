@@ -105,8 +105,9 @@ JS = r"""(a) => {
   const sites = SITEMAP[scope] || [];
   const pts = exp.pumps.filter(p => sites.includes(p.site));
   const wantPts = pts.length + (sc.enduro ? exp.piped_managed : 0);
-  const wantPeople = pts.reduce((s, p) => s + (exp.wpop[p.wp] || 0), 0);
-  const unalloc = sc.enduro && exp.piped_managed > 0;
+  // the managed kiosk is counted from its card data (act-kiosk-sdws1-run, 7 Oct 2026)
+  const wantPeople = pts.reduce((s, p) => s + (exp.wpop[p.wp] || 0), 0) + (sc.enduro ? exp.kiosk_people : 0);
+  const unalloc = sc.enduro && exp.piped_managed > 0 && !exp.kiosk_people;
   const shownVal = el => { const v = el.querySelector('.v,[data-v]') || el; return v.textContent.trim(); };
   for (const el of managed) {
     const t = shownVal(el), v = num(t), q = el.dataset.q, full = el.textContent;
@@ -114,8 +115,8 @@ JS = r"""(a) => {
     if (q === 'points') {
       if (v !== wantPts) out.push(['water points figure is not the managed portfolio', `#${where(el)} shows ${t}; managed hand pumps in scope ${pts.length} + managed piped systems ${sc.enduro ? exp.piped_managed : 0} = ${wantPts}`]);
     } else {
-      if (pts.length && v !== wantPeople) out.push(['people served is not the SDWS 1 allocation for the points in scope', `#${where(el)} shows ${t}; SDWS 1 over ${pts.length} hand pumps = ${wantPeople}`]);
-      if (!pts.length && v !== null) out.push(['people served shows a number with no allocated point in scope', `#${where(el)} shows ${t}`]);
+      if ((pts.length || (sc.enduro && exp.kiosk_people)) && v !== wantPeople) out.push(['people served is not the SDWS 1 allocation (plus the kiosk card count) for the points in scope', `#${where(el)} shows ${t}; SDWS 1 over ${pts.length} hand pumps${sc.enduro ? ' + kiosk ' + exp.kiosk_people : ''} = ${wantPeople}`]);
+      if (!pts.length && !(sc.enduro && exp.kiosk_people) && v !== null) out.push(['people served shows a number with no allocated point in scope', `#${where(el)} shows ${t}`]);
       if (unalloc && !/not yet allocated/.test((el.closest('tr') || el).textContent)) out.push(['people served does not say the managed piped system is not yet allocated', `#${where(el)}: "${full.trim().slice(0, 90)}"`]);
     }
   }
@@ -134,7 +135,9 @@ def expectations(idx):
     man = json.load(open(os.path.join(REPO, "data", "enduro_manual.json"), encoding="utf8"))
     manual = {k: f"{f.get('supplied_by', '')}; {f.get('doc', '')}" for k, f in man.get("figures", {}).items()}
     return dict(pumps=pumps, wpop=wpop, manual=manual,
-                piped_managed=sum(1 for s in st.values() if s.get("status") == "managed"))
+                piped_managed=sum(1 for s in st.values() if s.get("status") == "managed"),
+                kiosk_people=(json.load(open(os.path.join(REPO, "data", "kiosk_people.json"), encoding="utf8"))["people"]
+                              if os.path.isfile(os.path.join(REPO, "data", "kiosk_people.json")) else 0))
 
 
 def run(page=os.path.join(REPO, "index.html")):
@@ -181,8 +184,9 @@ def run(page=os.path.join(REPO, "index.html")):
     add = tiles.get("madx") is not None and tiles.get("mar") is not None and tiles.get("mad") == tiles["madx"] + tiles["mar"]
     res.append(("people served adds up: MadAvance - all = excl. Marolinta + Marolinta only", add,
                 f"{tiles.get('madx')} + {tiles.get('mar')}", tiles.get("mad"), "the people-served tiles of the three scopes"))
-    res.append(("people served adds up: All SaniTap = MadAvance - all (the kiosk not yet allocated)",
-                tiles.get("all") == tiles.get("mad"), tiles.get("mad"), tiles.get("all"), ""))
+    _k = expectations(open(page, encoding="utf8").read())["kiosk_people"]
+    res.append(("people served adds up: All SaniTap = MadAvance - all + the kiosk (card data)",
+                tiles.get("all") == (tiles.get("mad") or 0) + _k, f"{tiles.get('mad')} + {_k}", tiles.get("all"), ""))
     res.append(("managed figures: page loads without script errors", not errs, "none", "; ".join(errs[:2]) or "none", ""))
     return res
 

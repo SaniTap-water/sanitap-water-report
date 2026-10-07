@@ -1,0 +1,16 @@
+{
+ "note": "People served at the managed Antananarivo kiosk (water system 1125843376, water point 1125843383), counted from the Endur'O smart-tap card data, not from WorldPop: it is a metered piped system where every user holds a registered NFC card. act-kiosk-sdws1-run, approved by Adriaan Mol, 7 Oct 2026.",
+ "system": "1125843376",
+ "water_point": "1125843383",
+ "cards_registered": 126,
+ "cards_with_purchases": 123,
+ "recharges": 426,
+ "window": "14-26 Sep 2026",
+ "households": 126,
+ "hh_size": 3.9,
+ "people": 491,
+ "hh_size_source": "INSTAT RGPH-3 (census of June 2018), Tome 1, Tableau 26: average household size, Analamanga, urban stratum",
+ "card_source": "Curtech/Zoho card data: Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", 1 Oct 2026 (126 NFC cards sold at the kiosk, recorded as card sales); Adriaan Mol, same thread, 29 Sep 2026 (123 cards with purchases, 426 recharges, 14-26 Sep 2026)",
+ "assumption": "one registered card per household",
+ "as_at": "2026-10-01"
+}
