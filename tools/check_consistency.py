@@ -4462,6 +4462,16 @@ def main():
     for _r in _cm.run(os.path.join(repo_root, "index.html")):
         check(*_r)
 
+    # ---- the Endur'O programme people figure is gone (Adriaan Mol, 7 Oct 2026):
+    # a prize-application number, not a measured one; it may not reappear
+    _p146 = re.compile(r"(?<![\d.,])146(?:[,.\u202f\u00a0 ]?000)(?![\d])")
+    _hits = [n for n, src in (("index.html", idx_raw), ("portfolio.html", prt)) if _p146.search(re.sub(r"<[^>]+>", " ", src))]
+    _routes = os.path.join(repo_root, "routes.html")
+    if os.path.isfile(_routes) and _p146.search(read(_routes)):
+        _hits.append("routes.html")
+    check("the Endur'O programme people figure (146,000) appears nowhere on the site", not _hits,
+          "absent", ", ".join(_hits) or "absent", "removed by decision of Adriaan Mol, 7 Oct 2026")
+
     # ---------------------------------------------------------------- report
     # ---- SDWS 27: nothing above 347 without a sensor (Adriaan Mol, 7 Oct 2026)
     # 347 days is the ceiling for every pump without an operation sensor,

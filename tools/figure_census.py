@@ -153,7 +153,7 @@ REACH = r"""() => {
   const S_ = g('S'), R = g('REG'), E = g('ENDURO');
   if (S_ && E) {
     note(S_.n + E.systems, 'S.n + ENDURO.systems');
-    note((A ? A.wpop : 0) + E.people, 'scope wpop + ENDURO.people');
+    if (E.people != null) note((A ? A.wpop : 0) + E.people, 'scope wpop + ENDURO.people');
     note(A ? A.n + E.systems : NaN, 'scope n + ENDURO.systems');
   }
   if (R) {

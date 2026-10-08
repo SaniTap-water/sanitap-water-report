@@ -71,7 +71,6 @@ def block(m=None, today=None):
     stale = age > m["max_age_days"]
     body = {
         "systems": m["figures"]["systems"]["v"],
-        "people": m["figures"]["people"]["v"],
         "reg": reg,
         "disp": disposition(),
     }
@@ -83,12 +82,8 @@ def block(m=None, today=None):
         "age": age,
         "max": m["max_age_days"],
         "stale": stale,
-        "people_as_at": m["figures"]["people"]["as_at"],
-        "people_by": m["figures"]["people"]["supplied_by"],
         # the programme figures' sources, exactly as recorded, for the
         # Endur'O card - their only home (Adriaan Mol, 5 Oct 2026)
-        "people_what": m["figures"]["people"]["what"],
-        "people_doc": m["figures"]["people"]["doc"],
         "systems_doc": m["figures"]["systems"]["doc"],
         "systems_by": m["figures"]["systems"]["supplied_by"],
         "systems_as_at": m["figures"]["systems"]["as_at"],
@@ -113,9 +108,7 @@ def block(m=None, today=None):
         "return `<b>Endur&rsquo;O programme sites, not in the managed portfolio.</b> "
         "<b>${F('ENDURO.systems')}</b> sites <span class=\"muted\">&mdash; "
         "source: ${x(ENDURO_SRC.systems_doc).replace(/\\b138\\b/,'<span data-retired=\"2026-09-18\" data-was=\"an Endur&#39;O site count carried in earlier editions\">138</span>')}; supplied by ${x(ENDURO_SRC.systems_by)}, as at ${x(ENDURO_SRC.systems_as_at)}</span>. "
-        "<b>${F('ENDURO.people')}</b> people <span class=\"muted\">&mdash; ${x(ENDURO_SRC.people_what)}; "
-        "source: ${/not recorded/.test(ENDURO_SRC.people_by)?'<b>not recorded</b> &mdash; ':''}${x(ENDURO_SRC.people_doc)}; supplied by: ${x(ENDURO_SRC.people_by)}, as at ${x(ENDURO_SRC.people_as_at)}</span>. "
-        "Neither is added to any managed figure on this page: the managed portfolio counts a piped system only when its "
+        "It is not added to any managed figure on this page: the managed portfolio counts a piped system only when its "
         "status in <span class=\"mono\">data/piped_systems_status.json</span> is &ldquo;managed&rdquo;, and people served "
         "come only from the SDWS 1 method <span class=\"muted\">(Adriaan Mol, 5 Oct 2026)</span>. ${enduroAsAt()}`};\n"
         f"{END}"

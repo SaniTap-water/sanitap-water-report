@@ -1,3 +1,40 @@
 {
- "weeks": {}
+ "weeks": {
+  "2026-W41": {
+   "status": "approved",
+   "flags": {
+    "a": [],
+    "b": [
+     {
+      "file": "wq_sampling_piped.json",
+      "count": 18,
+      "ids": [],
+      "wps": []
+     }
+    ],
+    "c": []
+   },
+   "figures": {
+    "tco2e": {
+     "before": 21629,
+     "after": 21629
+    },
+    "points": {
+     "before": 745,
+     "after": 745
+    },
+    "people": {
+     "before": 125710,
+     "after": 126201
+    },
+    "days_operational": {
+     "before": 347,
+     "after": 347
+    }
+   },
+   "approved_by": "Adriaan Mol",
+   "approved_at": "2026-10-08",
+   "note": "Approved in the session of 8 Oct 2026 on Adriaan Mol's stated conditions (the Tana kiosk's water-quality records intact; no headline figure moves): the deletions on the piped sampling form. 18 records are missing against the 4 Oct baseline: the 11 deleted overnight 7-8 Oct, and 7 deleted between 4 and 7 Oct whose loss newer records offset in the row count. No Asana approval task: approval tasks need a paid Asana plan."
+  }
+ }
 }

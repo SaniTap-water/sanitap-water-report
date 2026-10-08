@@ -2347,3 +2347,42 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Curtech tasks: no chasers.** The six stay with Coddy; excluded from the overdue count, the nudge list and the
   ticked-without-evidence list (build_config actions.no_chasers); each description starts "Ralf's work; Coddy
   tracks; no chasers."
+
+## 7 Oct 2026 (i) — Adriaan Mol: follow-up on 82a7e11
+
+- **The Endur'O programme people figure is removed from the site** (card, data/enduro_manual.json, the texts that
+  quoted it, two Asana comments). tools/check_consistency.py fails the build if it reappears in a published page.
+- **Kiosk people served (491) stand, not provisional.** Household size: the census (RGPH-3, Analamanga urban 3.9)
+  until a project survey measures it; the piped-system survey's value replaces it automatically. Cards: one card is
+  one household until the contrary is proved; tools/kiosk_people.py flags cards in the Curtech/Zoho export sharing a
+  name, phone or ID, counts each flagged pair as one household and lists the pairs on the report. Both rules are in
+  the derivation. The check has not run: no card export with registration details is on file (expected at Water
+  Documents/Evidence/Endur'O/curtech_nfc_cards.json).
+- **Calls with no repair record** (362 of 616 not-working calls in the twelve months to 2026-10-05,
+  tools/call_outcomes.py): (a) repaired but not logged 311; (b) still down or no later record 35; (c) duplicate
+  or follow-up 16. Target: 90% of breakdowns repaired within 14 days. Cleaned set (one call per breakdown):
+  484 of 584 (82.9%), median 0.0 days — below the target. 35 pumps still down,
+  listed oldest first on the report. Task for Angelo (act-log-repairs-on-form): every repair on the repair form.
+- **Ambinanibe (742893805)**: 14 repairs, 5 in the past year, 1,758 people within reach of a pump capped at 500 — the
+  case for a second water point. Task for Jan de Graaf (act-ambinanibe-second-point), closing when a site and a
+  funding source are recorded; kept with Jan by name (data/assignment_rules.json `keep_owner`).
+- **Repeat pumps** (4+ repairs in the past year), with people within reach against the cap and the parts replaced and
+  failure types from their repair records (choice labels read from the form designs, data/repair_part_labels.json):
+  742893953 overuse (875 within reach / cap 500); 742893805 overuse (1758 within reach / cap 500); 742893946 overuse (975 within reach / cap 500); 742894930 overuse (611 within reach / cap 300); 670402214 recurring technical fault (411 within reach / cap 300); 742895742 overuse (817 within reach / cap 500). Reading: overuse at half again the cap or more; recurring technical fault where one part or failure type
+  returns three times or more; otherwise unclear. No tasks.
+
+## 8 Oct 2026 — Adriaan Mol: 11 deleted piped sampling records accepted as non-material
+
+- mWater lost 11 responses on the piped water-quality sampling form ef8cf735 between the pulls of 7 and 8 Oct (89 →
+  78; confirmed by a read of mWater: 59 final, 6 pending, 13 drafts). The extract keeps no record ids, so the 11
+  cannot be named. Checked before accepting: the managed Tana kiosk had no water-quality record before or after (none
+  lost), and no headline figure moves against 82a7e11 (21,629 tCO2e; 745 points; 126,201 people; 347 days). Accepted
+  as non-material: the other piped systems are outside the managed portfolio. data/extract_rowcounts.json records 78;
+  the form joins the record ledger (tools/change_review.py) so future deletions are named record by record
+  (data/decisions.json `piped-sampling-deletions-2026-10-08`).
+- **Week 41 approved on those conditions; approval tasks reworked.** Against the 4 Oct baseline the form is 18
+  records short: the 11 deleted overnight plus 7 deleted between 4 and 7 Oct that newer records hid in the row count
+  (the case (b) formula exists to catch). Adriaan's conditions hold for all 18, so week 41 is recorded as approved
+  by him (`approval-major-changes-2026-W41`). Asana refused the approval task (HTTP 402: approval tasks need a paid
+  plan), so the weekly approval task is now an ordinary task — completed by Adriaan or Jan = approved; a comment
+  "Rejected:" or "Changes requested:" = not (`asana-approval-plan-2026-10-08`).

@@ -81,6 +81,10 @@ def _first(word):
     return re.sub(r"[^a-zé]", "", word.lower())
 
 
+_KEEP_OWNER = set(json.load(open(os.path.join(REPO, "data", "assignment_rules.json"), encoding="utf8")).get("keep_owner", [])) \
+    if os.path.isfile(os.path.join(REPO, "data", "assignment_rules.json")) else set()
+
+
 def rule_owner(text):
     """(7 Oct 2026) The assignee data/assignment_rules.json gives this task, or None."""
     p = os.path.join(REPO, "data", "assignment_rules.json")
@@ -321,7 +325,7 @@ def action_info():
             assignee=gid, assignee_name=name or NAME_OF[gid], not_in_asana=not_in, owner_text=owner_text,
             first_line=first_line,
             # assignment rules (7 Oct 2026): a team, Jan or Adriaan as owner gives way to the rule
-            rule_assignee=(rule_owner((rec.get("title") or a["title"]) + " " + re.sub(r"<[^>]+>", " ", (a.get("detail") or "")[:600]))
+            rule_assignee=None if a["id"] in _KEEP_OWNER else (rule_owner((rec.get("title") or a["title"]) + " " + re.sub(r"<[^>]+>", " ", (a.get("detail") or "")[:600]))
                            if gid in (ADRIAAN, PEOPLE["jan"][0]) or re.match(r"^\s*(MadAvance|Endur.?O)\b", owner_text or "", re.I) and not name
                            else None),
             closes_when=cl.get("closes_when") or c.get("closes_when") or c.get("says") or "not stated",
@@ -478,7 +482,12 @@ def approval_task():
         print(f"approval: updated {name} ({w['task']})")
     else:
         secs = {s["name"]: s["gid"] for s in A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})}
-        t = A.post("/tasks", {"name": name, "resource_subtype": "approval", "assignee": ADRIAAN,
+        # Approval tasks need an Asana Business or Enterprise plan; this workspace answers
+        # HTTP 402 (8 Oct 2026). An ordinary task is used: Adriaan or Jan completes it to
+        # approve, or comments "Rejected:" / "Changes requested:" (tools/change_review.py).
+        notes += ("\n\nTo approve: complete this task (Adriaan or Jan). To reject or ask for changes: "
+                  "comment starting \"Rejected:\" or \"Changes requested:\".")
+        t = A.post("/tasks", {"name": name, "assignee": ADRIAAN,
                               "followers": [JAN], "notes": notes, "projects": [A.PROJECT],
                               "workspace": A.WORKSPACE})
         if A.SECTION_NAME in secs:

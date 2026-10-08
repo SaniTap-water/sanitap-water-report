@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-07T17:18:34+00:00",
+ "pulled_at": "2026-10-08T05:14:32+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -27,6 +27,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
    "modified_at": "2026-10-07T15:01:04.980Z"
+  },
+  "act-ambinanibe-second-point": {
+   "gid": "1219275025874581",
+   "name": "Plan a second water point at Ambinanibe [act-ambinanibe-second-point]",
+   "title": "Plan a second water point at Ambinanibe",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-12-31",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219275025874581",
+   "modified_at": "2026-10-07T18:16:23.446Z"
   },
   "act-amboasary-post-works-retest": {
    "gid": "1219128812565674",
@@ -383,10 +395,19 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-04",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
-   "modified_at": "2026-10-07T15:07:30.914Z"
+   "modified_at": "2026-10-08T03:33:45.212Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "this consent was given verbally and informal consent is enough in this case.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190"
+   }
   },
   "act-deichmann-ar-send": {
    "gid": "1219109294883405",
@@ -652,7 +673,7 @@
    "ticked_at": "2026-10-07",
    "evidence": {
     "kind": "comment",
-    "text": "Retired by decision of Adriaan Mol, 7 Oct 2026. The 146,000 figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application number, not a measured one. It has been outside every managed figure since 5 Oct 2026; data/enduro_manual.json now names this source.",
+    "text": "Retired by decision of Adriaan Mol, 7 Oct 2026. The Endur'O programme people figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application number, not a measured one. It has been outside every managed figure since 5 Oct 2026; data/enduro_manual.json now names this source.",
     "author": "Adriaan Mol",
     "date": "2026-10-07",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755"
@@ -668,7 +689,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438",
-   "modified_at": "2026-10-07T15:05:32.484Z"
+   "modified_at": "2026-10-08T03:40:33.275Z"
   },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
@@ -681,6 +702,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995264223",
    "modified_at": "2026-10-07T15:02:03.913Z"
+  },
+  "act-fabric-andrew-shutdown": {
+   "gid": "1219289324282150",
+   "name": "Ask Andrew to shut down the Fabric Azure resources [act-fabric-andrew-shutdown]",
+   "title": "Ask Andrew to shut down the Fabric Azure resources",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219289324282150",
+   "modified_at": "2026-10-08T04:37:42.481Z"
   },
   "act-find-source-annual-independent": {
    "gid": "1219101058285868",
@@ -715,6 +748,18 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058383094",
    "modified_at": "2026-10-07T15:02:08.183Z"
   },
+  "act-fluoride-diluted-results": {
+   "gid": "1219289406453733",
+   "name": "Send the diluted fluoride results for the five Ambinanitelo pumps (15 Aug 2025) [act-fluoride-diluted-results]",
+   "title": "Send the diluted fluoride results for the five Ambinanitelo pumps (15 Aug 2025)",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219289406453733",
+   "modified_at": "2026-10-08T04:52:03.899Z"
+  },
   "act-fluoride-five-pumps-status": {
    "gid": "1219254664501109",
    "name": "Decide how the five Ambinanitelo pumps with fluoride above 1.5 mg/L are treated in the SDWS 3 count [act-fluoride-five-pumps-status]",
@@ -734,10 +779,19 @@
    "owner": "Cathy Andriambololonirina",
    "assignee_gid": "1208683882004265",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219208478747022",
-   "modified_at": "2026-10-07T15:06:09.240Z"
+   "modified_at": "2026-10-08T04:51:58.432Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Cathy's emails of 7 Oct 2026 (\"Re: Fluoride photometer used for the SDWS 3 tests: model, range and five 1.5 mg/L readings\", 09:17 and 13:29 UTC) answer all three points.\n(1) Photometer: Lumiso Expert (technical sheet attached to her 09:17 email); test AP179/PM179 Fluoride, 1 and 2 tablets; range 0–1.5 mg/L. Reagent lots: AP179L IF035/IF128 (best before 06/2028) and AP179 HI034/HI016 (best before 09/2029); a third 2025 box is no longer available.\n(2) The five 1.5 mg/L readings (800634100, 797195318, 794012210, 797195301, 797885233) were above the measuring range, not real readings. The samples were diluted and retested; Cathy is looking for the archived diluted results.\n(3) 800634100 and 794012210 will go in the Institut Pasteur Part B round as planned.\nFollow-up for the diluted results is a separate task.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219208478747022"
+   }
   },
   "act-fluoride-overrange-mwater-flag": {
    "gid": "1219254583173041",
@@ -975,6 +1029,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798",
    "modified_at": "2026-10-07T15:06:03.237Z"
+  },
+  "act-log-repairs-on-form": {
+   "gid": "1219275037486922",
+   "name": "Make sure every repair is logged on the repair form [act-log-repairs-on-form]",
+   "title": "Make sure every repair is logged on the repair form",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-31",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219275037486922",
+   "modified_at": "2026-10-07T18:16:25.382Z"
   },
   "act-mar-admin-fields": {
    "gid": "1219101058585368",
@@ -1337,7 +1403,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
-   "modified_at": "2026-10-07T14:56:56.479Z"
+   "modified_at": "2026-10-08T03:32:52.119Z"
   },
   "act-mwater-year-required": {
    "gid": "1219101270141207",
@@ -1596,6 +1662,18 @@
     "date": "2026-10-07",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111773731"
    }
+  },
+  "act-pump-742894222-type-check": {
+   "gid": "1219289121426799",
+   "name": "Field check pump type of water point 742894222 [act-pump-742894222-type-check]",
+   "title": "Field check pump type of water point 742894222",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
+   "due_on": "2026-10-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219289121426799",
+   "modified_at": "2026-10-08T04:37:42.507Z"
   },
   "act-put-usage-question-live": {
    "gid": "1219101111019443",
@@ -2279,10 +2357,13 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219245864015440",
-   "modified_at": "2026-10-07T13:09:19.984Z"
+   "modified_at": "2026-10-08T04:20:17.417Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": null
   },
   "act-vpadd-protocol-10-2-ref": {
    "gid": "1219207278870610",

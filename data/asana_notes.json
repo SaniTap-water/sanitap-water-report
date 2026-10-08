@@ -70,6 +70,35 @@
    "Closes when: the build's form snapshot shows a stove question on the survey form, and an \"Evidence:\" comment gives the form revision.",
    "",
    "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-ambinanibe-second-point": [
+   "What and why",
+   "Ambinanibe (water point 742893805, Fort-Dauphin) has 14 repairs on file, 5 of them in the past year, and 1758 people live within reach of a pump capped at 500. It is heavily overused: the case for a second water point.",
+   "",
+   "What to do",
+   "Find a site for a second water point at Ambinanibe and a source of funding for it.",
+   "",
+   "Closes when: a site and a funding source for the second water point are recorded, posted as an \"Evidence:\" comment.",
+   "",
+   "Links",
+   "    https://portal.mwater.co/#/responses/d49f8c7ea21f4eda95ce131c29e41007 (the point's first-rehabilitation record in mWater)",
+   "    https://sanitap-water.github.io/sanitap-water-report/#repeat-breakdowns (repairs and people against the cap)",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-log-repairs-on-form": [
+   "What and why",
+   "311 calls in the past year reported a pump down, and a later call or visit found it working, but no repair was ever logged. Each unlogged repair hides how long the pump was down and which parts were replaced.",
+   "",
+   "What to do",
+   "Brief every field team: each repair goes on the repair form (Réparation après panne), the same day, even a small one. Check the listed pumps and log the repairs that were done.",
+   "",
+   "Closes when: your written confirmation that every team logs each repair on the repair form, posted as an \"Evidence:\" comment, and the count of repairs not logged on the report falls.",
+   "",
+   "Links",
+   "    https://sanitap-water.github.io/sanitap-water-report/#calls-unlogged (the pumps whose repairs were not logged)",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
   ]
  },
  "closes_when": {

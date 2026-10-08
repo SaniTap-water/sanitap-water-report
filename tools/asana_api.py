@@ -36,6 +36,10 @@ def _call(method, path, params=None, body=None):
                 time.sleep(int(e.headers.get("Retry-After", "5")))
                 continue
             raise SystemExit(f"Asana {method} {path}: HTTP {e.code} {e.read().decode()[:300]}")
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            # a dropped connection (seen 8 Oct 2026: connection reset by peer) is retried like a 5xx
+            time.sleep(5 * (attempt + 1))
+            continue
     raise SystemExit(f"Asana {method} {path}: gave up after retries")
 
 

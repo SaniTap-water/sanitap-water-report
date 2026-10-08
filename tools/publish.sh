@@ -91,6 +91,7 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr
            tools/call_followup.py tools/render_call_followup.py tools/rebuild_hygiene.py tools/render_hygiene.py \
            tools/rebuild_enduro_registry.py tools/render_enduro_registry.py \
            tools/rebuild_eligibility.py tools/render_eligibility.py \
+           tools/kiosk_people.py tools/repeat_breakdowns.py tools/call_outcomes.py \
            tools/render_datasets.py tools/asana_pull.py tools/render_actions.py tools/render_portfolio.py \
            tools/render_piped_pairing.py tools/render_sdws18.py; do
   python3 "$gen" --write

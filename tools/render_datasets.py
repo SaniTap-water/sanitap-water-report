@@ -104,6 +104,8 @@ SETS = {
     "KIOSK": ("data", "kiosk_people.json"),
     # repeat breakdowns and report-to-repair time (tools/repeat_breakdowns.py, 7 Oct 2026)
     "RB": ("data", "repeat_breakdowns.json"),
+    # what became of every breakdown call, and repair time against the target (tools/call_outcomes.py)
+    "CO": ("data", "call_outcomes.json"),
 }
 
 

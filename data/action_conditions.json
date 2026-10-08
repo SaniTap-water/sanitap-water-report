@@ -1212,5 +1212,17 @@
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
   "closes_when": "merged into act-sop-calendar-v17-signoff (decision 7 Oct 2026)"
+ },
+ "act-ambinanibe-second-point": {
+  "kind": "none",
+  "says": "no data predicate: a site and a funding source are recorded by a person",
+  "closure": "evidence",
+  "closes_when": "a site and a funding source for the second water point at Ambinanibe are recorded, posted as an \"Evidence:\" comment"
+ },
+ "act-log-repairs-on-form": {
+  "kind": "none",
+  "says": "no data predicate: the logging practice is confirmed by a person; the count of unlogged repairs is on the report",
+  "closure": "evidence",
+  "closes_when": "Angelo's written confirmation that every team logs each repair on the repair form (958b4763), posted as an \"Evidence:\" comment, and a fall in the repairs not logged on the report"
  }
 }

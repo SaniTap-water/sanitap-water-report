@@ -804,6 +804,18 @@
    "owner": "Angelo Nahavitatsara",
    "source": "Adriaan Mol, decision of 6 Oct 2026 on the non-calendar photographs; Asana task 1219205037087065",
    "title": "Brief the maintenance teams: only the paper calendar goes under the calendar photo question"
+  },
+  "act-ambinanibe-second-point": {
+   "owner": "Jan de Graaf",
+   "deadline": "2026-12-31",
+   "title": "Plan a second water point at Ambinanibe",
+   "source": "Adriaan Mol, decision of 7 Oct 2026: Ambinanibe (742893805) is heavily overused"
+  },
+  "act-log-repairs-on-form": {
+   "owner": "Angelo Nahavitatsara",
+   "deadline": "2026-10-31",
+   "title": "Make sure every repair is logged on the repair form",
+   "source": "Adriaan Mol, 7 Oct 2026: calls whose repair was never logged (tools/call_outcomes.py)"
   }
  },
  "orphan_rows": {
@@ -831,7 +843,7 @@
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
    "auto": 52,
-   "evidence": 109,
+   "evidence": 111,
    "manual": 3
   },
   "actions": {
@@ -862,6 +874,13 @@
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
+   },
+   "act-ambinanibe-second-point": {
+    "type": "evidence",
+    "closes_when": "a site and a funding source for the second water point at Ambinanibe are recorded, posted as an \"Evidence:\" comment",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-07"
    },
    "act-amboasary-post-works-retest": {
     "type": "evidence",
@@ -1255,6 +1274,13 @@
     "detected_closed_on": "2026-10-07",
     "first_seen": "2026-10-05"
    },
+   "act-log-repairs-on-form": {
+    "type": "evidence",
+    "closes_when": "Angelo's written confirmation that every team logs each repair on the repair form (958b4763), posted as an \"Evidence:\" comment, and a fall in the repairs not logged on the report",
+    "closed": false,
+    "detected_closed_on": null,
+    "first_seen": "2026-10-07"
+   },
    "act-make-calendar-photograph-mandatory": {
     "type": "auto",
     "closes_when": "closes when the calendar photograph question is required on BOTH visit forms",
@@ -1630,7 +1656,7 @@
     "type": "auto",
     "closes_when": "closes when the extract on this page is level with mWater",
     "closed": true,
-    "detected_closed_on": "2026-10-02",
+    "detected_closed_on": "2026-10-08",
     "first_seen": "2026-09-21"
    },
    "act-rehab-recording": {
@@ -2359,6 +2385,19 @@
     "task": "1219101110579611",
     "from": "asana"
    },
+   "act-deichmann-ar-photo-consent": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "this consent was given verbally and informal consent is enough in this case.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
+    "task": "1219109377307190",
+    "from": "asana"
+   },
    "act-deichmann-ar-send": {
     "recorded_on": "2026-10-05",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2407,7 +2446,7 @@
     "recorded_by": "tools/asana_pull.py, from the Asana task",
     "what": "an Evidence comment on the Asana task",
     "source": "Adriaan Mol, Asana, 2026-10-07",
-    "summary": "Retired by decision of Adriaan Mol, 7 Oct 2026. The 146,000 figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application number, not a measured one. It has been outside every managed figure since 5 Oct 2026; data/enduro_manual.json now names this source.",
+    "summary": "Retired by decision of Adriaan Mol, 7 Oct 2026. The Endur'O programme people figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application number, not a measured one. It has been outside every managed figure since 5 Oct 2026; data/enduro_manual.json now names this source.",
     "author": "Adriaan Mol",
     "date": "2026-10-07",
     "kind": "comment",
@@ -2426,6 +2465,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868",
     "task": "1219101058285868",
+    "from": "asana"
+   },
+   "act-fluoride-overrange-check": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Cathy's emails of 7 Oct 2026 (\"Re: Fluoride photometer used for the SDWS 3 tests: model, range and five 1.5 mg/L readings\", 09:17 and 13:29 UTC) answer all three points.\n(1) Photometer: Lumiso Expert (technical sheet attached to her 09:17 email); test AP179/PM179 Fluoride, 1 and 2 tablets; range 0–1.5 mg/L. Reagent lots: AP179L IF035/IF128 (best before 06/2028) and AP179 HI034/HI016 (best before 09/2029); a third 2025 box is no longer available.\n(2) The five 1.5 mg/L readings (800634100, 797195318, 794012210, 797195301, 797885233) were above the measuring range, not real readings. The samples were diluted and retested; Cathy is looking for the archived diluted results.\n(3) 800634100 and 794012210 will go in the Institut Pasteur Part B round as planned.\nFollow-up for the diluted results is a separate task.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219208478747022",
+    "task": "1219208478747022",
     "from": "asana"
    },
    "act-form-consolidation": {

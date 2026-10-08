@@ -13,7 +13,30 @@
    "repairs_12m": 7,
    "first": "2025-01-08",
    "last": "2026-09-06",
-   "median_gap_days": 45
+   "median_gap_days": 45,
+   "people_nearby": 875,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.75,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 6
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 6
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 4
+    },
+    {
+     "what": "outer valve DN40",
+     "times": 4
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742893805",
@@ -23,7 +46,30 @@
    "repairs_12m": 5,
    "first": "2024-10-26",
    "last": "2026-04-30",
-   "median_gap_days": 43
+   "median_gap_days": 43,
+   "people_nearby": 1758,
+   "people_served": 500,
+   "cap": 500,
+   "load": 3.52,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 8
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 8
+    },
+    {
+     "what": "handle",
+     "times": 5
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 3
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742893946",
@@ -33,7 +79,30 @@
    "repairs_12m": 5,
    "first": "2025-01-12",
    "last": "2026-08-31",
-   "median_gap_days": 57.0
+   "median_gap_days": 57.0,
+   "people_nearby": 975,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.95,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 3
+    },
+    {
+     "what": "outer valve DN40",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "rod",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742894930",
@@ -43,7 +112,30 @@
    "repairs_12m": 4,
    "first": "2024-10-17",
    "last": "2026-09-01",
-   "median_gap_days": 84
+   "median_gap_days": 84,
+   "people_nearby": 611,
+   "people_served": 300,
+   "cap": 300,
+   "load": 2.04,
+   "causes": [
+    {
+     "what": "chain",
+     "times": 6
+    },
+    {
+     "what": "bearings",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "axle",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "670402214",
@@ -53,7 +145,30 @@
    "repairs_12m": 4,
    "first": "2024-09-12",
    "last": "2026-06-05",
-   "median_gap_days": 98
+   "median_gap_days": 98,
+   "people_nearby": 411,
+   "people_served": 300,
+   "cap": 300,
+   "load": 1.37,
+   "causes": [
+    {
+     "what": "handle or lever mechanism",
+     "times": 4
+    },
+    {
+     "what": "valve seals or rubbers",
+     "times": 2
+    },
+    {
+     "what": "spout",
+     "times": 2
+    },
+    {
+     "what": "rod",
+     "times": 2
+    }
+   ],
+   "reading": "recurring technical fault"
   },
   {
    "wp": "742895742",
@@ -63,7 +178,30 @@
    "repairs_12m": 4,
    "first": "2025-09-24",
    "last": "2026-09-07",
-   "median_gap_days": 44.5
+   "median_gap_days": 44.5,
+   "people_nearby": 817,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.63,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "spout",
+     "times": 2
+    },
+    {
+     "what": "stainless rod 32",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   }
  ],
  "top": [
@@ -75,7 +213,30 @@
    "repairs_12m": 7,
    "first": "2025-01-08",
    "last": "2026-09-06",
-   "median_gap_days": 45
+   "median_gap_days": 45,
+   "people_nearby": 875,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.75,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 6
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 6
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 4
+    },
+    {
+     "what": "outer valve DN40",
+     "times": 4
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742893805",
@@ -85,7 +246,30 @@
    "repairs_12m": 5,
    "first": "2024-10-26",
    "last": "2026-04-30",
-   "median_gap_days": 43
+   "median_gap_days": 43,
+   "people_nearby": 1758,
+   "people_served": 500,
+   "cap": 500,
+   "load": 3.52,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 8
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 8
+    },
+    {
+     "what": "handle",
+     "times": 5
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 3
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742893946",
@@ -95,7 +279,30 @@
    "repairs_12m": 5,
    "first": "2025-01-12",
    "last": "2026-08-31",
-   "median_gap_days": 57.0
+   "median_gap_days": 57.0,
+   "people_nearby": 975,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.95,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 3
+    },
+    {
+     "what": "outer valve DN40",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "rod",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742894930",
@@ -105,7 +312,30 @@
    "repairs_12m": 4,
    "first": "2024-10-17",
    "last": "2026-09-01",
-   "median_gap_days": 84
+   "median_gap_days": 84,
+   "people_nearby": 611,
+   "people_served": 300,
+   "cap": 300,
+   "load": 2.04,
+   "causes": [
+    {
+     "what": "chain",
+     "times": 6
+    },
+    {
+     "what": "bearings",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "axle",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "670402214",
@@ -115,7 +345,30 @@
    "repairs_12m": 4,
    "first": "2024-09-12",
    "last": "2026-06-05",
-   "median_gap_days": 98
+   "median_gap_days": 98,
+   "people_nearby": 411,
+   "people_served": 300,
+   "cap": 300,
+   "load": 1.37,
+   "causes": [
+    {
+     "what": "handle or lever mechanism",
+     "times": 4
+    },
+    {
+     "what": "valve seals or rubbers",
+     "times": 2
+    },
+    {
+     "what": "spout",
+     "times": 2
+    },
+    {
+     "what": "rod",
+     "times": 2
+    }
+   ],
+   "reading": "recurring technical fault"
   },
   {
    "wp": "742895742",
@@ -125,7 +378,30 @@
    "repairs_12m": 4,
    "first": "2025-09-24",
    "last": "2026-09-07",
-   "median_gap_days": 44.5
+   "median_gap_days": 44.5,
+   "people_nearby": 817,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.63,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 3
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 3
+    },
+    {
+     "what": "spout",
+     "times": 2
+    },
+    {
+     "what": "stainless rod 32",
+     "times": 2
+    }
+   ],
+   "reading": "overuse"
   },
   {
    "wp": "742893850",
@@ -197,7 +473,30 @@
    "repairs_12m": 5,
    "first": "2024-10-26",
    "last": "2026-04-30",
-   "median_gap_days": 43
+   "median_gap_days": 43,
+   "people_nearby": 1758,
+   "people_served": 500,
+   "cap": 500,
+   "load": 3.52,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 8
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 8
+    },
+    {
+     "what": "handle",
+     "times": 5
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 3
+    }
+   ],
+   "reading": "overuse"
   },
   "742893953": {
    "wp": "742893953",
@@ -207,7 +506,30 @@
    "repairs_12m": 7,
    "first": "2025-01-08",
    "last": "2026-09-06",
-   "median_gap_days": 45
+   "median_gap_days": 45,
+   "people_nearby": 875,
+   "people_served": 500,
+   "cap": 500,
+   "load": 1.75,
+   "causes": [
+    {
+     "what": "stainless rod (complete)",
+     "times": 6
+    },
+    {
+     "what": "handle or lever mechanism",
+     "times": 6
+    },
+    {
+     "what": "inner valve DN32",
+     "times": 4
+    },
+    {
+     "what": "outer valve DN40",
+     "times": 4
+    }
+   ],
+   "reading": "overuse"
   }
  },
  "call_to_repair": {

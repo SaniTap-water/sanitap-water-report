@@ -96,6 +96,31 @@
    ]
   },
   {
+   "wp": "742897270",
+   "site": "Maroantsetra",
+   "moves": [
+    "status ok → partial"
+   ],
+   "cause": "status record",
+   "wpop": [
+    84,
+    84
+   ],
+   "case_a": false,
+   "up": [],
+   "delta": {
+    "tco2e": 0.0,
+    "points": 0,
+    "people": 0
+   },
+   "records": [
+    "002784643c47429bb94bc57f7d95076d"
+   ],
+   "by": [
+    "6478af5594b1414d845b6cd994971c9d"
+   ]
+  },
+  {
    "wp": "833033181",
    "site": "Maroantsetra",
    "moves": [
@@ -121,10 +146,17 @@
    ]
   }
  ],
- "deleted": [],
+ "deleted": [
+  {
+   "file": "wq_sampling_piped.json",
+   "count": 18,
+   "ids": [],
+   "wps": []
+  }
+ ],
  "counts": {
   "no mWater change": 1,
-  "status record": 3
+  "status record": 4
  },
  "by_cause": {
   "no mWater change": {
@@ -139,7 +171,14 @@
   }
  },
  "case_a": [],
- "case_b": [],
+ "case_b": [
+  {
+   "file": "wq_sampling_piped.json",
+   "count": 18,
+   "ids": [],
+   "wps": []
+  }
+ ],
  "case_c": [],
  "repo_moved": true,
  "repo": {
@@ -150,7 +189,7 @@
  "params_changed": false,
  "week": 41,
  "year": 2026,
- "computed": "2026-10-07",
+ "computed": "2026-10-08",
  "baseline": {
   "commit": "956894c",
   "published": "2026-10-04 09:12"

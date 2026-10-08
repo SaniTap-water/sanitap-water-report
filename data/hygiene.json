@@ -1,7 +1,7 @@
 {
  "note": "Written by tools/rebuild_hygiene.py: hygiene-promotion sessions and the JMP-question survey on water points in the managed register, by the point's district.",
- "asof": "2026-10-05",
- "since_12m": "2025-10-05",
+ "asof": "2026-10-07",
+ "since_12m": "2025-10-07",
  "window_months": 12,
  "forms": {
   "sessions": {

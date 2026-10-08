@@ -1,6 +1,6 @@
 {
  "counts": {
-  "appel_signalement_pannes.csv": 2836,
+  "appel_signalement_pannes.csv": 2839,
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
@@ -14,7 +14,7 @@
   "piped_point_reg.json": 3,
   "piped_system_reg.json": 5,
   "piped_systems.csv": 25,
-  "pm.csv": 763,
+  "pm.csv": 765,
   "pou_survey.json": 142,
   "premiere_rehabilitation.csv": 0,
   "repair.json": 217,
@@ -23,8 +23,8 @@
   "wp_madavance.csv": 919,
   "wq_results.json": 736,
   "wq_results_piped.json": 46,
-  "wq_sampling_piped.json": 89
+  "wq_sampling_piped.json": 78
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-10-07"
+ "recorded": "2026-10-08"
 }

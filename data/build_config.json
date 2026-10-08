@@ -69,7 +69,10 @@
    3,
    7
   ],
-  "note": "Time-to-repair shares: the percentage of measured repairs completed within each of these many days of notification."
+  "note": "Time-to-repair shares: the percentage of measured repairs completed within each of these many days of notification.",
+  "target_within_days": 14,
+  "target_share": 0.9,
+  "target_note": "Target (Adriaan Mol, 7 Oct 2026): at least 90% of breakdowns repaired within 14 days, in line with the 18 days of downtime a year that the 347-day ceiling allows (tools/call_outcomes.py)."
  },
  "approvals": {
   "window_days": 180,
@@ -123,5 +126,14 @@
  "changes": {
   "note": "Rule of 7 Oct 2026 (tools/change_review.py): a week-on-week move of more than this share of tCO2e, water points in scope or people served, carried by edited or deleted mWater records, is provisional until Adriaan or Jan approves.",
   "major_move_pct": 2
+ },
+ "kiosk": {
+  "note": "The managed Tana kiosk's people served (tools/kiosk_people.py; rules of Adriaan Mol, 7 Oct 2026).",
+  "water_point": "1125843383",
+  "cards_recorded": 126,
+  "card_export": "Evidence/Endur'O/curtech_nfc_cards.json",
+  "census_hh_size": 3.9,
+  "census_hh_size_source": "INSTAT RGPH-3 (census of June 2018), Tome 1, Tableau 26: Analamanga, urban",
+  "survey_hh_sizes": "data/piped_survey_hh_sizes.json"
  }
 }

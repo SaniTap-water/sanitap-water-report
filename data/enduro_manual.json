@@ -11,13 +11,6 @@
    "as_at": "2026-09-18",
    "supplied_by": "Adriaan Mol, COO SaniTap",
    "doc": "data/enduro_disposition.csv - reconciliation of the 128-site contractor file against the 111-site list; superseded the earlier 138"
-  },
-  "people": {
-   "v": 146000,
-   "what": "Endur'O programme people figure: a prize-application figure, not a measured one",
-   "as_at": "2026-09-01",
-   "supplied_by": "SaniTap Zayed Prize application (Amber Bloomer), June 2026",
-   "doc": "SaniTap_Zayed_Prize_Responses_v3.docx (Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026): a prize-application figure, not measured; outside every managed figure since 5 Oct 2026"
   }
  },
  "register": {
@@ -42,5 +35,6 @@
   "matched_sys": 102,
   "matched_pts": 65,
   "south_near_contract": 10
- }
+ },
+ "_people_removed": "The Endur'O programme people figure was removed from the site on 7 Oct 2026 (decision of Adriaan Mol): a prize-application number, not a measured one. tools/check_consistency.py fails the build if it reappears."
 }

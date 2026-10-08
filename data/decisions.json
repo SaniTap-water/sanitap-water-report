@@ -555,7 +555,7 @@
    "logged_by": "Adriaan Mol"
   },
   "act-enduro-people-source": {
-   "answer": "Retired. The 146,000 Endur'O programme people figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026). It was a prize-application number, not a measured one, and has been outside every managed figure since 5 Oct 2026 (decision managed-figures). data/enduro_manual.json now names that source; the Endur'O card shows it as a prize-application figure.",
+   "answer": "Retired. The Endur'O programme people figure came from SaniTap's Zayed Prize application responses (SaniTap_Zayed_Prize_Responses_v3.docx; Amber Bloomer, \"Re: Remaining questions Zayed\", June 2026). It was a prize-application number, not a measured one; outside every managed figure since 5 Oct 2026 and removed from the site on 7 Oct 2026.",
    "decided_by": "Adriaan Mol, COO SaniTap",
    "decided_on": "2026-10-07",
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
@@ -608,6 +608,80 @@
    "decided_on": "2026-10-07",
    "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
    "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "endur-o-people-figure-removed-2026-10-07": {
+   "answer": "The Endur'O programme people figure is removed from the site entirely: from the Endur'O card, data/enduro_manual.json and every text on the page. tools/check_consistency.py fails the build if the number reappears in any published page.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "ambinanibe-second-point-2026-10-07": {
+   "answer": "Ambinanibe (742893805) is heavily overused (1758 people within reach against a cap of 500; 14 repairs on file, 5 in the past year): it is the case for a second water point. Task for Jan de Graaf (fleet growth): plan a second water point at Ambinanibe; closes when a site and a funding source are recorded.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "repair-target-2026-10-07": {
+   "answer": "Target: at least 90% of breakdown calls repaired within 14 days, in line with the 18 days of downtime a year the 347-day ceiling allows. On the cleaned set (one call per breakdown; a repair not logged counted to the first record showing the pump working) 484 of 584 breakdowns (82.9%) in the twelve months to 2026-10-05 met it. Calls with no repair record (362 of 616): (a) repaired but not logged 311, (b) still down or no later record 35, (c) duplicate or follow-up 16. Shown on the report (tools/call_outcomes.py); task for Angelo on the unlogged repairs.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "kiosk-people-rules-2026-10-07": {
+   "answer": "Kiosk people served (491) stand as published, not provisional. Household size: the census (RGPH-3, Analamanga urban 3.9) until a project survey measures it; the piped-system survey's value replaces it automatically (build_config kiosk.survey_hh_sizes). Cards: one card is one household until the contrary is proved; a check on the Curtech/Zoho card export flags cards sharing a name, phone or ID, counts each flagged pair as one household and lists the pairs on the report (tools/kiosk_people.py). Both rules are in the derivation. The check runs when the export is filed at Water Documents/Evidence/Endur'O/curtech_nfc_cards.json; none is on file yet.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-07",
+   "source": "Adriaan Mol, instruction for the water report, 7 Oct 2026",
+   "logged_on": "2026-10-07",
+   "logged_by": "Adriaan Mol"
+  },
+  "piped-sampling-deletions-2026-10-08": {
+   "answer": "Accepted as non-material: 11 records deleted in mWater from the piped water-quality sampling form ef8cf735 (\"Piped Water || Water Quality Testing_SDWS 3__Sampling\") between the pulls of 7 and 8 Oct 2026 (89 -> 78 responses: 59 final, 6 pending, 13 drafts, confirmed by a read of mWater). Checked first: the managed Tana kiosk (1125843376 / 1125843383) had no water-quality record before and has none after, so none of its records were lost; no headline figure moves (21,629 tCO2e, 745 points in scope, 126,201 people served, 347 days operational, as published in 82a7e11). The piped systems other than the kiosk are outside the managed portfolio. data/extract_rowcounts.json records 78; the form joins the record ledger (tools/change_review.py), so a future deletion on it is named record by record.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "approval-major-changes-2026-W41": {
+   "answer": "Major changes of week 41 approved: (b) records deleted from the piped water-quality sampling form ef8cf735 - 18 against the 4 Oct baseline (11 deleted overnight 7-8 Oct; 7 deleted 4-7 Oct, offset in the row count by newer records). Approved on Adriaan Mol's conditions of 8 Oct 2026, both met: the managed Tana kiosk had no water-quality record before or after; no headline figure moves (21,629 tCO2e, 745 points, 126,201 people, 347 days).",
+   "decided_by": "Adriaan Mol",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "headline": {
+    "tco2e": {
+     "before": 21629,
+     "after": 21629
+    },
+    "points": {
+     "before": 745,
+     "after": 745
+    },
+    "people": {
+     "before": 125710,
+     "after": 126201
+    },
+    "days_operational": {
+     "before": 347,
+     "after": 347
+    }
+   },
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "asana-approval-plan-2026-10-08": {
+   "answer": "Asana approval tasks (resource_subtype approval) need a Business or Enterprise plan; the sanitap.org workspace returned HTTP 402 on 8 Oct 2026. The weekly approval task is an ordinary task named 'Approve: major changes [week NN]', assigned to Adriaan with Jan following: completed by Adriaan or Jan means approved; a comment starting 'Rejected:' or 'Changes requested:' means not. tools/asana_setup.py and tools/change_review.py changed accordingly.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Asana API response of 8 Oct 2026",
+   "logged_on": "2026-10-08",
    "logged_by": "Adriaan Mol"
   }
  },

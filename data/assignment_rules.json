@@ -26,5 +26,9 @@
    "why": "carbon methodology and verifier questions",
    "pattern": "methodology|Gold Standard|verif|fNRB|VPA|ERSDWS|carbon"
   }
- ]
+ ],
+ "keep_owner": [
+  "act-ambinanibe-second-point"
+ ],
+ "keep_owner_note": "Actions whose named owner stands even where a rule would pick someone else (Adriaan Mol's choice)."
 }

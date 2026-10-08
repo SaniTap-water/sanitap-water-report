@@ -1,0 +1,2548 @@
+{
+ "note": "Written by tools/call_outcomes.py from the call-centre, preventive-maintenance and repair extracts.",
+ "asof": "2026-10-07",
+ "window_from_excl": "2025-10-07",
+ "calls": 617,
+ "classes": {
+  "repaired": 254,
+  "a": 311,
+  "b": 36,
+  "c": 16
+ },
+ "no_repair_calls": 363,
+ "breakdowns": 590,
+ "scored": 584,
+ "within_target": 484,
+ "share_within": 82.9,
+ "median_days": 0.0,
+ "target": {
+  "days": 14,
+  "share_pct": 90,
+  "downtime_days": 18
+ },
+ "meets_target": false,
+ "still_down": [
+  {
+   "wp": "670402221",
+   "site": "Fort-Dauphin",
+   "commune": "Ifarantsa",
+   "since": "2025-12-16",
+   "days": 295,
+   "calls": 3,
+   "rid": "7b61754706304e60aa344094c05cc49f"
+  },
+  {
+   "wp": "754036928",
+   "site": "Maroantsetra",
+   "commune": "Ankofa",
+   "since": "2025-12-17",
+   "days": 294,
+   "calls": 1,
+   "rid": "1c92a84f04d84fb088ad42150c50df32"
+  },
+  {
+   "wp": "742897531",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2025-12-23",
+   "days": 288,
+   "calls": 1,
+   "rid": "f886c6a21f7040e1878341731e628876"
+  },
+  {
+   "wp": "742897562",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-01-06",
+   "days": 274,
+   "calls": 1,
+   "rid": "aea9ab09b5c44466a34aa6ea65e23e16"
+  },
+  {
+   "wp": "698772166",
+   "site": "Maroantsetra",
+   "commune": "Voloina",
+   "since": "2026-02-06",
+   "days": 243,
+   "calls": 1,
+   "rid": "ce486c8e5bbe4213a1d79425ca4b10ff"
+  },
+  {
+   "wp": "742893881",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "since": "2026-02-11",
+   "days": 238,
+   "calls": 1,
+   "rid": "0c0e0fae332c40d0b379784f2c498bef"
+  },
+  {
+   "wp": "698773624",
+   "site": "Maroantsetra",
+   "commune": "Voloina",
+   "since": "2026-02-17",
+   "days": 232,
+   "calls": 1,
+   "rid": "81c6f022b87a46788f2c12fef331fb87"
+  },
+  {
+   "wp": "699596695",
+   "site": "Maroantsetra",
+   "commune": "Voloina",
+   "since": "2026-03-10",
+   "days": 211,
+   "calls": 1,
+   "rid": "6e7a318818c84a86ba694e54f569ff59"
+  },
+  {
+   "wp": "670401639",
+   "site": "Fort-Dauphin",
+   "commune": "Manantenina",
+   "since": "2026-03-17",
+   "days": 204,
+   "calls": 1,
+   "rid": "1864429878db4fe18adeb1648762dea9"
+  },
+  {
+   "wp": "742894480",
+   "site": "Fort-Dauphin",
+   "commune": "Ifarantsa",
+   "since": "2026-03-17",
+   "days": 204,
+   "calls": 1,
+   "rid": "d456527b6e944fac897b0b77423bf957"
+  },
+  {
+   "wp": "742894600",
+   "site": "Fort-Dauphin",
+   "commune": "Manambaro",
+   "since": "2026-03-17",
+   "days": 204,
+   "calls": 1,
+   "rid": "8c1d72a96b9d42f591e60fecc18e4da8"
+  },
+  {
+   "wp": "742894703",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "since": "2026-03-17",
+   "days": 204,
+   "calls": 1,
+   "rid": "64c5897f44f44f3d8fcb60ab8aac849c"
+  },
+  {
+   "wp": "742895120",
+   "site": "Fort-Dauphin",
+   "commune": "Analapatsy",
+   "since": "2026-03-17",
+   "days": 204,
+   "calls": 1,
+   "rid": "d796f2419eb54870bd37856a7eea1224"
+  },
+  {
+   "wp": "782134540",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-03-18",
+   "days": 203,
+   "calls": 1,
+   "rid": "30ff01a2e32e4e518d4c5ef8b414946a"
+  },
+  {
+   "wp": "742897476",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-03-26",
+   "days": 195,
+   "calls": 1,
+   "rid": "8167505d371f45e9aa90654494a1c19c"
+  },
+  {
+   "wp": "698770999",
+   "site": "Maroantsetra",
+   "commune": "Ankofabe",
+   "since": "2026-03-30",
+   "days": 191,
+   "calls": 1,
+   "rid": "5d66fbef5e314ba0ac31ba4bef1c1cac"
+  },
+  {
+   "wp": "742894521",
+   "site": "Fort-Dauphin",
+   "commune": "Manambaro",
+   "since": "2026-03-30",
+   "days": 191,
+   "calls": 1,
+   "rid": "f06452b8652f433cb7f7b614a3877f23"
+  },
+  {
+   "wp": "742894260",
+   "site": "Fort-Dauphin",
+   "commune": "Mandiso",
+   "since": "2026-04-20",
+   "days": 170,
+   "calls": 2,
+   "rid": "e27b5ae71bd7442aac0fa8b4b2a4784c"
+  },
+  {
+   "wp": "742894239",
+   "site": "Fort-Dauphin",
+   "commune": "Mandiso",
+   "since": "2026-04-28",
+   "days": 162,
+   "calls": 1,
+   "rid": "ed2f464e9e29413f970aee779035e7c8"
+  },
+  {
+   "wp": "742894291",
+   "site": "Fort-Dauphin",
+   "commune": "Mandiso",
+   "since": "2026-05-12",
+   "days": 148,
+   "calls": 1,
+   "rid": "f51c9642ada54b92b5351c350c2457a6"
+  },
+  {
+   "wp": "742894844",
+   "site": "Fort-Dauphin",
+   "commune": "Ranopiso",
+   "since": "2026-05-15",
+   "days": 145,
+   "calls": 1,
+   "rid": "1ee5132e25c94bfca4c542f68a6df984"
+  },
+  {
+   "wp": "742894796",
+   "site": "Fort-Dauphin",
+   "commune": "Ankaramena",
+   "since": "2026-07-03",
+   "days": 96,
+   "calls": 1,
+   "rid": "9fdc9691099e485b9d47b26c0a364cac"
+  },
+  {
+   "wp": "773042759",
+   "site": "Maroantsetra",
+   "commune": "Mariarano",
+   "since": "2026-07-20",
+   "days": 79,
+   "calls": 1,
+   "rid": "2bb79c8e80ee42e48c1995dd3960e3ab"
+  },
+  {
+   "wp": "742893850",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "since": "2026-07-22",
+   "days": 77,
+   "calls": 1,
+   "rid": "013aee47571b431f9bd6553d1877c5cc"
+  },
+  {
+   "wp": "742897971",
+   "site": "Maroantsetra",
+   "commune": "Mahalevona",
+   "since": "2026-07-27",
+   "days": 72,
+   "calls": 1,
+   "rid": "b90bb69bac7547f98423a394e52ac185"
+  },
+  {
+   "wp": "742897098",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-09-02",
+   "days": 35,
+   "calls": 1,
+   "rid": "247fc27084b342b7a4f0d61cde107f2a"
+  },
+  {
+   "wp": "742897445",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-09-02",
+   "days": 35,
+   "calls": 1,
+   "rid": "4848fa6dd429483c9f8428f209d926d5"
+  },
+  {
+   "wp": "786865303",
+   "site": "Maroantsetra",
+   "commune": "Mariarano",
+   "since": "2026-09-08",
+   "days": 29,
+   "calls": 1,
+   "rid": "f9897219a387465691015daff6069d8a"
+  },
+  {
+   "wp": "742897964",
+   "site": "Maroantsetra",
+   "commune": "Mahalevona",
+   "since": "2026-09-15",
+   "days": 22,
+   "calls": 1,
+   "rid": "9e8d55abd56a457688e7ca10f6cd37c8"
+  },
+  {
+   "wp": "670401770",
+   "site": "Fort-Dauphin",
+   "commune": "Ampasy Nahampoana",
+   "since": "2026-09-18",
+   "days": 19,
+   "calls": 1,
+   "rid": "f7009970d0b54a17a1ceed76addea2c9"
+  },
+  {
+   "wp": "742893922",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "since": "2026-09-28",
+   "days": 9,
+   "calls": 1,
+   "rid": "c3aa09ed5937460b9ca0b240ed0cad10"
+  },
+  {
+   "wp": "670401691",
+   "site": "Fort-Dauphin",
+   "commune": "Manantenina",
+   "since": "2026-10-02",
+   "days": 5,
+   "calls": 1,
+   "rid": "c0cc3daf23c64bcd862a2314fff7d7c0"
+  },
+  {
+   "wp": "698771110",
+   "site": "Maroantsetra",
+   "commune": "Ankofabe",
+   "since": "2026-10-05",
+   "days": 2,
+   "calls": 1,
+   "rid": "9b7141656ff74556849efb8e16d1f4ea"
+  },
+  {
+   "wp": "742893946",
+   "site": "Fort-Dauphin",
+   "commune": "Soanierana",
+   "since": "2026-10-05",
+   "days": 2,
+   "calls": 1,
+   "rid": "635483bf3e2f48279d92b7ef791c8183"
+  },
+  {
+   "wp": "833033181",
+   "site": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "since": "2026-10-05",
+   "days": 2,
+   "calls": 1,
+   "rid": "51bd669956f341d3ab7fe1c99ebd5940"
+  },
+  {
+   "wp": "742897270",
+   "site": "Maroantsetra",
+   "commune": "Anjahana",
+   "since": "2026-10-07",
+   "days": 0,
+   "calls": 1,
+   "rid": "002784643c47429bb94bc57f7d95076d"
+  }
+ ],
+ "unlogged": [
+  {
+   "wp": "742893874",
+   "site": "Fort-Dauphin",
+   "reported": "2025-11-05",
+   "working_by": "2025-12-15"
+  },
+  {
+   "wp": "742895278",
+   "site": "Fort-Dauphin",
+   "reported": "2025-11-10",
+   "working_by": "2025-12-03"
+  },
+  {
+   "wp": "742896657",
+   "site": "Fort-Dauphin",
+   "reported": "2025-11-10",
+   "working_by": "2026-03-23"
+  },
+  {
+   "wp": "742895254",
+   "site": "Maroantsetra",
+   "reported": "2025-11-14",
+   "working_by": "2025-11-14"
+  },
+  {
+   "wp": "699596815",
+   "site": "Maroantsetra",
+   "reported": "2025-11-25",
+   "working_by": "2025-12-17"
+  },
+  {
+   "wp": "742894222",
+   "site": "Fort-Dauphin",
+   "reported": "2025-12-15",
+   "working_by": "2026-03-04"
+  },
+  {
+   "wp": "742894583",
+   "site": "Fort-Dauphin",
+   "reported": "2025-12-16",
+   "working_by": "2026-01-15"
+  },
+  {
+   "wp": "742893867",
+   "site": "Fort-Dauphin",
+   "reported": "2025-12-22",
+   "working_by": "2026-01-16"
+  },
+  {
+   "wp": "698772173",
+   "site": "Maroantsetra",
+   "reported": "2026-01-07",
+   "working_by": "2026-02-06"
+  },
+  {
+   "wp": "742896640",
+   "site": "Maroantsetra",
+   "reported": "2026-01-12",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "742895168",
+   "site": "Fort-Dauphin",
+   "reported": "2026-01-21",
+   "working_by": "2026-01-21"
+  },
+  {
+   "wp": "742896200",
+   "site": "Maroantsetra",
+   "reported": "2026-01-21",
+   "working_by": "2026-02-06"
+  },
+  {
+   "wp": "699596994",
+   "site": "Maroantsetra",
+   "reported": "2026-01-23",
+   "working_by": "2026-02-02"
+  },
+  {
+   "wp": "699597012",
+   "site": "Maroantsetra",
+   "reported": "2026-01-23",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "742894521",
+   "site": "Fort-Dauphin",
+   "reported": "2026-01-26",
+   "working_by": "2026-02-10"
+  },
+  {
+   "wp": "742895883",
+   "site": "Maroantsetra",
+   "reported": "2026-02-02",
+   "working_by": "2026-02-09"
+  },
+  {
+   "wp": "698772135",
+   "site": "Maroantsetra",
+   "reported": "2026-02-04",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "698772238",
+   "site": "Maroantsetra",
+   "reported": "2026-02-04",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "698772245",
+   "site": "Maroantsetra",
+   "reported": "2026-02-04",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "742893960",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-04",
+   "working_by": "2026-02-09"
+  },
+  {
+   "wp": "698772111",
+   "site": "Maroantsetra",
+   "reported": "2026-02-05",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "698772221",
+   "site": "Maroantsetra",
+   "reported": "2026-02-05",
+   "working_by": "2026-02-06"
+  },
+  {
+   "wp": "698772180",
+   "site": "Maroantsetra",
+   "reported": "2026-02-06",
+   "working_by": "2026-02-06"
+  },
+  {
+   "wp": "698772214",
+   "site": "Maroantsetra",
+   "reported": "2026-02-06",
+   "working_by": "2026-02-06"
+  },
+  {
+   "wp": "742896891",
+   "site": "Maroantsetra",
+   "reported": "2026-02-09",
+   "working_by": "2026-02-10"
+  },
+  {
+   "wp": "699597012",
+   "site": "Maroantsetra",
+   "reported": "2026-02-10",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "699597029",
+   "site": "Maroantsetra",
+   "reported": "2026-02-10",
+   "working_by": "2026-02-10"
+  },
+  {
+   "wp": "699597407",
+   "site": "Maroantsetra",
+   "reported": "2026-02-10",
+   "working_by": "2026-02-10"
+  },
+  {
+   "wp": "742894150",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-10",
+   "working_by": "2026-02-11"
+  },
+  {
+   "wp": "742894370",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-10",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "698772197",
+   "site": "Maroantsetra",
+   "reported": "2026-02-11",
+   "working_by": "2026-02-11"
+  },
+  {
+   "wp": "699597036",
+   "site": "Maroantsetra",
+   "reported": "2026-02-11",
+   "working_by": "2026-02-11"
+  },
+  {
+   "wp": "699597067",
+   "site": "Maroantsetra",
+   "reported": "2026-02-11",
+   "working_by": "2026-02-11"
+  },
+  {
+   "wp": "742895168",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-11",
+   "working_by": "2026-02-19"
+  },
+  {
+   "wp": "698772317",
+   "site": "Maroantsetra",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "698772331",
+   "site": "Maroantsetra",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "698773631",
+   "site": "Maroantsetra",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "699597050",
+   "site": "Maroantsetra",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "742894301",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "742894318",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-12",
+   "working_by": "2026-02-12"
+  },
+  {
+   "wp": "698772348",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "698773617",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "699597108",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "699597115",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "742894356",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "742894363",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "742896523",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-13"
+  },
+  {
+   "wp": "742896640",
+   "site": "Maroantsetra",
+   "reported": "2026-02-13",
+   "working_by": "2026-02-14"
+  },
+  {
+   "wp": "699597081",
+   "site": "Maroantsetra",
+   "reported": "2026-02-16",
+   "working_by": "2026-03-06"
+  },
+  {
+   "wp": "742894318",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-16",
+   "working_by": "2026-02-18"
+  },
+  {
+   "wp": "670401615",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-17",
+   "working_by": "2026-02-17"
+  },
+  {
+   "wp": "698773648",
+   "site": "Maroantsetra",
+   "reported": "2026-02-17",
+   "working_by": "2026-02-17"
+  },
+  {
+   "wp": "699595948",
+   "site": "Maroantsetra",
+   "reported": "2026-02-17",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699597122",
+   "site": "Maroantsetra",
+   "reported": "2026-02-17",
+   "working_by": "2026-02-18"
+  },
+  {
+   "wp": "742894026",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-17",
+   "working_by": "2026-02-19"
+  },
+  {
+   "wp": "742894648",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-18",
+   "working_by": "2026-03-05"
+  },
+  {
+   "wp": "670401763",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "699597335",
+   "site": "Maroantsetra",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "699597373",
+   "site": "Maroantsetra",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "742895247",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "742895395",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "742895405",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-20",
+   "working_by": "2026-02-20"
+  },
+  {
+   "wp": "742895412",
+   "site": "Maroantsetra",
+   "reported": "2026-02-23",
+   "working_by": "2026-08-18"
+  },
+  {
+   "wp": "833033253",
+   "site": "Maroantsetra",
+   "reported": "2026-02-23",
+   "working_by": "2026-03-24"
+  },
+  {
+   "wp": "699597328",
+   "site": "Maroantsetra",
+   "reported": "2026-02-24",
+   "working_by": "2026-02-24"
+  },
+  {
+   "wp": "699597366",
+   "site": "Maroantsetra",
+   "reported": "2026-02-24",
+   "working_by": "2026-02-24"
+  },
+  {
+   "wp": "742895247",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-24",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "742896578",
+   "site": "Maroantsetra",
+   "reported": "2026-02-24",
+   "working_by": "2026-02-24"
+  },
+  {
+   "wp": "742896592",
+   "site": "Maroantsetra",
+   "reported": "2026-02-24",
+   "working_by": "2026-08-18"
+  },
+  {
+   "wp": "699597407",
+   "site": "Maroantsetra",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "699597421",
+   "site": "Maroantsetra",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "699597438",
+   "site": "Maroantsetra",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "742893836",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "742893898",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "742894033",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-25"
+  },
+  {
+   "wp": "742894057",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-25",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "699597414",
+   "site": "Maroantsetra",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "699597452",
+   "site": "Maroantsetra",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "699597469",
+   "site": "Maroantsetra",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "699597476",
+   "site": "Maroantsetra",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "742894040",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "742894071",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "742894181",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-26",
+   "working_by": "2026-02-26"
+  },
+  {
+   "wp": "699597483",
+   "site": "Maroantsetra",
+   "reported": "2026-02-27",
+   "working_by": "2026-02-27"
+  },
+  {
+   "wp": "699597555",
+   "site": "Maroantsetra",
+   "reported": "2026-02-27",
+   "working_by": "2026-02-27"
+  },
+  {
+   "wp": "742894064",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-27",
+   "working_by": "2026-02-27"
+  },
+  {
+   "wp": "742894772",
+   "site": "Fort-Dauphin",
+   "reported": "2026-02-27",
+   "working_by": "2026-03-06"
+  },
+  {
+   "wp": "742893946",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-02",
+   "working_by": "2026-03-03"
+  },
+  {
+   "wp": "742893953",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-02",
+   "working_by": "2026-03-03"
+  },
+  {
+   "wp": "698774003",
+   "site": "Maroantsetra",
+   "reported": "2026-03-03",
+   "working_by": "2026-03-03"
+  },
+  {
+   "wp": "699597490",
+   "site": "Maroantsetra",
+   "reported": "2026-03-03",
+   "working_by": "2026-03-03"
+  },
+  {
+   "wp": "742896633",
+   "site": "Maroantsetra",
+   "reported": "2026-03-03",
+   "working_by": "2026-03-30"
+  },
+  {
+   "wp": "770197467",
+   "site": "Maroantsetra",
+   "reported": "2026-03-03",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699597500",
+   "site": "Maroantsetra",
+   "reported": "2026-03-04",
+   "working_by": "2026-03-04"
+  },
+  {
+   "wp": "699597531",
+   "site": "Maroantsetra",
+   "reported": "2026-03-04",
+   "working_by": "2026-03-04"
+  },
+  {
+   "wp": "699597548",
+   "site": "Maroantsetra",
+   "reported": "2026-03-04",
+   "working_by": "2026-03-04"
+  },
+  {
+   "wp": "699597562",
+   "site": "Maroantsetra",
+   "reported": "2026-03-05",
+   "working_by": "2026-03-05"
+  },
+  {
+   "wp": "699597579",
+   "site": "Maroantsetra",
+   "reported": "2026-03-05",
+   "working_by": "2026-03-05"
+  },
+  {
+   "wp": "742894875",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-05",
+   "working_by": "2026-03-23"
+  },
+  {
+   "wp": "742894208",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-06",
+   "working_by": "2026-03-06"
+  },
+  {
+   "wp": "742894538",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-09",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "742896286",
+   "site": "Maroantsetra",
+   "reported": "2026-03-09",
+   "working_by": "2026-03-09"
+  },
+  {
+   "wp": "742893915",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-10",
+   "working_by": "2026-03-10"
+  },
+  {
+   "wp": "742894459",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-10",
+   "working_by": "2026-03-10"
+  },
+  {
+   "wp": "742894473",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-10",
+   "working_by": "2026-03-10"
+  },
+  {
+   "wp": "670401990",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "699595845",
+   "site": "Maroantsetra",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "742894411",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "742894428",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "742894435",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "742898020",
+   "site": "Maroantsetra",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "742972377",
+   "site": "Maroantsetra",
+   "reported": "2026-03-11",
+   "working_by": "2026-03-11"
+  },
+  {
+   "wp": "699595632",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699595711",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699595728",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699595759",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "742894442",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-12",
+   "working_by": "2026-04-21"
+  },
+  {
+   "wp": "742895302",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-23"
+  },
+  {
+   "wp": "742895728",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-16"
+  },
+  {
+   "wp": "754036911",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "764113653",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "782134533",
+   "site": "Maroantsetra",
+   "reported": "2026-03-12",
+   "working_by": "2026-03-12"
+  },
+  {
+   "wp": "699595649",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "699595876",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-04-21"
+  },
+  {
+   "wp": "771580686",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "771580693",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "771580710",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "771580734",
+   "site": "Maroantsetra",
+   "reported": "2026-03-13",
+   "working_by": "2026-03-13"
+  },
+  {
+   "wp": "742893805",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-16",
+   "working_by": "2026-03-16"
+  },
+  {
+   "wp": "742893946",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-16",
+   "working_by": "2026-03-16"
+  },
+  {
+   "wp": "742893953",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-16",
+   "working_by": "2026-03-16"
+  },
+  {
+   "wp": "742897627",
+   "site": "Maroantsetra",
+   "reported": "2026-03-16",
+   "working_by": "2026-03-17"
+  },
+  {
+   "wp": "699595883",
+   "site": "Maroantsetra",
+   "reported": "2026-03-17",
+   "working_by": "2026-03-17"
+  },
+  {
+   "wp": "699595917",
+   "site": "Maroantsetra",
+   "reported": "2026-03-17",
+   "working_by": "2026-03-17"
+  },
+  {
+   "wp": "771580727",
+   "site": "Maroantsetra",
+   "reported": "2026-03-17",
+   "working_by": "2026-03-17"
+  },
+  {
+   "wp": "771580741",
+   "site": "Maroantsetra",
+   "reported": "2026-03-17",
+   "working_by": "2026-03-17"
+  },
+  {
+   "wp": "771799231",
+   "site": "Maroantsetra",
+   "reported": "2026-03-18",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "771799262",
+   "site": "Maroantsetra",
+   "reported": "2026-03-18",
+   "working_by": "2026-03-18"
+  },
+  {
+   "wp": "771799279",
+   "site": "Maroantsetra",
+   "reported": "2026-03-18",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "771799293",
+   "site": "Maroantsetra",
+   "reported": "2026-03-18",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "698771206",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "699595869",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "699595900",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "742894095",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "742894105",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "742894239",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-23"
+  },
+  {
+   "wp": "742894459",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-19",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "771580703",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "771783434",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "771799286",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "771799303",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-19"
+  },
+  {
+   "wp": "773614497",
+   "site": "Maroantsetra",
+   "reported": "2026-03-19",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "742894260",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-20",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "742894284",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-20",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "742894291",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-20",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "771799248",
+   "site": "Maroantsetra",
+   "reported": "2026-03-20",
+   "working_by": "2026-03-20"
+  },
+  {
+   "wp": "742894978",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-24",
+   "working_by": "2026-03-24"
+  },
+  {
+   "wp": "742894985",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-24",
+   "working_by": "2026-03-24"
+  },
+  {
+   "wp": "742895034",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-24",
+   "working_by": "2026-03-24"
+  },
+  {
+   "wp": "742897988",
+   "site": "Maroantsetra",
+   "reported": "2026-03-24",
+   "working_by": "2026-03-24"
+  },
+  {
+   "wp": "742894875",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742894916",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742895137",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742897658",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742897713",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742897823",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742897926",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-08-26"
+  },
+  {
+   "wp": "742897933",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742898013",
+   "site": "Maroantsetra",
+   "reported": "2026-03-25",
+   "working_by": "2026-03-25"
+  },
+  {
+   "wp": "742894820",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742894851",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742894868",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742894923",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-26",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742895625",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "742895797",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "742897373",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742897706",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742897737",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742897782",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-03-26"
+  },
+  {
+   "wp": "742897809",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-04-23"
+  },
+  {
+   "wp": "742897919",
+   "site": "Maroantsetra",
+   "reported": "2026-03-26",
+   "working_by": "2026-04-21"
+  },
+  {
+   "wp": "742894772",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-27",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "742894813",
+   "site": "Fort-Dauphin",
+   "reported": "2026-03-27",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "772365307",
+   "site": "Maroantsetra",
+   "reported": "2026-03-27",
+   "working_by": "2026-03-27"
+  },
+  {
+   "wp": "742895577",
+   "site": "Maroantsetra",
+   "reported": "2026-04-14",
+   "working_by": "2026-05-20"
+  },
+  {
+   "wp": "698771976",
+   "site": "Maroantsetra",
+   "reported": "2026-04-15",
+   "working_by": "2026-05-19"
+  },
+  {
+   "wp": "742896619",
+   "site": "Maroantsetra",
+   "reported": "2026-04-15",
+   "working_by": "2026-05-19"
+  },
+  {
+   "wp": "742895591",
+   "site": "Maroantsetra",
+   "reported": "2026-04-16",
+   "working_by": "2026-05-20"
+  },
+  {
+   "wp": "699596925",
+   "site": "Maroantsetra",
+   "reported": "2026-04-20",
+   "working_by": "2026-05-19"
+  },
+  {
+   "wp": "742896437",
+   "site": "Maroantsetra",
+   "reported": "2026-05-08",
+   "working_by": "2026-05-08"
+  },
+  {
+   "wp": "670401691",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-13",
+   "working_by": "2026-05-17"
+  },
+  {
+   "wp": "742895742",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-13",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742895821",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-13",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742894923",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-15",
+   "working_by": "2026-05-16"
+  },
+  {
+   "wp": "742895230",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-15",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742895278",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-15",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742895302",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-15",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "742895333",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-15",
+   "working_by": "2026-05-15"
+  },
+  {
+   "wp": "698795345",
+   "site": "Maroantsetra",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-21"
+  },
+  {
+   "wp": "699597971",
+   "site": "Maroantsetra",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-22"
+  },
+  {
+   "wp": "742893836",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-21"
+  },
+  {
+   "wp": "742893922",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-21"
+  },
+  {
+   "wp": "742896011",
+   "site": "Maroantsetra",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-21"
+  },
+  {
+   "wp": "786872060",
+   "site": "Maroantsetra",
+   "reported": "2026-05-21",
+   "working_by": "2026-05-22"
+  },
+  {
+   "wp": "742894662",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-22",
+   "working_by": "2026-05-22"
+  },
+  {
+   "wp": "742894789",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-22",
+   "working_by": "2026-05-22"
+  },
+  {
+   "wp": "742894796",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-22",
+   "working_by": "2026-05-22"
+  },
+  {
+   "wp": "742895838",
+   "site": "Maroantsetra",
+   "reported": "2026-05-22",
+   "working_by": "2026-07-07"
+  },
+  {
+   "wp": "771021680",
+   "site": "Maroantsetra",
+   "reported": "2026-05-26",
+   "working_by": "2026-07-22"
+  },
+  {
+   "wp": "794587460",
+   "site": "Maroantsetra",
+   "reported": "2026-05-28",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "797195301",
+   "site": "Maroantsetra",
+   "reported": "2026-05-28",
+   "working_by": "2026-05-28"
+  },
+  {
+   "wp": "742894978",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-29",
+   "working_by": "2026-06-01"
+  },
+  {
+   "wp": "742894985",
+   "site": "Fort-Dauphin",
+   "reported": "2026-05-29",
+   "working_by": "2026-06-01"
+  },
+  {
+   "wp": "797195318",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "797885233",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "799521955",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "803229680",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "805544226",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "810377501",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "810943803",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "833033181",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "833033208",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "833033246",
+   "site": "Maroantsetra",
+   "reported": "2026-05-29",
+   "working_by": "2026-05-29"
+  },
+  {
+   "wp": "791617832",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "792022655",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "792494830",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "792699587",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "794012203",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "794012210",
+   "site": "Maroantsetra",
+   "reported": "2026-05-30",
+   "working_by": "2026-05-30"
+  },
+  {
+   "wp": "786871997",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "786872060",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "800634100",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "812862094",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "825513589",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "833033253",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "905251389",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "905251396",
+   "site": "Maroantsetra",
+   "reported": "2026-06-03",
+   "working_by": "2026-06-03"
+  },
+  {
+   "wp": "742894442",
+   "site": "Fort-Dauphin",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "742897885",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "822906175",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "823466032",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "823946480",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "824580917",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "905251327",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "905251334",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-08"
+  },
+  {
+   "wp": "905251341",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "905251358",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "905251372",
+   "site": "Maroantsetra",
+   "reported": "2026-06-04",
+   "working_by": "2026-06-04"
+  },
+  {
+   "wp": "699597407",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "774009687",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "778694357",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "779506385",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "833032867",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "833032881",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "833033019",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "833033033",
+   "site": "Maroantsetra",
+   "reported": "2026-06-05",
+   "working_by": "2026-06-05"
+  },
+  {
+   "wp": "742893960",
+   "site": "Fort-Dauphin",
+   "reported": "2026-06-06",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "742897971",
+   "site": "Maroantsetra",
+   "reported": "2026-06-06",
+   "working_by": "2026-06-09"
+  },
+  {
+   "wp": "773042759",
+   "site": "Maroantsetra",
+   "reported": "2026-06-06",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "833032764",
+   "site": "Maroantsetra",
+   "reported": "2026-06-06",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "833032771",
+   "site": "Maroantsetra",
+   "reported": "2026-06-06",
+   "working_by": "2026-06-06"
+  },
+  {
+   "wp": "742897933",
+   "site": "Maroantsetra",
+   "reported": "2026-06-09",
+   "working_by": "2026-06-09"
+  },
+  {
+   "wp": "773044940",
+   "site": "Maroantsetra",
+   "reported": "2026-06-09",
+   "working_by": "2026-06-09"
+  },
+  {
+   "wp": "773614497",
+   "site": "Maroantsetra",
+   "reported": "2026-06-09",
+   "working_by": "2026-06-09"
+  },
+  {
+   "wp": "833032702",
+   "site": "Maroantsetra",
+   "reported": "2026-06-09",
+   "working_by": "2026-06-09"
+  },
+  {
+   "wp": "773028603",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "775759299",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "776596880",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "776609443",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "777126165",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "833032946",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "833032953",
+   "site": "Maroantsetra",
+   "reported": "2026-06-10",
+   "working_by": "2026-06-10"
+  },
+  {
+   "wp": "770197467",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "772300771",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "772741428",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "773024427",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "773597170",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "833032647",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "833032661",
+   "site": "Maroantsetra",
+   "reported": "2026-06-11",
+   "working_by": "2026-06-11"
+  },
+  {
+   "wp": "763895314",
+   "site": "Maroantsetra",
+   "reported": "2026-06-12",
+   "working_by": "2026-06-12"
+  },
+  {
+   "wp": "763895321",
+   "site": "Maroantsetra",
+   "reported": "2026-06-12",
+   "working_by": "2026-06-12"
+  },
+  {
+   "wp": "764166242",
+   "site": "Maroantsetra",
+   "reported": "2026-06-12",
+   "working_by": "2026-06-12"
+  },
+  {
+   "wp": "820780971",
+   "site": "Maroantsetra",
+   "reported": "2026-06-15",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "817548803",
+   "site": "Maroantsetra",
+   "reported": "2026-06-16",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "820198370",
+   "site": "Maroantsetra",
+   "reported": "2026-06-16",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "905251255",
+   "site": "Maroantsetra",
+   "reported": "2026-06-16",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "905251262",
+   "site": "Maroantsetra",
+   "reported": "2026-06-16",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "905251279",
+   "site": "Maroantsetra",
+   "reported": "2026-06-16",
+   "working_by": "2026-06-16"
+  },
+  {
+   "wp": "819378051",
+   "site": "Maroantsetra",
+   "reported": "2026-06-17",
+   "working_by": "2026-06-17"
+  },
+  {
+   "wp": "905251286",
+   "site": "Maroantsetra",
+   "reported": "2026-06-17",
+   "working_by": "2026-06-18"
+  },
+  {
+   "wp": "905251293",
+   "site": "Maroantsetra",
+   "reported": "2026-06-17",
+   "working_by": "2026-06-17"
+  },
+  {
+   "wp": "813642325",
+   "site": "Maroantsetra",
+   "reported": "2026-06-18",
+   "working_by": "2026-06-18"
+  },
+  {
+   "wp": "816234895",
+   "site": "Maroantsetra",
+   "reported": "2026-06-18",
+   "working_by": "2026-06-18"
+  },
+  {
+   "wp": "897922519",
+   "site": "Maroantsetra",
+   "reported": "2026-06-18",
+   "working_by": "2026-06-19"
+  },
+  {
+   "wp": "905251248",
+   "site": "Maroantsetra",
+   "reported": "2026-06-18",
+   "working_by": "2026-06-18"
+  },
+  {
+   "wp": "742897270",
+   "site": "Maroantsetra",
+   "reported": "2026-06-19",
+   "working_by": "2026-06-20"
+  },
+  {
+   "wp": "813933184",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "814009107",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "814478712",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "815132789",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "905251200",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "905251217",
+   "site": "Maroantsetra",
+   "reported": "2026-06-24",
+   "working_by": "2026-06-24"
+  },
+  {
+   "wp": "825367379",
+   "site": "Maroantsetra",
+   "reported": "2026-06-25",
+   "working_by": "2026-06-25"
+  },
+  {
+   "wp": "897922492",
+   "site": "Maroantsetra",
+   "reported": "2026-06-25",
+   "working_by": "2026-06-25"
+  },
+  {
+   "wp": "897922595",
+   "site": "Maroantsetra",
+   "reported": "2026-06-25",
+   "working_by": "2026-06-25"
+  },
+  {
+   "wp": "905251190",
+   "site": "Maroantsetra",
+   "reported": "2026-06-25",
+   "working_by": "2026-06-25"
+  },
+  {
+   "wp": "905251224",
+   "site": "Maroantsetra",
+   "reported": "2026-06-25",
+   "working_by": "2026-06-25"
+  },
+  {
+   "wp": "742897641",
+   "site": "Maroantsetra",
+   "reported": "2026-07-03",
+   "working_by": "2026-07-07"
+  },
+  {
+   "wp": "781126427",
+   "site": "Maroantsetra",
+   "reported": "2026-07-03",
+   "working_by": "2026-07-03"
+  },
+  {
+   "wp": "786932780",
+   "site": "Maroantsetra",
+   "reported": "2026-07-03",
+   "working_by": "2026-07-03"
+  },
+  {
+   "wp": "791122592",
+   "site": "Maroantsetra",
+   "reported": "2026-07-03",
+   "working_by": "2026-07-03"
+  },
+  {
+   "wp": "833033040",
+   "site": "Maroantsetra",
+   "reported": "2026-07-03",
+   "working_by": "2026-07-03"
+  },
+  {
+   "wp": "780230042",
+   "site": "Maroantsetra",
+   "reported": "2026-07-04",
+   "working_by": "2026-07-04"
+  },
+  {
+   "wp": "781059150",
+   "site": "Maroantsetra",
+   "reported": "2026-07-04",
+   "working_by": "2026-07-04"
+  },
+  {
+   "wp": "833033057",
+   "site": "Maroantsetra",
+   "reported": "2026-07-08",
+   "working_by": "2026-07-08"
+  },
+  {
+   "wp": "783484655",
+   "site": "Maroantsetra",
+   "reported": "2026-07-09",
+   "working_by": "2026-07-09"
+  },
+  {
+   "wp": "784302954",
+   "site": "Maroantsetra",
+   "reported": "2026-07-09",
+   "working_by": "2026-07-09"
+  },
+  {
+   "wp": "786865303",
+   "site": "Maroantsetra",
+   "reported": "2026-07-09",
+   "working_by": "2026-07-09"
+  },
+  {
+   "wp": "833033095",
+   "site": "Maroantsetra",
+   "reported": "2026-07-09",
+   "working_by": "2026-07-09"
+  },
+  {
+   "wp": "833033105",
+   "site": "Maroantsetra",
+   "reported": "2026-07-09",
+   "working_by": "2026-07-10"
+  },
+  {
+   "wp": "699597421",
+   "site": "Maroantsetra",
+   "reported": "2026-07-10",
+   "working_by": "2026-07-14"
+  },
+  {
+   "wp": "781940247",
+   "site": "Maroantsetra",
+   "reported": "2026-07-10",
+   "working_by": "2026-07-10"
+  },
+  {
+   "wp": "783761183",
+   "site": "Maroantsetra",
+   "reported": "2026-07-10",
+   "working_by": "2026-07-10"
+  },
+  {
+   "wp": "833033064",
+   "site": "Maroantsetra",
+   "reported": "2026-07-10",
+   "working_by": "2026-07-10"
+  },
+  {
+   "wp": "774001555",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-20"
+  },
+  {
+   "wp": "775756210",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-20"
+  },
+  {
+   "wp": "778246888",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-20"
+  },
+  {
+   "wp": "778747750",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-20"
+  },
+  {
+   "wp": "779461066",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-20"
+  },
+  {
+   "wp": "779461073",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "833032812",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "833032836",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "833032939",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "833032984",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "833033002",
+   "site": "Maroantsetra",
+   "reported": "2026-07-19",
+   "working_by": "2026-07-19"
+  },
+  {
+   "wp": "771703469",
+   "site": "Maroantsetra",
+   "reported": "2026-07-22",
+   "working_by": "2026-07-22"
+  },
+  {
+   "wp": "833032654",
+   "site": "Maroantsetra",
+   "reported": "2026-07-22",
+   "working_by": "2026-07-22"
+  },
+  {
+   "wp": "772383873",
+   "site": "Maroantsetra",
+   "reported": "2026-07-23",
+   "working_by": "2026-07-23"
+  },
+  {
+   "wp": "833032692",
+   "site": "Maroantsetra",
+   "reported": "2026-07-23",
+   "working_by": "2026-07-23"
+  },
+  {
+   "wp": "772365307",
+   "site": "Maroantsetra",
+   "reported": "2026-07-24",
+   "working_by": "2026-07-24"
+  },
+  {
+   "wp": "833032678",
+   "site": "Maroantsetra",
+   "reported": "2026-07-24",
+   "working_by": "2026-07-24"
+  },
+  {
+   "wp": "767290205",
+   "site": "Maroantsetra",
+   "reported": "2026-07-25",
+   "working_by": "2026-07-25"
+  },
+  {
+   "wp": "767290212",
+   "site": "Maroantsetra",
+   "reported": "2026-07-25",
+   "working_by": "2026-07-25"
+  },
+  {
+   "wp": "765855507",
+   "site": "Maroantsetra",
+   "reported": "2026-07-28",
+   "working_by": "2026-07-28"
+  },
+  {
+   "wp": "768991507",
+   "site": "Maroantsetra",
+   "reported": "2026-07-29",
+   "working_by": "2026-07-29"
+  },
+  {
+   "wp": "768979123",
+   "site": "Maroantsetra",
+   "reported": "2026-07-30",
+   "working_by": "2026-07-30"
+  },
+  {
+   "wp": "769020855",
+   "site": "Maroantsetra",
+   "reported": "2026-07-30",
+   "working_by": "2026-07-30"
+  },
+  {
+   "wp": "771799262",
+   "site": "Maroantsetra",
+   "reported": "2026-07-30",
+   "working_by": "2026-08-07"
+  },
+  {
+   "wp": "833032630",
+   "site": "Maroantsetra",
+   "reported": "2026-07-30",
+   "working_by": "2026-07-30"
+  },
+  {
+   "wp": "699597603",
+   "site": "Maroantsetra",
+   "reported": "2026-07-31",
+   "working_by": "2026-07-31"
+  },
+  {
+   "wp": "699597548",
+   "site": "Maroantsetra",
+   "reported": "2026-08-03",
+   "working_by": "2026-08-07"
+  },
+  {
+   "wp": "699597500",
+   "site": "Maroantsetra",
+   "reported": "2026-08-04",
+   "working_by": "2026-08-07"
+  },
+  {
+   "wp": "699597531",
+   "site": "Maroantsetra",
+   "reported": "2026-08-04",
+   "working_by": "2026-08-10"
+  },
+  {
+   "wp": "771799255",
+   "site": "Maroantsetra",
+   "reported": "2026-08-11",
+   "working_by": "2026-08-12"
+  },
+  {
+   "wp": "905251262",
+   "site": "Maroantsetra",
+   "reported": "2026-08-24",
+   "working_by": "2026-09-03"
+  },
+  {
+   "wp": "699597108",
+   "site": "Maroantsetra",
+   "reported": "2026-08-25",
+   "working_by": "2026-09-04"
+  },
+  {
+   "wp": "742895948",
+   "site": "Maroantsetra",
+   "reported": "2026-09-04",
+   "working_by": "2026-09-11"
+  },
+  {
+   "wp": "742897672",
+   "site": "Maroantsetra",
+   "reported": "2026-09-10",
+   "working_by": "2026-09-10"
+  },
+  {
+   "wp": "698771983",
+   "site": "Maroantsetra",
+   "reported": "2026-09-14",
+   "working_by": "2026-09-28"
+  },
+  {
+   "wp": "742896011",
+   "site": "Maroantsetra",
+   "reported": "2026-09-14",
+   "working_by": "2026-09-28"
+  },
+  {
+   "wp": "742896028",
+   "site": "Maroantsetra",
+   "reported": "2026-09-14",
+   "working_by": "2026-09-28"
+  },
+  {
+   "wp": "742896743",
+   "site": "Maroantsetra",
+   "reported": "2026-09-15",
+   "working_by": "2026-09-22"
+  },
+  {
+   "wp": "833032702",
+   "site": "Maroantsetra",
+   "reported": "2026-09-21",
+   "working_by": "2026-09-28"
+  },
+  {
+   "wp": "814009107",
+   "site": "Maroantsetra",
+   "reported": "2026-09-22",
+   "working_by": "2026-09-28"
+  },
+  {
+   "wp": "698771196",
+   "site": "Maroantsetra",
+   "reported": "2026-09-24",
+   "working_by": "2026-10-02"
+  },
+  {
+   "wp": "833033253",
+   "site": "Maroantsetra",
+   "reported": "2026-10-01",
+   "working_by": "2026-10-05"
+  }
+ ]
+}

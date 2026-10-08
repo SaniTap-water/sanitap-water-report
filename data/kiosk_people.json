@@ -9,8 +9,13 @@
  "households": 126,
  "hh_size": 3.9,
  "people": 491,
- "hh_size_source": "INSTAT RGPH-3 (census of June 2018), Tome 1, Tableau 26: average household size, Analamanga, urban stratum",
+ "hh_size_source": "INSTAT RGPH-3 (census of June 2018), Tome 1, Tableau 26: Analamanga, urban",
  "card_source": "Curtech/Zoho card data: Ralf van Veenendaal, \"RE: Zoho endpoint: works, and what else we need alongside it\", 1 Oct 2026 (126 NFC cards sold at the kiosk, recorded as card sales); Adriaan Mol, same thread, 29 Sep 2026 (123 cards with purchases, 426 recharges, 14-26 Sep 2026)",
  "assumption": "one registered card per household",
- "as_at": "2026-10-01"
+ "as_at": "2026-10-01",
+ "flagged_pairs": [],
+ "duplicate_check": "not run",
+ "card_export": "Evidence/Endur'O/curtech_nfc_cards.json",
+ "rules": "Household size: the census (INSTAT RGPH-3, Analamanga urban) until a project survey measures it; the piped-system survey's value replaces it automatically. Cards: one registered card is one household until the contrary is proved; cards sharing a name, phone or ID are flagged, count as one household and are listed.",
+ "duplicate_note": "duplicate check not run: no card export with registration details is on file (Water Documents/Evidence/Endur'O/curtech_nfc_cards.json)"
 }

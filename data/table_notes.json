@@ -330,6 +330,18 @@
    "extracted": "From the repair extracts pulled for this build.",
    "filter": "Managed hand pumps, ranked by repairs in the last twelve months; the twelve with the most.",
    "columns": "<b>Repairs, past year</b> (the twelve months to the latest repair on file) and <b>Repairs, all</b>: final or pending repair records naming the pump, by completion date (else notification, else submission date). <b>Last</b>: the latest."
+  },
+  "stilldown": {
+   "source": "<span class=\"mono\">data/call_outcomes.json</span>, written each build by tools/call_outcomes.py from the call-centre, preventive-maintenance and repair extracts.",
+   "extracted": "From the extracts pulled for this build.",
+   "filter": "Managed pumps whose latest breakdown, reported by a call in the last twelve months, has no repair record and no later record showing the pump working; oldest first.",
+   "columns": "<b>Down since</b>: the first call of the open breakdown. <b>Down for</b>: days since then. <b>Calls</b>: calls about this breakdown."
+  },
+  "repeatcause": {
+   "source": "<span class=\"mono\">data/repeat_breakdowns.json</span> (tools/repeat_breakdowns.py): repair records on both repair sources, with their choice labels read from the form designs (<span class=\"mono\">data/repair_part_labels.json</span>); people within reach and cap from the SDWS 1 run of record (WPOP).",
+   "extracted": "From the repair extracts pulled for this build.",
+   "filter": "Managed pumps with four or more repairs in the past year.",
+   "columns": "<b>Within reach</b>: people within reach of the pump, the WorldPop allocation before the cap. <b>Cap</b>: the most one pump can supply. <b>Most replaced or failed</b>: parts replaced and failure types, with the number of records naming each. <b>Reading</b>: the rule stated above the table."
   }
  }
 }

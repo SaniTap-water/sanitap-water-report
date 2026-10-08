@@ -1,0 +1,127 @@
+{
+ "note": "Choice labels of the repair questions, read 7 Oct 2026 from the mWater form designs (get_form_item, read-only): the live repair form 958b4763 and the retired combined form 86cf66ef. Used by tools/repeat_breakdowns.py.",
+ "questions": {
+  "8889bc81a29d458bb135f3eb97e546ce": {
+   "form": "86cf66ef",
+   "what": "parts replaced (Canzee)",
+   "choices": {
+    "QqaZMVG": "handle",
+    "t595xjW": "rod",
+    "8EEZKMx": "inner valve DN32",
+    "f6HKu3j": "outer valve DN40",
+    "cDaVNVm": "valve seals",
+    "4xx91jz": "inner pipe DN32",
+    "4e5eNSh": "outer pipe DN40",
+    "FsFg5yz": "rod guide",
+    "hlWudXp": "stainless rod (complete)",
+    "wtZl8Tj": "spout",
+    "9m8E126": "pump head support",
+    "8347c5F": "pump head (complete)",
+    "2pgegeE": "other"
+   }
+  },
+  "43fffaaaa96a4f8faa29f65c6091caf6": {
+   "form": "86cf66ef",
+   "what": "parts replaced (India Mark)",
+   "choices": {
+    "QqaZMVG": "lever arm",
+    "t595xjW": "pump base",
+    "8EEZKMx": "axle",
+    "f6HKu3j": "bearing",
+    "cDaVNVm": "chain",
+    "4xx91jz": "piston",
+    "4e5eNSh": "cylinder liner",
+    "FsFg5yz": "valve",
+    "hlWudXp": "cup seal",
+    "wtZl8Tj": "piston (complete)",
+    "9m8E126": "rod",
+    "8347c5F": "PVC pipe DN75",
+    "wxdbdkq": "PVC pipe DN63",
+    "TK7P2CQ": "other"
+   }
+  },
+  "2900bdbe5daf456abd5a440aa35cdde5": {
+   "form": "86cf66ef",
+   "what": "failure type (repair needed)",
+   "choices": {
+    "4wU6Jey": "fence",
+    "THFfFtk": "drainage and sanitation",
+    "qP3HCKS": "concrete platform",
+    "ARZZEx2": "pump head bolts",
+    "QYEGD2q": "spout",
+    "arrZ1xV": "handle or lever mechanism",
+    "uQ2FjZk": "bearings",
+    "tca836k": "pipes",
+    "BlfS8wN": "valve seals or rubbers"
+   }
+  },
+  "04c03354e111440d80cc0b74f513b2e5": {
+   "form": "958b4763",
+   "what": "parts replaced (Canzee)",
+   "choices": {
+    "fVbNTDx": "coupling 50",
+    "sWlg2KY": "head connector 40",
+    "qf5ewRT": "head connector 50",
+    "QPcVSNY": "coupling 20",
+    "gNMp7XB": "coupling 25",
+    "GZFnUBQ": "coupling 32",
+    "1TsGyHR": "coupling 40",
+    "a7Wlba3": "rod guide",
+    "1HuEPXh": "adaptor 20",
+    "2UbCC77": "adaptor 25",
+    "rwe8ttT": "adaptor 32",
+    "xXaESYe": "adaptor 40",
+    "PGFKkhn": "pump head (complete)",
+    "S4XJUx5": "stainless rod 32",
+    "1JaLdl3": "stainless rod 40",
+    "fjGxwe4": "PVC pipe 32",
+    "XpAjkFa": "PVC pipe 40",
+    "JjQsKAn": "valve 32",
+    "M1DL5AS": "valve 40 external",
+    "GURWNz3": "valve 40 internal",
+    "DF2ASTH": "valve 50",
+    "GAD6Ybp": "handle pad",
+    "kBubfxG": "pump head support",
+    "QeruXrE": "wooden handle",
+    "S1kXWMR": "nut M10",
+    "Q3AmswL": "nyloc nut M10",
+    "wFrqS7h": "washer",
+    "uMmp9MU": "bolt M10",
+    "55XHCpk": "pump head (no support)",
+    "dg3BFfv": "PVC pipe 32 PN16",
+    "szvLtrc": "PVC pipe 40 PN16",
+    "4X3DgJP": "PVC pipe 50 PN16",
+    "s4sG1RW": "PVC pipe 63 PN16",
+    "DFCdpYZ": "adaptor 50",
+    "hXMzLs2": "other"
+   }
+  },
+  "539fdc6dd8b140058fe16361b649bb1f": {
+   "form": "958b4763",
+   "what": "parts replaced (India Mark)",
+   "choices": {
+    "fKMbfCv": "lever arm",
+    "tdH92ap": "pump base",
+    "Jv2amvA": "spout",
+    "mXHgeuF": "piston cup seal",
+    "SvhRC13": "foot valve seal",
+    "CPE2V4A": "handle assembly",
+    "Bv1fBJd": "pump head",
+    "gYASLgF": "seal kit",
+    "XwsDGGg": "piston valve",
+    "4uyyQs6": "foot valve",
+    "U2Zc4Vh": "rod",
+    "XBgX4c9": "rod coupling",
+    "sGSWNDn": "chain",
+    "YWfv5YH": "bearings",
+    "vm2C2BA": "handle axle",
+    "TfmmbHb": "spacer bush",
+    "CvqzvkZ": "nyloc nut",
+    "5AvQ7E5": "rod guide",
+    "RnumPUE": "riser pipe DN75",
+    "pnb7fUv": "riser pipe DN63",
+    "mXAx4ms": "other"
+   }
+  }
+ }
+}

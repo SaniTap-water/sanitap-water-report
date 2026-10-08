@@ -85,7 +85,39 @@ def compute():
         per.append({"wp": c, "site": site[c], "commune": commune.get(c), "repairs": len(ds), "repairs_12m": len(last12),
                     "first": ds[0], "last": ds[-1], "median_gap_days": statistics.median(gaps) if gaps else None})
     per.sort(key=lambda x: (-x["repairs_12m"], -x["repairs"], x["wp"]))
+    # (7 Oct 2026) causes: parts replaced and failure types, from the repair records
+    labels = json.load(open(os.path.join(REPO, "data", "repair_part_labels.json"), encoding="utf8"))["questions"]
+    causes = {}
+    for src, r in POP._repair_records():
+        if (r.get("status") or "final") not in ("final", "pending"):
+            continue
+        for c in _codes(r):
+            if c not in site:
+                continue
+            for q, lab in labels.items():
+                v = ((r.get("data") or {}).get(q) or {}).get("value")
+                for x in (v if isinstance(v, list) else []):
+                    name = lab["choices"].get(x)
+                    if name and name != "other":
+                        causes.setdefault(c, {}).setdefault(name, 0)
+                        causes[c][name] += 1
+    wpop = {}
+    mw = re.search(r"\bconst WPOP\s*=\s*", idx)
+    if mw:
+        wpop = json.loads(idx[mw.end():idx.index("};", mw.end()) + 1])
     repeat = [p for p in per if p["repairs_12m"] >= REPEAT_MIN]
+    for p in repeat:
+        w = wpop.get(p["wp"]) or [None, None, None]
+        p["people_nearby"], p["people_served"], p["cap"] = w[0], w[1], w[2]
+        p["load"] = round(w[0] / w[2], 2) if w[0] and w[2] else None
+        top = sorted((causes.get(p["wp"]) or {}).items(), key=lambda kv: -kv[1])
+        p["causes"] = [{"what": k, "times": n} for k, n in top[:4]]
+        recurring = top and top[0][1] >= 3
+        # the reading (stated on the page): overuse when the people living within reach are
+        # half again the pump's cap or more; else a recurring technical fault when one part
+        # or failure type comes back three times or more; else unclear
+        p["reading"] = ("overuse" if p["load"] and p["load"] >= 1.5
+                        else "recurring technical fault" if recurring else "unclear")
     named = {c: next((p for p in per if p["wp"] == c), {"wp": c, "repairs": 0, "repairs_12m": 0}) for c in NAMED}
     # report -> next repair, every qualifying call in the last twelve months
     rep_v = CF.visits(RA.FORMS["repair"])
@@ -147,7 +179,19 @@ def render(d):
             f'have none yet. Dispatch is not recorded on any form, so report-to-dispatch cannot be measured.</p>'
             '<div class="tablewrap"><table class="ind" data-table="repeatbd"><thead><tr><th>Water point</th><th>Site</th>'
             '<th>Commune</th><th class="num">Repairs, past year</th><th class="num">Repairs, all</th><th class="num">Last</th>'
-            f'</tr></thead><tbody>{rows}</tbody></table></div>{tablenote("repeatbd")}')
+            f'</tr></thead><tbody>{rows}</tbody></table></div>{tablenote("repeatbd")}'
+            '<p class="note"><b>Why they break</b>: each pump with repeated repairs in the past year, its people within reach against its cap, '
+            'and what its repair records replaced. Reading: overuse where the people within reach are half again the cap or more; '
+            'a recurring technical fault where one part or failure type comes back three times or more; otherwise unclear.</p>'
+            '<div class="tablewrap"><table class="ind" data-table="repeatcause"><thead><tr><th>Water point</th>'
+            '<th class="num">Within reach</th><th class="num">Cap</th><th>Most replaced or failed</th><th>Reading</th>'
+            '</tr></thead><tbody>' + "".join(
+                f'<tr><td class="mono">{p["wp"]}</td>'
+                f'<td class="num">{F("RB.repeat[" + str(i) + "].people_nearby", p.get("people_nearby"))}</td>'
+                f'<td class="num">{F("RB.repeat[" + str(i) + "].cap", p.get("cap"))}</td>'
+                f'<td>{"; ".join(c["what"] + " &times;" + str(c["times"]) for c in p.get("causes") or [])}</td>'
+                f'<td>{p.get("reading")}</td></tr>' for i, p in enumerate(d["repeat"]))
+            + f'</tbody></table></div>{tablenote("repeatcause")}')
 
 
 def main():

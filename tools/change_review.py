@@ -74,7 +74,9 @@ APPROVER_GIDS = {"1132514258683237": "Adriaan Mol", "1209565438602753": "Jan de 
 SOURCES = {"combined_rehab.json": "works", "marolinta_borehole.json": "works",
            "wq_results.json": "test", "repair.json": "status",
            "pm.csv": "status", "reparation_apres_panne.csv": "status",
-           "appel_signalement_pannes.csv": "status"}
+           "appel_signalement_pannes.csv": "status",
+           # piped water-quality sampling (8 Oct 2026): ledgered so a deletion is named record by record
+           "wq_sampling_piped.json": "test"}
 FIGS = ("tco2e", "points", "people", "days_operational")
 HELD_FIGS = ("tco2e", "points", "people")          # case (c) applies to these
 LABEL = {"tco2e": "carbon credits (tCO2e a year)", "points": "water points in scope",
@@ -407,6 +409,18 @@ def _read_approval_status(appr):
         last = verdict[-1] if verdict else None
         who = APPROVER_GIDS.get(((last or {}).get("created_by") or {}).get("gid"))
         comments = [s["text"] for s in stories if s.get("resource_subtype") == "comment_added"]
+        # an ordinary task (approval tasks need a paid Asana plan, 8 Oct 2026): completed by
+        # Adriaan or Jan approves; a comment "Rejected:" / "Changes requested:" says otherwise
+        if st is None:
+            by = APPROVER_GIDS.get((t.get("completed_by") or {}).get("gid"))
+            said = [s for s in stories if s.get("resource_subtype") == "comment_added"
+                    and re.match(r"^(Rejected|Changes requested):", s.get("text") or "")]
+            if t.get("completed") and by in APPROVERS:
+                st, who, last = "approved", by, {"created_at": t.get("completed_at") or ""}
+            elif said:
+                st = "rejected" if said[-1]["text"].startswith("Rejected") else "changes_requested"
+                last = said[-1]
+                who = APPROVER_GIDS.get((last.get("created_by") or {}).get("gid"))
         if st == "approved" and who in APPROVERS:
             w.update(status="approved", approved_by=who, approved_at=last["created_at"][:10])
         elif st == "approved":
