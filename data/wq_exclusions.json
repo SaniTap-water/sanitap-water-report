@@ -1,0 +1,33 @@
+{
+ "note": "Water-quality holds (Adriaan Mol, 8 Oct 2026): a pump listed here is shown as 'Excluded' instead of 'Pass' in the SDWS 3 safe-water count until a valid result clears it. tools/rebuild_pump_inputs.py lifts the hold by itself when a later result on the water-quality form (WS7.17, fluoride) or a diluted reading entered below is under the limit.",
+ "fluoride_max_mg_l": 1.5,
+ "pumps": {
+  "800634100": {
+   "reason": "fluoride above 1.5 mg/L on 15 Aug 2025: the 1.5 recorded is the top of the photometer's range (Cathy, 7 Oct 2026)",
+   "since": "2025-08-15",
+   "decided": "Adriaan Mol, 8 Oct 2026"
+  },
+  "797195318": {
+   "reason": "fluoride above 1.5 mg/L on 15 Aug 2025: the 1.5 recorded is the top of the photometer's range (Cathy, 7 Oct 2026)",
+   "since": "2025-08-15",
+   "decided": "Adriaan Mol, 8 Oct 2026"
+  },
+  "794012210": {
+   "reason": "fluoride above 1.5 mg/L on 15 Aug 2025: the 1.5 recorded is the top of the photometer's range (Cathy, 7 Oct 2026)",
+   "since": "2025-08-15",
+   "decided": "Adriaan Mol, 8 Oct 2026"
+  },
+  "797195301": {
+   "reason": "fluoride above 1.5 mg/L on 15 Aug 2025: the 1.5 recorded is the top of the photometer's range (Cathy, 7 Oct 2026)",
+   "since": "2025-08-15",
+   "decided": "Adriaan Mol, 8 Oct 2026"
+  },
+  "797885233": {
+   "reason": "fluoride above 1.5 mg/L on 15 Aug 2025: the 1.5 recorded is the top of the photometer's range (Cathy, 7 Oct 2026)",
+   "since": "2025-08-15",
+   "decided": "Adriaan Mol, 8 Oct 2026"
+  }
+ },
+ "diluted_results": {},
+ "diluted_note": "Cathy's diluted fluoride results (act-fluoride-diluted-results), mg/L per water point, entered when they arrive; under the limit, the pump's hold lifts at the next build."
+}

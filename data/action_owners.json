@@ -842,8 +842,8 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 52,
-   "evidence": 111,
+   "auto": 51,
+   "evidence": 112,
    "manual": 3
   },
   "actions": {
@@ -1458,8 +1458,8 @@
    },
    "act-move-stroke-test-sop": {
     "type": "evidence",
-    "closes_when": "the signed stroke-test SOP v2.2, French and English, is filed in Water Documents/SOPs and v2.1 and v2.0 are retired",
-    "closed": false,
+    "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1471,9 +1471,9 @@
     "first_seen": "2026-09-21"
    },
    "act-mwater-approval-policy": {
-    "type": "auto",
-    "closes_when": "closes when no submitted works record is left unapproved",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1514,8 +1514,8 @@
    },
    "act-per-diem": {
     "type": "evidence",
-    "closes_when": "the adopted per-diem rule filed as a document, linked in an \"Evidence:\" comment",
-    "closed": false,
+    "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1801,8 +1801,8 @@
    },
    "act-sensor-cost-benefit": {
     "type": "evidence",
-    "closes_when": "the cost-benefit decision logged in data/decisions.json, quoted in an \"Evidence:\" comment",
-    "closed": false,
+    "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-26"
    },
@@ -1899,7 +1899,7 @@
    },
    "act-update-sops-portfolio-figures": {
     "type": "evidence",
-    "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.1)",
+    "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.2, which superseded v2.1 on 8 Oct 2026)",
     "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
@@ -2519,6 +2519,19 @@
     "task": "1219101110893755",
     "from": "asana"
    },
+   "act-enduro-pricing-strategy-agreement": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: The Endur'O card credits and pricing strategy of 2 Oct 2026 is adopted as written (credits at 73 per litre with litres shown, zone prices in Zoho with fee split, twice-yearly steps under a commune index, fixed shopkeeper margin, pre-funded emergency and social credits), with the Ariary amount shown next to the litres on the card. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438",
+    "task": "1219109150022438",
+    "from": "asana"
+   },
    "act-fabric-andrew-shutdown": {
     "recorded_on": "2026-10-08",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2543,6 +2556,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868",
     "task": "1219101058285868",
+    "from": "asana"
+   },
+   "act-fluoride-five-pumps-status": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: The five Ambinanitelo pumps (800634100, 797195318, 794012210, 797195301, 797885233) are excluded from the SDWS 3 safe-water count until a valid result: the 1.5 mg/L recorded on 15 Aug 2025 is the top of the photometer's range, so fluoride was above the WHO guideline. They come back in automatically if Cathy's diluted results (act-fluoride-diluted-results), or a later result on the water-quality form, are under 1.5 mg/L (data/wq_exclusions.json, tools/rebuild_pump_inputs.py). Pass the decision to James Walker (VPA-DD) and Angelo Nahavitatsara (MadAvance). Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254664501109",
+    "task": "1219254664501109",
     "from": "asana"
    },
    "act-fluoride-overrange-check": {
@@ -2662,6 +2688,32 @@
     "task": "1219101111155160",
     "from": "asana"
    },
+   "act-move-stroke-test-sop": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: Stroke-test SOP v2.2 (French and English) approved as the procedure of record. Filed 8 Oct 2026: the French v2.2 (SOP_SDWS27_StrokeTest_v2.2_Revise_2026.docx) moved from Work in Progress to Water Documents/SOPs beside the English v2.2; v2.1 and v2.0 (English and French) moved to SOPs/Archive, retired. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059142366",
+    "task": "1219101059142366",
+    "from": "asana"
+   },
+   "act-mwater-approval-policy": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: An mWater approval means a second person has checked the record against its photographs (and the SOP) within 7 days of submission. It applies to works records and water-quality results, the records the carbon figures rest on; the team lead approves. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111707005",
+    "task": "1219101111707005",
+    "from": "asana"
+   },
    "act-mwater-backup-restore-check": {
     "recorded_on": "2026-10-06",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2686,6 +2738,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243061362113",
     "task": "1219243061362113",
+    "from": "asana"
+   },
+   "act-per-diem": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: MadAvance field allowances: a daily base for days in the field plus a bonus per pump completed and recorded in mWater (visit with the calendar photograph). Rates to be agreed with MadAvance. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996413584",
+    "task": "1219100996413584",
     "from": "asana"
    },
    "act-photo-misfiled": {
@@ -2860,6 +2925,19 @@
     "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-21",
     "summary": "Capped at 347 days without a sensor; actual days claimable only for sensor-fitted pumps, sampled 50 per stratum, with the cap on the rest; a lost or damaged calendar is acceptable given the SOP, visits and call log. James Walker's ruling, not Gold Standard's.",
     "ref": "data/decisions.json"
+   },
+   "act-sensor-cost-benefit": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Decided by Adriaan Mol, 8 Oct 2026: Operation sensors (StrokeMeter) on a sample of 50 pumps per stratum for now, as James Walker suggested; the rest stay at the 347-day cap. Fitting every pump is revisited when Curtech's unit cost and lifetime are in (act-ralf-tap-unit-costs). Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112499037",
+    "task": "1219101112499037",
+    "from": "asana"
    },
    "act-sensor-sample": {
     "recorded_on": "2026-09-29",

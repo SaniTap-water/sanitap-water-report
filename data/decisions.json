@@ -643,7 +643,7 @@
    "logged_by": "Adriaan Mol"
   },
   "piped-sampling-deletions-2026-10-08": {
-   "answer": "Accepted as non-material: 11 records deleted in mWater from the piped water-quality sampling form ef8cf735 (\"Piped Water || Water Quality Testing_SDWS 3__Sampling\") between the pulls of 7 and 8 Oct 2026 (89 -> 78 responses: 59 final, 6 pending, 13 drafts, confirmed by a read of mWater). Checked first: the managed Tana kiosk (1125843376 / 1125843383) had no water-quality record before and has none after, so none of its records were lost; no headline figure moves (21,629 tCO2e, 745 points in scope, 126,201 people served, 347 days operational, as published in 82a7e11). The piped systems other than the kiosk are outside the managed portfolio. data/extract_rowcounts.json records 78; the form joins the record ledger (tools/change_review.py), so a future deletion on it is named record by record.",
+   "answer": "Accepted as non-material: 11 records deleted in mWater from the piped water-quality sampling form ef8cf735 (\"Piped Water || Water Quality Testing_SDWS 3__Sampling\") between the pulls of 7 and 8 Oct 2026 (89 -> 78 responses: 59 final, 6 pending, 13 drafts, confirmed by a read of mWater). Checked first: the managed Tana kiosk (1125843376 / 1125843383) had no water-quality record before and has none after, so none of its records were lost; no headline figure moves (21,629 tCO2e, 745 points in scope, 126,201 people served, 347 days operational, as published in 82a7e11). The piped systems other than the kiosk are outside the managed portfolio. data/extract_rowcounts.json records 78; the form joins the record ledger (tools/change_review.py), so a future deletion on it is named record by record. Confirmed by Adriaan Mol, 8 Oct 2026: all 18 records missing against the 4 Oct baseline (the 11 deleted overnight 7-8 Oct and 7 deleted 4-7 Oct) are accepted as non-material on the same grounds.",
    "decided_by": "Adriaan Mol, COO SaniTap",
    "decided_on": "2026-10-08",
    "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
@@ -651,7 +651,7 @@
    "logged_by": "Adriaan Mol"
   },
   "approval-major-changes-2026-W41": {
-   "answer": "Major changes of week 41 approved: (b) records deleted from the piped water-quality sampling form ef8cf735 - 18 against the 4 Oct baseline (11 deleted overnight 7-8 Oct; 7 deleted 4-7 Oct, offset in the row count by newer records). Approved on Adriaan Mol's conditions of 8 Oct 2026, both met: the managed Tana kiosk had no water-quality record before or after; no headline figure moves (21,629 tCO2e, 745 points, 126,201 people, 347 days).",
+   "answer": "Major changes of week 41 approved: (b) records deleted from the piped water-quality sampling form ef8cf735 - 18 against the 4 Oct baseline (11 deleted overnight 7-8 Oct; 7 deleted 4-7 Oct, offset in the row count by newer records). Approved on Adriaan Mol's conditions of 8 Oct 2026, both met: the managed Tana kiosk had no water-quality record before or after; no headline figure moves (21,629 tCO2e, 745 points, 126,201 people, 347 days). Adriaan Mol confirmed the 18 explicitly on 8 Oct 2026.",
    "decided_by": "Adriaan Mol",
    "decided_on": "2026-10-08",
    "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
@@ -697,6 +697,54 @@
    "decided_by": "Adriaan Mol, COO SaniTap",
    "decided_on": "2026-10-08",
    "source": "Adriaan Mol, instruction for the water report, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-move-stroke-test-sop": {
+   "answer": "Stroke-test SOP v2.2 (French and English) approved as the procedure of record. Filed 8 Oct 2026: the French v2.2 (SOP_SDWS27_StrokeTest_v2.2_Revise_2026.docx) moved from Work in Progress to Water Documents/SOPs beside the English v2.2; v2.1 and v2.0 (English and French) moved to SOPs/Archive, retired.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-mwater-approval-policy": {
+   "answer": "An mWater approval means a second person has checked the record against its photographs (and the SOP) within 7 days of submission. It applies to works records and water-quality results, the records the carbon figures rest on; the team lead approves.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-per-diem": {
+   "answer": "MadAvance field allowances: a daily base for days in the field plus a bonus per pump completed and recorded in mWater (visit with the calendar photograph). Rates to be agreed with MadAvance.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-sensor-cost-benefit": {
+   "answer": "Operation sensors (StrokeMeter) on a sample of 50 pumps per stratum for now, as James Walker suggested; the rest stay at the 347-day cap. Fitting every pump is revisited when Curtech's unit cost and lifetime are in (act-ralf-tap-unit-costs).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-enduro-pricing-strategy-agreement": {
+   "answer": "The Endur'O card credits and pricing strategy of 2 Oct 2026 is adopted as written (credits at 73 per litre with litres shown, zone prices in Zoho with fee split, twice-yearly steps under a commune index, fixed shopkeeper margin, pre-funded emergency and social credits), with the Ariary amount shown next to the litres on the card.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "act-fluoride-five-pumps-status": {
+   "answer": "The five Ambinanitelo pumps (800634100, 797195318, 794012210, 797195301, 797885233) are excluded from the SDWS 3 safe-water count until a valid result: the 1.5 mg/L recorded on 15 Aug 2025 is the top of the photometer's range, so fluoride was above the WHO guideline. They come back in automatically if Cathy's diluted results (act-fluoride-diluted-results), or a later result on the water-quality form, are under 1.5 mg/L (data/wq_exclusions.json, tools/rebuild_pump_inputs.py). Pass the decision to James Walker (VPA-DD) and Angelo Nahavitatsara (MadAvance).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
    "logged_on": "2026-10-08",
    "logged_by": "Adriaan Mol"
   }

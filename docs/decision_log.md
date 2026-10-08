@@ -2404,3 +2404,17 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   act-fluoride-five-pumps-status.
 - **Not done:** act-sampler-usage-survey-mode — Claude Code can build it in sanitap-sampler, but it implements the
   usage-survey SOP, still a draft awaiting James Walker's sign-off (`adriaan-task-triage-2026-10-08`).
+
+## 8 Oct 2026 (c) — Adriaan Mol: six decisions taken; 18 deletions confirmed; card export asked of Coddy
+
+- **18 piped sampling deletions confirmed non-material** (the 11 overnight and 7 hidden earlier in the week): the kiosk
+  records are intact and no headline figure moved (`piped-sampling-deletions-2026-10-08`).
+- **Curtech card export:** one line on Coddy's card task (act-ralf-card-key-rollout) asks for it at his next regular
+  contact with Ralf (name, phone or ID per card); no chasers; the duplicate check runs when the file lands.
+- **Decided, tasks closed with the decision as evidence:** stroke-test SOP v2.2 approved and filed (French v2.2 moved to
+  SOPs; v2.1 and v2.0 to SOPs/Archive; act-update-sops-portfolio-figures now checks v2.2); an mWater approval = a
+  second person checks the photographs within 7 days (works and water-quality records, team lead); field allowances =
+  daily base plus a bonus per completed, recorded pump; sensors on 50 pumps per stratum for now; Endur'O pricing per the
+  2 Oct strategy with the Ariary amount next to the litres; the five Ambinanitelo fluoride pumps excluded from the SDWS 3
+  safe-water count until a valid result — tools/rebuild_pump_inputs.py shows them as "Excluded" and lifts the hold by
+  itself when a later form result or Cathy's diluted result (data/wq_exclusions.json) is under 1.5 mg/L.

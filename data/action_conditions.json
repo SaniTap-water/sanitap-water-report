@@ -419,9 +419,9 @@
  "act-move-stroke-test-sop": {
   "kind": "decision",
   "question": "Are the French and English stroke-test SOP v2.2 signed, the French one moved from Work in Progress to SOPs, and v2.1 and v2.0 retired?",
-  "says": "closes when the signed v2.2 (French and English) in SOPs is logged in data/decisions.json",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "the signed stroke-test SOP v2.2, French and English, is filed in Water Documents/SOPs and v2.1 and v2.0 are retired"
+  "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json"
  },
  "act-move-weekly-mwater-backup": {
   "kind": "none",
@@ -430,12 +430,11 @@
   "closes_when": "an \"Evidence:\" comment giving the server path and the first weekly backup file written there"
  },
  "act-mwater-approval-policy": {
-  "kind": "data",
-  "metric": "unapproved_works_records",
-  "op": "==",
-  "says": "closes when no submitted works record is left unapproved",
-  "target": 0,
-  "when_satisfied": "OK"
+  "kind": "decision",
+  "question": "decided by Adriaan",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
+  "closure": "evidence",
+  "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json"
  },
  "act-mwater-mg-locale": {
   "form": "preventive-maintenance",
@@ -467,7 +466,7 @@
   "question": "What replaces the per-diem system so it pays for pumps completed?",
   "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "the adopted per-diem rule filed as a document, linked in an \"Evidence:\" comment"
+  "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json"
  },
  "act-photo-conditional-on-presence": {
   "form": "repair-after-breakdown",
@@ -759,11 +758,11 @@
  "act-update-sops-portfolio-figures": {
   "kind": "artefact",
   "where": "hub",
-  "path": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.1.docx",
+  "path": "SOPs/COP_STROKE TEST — STROKE COUNTING FLOW TEST v2.2.docx",
   "says": "closes when a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs",
   "when_satisfied": "OK",
   "closure": "evidence",
-  "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.1)"
+  "closes_when": "a stroke-test SOP with the current portfolio figures is filed in Water Documents/SOPs (v2.2, which superseded v2.1 on 8 Oct 2026)"
  },
  "act-v2-adherence": {
   "kind": "none",
@@ -925,10 +924,11 @@
   "closes_when": "the design change submitted with the Q1 2027 verification, applying v2.0 to 2025 and carrying the listed VPA-DD corrections"
  },
  "act-sensor-cost-benefit": {
-  "kind": "none",
-  "says": "no closing condition: a cost-benefit judgement is a decision a person makes",
+  "kind": "decision",
+  "question": "decided by Adriaan",
+  "says": "closes when the answer is logged in data/decisions.json with its date and source",
   "closure": "evidence",
-  "closes_when": "the cost-benefit decision logged in data/decisions.json, quoted in an \"Evidence:\" comment"
+  "closes_when": "the decision of Adriaan Mol, 8 Oct 2026, logged in data/decisions.json"
  },
  "act-piped-fnrb": {
   "kind": "decision",

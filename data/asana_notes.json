@@ -283,6 +283,33 @@
    "SDWS 3: the methodology's safe drinking water check at the water point. VPA-DD: Voluntary Programme Activity Design Document.",
    "",
    "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
+  ],
+  "act-ralf-card-key-rollout": [
+   "Ralf's work; Coddy tracks; no chasers.",
+   "",
+   "At your next regular contact with Ralf, ask for the Curtech/Zoho card export: one row per card with the registered name, phone or ID. Save it as Water Documents/Evidence/Endur'O/curtech_nfc_cards.json; the duplicate check on the kiosk cards runs by itself when it lands, and nothing on the report waits for it.",
+   "",
+   "What and why",
+   "Endur'O water cards first used one fixed key, and that key appeared in a screenshot sent to the wrong address on 29 September, so it must be treated as known. Ralf has moved to a different key per card (taps only hold a read-and-deduct key) and the app converts old cards when it reads them, but taps still fall back to the old key.",
+   "",
+   "What to deliver",
+   "Ralf confirms from Zoho that all active cards carry per-card keys, and installs a tap firmware update without the old-key fallback, before any NatuRano tap reads our cards.",
+   "",
+   "Closes when: Zoho shows all active cards converted to per-card keys and a tap update without the old-key fallback is installed; Ralf has answered on (a) secret on phones (non-exportable Keystore key or per-card Key B from Zoho, plus key version on card) and (b) day-log signature replacing the CRC.",
+   "",
+   "Links",
+   "    Email from Ralf, 5 October 2026: \"RE: make both water meters interoperable\" (answers in red), and Adriaan's reply the same day",
+   "    Email from Adriaan, 2 October 2026, same thread (four security points)",
+   "    https://claude.ai/code/artifact/38876e5e-36ad-450f-b54e-7aa70c2be067",
+   "",
+   "Owner: Ralf van Veenendaal, Curtech (not in Asana).",
+   "",
+   "Source: email \"RE: make both water meters interoperable\", Ralf 1 October 2026; Adriaan reply-all drafted 2 October.",
+   "",
+   "Glossary",
+   "Key A / Key B: the tap key (read and deduct) and the top-up key (add credit). CRC: cyclic redundancy check, a simple checksum on the card's day log.",
+   "",
+   "Owner, due date and completion on the weekly report come from this task; ticking it closes the action only once evidence is posted (an 'Evidence:' comment or a file)."
   ]
  },
  "closes_when": {

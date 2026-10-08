@@ -833,7 +833,7 @@ def main():
           "tools/rerun_wpop.py reruns the allocation when a pump joins or leaves")
     _nowq = [p["wp"] for p in _P
              if p.get("wq_status") not in ("tested", "not tested")
-             or (p.get("wq_status") == "tested") != (p.get("wq") in ("Pass", "Fail"))]
+             or (p.get("wq_status") == "tested") != (p.get("wq") in ("Pass", "Fail", "Excluded"))]
     check("every portfolio pump states whether its water was tested",
           not _nowq, "tested or not tested, on every pump",
           f"{len(_nowq)} without a consistent status: {', '.join(_nowq[:4])}" if _nowq

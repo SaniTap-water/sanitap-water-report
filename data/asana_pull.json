@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-08T05:33:20+00:00",
+ "pulled_at": "2026-10-08T12:28:00+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -91,8 +91,8 @@
    "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
-   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317101",
-   "modified_at": "2026-10-08T05:28:56.528Z"
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219109377317101",
+   "modified_at": "2026-10-08T07:52:41.380Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -360,6 +360,18 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937142786",
    "modified_at": "2026-10-08T05:26:15.224Z"
+  },
+  "act-decide-which-of-two-copies-of": {
+   "gid": "1219292736305580",
+   "name": "Decide which of two copies of one repair to keep, pump 699597809 [act-repair-double-entry]",
+   "title": "Decide which of two copies of one repair to keep, pump 699597809",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": null,
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219292736305580",
+   "modified_at": "2026-10-08T07:49:53.350Z"
   },
   "act-define-maintenance-record-becomes": {
    "gid": "1219101110579611",
@@ -731,10 +743,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438",
-   "modified_at": "2026-10-08T05:24:54.072Z"
+   "modified_at": "2026-10-08T12:18:56.199Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: The Endur'O card credits and pricing strategy of 2 Oct 2026 is adopted as written (credits at 73 per litre with litres shown, zone prices in Zoho with fee split, twice-yearly steps under a commune index, fixed shopkeeper margin, pre-funded emergency and social credits), with the Ariary amount shown next to the litres on the card. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438"
+   }
   },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
@@ -790,6 +811,21 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058285868"
    }
   },
+  "act-finish-the-borehole-form-checks-and": {
+   "gid": "1219290382893778",
+   "name": "Finish the borehole form checks and finalise three draft borehole records [act-borehole-form-lanja-followups]",
+   "title": "Finish the borehole form checks and finalise three draft borehole records",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": "2026-10-08",
+   "completed": true,
+   "completed_at": "2026-10-08",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219290382893778",
+   "modified_at": "2026-10-08T07:20:24.342Z",
+   "ticked_by": "RANDRIAMANANTENA Lanja Harifidy",
+   "ticked_at": "2026-10-08",
+   "evidence": null
+  },
   "act-fleet-growth": {
    "gid": "1219101058383094",
    "name": "Find out which new pumps are coming into the carbon programme [act-fleet-growth]",
@@ -821,10 +857,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254664501109",
-   "modified_at": "2026-10-08T05:24:56.116Z"
+   "modified_at": "2026-10-08T12:18:59.952Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: The five Ambinanitelo pumps (800634100, 797195318, 794012210, 797195301, 797885233) are excluded from the SDWS 3 safe-water count until a valid result: the 1.5 mg/L recorded on 15 Aug 2025 is the top of the photometer's range, so fluoride was above the WHO guideline. They come back in automatically if Cathy's diluted results (act-fluoride-diluted-results), or a later result on the water-quality form, are under 1.5 mg/L (data/wq_exclusions.json, tools/rebuild_pump_inputs.py). Pass the decision to James Walker (VPA-DD) and Angelo Nahavitatsara (MadAvance). Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254664501109"
+   }
   },
   "act-fluoride-overrange-check": {
    "gid": "1219208478747022",
@@ -1406,10 +1451,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059142366",
-   "modified_at": "2026-10-08T05:24:45.869Z"
+   "modified_at": "2026-10-08T12:18:40.204Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: Stroke-test SOP v2.2 (French and English) approved as the procedure of record. Filed 8 Oct 2026: the French v2.2 (SOP_SDWS27_StrokeTest_v2.2_Revise_2026.docx) moved from Work in Progress to Water Documents/SOPs beside the English v2.2; v2.1 and v2.0 (English and French) moved to SOPs/Archive, retired. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059142366"
+   }
   },
   "act-move-weekly-mwater-backup": {
    "gid": "1219101106534470",
@@ -1430,10 +1484,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111707005",
-   "modified_at": "2026-10-08T05:24:47.774Z"
+   "modified_at": "2026-10-08T12:18:44.075Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: An mWater approval means a second person has checked the record against its photographs (and the SOP) within 7 days of submission. It applies to works records and water-quality results, the records the carbon figures rest on; the team lead approves. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111707005"
+   }
   },
   "act-mwater-backup-restore-check": {
    "gid": "1219101269792142",
@@ -1455,6 +1518,18 @@
     "date": "2026-10-06",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142"
    }
+  },
+  "act-mwater-fabric-sessions-logout": {
+   "gid": "1219298361383819",
+   "name": "End the mWater sessions exposed in Fabric and remove priscilla_sanitap admin rights [act-mwater-fabric-sessions-logout]",
+   "title": "End the mWater sessions exposed in Fabric and remove priscilla_sanitap admin rights",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219298361383819",
+   "modified_at": "2026-10-08T12:13:32.601Z"
   },
   "act-mwater-mg-locale": {
    "gid": "1219101106734654",
@@ -1568,10 +1643,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996413584",
-   "modified_at": "2026-10-08T05:24:49.869Z"
+   "modified_at": "2026-10-08T12:18:48.615Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: MadAvance field allowances: a daily base for days in the field plus a bonus per pump completed and recorded in mWater (visit with the calendar photograph). Rates to be agreed with MadAvance. Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996413584"
+   }
   },
   "act-photo-misfiled": {
    "gid": "1219101111903363",
@@ -1769,7 +1853,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
-   "modified_at": "2026-10-07T16:54:25.421Z"
+   "modified_at": "2026-10-08T12:18:12.940Z"
   },
   "act-ralf-card-sales-backfill-fix": {
    "gid": "1219109211970459",
@@ -1933,8 +2017,8 @@
    "due_on": "2026-10-06",
    "completed": false,
    "completed_at": null,
-   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106519483",
-   "modified_at": "2026-10-08T05:27:47.744Z"
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219101106519483",
+   "modified_at": "2026-10-08T07:49:03.421Z"
   },
   "act-repair-time": {
    "gid": "1219101112069110",
@@ -2117,10 +2201,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112499037",
-   "modified_at": "2026-10-08T05:24:51.704Z"
+   "modified_at": "2026-10-08T12:18:52.341Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "Decided by Adriaan Mol, 8 Oct 2026: Operation sensors (StrokeMeter) on a sample of 50 pumps per stratum for now, as James Walker suggested; the rest stay at the 347-day cap. Fitting every pump is revisited when Curtech's unit cost and lifetime are in (act-ralf-tap-unit-costs). Logged in data/decisions.json.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112499037"
+   }
   },
   "act-sensor-definition": {
    "gid": "1219101112502869",
@@ -2486,6 +2579,17 @@
    "modified_at": "2026-10-08T05:28:28.811Z"
   }
  },
- "duplicates": {},
- "new_from_asana": []
+ "duplicates": {
+  "act-finish-the-borehole-form-checks-and": [
+   "1219290382893778",
+   "1219292057402568"
+  ]
+ },
+ "new_from_asana": [
+  {
+   "act_id": "act-finish-the-borehole-form-checks-and",
+   "gid": "1219292057402568",
+   "name": "Finish the borehole form checks and finalise three draft borehole records [act-borehole-form-lanja-followups]"
+  }
+ ]
 }

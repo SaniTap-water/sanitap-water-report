@@ -44,14 +44,23 @@ ROOF_TO_PEOPLE = (_C["roof_count"]["people_per_household"]
                   / _C["roof_count"]["roofs_per_household"])
 
 
+Q_WQ_FLUORIDE = "b4e94c2a5ca4497199bcde2856f2cd0c"      # WS7.17 Fluoride (mg/L)
+HOLDS = json.load(open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                    "data", "wq_exclusions.json"), encoding="utf8"))
+
+
 def compute():
     import populations as P
     wq = collections.defaultdict(list)
+    fluoride = collections.defaultdict(list)
     for r in P._wq_results():
         if r.get("status") in ("draft", "rejected"):
             continue
         d = str(P._answer(r, Q_WQ_DATE) or r.get("submittedOn") or "")[:10]
         wq[P._point_of(r)].append((d, P._answer(r, Q_WQ_ECOLI), r.get("_id")))
+        fl = P._answer(r, Q_WQ_FLUORIDE)
+        if isinstance(fl, (int, float)):
+            fluoride[P._point_of(r)].append((d, fl))
     p = os.path.join(EXPORTS, "roof_count.json")
     if not os.path.isfile(p):
         sys.exit("The roof-count extract (roof_count.json) is missing, so the "
@@ -74,6 +83,14 @@ def compute():
             v["wq_rid"] = rid
             v["wq"] = ("Pass" if ec is not None and ec <= ECOLI_PASS_MAX
                        else ("Fail" if ec is not None else None))
+        # water-quality holds (8 Oct 2026): 'Excluded' until a valid result clears the pump
+        h = HOLDS["pumps"].get(code)
+        if h and v.get("wq") == "Pass":
+            lim = HOLDS["fluoride_max_mg_l"]
+            later = [x for dd, x in fluoride.get(code, []) if dd > h["since"]]
+            dil = HOLDS.get("diluted_results", {}).get(code)
+            if not (any(x < lim for x in later) or (isinstance(dil, (int, float)) and dil < lim)):
+                v["wq"] = "Excluded"
         if roofs.get(code):
             n = sorted(roofs[code])[-1][1]
             v["benef"] = int(n * ROOF_TO_PEOPLE + 0.5)
