@@ -339,6 +339,8 @@ WHOLE = {
     'IMCAP': ('india_mark_cap', 'render_datasets'),
     # parent actions' closed steps, keyed by action id
     'ACTKIDS': ('eval_conditions', 'render_datasets'),
+    # iron and manganese at the managed hand pumps (latest SDWS 3 result)
+    'FEMN': ('iron_manganese', 'render_datasets'),
 }
 
 POPULATION = {

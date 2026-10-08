@@ -4047,6 +4047,62 @@ def main():
           f"{len(_nolink)} without a link" if _nolink else f"{len(_rows)} linked",
           "each row opens https://portal.mwater.co/#/responses/<response id>")
 
+    # ---- 7bi. the iron and manganese section counts what the source holds --
+    # (8 Oct 2026) Recomputed here from the extract itself, independently of
+    # tools/iron_manganese.py: each managed pump's latest SDWS 3 result by
+    # result date, drafts and rejected excluded, classed against the PARAMS
+    # thresholds. The section's counts and its table must agree with that.
+    try:
+        _fm = json.load(open(os.path.join(repo_root, "data", "iron_manganese.json"), encoding="utf8"))
+        _wq = json.load(open(os.path.expanduser("~/mwater-exports/wq_results.json"), encoding="utf8"))
+        _pp = js_const(idx_raw, "PUMPS") or []
+        _thr = {k: float(m.group(1)) for k in ("wq_iron_accept", "wq_manganese_accept", "wq_manganese_max")
+                for m in [re.search(r"\n " + k + r":\{v:([0-9.]+),", idx_raw)] if m}
+        def _ans(r, q):
+            v = (r.get("data") or {}).get(q)
+            v = v.get("value") if isinstance(v, dict) else v
+            return v
+        def _pt(r):     # the result's linked water point, as populations._point_of reads it
+            return next((e.get("value") for e in (r.get("entities") or []) if e.get("property") == "code"), None)
+        _last = {}
+        for r in _wq:
+            if r.get("status") in ("draft", "rejected"):
+                continue
+            d = str(_ans(r, "630ccd46f76f420692572e0db2d86ad8") or r.get("submittedOn") or "")[:10]
+            k = (d, r.get("_id") or "")
+            c = _pt(r)
+            if c and (c not in _last or k > _last[c][0]):
+                _last[c] = (k, _ans(r, "3ba8917797a7429aa31b69023c7f3c1f"), _ans(r, "c0a900a9659e45c29acce3349e32f1fd"))
+        _fe, _mn, _listed = collections.Counter(), collections.Counter(), 0
+        for p in _pp:
+            _k, fe, mn = _last.get(p["wp"], (None, None, None))
+            fe = fe if isinstance(fe, (int, float)) else None
+            mn = mn if isinstance(mn, (int, float)) else None
+            cf = "not_tested" if fe is None else ("above_acceptability" if fe > _thr["wq_iron_accept"] else "pass")
+            cm = ("not_tested" if mn is None else "above_health" if mn > _thr["wq_manganese_max"]
+                  else "above_acceptability" if mn > _thr["wq_manganese_accept"] else "pass")
+            _fe[cf] += 1; _mn[cm] += 1
+            _listed += cf == "above_acceptability" or cm in ("above_acceptability", "above_health")
+        _want = ({k: _fe[k] for k in ("pass", "above_acceptability", "not_tested")},
+                 {k: _mn[k] for k in ("pass", "above_acceptability", "above_health", "not_tested")})
+        _ok = (_fm["fe"] == _want[0] and _fm["mn"] == _want[1] and _fm["thresholds"] == _thr
+               and _fm["pumps"] == len(_pp) and sum(_fm["fe"].values()) == len(_pp) == sum(_fm["mn"].values()))
+        check("the iron and manganese counts match the SDWS 3 extract", _ok,
+              f"iron {_want[0]}, manganese {_want[1]}", f"iron {_fm['fe']}, manganese {_fm['mn']}",
+              "tools/iron_manganese.py --write; counts are each managed pump's latest SDWS 3 result against PARAMS")
+        _rb = idx.find("<!-- BEGIN GENERATED iron-manganese")
+        _region = idx[_rb:idx.find("<!-- END GENERATED iron-manganese", _rb)] if _rb >= 0 else ""
+        _rows = re.findall(r'<tr[^>]*data-rid="([0-9a-f]*)"[^>]*>', _region)
+        _spans = all(f'data-fig="FEMN.{m}.{k}"' in idx_raw for m, ks in (("fe", _want[0]), ("mn", _want[1])) for k in ks)
+        check("the iron and manganese table lists every pump above a threshold, and the counts render from FEMN",
+              len(_rows) == _listed == len(_fm["rows"]) and _spans and "<details" in _region and " open" not in _region.split(">", 1)[0],
+              f"{_listed} rows, collapsed, counts as FEMN spans",
+              f"{len(_rows)} rows" + ("" if _spans else ", count spans MISSING"),
+              "tools/iron_manganese.py --write")
+    except Exception as _e:
+        check("the iron and manganese counts match the SDWS 3 extract", False, "checked", f"could not run: {_e}",
+              "data/iron_manganese.json, ~/mwater-exports/wq_results.json and PARAMS must all be present")
+
     # ---- 7bg. a point enters the fleet only through a works record --------
     # Four Marolinta points were in the managed fleet on the strength of a
     # 22 Aug 2025 identification-survey record and nothing else (Angelo

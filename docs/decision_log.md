@@ -2418,3 +2418,23 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   2 Oct strategy with the Ariary amount next to the litres; the five Ambinanitelo fluoride pumps excluded from the SDWS 3
   safe-water count until a valid result — tools/rebuild_pump_inputs.py shows them as "Excluded" and lifts the hold by
   itself when a later form result or Cathy's diluted result (data/wq_exclusions.json) is under 1.5 mg/L.
+
+## 8 Oct 2026 (d) — Adriaan Mol: iron and manganese section (from the Fabric review)
+
+- **What.** A collapsed section "Iron and manganese (taste and colour)" before the SDWS 18 section, written by
+  `tools/iron_manganese.py` into `data/iron_manganese.json` and its own region. Managed hand pumps only; each pump's
+  latest SDWS 3 result (form 7b33c5d7…) by result date; iron (`3ba89177…`) and manganese (`c0a900a9…`) are optional
+  questions, so a result without them is "not tested". No headline tile.
+- **Thresholds, checked against WHO on 8 Oct 2026 and declared in PARAMS.** Iron: no WHO health-based value (iron
+  fact sheet 2022: "not of health concern at levels found in drinking-water"); acceptability about 0.3 mg/L (GDWQ
+  4th ed., chapter 10) — `wq_iron_accept`. Manganese: provisional health-based guideline 0.08 mg/L (manganese fact
+  sheet 2022; assessment 2020) — the existing `wq_manganese_max`, citation made precise; acceptability 0.02 mg/L
+  ("concentrations above 0.02 mg/l have caused complaints about discoloured water and staining", same fact sheet)
+  — `wq_manganese_accept`. Neither value differed from the brief except that the brief left the manganese
+  acceptability value open; WHO's 0.02 is used. A value equal to a threshold is within it.
+- **Fabric's rule is not adopted** (FINDINGS.md R7). Fabric tagged only points whose donor string contains
+  "MedAir - Phase 2" and took pass/fail precomputed in mWater: iron passes to 0.30 and fails from 0.32 mg/L
+  (consistent with 0.3); manganese passes every value on file up to 0.19 mg/L, so its threshold sits above the WHO
+  provisional 0.08 — the two pumps above 0.08 on this page were "Pass" in Fabric.
+- **Gate.** `check_consistency.py` block 7bi recomputes the counts from the extract, independently of the
+  generator, and fails if the section's counts, thresholds or table rows disagree.

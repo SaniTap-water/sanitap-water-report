@@ -6876,7 +6876,8 @@
    "id": "de26d89a5c8a4452b42158c622be20d0",
    "locales": [
     "en",
-    "fr"
+    "fr",
+    "mg"
    ],
    "questions": [
     {
@@ -7910,7 +7911,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 505,
+   "rev": 506,
    "state": "active"
   },
   "repair-after-breakdown": {

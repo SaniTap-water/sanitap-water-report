@@ -117,6 +117,8 @@ STEPS = [
     # the 2025 household water-quality round, SDWS 18 (data/sdws18.json)
     ("tools/rebuild_sdws18.py",      ["--write"],      True),
     ("tools/render_sdws18.py",       ["--write"],      True),
+    # iron and manganese at the managed hand pumps (data/iron_manganese.json)
+    ("tools/iron_manganese.py",      ["--write"],      True),
     ("tools/render_sdws26.py",       ["--write"],      True),
     ("tools/render_carbon_params.py",["--write"],      True),
     ("tools/render_enduro.py",       ["--write"],      True),

@@ -106,6 +106,8 @@ SETS = {
     "RB": ("data", "repeat_breakdowns.json"),
     # what became of every breakdown call, and repair time against the target (tools/call_outcomes.py)
     "CO": ("data", "call_outcomes.json"),
+    # iron and manganese at the managed hand pumps, latest SDWS 3 result (tools/iron_manganese.py, 8 Oct 2026)
+    "FEMN": ("data", "iron_manganese.json"),
 }
 
 

@@ -342,6 +342,12 @@
    "extracted": "From the repair extracts pulled for this build.",
    "filter": "Managed pumps with four or more repairs in the past year.",
    "columns": "<b>Within reach</b>: people within reach of the pump, the WorldPop allocation before the cap. <b>Cap</b>: the most one pump can supply. <b>Most replaced or failed</b>: parts replaced and failure types, with the number of records naming each. <b>Reading</b>: the rule stated above the table."
+  },
+  "ironmn": {
+   "source": "<span class=\"mono\">data/iron_manganese.json</span>, written each build by tools/iron_manganese.py from the live SDWS 3 results form (Water Quality Testing_SDWS 3 &mdash; Result, <span class=\"mono\">7b33c5d7e5074808a94915939a5a0783</span>), questions Iron (mg/L) and Manganese (mg/L); thresholds from PARAMS (<span class=\"mono\">wq_iron_accept</span>, <span class=\"mono\">wq_manganese_accept</span>, <span class=\"mono\">wq_manganese_max</span>).",
+   "extracted": "<span data-fig=\"FEMN.extracted\"></span>, with the other extracts of this edition (<span class=\"mono\">wq_results.json</span>).",
+   "filter": "Managed hand pumps only; each pump's latest result by result date, drafts and rejected responses excluded; a row for every pump whose latest result is above the iron acceptability level, the manganese acceptability level or the manganese health-based value. A value equal to a threshold is within it.",
+   "columns": "Water point code; district and commune from the register; iron and manganese in mg/L as recorded (&mdash; where the result carries none); the result date; the reading against the thresholds; a link to the result in mWater."
   }
  }
 }
