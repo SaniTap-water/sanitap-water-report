@@ -683,6 +683,22 @@
    "source": "Asana API response of 8 Oct 2026",
    "logged_on": "2026-10-08",
    "logged_by": "Adriaan Mol"
+  },
+  "asana-questions-wording-2026-10-08": {
+   "answer": "In every Asana task description, 'Questions to:' reads 'If you have questions about this task, please contact:' (kept only where it names someone other than the assignee). tools/asana_setup.py writes and keeps the new wording; 118 descriptions changed on 8 Oct 2026.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, instruction for the water report, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
+  },
+  "adriaan-task-triage-2026-10-08": {
+   "answer": "Adriaan's 19 open tasks sorted. (a) Done by Claude Code and closed with evidence: act-dfcd-concept-note (concept note v1 in the DFCD folder, sharing draft), and Outlook drafts for Adriaan to send - act-dfcd-warm-reintro, act-dfcd-nl-outreach, act-nary-awf-sounding, act-awf-2027-call-timing, act-fabric-andrew-shutdown, act-legal-water-credit-opinion; act-dfcd-cfm-sounding (draft already in Drafts since 6 Oct). (b) Form changes, each description now an exact click list for Claude in Adriaan's browser session, Adriaan clicks Save: act-mwater-year-required, act-mwater-mg-locale, act-tana-baseline-form, act-v2-stove-stacking. (c) Decisions, each description now states the decision, the options and a recommendation: act-move-stroke-test-sop, act-mwater-approval-policy, act-per-diem, act-sensor-cost-benefit, act-enduro-pricing-strategy-agreement, act-fluoride-five-pumps-status. Not done: act-sampler-usage-survey-mode (software Claude Code can build in sanitap-sampler, but it implements SOP-MAD-SDWS26-EnqueteUsage, still a draft awaiting James Walker's sign-off).",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-08",
+   "source": "Adriaan Mol, instruction for the water report, 8 Oct 2026",
+   "logged_on": "2026-10-08",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",

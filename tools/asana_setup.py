@@ -122,6 +122,7 @@ def match_owner(owner):
     return ADRIAAN, None, (o if o and o not in ("—", "&mdash;") else "none set"), None
 
 
+QUESTIONS = "If you have questions about this task, please contact:"
 FOOTER = ("Owner, due date and completion on the weekly report come from this task; ticking it closes the "
           "action only once evidence is posted (an 'Evidence:' comment or a file).")
 _INTERNAL = re.compile(r"\b(data/|docs/|tools/|commit\b|[0-9a-f]{7,40}\b|\.json\b|\.csv\b|\.py\b|action record)", re.I)
@@ -196,10 +197,14 @@ def trim_notes(notes, assignee_gid, is_action, own_url=None, closes_when=None, a
             continue
         if st.startswith("On the report:"):
             continue
-        if st.startswith("Questions to:"):
-            named = _people_in(st.split(":", 1)[1])
+        if st.startswith("Questions to:") or st.startswith(QUESTIONS):
+            # (8 Oct 2026) the wording is "If you have questions about this task, please contact:";
+            # kept only where it names someone other than the assignee
+            who = st.split(":", 1)[1].strip()
+            named = _people_in(who)
             if named and named <= {assignee_gid}:
                 continue
+            l = f"{QUESTIONS} {who}"
         if st.startswith("Owner, due date and completion are read from this task") or st == FOOTER \
                 or st.startswith("Ticking it complete does not close"):
             continue
@@ -284,9 +289,12 @@ def rewrite_task(aid):
     """One action's task from the repository: owner, deadline and, where
     data/asana_notes.json carries one, its description."""
     amap = json.load(open(MAP, encoding="utf8"))["tasks"]
-    rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))["owners"][aid]
-    gid, _n, _x, _f = match_owner(rec.get("owner"))
-    body = {"assignee": gid}
+    rec = json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))["owners"].get(aid)
+    body = {}
+    if rec is not None:                     # an Asana-only task keeps its assignee
+        gid, _n, _x, _f = match_owner(rec.get("owner"))
+        body["assignee"] = gid
+    rec = rec or {}
     if rec.get("deadline"):
         body["due_on"] = rec["deadline"]            # never clears a due date set in Asana
     custom = os.path.join(REPO, "data", "asana_notes.json")
@@ -294,7 +302,7 @@ def rewrite_task(aid):
     if lines:
         body["notes"] = "\n".join(lines)
     A.put(f"/tasks/{amap[aid]}", body)
-    print(f"rewrite-task: {aid} -> {NAME_OF.get(gid, gid)}, due {rec.get('deadline')}"
+    print(f"rewrite-task: {aid} -> {NAME_OF.get(body.get('assignee'), 'assignee unchanged')}, due {rec.get('deadline')}"
           + (", description rewritten" if "notes" in body else ""))
     return 0
 

@@ -2279,6 +2279,19 @@
     "task": "1219128812565674",
     "from": "asana"
    },
+   "act-awf-2027-call-timing": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Question drafted in Adriaan's Outlook Drafts for him to send, to Tim Afful-Koomson (AfDB): \"African Water Facility: 2027 call timing and national endorsement for Madagascar\". The AWF announcement PDF refuses automated access, so the answer has to come by email.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219245863958123",
+    "task": "1219245863958123",
+    "from": "asana"
+   },
    "act-cal-handwritten-year": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2411,6 +2424,58 @@
     "task": "1219109294883405",
     "from": "asana"
    },
+   "act-dfcd-cfm-sounding": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "The sounding email to Darron Johnson (CFM) is in Adriaan's Outlook Drafts since 6 Oct 2026, to send after the meeting with Jonty Rawlins. Nothing further for Claude Code to do.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192396",
+    "task": "1219213949192396",
+    "from": "asana"
+   },
+   "act-dfcd-concept-note": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Two-page concept note written by Claude Code from the 5 Oct analysis: \"DFCD Origination Facility - concept note v1 2026-10-08.docx\", saved in PumpPrime / Investors Partners Pumprime / WWF - DFCD. Sharing email drafted in Adriaan's Outlook Drafts for him to send: \"DFCD Origination Facility: concept note v1 (2 pages) for your comments\" (to Andrew Tanswell and Claude Mansell).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219202274226108",
+    "task": "1219202274226108",
+    "from": "asana"
+   },
+   "act-dfcd-nl-outreach": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Brief to Claude Mansell drafted in Adriaan's Outlook Drafts, to send after the Jonty meeting: \"DFCD: de Nederlandse contacten, na mijn gesprek met Jonty\" (SNV intro call, Toine Ramaker's VEI letter of intent, Rik van Terwisga's introductions to FMO and WWF-NL).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949460939",
+    "task": "1219213949460939",
+    "from": "asana"
+   },
+   "act-dfcd-warm-reintro": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Meeting request drafted in Adriaan's Outlook Drafts for him to send: \"Coffee in Port Louis? Your advice on a DFCD reapplication for Madagascar water\". The To line is empty: Jonty's Platcorp address is not in the mailbox (his old WWF-NL address is no longer valid).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219197725175767",
+    "task": "1219197725175767",
+    "from": "asana"
+   },
    "act-down-no-repair": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2452,6 +2517,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110893755",
     "task": "1219101110893755",
+    "from": "asana"
+   },
+   "act-fabric-andrew-shutdown": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Request drafted in Adriaan's Outlook Drafts, to Andrew Tanswell, to send once the Fabric code export is done (target 12 Oct): \"Fabric: please shut down the Azure resources (after the code export, 12 Oct)\" - the Resume_db schedule, the capacity \"database\", Fabric-AutoControl, the Power BI licence and Adriaan's Contributor role.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219289324282150",
+    "task": "1219289324282150",
     "from": "asana"
    },
    "act-find-source-annual-independent": {
@@ -2545,6 +2623,19 @@
     "task": "1219144164856225",
     "from": "asana"
    },
+   "act-legal-water-credit-opinion": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Request for the opinion drafted in Adriaan's Outlook Drafts, in French: \"Avis juridique : crédits d'eau sur carte et monnaie électronique (loi n° 2016-056)\". The To line is empty: no Malagasy lawyer is on file; add the address before sending.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150420909",
+    "task": "1219109150420909",
+    "from": "asana"
+   },
    "act-mar-new-construction-gap": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2582,6 +2673,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101269792142",
     "task": "1219101269792142",
+    "from": "asana"
+   },
+   "act-nary-awf-sounding": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "Request drafted in Adriaan's Outlook Drafts for him to send, to Nary Ramanarivo (SG MEAH): \"Facilité africaine de l'eau : une demande de préparation portée par le MEAH ?\".",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243061362113",
+    "task": "1219243061362113",
     "from": "asana"
    },
    "act-photo-misfiled": {

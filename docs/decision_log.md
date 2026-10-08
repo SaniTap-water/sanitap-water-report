@@ -2386,3 +2386,21 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   by him (`approval-major-changes-2026-W41`). Asana refused the approval task (HTTP 402: approval tasks need a paid
   plan), so the weekly approval task is now an ordinary task — completed by Adriaan or Jan = approved; a comment
   "Rejected:" or "Changes requested:" = not (`asana-approval-plan-2026-10-08`).
+
+## 8 Oct 2026 (b) — Adriaan Mol: Adriaan's Asana list cleared of software work; questions line reworded
+
+- **Wording.** "Questions to:" is now "If you have questions about this task, please contact:" in every task
+  description (118 changed); tools/asana_setup.py keeps it (`asana-questions-wording-2026-10-08`).
+- **(a) Done by Claude Code and closed with evidence:** act-dfcd-concept-note (two-page note in PumpPrime /
+  Investors Partners Pumprime / WWF - DFCD, plus a sharing draft to Andrew and Claude Mansell); Outlook drafts for
+  Adriaan to send, never sent: act-dfcd-warm-reintro (Jonty, no address on file), act-dfcd-nl-outreach (Claude
+  Mansell, after the Jonty meeting), act-nary-awf-sounding (Nary, SG MEAH), act-awf-2027-call-timing (Tim
+  Afful-Koomson, AfDB), act-fabric-andrew-shutdown (Andrew, after the 12 Oct export), act-legal-water-credit-opinion
+  (no lawyer on file); act-dfcd-cfm-sounding (draft already in Drafts since 6 Oct).
+- **(b) Form changes, exact click lists** (Claude in Adriaan's browser session, Adriaan clicks Save):
+  act-mwater-year-required, act-mwater-mg-locale, act-tana-baseline-form, act-v2-stove-stacking.
+- **(c) Decisions, each stated with options and a recommendation:** act-move-stroke-test-sop,
+  act-mwater-approval-policy, act-per-diem, act-sensor-cost-benefit, act-enduro-pricing-strategy-agreement,
+  act-fluoride-five-pumps-status.
+- **Not done:** act-sampler-usage-survey-mode — Claude Code can build it in sanitap-sampler, but it implements the
+  usage-survey SOP, still a draft awaiting James Walker's sign-off (`adriaan-task-triage-2026-10-08`).
