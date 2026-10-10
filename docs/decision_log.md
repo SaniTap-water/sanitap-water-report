@@ -2438,3 +2438,23 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   provisional 0.08 — the two pumps above 0.08 on this page were "Pass" in Fabric.
 - **Gate.** `check_consistency.py` block 7bi recomputes the counts from the extract, independently of the
   generator, and fails if the section's counts, thresholds or table rows disagree.
+
+## 10 Oct 2026 — Adriaan Mol: institutional premises (schools, health posts) are not claimed
+
+- **Decision.** People served counts households only. Schools and health posts within the service areas are not
+  credited as institutional premises. Recorded on the page in the "How this is worked out: how people served is
+  counted" footnote (`#institutions-not-counted`) and in `data/decisions.json` (act-identify-count-institutional-premises).
+- **Count behind it.** mWater's school and health facility records within 1 km of the 732 carbon pumps: 176 schools
+  and 37 health facilities (Maroantsetra 76 and 13, Fort-Dauphin 100 and 24), about 208 after duplicates. Mostly the
+  November 2022 ministry bulk imports; some health facility coordinates are only accurate to 2.7–4.2 km. Files:
+  Water Documents/Evidence/2026/Institutional premises.
+- **Why.** Upper bound if every institution were additional: about 2,300 tCO2e a year, roughly 11% of the
+  portfolio's ex-ante 20,900 t (assumed 150 pupils per school, the 3 L/person/day half-time default of SDWS 24 in the
+  VPA-DD, 180 school days; health facilities with staff and patients). Most pupils live inside the same 1 km areas
+  and are already counted at home at 4 L/person/day, so crediting their school intake as well double counts the same
+  person's drinking water. The defensible additional volume is about 250–500 t a year (1–2%), and claiming it would
+  need attendance records, proof that each institution draws from the pump at least every two days, and a
+  point-of-use water test per institution.
+- **Revisit** for a boarding school or health centre next to a pump whose users are not otherwise counted, or when
+  the baseline is redone for crediting period 2 (19 Mar 2029). Full estimate: project note
+  `claude/institutional-premises-credit-estimate-2026-10-10.md`.

@@ -747,6 +747,14 @@
    "source": "Adriaan Mol, reply in the session, 8 Oct 2026",
    "logged_on": "2026-10-08",
    "logged_by": "Adriaan Mol"
+  },
+  "act-identify-count-institutional-premises": {
+   "answer": "Institutional premises (schools and health posts) are not claimed. Within 1 km of the 732 carbon pumps there are 176 schools and 37 health facilities in mWater's records (about 208 after duplicates; files in Water Documents/Evidence/2026/Institutional premises). Upper bound if all were additional: about 2,300 tCO2e a year (11% of the portfolio, assuming 150 pupils per school at the 3 L/person/day half-time default for 180 days). Most pupils are already counted in their households at 4 L/person/day, so a defensible additional claim is about 250-500 t a year (1-2%), against the cost of attendance records, proof of use and a point-of-use test per institution. Revisit for a boarding school or health centre whose users are not otherwise counted, or at crediting period 2 (19 Mar 2029). Estimate: project note claude/institutional-premises-credit-estimate-2026-10-10.md.",
+   "decided_by": "Adriaan Mol, COO SaniTap",
+   "decided_on": "2026-10-10",
+   "source": "Adriaan Mol, reply in the session, 10 Oct 2026",
+   "logged_on": "2026-10-10",
+   "logged_by": "Adriaan Mol"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
