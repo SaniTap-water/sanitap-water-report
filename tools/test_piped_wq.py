@@ -281,11 +281,12 @@ def main():
     sy = next(x for x in dd["systems"] if x["code"] == "1108783583")
     check(15, f"interim kiosk {k} on Amboasary gara",
           all(ps.get(c) == "1108783583" for c in kiosks) and pub["paired"] == 1
-          and priv[0]["pre_completion"] and sy["standposts_n"] == 0
+          and priv[0]["pre_completion"] and not set(sy["standposts"]) & set(kiosks)
           and [x["sample"] for x in pub["flags"]["earlier_project_record"]] == ["S15"],
           f"{sum(1 for c in kiosks if ps.get(c) == '1108783583')} of {len(kiosks)} kiosks mapped, "
           f"paired {pub['paired']}, pre-completion {priv[0]['pre_completion'] if priv else None}, "
-          f"counted toward closure {sy['standposts_n']}")
+          f"interim kiosks counted toward closure {len(set(sy['standposts']) & set(kiosks))} "
+          f"(registered standposts {sy['standposts_n']})")
 
     # 16. the crosswalk (Adriaan Mol, 29 Sep 2026): an old ID quoted in the new
     # point's description is confirmed; failing that, GPS within 30 m and a
