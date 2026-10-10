@@ -56,6 +56,10 @@ REQUEST = os.path.join(REPO, "logs", "update_requested")
 # region generators below; regenerating is idempotent, so that is harmless.)
 STEPS = [
     ("tools/pull_extract.py",        ["--write"],      True),
+    # the weekly mWater backup to Evidence/mWater backup (10 Oct 2026): read-only,
+    # skips itself when a verified backup under six days old exists. Never
+    # blocks the edition; a failure is logged loudly and named in the outcome.
+    ("tools/mwater_backup.py",       [],               False),
     # the whole mWater group, classified silently: a new pump that meets the
     # rule joins PUMPS here, anything unclassifiable is logged for review
     ("tools/classify_register.py",   ["--write"],      True),
@@ -324,12 +328,20 @@ def main():
                 log(f"{tag}SKIPPING the extract pull (SANITAP_SKIP_PULL=1); "
                     "using the extracts already on disk")
                 continue
+            if dry and script.endswith("mwater_backup.py"):
+                log(f"{tag}SKIPPING the mWater backup (dry run)")
+                continue
             r = run([PY, script] + args)
+            if script.endswith("mwater_backup.py"):
+                last = (r.stdout or r.stderr or "").strip().splitlines()
+                log(f"{tag}{last[-1][:200] if last else 'mWater backup: no output'}")
             if r.returncode != 0:
-                msg = (r.stderr or r.stdout or "").strip().splitlines()
+                msg = (r.stdout + "\n" + r.stderr if script.endswith("mwater_backup.py")
+                       else r.stderr or r.stdout or "").strip().splitlines()
                 msg = msg[-1][:160] if msg else "no output"
                 if required:
                     raise RuntimeError(f"{script} failed: {msg}")
+                log(f"{tag}!!! OPTIONAL STEP FAILED, publishing anyway: {script}: {msg}")
                 failures.append(f"{os.path.basename(script)} ({msg[:60]})")
         d, wk_ed = masthead_of(os.path.join(REPO, "index.html"))
         built_rec = newest_record(os.path.join(REPO, "index.html"))
@@ -433,7 +445,8 @@ def main():
                             "-L", "--max-time", "30", u], capture_output=True, text=True)
         if r.stdout.strip() != "200":
             bad_urls.append(f"{u} -> {r.stdout.strip() or 'no response'}")
-    said(f"Published week {wk} edition {ed}, issued {d}, as commit {sha}")
+    said(f"Published week {wk} edition {ed}, issued {d}, as commit {sha}"
+         + (f"; BUT{nonfatal}" if nonfatal else ""))
     log(f"PUBLISHED week {wk} edition {ed} as {sha}"
         + (f"; live check: {'; '.join(bad_urls)} (Pages can lag)" if bad_urls
            else "; live URLs returned 200"))

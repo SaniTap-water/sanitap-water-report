@@ -875,6 +875,17 @@ build if anything the build runs calls a retired script, or if `api.mjs` grows
 a write path again. A correction to a register record is made in the portal
 and arrives with the next pull.
 
+**The weekly mWater backup follows the same rule** (10 October 2026).
+`tools/mwater_backup.py` runs right after the extract pull, writes to
+Evidence/mWater backup (`data/<date>/` plus the sharded `images/` store, new
+photographs only), and sends every request through one function that refuses
+anything but a GET or the login; `tools/test_mwater_backup.py` proves it. It
+runs at most once a week (it skips itself when a verified backup under six
+days old exists) and never blocks the edition: a failure is logged as
+`!!! OPTIONAL STEP FAILED` and named in the OUTCOME line. It logs in once per
+run with the `~/mwater-mcp/.env` credentials, separately from the extract
+pull, whose token stays inside the MCP process.
+
 **The build runs only the pinned `~/mwater-mcp`.** That checkout has no
 remote and its `dist/` is untracked build output, so neither a commit here nor
 one there fixes what executes. `data/mwater_mcp_pin.json` records the commit

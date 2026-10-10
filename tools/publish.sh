@@ -380,7 +380,10 @@ fi
 
 say ""
 say "running consistency checker ..."
-python3 tools/check_consistency.py index.html portfolio.html
+# Under the venv where it exists: the checker imports check_managed, whose
+# rendered check needs Playwright, and system python3 has none (10 Oct 2026).
+CPY=python3; [ -x "$PYBIN" ] && CPY="$PYBIN"
+PLAYWRIGHT_BROWSERS_PATH="$PW" "$CPY" tools/check_consistency.py index.html portfolio.html
 GATE=$?
 say ""
 
