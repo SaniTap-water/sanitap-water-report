@@ -41,14 +41,9 @@
  },
  "excluded": {
   "hand_pump_on_piped_form": {
-   "codes": [
-    "742895333"
-   ],
-   "n": 2,
-   "responses": [
-    "85ca794c0e694e34aa9584330c18e882",
-    "ddf41ec2ed63413f8f07b7500edf1c31"
-   ]
+   "codes": [],
+   "n": 0,
+   "responses": []
   },
   "no_site": {
    "n": 0
@@ -58,7 +53,7 @@
    "n": 0
   },
   "not_final": {
-   "n": 0
+   "n": 9
   }
  },
  "form": "0ac68d8274d24f54af0c28b29119b77d",
@@ -91,29 +86,19 @@
    "1125843383"
   ],
   "managed_kiosk_wq_results": 0,
-  "points_registered": 1,
+  "points_registered": 3,
   "points_registered_draft": 0,
-  "systems_registered": 0,
+  "systems_registered": 2,
   "systems_registered_draft": 1,
   "taps_bound": 0,
-  "taps_installed": 1,
-  "taps_unbound": 1
+  "taps_installed": 3,
+  "taps_unbound": 3
  },
  "pairing": {
   "after_days": 7,
-  "as_of": "2026-10-05",
+  "as_of": "2026-10-12",
   "baseline": {
    "result_list": [
-    {
-     "result": "Cathy_MadAvance-DYQ4XM",
-     "site": "742895333",
-     "submitted": "2026-03-19"
-    },
-    {
-     "result": "Cathy_MadAvance-DYQ5UD",
-     "site": "742895333",
-     "submitted": "2026-03-19"
-    },
     {
      "result": "Cathy_MadAvance-DZAB22",
      "site": "1108783583",
@@ -330,7 +315,7 @@
      "submitted": "2026-08-24"
     }
    ],
-   "results": 45,
+   "results": 43,
    "samples": 59
   },
   "date_mismatch": 0,
@@ -367,7 +352,7 @@
   "rule": "a result pairs with the most recent unpaired sample at the same water point (result 1.2b = sample 1.1b) taken within 72 h before the result was submitted; each sample pairs once",
   "samples": 0,
   "samples_pending": 0,
-  "samples_pulled": "2026-10-05",
+  "samples_pulled": "2026-10-12",
   "sampling_form": "ef8cf7353a974cf984d34860dcf2952d",
   "window_hours": 72
  },
@@ -387,8 +372,8 @@
   "systems": 0,
   "tap_recorded": 0
  },
- "pulled": "2026-10-05",
- "responses": 45,
+ "pulled": "2026-10-12",
+ "responses": 52,
  "status_counts": {
   "in_process": 4,
   "managed": 1,

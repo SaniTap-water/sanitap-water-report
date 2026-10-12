@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-08",
+ "fetched": "2026-10-12",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -4176,6 +4176,46 @@
      "type": "MulticheckQuestion"
     },
     {
+     "code": "A13",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "c2aee36717f64cc2ba794dbd1c55f937"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "ekfDdKL"
+       }
+      }
+     ],
+     "en": "Besides the project water, does this household still boil or treat drinking water on another stove or fire? Which one?",
+     "fr": "En plus de l'eau du projet, ce ménage fait-il encore bouillir ou traiter l'eau de boisson sur un autre foyer ou feu ? Lequel ?",
+     "group": null,
+     "id": "822b1d43c63f493fbcbf72fb556bb5f5",
+     "required": true,
+     "type": "MulticheckQuestion"
+    },
+    {
+     "code": "A14",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "822b1d43c63f493fbcbf72fb556bb5f5"
+       },
+       "op": "!includes",
+       "rhs": {
+        "literal": "1DGBgx6"
+       }
+      }
+     ],
+     "en": "How often?",
+     "fr": "À quelle fréquence ?",
+     "group": null,
+     "id": "c48d565873154cebb59aebd54451cf7e",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
      "code": "B1",
      "conditions": [
       {
@@ -6026,7 +6066,7 @@
      "type": "ImageQuestion"
     }
    ],
-   "rev": 119,
+   "rev": 124,
    "state": "active"
   },
   "premiere-rehabilitation": {
@@ -7854,10 +7894,10 @@
      "code": "2.15.7",
      "conditions": [],
      "en": "Year this calendar documents (written on the sheet in pen before the photograph)",
-     "fr": "Taona voarakitra amin'ity teti-andro ity — soraty amin'ny penina eo amin'ny takelaka alohan'ny sary / Année documentée par ce calendrier — écrite au stylo sur la feuille avant la photo",
+     "fr": "Année documentée par ce calendrier — écrite au stylo sur la feuille avant la photo",
      "group": "Water point managers/WP warden",
      "id": "3393e25651c047d0b8a29f34cdcf12d9",
-     "required": false,
+     "required": true,
      "type": "NumberQuestion"
     },
     {
@@ -7911,7 +7951,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 506,
+   "rev": 509,
    "state": "active"
   },
   "repair-after-breakdown": {
@@ -9918,9 +9958,99 @@
      "id": "e14d9d8b2d7f4acab6edfe6dec57d718",
      "required": true,
      "type": "ImagesQuestion"
+    },
+    {
+     "code": "WS7.9",
+     "conditions": [],
+     "en": "Why is this sample being taken?",
+     "fr": "",
+     "group": null,
+     "id": "e914f858373c4d86be1db27580480d52",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
+     "code": "WS7.10",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "e914f858373c4d86be1db27580480d52"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "5afYEkY"
+       }
+      }
+     ],
+     "en": "What contamination event happened?",
+     "fr": "",
+     "group": null,
+     "id": "a72a8ae075d64603a03b28e6c10efb93",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
+     "code": "WS7.11",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "e914f858373c4d86be1db27580480d52"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "5afYEkY"
+       }
+      }
+     ],
+     "en": "Date of the contamination event",
+     "fr": "",
+     "group": null,
+     "id": "f270513c71d64b91ab66cc3bd7903145",
+     "required": true,
+     "type": "DateQuestion"
+    },
+    {
+     "code": "WS7.12",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "e914f858373c4d86be1db27580480d52"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "5afYEkY"
+       }
+      }
+     ],
+     "en": "Date the pump was cleaned (shock chlorination)",
+     "fr": "",
+     "group": null,
+     "id": "59779e389b4d498a806195c2ecf5c553",
+     "required": true,
+     "type": "DateQuestion"
+    },
+    {
+     "code": "WS7.13",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "e914f858373c4d86be1db27580480d52"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "5afYEkY"
+       }
+      }
+     ],
+     "en": "Who cleaned the pump? (name and organisation)",
+     "fr": "",
+     "group": null,
+     "id": "c38e414ff2f645ed9ebc946d7430a784",
+     "required": true,
+     "type": "TextQuestion"
     }
    ],
-   "rev": 185,
+   "rev": 192,
    "state": "active"
   }
  }

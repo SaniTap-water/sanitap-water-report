@@ -681,8 +681,11 @@
     ],
     "n": 19
    },
-   "standposts": [],
-   "standposts_n": 0
+   "standposts": [
+    "1255186552",
+    "1255186600"
+   ],
+   "standposts_n": 2
   },
   {
    "code": "1108783624",
@@ -873,6 +876,6 @@
   "929469223",
   "929469247"
  ],
- "standposts": 0,
- "systems_without_standpost": 4
+ "standposts": 2,
+ "systems_without_standpost": 3
 }

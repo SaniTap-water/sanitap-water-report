@@ -2,7 +2,7 @@
  "note": "Iron and manganese at the managed hand pumps: latest SDWS 3 result per pump. Written by tools/iron_manganese.py; thresholds from PARAMS.",
  "form": "7b33c5d7e5074808a94915939a5a0783",
  "extract": "wq_results.json",
- "extracted": "2026-10-08",
+ "extracted": "2026-10-12",
  "thresholds": {
   "wq_iron_accept": 0.3,
   "wq_manganese_accept": 0.02,

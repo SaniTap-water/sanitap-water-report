@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-08T12:57:40+00:00",
+ "pulled_at": "2026-10-12T03:57:51+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -14,7 +14,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936822648",
-   "modified_at": "2026-10-08T05:25:52.716Z"
+   "modified_at": "2026-10-09T17:33:34.277Z"
   },
   "act-782134540-rehab-record": {
    "gid": "1219100936850606",
@@ -26,19 +26,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
-   "modified_at": "2026-10-08T05:25:54.869Z"
+   "modified_at": "2026-10-12T03:48:45.744Z"
   },
   "act-ambinanibe-second-point": {
    "gid": "1219275025874581",
    "name": "Plan a second water point at Ambinanibe [act-ambinanibe-second-point]",
    "title": "Plan a second water point at Ambinanibe",
-   "owner": "Jan de Graaf",
-   "assignee_gid": "1209565438602753",
+   "owner": "Angelo Nahavitatsara",
+   "assignee_gid": "1207774235226712",
    "due_on": "2026-12-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219275025874581",
-   "modified_at": "2026-10-08T05:29:32.408Z"
+   "modified_at": "2026-10-10T14:00:35.199Z"
   },
   "act-amboasary-post-works-retest": {
    "gid": "1219128812565674",
@@ -92,7 +92,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219109377317101",
-   "modified_at": "2026-10-08T07:52:41.380Z"
+   "modified_at": "2026-10-09T17:34:22.907Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -134,10 +134,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109376477976",
-   "modified_at": "2026-10-08T05:28:36.448Z"
+   "modified_at": "2026-10-10T08:26:07.103Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-calendar-custody": {
    "gid": "1219101057894822",
@@ -170,7 +173,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936878436",
-   "modified_at": "2026-10-08T05:25:58.471Z"
+   "modified_at": "2026-10-09T17:30:41.662Z"
   },
   "act-calendar-photo-briefing": {
    "gid": "1219205037087065",
@@ -199,11 +202,11 @@
    "title": "Print and hand out the new blank calendar, withdrawing old stock",
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
-   "due_on": "2026-10-10",
+   "due_on": "2026-11-27",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057814836",
-   "modified_at": "2026-10-08T05:26:00.320Z"
+   "modified_at": "2026-10-12T03:48:49.435Z"
   },
   "act-call-no-followup": {
    "gid": "1219100770783065",
@@ -215,7 +218,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100770783065",
-   "modified_at": "2026-10-08T05:26:03.049Z"
+   "modified_at": "2026-10-08T14:55:45.437Z"
   },
   "act-call-service-visit": {
    "gid": "1219100994926599",
@@ -236,10 +239,13 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-16",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-09",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205024224853",
-   "modified_at": "2026-10-08T05:29:11.623Z"
+   "modified_at": "2026-10-09T17:33:09.936Z",
+   "ticked_by": "James Walker",
+   "ticked_at": "2026-10-09",
+   "evidence": null
   },
   "act-carbon-year-basis": {
    "gid": "1219100770799084",
@@ -368,10 +374,13 @@
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-09",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219292736305580",
-   "modified_at": "2026-10-08T07:49:53.350Z"
+   "modified_at": "2026-10-09T17:34:11.423Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-09",
+   "evidence": null
   },
   "act-define-maintenance-record-becomes": {
    "gid": "1219101110579611",
@@ -404,7 +413,7 @@
    "completed": true,
    "completed_at": "2026-10-07",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377306808",
-   "modified_at": "2026-10-08T05:28:38.638Z",
+   "modified_at": "2026-10-09T16:31:21.652Z",
    "ticked_by": "Angelo NAHAVITATSARA",
    "ticked_at": "2026-10-07",
    "evidence": null
@@ -419,7 +428,7 @@
    "completed": true,
    "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307190",
-   "modified_at": "2026-10-08T05:28:30.647Z",
+   "modified_at": "2026-10-09T16:31:11.562Z",
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-08",
    "evidence": {
@@ -547,6 +556,36 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219197725175767"
    }
   },
+  "act-donor-proposals-approve": {
+   "gid": "1219336084231518",
+   "name": "Approve the mWater donor proposals and reject the 17 Voloina donor responses [act-donor-proposals-approve]",
+   "title": "Approve the mWater donor proposals and reject the 17 Voloina donor responses",
+   "owner": "Lanja Randriamanantena",
+   "assignee_gid": "1206894470435125",
+   "due_on": "2026-10-09",
+   "completed": true,
+   "completed_at": "2026-10-10",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219336084231518",
+   "modified_at": "2026-10-10T03:44:00.193Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
+  },
+  "act-donor-record-all-pumps": {
+   "gid": "1219305417221796",
+   "name": "Record a donor for every managed water point in mWater [act-donor-record-all-pumps]",
+   "title": "Record a donor for every managed water point in mWater",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": true,
+   "completed_at": "2026-10-10",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219305417221796",
+   "modified_at": "2026-10-10T08:04:19.370Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
+  },
   "act-down-no-repair": {
    "gid": "1219100994936725",
    "name": "Record a repair, or a reason, for every pump reported down [act-down-no-repair]",
@@ -572,13 +611,34 @@
    "gid": "1219101110474052",
    "name": "Decide where emergency cleaning of pumps is recorded (SDWS 3) [act-emergency-event-form]",
    "title": "Decide where emergency cleaning of pumps is recorded (SDWS 3)",
-   "owner": "Cathy Andriambololonirina",
-   "assignee_gid": "1208683882004265",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
+   "completed": true,
+   "completed_at": "2026-10-10",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110474052",
+   "modified_at": "2026-10-10T14:37:03.683Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": {
+    "kind": "comment",
+    "text": "decided by Adriaan Mol, 10 Oct 2026. SDWS 3 emergency events are recorded on the sampling form itself, so the event, the cleaning and the retest sit in one record.\n\nHand pumps, \"Clean Water || Water Quality Sampling_sdws3\" (43c96af4bc4240c0b5c4402383b9c539, now rev 192):\n- WS7.9 \"Why is this sample being taken?\" (required): routine monitoring round / commissioning of a new or rehabilitated pump / after a contamination event / retest after a failed result.\n- Only when the answer is \"after a contamination event\": WS7.10 event type (flood, cyclone or storm, latrine overflow or runoff, other), WS7.11 event date (Don't Know allowed), WS7.12 cleaning (shock chlorination) date, WS7.13 who cleaned it.\n\nPiped systems, \"Piped Water || Water Quality Sampling_sdws3\" (ef8cf7353a974cf984d34860dcf2952d, now rev 82): the same block as 1.11 to 1.15, worded for systems (pipe burst instead of latrine runoff; cleaned and chlorinated).\n\nThe result itself goes on the results form as now, linked through the sampling record. Cathy Emmanuella carries out the retests and fills in the block on site.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110474052"
+   }
+  },
+  "act-enduro-contribution-register": {
+   "gid": "1219356505431058",
+   "name": "List every NatuRano contract, device and revenue stream and its transfer status to Endur'O [act-enduro-contribution-register]",
+   "title": "List every NatuRano contract, device and revenue stream and its transfer status to Endur'O",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-30",
    "completed": false,
    "completed_at": null,
-   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110474052",
-   "modified_at": "2026-10-08T05:26:19.067Z"
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219356505431058",
+   "modified_at": "2026-10-09T14:51:33.820Z"
   },
   "act-enduro-feed": {
    "gid": "1219101110649225",
@@ -650,7 +710,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243900466998",
-   "modified_at": "2026-10-08T05:29:28.883Z"
+   "modified_at": "2026-10-09T17:34:30.904Z"
   },
   "act-enduro-nanisana-sellthrough": {
    "gid": "1219218728385339",
@@ -666,6 +726,18 @@
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-07",
    "evidence": null
+  },
+  "act-enduro-new-business-protocol": {
+   "gid": "1219356790256259",
+   "name": "Agree in writing how NatuRano introduces business and Endur'O contracts it [act-enduro-new-business-protocol]",
+   "title": "Agree in writing how NatuRano introduces business and Endur'O contracts it",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219356790256259",
+   "modified_at": "2026-10-10T14:01:31.841Z"
   },
   "act-enduro-onboard-2-register-sites": {
    "gid": "1219101110601508",
@@ -683,13 +755,13 @@
    "gid": "1219101110593068",
    "name": "Get calibration certificates with the next water meter order [act-enduro-onboard-5-calibration]",
    "title": "Get calibration certificates with the next water meter order",
-   "owner": "Coddy Velonizy",
-   "assignee_gid": "1219154315843358",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
    "due_on": null,
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110593068",
-   "modified_at": "2026-10-07T15:01:54.746Z"
+   "modified_at": "2026-10-10T13:52:28.254Z"
   },
   "act-enduro-onboard-6-kiosk-wq": {
    "gid": "1219101058111437",
@@ -757,6 +829,18 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150022438"
    }
   },
+  "act-enduro-sha-side-letter": {
+   "gid": "1219356790491435",
+   "name": "Fix the gaps in the Endur'O shareholder agreement with a side letter [act-enduro-sha-side-letter]",
+   "title": "Fix the gaps in the Endur'O shareholder agreement with a side letter",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219356790491435",
+   "modified_at": "2026-10-10T14:01:41.499Z"
+  },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
    "name": "Find renewal dates for the four baseline cooking parameters [act-establish-renewal-dates-four]",
@@ -764,10 +848,13 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995264223",
-   "modified_at": "2026-10-08T05:26:32.120Z"
+   "modified_at": "2026-10-10T08:27:30.772Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-fabric-andrew-shutdown": {
    "gid": "1219289324282150",
@@ -833,10 +920,13 @@
    "owner": "Jan de Graaf",
    "assignee_gid": "1209565438602753",
    "due_on": "2026-10-17",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058383094",
-   "modified_at": "2026-10-08T05:26:33.934Z"
+   "modified_at": "2026-10-10T09:35:55.631Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-fluoride-diluted-results": {
    "gid": "1219289406453733",
@@ -902,7 +992,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254583173041",
-   "modified_at": "2026-10-08T05:29:30.617Z"
+   "modified_at": "2026-10-10T09:35:42.875Z"
   },
   "act-form-consolidation": {
    "gid": "1219101110893781",
@@ -953,10 +1043,19 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-03",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-09",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058491188",
-   "modified_at": "2026-10-08T05:26:35.765Z"
+   "modified_at": "2026-10-09T17:33:26.746Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-09",
+   "evidence": {
+    "kind": "comment",
+    "text": "corrected document filed on 9 Oct 2026 as Carbon-data-gaps-v2-2026-10-09.docx in SharePoint, Central Data Hub > Water Documents > Methodology of record (next to the VPA-DD). Version 1 was an internal Claude project note only, which is why James could not find it. Version 2 rewrites the cookstove section (suppressed-demand baseline, overlap = all 127 Fort-Dauphin points / 32.3% of people served, effect through SDWS 11 baseline device efficiency, the VPA-DD commitment for Anosy, the stacking rule, the fNRB uplift on the same points) and corrects the definition of Cb (SDWS 12). James's three open questions are in section 1.8. Adriaan is sending James the file directly.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-09",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058491188"
+   }
   },
   "act-gs-devrq121-upload-timing": {
    "gid": "1219218642162481",
@@ -1001,10 +1100,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657004",
-   "modified_at": "2026-10-08T05:26:41.111Z"
+   "modified_at": "2026-10-10T09:11:25.340Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-india-mark-cap-james": {
    "gid": "1219101058577051",
@@ -1047,6 +1149,21 @@
     "date": "2026-10-07",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937657165"
    }
+  },
+  "act-james-fabric-dependency": {
+   "gid": "1219341107639899",
+   "name": "Confirm no Gold Standard tables or cookstove figures rely on Fabric [act-james-fabric-dependency]",
+   "title": "Confirm no Gold Standard tables or cookstove figures rely on Fabric",
+   "owner": "James Walker",
+   "assignee_gid": "1213895542888866",
+   "due_on": "2026-10-23",
+   "completed": true,
+   "completed_at": "2026-10-09",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219341107639899",
+   "modified_at": "2026-10-09T17:32:03.259Z",
+   "ticked_by": "James Walker",
+   "ticked_at": "2026-10-09",
+   "evidence": null
   },
   "act-jan-commune-carbon-clauses": {
    "gid": "1219109211970137",
@@ -1093,17 +1210,29 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219144164856225"
    }
   },
+  "act-kit-validation-partb-sources": {
+   "gid": "1219386918921045",
+   "name": "Send the list of the 12 Part B chemistry sources for the field kit validation [act-kit-validation-partb-sources]",
+   "title": "Send the list of the 12 Part B chemistry sources for the field kit validation",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-26",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219386918921045",
+   "modified_at": "2026-10-12T03:49:00.919Z"
+  },
   "act-kit-validation-report-upload": {
    "gid": "1219205107055869",
    "name": "Produce the field kit validation report and upload it with the LHAE results to the GS Assurance Platform [act-kit-validation-report-upload]",
    "title": "Produce the field kit validation report and upload it with the LHAE results to the GS Assurance Platform",
    "owner": "Cathy Andriambololonirina",
    "assignee_gid": "1208683882004265",
-   "due_on": "2026-11-13",
+   "due_on": "2026-11-27",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205107055869",
-   "modified_at": "2026-10-08T05:29:15.557Z"
+   "modified_at": "2026-10-09T13:50:26.629Z"
   },
   "act-legal-water-credit-opinion": {
    "gid": "1219109150420909",
@@ -1136,7 +1265,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798",
-   "modified_at": "2026-10-08T05:29:17.309Z"
+   "modified_at": "2026-10-12T03:51:00.343Z"
+  },
+  "act-lhae-payment": {
+   "gid": "1219344855469780",
+   "name": "Pay LHAE in one transaction at bottle collection for the field kit validation [act-lhae-payment]",
+   "title": "Pay LHAE in one transaction at bottle collection for the field kit validation",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-12",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344855469780",
+   "modified_at": "2026-10-11T21:00:32.516Z"
   },
   "act-log-repairs-on-form": {
    "gid": "1219275037486922",
@@ -1150,6 +1291,30 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219275037486922",
    "modified_at": "2026-10-08T05:29:34.134Z"
   },
+  "act-mandie-spike-prep": {
+   "gid": "1219344664446364",
+   "name": "Prepare the E. coli dilution controls and get the arsenic/fluoride spikes from Labochimie for the field kit validation [act-mandie-spike-prep]",
+   "title": "Prepare the E. coli dilution controls and get the arsenic/fluoride spikes from Labochimie for the field kit validation",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344664446364",
+   "modified_at": "2026-10-09T07:45:59.722Z"
+  },
+  "act-manganese-retest-two-pumps": {
+   "gid": "1219300886317968",
+   "name": "Retest manganese at water points 699595948 and 699597720 [act-manganese-retest-two-pumps]",
+   "title": "Retest manganese at water points 699595948 and 699597720",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
+   "due_on": "2026-10-30",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219300886317968",
+   "modified_at": "2026-10-08T16:52:36.713Z"
+  },
   "act-mar-admin-fields": {
    "gid": "1219101058585368",
    "name": "Fill in location and pump model on the Marolinta pump records [act-mar-admin-fields]",
@@ -1160,7 +1325,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058585368",
-   "modified_at": "2026-10-08T05:26:46.714Z"
+   "modified_at": "2026-10-10T09:35:50.363Z"
   },
   "act-mar-functional-status": {
    "gid": "1219100937800778",
@@ -1184,7 +1349,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100995694369",
-   "modified_at": "2026-10-08T05:26:48.486Z"
+   "modified_at": "2026-10-08T15:08:14.156Z"
   },
   "act-mar-missing-rehabs": {
    "gid": "1219100937856356",
@@ -1310,7 +1475,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937744451",
-   "modified_at": "2026-10-08T05:27:03.085Z"
+   "modified_at": "2026-10-10T09:35:47.566Z"
   },
   "act-mor-count-draw-off-point": {
    "gid": "1219100996132530",
@@ -1406,7 +1571,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937856134",
-   "modified_at": "2026-10-08T05:27:17.753Z"
+   "modified_at": "2026-10-10T09:35:45.023Z"
   },
   "act-mor-submit-drafts": {
    "gid": "1219101058660604",
@@ -1521,15 +1686,15 @@
   },
   "act-mwater-fabric-sessions-logout": {
    "gid": "1219298361383819",
-   "name": "End the mWater sessions exposed in Fabric and remove priscilla_sanitap admin rights [act-mwater-fabric-sessions-logout]",
-   "title": "End the mWater sessions exposed in Fabric and remove priscilla_sanitap admin rights",
+   "name": "Change the IT Manager Madavance mWater password, end the mWater sessions exposed in Fabric, and remove priscilla_sanitap admin rights [act-mwater-fabric-sessions-logout]",
+   "title": "Change the IT Manager Madavance mWater password, end the mWater sessions exposed in Fabric, and remove priscilla_sanitap admin rights",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": "2026-10-16",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219298361383819",
-   "modified_at": "2026-10-08T12:13:32.601Z"
+   "modified_at": "2026-10-08T13:22:41.695Z"
   },
   "act-mwater-mg-locale": {
    "gid": "1219101106734654",
@@ -1538,10 +1703,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-03",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
-   "modified_at": "2026-10-08T05:24:40.015Z"
+   "modified_at": "2026-10-08T17:38:11.223Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "done in the mWater portal on 8 Oct 2026 (Entretien préventif, de26d89a). Malagasy added as a form language. Question 2.15.7: French label \"Année documentée par ce calendrier — écrite au stylo sur la feuille avant la photo\", Malagasy label \"Taona voarakitra amin'ity teti-andro ity — soraty amin'ny penina eo amin'ny takelaka alohan'ny sary\"; French hint \"Laisser vide si l'année ne peut être établie à partir de la feuille ou du gardien. Ne jamais deviner.\", Malagasy hint \"Raha tsy azo fantarina ny taona, avelao foana.\" English unchanged. Verified after reload in the translation editor.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654"
+   }
   },
   "act-mwater-year-required": {
    "gid": "1219101270141207",
@@ -1550,10 +1724,13 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2027-01-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141207",
-   "modified_at": "2026-10-08T05:24:37.975Z"
+   "modified_at": "2026-10-10T08:04:19.439Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-nary-awf-sounding": {
    "gid": "1219243061362113",
@@ -1576,6 +1753,18 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243061362113"
    }
   },
+  "act-naturano-card-rounding": {
+   "gid": "1219341107588528",
+   "name": "Send the rounding rule for converting NatuRano card balances to credits [act-naturano-card-rounding]",
+   "title": "Send the rounding rule for converting NatuRano card balances to credits",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1219154315843358",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219341107588528",
+   "modified_at": "2026-10-09T03:50:11.020Z"
+  },
   "act-naturano-import-failing": {
    "gid": "1219109377307094",
    "name": "Find who owns the failing NatuRano mWater import and fix or pause it [act-naturano-import-failing]",
@@ -1586,7 +1775,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377307094",
-   "modified_at": "2026-10-08T05:28:42.202Z"
+   "modified_at": "2026-10-10T08:29:05.934Z"
   },
   "act-naturano-meter-data": {
    "gid": "1219213949192332",
@@ -1607,10 +1796,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111479145",
-   "modified_at": "2026-10-08T05:27:25.053Z"
+   "modified_at": "2026-10-10T09:35:55.679Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-ntsoa-kiosk-cost-data": {
    "gid": "1219109157880427",
@@ -1634,7 +1826,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211970330",
-   "modified_at": "2026-10-08T05:28:58.758Z"
+   "modified_at": "2026-10-08T21:00:39.431Z"
+  },
+  "act-ntsoa-smart-tap-requests": {
+   "gid": "1219356732998637",
+   "name": "Share the list of projects asking for smart taps and quote them as Endur'O [act-ntsoa-smart-tap-requests]",
+   "title": "Share the list of projects asking for smart taps and quote them as Endur'O",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219356732998637",
+   "modified_at": "2026-10-09T15:15:39.461Z"
   },
   "act-per-diem": {
    "gid": "1219100996413584",
@@ -1682,13 +1886,13 @@
    "gid": "1219128940073346",
    "name": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed [act-piped-baseline-other-systems]",
    "title": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed",
-   "owner": "Coddy Velonizy",
-   "assignee_gid": "1219154315843358",
+   "owner": "Cathy Andriambololonirina",
+   "assignee_gid": "1208683882004265",
    "due_on": "2026-10-24",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219128940073346",
-   "modified_at": "2026-10-08T05:29:05.334Z"
+   "modified_at": "2026-10-10T14:10:59.452Z"
   },
   "act-piped-fnrb": {
    "gid": "1219101106837518",
@@ -1733,10 +1937,13 @@
    "owner": "Cathy Andriambololonirina",
    "assignee_gid": "1208683882004265",
    "due_on": "2026-10-06",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111799659",
-   "modified_at": "2026-10-08T05:27:32.802Z"
+   "modified_at": "2026-10-10T08:42:05.339Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-point-use-round-one": {
    "gid": "1219100996389355",
@@ -1793,10 +2000,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-17",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112069140",
-   "modified_at": "2026-10-08T05:27:36.722Z"
+   "modified_at": "2026-10-10T08:21:45.283Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-produce-s4-19-cl": {
    "gid": "1219101111773731",
@@ -1853,7 +2063,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
-   "modified_at": "2026-10-08T12:18:12.940Z"
+   "modified_at": "2026-10-09T03:49:54.050Z"
   },
   "act-ralf-card-sales-backfill-fix": {
    "gid": "1219109211970459",
@@ -1892,7 +2102,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111620085",
-   "modified_at": "2026-10-07T16:54:21.372Z"
+   "modified_at": "2026-10-09T03:49:56.881Z"
   },
   "act-ralf-tap-offgrid-power": {
    "gid": "1219109377317317",
@@ -1928,7 +2138,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
-   "modified_at": "2026-10-07T16:54:23.483Z"
+   "modified_at": "2026-10-12T03:54:09.336Z"
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -1937,10 +2147,19 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111374556",
-   "modified_at": "2026-10-08T05:27:38.533Z"
+   "modified_at": "2026-10-10T14:11:04.818Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": {
+    "kind": "comment",
+    "text": "the improved cookstove question is built into the yearly survey form, so it is asked automatically every round. Form \"Clean Water || Project Cbn&Gender || Survey || Completed\" (2eeb86824b4545eca33db9e7cf7dcbd4, rev 973), deployments \"Evaluation annuelle (Fort-Dauphin)\" and \"Evaluation annuelle (Maroantsetra)\". WS1.31 (dry season) and WS1.52 (rainy season), \"Which types of main stoves do you use most frequently for boiling?\", are both required with no skip condition, and \"Improved cookstove\" is one of the choices.\n\nNovember 2025 round (11–21 Nov 2025, final responses), WS1.31: Fort-Dauphin 169 of 208 answering use an improved cookstove (81%, the figure James Walker applies), 3 blank part-entries; Maroantsetra 0 of 202 (201 three-stone fire, 1 other). Each later round produces the same figure from the same questions, as long as it runs on this form. Closing this task; nothing further to set up.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111374556"
+   }
   },
   "act-recreate-gardien-calendar-controlled": {
    "gid": "1219101112131282",
@@ -1949,10 +2168,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112131282",
-   "modified_at": "2026-10-08T05:27:40.308Z"
+   "modified_at": "2026-10-10T08:21:45.286Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-reduced-performance": {
    "gid": "1219100996697503",
@@ -2015,10 +2237,13 @@
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": "2026-10-06",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219101106519483",
-   "modified_at": "2026-10-08T07:49:03.421Z"
+   "modified_at": "2026-10-10T08:18:08.771Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-repair-time": {
    "gid": "1219101112069110",
@@ -2126,10 +2351,13 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-23",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107133667",
-   "modified_at": "2026-10-07T15:04:08.260Z"
+   "modified_at": "2026-10-10T08:04:19.361Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-sdws18-2025-kit-sop": {
    "gid": "1219101270668695",
@@ -2222,10 +2450,20 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-10",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-09",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112502869",
-   "modified_at": "2026-10-08T05:27:59.328Z"
+   "modified_at": "2026-10-09T17:32:41.908Z",
+   "ticked_by": "James Walker",
+   "ticked_at": "2026-10-09",
+   "evidence": {
+    "kind": "attachment",
+    "text": "CLRQ-407 (1).pdf",
+    "author": "James Walker",
+    "date": "2026-10-09",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112502869",
+    "file": "https://app.asana.com/app/asana/-/get_asset?asset_id=1219345417594034"
+   }
   },
   "act-smartap-register-complete": {
    "gid": "1219148236288402",
@@ -2239,6 +2477,27 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219148236288402",
    "modified_at": "2026-10-08T05:29:09.518Z"
   },
+  "act-sop-calendar-no-lamination": {
+   "gid": "1219371658201915",
+   "name": "Remove lamination from the guardian calendar SOP (v1.8) [act-sop-calendar-no-lamination]",
+   "title": "Remove lamination from the guardian calendar SOP (v1.8)",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": true,
+   "completed_at": "2026-10-10",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219371658201915",
+   "modified_at": "2026-10-10T03:52:28.819Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": {
+    "kind": "comment",
+    "text": "SOP v1.8 filed as Water Documents/SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.8-2026.docx (10 Oct 2026). Changes:\n- Ch. 4: printed on thick paper, NOT laminated, marked with an ordinary ballpoint pen; a sheet number with QR code is optional, depending on the printer (2027 print files A and B).\n- Ch. 9 ter: machine reading is no longer used as evidence. Each year a random sample is read by two independent readers, using photos from visits that are already planned (no dedicated trips).\n- Model description updated to match. Version note, header table and history row (1.8) added.\nv1.7 has been moved to SOPs/Archive.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219371658201915"
+   }
+  },
   "act-sop-calendar-v17-signoff": {
    "gid": "1219119885051246",
    "name": "Brief every field team in French on calendar procedure v1.7 [act-sop-calendar-v17-signoff]",
@@ -2249,7 +2508,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219119885051246",
-   "modified_at": "2026-10-08T05:28:01.160Z"
+   "modified_at": "2026-10-08T15:08:00.230Z"
   },
   "act-tana-baseline-form": {
    "gid": "1219100996443603",
@@ -2258,10 +2517,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-09",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996443603",
-   "modified_at": "2026-10-08T05:28:02.882Z"
+   "modified_at": "2026-10-08T17:38:11.491Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "changes made in the mWater portal designer on 8 Oct 2026 (Piped Water || Baseline Cbn || Survey, 3ef4385a).\n- Deployment \"Baseline (Tana kiosks)\" created, active; enumerators Enduro > EndurO Tana > Enumerators, viewers Enduro > EndurO Tana > Viewers. \"Baseline (Moramanga)\" left inactive.\n- 3.1.1 and 3.1.2 (hand-pump usage questions) disabled rather than deleted, so existing Moramanga answers are kept.\n- Water-source lists 4.1.1.1, 4.1.1.4, 4.2.1.1, 4.2.1.4: existing \"Piped water - Public tap / standpipe\" relabelled \"... (incl. JIRAMA borne fontaine)\" instead of adding a duplicate choice; new choice \"Delivered water - Water vendor (water carried and sold by hand)\" added (it sits after \"Other\", the designer only appends).\n- Past tense: 4.1.2.2.3.2 / 4.2.2.2.3.2 \"Did you use a secondary stove prior to project intervention?\", 4.1.2.2.4.2 / 4.2.2.2.4.2 \"Did you use a secondary fuel prior to project intervention?\".\n- 4.2.2.2.3.3: \"main\" corrected to \"secondary\".",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996443603"
+   }
   },
   "act-tana-baseline-sample-size": {
    "gid": "1219101270648340",
@@ -2270,22 +2538,25 @@
    "owner": "James Walker",
    "assignee_gid": "1213895542888866",
    "due_on": "2026-10-09",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-09",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270648340",
-   "modified_at": "2026-10-08T05:28:04.641Z"
+   "modified_at": "2026-10-09T17:33:18.233Z",
+   "ticked_by": "James Walker",
+   "ticked_at": "2026-10-09",
+   "evidence": null
   },
   "act-tana-baseline-survey": {
    "gid": "1219101270910232",
    "name": "Run the carbon baseline survey around the Antananarivo kiosks [act-tana-baseline-survey]",
    "title": "Run the carbon baseline survey around the Antananarivo kiosks",
-   "owner": "Coddy Velonizy",
-   "assignee_gid": "1219154315843358",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
    "due_on": "2026-10-31",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270910232",
-   "modified_at": "2026-10-08T05:28:06.556Z"
+   "modified_at": "2026-10-10T14:10:59.546Z"
   },
   "act-tana-jirama-licence-filed": {
    "gid": "1219101107423207",
@@ -2333,10 +2604,13 @@
    "owner": "Angelo Nahavitatsara",
    "assignee_gid": "1207774235226712",
    "due_on": "2026-10-17",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-10",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101270141172",
-   "modified_at": "2026-10-08T05:28:12.265Z"
+   "modified_at": "2026-10-10T08:26:07.137Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-10",
+   "evidence": null
   },
   "act-update-parameters-workbook-cite": {
    "gid": "1219101112472241",
@@ -2456,10 +2730,19 @@
    "owner": "Adriaan Mol",
    "assignee_gid": "1132514258683237",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-08",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107616621",
-   "modified_at": "2026-10-08T05:24:43.950Z"
+   "modified_at": "2026-10-08T17:38:11.178Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-08",
+   "evidence": {
+    "kind": "comment",
+    "text": "added in the mWater portal designer on 8 Oct 2026 (Clean Water || project SDWS18 || Survey, db0bcbf2), directly after A11, both shown only when Test type = PoU (ménage).\n- A13 (multi-check, required): \"Besides the project water, does this household still boil or treat drinking water on another stove or fire? Which one?\" — No other stove or fire / Three-stone fire / Charcoal stove / Improved cookstove / Other (please specify).\n- A14 (single choice, required, shown when A13 does not include \"No other stove or fire\"): \"How often?\" — Daily / Weekly / Rarely.\n- Codes A13/A14 used instead of A12/A13 because A12 is already \"Water system\" on this form.\n- French translations entered for all A13/A14 texts. Malagasy left blank (falls back to English).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107616621"
+   }
   },
   "act-v2-stroke-test": {
    "gid": "1219100997161767",

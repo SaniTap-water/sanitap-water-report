@@ -1,12 +1,12 @@
 {
- "act": 87,
- "closed": 74,
- "nodate": 43,
+ "act": 80,
+ "closed": 81,
+ "nodate": 42,
  "nudge": 2,
- "open": 92,
- "overdue": 4,
+ "open": 85,
+ "overdue": 2,
  "rows": 166,
- "ticked": 0,
+ "ticked": 13,
  "ticked_late": 0,
  "watch": 5
 }

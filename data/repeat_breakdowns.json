@@ -1,16 +1,16 @@
 {
  "note": "Written by tools/repeat_breakdowns.py from the mWater repair and call-centre extracts (7 Oct 2026). act-repeat-breakdown and act-repair-time.",
- "asof": "2026-10-02",
- "window_from_excl": "2025-10-02",
+ "asof": "2026-10-10",
+ "window_from_excl": "2025-10-10",
  "repeat_min": 4,
- "pumps_with_repairs": 332,
+ "pumps_with_repairs": 334,
  "repeat": [
   {
    "wp": "742893953",
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "repairs": 14,
-   "repairs_12m": 7,
+   "repairs_12m": 6,
    "first": "2025-01-08",
    "last": "2026-09-06",
    "median_gap_days": 45,
@@ -99,39 +99,6 @@
     },
     {
      "what": "rod",
-     "times": 2
-    }
-   ],
-   "reading": "overuse"
-  },
-  {
-   "wp": "742894930",
-   "site": "Fort-Dauphin",
-   "commune": "Ranopiso",
-   "repairs": 8,
-   "repairs_12m": 4,
-   "first": "2024-10-17",
-   "last": "2026-09-01",
-   "median_gap_days": 84,
-   "people_nearby": 611,
-   "people_served": 300,
-   "cap": 300,
-   "load": 2.04,
-   "causes": [
-    {
-     "what": "chain",
-     "times": 6
-    },
-    {
-     "what": "bearings",
-     "times": 3
-    },
-    {
-     "what": "handle or lever mechanism",
-     "times": 3
-    },
-    {
-     "what": "axle",
      "times": 2
     }
    ],
@@ -210,7 +177,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "repairs": 14,
-   "repairs_12m": 7,
+   "repairs_12m": 6,
    "first": "2025-01-08",
    "last": "2026-09-06",
    "median_gap_days": 45,
@@ -305,39 +272,6 @@
    "reading": "overuse"
   },
   {
-   "wp": "742894930",
-   "site": "Fort-Dauphin",
-   "commune": "Ranopiso",
-   "repairs": 8,
-   "repairs_12m": 4,
-   "first": "2024-10-17",
-   "last": "2026-09-01",
-   "median_gap_days": 84,
-   "people_nearby": 611,
-   "people_served": 300,
-   "cap": 300,
-   "load": 2.04,
-   "causes": [
-    {
-     "what": "chain",
-     "times": 6
-    },
-    {
-     "what": "bearings",
-     "times": 3
-    },
-    {
-     "what": "handle or lever mechanism",
-     "times": 3
-    },
-    {
-     "what": "axle",
-     "times": 2
-    }
-   ],
-   "reading": "overuse"
-  },
-  {
    "wp": "670402214",
    "site": "Fort-Dauphin",
    "commune": "Ifarantsa",
@@ -402,6 +336,16 @@
     }
    ],
    "reading": "overuse"
+  },
+  {
+   "wp": "742894930",
+   "site": "Fort-Dauphin",
+   "commune": "Ranopiso",
+   "repairs": 8,
+   "repairs_12m": 3,
+   "first": "2024-10-17",
+   "last": "2026-09-01",
+   "median_gap_days": 84
   },
   {
    "wp": "742893850",
@@ -503,7 +447,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "repairs": 14,
-   "repairs_12m": 7,
+   "repairs_12m": 6,
    "first": "2025-01-08",
    "last": "2026-09-06",
    "median_gap_days": 45,
@@ -533,13 +477,13 @@
   }
  },
  "call_to_repair": {
-  "calls": 613,
-  "with_repair": 249,
-  "no_repair_yet": 364,
+  "calls": 619,
+  "with_repair": 253,
+  "no_repair_yet": 366,
   "median_days": 4,
   "p90_days": 104,
-  "within_7": 144,
-  "within_30": 173
+  "within_7": 147,
+  "within_30": 176
  },
  "repair_time": {
   "max": 55,

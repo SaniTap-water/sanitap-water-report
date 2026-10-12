@@ -1,6 +1,6 @@
 {
  "window": [
-  "2026-10-04T05:12:40",
+  "2026-10-10T14:29:39",
   "9999"
  ],
  "figures": {
@@ -13,7 +13,7 @@
    "after": 745
   },
   "people": {
-   "before": 125710,
+   "before": 126201,
    "after": 126201
   },
   "days_operational": {
@@ -23,35 +23,12 @@
  },
  "points": [
   {
-   "wp": "1125843383",
-   "site": "Antananarivo (kiosk)",
-   "moves": [
-    "joined the portfolio"
-   ],
-   "cause": "no mWater change",
-   "wpop": [
-    null,
-    491
-   ],
-   "case_a": false,
-   "up": [
-    "joined the portfolio"
-   ],
-   "delta": {
-    "tco2e": 0,
-    "points": 1,
-    "people": 491
-   },
-   "records": [],
-   "by": []
-  },
-  {
    "wp": "698771110",
    "site": "Maroantsetra",
    "moves": [
-    "status ok → down"
+    "status down → ok"
    ],
-   "cause": "status record",
+   "cause": "no mWater change",
    "wpop": [
     147,
     147
@@ -63,73 +40,44 @@
     "points": 0,
     "people": 0
    },
+   "records": [],
+   "by": []
+  },
+  {
+   "wp": "699597995",
+   "site": "Maroantsetra",
+   "moves": [
+    "status partial → ok"
+   ],
+   "cause": "edited record",
+   "wpop": [
+    118,
+    118
+   ],
+   "case_a": false,
+   "up": [],
+   "delta": {
+    "tco2e": 0.0,
+    "points": 0,
+    "people": 0
+   },
    "records": [
-    "9b7141656ff74556849efb8e16d1f4ea"
+    "a0acd151a82c49d592ad364a3a334599"
    ],
    "by": [
-    "6478af5594b1414d845b6cd994971c9d"
+    "639369040ee942309e5ed8e06ecfc0fb"
    ]
   },
   {
-   "wp": "742893946",
-   "site": "Fort-Dauphin",
+   "wp": "742897122",
+   "site": "Maroantsetra",
    "moves": [
     "status ok → down"
    ],
-   "cause": "status record",
-   "wpop": [
-    500,
-    500
-   ],
-   "case_a": false,
-   "up": [],
-   "delta": {
-    "tco2e": 0.0,
-    "points": 0,
-    "people": 0
-   },
-   "records": [
-    "635483bf3e2f48279d92b7ef791c8183"
-   ],
-   "by": [
-    "6478af5594b1414d845b6cd994971c9d"
-   ]
-  },
-  {
-   "wp": "742897270",
-   "site": "Maroantsetra",
-   "moves": [
-    "status ok → partial"
-   ],
-   "cause": "status record",
-   "wpop": [
-    84,
-    84
-   ],
-   "case_a": false,
-   "up": [],
-   "delta": {
-    "tco2e": 0.0,
-    "points": 0,
-    "people": 0
-   },
-   "records": [
-    "002784643c47429bb94bc57f7d95076d"
-   ],
-   "by": [
-    "6478af5594b1414d845b6cd994971c9d"
-   ]
-  },
-  {
-   "wp": "794012210",
-   "site": "Maroantsetra",
-   "moves": [
-    "water test Pass (2025-08-15) → Excluded (2025-08-15)"
-   ],
    "cause": "no mWater change",
    "wpop": [
-    89,
-    89
+    72,
+    72
    ],
    "case_a": false,
    "up": [],
@@ -142,78 +90,15 @@
    "by": []
   },
   {
-   "wp": "797195301",
+   "wp": "743644978",
    "site": "Maroantsetra",
    "moves": [
-    "water test Pass (2025-08-15) → Excluded (2025-08-15)"
+    "status unknown → ok"
    ],
    "cause": "no mWater change",
    "wpop": [
-    96,
-    96
-   ],
-   "case_a": false,
-   "up": [],
-   "delta": {
-    "tco2e": 0.0,
-    "points": 0,
-    "people": 0
-   },
-   "records": [],
-   "by": []
-  },
-  {
-   "wp": "797195318",
-   "site": "Maroantsetra",
-   "moves": [
-    "water test Pass (2025-08-15) → Excluded (2025-08-15)"
-   ],
-   "cause": "no mWater change",
-   "wpop": [
-    94,
-    94
-   ],
-   "case_a": false,
-   "up": [],
-   "delta": {
-    "tco2e": 0.0,
-    "points": 0,
-    "people": 0
-   },
-   "records": [],
-   "by": []
-  },
-  {
-   "wp": "797885233",
-   "site": "Maroantsetra",
-   "moves": [
-    "water test Pass (2025-08-15) → Excluded (2025-08-15)"
-   ],
-   "cause": "no mWater change",
-   "wpop": [
-    95,
-    95
-   ],
-   "case_a": false,
-   "up": [],
-   "delta": {
-    "tco2e": 0.0,
-    "points": 0,
-    "people": 0
-   },
-   "records": [],
-   "by": []
-  },
-  {
-   "wp": "800634100",
-   "site": "Maroantsetra",
-   "moves": [
-    "water test Pass (2025-08-15) → Excluded (2025-08-15)"
-   ],
-   "cause": "no mWater change",
-   "wpop": [
-    98,
-    98
+    91,
+    91
    ],
    "case_a": false,
    "up": [],
@@ -229,9 +114,9 @@
    "wp": "833033181",
    "site": "Maroantsetra",
    "moves": [
-    "status partial → down"
+    "status down → ok"
    ],
-   "cause": "status record",
+   "cause": "edited record",
    "wpop": [
     90,
     90
@@ -244,62 +129,48 @@
     "people": 0
    },
    "records": [
-    "51bd669956f341d3ab7fe1c99ebd5940"
+    "48471324bc854ea1a126dab8f786b644"
    ],
    "by": [
-    "6478af5594b1414d845b6cd994971c9d"
+    "639369040ee942309e5ed8e06ecfc0fb"
    ]
   }
  ],
- "deleted": [
-  {
-   "file": "wq_sampling_piped.json",
-   "count": 18,
-   "ids": [],
-   "wps": []
-  }
- ],
+ "deleted": [],
  "counts": {
-  "no mWater change": 6,
-  "status record": 4
+  "no mWater change": 3,
+  "edited record": 2
  },
  "by_cause": {
   "no mWater change": {
    "tco2e": 0.0,
-   "points": 1,
-   "people": 491
+   "points": 0,
+   "people": 0
   },
-  "status record": {
+  "edited record": {
    "tco2e": 0.0,
    "points": 0,
    "people": 0
   }
  },
  "case_a": [],
- "case_b": [
-  {
-   "file": "wq_sampling_piped.json",
-   "count": 18,
-   "ids": [],
-   "wps": []
-  }
- ],
+ "case_b": [],
  "case_c": [],
- "repo_moved": true,
+ "repo_moved": false,
  "repo": {
   "tco2e": 0.0,
-  "points": 1,
-  "people": 491
+  "points": 0,
+  "people": 0
  },
  "params_changed": false,
- "week": 41,
+ "week": 42,
  "year": 2026,
- "computed": "2026-10-08",
+ "computed": "2026-10-12",
  "baseline": {
-  "commit": "956894c",
-  "published": "2026-10-04 09:12"
+  "commit": "9344bbb",
+  "published": "2026-10-10 18:29"
  },
- "deletions_named": false,
+ "deletions_named": true,
  "provisional": [],
  "provisional_items": 0
 }

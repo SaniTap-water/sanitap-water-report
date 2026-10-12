@@ -1,10 +1,10 @@
 {
- "counted": "2026-10-08",
+ "counted": "2026-10-12",
  "metrics": {
   "calls_no_repair_7d_worst_of_two_editions": {
    "says": "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)",
    "source": "local",
-   "value": 14
+   "value": 13
   },
   "calls_using_service_visit_choice": {
    "says": "calls recorded with the routine-service-visit choice",
@@ -19,7 +19,7 @@
   "downs_without_repair": {
    "says": "managed pumps reported down to the call centre since 1 March with no repair record since",
    "source": "local",
-   "value": 31
+   "value": 30
   },
   "duplicate_question_codes": {
    "says": "question codes reused inside a single mWater form",
@@ -29,7 +29,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 20
+   "value": 24
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -54,12 +54,12 @@
   "enduro_sites_unregistered": {
    "says": "managed Endur'O sites with no submitted System registration in mWater",
    "source": "local",
-   "value": 131
+   "value": 129
   },
   "enduro_tana_enumerators": {
    "says": "members of the mWater team Enduro > EndurO Tana > Enumerators",
    "source": "mWater",
-   "value": 3
+   "value": 4
   },
   "er_percent_of_type3_cap": {
    "says": "annual emission reductions as a percentage of the 60,000 tCO2e cap",
@@ -139,12 +139,12 @@
   "moramanga_systems_without_standpost": {
    "says": "of the four Moramanga systems, those with no public standpost registered as a Distribution Point on the scheme",
    "source": "local",
-   "value": 4
+   "value": 3
   },
   "piped_form_hand_pump_results": {
    "says": "hand-pump water-quality results filed on the piped result form 0ac68d82",
    "source": "local",
-   "value": 2
+   "value": 0
   },
   "piped_sdws27_record_types_missing": {
    "says": "of maintenance, repair and days-not-operational, the record types with no final piped record on a managed system in mWater",
@@ -184,7 +184,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 473
+   "value": 466
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -194,7 +194,7 @@
   "pumps_reduced_performance": {
    "says": "pumps reported with a mechanical or yield fault, still counted working",
    "source": "local",
-   "value": 52
+   "value": 51
   },
   "register_dashboard_gap": {
    "says": "points the MadAvance dashboard counts that our register does not",
@@ -219,12 +219,12 @@
   "smart_meters_without_certificate": {
    "says": "installed smart-tap meters with no calibration certificate on file",
    "source": "local",
-   "value": 1
+   "value": 3
   },
   "smart_taps_unbound": {
    "says": "installed smart taps not yet bound to their water point by a test dispense",
    "source": "local",
-   "value": 1
+   "value": 3
   },
   "stroke_test_responses": {
    "says": "results recorded on the stroke-meter form",
@@ -249,7 +249,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 39
+   "value": 43
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",

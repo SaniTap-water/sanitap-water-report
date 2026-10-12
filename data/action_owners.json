@@ -161,7 +161,7 @@
   },
   "act-enduro-onboard-5-calibration": {
    "title": "Get calibration certificates with the next water meter order",
-   "owner": "Coddy Velonizy"
+   "owner": "Ntsoa Ranaivoson"
   },
   "act-enduro-onboard-6-kiosk-wq": {
    "title": "Test the water at the Antananarivo kiosk tap and record it",
@@ -633,7 +633,7 @@
   },
   "act-tana-baseline-survey": {
    "deadline": "2026-10-31",
-   "owner": "Endur’O (Coddy Velonizy, Ntsoa Ranaivoson)",
+   "owner": "Jan de Graaf",
    "title": "Run the carbon baseline survey around the Antananarivo kiosks"
   },
   "act-tana-jirama-licence-filed": {
@@ -741,7 +741,7 @@
   },
   "act-piped-baseline-other-systems": {
    "deadline": "2026-10-24",
-   "owner": "Coddy Velonizy",
+   "owner": "Cathy Andriambololonirina",
    "title": "Take pre-project water quality tests at Ambohibola, Amboanjo and Andilanatoby before their works are completed",
    "source": "Adriaan Mol, instruction for the water report, 4 Oct 2026 (project inbox)"
   },
@@ -806,7 +806,7 @@
    "title": "Brief the maintenance teams: only the paper calendar goes under the calendar photo question"
   },
   "act-ambinanibe-second-point": {
-   "owner": "Jan de Graaf",
+   "owner": "Angelo Nahavitatsara",
    "deadline": "2026-12-31",
    "title": "Plan a second water point at Ambinanibe",
    "source": "Adriaan Mol, decision of 7 Oct 2026: Ambinanibe (742893805) is heavily overused"
@@ -1242,7 +1242,7 @@
    "act-identify-count-institutional-premises": {
     "type": "evidence",
     "closes_when": "MadAvance's list and count of institutional premises inside the service areas",
-    "closed": false,
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-21"
    },
@@ -1487,8 +1487,8 @@
    "act-mwater-mg-locale": {
     "type": "auto",
     "closes_when": "closes when the Malagasy locale is present on the preventive maintenance form",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-12",
     "first_seen": "2026-09-20"
    },
    "act-mwater-year-required": {
@@ -1557,8 +1557,8 @@
    "act-piped-wq-misfiled-742895333": {
     "type": "auto",
     "closes_when": "closes when the piped result form holds no hand-pump result",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-12",
     "first_seen": "2026-09-25"
    },
    "act-point-use-round-one": {
@@ -2489,6 +2489,19 @@
     "task": "1219100994936725",
     "from": "asana"
    },
+   "act-emergency-event-form": {
+    "recorded_on": "2026-10-10",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-10",
+    "summary": "decided by Adriaan Mol, 10 Oct 2026. SDWS 3 emergency events are recorded on the sampling form itself, so the event, the cleaning and the retest sit in one record.\n\nHand pumps, \"Clean Water || Water Quality Sampling_sdws3\" (43c96af4bc4240c0b5c4402383b9c539, now rev 192):\n- WS7.9 \"Why is this sample being taken?\" (required): routine monitoring round / commissioning of a new or rehabilitated pump / after a contamination event / retest after a failed result.\n- Only when the answer is \"after a contamination event\": WS7.10 event type (flood, cyclone or storm, latrine overflow or runoff, other), WS7.11 event date (Don't Know allowed), WS7.12 cleaning (shock chlorination) date, WS7.13 who cleaned it.\n\nPiped systems, \"Piped Water || Water Quality Sampling_sdws3\" (ef8cf7353a974cf984d34860dcf2952d, now rev 82): the same block as 1.11 to 1.15, worded for systems (pipe burst instead of latrine runoff; cleaned and chlorinated).\n\nThe result itself goes on the results form as now, linked through the sampling record. Cathy Emmanuella carries out the retests and fills in the block on site.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110474052",
+    "task": "1219101110474052",
+    "from": "asana"
+   },
    "act-enduro-nanisana-sellthrough": {
     "recorded_on": "2026-10-07",
     "recorded_by": "Claude, on Adriaan Mol's instruction",
@@ -2610,6 +2623,19 @@
     "task": "1219101105660866",
     "from": "asana"
    },
+   "act-gaps-doc": {
+    "recorded_on": "2026-10-09",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-09",
+    "summary": "corrected document filed on 9 Oct 2026 as Carbon-data-gaps-v2-2026-10-09.docx in SharePoint, Central Data Hub > Water Documents > Methodology of record (next to the VPA-DD). Version 1 was an internal Claude project note only, which is why James could not find it. Version 2 rewrites the cookstove section (suppressed-demand baseline, overlap = all 127 Fort-Dauphin points / 32.3% of people served, effect through SDWS 11 baseline device efficiency, the VPA-DD commitment for Anosy, the stacking rule, the fNRB uplift on the same points) and corrects the definition of Cb (SDWS 12). James's three open questions are in section 1.8. Adriaan is sending James the file directly.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-09",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058491188",
+    "task": "1219101058491188",
+    "from": "asana"
+   },
    "act-india-mark-cap-james": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2727,6 +2753,19 @@
     "task": "1219101269792142",
     "from": "asana"
    },
+   "act-mwater-mg-locale": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "done in the mWater portal on 8 Oct 2026 (Entretien préventif, de26d89a). Malagasy added as a form language. Question 2.15.7: French label \"Année documentée par ce calendrier — écrite au stylo sur la feuille avant la photo\", Malagasy label \"Taona voarakitra amin'ity teti-andro ity — soraty amin'ny penina eo amin'ny takelaka alohan'ny sary\"; French hint \"Laisser vide si l'année ne peut être établie à partir de la feuille ou du gardien. Ne jamais deviner.\", Malagasy hint \"Raha tsy azo fantarina ny taona, avelao foana.\" English unchanged. Verified after reload in the translation editor.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106734654",
+    "task": "1219101106734654",
+    "from": "asana"
+   },
    "act-nary-awf-sounding": {
     "recorded_on": "2026-10-08",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2805,6 +2844,19 @@
     "what": "the VPA-DD is filed in Water Documents/Methodology of record with its SHA-256",
     "source": "Methodology of record/GS12600_GS12601_VPA-1_Safe_Water_Madagascar_VPA-DD_V2_CLEAN.pdf is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
+   },
+   "act-re-run-improved-cookstove": {
+    "recorded_on": "2026-10-10",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-10",
+    "summary": "the improved cookstove question is built into the yearly survey form, so it is asked automatically every round. Form \"Clean Water || Project Cbn&Gender || Survey || Completed\" (2eeb86824b4545eca33db9e7cf7dcbd4, rev 973), deployments \"Evaluation annuelle (Fort-Dauphin)\" and \"Evaluation annuelle (Maroantsetra)\". WS1.31 (dry season) and WS1.52 (rainy season), \"Which types of main stoves do you use most frequently for boiling?\", are both required with no skip condition, and \"Improved cookstove\" is one of the choices.\n\nNovember 2025 round (11–21 Nov 2025, final responses), WS1.31: Fort-Dauphin 169 of 208 answering use an improved cookstove (81%, the figure James Walker applies), 3 blank part-entries; Maroantsetra 0 of 202 (201 three-stone fire, 1 other). Each later round produces the same figure from the same questions, as long as it runs on this form. Closing this task; nothing further to set up.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111374556",
+    "task": "1219101111374556",
+    "from": "asana"
    },
    "act-reconcile-cookstove-water-programmes": {
     "recorded_on": "2026-09-18",
@@ -2939,6 +2991,20 @@
     "task": "1219101112499037",
     "from": "asana"
    },
+   "act-sensor-definition": {
+    "recorded_on": "2026-10-09",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "a file attached to the Asana task: CLRQ-407 (1).pdf",
+    "source": "James Walker, Asana, 2026-10-09",
+    "summary": "CLRQ-407 (1).pdf",
+    "author": "James Walker",
+    "date": "2026-10-09",
+    "kind": "attachment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101112502869",
+    "task": "1219101112502869",
+    "from": "asana",
+    "file": "https://app.asana.com/app/asana/-/get_asset?asset_id=1219345417594034"
+   },
    "act-sensor-sample": {
     "recorded_on": "2026-09-29",
     "recorded_by": "Adriaan Mol, COO SaniTap",
@@ -2955,6 +3021,19 @@
     "summary": "The ex post figures are adjusted by the share of end users reporting an improved cookstove in the annual monitoring; Fort-Dauphin 2025: 81%.",
     "ref": "data/decisions.json"
    },
+   "act-sop-calendar-no-lamination": {
+    "recorded_on": "2026-10-10",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-10",
+    "summary": "SOP v1.8 filed as Water Documents/SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.8-2026.docx (10 Oct 2026). Changes:\n- Ch. 4: printed on thick paper, NOT laminated, marked with an ordinary ballpoint pen; a sheet number with QR code is optional, depending on the printer (2027 print files A and B).\n- Ch. 9 ter: machine reading is no longer used as evidence. Each year a random sample is read by two independent readers, using photos from visits that are already planned (no dedicated trips).\n- Model description updated to match. Version note, header table and history row (1.8) added.\nv1.7 has been moved to SOPs/Archive.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219371658201915",
+    "task": "1219371658201915",
+    "from": "asana"
+   },
    "act-standardised-stroke-test-basis": {
     "recorded_on": "2026-09-18",
     "recorded_by": "James Walker, Head of Carbon",
@@ -2962,6 +3041,19 @@
     "source": "email “Re: Water program dashboard & actions”, 18 September 2026",
     "summary": "Yes. The standardised stroke test is SDWS 28 of ERSDWS V2, and the five-minute test is the accepted method pending the StrokeMeter.",
     "ref": "data/decisions.json"
+   },
+   "act-tana-baseline-form": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "changes made in the mWater portal designer on 8 Oct 2026 (Piped Water || Baseline Cbn || Survey, 3ef4385a).\n- Deployment \"Baseline (Tana kiosks)\" created, active; enumerators Enduro > EndurO Tana > Enumerators, viewers Enduro > EndurO Tana > Viewers. \"Baseline (Moramanga)\" left inactive.\n- 3.1.1 and 3.1.2 (hand-pump usage questions) disabled rather than deleted, so existing Moramanga answers are kept.\n- Water-source lists 4.1.1.1, 4.1.1.4, 4.2.1.1, 4.2.1.4: existing \"Piped water - Public tap / standpipe\" relabelled \"... (incl. JIRAMA borne fontaine)\" instead of adding a duplicate choice; new choice \"Delivered water - Water vendor (water carried and sold by hand)\" added (it sits after \"Other\", the designer only appends).\n- Past tense: 4.1.2.2.3.2 / 4.2.2.2.3.2 \"Did you use a secondary stove prior to project intervention?\", 4.1.2.2.4.2 / 4.2.2.2.4.2 \"Did you use a secondary fuel prior to project intervention?\".\n- 4.2.2.2.3.3: \"main\" corrected to \"secondary\".",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996443603",
+    "task": "1219100996443603",
+    "from": "asana"
    },
    "act-transcription-round": {
     "recorded_on": "2026-10-02",
@@ -3031,6 +3123,19 @@
     "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-21",
     "summary": "50 per stratum for sampling, to be safe.",
     "ref": "data/decisions.json"
+   },
+   "act-v2-stove-stacking": {
+    "recorded_on": "2026-10-08",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-08",
+    "summary": "added in the mWater portal designer on 8 Oct 2026 (Clean Water || project SDWS18 || Survey, db0bcbf2), directly after A11, both shown only when Test type = PoU (ménage).\n- A13 (multi-check, required): \"Besides the project water, does this household still boil or treat drinking water on another stove or fire? Which one?\" — No other stove or fire / Three-stone fire / Charcoal stove / Improved cookstove / Other (please specify).\n- A14 (single choice, required, shown when A13 does not include \"No other stove or fire\"): \"How often?\" — Daily / Weekly / Rarely.\n- Codes A13/A14 used instead of A12/A13 because A12 is already \"Water system\" on this form.\n- French translations entered for all A13/A14 texts. Malagasy left blank (falls back to English).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-08",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101107616621",
+    "task": "1219101107616621",
+    "from": "asana"
    },
    "act-v2-stroke-test": {
     "recorded_on": "2026-10-07",
