@@ -56,6 +56,11 @@ REQUEST = os.path.join(REPO, "logs", "update_requested")
 # region generators below; regenerating is idempotent, so that is harmless.)
 STEPS = [
     ("tools/pull_extract.py",        ["--write"],      True),
+    # the vintage summary the week caption renders from, written from this
+    # pull before render_freshness reads it. publish.sh runs it again as the
+    # gate; until 12 Oct 2026 that second run was the first, so the caption
+    # was rendered from last edition's vintage and the region drifted.
+    ("tools/check_vintage.py",       [],               False),
     # the weekly mWater backup to Evidence/mWater backup (10 Oct 2026): read-only,
     # skips itself when a verified backup under six days old exists. Never
     # blocks the edition; a failure is logged loudly and named in the outcome.
