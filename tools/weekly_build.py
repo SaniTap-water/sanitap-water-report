@@ -211,6 +211,35 @@ def mcp_pin_problem():
     return None
 
 
+MCP = os.path.expanduser("~/mwater-mcp")
+
+
+def restore_modes(root):
+    """Put every tracked file back to the mode git records (644 or 755).
+
+    The rebuild of 9 Oct 2026 restored the home directory with `cp -a` from a
+    copy on /mnt/c, where every file reads as 777, and the modes came with it.
+    A mode-only change made this clone dirty and the mWater pin check refuse,
+    so the build stopped before pulling anything. core.fileMode is false in
+    both clones now; this puts the bits back as well, and says when it had to.
+    Returns the paths changed."""
+    r = subprocess.run(["git", "-C", root, "ls-files", "-s", "-z"],
+                       capture_output=True, text=True)
+    fixed = []
+    for entry in r.stdout.split("\0"):
+        if not entry:
+            continue
+        meta, path = entry.split("\t", 1)
+        want = {"100644": 0o644, "100755": 0o755}.get(meta.split()[0])
+        full = os.path.join(root, path)
+        if want is None or os.path.islink(full) or not os.path.isfile(full):
+            continue
+        if os.stat(full).st_mode & 0o777 != want:
+            os.chmod(full, want)
+            fixed.append(path)
+    return fixed
+
+
 def run(cmd, **kw):
     env = dict(os.environ, PLAYWRIGHT_BROWSERS_PATH=PW)
     return subprocess.run(cmd, cwd=REPO, capture_output=True, text=True,
@@ -280,6 +309,11 @@ def main():
         except OSError:
             pass
         log(f"{tag}update requested on demand (desktop shortcut)")
+    for root in (REPO, MCP):
+        fixed = restore_modes(root)
+        if fixed:
+            log(f"{tag}file modes had drifted: restored {len(fixed)} tracked file(s) in "
+                f"{root} to 644/755 ({', '.join(fixed[:3])}{', ...' if len(fixed) > 3 else ''})")
     dirty = [l for l in run(["git", "status", "--porcelain"]).stdout.splitlines()
              if l.strip() and not l[3:].startswith("logs/")]
     if dirty:
