@@ -17,7 +17,7 @@ if not errorlevel 1 (
 
 rem Tell the build this run was asked for, so it rebuilds even if an edition
 rem already went out today. The build deletes the file when it reads it.
-wsl.exe -d Ubuntu -- touch %REPO%/logs/update_requested
+wsl.exe -d Ubuntu-24.04 -- touch %REPO%/logs/update_requested
 echo Starting %TASK% ...
 schtasks /run /tn %TASK%
 if errorlevel 1 (
@@ -44,7 +44,7 @@ echo ===== finished =====
 schtasks /query /tn %TASK% /v /fo LIST | findstr /c:"Last Run Time:" /c:"Last Result:"
 echo.
 echo Last lines of the publisher log:
-wsl.exe -d Ubuntu -- tail -n 12 %REPO%/logs/publisher.log
+wsl.exe -d Ubuntu-24.04 -- tail -n 12 %REPO%/logs/publisher.log
 echo.
 echo "Last Result: 0" and a PUBLISHED line above mean the new edition is live.
 :end

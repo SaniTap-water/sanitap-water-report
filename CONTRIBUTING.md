@@ -722,7 +722,7 @@ exits, so a timer inside it only fires when something else has already started
 it. Task Scheduler runs whenever Windows is on and *starts* WSL itself.
 
 ```
-wsl.exe -d Ubuntu -- /home/bushp/sanitap-water-report/tools/publish_waiting.sh
+wsl.exe -d Ubuntu-24.04 -- /home/bushp/sanitap-water-report/tools/publish_waiting.sh
 ```
 
 **Schedule:** Mondays 11:00 local (07:00 UTC), one hour after the cloud build's
@@ -801,7 +801,7 @@ check passed. Every piece the edition needs now lives in this repository, so
 the build runs here and the cloud session is a watchdog rather than the
 builder.
 
-**`SaniTapWeeklyPublish`** → `wsl.exe -d Ubuntu -- /home/bushp/sanitap-water-report-build/tools/weekly_build.sh`
+**`SaniTapWeeklyPublish`** → `wsl.exe -d Ubuntu-24.04 -- /home/bushp/sanitap-water-report-build/tools/weekly_build.sh`
 Mondays **07:00 local (03:00 UTC)**, repeating every 2 hours for 14 hours —
 07:00 through 21:00. It no longer waits an hour for a cloud build to finish,
 so it runs as early as the machine is likely to be on.
