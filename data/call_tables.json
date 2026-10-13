@@ -1,18 +1,18 @@
 {
  "branches": {
-  "call and works on the same day -> the call wins": 191,
+  "call and works on the same day -> the call wins": 190,
   "held on the published value (unsettled)": 36,
-  "latest record is a call": 324,
+  "latest record is a call": 325,
   "latest record is a maintenance": 122,
   "latest record is a repair": 84,
   "no answered record at all -> unknown": 24
  },
- "built": "2026-10-12",
+ "built": "2026-10-13",
  "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
  "split": {
-  "down": 22,
+  "down": 23,
   "ok": 523,
-  "partial": 172,
+  "partial": 171,
   "unknown": 28
  },
  "status": {
@@ -6145,14 +6145,12 @@
    "status": "ok"
   },
   "833033208": {
-   "date": "2026-05-29",
+   "date": "2026-10-12",
    "issue": null,
-   "problem": [
-    "FRKjrZd"
-   ],
-   "rid": "eb50d574e45f4f6096451d485f841238",
+   "problem": null,
+   "rid": "fac45fc842d046789d7e021931ac9d4a",
    "src": "call",
-   "status": "partial"
+   "status": "down"
   },
   "833033246": {
    "date": "2026-05-29",

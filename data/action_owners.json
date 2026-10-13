@@ -1494,8 +1494,8 @@
    "act-mwater-year-required": {
     "type": "auto",
     "closes_when": "closes when question 2.15.7 is present and required on the preventive maintenance form",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-13",
     "first_seen": "2026-09-20"
    },
    "act-naturano-meter-data": {
@@ -1963,8 +1963,8 @@
    "act-v2-stove-stacking": {
     "type": "auto",
     "closes_when": "closes when the survey form carries a stove-stacking question",
-    "closed": false,
-    "detected_closed_on": null,
+    "closed": true,
+    "detected_closed_on": "2026-10-13",
     "first_seen": "2026-09-20"
    },
    "act-v2-stroke-test": {
@@ -2558,6 +2558,19 @@
     "task": "1219289324282150",
     "from": "asana"
    },
+   "act-fid-qa-register": {
+    "recorded_on": "2026-10-13",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-13",
+    "summary": "email \"📅 You've just registered for Fonds d'Innovation pour le Développement's event\", from Fonds d'Innovation pour le Développement (no-reply@livestormevents.com), 12 Oct 2026 05:36 UTC. It confirms Adriaan's registration for \"FID - Q&A Session - November 18th, 2026 - [English]\", Wednesday 18 November at 2:00pm (+04), with a personal access link. Closing condition (registration confirmation email received) is met.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-13",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219407489990276",
+    "task": "1219407489990276",
+    "from": "asana"
+   },
    "act-find-source-annual-independent": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2688,6 +2701,32 @@
     "task": "1219109150420909",
     "from": "asana"
    },
+   "act-lhae-order-placed": {
+    "recorded_on": "2026-10-12",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-12",
+    "summary": "order paid and bottles collected on 12 October 2026; Part A sampling started that day (\"Re: LHAE order – confirmation needed\", Cathy, 12 Oct 07:23 UTC). Closing.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-12",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798",
+    "task": "1219204407413798",
+    "from": "asana"
+   },
+   "act-lhae-payment": {
+    "recorded_on": "2026-10-12",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-12",
+    "summary": "Cathy confirmed payment to LHAE made on 12 October 2026 and all sample bottles collected (\"Re: LHAE order – confirmation needed\", 12 Oct 07:23 UTC). Proof of payment attached to that email: \"Chèque paiement LHAE 12102026.pdf\". Sampling started 12 October as scheduled.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-12",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344855469780",
+    "task": "1219344855469780",
+    "from": "asana"
+   },
    "act-mar-new-construction-gap": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2725,6 +2764,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101059142366",
     "task": "1219101059142366",
+    "from": "asana"
+   },
+   "act-move-weekly-mwater-backup": {
+    "recorded_on": "2026-10-13",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-13",
+    "summary": "closed without a server move. The 15 Sep decision keeps the backup on SharePoint only (no DigitalOcean server), so instead the backup now runs automatically as a step in the Monday weekly report build (tools/weekly_build.py, once a week, read-only). First run under the build: 10 Oct 2026, folder Central Data Hub > Water Documents > Evidence > mWater backup > data > 2026-10-10, status: verified complete (OK). Nothing further needed from Lanja. (Replaces the evidence comment of 12 Oct, which quoted mWater group-wide counts that the water report does not cover.)",
+    "author": "Adriaan Mol",
+    "date": "2026-10-13",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106534470",
+    "task": "1219101106534470",
     "from": "asana"
    },
    "act-mwater-approval-policy": {

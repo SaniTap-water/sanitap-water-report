@@ -134,12 +134,38 @@
    "by": [
     "639369040ee942309e5ed8e06ecfc0fb"
    ]
+  },
+  {
+   "wp": "833033208",
+   "site": "Maroantsetra",
+   "moves": [
+    "status partial → down"
+   ],
+   "cause": "status record",
+   "wpop": [
+    94,
+    94
+   ],
+   "case_a": false,
+   "up": [],
+   "delta": {
+    "tco2e": 0.0,
+    "points": 0,
+    "people": 0
+   },
+   "records": [
+    "fac45fc842d046789d7e021931ac9d4a"
+   ],
+   "by": [
+    "6478af5594b1414d845b6cd994971c9d"
+   ]
   }
  ],
  "deleted": [],
  "counts": {
   "no mWater change": 3,
-  "edited record": 2
+  "edited record": 2,
+  "status record": 1
  },
  "by_cause": {
   "no mWater change": {
@@ -148,6 +174,11 @@
    "people": 0
   },
   "edited record": {
+   "tco2e": 0.0,
+   "points": 0,
+   "people": 0
+  },
+  "status record": {
    "tco2e": 0.0,
    "points": 0,
    "people": 0
@@ -165,7 +196,7 @@
  "params_changed": false,
  "week": 42,
  "year": 2026,
- "computed": "2026-10-12",
+ "computed": "2026-10-13",
  "baseline": {
   "commit": "9344bbb",
   "published": "2026-10-10 18:29"

@@ -1,10 +1,10 @@
 {
  "counts": {
-  "appel_signalement_pannes.csv": 2846,
+  "appel_signalement_pannes.csv": 2847,
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
-  "enduro_points.csv": 203,
+  "enduro_points.csv": 212,
   "first_rehab_current.json": 0,
   "forage_moramanga.csv": 20,
   "hygiene.json": 108,
@@ -26,5 +26,5 @@
   "wq_sampling_piped.json": 78
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-10-12"
+ "recorded": "2026-10-13"
 }

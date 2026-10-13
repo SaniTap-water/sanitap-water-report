@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-12T03:57:51+00:00",
+ "pulled_at": "2026-10-13T18:36:42+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -14,7 +14,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936822648",
-   "modified_at": "2026-10-09T17:33:34.277Z"
+   "modified_at": "2026-10-12T16:49:46.875Z"
   },
   "act-782134540-rehab-record": {
    "gid": "1219100936850606",
@@ -26,7 +26,19 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936850606",
-   "modified_at": "2026-10-12T03:48:45.744Z"
+   "modified_at": "2026-10-13T03:54:31.053Z"
+  },
+  "act-a4a-health-tool-bid": {
+   "gid": "1219387624517994",
+   "name": "Decide whether SaniTap bids for the Aqua for All health impact tool consultancy [act-a4a-health-tool-bid]",
+   "title": "Decide whether SaniTap bids for the Aqua for All health impact tool consultancy",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219387624517994",
+   "modified_at": "2026-10-13T03:49:32.543Z"
   },
   "act-ambinanibe-second-point": {
    "gid": "1219275025874581",
@@ -88,11 +100,11 @@
    "title": "Finish the borehole form checks and finalise three draft borehole records",
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
-   "due_on": "2026-10-06",
+   "due_on": "2026-10-23",
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219109377317101",
-   "modified_at": "2026-10-09T17:34:22.907Z"
+   "modified_at": "2026-10-13T14:12:22.332Z"
   },
   "act-cal-handwritten-year": {
    "gid": "1219100771264996",
@@ -173,7 +185,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100936878436",
-   "modified_at": "2026-10-09T17:30:41.662Z"
+   "modified_at": "2026-10-12T16:54:04.958Z"
   },
   "act-calendar-photo-briefing": {
    "gid": "1219205037087065",
@@ -206,7 +218,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057814836",
-   "modified_at": "2026-10-12T03:48:49.435Z"
+   "modified_at": "2026-10-13T03:50:50.943Z"
   },
   "act-call-no-followup": {
    "gid": "1219100770783065",
@@ -303,6 +315,30 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101110481086",
    "modified_at": "2026-10-07T15:01:28.336Z"
+  },
+  "act-coddy-73-credits-deduction": {
+   "gid": "1219410000778933",
+   "name": "Confirm NatuRano rechargers and SmartTaps deduct 73 credits per litre at every tap [act-coddy-73-credits-deduction]",
+   "title": "Confirm NatuRano rechargers and SmartTaps deduct 73 credits per litre at every tap",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1219154315843358",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219410000778933",
+   "modified_at": "2026-10-12T13:49:58.888Z"
+  },
+  "act-coddy-enduro-export-cleanup": {
+   "gid": "1219450887525603",
+   "name": "Clean up app.enduro.mg export issues: test flags, missing projects, R445, R132, double top-ups [act-coddy-enduro-export-cleanup]",
+   "title": "Clean up app.enduro.mg export issues: test flags, missing projects, R445, R132, double top-ups",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-27",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219450887525603",
+   "modified_at": "2026-10-13T09:47:06.652Z"
   },
   "act-coddy-naturano-card-spec": {
    "gid": "1219109157880491",
@@ -841,6 +877,30 @@
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219356790491435",
    "modified_at": "2026-10-10T14:01:41.499Z"
   },
+  "act-enduro-stale-recharges": {
+   "gid": "1219389209678452",
+   "name": "Deliver or cancel the 24 card recharge requests waiting in the Endur'O back office [act-enduro-stale-recharges]",
+   "title": "Deliver or cancel the 24 card recharge requests waiting in the Endur'O back office",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1209012876322233",
+   "due_on": "2026-10-13",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219389209678452",
+   "modified_at": "2026-10-12T21:00:33.984Z"
+  },
+  "act-enduro-strategy-comments": {
+   "gid": "1219412447706492",
+   "name": "Comment on the Endur'O pricing, sales and marketing strategy and card credits note [act-enduro-strategy-comments]",
+   "title": "Comment on the Endur'O pricing, sales and marketing strategy and card credits note",
+   "owner": "Ntsoa Ranaivoson",
+   "assignee_gid": "1211301105253477",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219412447706492",
+   "modified_at": "2026-10-12T14:42:24.201Z"
+  },
   "act-establish-renewal-dates-four": {
    "gid": "1219100995264223",
    "name": "Find renewal dates for the four baseline cooking parameters [act-establish-renewal-dates-four]",
@@ -875,6 +935,27 @@
     "author": "Adriaan Mol",
     "date": "2026-10-08",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219289324282150"
+   }
+  },
+  "act-fid-qa-register": {
+   "gid": "1219407489990276",
+   "name": "Register for the FID question-and-answer webinar on 18 November [act-fid-qa-register]",
+   "title": "Register for the FID question-and-answer webinar on 18 November",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-11",
+   "completed": true,
+   "completed_at": "2026-10-13",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219407489990276",
+   "modified_at": "2026-10-13T03:49:40.699Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-13",
+   "evidence": {
+    "kind": "comment",
+    "text": "email \"📅 You've just registered for Fonds d'Innovation pour le Développement's event\", from Fonds d'Innovation pour le Développement (no-reply@livestormevents.com), 12 Oct 2026 05:36 UTC. It confirms Adriaan's registration for \"FID - Q&A Session - November 18th, 2026 - [English]\", Wednesday 18 November at 2:00pm (+04), with a personal access link. Closing condition (registration confirmation email received) is met.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-13",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219407489990276"
    }
   },
   "act-find-source-annual-independent": {
@@ -992,7 +1073,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219254583173041",
-   "modified_at": "2026-10-10T09:35:42.875Z"
+   "modified_at": "2026-10-12T09:48:35.543Z"
   },
   "act-form-consolidation": {
    "gid": "1219101110893781",
@@ -1036,6 +1117,18 @@
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101105660866"
    }
   },
+  "act-frld-resubmit-oct20": {
+   "gid": "1219409791753517",
+   "name": "Resubmit the FRLD cyclone water funding request with answers to the second review [act-frld-resubmit-oct20]",
+   "title": "Resubmit the FRLD cyclone water funding request with answers to the second review",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-20",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219409791753517",
+   "modified_at": "2026-10-13T03:49:38.396Z"
+  },
   "act-gaps-doc": {
    "gid": "1219101058491188",
    "name": "Correct the carbon data gaps document on the cookstove overlap [act-gaps-doc]",
@@ -1067,7 +1160,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219218642162481",
-   "modified_at": "2026-10-08T05:29:19.108Z"
+   "modified_at": "2026-10-12T23:01:12.162Z"
   },
   "act-gs-validation-withdrawal-watch": {
    "gid": "1219100995281694",
@@ -1232,7 +1325,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219205107055869",
-   "modified_at": "2026-10-09T13:50:26.629Z"
+   "modified_at": "2026-10-13T03:50:00.053Z"
   },
   "act-legal-water-credit-opinion": {
    "gid": "1219109150420909",
@@ -1262,10 +1355,19 @@
    "owner": "Cathy Andriambololonirina",
    "assignee_gid": "1208683882004265",
    "due_on": "2026-10-09",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-12",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798",
-   "modified_at": "2026-10-12T03:51:00.343Z"
+   "modified_at": "2026-10-12T07:26:17.496Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-12",
+   "evidence": {
+    "kind": "comment",
+    "text": "order paid and bottles collected on 12 October 2026; Part A sampling started that day (\"Re: LHAE order – confirmation needed\", Cathy, 12 Oct 07:23 UTC). Closing.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-12",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219204407413798"
+   }
   },
   "act-lhae-payment": {
    "gid": "1219344855469780",
@@ -1274,10 +1376,19 @@
    "owner": "Jan de Graaf",
    "assignee_gid": "1209565438602753",
    "due_on": "2026-10-12",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-12",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344855469780",
-   "modified_at": "2026-10-11T21:00:32.516Z"
+   "modified_at": "2026-10-12T07:26:17.511Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-12",
+   "evidence": {
+    "kind": "comment",
+    "text": "Cathy confirmed payment to LHAE made on 12 October 2026 and all sample bottles collected (\"Re: LHAE order – confirmation needed\", 12 Oct 07:23 UTC). Proof of payment attached to that email: \"Chèque paiement LHAE 12102026.pdf\". Sampling started 12 October as scheduled.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-12",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344855469780"
+   }
   },
   "act-log-repairs-on-form": {
    "gid": "1219275037486922",
@@ -1290,6 +1401,30 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219275037486922",
    "modified_at": "2026-10-08T05:29:34.134Z"
+  },
+  "act-mandie-oct-nov-budget": {
+   "gid": "1219449522462663",
+   "name": "Approve or adjust MANDIE's October–November water testing budget [act-mandie-oct-nov-budget]",
+   "title": "Approve or adjust MANDIE's October–November water testing budget",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-27",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219449522462663",
+   "modified_at": "2026-10-13T03:50:06.446Z"
+  },
+  "act-mandie-south-mission-replan": {
+   "gid": "1219449921068314",
+   "name": "Resubmit MANDIE's plan as one southern mission and add the Maroantsetra household round [act-mandie-south-mission-replan]",
+   "title": "Resubmit MANDIE's plan as one southern mission and add the Maroantsetra household round",
+   "owner": "Jan de Graaf",
+   "assignee_gid": "1209565438602753",
+   "due_on": "2026-10-16",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219449921068314",
+   "modified_at": "2026-10-13T06:19:58.909Z"
   },
   "act-mandie-spike-prep": {
    "gid": "1219344664446364",
@@ -1325,7 +1460,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058585368",
-   "modified_at": "2026-10-10T09:35:50.363Z"
+   "modified_at": "2026-10-12T09:40:49.499Z"
   },
   "act-mar-functional-status": {
    "gid": "1219100937800778",
@@ -1475,7 +1610,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937744451",
-   "modified_at": "2026-10-10T09:35:47.566Z"
+   "modified_at": "2026-10-12T09:52:44.620Z"
   },
   "act-mor-count-draw-off-point": {
    "gid": "1219100996132530",
@@ -1571,7 +1706,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937856134",
-   "modified_at": "2026-10-10T09:35:45.023Z"
+   "modified_at": "2026-10-12T09:53:37.340Z"
   },
   "act-mor-submit-drafts": {
    "gid": "1219101058660604",
@@ -1637,10 +1772,19 @@
    "owner": "Lanja Randriamanantena",
    "assignee_gid": "1206894470435125",
    "due_on": null,
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-12",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106534470",
-   "modified_at": "2026-10-07T15:03:14.762Z"
+   "modified_at": "2026-10-13T17:30:09.927Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-12",
+   "evidence": {
+    "kind": "comment",
+    "text": "closed without a server move. The 15 Sep decision keeps the backup on SharePoint only (no DigitalOcean server), so instead the backup now runs automatically as a step in the Monday weekly report build (tools/weekly_build.py, once a week, read-only). First run under the build: 10 Oct 2026, folder Central Data Hub > Water Documents > Evidence > mWater backup > data > 2026-10-10, status: verified complete (OK). Nothing further needed from Lanja. (Replaces the evidence comment of 12 Oct, which quoted mWater group-wide counts that the water report does not cover.)",
+    "author": "Adriaan Mol",
+    "date": "2026-10-13",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101106534470"
+   }
   },
   "act-mwater-approval-policy": {
    "gid": "1219101111707005",
@@ -2063,7 +2207,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109211977723",
-   "modified_at": "2026-10-09T03:49:54.050Z"
+   "modified_at": "2026-10-12T03:58:40.945Z"
   },
   "act-ralf-card-sales-backfill-fix": {
    "gid": "1219109211970459",
@@ -2087,10 +2231,13 @@
    "owner": "Coddy Velonizy",
    "assignee_gid": "1219154315843358",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-13",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100996659975",
-   "modified_at": "2026-10-07T16:54:19.399Z"
+   "modified_at": "2026-10-13T07:10:25.603Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-13",
+   "evidence": null
   },
   "act-ralf-shopkeeper-waterpoint-link": {
    "gid": "1219101111620085",
@@ -2099,10 +2246,13 @@
    "owner": "Coddy Velonizy",
    "assignee_gid": "1219154315843358",
    "due_on": "2026-10-31",
-   "completed": false,
-   "completed_at": null,
+   "completed": true,
+   "completed_at": "2026-10-13",
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101111620085",
-   "modified_at": "2026-10-09T03:49:56.881Z"
+   "modified_at": "2026-10-13T07:10:25.468Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-13",
+   "evidence": null
   },
   "act-ralf-tap-offgrid-power": {
    "gid": "1219109377317317",
@@ -2139,6 +2289,21 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109377317220",
    "modified_at": "2026-10-12T03:54:09.336Z"
+  },
+  "act-ralf-zoho-component-overview": {
+   "gid": "1219396430909090",
+   "name": "Send an overview of how Water Distribution Points, Control Units and PWMs link together in Zoho [act-ralf-zoho-component-overview]",
+   "title": "Send an overview of how Water Distribution Points, Control Units and PWMs link together in Zoho",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1219154315843358",
+   "due_on": "2026-10-23",
+   "completed": true,
+   "completed_at": "2026-10-13",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219396430909090",
+   "modified_at": "2026-10-13T08:21:18.141Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-13",
+   "evidence": null
   },
   "act-re-run-improved-cookstove": {
    "gid": "1219101111374556",
@@ -2330,7 +2495,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219109150164705",
-   "modified_at": "2026-10-08T05:28:44.008Z"
+   "modified_at": "2026-10-13T03:49:57.157Z"
   },
   "act-rotary-tana-video-call": {
    "gid": "1219109157819435",
@@ -2358,6 +2523,18 @@
    "ticked_by": "Adriaan Mol",
    "ticked_at": "2026-10-10",
    "evidence": null
+  },
+  "act-scac-fefosc-followup": {
+   "gid": "1219407489399425",
+   "name": "Send the FEF-OSC follow-up email to the French Embassy cooperation service [act-scac-fefosc-followup]",
+   "title": "Send the FEF-OSC follow-up email to the French Embassy cooperation service",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-23",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219407489399425",
+   "modified_at": "2026-10-13T03:49:34.869Z"
   },
   "act-sdws18-2025-kit-sop": {
    "gid": "1219101270668695",
@@ -2476,6 +2653,21 @@
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219148236288402",
    "modified_at": "2026-10-08T05:29:09.518Z"
+  },
+  "act-smarttap-upload-gap": {
+   "gid": "1219396431213638",
+   "name": "Find out why the Tana SmartTap kiosk has uploaded no credit purchases since 7 October and get the missing days in [act-smarttap-upload-gap]",
+   "title": "Find out why the Tana SmartTap kiosk has uploaded no credit purchases since 7 October and get the missing days in",
+   "owner": "Coddy Velonizy",
+   "assignee_gid": "1219154315843358",
+   "due_on": "2026-10-14",
+   "completed": true,
+   "completed_at": "2026-10-13",
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219396431213638",
+   "modified_at": "2026-10-13T15:13:50.884Z",
+   "ticked_by": "Adriaan Mol",
+   "ticked_at": "2026-10-13",
+   "evidence": null
   },
   "act-sop-calendar-no-lamination": {
    "gid": "1219371658201915",
@@ -2764,6 +2956,30 @@
     "date": "2026-10-07",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997161767"
    }
+  },
+  "act-vei-followup-toine": {
+   "gid": "1219450867725793",
+   "name": "Send follow-up email to Toine Ramaker (VEI) with SaniTap overview and three asks [act-vei-followup-toine]",
+   "title": "Send follow-up email to Toine Ramaker (VEI) with SaniTap overview and three asks",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-10-20",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219450867725793",
+   "modified_at": "2026-10-13T08:51:08.970Z"
+  },
+  "act-vei-madagascar-scope-note": {
+   "gid": "1219449974161629",
+   "name": "Send VEI a first proposal for adding Madagascar to VEI's country scope [act-vei-madagascar-scope-note]",
+   "title": "Send VEI a first proposal for adding Madagascar to VEI's country scope",
+   "owner": "Adriaan Mol",
+   "assignee_gid": "1132514258683237",
+   "due_on": "2026-11-01",
+   "completed": false,
+   "completed_at": null,
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219449974161629",
+   "modified_at": "2026-10-13T08:47:14.251Z"
   },
   "act-verification-fnrb-correction": {
    "gid": "1219101271060660",

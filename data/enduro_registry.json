@@ -4,20 +4,21 @@
   "id": "c305b9b85f41417387b553d9a33c795b",
   "name": "Enduro"
  },
- "pulled": "2026-10-12",
+ "pulled": "2026-10-13",
  "counts": {
   "systems": 25,
   "systems_gps": 25,
   "systems_photo": 10,
-  "points": 203,
-  "points_gps": 203,
-  "points_photo": 122,
+  "points": 212,
+  "points_gps": 212,
+  "points_photo": 131,
   "points_no_photo": 81,
   "points_with_system": 23,
-  "points_no_system": 180,
+  "points_no_system": 189,
   "retired_excluded": 0,
   "point_types": {
-   "Borehole or tubewell": 12,
+   "Borehole or tubewell": 14,
+   "Protected dug well": 7,
    "Unprotected dug well": 1,
    "kiosk": 22,
    "not set": 168
@@ -28,8 +29,8 @@
   "systems_registered": 25,
   "systems_diff": -106,
   "points_manual": 181,
-  "points_registered": 203,
-  "points_diff": 22,
+  "points_registered": 212,
+  "points_diff": 31,
   "regsys_manual": 24,
   "regsys_diff": 1,
   "manual_as_at": "2026-09-16",
@@ -348,11 +349,12 @@
   }
  ],
  "no_system": {
-  "points": 180,
-  "points_gps": 180,
-  "points_photo": 118,
+  "points": 189,
+  "points_gps": 189,
+  "points_photo": 127,
   "point_types": {
-   "Borehole or tubewell": 8,
+   "Borehole or tubewell": 10,
+   "Protected dug well": 7,
    "Unprotected dug well": 1,
    "kiosk": 3,
    "not set": 168
@@ -879,6 +881,39 @@
    "desc": "Forage Betanatanana"
   },
   {
+   "code": "1259196601",
+   "name": "AMBANY AVARATRA -AMBATOLAMPY",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.44205,
+   "lat": -18.861311,
+   "photo": "da22e2b0f6194f9ca431b7d8cc544143",
+   "device": null,
+   "desc": "À proximité Villa La Providence"
+  },
+  {
+   "code": "1259196577",
+   "name": "AMBATOLAMPY AVARATRA -SECTEUR 3",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.441016,
+   "lat": -18.864129,
+   "photo": "6dcb175b52bb4221ad1b0af24ea68f70",
+   "device": null,
+   "desc": "miakatra amin'ny kiosk,mivily terrain boule,midina totohotra vato"
+  },
+  {
+   "code": "1259200667",
+   "name": "Aberina",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.437648,
+   "lat": -18.864788,
+   "photo": "2db1e347b6044bc5a49cfada05d6209b",
+   "device": null,
+   "desc": "Eo fkt antanety be matihasina"
+  },
+  {
    "code": "1126132529",
    "name": "Alasora adilambo",
    "type": "Borehole or tubewell",
@@ -934,6 +969,28 @@
    "desc": "Kiosque"
   },
   {
+   "code": "1259200681",
+   "name": "Ambaniavatra ambatolampy",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 47.442106,
+   "lat": -18.861296,
+   "photo": "c49f3f8166d04f3a867329102f1d7eb0",
+   "device": null,
+   "desc": "Midina any la villa la providence"
+  },
+  {
+   "code": "1257401882",
+   "name": "Ambany avaratra ambatolampy",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.442127,
+   "lat": -18.861292,
+   "photo": "ddb943b3c59348bea6db3f73e43a23c6",
+   "device": null,
+   "desc": "Midina villa la Providence"
+  },
+  {
    "code": "1126132495",
    "name": "Ambatofotsy avaradrano",
    "type": "kiosk",
@@ -954,6 +1011,28 @@
    "photo": "c4fba1449f7d41b494aba42322ee4365",
    "device": null,
    "desc": "Kiosque"
+  },
+  {
+   "code": "1257401851",
+   "name": "Ambatolampy avaratra secteur 3",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.441009,
+   "lat": -18.864154,
+   "photo": "d1d3a255ce74426a9c41856eea571d53",
+   "device": null,
+   "desc": "Mihakatra terrain boule dia midina hankavanana"
+  },
+  {
+   "code": "1259200643",
+   "name": "Ambatolampy avaratra secteur 3",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.440986,
+   "lat": -18.864174,
+   "photo": "1c13ea0fbd204befb765027fe137bbb8",
+   "device": null,
+   "desc": "Terrain boul midina totohatra ankavanana"
   },
   {
    "code": "1108783947",
@@ -1405,6 +1484,17 @@
    "photo": "57ea5fa2ca05482aa111d3a3f2022ee1",
    "device": null,
    "desc": "Kiosque 26"
+  },
+  {
+   "code": "1257401868",
+   "name": "Berina",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.43771,
+   "lat": -18.864794,
+   "photo": "ce9baa71b5aa483fbedf44ba900f98f9",
+   "device": null,
+   "desc": "Fokotany antanetibe matihasina"
   },
   {
    "code": "1108785712",
@@ -2846,6 +2936,17 @@
    "photo": null,
    "device": null,
    "desc": null
+  },
+  {
+   "code": "1259196591",
+   "name": null,
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.437686,
+   "lat": -18.864797,
+   "photo": "f3d3bfc0f3de48c0b01cf59880adc3c8",
+   "device": null,
+   "desc": "Fokontany Antanetibe Matihasina"
   },
   {
    "code": "988432532",
