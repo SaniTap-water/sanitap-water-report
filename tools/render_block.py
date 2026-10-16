@@ -125,11 +125,13 @@ portrait = sum(1 for r in nu if r["only_portrait_field"] == "yes")
 SITECOUNTS = (", ".join(f"<b>{G.fig('nousable_' + k.lower().replace('-', '_'), v)}</b> in {k}" for k, v in site_n.most_common())
               + f", and only <b>{G.fig('only_portrait', portrait)}</b> where the portrait field is the sole source")
 
+# every cell a live figure: as plain text these passed the figure gate only
+# while each happened to equal some other value on the page (17 Oct 2026)
 rows = "".join(
-    f'<tr><td>{y}</td><td class="num">{len(v)}</td>'
-    f'<td class="num">{statistics.median(v):.0%}</td>'
-    f'<td class="num">{sum(1 for x in v if x >= .9)}</td>'
-    f'<td class="num">{sum(1 for x in v if x < .5)}</td></tr>'
+    f'<tr><td>{y}</td><td class="num">{G.fig(f"y{y}_point_years", len(v))}</td>'
+    f'<td class="num">{G.fig(f"y{y}_median_covered_pct", int(f"{statistics.median(v):.0%}"[:-1]))}%</td>'
+    f'<td class="num">{G.fig(f"y{y}_covered_high", sum(1 for x in v if x >= COVER_HIGH))}</td>'
+    f'<td class="num">{G.fig(f"y{y}_covered_low", sum(1 for x in v if x < COVER_LOW))}</td></tr>'
     for y, v in sorted(covyear.items()))
 
 B = f'''<div class="eyebrow" style="margin:18px 0 8px">Machine extraction from the calendar photographs &mdash; internal only</div>
