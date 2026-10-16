@@ -2514,3 +2514,9 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Also fixed, to let the build run:** calendar SOP v1.9 was filed on 15 Oct 2026 and v1.8 moved to SOPs/Archive,
   so `require_local.py` failed every build on the missing v1.8. The required document and the
   act-adopt-consolidated-gardien-calendar artefact path now name v1.9, as was done for v1.8 on 10 Oct.
+- **Also fixed, found by the rehearsal of this change:** `tools/check_freshness.py` took the page's call-centre date
+  only from statuses whose source is a call. On 16 Oct the newest call (14 Oct, 743345808, answered "working") was
+  followed by a maintenance visit on 15 Oct, which by rule 4 of `build_call_tables.py` sets the status, so the page
+  read "behind mWater" while correctly rebuilt, and every build failed "the page was rebuilt from the extract that
+  was pulled". The call-centre date is now the newest `status_date`, whatever record set it; only the call-table
+  builder writes it, so a pull it never rebuilt from still fails.

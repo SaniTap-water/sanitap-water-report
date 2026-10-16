@@ -49,8 +49,15 @@ def extract_dates():
     return {
         "preventive-maintenance": mx("last_pm"),
         "repair-after-breakdown": mx("last_repair"),
-        "call-centre": mx("status_date",
-                          lambda p: p.get("status_src") == "call"),
+        # the call-centre tables' own date: the newest status_date, whatever
+        # record set it. Only tools/build_call_tables.py writes status_date,
+        # from the call extract with the visits and repairs, so a pull it never
+        # rebuilt from still shows. Until 16 Oct 2026 this counted only
+        # statuses whose source is a call, and so read "behind" whenever the
+        # newest call was overtaken by a later visit (rule 4): the 14 Oct call
+        # on 743345808 was followed by a maintenance visit on 15 Oct, the page
+        # was correct, and every build failed.
+        "call-centre": mx("status_date"),
     }
 
 
