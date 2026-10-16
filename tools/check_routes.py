@@ -21,6 +21,14 @@ whose plans are not that build's or do not cover exactly the overdue pumps.
                         build_routes.py gives from PUMPS, PARAMS and the OSRM
                         cache (build_routes.py --check, no network)
   routes_params         the method values in data/routes.json are PARAMS
+  route_no_shuttle      no day carries 4 or fewer pumps while more than 60%
+                        of its road km is the drive from or to the base,
+                        unless it is a day-return and its clusters genuinely
+                        have 4 or fewer pumps left that day. The base legs are
+                        costed again here from the OSRM cache, and the pumps
+                        left from the plan's own clusters (16 Oct 2026: Fort-
+                        Dauphin days 11 to 14 had carried 2 or 3 pumps each at
+                        177 to 231 km, driving back to base every evening)
   routes_wording        no sentence left from the plan of 10 September (a
                         fixed drawing date, "not yet on a route"), no team size
                         set by the plan, and the field-lead sentence present
@@ -39,12 +47,47 @@ TEAM_NOTE = ("A day is one field team&rsquo;s working day; how many technicians 
              "by the field lead (Adriaan Mol, 16 Oct 2026).")
 TEAM_NOTE_JS = ("A day is one field team's working day; how many technicians go is decided by "
                 "the field lead (Adriaan Mol, 16 Oct 2026).")
-STALE = ("drawn on 10 September 2026", "not yet on a route", "pumps overdue when the route was drawn",
+TRIP_NOTE = ("Remote clusters are planned as field trips with overnight stays; where the team "
+             "stays is decided by the field lead.")
+SHUTTLE_MAX_PUMPS, SHUTTLE_BASE_SHARE = 4, 0.60
+STALE = ("Each day is a round trip from the base", "round trip from the MadAvance base",
+         "drawn on 10 September 2026", "not yet on a route", "pumps overdue when the route was drawn",
          "no build step redraws it", "route_crew", "technician-day", "technicians per team")
 
 
 def check(name, ok, detail):
     RESULTS.append((name, bool(ok), detail))
+
+
+def shuttle_days(R, P):
+    """(failing days, number of days of SHUTTLE_MAX_PUMPS or fewer pumps)."""
+    roads = BR.Roads(offline=True)
+    shuttles, n_short = [], 0
+    for site, X in R.items():
+        kmh, fac = P["route_offroad_kmh"], P[BR.factor_key(site)]
+        members = {c["id"]: set(c["pumps"]) for c in X.get("clusters", [])}
+        done = set()
+        for d in X["days"]:
+            wps = [st["wp"] for st in d["stops"]]
+            if len(wps) <= SHUTTLE_MAX_PUMPS:
+                n_short += 1
+                pts = [(d["start"]["lat"], d["start"]["lon"])] + [(st["lat"], st["lon"]) for st in d["stops"]] \
+                    + [(d["end"]["lat"], d["end"]["lon"])]
+                legs = [roads.leg(pts[i], pts[i + 1], kmh, fac)[1] for i in range(len(pts) - 1)]
+                base_km = (legs[0] if d["start"]["at"] == "base" else 0) \
+                    + (legs[-1] if d["end"]["at"] == "base" else 0)
+                total = sum(legs)
+                left = sum(len(members.get(c, set()) - done) for c in d.get("clusters", []))
+                day_return = d["start"]["at"] == "base" and d["end"]["at"] == "base"
+                if not d.get("clusters"):
+                    shuttles.append(f"{site} day {d['day']}: no cluster recorded")
+                elif total > 0 and base_km > SHUTTLE_BASE_SHARE * total \
+                        and not (day_return and left <= SHUTTLE_MAX_PUMPS):
+                    shuttles.append(f"{site} day {d['day']}: {len(wps)} pumps, {base_km:.0f} of "
+                                    f"{total:.0f} road km to and from the base, {left} left in "
+                                    f"{', '.join(d['clusters'])}")
+            done.update(wps)
+    return shuttles, n_short
 
 
 def main():
@@ -100,6 +143,14 @@ def main():
     check("routes_params", summary.get("params") == P,
           f"applied {summary.get('params')}, PARAMS {P}")
 
+    # route_no_shuttle
+    shuttles, n_short = shuttle_days(R, P)
+    check("route_no_shuttle", not shuttles,
+          "; ".join(shuttles) if shuttles else
+          f"no shuttle day: {n_short} day(s) of {SHUTTLE_MAX_PUMPS} or fewer pumps, each a cluster's "
+          f"last pumps or mostly driven away from the base legs; "
+          + ", ".join(f"{s} {len(X.get('trips', []))} field trip(s)" for s, X in R.items()))
+
     # routes_wording
     det = io.open(os.path.join(REPO, "data", "action_details.json"), encoding="utf8").read()
     hits = [f"{name}: '{w}'" for name, txt in (("index.html", idx), ("routes.html", rt),
@@ -109,7 +160,11 @@ def main():
         hits.append("index.html: the field-lead sentence is missing")
     if TEAM_NOTE_JS not in rt:
         hits.append("routes.html: the field-lead sentence is missing")
-    check("routes_wording", not hits, "; ".join(hits) if hits else "no stale route wording; field-lead sentence on both pages")
+    for name, txt in (("index.html", idx), ("routes.html", rt)):
+        if TRIP_NOTE not in txt:
+            hits.append(f"{name}: the field-trip sentence is missing")
+    check("routes_wording", not hits, "; ".join(hits) if hits else
+          "no stale route wording; field-lead and field-trip sentences on both pages")
 
     w = max(len(n) for n, *_ in RESULTS)
     for name, ok, detail in RESULTS:

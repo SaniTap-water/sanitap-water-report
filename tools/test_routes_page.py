@@ -32,6 +32,8 @@ import build_routes as BR
 FAIL = []
 NOTE = ("A day is one field team's working day; how many technicians go is decided by "
         "the field lead (Adriaan Mol, 16 Oct 2026).")
+TRIP_NOTE = ("Remote clusters are planned as field trips with overnight stays; where the team "
+             "stays is decided by the field lead.")
 
 
 def check(what, ok, got=""):
@@ -102,6 +104,12 @@ def main():
             check(f"{site}: every CSV row carries a Google Maps link to the pump",
                   all(link.match(r[-1]) and r[-1].endswith(f"{r[10]},{r[11]}") for r in body))
             check(f"{site}: CSV carries the field-lead sentence", NOTE in text)
+            check(f"{site}: CSV carries the field-trip sentence", TRIP_NOTE in text)
+            sd = [(d["start"]["name"], d["end"]["name"], str(d.get("trip", "")))
+                  for d in R["days"] for _ in d["stops"]]
+            ci = [head.index(c) for c in ("day_start", "day_end", "trip")]
+            check(f"{site}: CSV gives each pump its day's start, end and trip",
+                  [tuple(r[i] for i in ci) for r in body] == sd)
 
         # 2. one day sheet, for the first site, its second day if it has one
         site = next(iter(routes))
@@ -139,6 +147,19 @@ def main():
         pg.wait_for_selector("body[data-print-ready='1']", timeout=60000 + 4000 * len(R["days"]))
         n = pg.locator("#sheets .sheet").count()
         check(f"{site}: all-days view has one sheet per day ({len(R['days'])})", n == len(R["days"]), n)
+        texts = [pg.locator("#sheets .sheet").nth(i).inner_text() for i in range(n)]
+        bad = []
+        for d, t in zip(R["days"], texts):
+            want = [f"Start {d['start']['name']}", f"End {d['end']['name']}"]
+            if d.get("trip"):
+                stay = d["end"] if d["end"]["at"] == "stay" else d["start"]
+                want += [f"Trip {d['trip']}, day {d['trip_day']} of {d['trip_days']}",
+                         f"Overnight village: {stay['name']}", f"trip total {d['trip_km']} road km"]
+            bad += [f"day {d['day']}: '{w}'" for w in want if w not in t]
+        check(f"{site}: every sheet gives its start and end, and a trip day its trip, "
+              f"overnight village and trip km ({sum(1 for d in R['days'] if d.get('trip'))} trip days)",
+              not bad, "; ".join(bad[:4]))
+        check(f"{site}: every sheet carries the field-trip sentence", all(TRIP_NOTE in t for t in texts))
         check(f"{site}: every sheet's map has its route line",
               pg.locator("#sheets .smap").count() == n
               and all(pg.locator(f"#smap-{i} path.leaflet-interactive").count() >= 1 for i in range(n)))

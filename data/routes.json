@@ -5,7 +5,12 @@
   "route_site_minutes": 45.0,
   "route_day_hours": 8.0,
   "route_max_pumps": 8.0,
-  "route_offroad_kmh": 12.0
+  "route_offroad_kmh": 12.0,
+  "route_overnight_oneway_h": 1.5,
+  "route_cluster_merge_km": 30.0,
+  "route_road_factor_maroantsetra": 1.0,
+  "route_road_factor_fort_dauphin": 1.0,
+  "route_road_factor_marolinta": 1.0
  },
  "osrm": {
   "server": "https://router.project-osrm.org",
@@ -14,6 +19,14 @@
   "pairs_added_to_cache": 0,
   "pairs_fallback": 0
  },
+ "far_clusters": [
+  "build_routes: one way Maroantsetra base -> Voloina (stay Tanantsara, Voloina, 21 km straight line): OSRM 1.96 h driving, 40 road km; costed 1.76 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as field trip",
+  "build_routes: one way Fort-Dauphin base -> Iaboakoho + Manantenina (stay Ambalateza, Manantenina, 92 km straight line): OSRM 2.97 h driving, 115 road km; costed 2.99 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as field trip",
+  "build_routes: one way Fort-Dauphin base -> Analapatsy (stay Andrivory, Analapatsy, 30 km straight line): OSRM 1.19 h driving, 47 road km; costed 1.20 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as day-return",
+  "build_routes: one way Fort-Dauphin base -> Isaka-Ivondro (stay Ambatomainty, Isaka-Ivondro, 26 km straight line): OSRM 0.83 h driving, 35 road km; costed 0.84 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as day-return",
+  "build_routes: one way Fort-Dauphin base -> Mahatalaky (stay Mahatalaky Eroanga, Mahatalaky, 29 km straight line): OSRM 0.92 h driving, 37 road km; costed 0.93 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as day-return",
+  "build_routes: one way Fort-Dauphin base -> Ranopiso (stay Ranopiso, Ranopiso, 30 km straight line): OSRM 0.68 h driving, 35 road km; costed 0.68 h in the plan (OSRM time x road factor 1, plus the off-road stretch, or the straight walk where quicker); planned as day-return"
+ ],
  "fallback": {
   "rule": "straight line x 1.4 at 30 km/h",
   "legs_by_site": {
@@ -25,10 +38,13 @@
   "Maroantsetra": {
    "routed": 386,
    "never_visited": 20,
-   "team_days": 58,
-   "road_km": 1106,
-   "hours": 420.8,
+   "team_days": 53,
+   "road_km": 1082,
+   "hours": 372.4,
    "days_over_length": 0,
+   "field_trips": 1,
+   "overnights": 9,
+   "trip_team_days": 10,
    "pumps": [
     "698770982",
     "698770999",
@@ -421,10 +437,13 @@
   "Fort-Dauphin": {
    "routed": 79,
    "never_visited": 9,
-   "team_days": 14,
-   "road_km": 1605,
-   "hours": 104.0,
+   "team_days": 12,
+   "road_km": 967,
+   "hours": 87.7,
    "days_over_length": 0,
+   "field_trips": 1,
+   "overnights": 1,
+   "trip_team_days": 2,
    "pumps": [
     "670401615",
     "670401639",

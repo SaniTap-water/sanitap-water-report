@@ -1159,3 +1159,13 @@ rebuild (the desktop shortcut). `tools/test_routes_page.py` drives the CSV and p
 Road times come from `router.project-osrm.org` at one request a second, cached by coordinates; a leg it cannot give
 is costed straight-line x 1.4 at 30 km/h and counted in the build log. The plan does not set a team size: a day is
 one field team's working day and how many technicians go is the field lead's decision (Adriaan Mol, 16 Oct 2026).
+
+Remote clusters are field trips (Adriaan Mol, 16 Oct 2026). A commune whose most central overdue pump is more than
+`PARAMS.route_overnight_oneway_h` from the base is remote; remote communes within `route_cluster_merge_km` of each
+other are one cluster, planned both as day-returns and as a field trip with overnight stays at its most central pump
+village, and the one with fewer team-days, then km, is kept. OSRM time is multiplied by `route_road_factor_<site>`
+(1.0 everywhere today; Adriaan confirmed OSRM's Fort-Dauphin to Manantenina time). Every day in ROUTES carries its
+`start` and `end` (base or stay), its `clusters` and, on a trip, `trip`, `trip_day`, `trip_days` and `trip_km`.
+`route_no_shuttle` in `check_routes.py` fails a day of 4 or fewer pumps whose road km are more than 60% the drive
+from or to the base, unless it is a day-return taking a cluster's last 4 or fewer pumps. The build log records
+OSRM's one-way time to every cluster more than 30 km from its base, for comparison with real travel times.

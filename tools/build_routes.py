@@ -21,19 +21,32 @@ counts, with the method the old plan stated:
     never-visited overdue pumps (ties: the one nearest the base), then always
     the commune of the nearest remaining pump, straight line, from where the
     team is;
-  * inside a commune, nearest neighbour by road time, every day a round trip
-    from the base;
+  * inside a commune, nearest neighbour by road time;
+  * remote clusters as field trips (Adriaan Mol, 16 Oct 2026; until then every
+    day returned to the base, and Fort-Dauphin's last four days carried 2 or 3
+    pumps each at 177 to 231 km): a commune whose most central pump is more
+    than PARAMS.route_overnight_oneway_h from the base, one way, is remote;
+    remote communes within PARAMS.route_cluster_merge_km of each other are one
+    cluster. Each is planned as day-returns and as a field trip - drive out
+    working the pumps on the way and on arrival, overnight at the cluster's
+    most central pump village, work from there, work the last pumps on the
+    drive back - and the plan with fewer team-days, then road km, is kept
+    (see Planner). Every other day starts and ends at the base;
   * a day is road time (OSRM driving) plus PARAMS.route_site_minutes on site
     per pump, within PARAMS.route_day_hours including the drive back and at
     most PARAMS.route_max_pumps pumps. A day always takes at least one pump,
-    so a pump further than a day's round trip makes a day of its own that runs
-    over (marked "over": an overnight stop is needed);
+    so a pump further than that makes a day of its own that runs over
+    (marked "over");
+  * OSRM driving time is multiplied by PARAMS.route_road_factor_<site>, so a
+    site where MadAvance's real travel times differ can be corrected; the
+    build prints OSRM's one-way time to every cluster more than FAR_LOG_KM
+    from its base, straight line or by road, for that comparison;
   * the stretch between a pump and the road (OSRM's snap distance) is costed
     at PARAMS.route_offroad_kmh; between two pumps, a straight walk at that
     speed is taken instead of the road when it is quicker (neighbouring pumps
     far from any mapped road - some in Mahalevona snap 11 km away).
 
-The four values are read from PARAMS on the page, where each is declared with
+The values are read from PARAMS on the page, where each is declared with
 its source, so they have one home.
 
 Road times come from router.project-osrm.org (table calls, at most one
@@ -72,10 +85,11 @@ BASES = {"Maroantsetra": [-15.4333, 49.7417],
          "Marolinta": [-25.12, 44.62]}
 SITE_ORDER = ("Maroantsetra", "Fort-Dauphin", "Marolinta")
 PARAM_KEYS = ("route_site_minutes", "route_day_hours", "route_max_pumps",
-              "route_offroad_kmh")
+              "route_offroad_kmh", "route_overnight_oneway_h", "route_cluster_merge_km")
 ITIN_COLS = ["site", "day", "stop", "pump_id", "commune", "fokontany", "pump_type",
              "days_since_last_visit", "last_status", "people", "lat", "lon",
-             "day_road_km", "day_hours"]
+             "day_road_km", "day_hours", "day_start", "day_end", "trip", "trip_day",
+             "trip_days", "trip_road_km"]
 
 
 # ---- the page's own data ------------------------------------------------------
@@ -89,7 +103,7 @@ def const(src, name):
 
 def params(src):
     out = {}
-    for k in PARAM_KEYS:
+    for k in PARAM_KEYS + tuple(factor_key(s_) for s_ in SITE_ORDER):
         m = re.search(r"\n " + k + r":\{v:([0-9.]+),", src)
         if not m:
             sys.exit(f"build_routes: PARAMS.{k} is missing from index.html; the route "
@@ -226,7 +240,7 @@ class Roads:
             if any(missing(a, b) for a in bs for b in bd):
                 self._fetch(bs, bd)
 
-    def leg(self, a, b, kmh_off):
+    def leg(self, a, b, kmh_off, factor=1.0):
         """(hours, road km, fell back?) from a to b.
 
         By road: OSRM's time between the two road points, plus the stretch
@@ -241,73 +255,276 @@ class Roads:
         if kk in self.pairs:
             du, di = self.pairs[kk]
             off_m = self.snap.get(key(a), 0.0) + self.snap.get(key(b), 0.0)
-            road = du / 3600.0 + off_m / 1000.0 / kmh_off
+            road = du / 3600.0 * factor + off_m / 1000.0 / kmh_off
             return (direct, 0.0, False) if direct < road else (road, di / 1000.0, False)
         km = hav_km(a, b) * FALLBACK_DETOUR
         return km / FALLBACK_KMH, km, True
 
 
 # ---- the plan -----------------------------------------------------------------------
-def plan_site(site, pts, P, roads):
-    base = BASES[site]
-    site_h, day_h = P["route_site_minutes"] / 60.0, P["route_day_hours"]
-    max_n, kmh_off = int(P["route_max_pumps"]), P["route_offroad_kmh"]
-    ll = {p["wp"]: (p["lat"], p["lon"]) for p in pts}
-    by_c = {}
-    for p in pts:
-        by_c.setdefault(p.get("commune") or "—", []).append(p)
-    # every leg the plan can use within a commune, and to and from the base
-    allp = [ll[p["wp"]] for p in pts]
-    roads.ensure([base], allp)
-    roads.ensure(allp, [base])
-    for c, v in by_c.items():
-        roads.ensure([ll[p["wp"]] for p in v], [ll[p["wp"]] for p in v])
+def factor_key(site):
+    return "route_road_factor_" + re.sub(r"[^a-z]+", "_", site.lower()).strip("_")
 
-    def first_commune():
+
+def by_commune(pts):
+    out = {}
+    for p in pts:
+        out.setdefault(p.get("commune") or "—", []).append(p)
+    return out
+
+
+def medoid(pts):
+    """The most central pump: least total straight-line distance to the others."""
+    return min(pts, key=lambda p: (sum(hav_km((p["lat"], p["lon"]), (q["lat"], q["lon"]))
+                                       for q in pts), p["wp"]))
+
+
+def place(kind, name, ll, **extra):
+    return dict({"at": kind, "name": name, "lat": ll[0], "lon": ll[1]}, **extra)
+
+
+class Planner:
+    """One site's plan: clusters, then day-returns and field trips.
+
+    Clusters are communes. A commune whose most central pump is more than
+    PARAMS.route_overnight_oneway_h from the base (one way, by the same leg
+    cost as every other leg) is far; far communes whose nearest overdue pumps
+    lie within PARAMS.route_cluster_merge_km of each other are one cluster.
+    Near communes keep the day-return method: every day starts and ends at the
+    base. A far cluster is planned both ways - as day-returns, and as a field
+    trip (drive out and work the stops on the way and on arrival, overnight at
+    the cluster's most central pump village, work from there, work the last
+    stops and drive back) - and the plan with fewer team-days, then fewer road
+    km, is kept; a tie stays a day-return."""
+
+    def __init__(self, site, pts, P, roads):
+        self.site, self.pts, self.roads = site, pts, roads
+        self.base = BASES[site]
+        self.site_h, self.day_h = P["route_site_minutes"] / 60.0, P["route_day_hours"]
+        self.max_n, self.kmh_off = int(P["route_max_pumps"]), P["route_offroad_kmh"]
+        self.factor = P[factor_key(site)]
+        self.far_h, self.merge_km = P["route_overnight_oneway_h"], P["route_cluster_merge_km"]
+        self.ll = {p["wp"]: (p["lat"], p["lon"]) for p in pts}
+        self.base_place = place("base", f"MadAvance base, {site}", self.base)
+
+    def leg(self, a, b):
+        return self.roads.leg(a, b, self.kmh_off, self.factor)
+
+    # -- choosing a day's stops -------------------------------------------------------
+    def first_commune(self, left):
         def near(c):
-            return min(hav_km(base, ll[p["wp"]]) for p in by_c[c])
-        return sorted(by_c, key=lambda c: (-sum(never_visited(p) for p in by_c[c]),
+            return min(hav_km(self.base, self.ll[p["wp"]]) for p in left[c])
+        live = [c for c in left if left[c]]
+        return sorted(live, key=lambda c: (-sum(never_visited(p) for p in left[c]),
                                            near(c), c))[0]
 
-    left = {c: list(v) for c, v in by_c.items()}
-    commune = first_commune()
-    days, legs_fallback = [], 0
-    while any(left.values()):
-        pos, t, km, stops, comms, fb = base, 0.0, 0.0, [], [], 0
+    def select(self, start, end, left, commune):
+        """Stops for one day from start to end, commune by commune, nearest
+        neighbour by leg time; removes them from left. A day always takes at
+        least one pump. Returns (stops, commune the team is in)."""
+        pos, t, stops = start, 0.0, []
         while True:
             if not left.get(commune):
                 rem = [p for v in left.values() for p in v]
                 if not rem:
                     break
-                nxt = min(rem, key=lambda p: (hav_km(pos, ll[p["wp"]]), p["wp"]))
+                nxt = min(rem, key=lambda p: (hav_km(pos, self.ll[p["wp"]]), p["wp"]))
                 commune = nxt.get("commune") or "—"
-                roads.ensure([pos], [ll[p["wp"]] for p in left[commune]])
-            cand = sorted(left[commune],
-                          key=lambda p: (roads.leg(pos, ll[p["wp"]], kmh_off)[0], p["wp"]))[0]
-            h, k, f = roads.leg(pos, ll[cand["wp"]], kmh_off)
-            back = roads.leg(ll[cand["wp"]], base, kmh_off)[0]
-            if stops and (len(stops) >= max_n or t + h + site_h + back > day_h + 1e-9):
+                self.roads.ensure([pos], [self.ll[p["wp"]] for p in left[commune]])
+            cand = min(left[commune], key=lambda p: (self.leg(pos, self.ll[p["wp"]])[0], p["wp"]))
+            h = self.leg(pos, self.ll[cand["wp"]])[0]
+            back = self.leg(self.ll[cand["wp"]], end)[0]
+            if stops and (len(stops) >= self.max_n or t + h + self.site_h + back > self.day_h + 1e-9):
                 break
-            t, km, fb = t + h + site_h, km + k, fb + f
-            pos = ll[cand["wp"]]
+            t += h + self.site_h
+            pos = self.ll[cand["wp"]]
             left[commune].remove(cand)
             stops.append(cand)
-            if commune not in comms:
-                comms.append(commune)
-            if len(stops) >= max_n:
+            if len(stops) >= self.max_n:
                 break
-        h, k, f = roads.leg(pos, base, kmh_off)
-        t, km, fb = t + h, km + k, fb + f
-        legs_fallback += fb
-        d = {"day": len(days) + 1, "communes": comms, "km": round(km), "hours": round(t, 1),
-             "stops": [stop(p) for p in stops]}
-        if t > day_h + 1e-9:
+        return stops, commune
+
+    def cost(self, start, end, stops):
+        """(hours, road km, fallback legs, km of the legs from and to the base)."""
+        pts = [(start["lat"], start["lon"])] + [self.ll[p["wp"]] for p in stops] \
+            + [(end["lat"], end["lon"])]
+        t, km, fb, base_km = self.site_h * len(stops), 0.0, 0, 0.0
+        for i in range(len(pts) - 1):
+            h, k, f = self.leg(pts[i], pts[i + 1])
+            t, km, fb = t + h, km + k, fb + f
+            if (i == 0 and start["at"] == "base") or (i == len(pts) - 2 and end["at"] == "base"):
+                base_km += k
+        return t, km, fb, base_km
+
+    def day(self, start, end, stops, clusters):
+        t, km, fb, base_km = self.cost(start, end, stops)
+        comms = []
+        for p in stops:
+            c = p.get("commune") or "—"
+            if c not in comms:
+                comms.append(c)
+        d = {"communes": comms, "km": round(km), "hours": round(t, 1),
+             "start": start, "end": end, "clusters": clusters,
+             "base_km": round(base_km), "stops": stops, "_fb": fb}
+        if t > self.day_h + 1e-9:
             d["over"] = True
-        if fb:
-            d["fallback_legs"] = fb
-        days.append(d)
-    return {"base": base, "n": len(pts), "never": sum(never_visited(p) for p in pts),
-            "days": days}, legs_fallback
+        return d
+
+    @staticmethod
+    def copy(left):
+        return {c: list(v) for c, v in left.items()}
+
+    # -- the two ways to plan a set of pumps -----------------------------------------
+    def day_returns(self, pts, cid_of):
+        left = by_commune(pts)
+        commune, days = self.first_commune(left), []
+        while any(left.values()):
+            stops, commune = self.select(self.base, self.base, left, commune)
+            days.append(self.day(self.base_place, self.base_place, stops,
+                                 sorted({cid_of[p["wp"]] for p in stops})))
+        return days
+
+    def fits_home(self, at, left, commune):
+        """Would one day from `at` back to the base take every pump left?"""
+        trial = self.copy(left)
+        self.select(at, self.base, trial, commune)
+        return not any(trial.values())
+
+    def field_trip(self, pts, stay, cid):
+        """The trip's days, or None when one day-return takes the whole cluster."""
+        left = by_commune(pts)
+        commune = self.first_commune(left)
+        if self.fits_home(self.base, left, commune):
+            return None
+        S = (stay["lat"], stay["lon"])
+        days, start = [], self.base_place
+        while True:
+            at = (start["lat"], start["lon"])
+            if start["at"] == "stay" and self.fits_home(at, left, commune):
+                stops, commune = self.select(at, self.base, left, commune)
+                days.append(self.day(start, self.base_place, stops, [cid]))
+                return days
+            stops, commune = self.select(at, S, left, commune)
+            # never end a working day at the stay point with nothing left: the
+            # last pumps go back to the day that drives home
+            while not any(left.values()) and len(stops) > 1:
+                p = stops.pop()
+                left.setdefault(p.get("commune") or "—", []).append(p)
+                if self.fits_home(S, left, commune):
+                    break
+            if not any(left.values()):
+                # one pump, and even it cannot be followed by the drive home:
+                # the drive back is its own (short) day
+                days.append(self.day(start, stay, stops, [cid]))
+                days.append(self.day(stay, self.base_place, [], [cid]))
+                return days
+            days.append(self.day(start, stay, stops, [cid]))
+            start = stay
+
+    # -- the site -------------------------------------------------------------------
+    def clusters(self):
+        comm = by_commune(self.pts)
+        allp = [self.ll[p["wp"]] for p in self.pts]
+        self.roads.ensure([self.base], allp)
+        self.roads.ensure(allp, [self.base])
+        for v in comm.values():
+            self.roads.ensure([self.ll[p["wp"]] for p in v], [self.ll[p["wp"]] for p in v])
+
+        def oneway(v):
+            m = medoid(v)
+            return m, self.leg(self.base, self.ll[m["wp"]])
+        far = sorted(c for c, v in comm.items() if oneway(v)[1][0] > self.far_h)
+        # far communes within merge distance of each other: one cluster (single linkage)
+        groups = [[c] for c in far]
+        merged = True
+        while merged:
+            merged = False
+            for i in range(len(groups)):
+                for k in range(i + 1, len(groups)):
+                    gap = min(hav_km(self.ll[p["wp"]], self.ll[q["wp"]])
+                              for a in groups[i] for p in comm[a]
+                              for b in groups[k] for q in comm[b])
+                    if gap <= self.merge_km:
+                        groups[i] = sorted(groups[i] + groups[k])
+                        del groups[k]
+                        merged = True
+                        break
+                if merged:
+                    break
+        groups += [[c] for c in sorted(comm) if c not in far]
+        out = []
+        for g in groups:
+            v = [p for c in g for p in comm[c]]
+            if len(g) > 1:
+                cl = [self.ll[p["wp"]] for p in v]
+                self.roads.ensure(cl, cl)
+            m, (h, k, _f) = oneway(v)
+            kk = key(self.base) + ">" + key(self.ll[m["wp"]])
+            raw = self.roads.pairs.get(kk)
+            out.append({
+                "id": " + ".join(g), "communes": g, "far": g[0] in far,
+                "n": len(v), "never": sum(never_visited(p) for p in v),
+                "pumps": sorted(p["wp"] for p in v),
+                "stay": place("stay", f"{m.get('fkt') or m['wp']}, {m.get('commune') or '—'}",
+                              self.ll[m["wp"]], village=m.get("fkt") or "",
+                              commune=m.get("commune") or "—", wp=m["wp"]),
+                "oneway_h": round(h, 2), "oneway_road_km": round(k, 1),
+                "osrm_drive_h": round(raw[0] / 3600.0, 2) if raw else None,
+                "osrm_road_km": round(raw[1] / 1000.0, 1) if raw else None,
+                "line_km": round(hav_km(self.base, self.ll[m["wp"]]), 1),
+                "_pts": v})
+        return out
+
+    def plan(self):
+        cls = self.clusters()
+        cid_of = {p["wp"]: c["id"] for c in cls for p in c["_pts"]}
+        near = [p for c in cls if not c["far"] for p in c["_pts"]]
+        blocks = []
+        if near:
+            blocks.append((None, self.day_returns(near, cid_of)))
+        for c in cls:
+            if c["far"]:
+                c["plan"] = "day-return"
+        for c in sorted((c for c in cls if c["far"]), key=lambda c: (-c["never"], c["oneway_h"], c["id"])):
+            dr = self.day_returns(c["_pts"], cid_of)
+            ft = self.field_trip(c["_pts"], c["stay"], c["id"])
+            tally = lambda ds: [len(ds), sum(d["km"] for d in ds)]          # noqa: E731
+            c["compared"] = {"day_return": tally(dr), "field_trip": tally(ft) if ft else None}
+            if ft and tally(ft) < tally(dr):
+                c["plan"] = "field trip"
+                blocks.append((c, ft))
+            else:
+                blocks.append((None, dr))
+        for c in cls:
+            if not c["far"]:
+                c["plan"] = "day-return"
+        days, trips, fb = [], [], 0
+        for c, ds in blocks:
+            if c is not None:
+                n = len(trips) + 1
+                tkm = sum(d["km"] for d in ds)
+                trips.append({"trip": n, "cluster": c["id"], "stay": c["stay"],
+                              "days": len(ds), "nights": len(ds) - 1, "km": tkm,
+                              "first_day": len(days) + 1})
+                for i, d in enumerate(ds, 1):
+                    d.update({"trip": n, "trip_day": i, "trip_days": len(ds), "trip_km": tkm})
+            for d in ds:
+                d["day"] = len(days) + 1
+                f = d.pop("_fb")
+                fb += f
+                if f:
+                    d["fallback_legs"] = f
+                d["stops"] = [stop(p) for p in d["stops"]]
+                days.append({k: d[k] for k in ("day", *[x for x in d if x != "day"])})
+        for c in cls:
+            del c["_pts"]
+        return {"base": self.base, "n": len(self.pts),
+                "never": sum(never_visited(p) for p in self.pts),
+                "days": days, "trips": trips, "clusters": cls}, fb
+
+
+def plan_site(site, pts, P, roads):
+    return Planner(site, pts, P, roads).plan()
 
 
 def stop(p):
@@ -342,7 +559,10 @@ def draw(drawn, offline=False):
         # the values applied, so routes.html and the exports state them without
         # a second copy (their home is PARAMS on index.html)
         r["params"] = {"site_minutes": P["route_site_minutes"], "day_hours": P["route_day_hours"],
-                       "max_pumps": P["route_max_pumps"], "offroad_kmh": P["route_offroad_kmh"]}
+                       "max_pumps": P["route_max_pumps"], "offroad_kmh": P["route_offroad_kmh"],
+                       "overnight_oneway_h": P["route_overnight_oneway_h"],
+                       "cluster_merge_km": P["route_cluster_merge_km"],
+                       "road_factor": P[factor_key(site)]}
         r["params"] = {k: int(v) if float(v).is_integer() else v for k, v in r["params"].items()}
         routes[site] = r
     unknown = sorted(set(over) - set(SITE_ORDER))
@@ -364,7 +584,9 @@ def itinerary_rows(routes):
                 rows.append([site, d["day"], i, s["wp"], s["commune"], s["fkt"], s["pump"],
                              "never" if s.get("never") else s["days"], s["status"],
                              "" if s["people"] is None else s["people"],
-                             s["lat"], s["lon"], d["km"], d["hours"]])
+                             s["lat"], s["lon"], d["km"], d["hours"],
+                             d["start"]["name"], d["end"]["name"], d.get("trip", ""),
+                             d.get("trip_day", ""), d.get("trip_days", ""), d.get("trip_km", "")])
     return rows
 
 
@@ -436,6 +658,7 @@ def outputs(drawn, offline):
                  "request_errors": roads.request_errors,
                  "pairs_added_to_cache": roads.added,
                  "pairs_fallback": len(roads.failed)},
+        "far_clusters": far_lines(routes),
         "fallback": {"rule": f"straight line x {FALLBACK_DETOUR} at {FALLBACK_KMH:g} km/h",
                      "legs_by_site": fb},
         "sites": {s: {"routed": R["n"], "never_visited": R["never"],
@@ -443,11 +666,37 @@ def outputs(drawn, offline):
                       "road_km": sum(d["km"] for d in R["days"]),
                       "hours": round(sum(d["hours"] for d in R["days"]), 1),
                       "days_over_length": sum(1 for d in R["days"] if d.get("over")),
+                      "field_trips": len(R["trips"]),
+                      "overnights": sum(t["nights"] for t in R["trips"]),
+                      "trip_team_days": sum(t["days"] for t in R["trips"]),
                       "pumps": sorted(s_["wp"] for d in R["days"] for s_ in d["stops"])}
                   for s, R in routes.items()},
     }
     return {INDEX: new_idx, ROUTES_PAGE: new_rt, ITIN: itinerary_text(routes),
             OUT: json.dumps(summary, ensure_ascii=False, indent=1) + "\n"}, routes, fb, roads
+
+
+FAR_LOG_KM = 30
+
+
+def site_tally(s, R):
+    return (f"{s} {len(R['days'])} team-days, {sum(d['km'] for d in R['days'])} km, "
+            f"{len(R['trips'])} trip(s), {sum(t['nights'] for t in R['trips'])} night(s)")
+
+
+def far_lines(routes):
+    out = []
+    for s, R in routes.items():
+        for c in R["clusters"]:
+            if c["line_km"] <= FAR_LOG_KM and (c["osrm_road_km"] or 0) <= FAR_LOG_KM:
+                continue
+            drive = (f"OSRM {c['osrm_drive_h']:.2f} h driving, {c['osrm_road_km']:.0f} road km"
+                     if c["osrm_drive_h"] is not None else "no OSRM time (fallback)")
+            out.append(f"build_routes: one way {s} base -> {c['id']} (stay {c['stay']['name']}, "
+                       f"{c['line_km']:.0f} km straight line): {drive}; costed "
+                       f"{c['oneway_h']:.2f} h in the plan (OSRM time x road factor "
+                       f"{R['params']['road_factor']:g}, plus the off-road stretch, or the straight walk where quicker); planned as {c['plan']}")
+    return out
 
 
 def stored_drawn():
@@ -467,11 +716,17 @@ def main():
         roads.save()
         for s, R in routes.items():
             print(f"  {s}: {R['n']} pumps routed over {len(R['days'])} team-days, "
-                  f"{sum(d['km'] for d in R['days'])} road km, "
+                  f"{sum(d['km'] for d in R['days'])} road km, {len(R['trips'])} field trip(s) "
+                  f"with {sum(t['nights'] for t in R['trips'])} overnight(s), "
                   f"{sum(1 for d in R['days'] if d.get('over'))} day(s) over length")
+        # the OSRM one-way time to every cluster further than FAR_LOG_KM, for
+        # comparison with MadAvance's real travel times (PARAMS.route_road_factor_*)
+        for line in far_lines(routes):
+            print(line)
         print(f"build_routes: drawn {drawn}; "
               f"{sum(R['n'] for R in routes.values())} pumps routed "
-              f"({', '.join(s + ' ' + str(R['n']) for s, R in routes.items())}); "
+              f"({', '.join(s + ' ' + str(R['n']) for s, R in routes.items())}) over "
+              f"{', '.join(site_tally(s, R) for s, R in routes.items())}; "
               f"OSRM {roads.requests} request(s), {roads.request_errors} error(s), "
               f"{roads.added} pair(s) added to the cache; "
               f"OSRM fallbacks: {sum(fb.values())} leg(s) in the plan "

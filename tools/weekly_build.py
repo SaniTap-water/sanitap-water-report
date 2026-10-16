@@ -384,8 +384,11 @@ def main():
                 log(f"{tag}{last[-1][:200] if last else 'mWater backup: no output'}")
             if script.endswith("build_routes.py") and r.returncode == 0:
                 # routed pumps per site, OSRM requests and fallbacks, in the build log
-                last = (r.stdout or "").strip().splitlines()
-                log(f"{tag}{last[-1][:400] if last else 'build_routes: no output'}")
+                # and the OSRM one-way time to each far cluster (16 Oct 2026)
+                last = [x for x in (r.stdout or "").strip().splitlines()
+                        if x.startswith("build_routes:")]
+                for x in last or ["build_routes: no output"]:
+                    log(f"{tag}{x[:400]}")
             if r.returncode != 0:
                 msg = (r.stdout + "\n" + r.stderr if script.endswith("mwater_backup.py")
                        else r.stderr or r.stdout or "").strip().splitlines()

@@ -2531,3 +2531,51 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   page would have said consent was "answered 1 time", and the two actions that close on `usage_question_answers`
   could have closed on an unsubmitted form. The three point-of-use metrics now count submitted responses only
   (final or pending), as the rest of the build does; their labels say so.
+
+## 16 Oct 2026 (b) — Adriaan Mol: remote clusters planned as field trips with overnight stays
+
+- **Asked by Adriaan Mol, 16 Oct 2026**, after the first redrawn plan (commit 64207b3): `tools/build_routes.py`
+  returned every team-day to the base. Fort-Dauphin days 11 to 14 visited 9 pumps in Manantenina and Iaboakoho,
+  74 to 92 km from the base, at 177 to 231 road km a day: 867 of Fort-Dauphin's 1,605 km.
+- **Method.** Clusters are communes. A commune whose most central overdue pump is more than
+  `PARAMS.route_overnight_oneway_h` (1.5 h, new) from the base one way, costed like every other leg, is remote.
+  Remote communes whose nearest overdue pumps are within `PARAMS.route_cluster_merge_km` (30 km, new, decided here)
+  of each other are one cluster, so Iaboakoho and Manantenina are one trip. I merge remote communes only: merging
+  near ones too would chain the dense Maroantsetra network, Voloina included, into one cluster around the base.
+  Each remote cluster is planned both as day-returns and as a field trip, and the one with fewer team-days, then
+  fewer road km, is kept; a tie stays a day-return.
+  - On a field trip, day 1 drives out and works the pumps on the way and on arrival, then stays at the cluster's
+    most central pump village (its medoid by straight line).
+  - Middle days start and end there.
+  - The last day works the remaining pumps and drives back.
+  - A trip's day is never left ending at the stay with nothing left to do: its last pumps go to the day that
+    drives home.
+  - The daily limits are unchanged. Near communes keep the day-return method, as before.
+- **Road factor.** `PARAMS.route_road_factor_maroantsetra`, `_fort_dauphin` and `_marolinta` multiply the OSRM
+  driving time and are 1.0. Adriaan Mol, 16 Oct 2026: the road from Fort-Dauphin to Manantenina has been
+  rehabilitated and about 3 hours one way is achievable, so OSRM's times are realistic there; the factor stays at
+  1.0 for both sites, sourced "OSRM driving time used as is; Adriaan Mol confirmed on 16 Oct 2026 that about 3
+  hours Fort-Dauphin to Manantenina is achievable on the rehabilitated road". OSRM gives 2.97 h for 115 road km.
+  Marolinta's factor is 1.0 and not yet compared with anything.
+- **Build log.** Each build prints, and writes to `logs/publisher.log` and `data/routes.json`, OSRM's one-way time
+  from the base to every cluster more than 30 km away, in a straight line or by road. I took "further than 30 km"
+  either way, so the clusters 35 to 47 road km out (Ranopiso, Isaka-Ivondro, Mahatalaky, Analapatsy, Voloina) can
+  be checked against real times too.
+- **Result, drawn 16 Oct 2026.**
+  - Maroantsetra: 58 → 53 team-days, 1,106 → 1,082 road km, 1 field trip (Voloina, 10 days, 9 nights at Tanantsara).
+    Voloina has no mapped road; its pumps are reached on foot at the off-road speed, so the stay saves the 1.76 h
+    walk in and out each day.
+  - Fort-Dauphin: 14 → 12 team-days, 1,605 → 967 road km, 1 field trip (Iaboakoho + Manantenina, 2 days, 1 night
+    at Ambalateza, 229 km).
+- **Pages and exports.** Each day carries its start and end (base or stay, with the village), its trip ("Trip 1,
+  day 1 of 2: overnight at Ambalateza, Manantenina") and the trip's road km. These are in the itinerary table,
+  itinerary.csv, the CSV export, the day selector and the day sheets, which name the overnight village. The route
+  line is drawn from the day's start to its end. The sentence "Remote clusters are planned as field trips with
+  overnight stays; where the team stays is decided by the field lead." is on the page, in routes.html, in the CSV
+  and on every day sheet. The stay point is a planning anchor; the field lead chooses the actual lodging.
+- **Gate `route_no_shuttle`** (`tools/check_routes.py`). It fails any day of 4 or fewer pumps where more than 60%
+  of the road km is the drive from or to the base, costed again from the OSRM cache. The exception is a
+  day-return whose clusters genuinely have 4 or fewer pumps left that day. Run against the plan of 64207b3, it
+  fails Fort-Dauphin days 11 and 12 (150 of 177 km, and 230 of 231 km, to and from the base) and one 4-km
+  Maroantsetra day. Old days 13 and 14 met the stated exception. The new plan passes. `routes_wording` now also
+  requires the field-trip sentence and refuses "Each day is a round trip from the base".
