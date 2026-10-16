@@ -235,6 +235,11 @@ def main():
         pg.select_option("#pick", str(i22))
         check("a rotation saved against the sideways original is converted, not doubled",
               pg.evaluate("rot") == 0 and pg.inner_text("#rotv") == "Rotation 0°", pg.evaluate("rot"))
+        # wait for calendar 22's photograph itself: reading the size straight after
+        # the switch raced the load and failed a build on 16 Oct 2026 (a passing page)
+        pg.wait_for_function("(()=>{const i=document.querySelector('#ph');"
+                             "return i&&i.complete&&i.naturalWidth>0&&/\\/22\\.jpg/.test(i.currentSrc||i.src)})()",
+                             timeout=30000)
         check("calendar 22 is served in its upright (landscape) size",
               pg.evaluate("[document.querySelector('#ph').naturalWidth, document.querySelector('#ph').naturalHeight]") == [1600, 1200])
         i46 = pg.evaluate("CAL.findIndex(c=>c.n===46)")
