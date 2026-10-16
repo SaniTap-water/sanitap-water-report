@@ -1,13 +1,13 @@
 {
  "branches": {
-  "call and works on the same day -> the call wins": 189,
+  "call and works on the same day -> the call wins": 192,
   "held on the published value (unsettled)": 36,
   "latest record is a call": 325,
-  "latest record is a maintenance": 124,
-  "latest record is a repair": 84,
+  "latest record is a maintenance": 122,
+  "latest record is a repair": 83,
   "no answered record at all -> unknown": 23
  },
- "built": "2026-10-16",
+ "built": "2026-10-17",
  "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
  "split": {
   "down": 23,
@@ -1656,20 +1656,20 @@
    "status": "unknown"
   },
   "699597971": {
-   "date": "2026-05-22",
+   "date": "2026-10-16",
    "held": true,
    "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
    "issue": null,
    "problem": null,
-   "rid": "662da99ecdf14e0196d090461855b965",
-   "src": "maintenance",
+   "rid": "29c7255552c4413fac53a32b03ae091a",
+   "src": "call",
    "status": "down"
   },
   "699597988": {
-   "date": "2026-03-17",
+   "date": "2026-10-16",
    "issue": null,
    "problem": null,
-   "rid": "e0769d341ceb479ab14fc13006da2b78",
+   "rid": "d024c91b3afc4668b961ff3aa6be6658",
    "src": "call",
    "status": "ok"
   },
@@ -1682,19 +1682,19 @@
    "status": "ok"
   },
   "699598013": {
-   "date": "2026-03-03",
+   "date": "2026-10-16",
    "issue": null,
    "problem": null,
-   "rid": "99603d58b44042609ee4f5ae47396236",
+   "rid": "43d963f434dd41e2b1a2f893b7322afa",
    "src": "call",
    "status": "ok"
   },
   "699598044": {
-   "date": "2026-05-21",
+   "date": "2026-10-16",
    "issue": null,
    "problem": null,
-   "rid": "5a71787dd5a546739512ddda09d1b56d",
-   "src": "repair",
+   "rid": "13eff59a3e474a1a961bed9f9765e01f",
+   "src": "call",
    "status": "ok"
   },
   "718551997": {
@@ -4823,22 +4823,20 @@
    "status": "unknown"
   },
   "754036911": {
-   "date": "2026-03-13",
+   "date": "2026-10-16",
    "issue": null,
    "problem": null,
-   "rid": "9a9445db475644cb83a8847d5e1b62c1",
-   "src": "maintenance",
+   "rid": "946a58e692fd49b78a4d09b31e33ee98",
+   "src": "call",
    "status": "ok"
   },
   "754036928": {
-   "date": "2025-12-17",
+   "date": "2026-10-16",
    "held": true,
    "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
    "issue": null,
-   "problem": [
-    "6h85Rvg"
-   ],
-   "rid": "1c92a84f04d84fb088ad42150c50df32",
+   "problem": null,
+   "rid": "58a38c1b375f4b71ab003fcb72e238c3",
    "src": "call",
    "status": "unknown"
   },

@@ -91,7 +91,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2836,
+   "size": 2842,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 465,
+   "size": 462,
    "unit": "points"
   },
   "pm_visits": {
@@ -480,7 +480,7 @@
     ]
    ],
    "rule": "Every submitted response on the preventive-maintenance form - drafts and rejected responses excluded.",
-   "size": 772,
+   "size": 775,
    "unit": "records"
   },
   "pm_visits_calendar_of_record": {
@@ -499,7 +499,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
-   "size": 731,
+   "size": 734,
    "unit": "records"
   },
   "pm_visits_calendar_photo": {
@@ -518,7 +518,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
-   "size": 769,
+   "size": 772,
    "unit": "records"
   },
   "register_records": {

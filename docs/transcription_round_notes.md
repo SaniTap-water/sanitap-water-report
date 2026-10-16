@@ -140,22 +140,22 @@ December 2026 on photographs taken in March 2026 — days that had not happened 
 machine artefacts outside the window, not marks.
 
 <!-- BEGIN GENERATED calendar-check-answers :: tools/calendar_check.py :: do not edit between these markers -->
-**Checklist for Angelo** (https://sanitap.sharepoint.com/sites/CentralDataHub/Water%20Documents/Work%20in%20Progress/Calendar%20check%20-%20breakdown%20marks%20or%20working-day%20ticks.xlsx): 0 of 12 sheets answered.
+**Checklist for Angelo** (https://sanitap.sharepoint.com/sites/CentralDataHub/Water%20Documents/Work%20in%20Progress/Calendar%20check%20-%20breakdown%20marks%20or%20working-day%20ticks.xlsx): 12 of 12 sheets answered, read 2026-10-17.
 
 | calendar | water point | site | photograph | marks are | comment |
 |---|---|---|---|---|---|
-| 43 | 742895168 | Fort-Dauphin | [7002fe63](https://sanitap-water.github.io/sanitap-water-report/transcription/img/43.jpg) | — |  |
-| — | 820198370 | Maroantsetra | [767469f0](https://sanitap-water.github.io/sanitap-water-report/transcription/check/767469f0ce7646a28d8cb69749fb0665.jpg) | — |  |
-| — | 814009107 | Maroantsetra | [1f02774e](https://sanitap-water.github.io/sanitap-water-report/transcription/check/1f02774e423246b3b469c7a521eb5033.jpg) | — |  |
-| — | 814009107 | Maroantsetra | [3f4d6acc](https://sanitap-water.github.io/sanitap-water-report/transcription/check/3f4d6acc82de4813851f96898836df87.jpg) | — |  |
-| — | 742895869 | Maroantsetra | [10d9cce9](https://sanitap-water.github.io/sanitap-water-report/transcription/check/10d9cce997e745db8f3a80c318f7b755.jpg) | — |  |
-| — | 742894851 | Fort-Dauphin | [200136b2](https://sanitap-water.github.io/sanitap-water-report/transcription/check/200136b2366f4bd989c5d1a2761e798a.jpg) | — |  |
-| — | 742893850 | Fort-Dauphin | [1ce48bc7](https://sanitap-water.github.io/sanitap-water-report/transcription/check/1ce48bc7587c4b698fb04b12a60affaf.jpg) | — |  |
-| — | 699595979 | Maroantsetra | [fcd5e3f6](https://sanitap-water.github.io/sanitap-water-report/transcription/check/fcd5e3f6964e427f94f74cedd8ff7229.jpg) | — |  |
-| — | 742895515 | Maroantsetra | [65932d79](https://sanitap-water.github.io/sanitap-water-report/transcription/check/65932d79698847ea8430a8c4a383bdd8.jpg) | — |  |
-| — | 698772001 | Maroantsetra | [e9c26d92](https://sanitap-water.github.io/sanitap-water-report/transcription/check/e9c26d924f8d46ea928ffd78fc437ebd.jpg) | — |  |
-| — | 742897029 | Maroantsetra | [28fe578e](https://sanitap-water.github.io/sanitap-water-report/transcription/check/28fe578e85d84188b79b1175980331e7.jpg) | — |  |
-| — | 742895821 | Fort-Dauphin | [b612c08c](https://sanitap-water.github.io/sanitap-water-report/transcription/check/b612c08cd63c4812b27db81d4ad3de04.jpg) | — |  |
+| 43 | 742895168 | Fort-Dauphin | [7002fe63](https://sanitap-water.github.io/sanitap-water-report/transcription/img/43.jpg) | Can't tell | Mark from  Jan 1st- Feb 3rd 2026  ; feb 16-18 2026 |
+| — | 820198370 | Maroantsetra | [767469f0](https://sanitap-water.github.io/sanitap-water-report/transcription/check/767469f0ce7646a28d8cb69749fb0665.jpg) | Can't tell | No Mark on the calendar |
+| — | 814009107 | Maroantsetra | [1f02774e](https://sanitap-water.github.io/sanitap-water-report/transcription/check/1f02774e423246b3b469c7a521eb5033.jpg) | Can't tell | The uploaded image is not a calendar sheet but a visibility panel. |
+| — | 814009107 | Maroantsetra | [3f4d6acc](https://sanitap-water.github.io/sanitap-water-report/transcription/check/3f4d6acc82de4813851f96898836df87.jpg) | Can't tell | The uploaded image is not a calendar sheet but a visibility panel. |
+| — | 742895869 | Maroantsetra | [10d9cce9](https://sanitap-water.github.io/sanitap-water-report/transcription/check/10d9cce997e745db8f3a80c318f7b755.jpg) | Can't tell | No visible marks on the calendar sheet. It is 2024 callendar  The calendar is partially torn, with parts of the last two weeks of January and February missing. As a result, it is not possible to determine whether the marks represent breakdowns or working days. |
+| — | 742894851 | Fort-Dauphin | [200136b2](https://sanitap-water.github.io/sanitap-water-report/transcription/check/200136b2366f4bd989c5d1a2761e798a.jpg) | Can't tell | No Mark on the calendar, it is 2025 |
+| — | 742893850 | Fort-Dauphin | [1ce48bc7](https://sanitap-water.github.io/sanitap-water-report/transcription/check/1ce48bc7587c4b698fb04b12a60affaf.jpg) | Can't tell | mark on jan 15th (then araised) and jan 25th 2026 |
+| — | 699595979 | Maroantsetra | [fcd5e3f6](https://sanitap-water.github.io/sanitap-water-report/transcription/check/fcd5e3f6964e427f94f74cedd8ff7229.jpg) | Can't tell | Two marks on 14 and 15 August. Photo taken from too far away to determine whether this is the 2026 calendar or to reliably interpret the marks. |
+| — | 742895515 | Maroantsetra | [65932d79](https://sanitap-water.github.io/sanitap-water-report/transcription/check/65932d79698847ea8430a8c4a383bdd8.jpg) | Can't tell | no marks on the callendar. Photo taken from too far away to determine whether this is the 2026 calendar or not |
+| — | 698772001 | Maroantsetra | [e9c26d92](https://sanitap-water.github.io/sanitap-water-report/transcription/check/e9c26d924f8d46ea928ffd78fc437ebd.jpg) | Can't tell | no marks on the callendar. this is the 2024 calendar |
+| — | 742897029 | Maroantsetra | [28fe578e](https://sanitap-water.github.io/sanitap-water-report/transcription/check/28fe578e85d84188b79b1175980331e7.jpg) | Can't tell | One mark on october 10th. Photo taken from too far away to determine whether this is the 2026 calendar or to reliably interpret the marks. |
+| — | 742895821 | Fort-Dauphin | [b612c08c](https://sanitap-water.github.io/sanitap-water-report/transcription/check/b612c08cd63c4812b27db81d4ad3de04.jpg) | Can't tell | no marks on the callendar. Photo taken from too far away to determine whether this is the 2026 calendar |
 <!-- END GENERATED calendar-check-answers -->
 
 ### (b) Handwritten sheet year — `act-cal-handwritten-year`

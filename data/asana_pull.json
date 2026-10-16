@@ -1,6 +1,6 @@
 {
  "note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py at each build. The action list renders owner, deadline and completion from it.",
- "pulled_at": "2026-10-16T12:44:34+00:00",
+ "pulled_at": "2026-10-16T21:15:32+00:00",
  "project": "1209455787942089",
  "section": "1219100994717113",
  "tasks": {
@@ -74,7 +74,7 @@
    }
   },
   "act-approve-major-changes-week-42": {
-   "gid": "1219574497298132",
+   "gid": "1219576216429687",
    "name": "Approve: major changes [week 42]",
    "title": "Approve: major changes [week 42]",
    "owner": "Adriaan Mol",
@@ -82,8 +82,8 @@
    "due_on": null,
    "completed": false,
    "completed_at": null,
-   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219574497298132",
-   "modified_at": "2026-10-16T11:37:44.822Z"
+   "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219576216429687",
+   "modified_at": "2026-10-16T17:14:59.271Z"
   },
   "act-awf-2027-call-timing": {
    "gid": "1219245863958123",
@@ -149,7 +149,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100994732884",
-   "modified_at": "2026-10-07T15:01:08.958Z"
+   "modified_at": "2026-10-16T15:37:29.056Z"
   },
   "act-calendar-2027-side-list": {
    "gid": "1219109376477976",
@@ -401,7 +401,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101057943681",
-   "modified_at": "2026-10-08T05:26:13.297Z"
+   "modified_at": "2026-10-16T21:00:06.330Z"
   },
   "act-decide-how-treat-67": {
    "gid": "1219100937142786",
@@ -1844,7 +1844,7 @@
    "completed": false,
    "completed_at": null,
    "permalink": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219101058660604",
-   "modified_at": "2026-10-08T05:27:19.599Z"
+   "modified_at": "2026-10-16T21:00:06.534Z"
   },
   "act-moramanga-post-rehab-wq": {
    "gid": "1219101270096304",
@@ -3326,6 +3326,7 @@
  },
  "duplicates": {
   "act-approve-major-changes-week-42": [
+   "1219576216429687",
    "1219574497298132",
    "1219573380101324",
    "1219572830045023",
@@ -3337,6 +3338,11 @@
   ]
  },
  "new_from_asana": [
+  {
+   "act_id": "act-approve-major-changes-week-42",
+   "gid": "1219576216429687",
+   "name": "Approve: major changes [week 42]"
+  },
   {
    "act_id": "act-approve-major-changes-week-42",
    "gid": "1219574497298132",
