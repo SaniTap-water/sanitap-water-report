@@ -1,24 +1,24 @@
 {
  "counts": {
-  "appel_signalement_pannes.csv": 2847,
+  "appel_signalement_pannes.csv": 2849,
   "baseline_moramanga.json": 331,
   "cbn_gender.json": 414,
   "combined_rehab.json": 1688,
-  "enduro_points.csv": 212,
-  "first_rehab_current.json": 0,
+  "enduro_points.csv": 221,
+  "first_rehab_current.json": 4,
   "forage_moramanga.csv": 20,
   "hygiene.json": 108,
   "hygiene_san.json": 413,
   "identification.json": 57,
   "marolinta_borehole.json": 20,
   "piped_point_reg.json": 3,
-  "piped_system_reg.json": 5,
+  "piped_system_reg.json": 6,
   "piped_systems.csv": 25,
-  "pm.csv": 772,
-  "pou_survey.json": 142,
-  "premiere_rehabilitation.csv": 0,
-  "repair.json": 220,
-  "reparation_apres_panne.csv": 220,
+  "pm.csv": 782,
+  "pou_survey.json": 143,
+  "premiere_rehabilitation.csv": 4,
+  "repair.json": 222,
+  "reparation_apres_panne.csv": 222,
   "roof_count.json": 725,
   "wp_madavance.csv": 919,
   "wq_results.json": 736,
@@ -26,5 +26,5 @@
   "wq_sampling_piped.json": 78
  },
  "note": "Row count per extract at the last build that passed. check_vintage.py fails if any extract shrinks.",
- "recorded": "2026-10-13"
+ "recorded": "2026-10-16"
 }

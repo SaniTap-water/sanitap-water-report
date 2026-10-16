@@ -2636,6 +2636,32 @@
     "task": "1219101105660866",
     "from": "asana"
    },
+   "act-frld-annex11-eng-check": {
+    "recorded_on": "2026-10-16",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-16",
+    "summary": "\"RE: Funding Request: Restoration of Essential Water Services for Cyclone-Affected Communities in Madagascar\", Adriaan Mol to Andrew Tanswell and Jan de Graaf, sent 15 Oct 2026 12:12 UTC, with a correction at 12:23 UTC on the shared generator.\nClosing condition met: the engineering comments are sent to Andrew. All six mismatches confirmed and resolved: standposts redrawn to 100 m with two taps (about 12–15 at Andranofotsy, one per 150 people in the BOM); storage 30 m3 correct (60% of the 2032 peak day, tank line needs a new quote); solar about 3 kWp correct, site note wrong (24 V wiring error, head about 22 m); battery bank dropped (keep about $800 small battery, saves about $5,500 per site); generator per tier; design standard 15 L/person/day and 100 m. Also flagged: chlorination text in B.6, borehole depth, totals ($12,193,659 vs $12,150,000 vs $12,000,000), and indicative cost per tier.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-16",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219501984136078",
+    "task": "1219501984136078",
+    "from": "asana"
+   },
+   "act-frld-tier-split": {
+    "recorded_on": "2026-10-16",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-16",
+    "summary": "\"RE: Funding Request: Restoration of Essential Water Services for Cyclone-Affected Communities in Madagascar\", Adriaan Mol to Andrew Tanswell and Jan de Graaf, sent 15 Oct 2026 12:12 UTC.\nClosing condition met: section 5 sends the tier split and method to both. Bands: Tier 1 under 1,000, Tier 2 1,000–3,000, Tier 3 over 3,000 people. Method: WorldPop 100 m grid, people within 1 km of the main settlement of each fokontany (mWater boundaries), grown to 2026. Current 81 sites: 62 / 10 / 5 (77 matched), about 99,000 people. Re-ranked best 81 rural villages: 57 / 24 / 0, about 74,000 people, about $10.7M. Proposed mix (20 MEAH piped repairs + 51 new systems, 81 communities): about 165,000 people now, 193,000 in 2032, about $12.1M. CSVs listed in the FRLD 2nd Submission folder.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-16",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219502019835168",
+    "task": "1219502019835168",
+    "from": "asana"
+   },
    "act-gaps-doc": {
     "recorded_on": "2026-10-09",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2725,6 +2751,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219344855469780",
     "task": "1219344855469780",
+    "from": "asana"
+   },
+   "act-mandie-oct-nov-budget": {
+    "recorded_on": "2026-10-14",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-14",
+    "summary": "\"Re: MANDIE – October–November Planning\", Adriaan Mol to Jan de Graaf, sent 13 Oct 2026 06:56 UTC (Sent Items).\nClosing condition met: Adriaan replied to Jan with an adjusted budget: \"I'm ok in principle\", on condition that MANDIE resubmits the two sheets as one southern mission (fly to Fort-Dauphin, Marolinta first, then the Fort-Dauphin SDWS 18 round; fuel and driver only for local legs), with days split between Deichmann (Marolinta) and the carbon programme (Fort-Dauphin). He also asked to add the Maroantsetra SDWS 18 round with the manganese retests (699595948, 699597720) and E. coli retest (833033198), and queried the 110,000 Ar spike-preparation line against the Labochimie offer SANITAP-LABO-2026-09.\nThe resubmission itself is tracked in act-mandie-south-mission-replan.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-14",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219449522462663",
+    "task": "1219449522462663",
     "from": "asana"
    },
    "act-mar-new-construction-gap": {
@@ -2829,6 +2868,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219243061362113",
     "task": "1219243061362113",
+    "from": "asana"
+   },
+   "act-naturano-meter-data": {
+    "recorded_on": "2026-10-15",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-15",
+    "summary": "access in place and coverage recorded.\nAccess: Coddy's three keyed read-only JSON exports from app.enduro.mg (email \"Re: Read-only data access to app.enduro.mg for the Endur'O dashboard\", 13 Oct 2026 09:12 UTC): rechargeurs, credit delivered, card top-ups, with from/to filter and real-sale/test flag. No shared admin password needed. Wired into the daily Endur'O dashboard build (network data live to 13 Oct).\nCoverage, recorded in project docs claude/naturano-enduro-app-database-2026-10-06.md and claude/enduro-network-dashboard-2026-10-06.md:\n- 169 rechargeurs (150 registered water points excluding tests); no GPS anywhere in the app.\n- Credit delivered to rechargeurs (Ariary): May 2026 onwards only, not 12 months; 19.38m Ar in 2026 to 13 Oct (May–Jul inflated by test codes, R003 4.0m Ar excluded). Monthly: Jun 1.81m, Jul 3.10m, Aug 3.36m, Sep 7.03m (delivery-dated).\n- Card top-ups: since 26 Sep 2026 only; 263 cards to 13 Oct; incomplete where old recharger firmware loses top-ups (act-enduro-nanisana-firmware).\n- Gaps: no litres or meter data (ESP32 devices are tests, never synced), so no volume evidence and no collection rate; history before Aug 2026 migration is imported; price per 20 L changes not held in the app; no rechargeur-to-mWater code mapping.\nFollow-ups stay in their own tasks: act-coddy-enduro-export-cleanup, act-enduro-nanisana-firmware.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-15",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219213949192332",
+    "task": "1219213949192332",
     "from": "asana"
    },
    "act-per-diem": {
@@ -3007,6 +3059,19 @@
     "summary": "Superseded, not abandoned. The premise was that SDWS 26 had no field instrument and no data until a new round ran. Both were false: the annual monitoring survey (form 2eeb8682) already carried the usage question in both seasons and had been run 11-21 November 2025, giving 410 responses that answered both seasons. The parameter is measured for the 2025 monitoring period. Replaced by act-sdws26-annual-round, which makes it a recurring annual obligation rather than a one-off, and by act-sdws26-approve-2025 for the approval state.",
     "ref": "data/decisions.json"
    },
+   "act-scac-fefosc-followup": {
+    "recorded_on": "2026-10-15",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-15",
+    "summary": "closed as superseded, on Adriaan's decision (15 Oct 2026). Source: \"RE: Projet d'email au SCAC : suite du dossier FEF-OSC 2025-2027\", Volatiana Tombotsiory to Adriaan, 14 Oct 2026 12:45 UTC: \"Unfortunately, we were not selected. They have already sent us an official response.\" The FEF-OSC 2025-2027 outcome is known (not selected), so the follow-up email to the SCAC is no longer needed. Filing the SCAC's official letter in the FEF-OSC folder is not needed to close this.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-15",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219407489399425",
+    "task": "1219407489399425",
+    "from": "asana"
+   },
    "act-sdws18-james-rulings": {
     "recorded_on": "2026-10-02",
     "recorded_by": "Claude, on Adriaan Mol's instruction",
@@ -3086,6 +3151,19 @@
     "task": "1219371658201915",
     "from": "asana"
    },
+   "act-sop-calendar-v18-unlaminated": {
+    "recorded_on": "2026-10-16",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-16",
+    "summary": "\"Procédure calendrier gardien v1.9 : imprimé, non plastifié, feuilles numérotées\", Adriaan Mol to Angelo Nahavitatsara (cc Holisoa Raharijaona), sent 15 Oct 2026 05:17 UTC.\nClosing condition met (by v1.9, which supersedes v1.8): the email links SOP-MAD-SDWS27-CalendrierGardien-v1.9-2026.docx in Central Data Hub › Water Documents › SOPs and states it replaces v1.8 (archived). It covers every deliverable: printed on thick paper, \"non plastifié\", ordinary ballpoint pen; sheet number MAD00001–MAD00765 not linked to any pump; continuous numbering, next run from MAD00766; sheet fixed flat at all four corners (ch. 4, 7, 8 bis). Angelo acknowledged on 15 Oct 2026 06:13 UTC.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-16",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219480274480367",
+    "task": "1219480274480367",
+    "from": "asana"
+   },
    "act-standardised-stroke-test-basis": {
     "recorded_on": "2026-09-18",
     "recorded_by": "James Walker, Head of Carbon",
@@ -3113,6 +3191,19 @@
     "what": "transcription round 1: calendars transcribed by a person, at or above the 50 the closes-when names",
     "source": "Dieu Donné Razafimahatratra (MadAvance MERV), releves_calendriers_dieu-donne_serie1_2026-10-01.csv (sha256 8fb8317d…): 83 calendars, 73 after cleaning; round-1 comparison with Adriaan Mol and the machine reader, commit 8abf684; data/transcriptions/round1_resume.md",
     "summary": "83 calendars transcribed (73 confirmed after cleaning, 15,738 days); human-to-human agreement and the machine comparison reported in the round-1 summary. The machine reader failed validation and is withdrawn; the annual human-read sample continues under act-calendar-human-sample-annual."
+   },
+   "act-unicef-minutes-reply": {
+    "recorded_on": "2026-10-16",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-16",
+    "summary": "\"RE: UNICEF × SaniTap | Project & Carbon Finance Scoping Discussion\", Adriaan Mol to Xianli Zhu, Ihssane Niar (cc Diego Hakspiel Plata, Fredrik Asplund, Alexander Rostami, James Walker, Andrew Tanswell), sent 15 Oct 2026 13:36 UTC, in Sent Items.\nClosing condition met: the reply-all is sent. It carries the corrections: no credits issued or sold at the time of the meeting (50,000 contracted forward); EUR 99.59 = EUR 76.61 cost + 30% margin that is UNICEF revenue, not an engagement cost; cost basis in 2025 euros rising 5% a year; and the missing route to scale from slide 11 (EUR 48 to 68 per credit). Xianli confirmed receipt on 15 Oct 2026 15:20 UTC and sent updated minutes (tracked changes plus a section on the 15 October updates).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-16",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219540907924279",
+    "task": "1219540907924279",
+    "from": "asana"
    },
    "act-update-parameters-workbook-cite": {
     "recorded_on": "2026-10-07",
@@ -3200,6 +3291,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100997161767",
     "task": "1219100997161767",
+    "from": "asana"
+   },
+   "act-vei-followup-toine": {
+    "recorded_on": "2026-10-15",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-15",
+    "summary": "\"Re: Sanitap Madagaskar\", Claude Mansell to Toine Ramaker (toine.ramaker@vei.nl), cc Adriaan Mol, sent 14 Oct 2026 13:36 UTC.\n- Email sent to Toine from Claude's address with Adriaan in cc: met.\n- SaniTap overview attached: met (SaniTap_Bedrijfsoverzicht_2026-10.pdf, \"overzicht van SaniTap en haar programma's, inclusief omzet en resultaat over de laatste twee boekjaren\"; full accounts offered on a confidential basis later, per Adriaan's correction).\n- The three asks are in: (1) letter of intent from VEI for technical cooperation with Endur'O (tariffs, water losses, operator training) for the DFCD application; (2) contacts at DGIS and Aqua for All; (3) an introduction to Emma Lesterhuis, VEI's Africa lead.\nThe email also commits SaniTap to a proposal for adding Madagascar to VEI's scope before 1 November 2026 (tracked in act-vei-madagascar-scope-note).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-15",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219450867725793",
+    "task": "1219450867725793",
     "from": "asana"
    },
    "act-visit-collapse": {

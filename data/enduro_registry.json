@@ -4,21 +4,21 @@
   "id": "c305b9b85f41417387b553d9a33c795b",
   "name": "Enduro"
  },
- "pulled": "2026-10-13",
+ "pulled": "2026-10-16",
  "counts": {
   "systems": 25,
   "systems_gps": 25,
   "systems_photo": 10,
-  "points": 212,
-  "points_gps": 212,
-  "points_photo": 131,
+  "points": 221,
+  "points_gps": 221,
+  "points_photo": 140,
   "points_no_photo": 81,
   "points_with_system": 23,
-  "points_no_system": 189,
+  "points_no_system": 198,
   "retired_excluded": 0,
   "point_types": {
-   "Borehole or tubewell": 14,
-   "Protected dug well": 7,
+   "Borehole or tubewell": 15,
+   "Protected dug well": 15,
    "Unprotected dug well": 1,
    "kiosk": 22,
    "not set": 168
@@ -29,8 +29,8 @@
   "systems_registered": 25,
   "systems_diff": -106,
   "points_manual": 181,
-  "points_registered": 212,
-  "points_diff": 31,
+  "points_registered": 221,
+  "points_diff": 40,
   "regsys_manual": 24,
   "regsys_diff": 1,
   "manual_as_at": "2026-09-16",
@@ -349,12 +349,12 @@
   }
  ],
  "no_system": {
-  "points": 189,
-  "points_gps": 189,
-  "points_photo": 127,
+  "points": 198,
+  "points_gps": 198,
+  "points_photo": 136,
   "point_types": {
-   "Borehole or tubewell": 10,
-   "Protected dug well": 7,
+   "Borehole or tubewell": 11,
+   "Protected dug well": 15,
    "Unprotected dug well": 1,
    "kiosk": 3,
    "not set": 168
@@ -881,6 +881,17 @@
    "desc": "Forage Betanatanana"
   },
   {
+   "code": "1259196632",
+   "name": "AMAROARONA",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.446925,
+   "lat": -18.857285,
+   "photo": "183e8b21f6394c488744eb8d6aeb83ec",
+   "device": null,
+   "desc": "FoKontany Beloha"
+  },
+  {
    "code": "1259196601",
    "name": "AMBANY AVARATRA -AMBATOLAMPY",
    "type": "Protected dug well",
@@ -901,6 +912,17 @@
    "photo": "6dcb175b52bb4221ad1b0af24ea68f70",
    "device": null,
    "desc": "miakatra amin'ny kiosk,mivily terrain boule,midina totohotra vato"
+  },
+  {
+   "code": "1259196625",
+   "name": "ANTSAHAVORY",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.442538,
+   "lat": -18.855289,
+   "photo": "2cc81b6d5d534327add59ca12b95f5b5",
+   "device": null,
+   "desc": "Fokontany Beloha-Antsahavory"
   },
   {
    "code": "1259200667",
@@ -934,6 +956,17 @@
    "photo": "bc3f0952ea2b44988b58c8ff7affff0c",
    "device": null,
    "desc": "Kiosque près citerne a l epp"
+  },
+  {
+   "code": "1259200739",
+   "name": "Amaroharona",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.447174,
+   "lat": -18.857471,
+   "photo": "e3c5c10f65404b328ec31c2cae848644",
+   "device": null,
+   "desc": "Fkt beloha"
   },
   {
    "code": "1172149665",
@@ -978,6 +1011,17 @@
    "photo": "c49f3f8166d04f3a867329102f1d7eb0",
    "device": null,
    "desc": "Midina any la villa la providence"
+  },
+  {
+   "code": "1259200722",
+   "name": "Ambany Atsimo",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.447107,
+   "lat": -18.857363,
+   "photo": "1a714a580a7b499d95ccc4e3e77c6216",
+   "device": null,
+   "desc": "Fkt beloha"
   },
   {
    "code": "1257401882",
@@ -1376,6 +1420,17 @@
    "desc": "Kiosque 39"
   },
   {
+   "code": "1259200708",
+   "name": "Antsahavory",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.442539,
+   "lat": -18.8553,
+   "photo": "4387319a4de740c8ab071545ee395185",
+   "device": null,
+   "desc": "Ftk beloha  antshavory"
+  },
+  {
    "code": "1108783992",
    "name": "Association masoandro 23154530070 manjakaray",
    "type": null,
@@ -1539,6 +1594,17 @@
    "photo": "d4d254cf96ab48edbc4a787d1b140f05",
    "device": null,
    "desc": "Epp imamba"
+  },
+  {
+   "code": "929469285",
+   "name": "Forage Betanatanana 61m",
+   "type": "Borehole or tubewell",
+   "system": null,
+   "lon": 48.277863,
+   "lat": -18.442208,
+   "photo": "55e04fd7fb414667b3522694622d8251",
+   "device": null,
+   "desc": "Troisième forage de Betanatanana EST"
   },
   {
    "code": "929469254",
@@ -1948,6 +2014,17 @@
    "desc": "Kiosque 56"
   },
   {
+   "code": "1259196618",
+   "name": "VOHIDROA ANDREFANA",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.443523,
+   "lat": -18.860295,
+   "photo": "d88e563b00a14ea191e907a5282ad5da",
+   "device": null,
+   "desc": "Fokontany Beloha"
+  },
+  {
    "code": "1108783844",
    "name": "Vakinampasika",
    "type": null,
@@ -2001,6 +2078,28 @@
    "photo": "72dd091b8e3d4e9e93d9db0089574e5a",
    "device": null,
    "desc": null
+  },
+  {
+   "code": "1259200698",
+   "name": "vohidroa andrefana",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.443102,
+   "lat": -18.861448,
+   "photo": "cdbb68a244174cb39966c59dfa894fd6",
+   "device": null,
+   "desc": "Fkt beloha"
+  },
+  {
+   "code": "1257401899",
+   "name": "vohindro andrefana",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.443488,
+   "lat": -18.860184,
+   "photo": "4be2288d36264b9f8651354e230a2b9e",
+   "device": null,
+   "desc": "Fokotany belo"
   },
   {
    "code": "1062056374",
@@ -3259,9 +3358,9 @@
     "photo_id": "272f50d43c794ede8116ddf5ac21044d",
     "lon": 48.278889,
     "lat": -18.441143,
-    "nearest_tap": "928480351",
-    "nearest_name": "Mamboasary gare forage",
-    "nearest_m": 166.6,
+    "nearest_tap": "929469285",
+    "nearest_name": "Forage Betanatanana 61m",
+    "nearest_m": 160.4,
     "tap": null,
     "method": null
    },
@@ -3490,9 +3589,9 @@
     "photo_id": "6017821603d346629d82c50d5b0a3646",
     "lon": 49.407139,
     "lat": -18.160982,
-    "nearest_tap": "929469254",
-    "nearest_name": "Forage II Betanatanana",
-    "nearest_m": 123271.2,
+    "nearest_tap": "929469285",
+    "nearest_name": "Forage Betanatanana 61m",
+    "nearest_m": 123250.6,
     "tap": null,
     "method": null
    },

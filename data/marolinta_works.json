@@ -1,19 +1,18 @@
 {
- "checked": "2026-10-13",
+ "checked": "2026-10-16",
  "deployments": {
   "2b408dd532e944ad91c0bb77cd6ad576": "Marolinta",
   "e8bbe3b104bb4b599132c435013ab219": "Moramanga"
  },
  "form": "8764843c94484f5b984078c68f13b2ca",
  "marolinta": {
-  "blank_functional_status": 8,
+  "blank_functional_status": 7,
   "by_type_final": {
    "Nouvelle construction": 6,
    "Réhabilitation": 7
   },
   "codes_draft": [
-   "1052525253",
-   "1052525284"
+   "1052525253"
   ],
   "codes_final": [
    "1052525198",
@@ -30,18 +29,18 @@
    "987623304",
    "987623555"
   ],
-  "draft": 2,
+  "draft": 1,
   "final": 13,
-  "points_draft": 2,
+  "points_draft": 1,
   "points_final": 13,
-  "responses": 15,
+  "responses": 14,
   "shortfall": {
    "Nouvelle construction": 4,
    "Réhabilitation": 3
   }
  },
  "moramanga": {
-  "blank_functional_status": 5,
+  "blank_functional_status": 6,
   "by_type_final": {
    "Nouvelle construction": 1
   },
@@ -49,16 +48,17 @@
    "928346466",
    "929469230",
    "929469254",
-   "929469261"
+   "929469261",
+   "929469285"
   ],
   "codes_final": [
    "928155136"
   ],
-  "draft": 4,
+  "draft": 5,
   "final": 1,
-  "points_draft": 4,
+  "points_draft": 5,
   "points_final": 1,
-  "responses": 5,
+  "responses": 6,
   "shortfall": {}
  },
  "records": [
@@ -96,15 +96,6 @@
    "functional_status": null,
    "record_status": "final",
    "submitted": "2026-08-26",
-   "type": "Nouvelle construction"
-  },
-  {
-   "by": "FRANTZ-EL MADAVANCE",
-   "code": "1052525284",
-   "deployment": "Marolinta",
-   "functional_status": null,
-   "record_status": "draft",
-   "submitted": null,
    "type": "Nouvelle construction"
   },
   {
@@ -236,6 +227,15 @@
   {
    "by": "AMEDE MADAVANCE",
    "code": "929469261",
+   "deployment": "Moramanga",
+   "functional_status": null,
+   "record_status": "draft",
+   "submitted": null,
+   "type": "Nouvelle construction"
+  },
+  {
+   "by": "AMEDE MADAVANCE",
+   "code": "929469285",
    "deployment": "Moramanga",
    "functional_status": null,
    "record_status": "draft",

@@ -1,5 +1,5 @@
 {
- "fetched": "2026-10-13",
+ "fetched": "2026-10-16",
  "forms": {
   "beneficiary-roof-count": {
    "deployments": [
@@ -4032,8 +4032,7 @@
        "op": "isoneof",
        "rhs": {
         "literal": [
-         "1R8bXF8",
-         "ekfDdKL"
+         "1R8bXF8"
         ]
        }
       }
@@ -4206,6 +4205,15 @@
        "rhs": {
         "literal": "1DGBgx6"
        }
+      },
+      {
+       "lhs": {
+        "question": "c2aee36717f64cc2ba794dbd1c55f937"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "ekfDdKL"
+       }
       }
      ],
      "en": "How often?",
@@ -4269,6 +4277,15 @@
          "WYdHLxh",
          "kvHVjTu"
         ]
+       }
+      },
+      {
+       "lhs": {
+        "question": "cbced85003cc455c851bbb7be351e1c3"
+       },
+       "op": "isnt",
+       "rhs": {
+        "literal": "3P1qXEd"
        }
       }
      ],
@@ -4430,6 +4447,15 @@
          "kvHVjTu"
         ]
        }
+      },
+      {
+       "lhs": {
+        "question": "943e7a11041c43fd9d9682b9d0f6b89c"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "u4kTQgQ"
+       }
       }
      ],
      "en": "Storage container type",
@@ -4461,6 +4487,15 @@
          "WYdHLxh",
          "kvHVjTu"
         ]
+       }
+      },
+      {
+       "lhs": {
+        "question": "943e7a11041c43fd9d9682b9d0f6b89c"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "u4kTQgQ"
        }
       }
      ],
@@ -4728,6 +4763,35 @@
      "type": "NumberQuestion"
     },
     {
+     "code": "C13",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "c2aee36717f64cc2ba794dbd1c55f937"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "ekfDdKL"
+       }
+      },
+      {
+       "lhs": {
+        "question": "d6f7dad6e027439390b7caff2a272ee6"
+       },
+       "op": "isnt",
+       "rhs": {
+        "literal": "9HnLBDr"
+       }
+      }
+     ],
+     "en": "Transport container disinfected per SOP (dose, contact time, rinse)?",
+     "fr": "Récipient de transport désinfecté selon la POS (dose, temps de contact, rinçage) ?",
+     "group": null,
+     "id": "8a4acfa5bdf34287bb96891087b8a30d",
+     "required": true,
+     "type": "RadioQuestion"
+    },
+    {
      "code": "C6",
      "conditions": [
       {
@@ -4963,6 +5027,44 @@
      "id": "03bcf2dd451d4e88abb0482ba926f1b3",
      "required": false,
      "type": "NumberQuestion"
+    },
+    {
+     "code": "C14",
+     "conditions": [
+      {
+       "lhs": {
+        "question": "c2aee36717f64cc2ba794dbd1c55f937"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "ekfDdKL"
+       }
+      },
+      {
+       "lhs": {
+        "question": "943e7a11041c43fd9d9682b9d0f6b89c"
+       },
+       "op": "is",
+       "rhs": {
+        "literal": "u4kTQgQ"
+       }
+      },
+      {
+       "lhs": {
+        "question": "d6f7dad6e027439390b7caff2a272ee6"
+       },
+       "op": "isnt",
+       "rhs": {
+        "literal": "9HnLBDr"
+       }
+      }
+     ],
+     "en": "Storage container disinfected per SOP (dose, contact time, rinse)?",
+     "fr": "Récipient de stockage désinfecté selon la POS (dose, temps de contact, rinçage) ?",
+     "group": null,
+     "id": "ea73e6f4e76344b0952b1caa689ed6d7",
+     "required": true,
+     "type": "RadioQuestion"
     },
     {
      "code": "C12",
@@ -6066,7 +6168,7 @@
      "type": "ImageQuestion"
     }
    ],
-   "rev": 124,
+   "rev": 165,
    "state": "active"
   },
   "premiere-rehabilitation": {
@@ -6891,7 +6993,7 @@
      "type": "DateQuestion"
     }
    ],
-   "rev": 310,
+   "rev": 311,
    "state": "active"
   },
   "preventive-maintenance": {

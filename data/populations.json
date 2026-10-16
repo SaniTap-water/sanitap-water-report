@@ -7,13 +7,13 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "787 of 919 points",
+   "detail": "789 of 919 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "731 of 787 points",
+   "detail": "731 of 789 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
@@ -91,7 +91,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2834,
+   "size": 2836,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -245,7 +245,7 @@
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on any of the three forms below - the retired combined works form, the current first-rehabilitation form, and the borehole-progress form, whose works include new constructions - whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 787,
+   "size": 789,
    "unit": "points"
   },
   "first_rehabilitation_records": {
@@ -463,7 +463,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 466,
+   "size": 465,
    "unit": "points"
   },
   "pm_visits": {
@@ -480,7 +480,7 @@
     ]
    ],
    "rule": "Every submitted response on the preventive-maintenance form - drafts and rejected responses excluded.",
-   "size": 770,
+   "size": 772,
    "unit": "records"
   },
   "pm_visits_calendar_of_record": {
@@ -499,7 +499,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
-   "size": 729,
+   "size": 731,
    "unit": "records"
   },
   "pm_visits_calendar_photo": {
@@ -518,7 +518,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
-   "size": 767,
+   "size": 769,
    "unit": "records"
   },
   "register_records": {

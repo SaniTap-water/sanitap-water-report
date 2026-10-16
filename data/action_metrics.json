@@ -1,5 +1,5 @@
 {
- "counted": "2026-10-13",
+ "counted": "2026-10-16",
  "metrics": {
   "calls_no_repair_7d_worst_of_two_editions": {
    "says": "calls reporting a pump not working with no repair after seven days, the larger of the last two weekly editions (not counted until two editions are on record)",
@@ -12,7 +12,7 @@
    "value": 0
   },
   "consent_question_answers": {
-   "says": "point-of-use responses that actually answer the consent question A4",
+   "says": "submitted point-of-use responses that actually answer the consent question A4",
    "source": "mWater",
    "value": 0
   },
@@ -29,7 +29,7 @@
   "enduro_figures_age_days": {
    "says": "days since the hand-entered Endur'O figures were last confirmed",
    "source": "local",
-   "value": 25
+   "value": 28
   },
   "enduro_figures_unattributed": {
    "says": "hand-entered Endur'O figures with no document recorded behind them",
@@ -84,7 +84,7 @@
   "marolinta_blank_status": {
    "says": "Marolinta records leaving the functional status blank",
    "source": "local",
-   "value": 8
+   "value": 7
   },
   "marolinta_new_borehole_records": {
    "says": "new-borehole records on the Marolinta progress form",
@@ -129,7 +129,7 @@
   "moramanga_draft_records": {
    "says": "borehole-progress records on the Moramanga deployment never submitted",
    "source": "local",
-   "value": 4
+   "value": 5
   },
   "moramanga_duplicates_unresolved": {
    "says": "duplicate system records beside the four Moramanga systems still in mWater with no merge or retire note",
@@ -184,7 +184,7 @@
   "points_over_6_months": {
    "says": "points with no maintenance visit for more than six months",
    "source": "local",
-   "value": 466
+   "value": 465
   },
   "points_without_readable_calendar": {
    "says": "points whose calendar photographs cannot be read",
@@ -249,7 +249,7 @@
   "unapproved_works_records": {
    "says": "submitted works records with no approval, last 180 days",
    "source": "mWater",
-   "value": 46
+   "value": 47
   },
   "unsourced_figures": {
    "says": "rendered figures with no source of any kind",
@@ -257,14 +257,14 @@
    "value": 0
   },
   "usage_question_answers": {
-   "says": "point-of-use responses that actually answer the usage question A9",
+   "says": "submitted point-of-use responses that actually answer the usage question A9",
    "source": "mWater",
    "value": 0
   },
   "usage_survey_responses": {
-   "says": "household responses on the point-of-use survey",
+   "says": "submitted household responses on the point-of-use survey (drafts excluded)",
    "source": "mWater",
-   "value": 142
+   "value": 140
   },
   "water_quality_failures_unretested": {
    "says": "pumps with a failed E. coli result and no retest on file",

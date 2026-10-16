@@ -23,11 +23,11 @@
  },
  "sites": {
   "Maroantsetra": {
-   "routed": 387,
-   "never_visited": 21,
+   "routed": 386,
+   "never_visited": 20,
    "team_days": 58,
-   "road_km": 1109,
-   "hours": 421.6,
+   "road_km": 1106,
+   "hours": 420.8,
    "days_over_length": 0,
    "pumps": [
     "698770982",
@@ -397,7 +397,6 @@
     "742898109",
     "742972377",
     "743091752",
-    "743345808",
     "744500936",
     "754036911",
     "754036928",

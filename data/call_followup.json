@@ -1,37 +1,13 @@
 {
  "note": "Written by tools/call_followup.py. Pumps a call reported not working (down, or partially working for a reason other than a routine service request), first qualifying call per pump in each window, and the next submitted repair or preventive-maintenance record after it in mWater.",
- "asof": "2026-10-12",
+ "asof": "2026-10-15",
  "followup_days": 7,
  "windows": {
   "week": {
    "days": 7,
-   "from_excl": "2026-10-05",
-   "to": "2026-10-12",
+   "from_excl": "2026-10-08",
+   "to": "2026-10-15",
    "calls": [
-    {
-     "wp": "742897270",
-     "site": "Maroantsetra",
-     "call_date": "2026-10-07",
-     "call_rid": "002784643c47429bb94bc57f7d95076d",
-     "status": "partial",
-     "calls_in_window": 1,
-     "next": null,
-     "next_repair": null,
-     "next_pm": null,
-     "flag": "not yet due"
-    },
-    {
-     "wp": "742897122",
-     "site": "Maroantsetra",
-     "call_date": "2026-10-08",
-     "call_rid": "1a8eec85a7164403b34fc575cbdb498e",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": null,
-     "next_repair": null,
-     "next_pm": null,
-     "flag": "not yet due"
-    },
     {
      "wp": "699597995",
      "site": "Maroantsetra",
@@ -72,24 +48,6 @@
    ],
    "pm_visits": [
     {
-     "wp": "765258746",
-     "site": "Maroantsetra",
-     "date": "2026-10-07",
-     "rid": "63cff853b3b04ec2a002853de3fa3d9f"
-    },
-    {
-     "wp": "833032513",
-     "site": "Maroantsetra",
-     "date": "2026-10-07",
-     "rid": "7d36f069829a43a2bfa290a1038ad7cd"
-    },
-    {
-     "wp": "765258739",
-     "site": "Maroantsetra",
-     "date": "2026-10-08",
-     "rid": "7b2e73d4fd8b45e3b8fca5599d88404a"
-    },
-    {
      "wp": "743644978",
      "site": "Maroantsetra",
      "date": "2026-10-09",
@@ -124,9 +82,27 @@
      "site": "Maroantsetra",
      "date": "2026-10-10",
      "rid": "4ae4e166d8fd43c7ba60fbe7a15257a2"
+    },
+    {
+     "wp": "743345808",
+     "site": "Maroantsetra",
+     "date": "2026-10-15",
+     "rid": "25be549c45f04a29bbcc9b3bcf053f70"
+    },
+    {
+     "wp": "765258739",
+     "site": "Maroantsetra",
+     "date": "2026-10-15",
+     "rid": "7b2e73d4fd8b45e3b8fca5599d88404a"
+    },
+    {
+     "wp": "765730251",
+     "site": "not in the maintained register",
+     "date": "2026-10-15",
+     "rid": "4cd02d6ee4da43c5ab85e958f29d671f"
     }
    ],
-   "pumps_called": 4,
+   "pumps_called": 2,
    "pm_records": 9,
    "pumps_visited": 9,
    "overlap": [
@@ -135,68 +111,14 @@
    "overlap_n": 1,
    "no_repair_7d": 0,
    "repaired_7d": 1,
-   "not_yet_due": 3,
-   "nothing_after": 3
+   "not_yet_due": 1,
+   "nothing_after": 1
   },
   "window": {
    "days": 28,
-   "from_excl": "2026-09-14",
-   "to": "2026-10-12",
+   "from_excl": "2026-09-17",
+   "to": "2026-10-15",
    "calls": [
-    {
-     "wp": "742896743",
-     "site": "Maroantsetra",
-     "call_date": "2026-09-15",
-     "call_rid": "37b6ea41fe2c495ba36f746ff6b947e2",
-     "status": "partial",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "preventive visit",
-      "date": "2026-09-22",
-      "rid": "91d02cba69464eb681e53d2131ee7edf",
-      "days": 7
-     },
-     "next_repair": null,
-     "next_pm": {
-      "date": "2026-09-22",
-      "rid": "91d02cba69464eb681e53d2131ee7edf",
-      "days": 7
-     },
-     "flag": "no repair after 7 days"
-    },
-    {
-     "wp": "742897964",
-     "site": "Maroantsetra",
-     "call_date": "2026-09-15",
-     "call_rid": "9e8d55abd56a457688e7ca10f6cd37c8",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": null,
-     "next_repair": null,
-     "next_pm": null,
-     "flag": "no repair after 7 days"
-    },
-    {
-     "wp": "794587460",
-     "site": "Maroantsetra",
-     "call_date": "2026-09-16",
-     "call_rid": "b3b15c0202b04330ba65b4a56471a621",
-     "status": "down",
-     "calls_in_window": 1,
-     "next": {
-      "kind": "repair",
-      "date": "2026-09-22",
-      "rid": "c35803f705794b168e2b55ed42fbde82",
-      "days": 6
-     },
-     "next_repair": {
-      "date": "2026-09-22",
-      "rid": "c35803f705794b168e2b55ed42fbde82",
-      "days": 6
-     },
-     "next_pm": null,
-     "flag": "repaired within 7 days"
-    },
     {
      "wp": "670401770",
      "site": "Fort-Dauphin",
@@ -465,7 +387,7 @@
      "next": null,
      "next_repair": null,
      "next_pm": null,
-     "flag": "not yet due"
+     "flag": "no repair after 7 days"
     },
     {
      "wp": "742897122",
@@ -477,7 +399,7 @@
      "next": null,
      "next_repair": null,
      "next_pm": null,
-     "flag": "not yet due"
+     "flag": "no repair after 7 days"
     },
     {
      "wp": "699597995",
@@ -579,12 +501,6 @@
      "rid": "7d36f069829a43a2bfa290a1038ad7cd"
     },
     {
-     "wp": "765258739",
-     "site": "Maroantsetra",
-     "date": "2026-10-08",
-     "rid": "7b2e73d4fd8b45e3b8fca5599d88404a"
-    },
-    {
      "wp": "743644978",
      "site": "Maroantsetra",
      "date": "2026-10-09",
@@ -619,24 +535,41 @@
      "site": "Maroantsetra",
      "date": "2026-10-10",
      "rid": "4ae4e166d8fd43c7ba60fbe7a15257a2"
+    },
+    {
+     "wp": "743345808",
+     "site": "Maroantsetra",
+     "date": "2026-10-15",
+     "rid": "25be549c45f04a29bbcc9b3bcf053f70"
+    },
+    {
+     "wp": "765258739",
+     "site": "Maroantsetra",
+     "date": "2026-10-15",
+     "rid": "7b2e73d4fd8b45e3b8fca5599d88404a"
+    },
+    {
+     "wp": "765730251",
+     "site": "not in the maintained register",
+     "date": "2026-10-15",
+     "rid": "4cd02d6ee4da43c5ab85e958f29d671f"
     }
    ],
-   "pumps_called": 21,
-   "pm_records": 17,
-   "pumps_visited": 17,
+   "pumps_called": 18,
+   "pm_records": 19,
+   "pumps_visited": 19,
    "overlap": [
     "698771196",
     "699597995",
-    "742896743",
     "814009107",
     "833032702",
     "833033253"
    ],
-   "overlap_n": 6,
+   "overlap_n": 5,
    "no_repair_7d": 12,
-   "repaired_7d": 6,
-   "not_yet_due": 3,
-   "nothing_after": 8
+   "repaired_7d": 5,
+   "not_yet_due": 1,
+   "nothing_after": 7
   }
  }
 }

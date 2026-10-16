@@ -90,6 +90,33 @@
    "by": []
   },
   {
+   "wp": "743345808",
+   "site": "Maroantsetra",
+   "moves": [
+    "status unknown → ok"
+   ],
+   "cause": "status record",
+   "wpop": [
+    111,
+    111
+   ],
+   "case_a": false,
+   "up": [],
+   "delta": {
+    "tco2e": 0.0,
+    "points": 0,
+    "people": 0
+   },
+   "records": [
+    "25be549c45f04a29bbcc9b3bcf053f70",
+    "e9b0f59c1f8f40eea759cdd8c0c1abbe"
+   ],
+   "by": [
+    "639369040ee942309e5ed8e06ecfc0fb",
+    "6478af5594b1414d845b6cd994971c9d"
+   ]
+  },
+  {
    "wp": "743644978",
    "site": "Maroantsetra",
    "moves": [
@@ -161,11 +188,22 @@
    ]
   }
  ],
- "deleted": [],
+ "deleted": [
+  {
+   "file": "marolinta_borehole.json",
+   "count": 1,
+   "ids": [
+    "0cd3044eb15d458aae9cbaa3bbfeeea0"
+   ],
+   "wps": [
+    "1052525284"
+   ]
+  }
+ ],
  "counts": {
   "no mWater change": 3,
   "edited record": 2,
-  "status record": 1
+  "status record": 2
  },
  "by_cause": {
   "no mWater change": {
@@ -185,7 +223,18 @@
   }
  },
  "case_a": [],
- "case_b": [],
+ "case_b": [
+  {
+   "file": "marolinta_borehole.json",
+   "count": 1,
+   "ids": [
+    "0cd3044eb15d458aae9cbaa3bbfeeea0"
+   ],
+   "wps": [
+    "1052525284"
+   ]
+  }
+ ],
  "case_c": [],
  "repo_moved": false,
  "repo": {
@@ -196,12 +245,14 @@
  "params_changed": false,
  "week": 42,
  "year": 2026,
- "computed": "2026-10-13",
+ "computed": "2026-10-16",
  "baseline": {
   "commit": "9344bbb",
   "published": "2026-10-10 18:29"
  },
  "deletions_named": true,
- "provisional": [],
- "provisional_items": 0
+ "provisional": [
+  "2026-W42"
+ ],
+ "provisional_items": 1
 }
