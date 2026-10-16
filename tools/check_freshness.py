@@ -143,7 +143,10 @@ def main():
     per = {}
     for k, page_d in ex.items():
         live = mw.get(k)
-        per[k] = {"page": page_d, "mwater": live, "behind_days": gap(live, page_d)}
+        g = gap(live, page_d)
+        # a page newer than mWater's newest record of the form is not behind
+        # (a call overtaken by a later visit dates the call tables after it)
+        per[k] = {"page": page_d, "mwater": live, "behind_days": None if g is None else max(0, g)}
     doc["per_source"] = per
     behind = [v["behind_days"] for v in per.values() if v["behind_days"] is not None]
     doc["worst_source_lag_days"] = max(behind) if behind else None

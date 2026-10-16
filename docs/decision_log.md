@@ -2520,3 +2520,9 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   read "behind mWater" while correctly rebuilt, and every build failed "the page was rebuilt from the extract that
   was pulled". The call-centre date is now the newest `status_date`, whatever record set it; only the call-table
   builder writes it, so a pull it never rebuilt from still fails.
+- **Two more gate defects found by the rehearsal, both data-triggered and not about routes:** (1) with the
+  call-centre date above, the page's call tables (15 Oct) were newer than mWater's newest call (14 Oct) and the
+  source read "-1 days behind"; behind-days now floor at 0, since a page newer than the form's newest record is
+  not behind. (2) `check_consistency.py` matched the consent sentence against a typed "142" usage-survey
+  responses; a 143rd response arrived and the gate failed. It now compares with the page's own
+  `METRICS.usage_survey_responses`; the zero answers stay literal, because the zero is the claim.

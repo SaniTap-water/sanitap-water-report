@@ -2462,9 +2462,15 @@ def main():
     _cons_zero = re.search(r"no individual record exists for any of the\s*"
                            r'(?:<[^>]+>\s*)*(?:<span data-fig="CARBON\.'
                            r'carbon_points">[^<]*</span>)\s*carbon points', idx_raw)
+    # the response count is the live METRICS figure, not a number typed into
+    # this check: 142 was, and the gate failed when the 143rd response
+    # arrived (16 Oct 2026). The zero is the claim, so it stays literal.
+    _usage_n = (js_const(idx_raw, "METRICS") or {}).get("usage_survey_responses")
+    _cons_txt = f"0</b> times in <b>{_usage_n:,}</b> responses" if _usage_n is not None else None
     check("the page carries the consent figure",
-          bool(_cons_zero) and "0</b> times in <b>142</b> responses" in idx,
-          "present", "present" if _cons_zero else "MISSING")
+          bool(_cons_zero) and bool(_cons_txt) and _cons_txt in idx,
+          "present", "present" if _cons_zero and _cons_txt and _cons_txt in idx else "MISSING",
+          f"answered 0 times in METRICS.usage_survey_responses = {_usage_n}")
     check("the page states the non-claiming notice already exists",
           "signed Community Agreement already carries the" in idx, "stated",
           "stated" if "signed Community Agreement already carries the" in idx else "MISSING",
