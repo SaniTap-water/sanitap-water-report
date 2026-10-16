@@ -2526,3 +2526,8 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   not behind. (2) `check_consistency.py` matched the consent sentence against a typed "142" usage-survey
   responses; a 143rd response arrived and the gate failed. It now compares with the page's own
   `METRICS.usage_survey_responses`; the zero answers stay literal, because the zero is the claim.
+- **And a metric defect behind (2):** the 143rd point-of-use response is a **draft** that answers the consent
+  question A4 and the usage question A9. `tools/action_metrics.py` counted every response, drafts included, so the
+  page would have said consent was "answered 1 time", and the two actions that close on `usage_question_answers`
+  could have closed on an unsubmitted form. The three point-of-use metrics now count submitted responses only
+  (final or pending), as the rest of the build does; their labels say so.

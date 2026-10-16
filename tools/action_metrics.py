@@ -520,6 +520,11 @@ def remote():
     A9 = "6147470c7521437f8cdbe1bfa3bea6b0"
     A4 = "5a9278cdb8234d8da870bc3a9709f6e0"
     rs = call("mwater_responses", {"form_id": fid, "limit": 3000}) if fid else []
+    # SUBMITTED responses only (final, or pending approval), as everywhere else
+    # in the build: a draft is not yet a record. Until 16 Oct 2026 a draft
+    # counted, and one draft answering A4 and A9 turned "answered 0 times" into
+    # 1 and could have closed the SDWS 26 action on an unsubmitted form.
+    rs = [r for r in rs if (r.get("status") or "final") in ("final", "pending")]
     answered = lambda q: sum(
         1 for r in rs if (r.get("data") or {}).get(q, {}).get("value") not in
         (None, "", [], {}))
@@ -571,13 +576,13 @@ REMOTE_SAYS = {
     "unapproved_works_records":
         "submitted works records with no approval, last 180 days",
     "usage_survey_responses":
-        "household responses on the point-of-use survey",
+        "submitted household responses on the point-of-use survey (drafts excluded)",
     "stroke_test_responses":
         "results recorded on the stroke-meter form",
     "usage_question_answers":
-        "point-of-use responses that actually answer the usage question A9",
+        "submitted point-of-use responses that actually answer the usage question A9",
     "consent_question_answers":
-        "point-of-use responses that actually answer the consent question A4",
+        "submitted point-of-use responses that actually answer the consent question A4",
     "marolinta_three_points_no_photograph":
         "of the three named Marolinta points, how many still have no photograph",
     "enduro_tana_enumerators":
