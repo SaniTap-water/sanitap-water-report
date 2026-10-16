@@ -1141,3 +1141,21 @@ citation — `wq_iron_accept`, `wq_manganese_accept`, `wq_manganese_max` — and
 so a threshold is changed in PARAMS and nowhere else. Iron is aesthetic only; manganese is aesthetic up to the
 health-based value and shown in the critical style above it. There is deliberately no headline tile.
 `check_consistency.py` block 7bi recomputes the counts from `wq_results.json` and fails on any disagreement.
+
+## Catch-up routes are drawn at every build (16 Oct 2026)
+
+ROUTES in `index.html`, ROUTES/PUMPS/XTRA in `routes.html` and `itinerary.csv` are output of
+`tools/build_routes.py`, which `tools/weekly_build.py` runs after the activity and call-table rebuilds. Until 16
+October they were a plan drawn once on 10 September by a planner outside the repository, and every build carried it
+forward while the overdue list moved (429 routed against 466 overdue). Never edit those constants or the CSV by
+hand; change the method in `tools/build_routes.py` and its four values in PARAMS (`route_*`), which the tool reads.
+
+`tools/check_routes.py`, in `publish.sh`, fails the edition unless every plan was drawn on the edition's issue date
+(`routes_fresh`) and, per site, the routed pumps are exactly the overdue pumps (`routes_cover_overdue`), and unless
+the outputs are what the generator gives offline from PUMPS, PARAMS and `data/osrm_cache.json`. A manual publish
+later in the week passes because the masthead and the plans carry the same build date; to change routes mid-week,
+rebuild (the desktop shortcut). `tools/test_routes_page.py` drives the CSV and print exports in the browser.
+
+Road times come from `router.project-osrm.org` at one request a second, cached by coordinates; a leg it cannot give
+is costed straight-line x 1.4 at 30 km/h and counted in the build log. The plan does not set a team size: a day is
+one field team's working day and how many technicians go is the field lead's decision (Adriaan Mol, 16 Oct 2026).

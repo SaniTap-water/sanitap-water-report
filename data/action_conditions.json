@@ -18,8 +18,8 @@
  "act-adopt-consolidated-gardien-calendar": {
   "kind": "artefact",
   "where": "hub",
-  "path": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.8-2026.docx",
-  "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder (v1.7, approved 29 Sep 2026; superseded by v1.8 on 10 Oct 2026, v1.7 moved to SOPs/Archive)",
+  "path": "SOPs/SOP-MAD-SDWS27-CalendrierGardien-v1.9-2026.docx",
+  "says": "closes when the consolidated calendar SOP is the current issue in the SOPs folder (v1.7, approved 29 Sep 2026; superseded by v1.8 on 10 Oct 2026, v1.7 moved to SOPs/Archive; by v1.9 on 15 Oct 2026, v1.8 moved to SOPs/Archive)",
   "closure": "evidence",
   "closes_when": "SOP-MAD-SDWS27-CalendrierGardien v1.7 is filed in Water Documents/SOPs"
  },

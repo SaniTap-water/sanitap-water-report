@@ -2458,3 +2458,59 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
 - **Revisit** for a boarding school or health centre next to a pump whose users are not otherwise counted, or when
   the baseline is redone for crediting period 2 (19 Mar 2029). Full estimate: project note
   `claude/institutional-premises-credit-estimate-2026-10-10.md`.
+
+## 16 Oct 2026 — Jan de Graaf: catch-up routes redrawn at every build, with exports for the field lead
+
+- **Asked by Jan de Graaf, 16 Oct 2026**, for Theophile (Maroantsetra field lead): the route plans current and
+  exportable. Until today ROUTES, routes.html and itinerary.csv were the plan drawn once on 10 September 2026 by a
+  planner that was never in this repository, carried forward by every build: it held 429 pumps while the page
+  counted 466 overdue, pumps visited since 10 September were still routed, and itinerary.csv (447 rows, 13 of them
+  Marolinta) no longer matched ROUTES.
+- **What.** `tools/build_routes.py` draws the plans at every build (`tools/weekly_build.py`, after the activity,
+  call-table, people-served and pump-input rebuilds, before the metrics and every render), and writes ROUTES in
+  index.html, ROUTES/PUMPS/XTRA in routes.html, itinerary.csv and `data/routes.json`. The four method values stay
+  in PARAMS (`route_site_minutes` 45, `route_day_hours` 8, `route_max_pumps` 8, `route_offroad_kmh` 12), now
+  sourced "applied by tools/build_routes.py at each build"; the tool reads them from the page, so they have one
+  home, and every plan carries the values applied. Every fixed "drawn on 10 September 2026" (section, act-route-plans,
+  PARAMS, table note, derivations) now renders the date from ROUTES.
+- **Input, decided here.** The overdue set is exactly the page's: PUMPS (the managed portfolio) with a maintenance
+  clock past `overdue_after_days`, the rule of `rebuild_activity.py` and `agg()`. A never-visited pump is in it
+  when its clock, which runs from its works record, is past six months; a pump with no works record has no clock
+  and stays in the maintenance schedule, as on the overdue list. A site is planned only if it has overdue pumps;
+  Marolinta (none today) shows a caption saying so instead of a map.
+- **Method, as the old plan stated it, with the gaps filled.** Bases as in the old ROUTES. First commune: the most
+  never-visited overdue pumps, ties to the one nearest the base; then always the commune of the nearest remaining
+  pump (straight line) from where the team is, a day carrying on into it when there is room. Nearest neighbour by
+  OSRM road time. Every day is a round trip from the base, the drive back counted inside the 8 hours. A day always
+  takes one pump, so a pump beyond a day's round trip makes a day of its own marked "overnight stop" (none today).
+  Off-road: OSRM's snap distance at 12 km/h at each end; between two pumps a straight walk at 12 km/h is taken
+  when quicker. Without that, two neighbouring pumps 11 km from any mapped road in Mahalevona were each charged the
+  walk out and back, which put two pumps in a day.
+- **OSRM.** `router.project-osrm.org` table calls, at most one a second, cached in `data/osrm_cache.json` keyed by
+  coordinates to five decimals (tracked, so a build fetches only new pairs; no expiry: delete an entry to refresh
+  it). A leg the server cannot give is costed as straight line x 1.4 at 30 km/h, never cached, and counted in
+  `data/routes.json` and in `logs/publisher.log` on the build_routes line.
+- **People column** in the itinerary and exports: people served (WorldPop, capped), as in the overdue list. It
+  was the roof count. XTRA in routes.html is rewritten from the report's own data; its photograph ids are carried
+  forward for pumps still in the portfolio, as `render_portfolio.py` does, because they come from a ranked
+  selection outside the build.
+- **Exports** (routes.html, control box, selected site): "CSV (all days)" `<site>-catch-up-routes-<date>.csv` = the
+  itinerary.csv columns plus a Google Maps directions link per pump; the field-lead sentence and the method follow
+  the data after a blank line, so the data rows parse as they are. "Print day sheet (PDF)" and "Print all days
+  (PDF)": print CSS over Leaflet, one A4 page per day with site, day, road km, hours, the day's map with its OSRM
+  line (print waits for the line and tiles), and the stop table with GPS and a Maps link. From the maps embedded
+  in the report they open in a new tab.
+- **Team size: not set by the plan (Adriaan Mol, 16 Oct 2026).** A route-day is a "team-day": one field team's
+  working day. How many technicians go is the field lead's call. The area is safe; one technician can ask a
+  villager to help with heavy lifting, or two can go. To be discussed with Theophile, not dictated by the plan.
+  The page and both exports say: "A day is one field team's working day; how many technicians go is decided by
+  the field lead (Adriaan Mol, 16 Oct 2026)." No PARAMS entry carries a crew size.
+- **Gates** (`tools/check_routes.py`, in `tools/publish.sh`, so weekly_build and publish cannot drift):
+  `routes_fresh` (every plan's date is the edition's issue date, in index.html, routes.html and data/routes.json);
+  `routes_cover_overdue` (per site, routed pumps = overdue pumps, each once); `routes_outputs` (the four outputs are
+  what the generator gives from PUMPS, PARAMS and the cache, offline); `routes_params`; `routes_wording`.
+  `tools/test_routes_page.py` (browser, in publish.sh): CSV rows = routed pumps per site, print views render one
+  page per day, no console errors. It needs the network for OSRM and the tiles, as the build already does.
+- **Also fixed, to let the build run:** calendar SOP v1.9 was filed on 15 Oct 2026 and v1.8 moved to SOPs/Archive,
+  so `require_local.py` failed every build on the missing v1.8. The required document and the
+  act-adopt-consolidated-gardien-calendar artefact path now name v1.9, as was done for v1.8 on 10 Oct.

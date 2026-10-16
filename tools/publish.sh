@@ -233,6 +233,17 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
     say "ABORT: the transcription page fails its browser test (exit $RC)."
     exit 1
   fi
+  # The route page's exports (16 Oct 2026): the CSV per site holds exactly
+  # its routed pumps, and the day sheets print with their map and stop table,
+  # one page per day, with nothing on the console.
+  say ""
+  say "testing the route page's CSV and print exports in the browser ..."
+  PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_routes_page.py | grep -v "^  PASS" | tail -12
+  RC=${PIPESTATUS[0]}
+  if [ "$RC" -ne 0 ]; then
+    say "ABORT: the route page's exports fail their browser test (exit $RC)."
+    exit 1
+  fi
 
   # Every number on the page must be live, declared in PARAMS with its
   # citation, or from a dated manual file. These two gates enforce it from
@@ -333,6 +344,22 @@ RC=$?
 if [ "$RC" -ne 0 ]; then
   say "ABORT: an embedded field has no generator, or a generator disagrees with what is stored."
   say "A field nothing can move is a field nobody is checking. Nothing committed."
+  exit 1
+fi
+
+# The catch-up route plans (16 Oct 2026). tools/build_routes.py draws them in
+# weekly_build.py from that build's overdue list; this refuses an edition whose
+# plans were not drawn on its issue date (routes_fresh) or whose routed pumps
+# are not exactly the overdue pumps at every site (routes_cover_overdue), and
+# checks that index.html, routes.html, itinerary.csv and data/routes.json are
+# what the generator gives. No network: it rebuilds from the OSRM cache.
+say ""
+say "checking the catch-up route plans against this edition's overdue list ..."
+python3 tools/check_routes.py
+RC=$?
+if [ "$RC" -ne 0 ]; then
+  say "ABORT: the route plans are not this build's, or do not cover the overdue pumps (exit $RC)."
+  say "They are drawn by tools/build_routes.py --write, which tools/weekly_build.py runs."
   exit 1
 fi
 

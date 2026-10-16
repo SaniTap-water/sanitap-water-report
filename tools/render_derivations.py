@@ -258,7 +258,7 @@ for _s in ("Maroantsetra", "Fort-Dauphin"):
           else "(ROUTES['Fort-Dauphin'].n/ROUTES['Fort-Dauphin'].days.length).toFixed(1)")
     _r = "ROUTES.Maroantsetra" if _s == "Maroantsetra" else "ROUTES['Fort-Dauphin']"
     D[_e] = dict(pop=None, arith=f"`${{{_r}.n}} pumps over ${{{_r}.days.length}} route days = ${{{_e}}} a day`",
-        forms=[("the catch-up route plan for " + _s, None, "ROUTES, drawn from the overdue list and road time")])
+        forms=[("the catch-up route plan for " + _s, None, "ROUTES, drawn at every build from the overdue list and road time")])
     for _f, _lab in (("wpop", "the capped WorldPop allocation"), ("benef", "the roof-count census")):
         D[f"HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0)"] = dict(pop="managed_fleet",
             arith=f"`{_lab} summed over the {_s} points in this scope: ${{fmt(HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0))}}`",
@@ -568,7 +568,7 @@ RULES = [
       what="preventive-maintenance visits per field day, by submission date, as stored in the page when last computed; no build step recomputes it (on the recorded ungenerated backlog)",
       forms=[_PM], why=None),
  dict(re=r"^SITES\.map\(x=>\(ROUTES", pop="overdue_six_months",
-      what="technician-days in the catch-up route plans for the sites in scope",
+      what="team-days in the catch-up route plans for the sites in scope",
       forms=[("the catch-up route plan", None, "ROUTES")], why=None),
  dict(re=r"^CORR\.(corrected|excluded)\.length$", pop="rehabilitated_successfully",
       what="entries in the standing register corrections, data/register_corrections.json",
@@ -581,7 +581,7 @@ RULES = [
       what="time from breakdown notified to repair completed, over the repairs with both dates",
       forms=[_REP], why="Repair speed is the only lever on days operational."),
  dict(re=r"^ROUTES\b", pop="overdue_six_months",
-      what="from the catch-up route plan drawn over the overdue pumps (stored in the page; on the ungenerated backlog)",
+      what="from the catch-up route plans, drawn over the overdue pumps at every build by tools/build_routes.py",
       forms=[("the catch-up route plan", None, "ROUTES: OpenStreetMap road time plus time on site")], why=None),
  dict(re=r"^METRICS\.", pop=None,
       what="an action metric recounted by tools/action_metrics.py on every build",
@@ -672,7 +672,7 @@ RULES = [
       what="computed from the annual monitoring survey (tools/rebuild_sdws26.py)",
       forms=[("Clean Water || Project Cbn&Gender (annual monitoring survey)", "2eeb86824b4545eca33db9e7cf7dcbd4", "WS1.18 and WS1.39")], why=None),
  dict(re=r"\bROUTES\b", pop="overdue_six_months",
-      what="from the catch-up route plan drawn over the overdue pumps (stored in the page; on the ungenerated backlog)",
+      what="from the catch-up route plans, drawn over the overdue pumps at every build by tools/build_routes.py",
       forms=[("the catch-up route plan", None, "ROUTES: OpenStreetMap road time plus time on site")], why=None),
  dict(re=r"\bCALS\.", pop="managed_fleet",
       what="computed from the calendar stratum (data/calendar_stratum_figures.json)",

@@ -1,7 +1,7 @@
 {
  "note": "Numbers still typed into the body prose of index.html. Every one of these should become a data-fig span, a PARAMS entry, or a figure in a dated manual file. This list may only shrink: tools/prose_figures.py --gate fails on any literal not on it.",
  "recorded": "2026-09-22",
- "shrunk_note": "25 Sep 2026: 132 values converted to live figures, parameters or quotations (class d census); 46 remain. 1 Oct 2026: \"0\" no longer typed (it was an owner-filter chip count, now rendered); 45 remain.",
+ "shrunk_note": "25 Sep 2026: 132 values converted to live figures, parameters or quotations (class d census); 46 remain. 1 Oct 2026: \"0\" no longer typed (it was an owner-filter chip count, now rendered); 45 remain. 16 Oct 2026: \"10\" no longer typed (the route plans' fixed drawing date, 10 September 2026, now renders from ROUTES); 44 remain.",
  "values": {
   "009": {
    "ctx": "values&hellip;&rdquo; The values are taken under option (a); the rule update is held in Water Documents/Methodology of record/ with its checksum. A6.4-AMT-009 is not the basis and is no longer cited as one. The rule upda",
@@ -12,11 +12,6 @@
    "ctx": "in mWater. Management notes — internal, remove before sharing with a validation and verification body (VVB) 1. Call-centre wording. The call form offers guardians a small option list plus a free-text box. Most of them lo",
    "line": 270,
    "n": 108
-  },
-  "10": {
-   "ctx": "Suivi avancement nouveau forage et réhabilitationthe Marolinta deployment of that formMarolinta is funded separately and is not in the VPA.2026-09-10managed_fleet Does the chain reconcile? Each step is a set relation tha",
-   "line": 296,
-   "n": 83
   },
   "100": {
    "ctx": "en sample group or stratum. If the population size is less than 50, the entire population shall be surveyed (census).&rdquo; The SDWS 27 sensor sample scoped at 30 per district (60 units) becomes 50 per district (100 uni",

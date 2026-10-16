@@ -77,6 +77,14 @@ STEPS = [
     ("tools/build_call_tables.py",   ["--write"],      True),
     ("tools/rebuild_ttr.py",         ["--write"],      True),
     ("tools/rebuild_summary.py",     ["--write"],      True),
+    # the catch-up route plans, drawn from this build's overdue list (16 Oct
+    # 2026; until then a plan of 10 September was carried forward). After the
+    # activity dates, status, people served and pump inputs it reads; before
+    # the metric act-route-plans closes on and before every render and gate.
+    # tools/check_routes.py, in publish.sh, refuses plans that are not this
+    # build's or do not cover the overdue list. Its OSRM fallback count is
+    # logged below.
+    ("tools/build_routes.py",        ["--write"],      True),
     ("tools/marolinta_admin.py",     ["--write"],      False),
     ("tools/check_freshness.py",     ["--write"],      True),
     # duplicate system records beside the four Moramanga systems and their
@@ -374,6 +382,10 @@ def main():
             if script.endswith("mwater_backup.py"):
                 last = (r.stdout or r.stderr or "").strip().splitlines()
                 log(f"{tag}{last[-1][:200] if last else 'mWater backup: no output'}")
+            if script.endswith("build_routes.py") and r.returncode == 0:
+                # routed pumps per site, OSRM requests and fallbacks, in the build log
+                last = (r.stdout or "").strip().splitlines()
+                log(f"{tag}{last[-1][:400] if last else 'build_routes: no output'}")
             if r.returncode != 0:
                 msg = (r.stdout + "\n" + r.stderr if script.endswith("mwater_backup.py")
                        else r.stderr or r.stdout or "").strip().splitlines()
