@@ -1183,7 +1183,14 @@ def migration_watch():
     cur = _first_rehab_current()
     if cur:
         seen = first_rehabilitated() | rehabilitated_successfully()
-        unread = [r for r in cur if _point_of(r) not in seen]
+        # a response acknowledged by name (data/migration_acknowledged.json,
+        # 20 Oct 2026) is not a failure while it keeps its recorded status;
+        # once that changes it fails again, so it cannot become a standing pass
+        ap = os.path.join(REPO, "data", "migration_acknowledged.json")
+        ack = ({e["id"]: e["status"] for e in json.load(open(ap, encoding="utf8"))["responses"]}
+               if os.path.isfile(ap) else {})
+        unread = [r for r in cur if _point_of(r) not in seen
+                  and ack.get(r.get("_id")) != r.get("status")]
         out.append((F_FIRST_REHAB, "Première réhabilitation (successor)",
                     len(cur), len(unread)))
     else:

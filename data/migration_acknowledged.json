@@ -1,0 +1,18 @@
+{
+ "note": "Responses on a successor form that no population reads, each acknowledged by name so the migration watch (tools/populations.py migration_watch) does not fail on it. An entry holds only for that one response id and only while the response keeps the status recorded here: if it changes (a draft is submitted), the watch fails again and the entry must be revisited. Anything not listed here still fails.",
+ "responses": [
+  {
+   "id": "c3154759a4da4e50861dd098b6fe1cf4",
+   "code": "fitahianawilliam-EJ4GAB",
+   "form": "63747997e70e478fbb2ebf71581ceeb0",
+   "point": "987623256",
+   "status": "draft",
+   "started": "2026-10-16T07:42:17Z",
+   "enumerator": "fitahianawilliam",
+   "why_unread": "a draft first rehabilitation on Marolinta point 987623256, which is outside the managed-group register: excluded on 29 Sep 2026 as an Aug 2025 identification-survey point (data/register_corrections.json). The other 29 responses on the form are read because their points are in the register.",
+   "acknowledged_by": "Adriaan Mol",
+   "acknowledged_on": "2026-10-20",
+   "revisit": "when it is submitted: a final rehabilitation on 987623256 needs a decision on the point's fleet entry"
+  }
+ ]
+}
