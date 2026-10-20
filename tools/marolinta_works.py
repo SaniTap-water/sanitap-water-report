@@ -51,6 +51,22 @@ def call(tool, args):
     return rows
 
 
+EXTRACT = os.path.expanduser("~/mwater-exports/marolinta_borehole.json")
+
+
+def from_extract():
+    """Every response of the form, from the extract tools/pull_extract.py
+    pulled this run (marolinta_borehole.json is this form, uncapped). An empty
+    or missing extract stops the tool, as an empty live call did."""
+    if not os.path.isfile(EXTRACT):
+        sys.exit(f"marolinta_works: no {EXTRACT}")
+    rows = json.load(open(EXTRACT, encoding="utf8"))
+    rows = [r for r in rows if r.get("form") == FORM]
+    if not rows:
+        sys.exit(f"marolinta_works: the extract holds no responses for form {FORM}")
+    return rows
+
+
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--show"
     if mode == "--show":
@@ -59,7 +75,10 @@ def main():
         return 0
     if mode != "--write":
         sys.exit("usage: marolinta_works.py --write | --show")
-    rs = call("mwater_responses", {"form_id": FORM, "limit": 200})
+    # from the run's own extract (20 Oct 2026), not a second live read: the
+    # live read went through the MCP CLI, capped at 200 rows, and was the one
+    # step that failed a rebuild on an extract set already pulled
+    rs = from_extract()
     recs = []
     for r in rs:
         d = r.get("data") or {}
