@@ -207,9 +207,22 @@ def probe(page_path):
             for s in ("all", "mad", "madx", "mar", "enduro"):
                 pg.click(f'#scopebar button[data-s="{s}"]')
                 pg.wait_for_timeout(250)
+                # text nodes joined with a space where they sit in different
+                # cells or blocks (20 Oct 2026): plain textContent ran the
+                # E. coli headers "1–9" and "10 or more" into "1–910 or
+                # more" the week the group count was 910. A number inside
+                # one cell or paragraph is still read whole, markup or not.
                 txt = pg.evaluate("""() => { const c = document.body.cloneNode(true);
                     c.querySelectorAll('script,style,template').forEach(x => x.remove());
-                    return c.textContent; }""")
+                    const B = 'td,th,tr,li,p,div,section,article,header,footer,h1,h2,h3,h4,h5,h6,dt,dd,caption,figcaption,summary,details,label,option,br';
+                    const w = document.createTreeWalker(c, NodeFilter.SHOW_TEXT);
+                    let out = '', prev = null;
+                    for (let n = w.nextNode(); n; n = w.nextNode()) {
+                        const blk = n.parentElement && n.parentElement.closest(B);
+                        out += (prev !== null && blk !== prev ? ' ' : '') + n.nodeValue;
+                        prev = blk;
+                    }
+                    return out; }""")
                 for m in re.finditer(pat, txt):
                     out["group_count_seen"].append(
                         f"{s}: ...{' '.join(txt[max(0, m.start()-60):m.end()+40].split())}...")

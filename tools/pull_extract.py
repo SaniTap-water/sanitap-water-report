@@ -26,6 +26,7 @@ EXPORTS = os.path.expanduser("~/mwater-exports")
 # tools/weekly_build.py puts it back when it rolls back a run that swapped
 # (restore_previous), so the extracts always match the page at HEAD.
 STAGE = os.path.expanduser("~/mwater-exports.staging")
+REFUSED = os.path.expanduser("~/mwater-exports.refused")   # the last refused run's set
 PREVIOUS = os.path.expanduser("~/mwater-exports.previous")
 SWAP_MARK = os.path.join(PREVIOUS, "_swapped_by_run")
 # derived files a build step writes into EXPORTS from this pull; kept and
@@ -198,7 +199,13 @@ def restore_previous(run=None):
     if run is not None and open(SWAP_MARK).read().strip() != run:
         return None
     back = sorted(n for n in os.listdir(PREVIOUS) if n != os.path.basename(SWAP_MARK))
+    # the refused set is kept for diagnosis, replaced by the next refusal
+    # (20 Oct 2026: a refused build's fresh pull was overwritten and lost)
+    shutil.rmtree(REFUSED, ignore_errors=True)
+    os.makedirs(REFUSED)
     for n in back:
+        if os.path.exists(os.path.join(EXPORTS, n)):
+            shutil.copy2(os.path.join(EXPORTS, n), os.path.join(REFUSED, n))
         shutil.copy2(os.path.join(PREVIOUS, n), os.path.join(EXPORTS, n))
     os.remove(SWAP_MARK)
     return back

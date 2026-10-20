@@ -273,8 +273,10 @@ table.acttbl td.st .pill{display:inline-block;white-space:nowrap;font-size:.68re
 @media(max-width:900px){.actstats.tiles4,.stats.tiles4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.actstats.tiles4,.stats.tiles4{grid-template-columns:minmax(0,1fr)}}
 #tiles{display:flex;flex-wrap:wrap;gap:8px}
-/* the headline row holds seven tiles: tighter gap and padding so the longest label fits in two lines */
-#tiles>.tile{padding:12px 13px}
+/* the headline row holds seven tiles: tighter gap and padding so the longest label fits in two lines.
+   9px sides (20 Oct 2026): at 13px one extra digit on any tile pushed the people-per-pump label to a
+   third line (render check, week 43 build); at 9px it holds with three tiles a digit wider, or one two */
+#tiles>.tile{padding:12px 9px}
 .tile,.wk>div,.actstats>.stat,.stats>.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
 .tile .v,.wk .v,.actstats .stat>b,.stats .stat>b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.75rem;font-weight:700;line-height:1.05;font-variant-numeric:tabular-nums}
 .tile .l,.wk .l,.actstats .stat>span,.stats .stat>span{display:block;color:var(--ink2);font-size:.85rem;margin-top:4px}
