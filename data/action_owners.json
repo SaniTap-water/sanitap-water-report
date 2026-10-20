@@ -2636,6 +2636,15 @@
     "task": "1219101105660866",
     "from": "asana"
    },
+   "act-frld-3rd-draft-feedback-jan": {
+    "recorded_on": "2026-10-20",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "Adriaan Mol's feedback on the third draft, sent to Jan de Graaf and Andrew Tanswell",
+    "source": "Adriaan Mol to Jan de Graaf and Andrew Tanswell, email “RE: Funding Request: Restoration of Essential Water Services for Cyclone-Affected Communities in Madagascar”, 2026-10-16 04:50 UTC",
+    "author": "Adriaan Mol",
+    "date": "2026-10-16",
+    "kind": "email"
+   },
    "act-frld-annex11-eng-check": {
     "recorded_on": "2026-10-16",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2949,6 +2958,15 @@
     "source": "Methodology of record/GS12600_GS12601_VPA-1_Safe_Water_Madagascar_VPA-DD_V2_CLEAN.pdf is in the Central Data Hub (Water Documents)",
     "ref": "data/action_state.json"
    },
+   "act-ralf-shopkeeper-waterpoint-link": {
+    "recorded_on": "2026-10-20",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "superseded by act-enduro-mwater-import-integration (decision of Adriaan Mol, 20 Oct 2026)",
+    "source": "Ralf van Veenendaal, email “RE: Three open items: card sales backfill, meter and shopkeeper lists, calibration certificates”, 2026-10-12 08:02 UTC; decision Adriaan Mol, 2026-10-20",
+    "author": "Ralf van Veenendaal",
+    "date": "2026-10-12",
+    "kind": "email"
+   },
    "act-re-run-improved-cookstove": {
     "recorded_on": "2026-10-10",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -3001,7 +3019,7 @@
     "recorded_by": "Claude, on Adriaan Mol's instruction",
     "what": "Adriaan Mol's comment on the Asana task: the duplicate repair on 699597809 resolved in the portal, one repair kept",
     "source": "Adriaan Mol, comment on Asana task 1219101106519483, 2026-10-10 08:18 UTC",
-    "summary": "record B (b7c9bcf3..., old combined form) rejected in the portal; record A (a92a35ab..., repair form, final) kept; one repair for 29 Nov 2025",
+    "summary": "record B (b7c9bcf3, old combined form) rejected; record A (a92a35ab, repair form, final) kept",
     "author": "Adriaan Mol",
     "date": "2026-10-10",
     "kind": "comment",

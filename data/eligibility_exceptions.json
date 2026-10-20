@@ -5,7 +5,9 @@
    "wp": "782134540",
    "figures": "managed and carbon",
    "reason": "No first-rehabilitation record of any kind: the one recorded exception to the fleet-entry rule (29 Sep 2026), kept on its repair, water-quality and call-centre records until 31 Oct 2026 (data/register_corrections.json). act-782134540-rehab-record.",
-   "until": "2026-10-31"
+   "until": "2026-10-31",
+   "held_by": "act-782134540-merge-duplicate",
+   "held_note": "Probable duplicate of 771799293; the point leaves the fleet only once act-782134540-merge-duplicate is complete (Adriaan Mol, 20 Oct 2026), whatever the date."
   }
  ],
  "sites": [

@@ -85,7 +85,7 @@
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>17 Oct 2026</b><br><span class=\"muted\">the seven named, and each resolved to one side or the other</span>"
  },
  "act-decide-how-treat-67": {
-  "detail": "<b>Decide how to treat the <span data-fig=\"CALX.points_without_readable\"></span> points with no usable calendar image: exclude, or estimate.</b> <b>The recommendation is to exclude them</b>, on the programme&rsquo;s own precedent. When the Improved Cooking VPA found a doubtful sub-population it ran a census rather than a sample and then removed it: <i>&ldquo;To mitigate the risk of over crediting, a conservative approach has been taken of removing the <span class=\"quoted\" data-quote=\"improved_cooking_census\">71</span> households from the project.&rdquo;</i> The same logic applies here &mdash; a point whose downtime record cannot be read should be taken out of the days-operational claim rather than assigned an estimated figure. Per-point list: <span class=\"mono\">data/calendar_no_usable_image.csv</span>. <span class=\"muted\">Put here for decision, not implemented: nothing on this page has been adjusted for it, and the alternative &mdash; carrying them at the <span data-param=\"do_cap\"></span> default with the gap disclosed &mdash; is a legitimate choice for the Head of Carbon to make instead.</span>",
+  "detail": "<b>Decide how to treat the <span data-fig=\"CALX.points_without_readable\"></span> points with no usable calendar image: exclude, or estimate.</b> Recommendation sent to James Walker 20 Oct 2026: keep all at <span data-param=\"do_cap\">347</span> days, each corroborated by maintenance visits and call-centre records; awaiting his confirmation.",
   "owner": "James Walker, with Jan",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">written decision</span>"
  },
@@ -679,10 +679,10 @@
   "owner": "Angelo Nahavitatsara",
   "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">a final rehabilitation record for 782134540 in mWater</span>",
   "quoted_note": {
-   "says": "Probable duplicate of 771799293 (same local pump number 15, 32 m apart); merge pending, see project note 782134540-duplicate-of-771799293-2026-10-20",
+   "says": "Probable duplicate of 771799293 (local pump number 15, 32 m apart); merge by hand in progress, act-782134540-merge-duplicate",
    "doc": "Adriaan Mol, project note 782134540-duplicate-of-771799293-2026-10-20",
    "dated": "2026-10-20",
-   "after": "The point stays in the fleet until Adriaan confirms the merge."
+   "after": "The point stays in the fleet until act-782134540-merge-duplicate is complete."
   }
  },
  "act-marolinta-drilling-result": {

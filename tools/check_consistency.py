@@ -4477,7 +4477,20 @@ def main():
         _flags = {f["wp"] for f in json.load(open(os.path.join(repo_root, "data", "register_corrections.json"),
                                                   encoding="utf8")).get("eligibility_flags", [])}
         _today = datetime.date.today().isoformat()
-        _wp_exc = {e["wp"] for e in _ex.get("hand_pumps", []) if (e.get("until") or "9999") >= _today}
+        # an exception held open by an action (held_by) stays valid past its
+        # date until that action is complete in Asana (20 Oct 2026)
+        sys.path.insert(0, os.path.join(repo_root, "tools"))
+        from classify_register import hold_active as _hold
+        _wp_exc = {e["wp"] for e in _ex.get("hand_pumps", [])
+                   if (e.get("until") or "9999") >= _today or _hold(e.get("held_by"), repo_root)}
+        _held = [e.get("held_by") for e in _ex.get("hand_pumps", []) if e.get("held_by")]
+        _held += [e.get("held_by") for e in json.load(open(os.path.join(repo_root, "data", "register_corrections.json"),
+                                                           encoding="utf8")).get("corrected", []) if e.get("held_by")]
+        _pt = json.load(open(os.path.join(repo_root, "data", "asana_pull.json"), encoding="utf8")).get("tasks", {})
+        _nohold = sorted({h for h in _held if h not in _pt})
+        check("every exception held open by an action names an Asana task",
+              not _nohold, "all named", ", ".join(_nohold) if _nohold else "all named",
+              "a held_by with no task would hold the exception forever")
         _site_managed = {e["site"] for e in _ex.get("sites", [])}
         _site_carbon = {e["site"] for e in _ex.get("sites", []) if "outside the carbon" not in e.get("figures", "")}
         _rows = {r["wp"]: r for r in _el["hp"]["rows"]}

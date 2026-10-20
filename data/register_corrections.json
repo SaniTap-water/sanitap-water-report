@@ -214,7 +214,9 @@
    "wp": "782134540",
    "written_back": "NOT written back. There is no first-rehabilitation response to correct, and one has not been created: writing a rehabilitation record with no date, no technician and no photographs would be manufacturing evidence rather than correcting it. The point stays in the portfolio on the strength of its repair, water-quality and call-centre records; MadAvance to file a proper rehabilitation record if the paperwork exists.",
    "expires_on": "2026-10-31",
-   "exception": "The one recorded exception to the fleet-entry rule (29 Sep 2026): kept on its repair, water-quality and call-centre records until 31 Oct 2026. act-782134540-rehab-record closes when a final rehabilitation record for it appears in mWater; if none has by then, the point leaves the fleet (and the carbon fleet) at the next build."
+   "exception": "The one recorded exception to the fleet-entry rule (29 Sep 2026): kept on its repair, water-quality and call-centre records until 31 Oct 2026. act-782134540-rehab-record closes when a final rehabilitation record for it appears in mWater; if none has by then, the point leaves the fleet (and the carbon fleet) at the next build.",
+   "held_by": "act-782134540-merge-duplicate",
+   "held_note": "Probable duplicate of 771799293; the point leaves the fleet only once act-782134540-merge-duplicate is complete (Adriaan Mol, 20 Oct 2026), whatever the date."
   }
  ],
  "decided_by": "Adriaan Mol, COO SaniTap",

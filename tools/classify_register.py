@@ -63,6 +63,20 @@ BH_STATUS, BH_FUNCTIONAL = "0a46051cee394b46ad1e7478dd40117a", "56EZb1R"
 BH_PUMP_MODEL = "1e8f9bf782144b3ab2a703ccc8823ec9"
 
 
+def hold_active(aid, repo=None):
+    """True while the action that holds an exception open is not completed in
+    Asana (data/asana_pull.json). A correction or an eligibility exception that
+    names one in "held_by" does not lapse on its date while the hold is active
+    (782134540: kept in the fleet until act-782134540-merge-duplicate is
+    complete, Adriaan Mol, 20 Oct 2026). An action missing from the pull holds;
+    tools/check_consistency.py fails a "held_by" that names no Asana task."""
+    if not aid:
+        return False
+    p = os.path.join(repo or REPO, "data", "asana_pull.json")
+    t = (json.load(open(p, encoding="utf8")).get("tasks", {}) if os.path.isfile(p) else {}).get(aid)
+    return not (t or {}).get("completed")
+
+
 def works_points(P, corrected, today=None):
     """Points with a final programme works record - the fleet-entry rule
     (decision register-fleet-entry-rule, 29 Sep 2026): a point is in the
@@ -77,7 +91,8 @@ def works_points(P, corrected, today=None):
       * a recorded correction (register_corrections "corrected"). A correction
         that carries "expires_on" lapses on that date unless a final
         rehabilitation record for the point has appeared by then
-        (782134540, the one recorded exception, 31 Oct 2026).
+        (782134540, the one recorded exception, 31 Oct 2026), and not while
+        the action it names in "held_by" is open (hold_active).
     """
     import datetime as _dt
     today = today or _dt.date.today().isoformat()
@@ -93,7 +108,8 @@ def works_points(P, corrected, today=None):
     _cp = os.path.join(REPO, "data", "register_corrections.json")
     c = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
     lapsed = {e["wp"] for e in c.get("corrected", [])
-              if e.get("expires_on") and today > e["expires_on"] and e["wp"] not in succ | bh}
+              if e.get("expires_on") and today > e["expires_on"] and e["wp"] not in succ | bh
+              and not hold_active(e.get("held_by"))}
     return succ | (set(corrected) - lapsed) | bh
 
 
