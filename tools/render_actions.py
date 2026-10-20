@@ -170,6 +170,7 @@ def actions(idx, use_asana=True):
                         detail=re.sub(r"<!--tablenote:([\w-]+)-->",
                                       lambda m: _tablenote(m.group(1)),
                                       det.get(aid, {}).get("detail", "")),
+                        quoted_note=det.get(aid, {}).get("quoted_note"),
                         lead=lead_owner(owner),
                         state=state, label=label, deadline=dl_raw, due=due,
                         # an item to act on with no date is a date still
@@ -527,12 +528,50 @@ def row(a, today, owner_cell=True):
                 "&mdash; " if c.get("satisfied") is None else "")
         closes = (f'<span class="ckind ck-{kind}">{kind}</span> {says}'
                   f'<div class="muted" style="font-size:.82em">{mark}{ev}</div>')
+        # the points a count is made of, by code, each set against the codes
+        # the condition names for comparison (act-no-works-record, 20 Oct 2026)
+        codes = (METRIC_DEFS.get(cc.get("metric")) or {}).get("codes") if kind == "data" else None
+        if codes:
+            cmp_ = cc.get("compare_with") or {}
+
+            def _which(code):
+                if code in cmp_:
+                    return f' (it is {html.escape(cmp_[code])})'
+                if cmp_:
+                    return (" (none of " + ", ".join(f'<span class="mono">{k}</span>' for k in cmp_)
+                            + ")")
+                return ""
+
+            closes += ('<div class="muted" style="font-size:.82em">Counted: '
+                       + "; ".join(f'<span class="mono">{x}</span>{_which(x)}' for x in codes)
+                       + '</div>')
+        # a count shown for information beside a condition it does not gate
+        im = cc.get("info_metric")
+        if im and im in METRIC_DEFS:
+            iv = METRIC_DEFS[im].get("value")
+            closes += (f'<div class="muted" style="font-size:.82em">For information, not a condition: '
+                       f'<span class="mono">{im}</span> = '
+                       + (f'<span data-fig="METRICS.{im}">{_num(iv)}</span>' if iv is not None
+                          else "could not be counted this build")
+                       + f' ({_live(METRIC_DEFS[im].get("says", ""))})</div>')
         if c.get("reopened_on"):
             closes += ('<div class="muted" style="font-size:.82em">'
                        f'<b>reopened {c["reopened_on"]}</b> &mdash; it had been '
                        f'closed since {c.get("was_closed_since") or "an earlier build"}'
                        '</div>')
     det = a.get("detail") or ""
+    # a note quoted from a dated source (data/action_details.json
+    # "quoted_note", 20 Oct 2026): its words, figures included, are the
+    # source's, so it renders as a quotation rather than as typed prose
+    qn = a.get("quoted_note")
+    if qn and det:
+        key = f"note:{a['id']}"
+        QUOTES_EXTRA[key] = {"doc": qn["doc"], "version": qn["dated"], "dated": qn["dated"],
+                             "says": strip(qn["says"]),
+                             "note": "Recorded in data/action_details.json (quoted_note)."}
+        det += (f'<p class="note muted" style="font-size:.85em;margin:8px 0 0"><b>Note</b>: '
+                f'<span class="quoted" data-quote="{key}">{html.escape(qn["says"])}</span>'
+                + (f' {qn["after"]}' if qn.get("after") else "") + '</p>')
     # where the answer came from: sender, date, subject, one-line answer
     # (data/action_owners.json "sources"); the answer is a quotation
     srcs = SOURCES.get(a["id"]) or []

@@ -248,6 +248,28 @@ def restore_modes(root):
     return fixed
 
 
+def metric_code_lines():
+    """One build-log line per metric that carries its codes (data/action_metrics.json
+    "codes"), each code set against the action condition's "compare_with"."""
+    try:
+        mets = json.load(io.open(os.path.join(REPO, "data", "action_metrics.json"),
+                                 encoding="utf8"))["metrics"]
+        conds = json.load(io.open(os.path.join(REPO, "data", "action_conditions.json"),
+                                  encoding="utf8"))
+    except (OSError, ValueError, KeyError) as e:
+        return [f"metric codes: not readable ({e})"]
+    out = []
+    for aid, c in sorted(conds.items()):
+        m = mets.get(c.get("metric") or "") or {}
+        if c.get("kind") != "data" or "codes" not in m:
+            continue
+        cmp_ = c.get("compare_with") or {}
+        parts = [f"{x} ({'is ' + cmp_[x] if x in cmp_ else 'none of ' + ', '.join(cmp_)})"
+                 if cmp_ else x for x in m["codes"]]
+        out.append(f"{aid}: {c['metric']} = {m['value']}: " + ("; ".join(parts) or "none"))
+    return out
+
+
 def run(cmd, **kw):
     env = dict(os.environ, PLAYWRIGHT_BROWSERS_PATH=PW)
     return subprocess.run(cmd, cwd=REPO, capture_output=True, text=True,
@@ -388,6 +410,11 @@ def main():
                 last = [x for x in (r.stdout or "").strip().splitlines()
                         if x.startswith("build_routes:")]
                 for x in last or ["build_routes: no output"]:
+                    log(f"{tag}{x[:400]}")
+            if script.endswith("action_metrics.py") and r.returncode == 0:
+                # the pumps behind a count an action row names by code, each set
+                # against the codes its condition compares with (20 Oct 2026)
+                for x in metric_code_lines():
                     log(f"{tag}{x[:400]}")
             if r.returncode != 0:
                 msg = (r.stdout + "\n" + r.stderr if script.endswith("mwater_backup.py")

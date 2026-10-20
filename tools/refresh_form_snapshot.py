@@ -78,6 +78,10 @@ def snapshot_age():
 
 
 def fetch(form_id):
+    # SANITAP_NO_MWATER=1 (20 Oct 2026): a run told not to contact mWater
+    # takes the offline path below, so the snapshot-age gate still applies
+    if os.environ.get("SANITAP_NO_MWATER") == "1":
+        raise Unavailable("SANITAP_NO_MWATER=1: this run does not contact mWater")
     if not os.path.isfile(CALLER):
         raise Unavailable(f"{CALLER} is not present")
     # A transient "fetch failed" from Node, or a 502/503/504 from mWater's

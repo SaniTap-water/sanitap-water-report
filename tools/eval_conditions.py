@@ -14,7 +14,9 @@ Five kinds of condition:
             the question exists, it is required, the condition is set, the
             locale is present.
   artefact  a document, template or plan exists at a stated location, checked
-            by path and version in the repo or on SharePoint.
+            by path and version in the repo or on SharePoint. With
+            "and_open_dated": <act-id>, that action must also be open in Asana
+            with a due date (data/asana_pull.json): the follow-up is scheduled.
   decision  a person has to answer a question. No data predicate exists. It
             closes only on an entry in data/decisions.json carrying the answer,
             the date and the source. An email is never enough - a candidate
@@ -136,6 +138,27 @@ def eval_artefact(c, sp):
     return True, f'{hits[0]} is in {c.get("folder")}'
 
 
+def eval_artefact_scheduled(c, sp, pull):
+    """An artefact condition that also needs a follow-up action scheduled:
+    "and_open_dated" names an action whose Asana task must be open with a due
+    date. Both halves must hold; either unknown leaves the whole unknown."""
+    ok, ev = eval_artefact(c, sp)
+    other = c.get("and_open_dated")
+    if not other:
+        return ok, ev
+    t = (pull.get("tasks") or {}).get(other)
+    if t is None:
+        sok, sev = None, f"{other} has no Asana task in this build's pull"
+    elif t.get("completed"):
+        sok, sev = False, f"{other} is completed in Asana, so the follow-up is no longer scheduled"
+    elif not t.get("due_on"):
+        sok, sev = False, f"{other} is open in Asana with no due date"
+    else:
+        sok, sev = True, f"{other} is open in Asana, due {t['due_on']}"
+    both = None if None in (ok, sok) else (ok and sok)
+    return both, f"{ev}; {sev}"
+
+
 def eval_decision(aid, c, decisions, candidates):
     got = decisions.get("decisions", {}).get(aid)
     if got:
@@ -159,6 +182,7 @@ def main():
     metrics = load("action_metrics.json").get("metrics", {})
     snap = load("mwater_form_snapshot.json")
     sp = load("sharepoint_listing.json")
+    pull = load("asana_pull.json")
     decisions = load("decisions.json")
     cands = load("decision_candidates.json").get("candidates", {})
     prev = load("action_state.json").get("state", {})
@@ -175,7 +199,7 @@ def main():
         elif kind == "form":
             ok, ev = eval_form(c, snap)
         elif kind == "artefact":
-            ok, ev = eval_artefact(c, sp)
+            ok, ev = eval_artefact_scheduled(c, sp, pull)
         elif kind == "decision":
             ok, ev = eval_decision(aid, c, decisions, cands)
         elif kind == "children":

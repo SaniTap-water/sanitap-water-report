@@ -7,7 +7,9 @@ local copy of the Asana read (data/asana_pull.json), the map
 (data/asana_map.json) and the build's condition state. Fails when:
 
   1. an open action (ACT or WATCH) does not have exactly one Asana task:
-     none in the pull, or two tasks naming the same act-id;
+     none in the pull, or two tasks naming the same act-id (a second task
+     listed in the map's "aliases" is read as that action; an alias naming
+     an unmapped action, or the action's own task, fails);
   2. the owner or the deadline on the page differs from the task's;
   3. an action is closed (OK) on the page without recorded evidence: neither a
      build condition that is satisfied this run nor an entry in
@@ -45,7 +47,8 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def main():
     idx = open(os.path.join(REPO, "index.html"), encoding="utf8").read()
     pull = json.load(open(os.path.join(REPO, "data", "asana_pull.json"), encoding="utf8"))
-    amap = json.load(open(os.path.join(REPO, "data", "asana_map.json"), encoding="utf8"))["tasks"]
+    amap_doc = json.load(open(os.path.join(REPO, "data", "asana_map.json"), encoding="utf8"))
+    amap = amap_doc["tasks"]
     state = json.load(open(os.path.join(REPO, "data", "action_state.json"), encoding="utf8")).get("state", {})
     evid = (json.load(open(os.path.join(REPO, "data", "action_owners.json"), encoding="utf8"))
             .get("evidence") or {}).get("actions", {})
@@ -66,6 +69,15 @@ def main():
                                          ticked="data-ticked" in attrs, evline='class="evline' in seg,
                                          amber='class="ticked"' in seg))
     fails = []
+    # an alias is a second task for an action that has one (20 Oct 2026): it
+    # must name a mapped action, and never that action's own task
+    for g, aid in (amap_doc.get("aliases") or {}).items():
+        if aid not in amap:
+            fails.append(f"alias task {g}: names {aid}, which has no task in the map")
+        elif amap[aid] == g:
+            fails.append(f"alias task {g}: is {aid}'s own task, not a second one")
+        elif g in amap.values():
+            fails.append(f"alias task {g}: is also mapped as an action's own task")
     for aid, r in sorted(rows.items()):
         t = tasks.get(aid)
         if r["state"] in ("ACT", "WATCH"):

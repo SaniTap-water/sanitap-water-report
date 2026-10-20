@@ -459,7 +459,13 @@
   "op": "==",
   "says": "closes when every managed pump has a works record of some kind",
   "target": 0,
-  "when_satisfied": "OK"
+  "when_satisfied": "OK",
+  "compare_with": {
+   "782134540": "the Maroantsetra pump awaiting its rehabilitation record (act-782134540-rehab-record)",
+   "670401897": "one of the three with no rehabilitation record, from the 10 Sep register",
+   "670401921": "one of the three with no rehabilitation record, from the 10 Sep register",
+   "987623074": "one of the three with no rehabilitation record, from the 10 Sep register"
+  }
  },
  "act-per-diem": {
   "kind": "decision",
@@ -741,11 +747,14 @@
   "when_satisfied": "WATCH"
  },
  "act-undatable": {
-  "kind": "data",
-  "metric": "points_without_readable_calendar",
-  "op": "==",
-  "says": "closes when every point with calendar photographs has one that can be read",
-  "target": 0,
+  "kind": "artefact",
+  "where": "hub",
+  "path": "Evidence/2026/Calendars SDWS27/calendar-points-no-readable-year-2026-10-10.csv",
+  "and_open_dated": "act-calendar-v13",
+  "info_metric": "points_without_readable_calendar",
+  "says": "closes when the list of points without a readable calendar (10 Oct 2026) is filed in Evidence/2026/Calendars SDWS27 and the reissue, act-calendar-v13, is open in Asana with a due date",
+  "closure": "evidence",
+  "closes_when": "list filed and reissue scheduled: the 10 Oct 2026 list in Evidence/2026/Calendars SDWS27, and act-calendar-v13 open with a due date",
   "when_satisfied": "OK"
  },
  "act-update-parameters-workbook-cite": {

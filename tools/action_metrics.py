@@ -75,6 +75,15 @@ def _m1():
     return js("S")["never"]
 
 
+# the codes behind a count, where an action row has to name them (20 Oct
+# 2026): written beside the value as "codes", and asserted to number the value
+CODES = {
+    # S.never is rebuilt by tools/rebuild_activity.py as the pumps with no
+    # clock (PUMPS.days is null); these are those pumps
+    "points_no_works_record": lambda: sorted(p["wp"] for p in js("PUMPS") if p.get("days") is None),
+}
+
+
 @metric("downs_without_repair",
         "managed pumps reported down to the call centre since 1 March with no repair record since")
 def _m2():
@@ -615,6 +624,12 @@ def main():
         except Exception as e:                                # noqa: BLE001
             v, says = None, f"{says} (not computable: {e})"
         doc["metrics"][name] = {"value": v, "says": says, "source": "local"}
+        if name in CODES and v is not None:
+            codes = CODES[name]()
+            if len(codes) != v:
+                sys.exit(f"action_metrics: {name} = {v} but {len(codes)} code(s) "
+                         f"found behind it ({', '.join(codes[:6])})")
+            doc["metrics"][name]["codes"] = codes
     if mode == "--write":
         for name, v in remote().items():
             doc["metrics"][name] = {"value": v, "says": REMOTE_SAYS.get(name, name),
@@ -625,6 +640,8 @@ def main():
     print(f"{len(doc['metrics'])} metrics, {n_ok} computed")
     for k, m in sorted(doc["metrics"].items()):
         print(f"  {str(m['value']):>8}  {k:34s} {m['says'][:60]}")
+        if m.get("codes"):
+            print(f"  {'':>8}  {k}: {', '.join(m['codes'])}")
     return 0
 
 

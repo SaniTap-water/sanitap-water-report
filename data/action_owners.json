@@ -2996,6 +2996,18 @@
     "task": "1219101111758501",
     "from": "asana"
    },
+   "act-repair-double-entry": {
+    "recorded_on": "2026-10-20",
+    "recorded_by": "Claude, on Adriaan Mol's instruction",
+    "what": "Adriaan Mol's comment on the Asana task: the duplicate repair on 699597809 resolved in the portal, one repair kept",
+    "source": "Adriaan Mol, comment on Asana task 1219101106519483, 2026-10-10 08:18 UTC",
+    "summary": "record B (b7c9bcf3..., old combined form) rejected in the portal; record A (a92a35ab..., repair form, final) kept; one repair for 29 Nov 2025",
+    "author": "Adriaan Mol",
+    "date": "2026-10-10",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209219926659418/task/1219101106519483",
+    "task": "1219101106519483"
+   },
    "act-repair-time": {
     "recorded_on": "2026-10-07",
     "recorded_by": "tools/asana_pull.py, from the Asana task",

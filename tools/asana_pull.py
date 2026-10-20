@@ -15,7 +15,9 @@ tag if it carries an unused one, otherwise gets an act-id generated from its
 name ("act-" + a slug); either way it is added to the map and listed as "new
 from Asana" in the build log. A task whose owner renamed it gives the action
 its title: the Asana wording is copied into data/action_owners.json "title". Two tasks naming the same act-id
-are recorded under "duplicates" and fail the gate (tools/check_asana.py).
+are recorded under "duplicates" and fail the gate (tools/check_asana.py),
+unless the second task is listed in the map's "aliases" (gid -> act-id): then
+it is read as that action and listed under "aliases", not as an action.
 
 Completion needs evidence (Adriaan Mol, 5 Oct 2026). For every completed task
 the pull also reads the task's history, comments and attachments. A task counts
@@ -119,13 +121,16 @@ def main():
         sys.exit("usage: asana_pull.py --write")
     amap = json.load(open(MAP, encoding="utf8"))
     by_gid = {g: k for k, g in amap["tasks"].items()}
+    # a second task for an action that already has one (data/asana_map.json
+    # "aliases", 20 Oct 2026): read as that action, listed, never re-mapped
+    aliases = amap.get("aliases") or {}
     try:
         tasks = A.get(f"/sections/{amap['section']}/tasks",
                       {"opt_fields": "name,assignee.name,due_on,completed,completed_at,notes,permalink_url,modified_at"})
     except SystemExit as e:
         print(f"asana_pull: Asana not readable ({str(e)[:120]}); the committed data/asana_pull.json stays as it is")
         return 0
-    out, dup, new = {}, {}, []
+    out, dup, new, alias_seen = {}, {}, [], []
     prev = (json.load(open(OUT, encoding="utf8")).get("tasks", {}) if os.path.isfile(OUT) else {})
     own_path = os.path.join(REPO, "data", "action_owners.json")
     own = json.load(open(own_path, encoding="utf8"))
@@ -133,6 +138,11 @@ def main():
     for t in tasks:
         # matched by task gid (data/asana_map.json), so a task can be renamed
         # freely; the name's [act-id] tag only places a task not yet in the map
+        if t["gid"] in aliases:
+            alias_seen.append({"gid": t["gid"], "act_id": aliases[t["gid"]], "name": t["name"],
+                               "completed": bool(t.get("completed")),
+                               "permalink": t.get("permalink_url")})
+            continue
         aid = by_gid.get(t["gid"])
         if not aid:
             aid = tag_of(t["name"])
@@ -182,7 +192,8 @@ def main():
                    "at each build. The action list renders owner, deadline and completion from it.",
            "pulled_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
            "project": A.PROJECT, "section": amap["section"],
-           "tasks": dict(sorted(out.items())), "duplicates": dup, "new_from_asana": new}
+           "tasks": dict(sorted(out.items())), "duplicates": dup, "new_from_asana": new,
+           "aliases": alias_seen}
     json.dump(doc, open(OUT, "w", encoding="utf8"), indent=1, ensure_ascii=False)
     open(OUT, "a").write("\n")
     if new:
@@ -196,6 +207,8 @@ def main():
         print(f"asana_pull: title from Asana: {aid}: {was!r} -> {now!r}")
     done = sum(1 for r in out.values() if r["completed"])
     print(f"asana_pull: {len(out)} tasks read ({done} completed), {len(dup)} duplicated act-id(s)")
+    for x in alias_seen:
+        print(f"asana_pull: task {x['gid']} is an alias of {x['act_id']} (data/asana_map.json aliases)")
     for c in evchanges + owner_changes:
         print(f"asana_pull: {c}")
     noev = sorted(a for a, r in out.items() if r["completed"] and not r.get("evidence"))

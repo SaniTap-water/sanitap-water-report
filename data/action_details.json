@@ -677,7 +677,13 @@
  "act-782134540-rehab-record": {
   "detail": "<b>MadAvance to file the rehabilitation record for <span class=\"mono\">782134540</span> (Maroantsetra, Canzee).</b> It is the one recorded exception to the fleet-entry rule: in the fleet on its repair (28 Jun 2025), water-quality and call-centre records under the correction of 15 September 2026, with no rehabilitation record. <b>If no final rehabilitation record for it is in mWater by 31 October 2026, the point leaves the fleet &mdash; and the carbon fleet &mdash; at the next build.</b>",
   "owner": "Angelo Nahavitatsara",
-  "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">a final rehabilitation record for 782134540 in mWater</span>"
+  "schedule": "<span class=\"pill crit\">ACT</span><br><b>31 Oct 2026</b><br><span class=\"muted\">a final rehabilitation record for 782134540 in mWater</span>",
+  "quoted_note": {
+   "says": "Probable duplicate of 771799293 (same local pump number 15, 32 m apart); merge pending, see project note 782134540-duplicate-of-771799293-2026-10-20",
+   "doc": "Adriaan Mol, project note 782134540-duplicate-of-771799293-2026-10-20",
+   "dated": "2026-10-20",
+   "after": "The point stays in the fleet until Adriaan confirms the merge."
+  }
  },
  "act-marolinta-drilling-result": {
   "detail": "<p><span class=\"pill ok\">closed 7 Oct 2026</span> <b>Merged into <a href=\"#act-mar-functional-status\">act-mar-functional-status</a> (decision 7 Oct 2026).</b> both ask what became of the six new Marolinta boreholes. Their final construction records (borehole-progress form, 25-29 Aug 2026) carry a photograph of an installed hand pump on a finished apron for each of 1052525198, 1052525260, 1052525284, 893673000, 893673127 and 893673158, so each is drilled positive and equipped. No record shows any of them working: that is what stays open.</p><span class=\"muted\"><b>As first raised:</b> <b>Complete the &ldquo;drilling result&rdquo; question on the Marolinta new-construction records (29 Jul&ndash;3 Aug 2026).</b> The six final new constructions on the borehole-progress form were filed before question 1.3b (<i>R&eacute;sultat de la foration</i>) was added, so none records whether the borehole is positive and equipped. They are in the fleet on their pump model; the answer makes &ldquo;completed and equipped&rdquo; explicit on the record.</span>",
