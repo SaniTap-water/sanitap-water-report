@@ -3,40 +3,22 @@
 // mWater's skip/limit paging has no sort order, so the row order shifts
 // between requests: two full pulls of the same 1,688-response form returned
 // the same TOTAL and 147 rows that differed. Paging cannot be trusted to
-// enumerate a set. Walking fixed date windows and de-duplicating on _id can:
-// each window is a bounded query whose answer does not depend on where a
-// previous page stopped.
+// enumerate a set. Date windows split by _id range can, and nothing pages:
+// tools/mwater/enumerate.mjs (20 Oct 2026; until then a window of more than
+// 500 rows was paged with skip, and the CSV pulls went through the MCP CLI,
+// which cut every window at 200 rows).
+//
+// The file is written only when the whole form has been read, so a failed
+// pull never leaves a partial file.
 //
 //   node tools/mwater/pull_form.mjs <form_id> <out.json> [field]
 import fs from "node:fs";
-import { apiGet } from "./api.mjs";
+import { pullResponses } from "./enumerate.mjs";
 
 const [form, out, field = "submittedOn"] = process.argv.slice(2);
 if (!form || !out) { console.error("usage: pull_form.mjs <form_id> <out.json> [dateField]"); process.exit(2); }
 
-const seen = new Map();
-const start = new Date("2019-01-01T00:00:00Z");
-const end = new Date(Date.now() + 86400000);
-const STEP = 30 * 86400000;             // 30-day windows
-
-for (let t = start.getTime(); t < end.getTime(); t += STEP) {
-  const a = new Date(t).toISOString(), b = new Date(Math.min(t + STEP, end.getTime())).toISOString();
-  const filter = { form, [field]: { $gte: a, $lt: b } };
-  let got = 0;
-  for (let skip = 0; ; skip += 500) {
-    const p = await apiGet("responses", { filter: JSON.stringify(filter), limit: 500, skip });
-    for (const r of p) seen.set(r._id, r);
-    got += p.length;
-    if (p.length < 500) break;
-  }
-  if (got) process.stderr.write(`  ${a.slice(0,10)} .. ${b.slice(0,10)}  ${got} row(s), ${seen.size} unique\n`);
-}
-// anything with no date at all
-for (let skip = 0; ; skip += 500) {
-  const p = await apiGet("responses", { filter: JSON.stringify({ form, [field]: null }), limit: 500, skip });
-  for (const r of p) seen.set(r._id, r);
-  if (p.length < 500) break;
-}
-const rows = [...seen.values()];
-fs.writeFileSync(out, JSON.stringify(rows));
+const rows = await pullResponses(form, field);
+fs.writeFileSync(out + ".part", JSON.stringify(rows));
+fs.renameSync(out + ".part", out);
 console.log(`${rows.length} unique response(s) -> ${out}`);

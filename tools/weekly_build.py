@@ -376,6 +376,17 @@ def main():
     def rollback(why, sentence=None):
         run(["git", "reset", "--hard", head])
         run(["git", "clean", "-fd", "editions", "data"])
+        # the extracts too (20 Oct 2026): if this run's pull was swapped into
+        # ~/mwater-exports, the set it replaced - the one the page at HEAD was
+        # built from - goes back, so a later gate run never reads a new pull
+        # beside an old page. A pull that failed swapped nothing.
+        sys.path.insert(0, os.path.join(REPO, "tools"))
+        import pull_extract as PE
+        run_id = os.environ.get("SANITAP_RUN_STARTED")
+        back = PE.restore_previous(run_id) if run_id else None
+        if back:
+            log(f"{tag}~/mwater-exports restored to the set the page at {head[:8]} was built from "
+                f"({len(back)} files)")
         log(f"{tag}REFUSED and ROLLED BACK to {head[:8]}: {why}")
         if sentence:
             said(sentence)
@@ -519,6 +530,11 @@ def main():
              "stopped before commit and push as asked")
         return 0
 
+    # published: the pulled set is now the page's own, so there is nothing
+    # to restore it to
+    sys.path.insert(0, os.path.join(REPO, "tools"))
+    import pull_extract as PE
+    PE.clear_swap()
     sha = run(["git", "rev-parse", "HEAD"]).stdout.strip()[:8]
     bad_urls = []
     for u in (SITE, SITE + "routes.html"):

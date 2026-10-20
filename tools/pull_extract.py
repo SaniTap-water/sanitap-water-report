@@ -17,8 +17,20 @@ build reads, and the manifest records what each one holds.
 import csv, datetime, io, json, os, re, subprocess, sys, time
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
 EXPORTS = os.path.expanduser("~/mwater-exports")
+# A pull is written into STAGE and moved into EXPORTS only when every extract
+# came back (20 Oct 2026). The build of 20 Oct pulled 23 of 24 extracts
+# straight into EXPORTS, failed on the 24th and rolled the repository back -
+# but not the extracts, so the next gate run read today's data beside a page
+# built on 17 Oct. The set the swap replaces is kept in PREVIOUS, and
+# tools/weekly_build.py puts it back when it rolls back a run that swapped
+# (restore_previous), so the extracts always match the page at HEAD.
+STAGE = os.path.expanduser("~/mwater-exports.staging")
+PREVIOUS = os.path.expanduser("~/mwater-exports.previous")
+SWAP_MARK = os.path.join(PREVIOUS, "_swapped_by_run")
+# derived files a build step writes into EXPORTS from this pull; kept and
+# restored with the set so a rollback cannot leave one from another pull
+DERIVED = ("piped_wq_pairs.json",)
 MANIFEST = os.path.join(REPO, "data", "extract_manifest.json")
 
 # canonical name -> snapshot key in data/mwater_form_snapshot.json
@@ -101,23 +113,27 @@ ENTITIES = {
 }
 
 
-def pull_json(name, form_id, tries=3):
+def pull_json(name, form_id, tries=2, out=None):
     """Pull one form to JSON through the stable windowed enumerator.
 
     Retried: a single ECONNRESET part-way through ninety windows killed the
     identification.json pull on the first real run, and a failed pull leaves
     the previous file sitting on disk looking fine. The window walk is
     idempotent - it rebuilds the whole set from scratch and de-duplicates on
-    _id - so retrying is safe.
+    _id - so retrying is safe. Each request inside it is retried with backoff
+    as well (tools/mwater/enumerate.mjs), so two runs of the walk are enough.
     """
-    out = os.path.join(EXPORTS, name)
+    out = out or os.path.join(STAGE, name)
     err = ""
     for attempt in range(tries):
         r = subprocess.run(["node", PULL_FORM, form_id, out],
                            capture_output=True, text=True, cwd=REPO)
         if r.returncode == 0:
             break
-        err = (r.stderr or r.stdout or "")[-200:]
+        # the error's own line, cause included, not a truncated tail
+        lines = (r.stderr or r.stdout or "").splitlines()
+        err = next((l.strip() for l in reversed(lines) if "tries failed" in l or "Error" in l),
+                   " ".join(" ".join(lines).split())[-300:])[:400]
         print(f"  {name}: attempt {attempt + 1} failed, retrying")
         time.sleep(5)
     if r.returncode != 0:
@@ -136,93 +152,56 @@ def json_stats(rows):
     return len(rows), len(set(ids)), (ds[-1] if ds else None)
 
 
-class PullFailed(Exception):
-    """A window that did not come back. Never silently an empty window."""
+def pull_csv_form(name, form_id):
+    """One response form to a CSV extract in STAGE, through the same windowed
+    enumerator as the JSON extracts. Until 20 Oct 2026 these five went through
+    the MCP CLI (~/mwater-mcp/cli_call.mjs), one process and one login per date
+    window, and the CLI prints at most 200 rows: a one-day window cannot be
+    split by date, so 4 Feb 2026 came back as 200 of its 522 call-centre
+    responses with no error. Returns (rows, error)."""
+    tmp = os.path.join(STAGE, name + ".json")
+    rows, err = pull_json(name, form_id, out=tmp)
+    if err is None:
+        os.remove(tmp)
+    return rows, err
 
 
-def call(tool, args, tries=3):
-    """One bounded query. Raises rather than returning [] on failure.
-
-    This returned [] for ANY failure - a non-zero exit, a network reset, an
-    unparseable reply - with no check on the return code. A transient error on
-    one monthly window therefore dropped that window's rows and the pull still
-    reported success. Two pulls of the call-centre form minutes apart returned
-    2,747 and 2,826 rows because of it: 79 records short, silently, and the
-    edition built on whichever pull happened to run.
-
-    An empty window is a real answer and must look different from a window
-    that failed. That is the whole difference between the two.
-    """
-    last = ""
-    for attempt in range(tries):
-        r = subprocess.run(["node", CLI, tool, json.dumps(args)],
-                           capture_output=True, text=True,
-                           cwd=os.path.dirname(CLI))
-        if r.returncode == 0 and "[" in r.stdout:
-            try:
-                return json.loads(r.stdout[r.stdout.index("["):])
-            except json.JSONDecodeError as e:
-                last = f"unparseable reply: {e}"
-        else:
-            # cli_call.mjs exits 0 and prints the tool's error on stdout (a
-            # failed login included); stderr carries only the server banner
-            last = (f"exit {r.returncode}: "
-                    + " ".join((r.stdout.strip() or r.stderr or "").split())[-160:])
-        if attempt + 1 < tries:
-            time.sleep(5)
-    raise PullFailed(f"{tool} {json.dumps(args)[:90]}: {last}")
+def swap_in(names):
+    """Move a complete pull from STAGE into EXPORTS, keeping the set it
+    replaces in PREVIOUS, marked with this run (SANITAP_RUN_STARTED)."""
+    import shutil
+    if os.path.isdir(PREVIOUS):
+        shutil.rmtree(PREVIOUS)
+    os.makedirs(PREVIOUS)
+    for n in sorted(set(names) | set(DERIVED)):
+        cur = os.path.join(EXPORTS, n)
+        if os.path.isfile(cur):
+            shutil.copy2(cur, os.path.join(PREVIOUS, n))
+    with open(SWAP_MARK, "w") as fh:
+        fh.write(os.environ.get("SANITAP_RUN_STARTED") or datetime.datetime.now().isoformat(timespec="seconds"))
+    for n in names:
+        os.replace(os.path.join(STAGE, n), os.path.join(EXPORTS, n))
 
 
-# The MCP server's exporter pages with skip/limit and no sort order. mWater
-# returns rows in an order that shifts between requests, so a long export
-# duplicates some rows and DROPS others - and stops on a short page, so it
-# reports success either way. A 21 September export of the preventive
-# maintenance form wrote 755 rows of which only 547 were distinct, and the
-# four most recent responses - 3, 4, 10 and 11 September - were not among
-# them. That is how a pull can run, report success, and still leave the page
-# a fortnight behind.
-#
-# So this does not page. It walks fixed date windows, which are stable no
-# matter what order the server answers in, and de-duplicates on _id. A window
-# that comes back full is split, because a full window may have been cut off.
-WINDOW_FULL = 190          # the CLI truncates its output at 200 rows
+def clear_swap():
+    """After a publish the swapped-in set is the page's own: forget the swap."""
+    if os.path.isfile(SWAP_MARK):
+        os.remove(SWAP_MARK)
 
 
-def fetch_windowed(form_id, start, end, depth=0):
-    """Every response between two dates, by stable date windows."""
-    got = call("mwater_responses",
-               {"form_id": form_id, "limit": 500,
-                "filter_json": json.dumps(
-                    {"submittedOn": {"$gte": start.isoformat(),
-                                     "$lt": end.isoformat()}})})
-    if len(got) >= WINDOW_FULL and (end - start).days > 1 and depth < 8:
-        mid = start + (end - start) / 2
-        mid = datetime.date(mid.year, mid.month, mid.day)
-        return (fetch_windowed(form_id, start, mid, depth + 1)
-                + fetch_windowed(form_id, mid, end, depth + 1))
-    return got
-
-
-def pull_form(form_id, first=datetime.date(2023, 1, 1)):
-    end = datetime.date.today() + datetime.timedelta(days=2)
-    rows, seen = [], set()
-    cur = first
-    while cur < end:
-        nxt = min(datetime.date(cur.year + (cur.month // 12),
-                                (cur.month % 12) + 1, 1), end)
-        for r in fetch_windowed(form_id, cur, nxt):
-            if r.get("_id") not in seen:
-                seen.add(r["_id"])
-                rows.append(r)
-        cur = nxt
-    # responses with no submittedOn never appear in a date window
-    for r in call("mwater_responses",
-                  {"form_id": form_id, "limit": 500,
-                   "filter_json": json.dumps({"submittedOn": {"$exists": False}})}):
-        if r.get("_id") not in seen:
-            seen.add(r["_id"])
-            rows.append(r)
-    return rows
+def restore_previous(run=None):
+    """Put back the extract set a swap replaced. With `run`, only if that run
+    made the swap. Returns the files restored, or None if nothing to do."""
+    import shutil
+    if not os.path.isfile(SWAP_MARK):
+        return None
+    if run is not None and open(SWAP_MARK).read().strip() != run:
+        return None
+    back = sorted(n for n in os.listdir(PREVIOUS) if n != os.path.basename(SWAP_MARK))
+    for n in back:
+        shutil.copy2(os.path.join(PREVIOUS, n), os.path.join(EXPORTS, n))
+    os.remove(SWAP_MARK)
+    return back
 
 
 def write_csv(rows, path):
@@ -266,6 +245,11 @@ def main():
         return 0
     if mode != "--write":
         sys.exit("usage: pull_extract.py --write | --show")
+    import shutil
+    if os.path.isdir(STAGE):
+        shutil.rmtree(STAGE)
+    os.makedirs(STAGE)
+    os.makedirs(EXPORTS, exist_ok=True)
     snap = json.load(open(os.path.join(REPO, "data",
                                        "mwater_form_snapshot.json")))["forms"]
     files, failed = {}, []
@@ -274,11 +258,10 @@ def main():
         if not fid:
             failed.append(f"{name}: no form id for {key} in the snapshot")
             continue
-        p = os.path.join(EXPORTS, name)
-        try:
-            rows = pull_form(fid)
-        except PullFailed as e:
-            failed.append(f"{name}: {e}")
+        p = os.path.join(STAGE, name)
+        rows, err = pull_csv_form(name, fid)
+        if err is not None:
+            failed.append(f"{name}: {err}")
             continue
         write_csv(rows, p)
         n, uniq, new = newest(p)
@@ -301,7 +284,7 @@ def main():
         if n != uniq:
             failed.append(f"{name}: {n - uniq} duplicate rows after a windowed "
                           "pull - the windows are overlapping")
-        p = os.path.join(EXPORTS, name)
+        p = os.path.join(STAGE, name)
         files[name] = {"form_id": fid, "rows": n, "unique": uniq,
                        "newest_submitted": new_,
                        "read_by": ("nothing yet: pulled and counted only"
@@ -320,7 +303,7 @@ def main():
     # an eleven-day-old register meant a pump rehabilitated last week was not
     # in the fleet and the page still said 736 with confidence.
     for name, (etype, group) in ENTITIES.items():
-        p = os.path.join(EXPORTS, name)
+        p = os.path.join(STAGE, name)
         # Retried like the form pulls: the real build of 25 September died on
         # one read ETIMEDOUT in the register pull, the only pull that had no
         # retry. The walk writes nothing unless it completes and agrees with
@@ -358,6 +341,14 @@ def main():
     # weeks: repairs.csv, written 21 September, was a correct export of the
     # repair form under a name no build has ever opened. Anything in the
     # exports directory that is not canonical is reported, not ignored.
+    # ALL OR NOTHING: a pull with any failure leaves EXPORTS as it was, and
+    # writes no manifest, so nothing downstream can read a mixed set
+    if failed:
+        print("\nPROBLEMS (nothing moved into ~/mwater-exports; it holds the last complete pull):")
+        for f in failed:
+            print("  " + f)
+        return 1
+    swap_in(list(files))
     known = set(FORMS) | set(ENTITIES)
     strays = sorted(f for f in os.listdir(EXPORTS)
                     if f.endswith(".csv") and f not in known

@@ -345,7 +345,15 @@ def literals(nodes):
                      or bool(re.match(r"\s*(,|and)\s*[-\u2212]?\d{1,3}\.\d{2,}", after))
                      or bool(re.search(r"[-\u2212]\s*$", before)
                              and re.match(r"^\d{1,3}\.\d{2,}$", raw)))
-            if tok_before or tok_after:
+            # "N days ago" (20 Oct 2026): the age of the form snapshot,
+            # written by tools/render_form_freshness.py from the snapshot's
+            # own date beside that date - a display of a date, not a figure.
+            # Only a text node that is exactly "N days ago" (the <b> the
+            # generator writes) is dropped; a number in a sentence that also
+            # says "days ago" is still a quantity.
+            if re.fullmatch(r"\d+ days ago", t.strip()):
+                why = "age of a date shown beside it"
+            elif tok_before or tok_after:
                 why = "identifier (inside a token)"
             elif coord:
                 why = "coordinate"
