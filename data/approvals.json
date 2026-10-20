@@ -73,6 +73,11 @@
     }
    },
    "task": "1219576216429687"
+  },
+  "2026-W43": {
+   "status": "pending",
+   "task": "1219678486354018",
+   "note": "Task created 20 Oct 2026 by a check-only gate run; recorded here so the week-43 build updates it instead of creating a second one (Adriaan Mol, 20 Oct 2026)."
   }
  }
 }
