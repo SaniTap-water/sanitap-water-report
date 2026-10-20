@@ -12,16 +12,15 @@ This tool records both numbers so the page can state its own age instead of
 implying it is current:
 
     latest_in_extract   the newest date anywhere in the data the page carries
-    latest_in_mwater    the newest submission in mWater, per form, right now
+    latest_in_mwater    the newest submission in mWater, per form, when this run pulled it
 
-    python3 tools/check_freshness.py --write   # query mWater, rewrite the JSON
+    python3 tools/check_freshness.py --write   # from the pull manifest, rewrite the JSON
     python3 tools/check_freshness.py --show    # print what is on file
 """
 import datetime, json, os, re, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "data_freshness.json")
-CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
 SNAP = os.path.join(REPO, "data", "mwater_form_snapshot.json")
 
 # the forms that constitute "activity" for the week counters
@@ -61,28 +60,20 @@ def extract_dates():
     }
 
 
+# the extract file behind each activity form
+FILE_OF = {"preventive-maintenance": "pm.csv",
+           "repair-after-breakdown": "reparation_apres_panne.csv",
+           "call-centre": "appel_signalement_pannes.csv",
+           "premiere-rehabilitation": "premiere_rehabilitation.csv"}
+
+
 def mwater_latest():
-    snap = json.load(open(SNAP))["forms"]
-    out = {}
-    since = (datetime.date.today() - datetime.timedelta(days=60)).isoformat()
-    for key in ACTIVITY:
-        fid = snap.get(key, {}).get("id")
-        if not fid:
-            continue
-        args = json.dumps({"form_id": fid, "limit": 2000,
-                           "filter_json": json.dumps(
-                               {"submittedOn": {"$gte": since}})})
-        r = subprocess.run(["node", CLI, "mwater_responses", args],
-                           capture_output=True, text=True,
-                           cwd=os.path.dirname(CLI))
-        s = r.stdout
-        if "[" not in s:
-            out[key] = None
-            continue
-        rows = json.loads(s[s.index("["):])
-        ds = sorted(x["submittedOn"][:10] for x in rows if x.get("submittedOn"))
-        out[key] = ds[-1] if ds else None
-    return out
+    """The newest submission mWater held for each form when this run pulled it,
+    from the pull manifest - not a second live read (20 Oct 2026: one mWater
+    read per run). The pull reads every response, so its newest IS mWater's
+    newest at that moment; the build follows it within the same run."""
+    _newest, files = extract_file_dates()
+    return {k: files.get(f) for k, f in FILE_OF.items() if k in ACTIVITY}
 
 
 def extract_file_dates():

@@ -102,6 +102,58 @@ READ_BY = {"wq_results_piped.json": "rebuild_piped_wq.py",
            "hygiene_san.json": "rebuild_hygiene.py"}
 PULL_FORM = os.path.join(REPO, "tools", "mwater", "pull_form.mjs")
 PULL_ENTITIES = os.path.join(REPO, "tools", "mwater", "pull_entities.mjs")
+# Whatever a build step used to read live from mWater (20 Oct 2026: one mWater
+# read per run, the pull). name -> (description, command). Required in a pull;
+# a kept set from before they existed is reused without them, and the metrics
+# they feed are then "not counted this build", never carried from an older one.
+EXTRAS = {
+    # first: the pull reads the form ids from it
+    "mwater_form_snapshot.json": ("the mWater form designs (data/mwater_form_snapshot.json)",
+                                  ["python3", "tools/refresh_form_snapshot.py", "--to", "@out"]),
+    "stroke_meter.json": ("the stroke-meter form's responses",
+                          ["node", "tools/mwater/pull_form.mjs", "8be8e0384709433795d2d0197e98275f", "@out"]),
+    "enduro_tana_team.json": ("members of the Endur'O Tana enumerator team",
+                              ["node", "tools/mwater/group_members.mjs", "58b57544a8f94313acd87ad79eae598d"]),
+    "piped_record_forms.json": ("SDWS 27 records on the managed piped systems",
+                                ["node", "tools/mwater/piped_record_forms.mjs", "@managed_piped_codes"]),
+}
+
+
+def managed_piped_codes():
+    """The managed piped systems and their water points, from the last build's
+    data/piped_wq.json (the pull runs before this build recomputes it)."""
+    pw = json.load(open(os.path.join(REPO, "data", "piped_wq.json"), encoding="utf8"))
+    managed = [c for c, v in pw["systems"].items() if v["status"] == "managed"]
+    return sorted(set(managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]))
+
+
+def pull_extra(name):
+    """One EXTRAS read into STAGE; (doc, error)."""
+    _desc, cmd = EXTRAS[name]
+    out = os.path.join(STAGE, name)
+    cmd = [",".join(managed_piped_codes()) if a == "@managed_piped_codes"
+           else out if a == "@out" else a for a in cmd]
+    for attempt in range(2):
+        r = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO)
+        if "@out" in EXTRAS[name][1]:
+            if r.returncode == 0 and os.path.isfile(out):
+                return json.load(open(out, encoding="utf8")), None
+            err = " ".join((r.stderr or r.stdout or "no output").split())[-200:]
+            continue
+        if r.returncode == 0 and r.stdout.strip():
+            try:
+                doc = json.loads(r.stdout[r.stdout.index("{") if r.stdout.lstrip()[:1] == "{" else r.stdout.index("["):])
+            except ValueError as e:
+                err = f"unreadable output: {e}"
+                continue
+            if name == "piped_record_forms.json":
+                doc = {"codes": cmd[-1].split(","), **doc}
+            json.dump(doc, open(os.path.join(STAGE, name), "w", encoding="utf8"), indent=1)
+            return doc, None
+        err = " ".join((r.stderr or r.stdout or "no output").split())[-200:]
+    return None, f"2 attempts failed; last: {err}"
+
+
 # Entity extracts: name -> (entity type, managed-by group). The register is
 # MadAvance's; the piped systems are Endur'O's, which the piped water-quality
 # samples name as their site (tools/rebuild_piped_wq.py places each one).
@@ -281,11 +333,21 @@ def reuse(src):
     os.makedirs(STAGE)
     files = {}
     snap = json.load(open(os.path.join(REPO, "data", "mwater_form_snapshot.json")))["forms"]
-    names = expected_names() + [d for d in DERIVED if os.path.isfile(os.path.join(src, d))]
+    absent = [n for n in EXTRAS if not os.path.isfile(os.path.join(src, n))]
+    names = (expected_names() + [n for n in EXTRAS if n not in absent]
+             + [d for d in DERIVED if os.path.isfile(os.path.join(src, d))])
     for n in names:
         p = os.path.join(STAGE, n)
         shutil.copy2(os.path.join(src, n), p)
         if n in DERIVED:
+            continue
+        if n in EXTRAS:
+            doc_ = json.load(open(p, encoding="utf8"))
+            files[n] = {"extra": EXTRAS[n][0], "rows": len(doc_) if isinstance(doc_, list) else 1,
+                        "unique": len(doc_) if isinstance(doc_, list) else 1,
+                        "newest_submitted": json_stats(doc_)[2] if isinstance(doc_, list) else None,
+                        "sha256": _sha(p), "written": datetime.datetime.fromtimestamp(
+                            os.path.getmtime(p)).isoformat(timespec="seconds")}
             continue
         if n.endswith(".json"):
             rows = json.load(open(p, encoding="utf8"))
@@ -324,6 +386,7 @@ def reuse(src):
            "reused_at": datetime.datetime.now().isoformat(timespec="seconds"),
            "files": files, "newest_in_files": max(dates) if dates else None,
            "failed": [], "strays": [],
+           "absent_extras": {n: EXTRAS[n][0] for n in absent},
            "note": ("Reused, not pulled: the set a run pulled at pulled_at, installed "
                     "unchanged by tools/pull_extract.py --reuse. No mWater read.")}
     json.dump(doc, open(MANIFEST, "w"), indent=1, sort_keys=True)
@@ -369,9 +432,12 @@ def main():
         shutil.rmtree(STAGE)
     os.makedirs(STAGE)
     os.makedirs(EXPORTS, exist_ok=True)
+    files, failed = {}, []
+    _doc, err = pull_extra("mwater_form_snapshot.json")
+    if err is not None:
+        failed.append(f"mwater_form_snapshot.json: {err}")
     snap = json.load(open(os.path.join(REPO, "data",
                                        "mwater_form_snapshot.json")))["forms"]
-    files, failed = {}, []
     for name, key in FORMS.items():
         fid = snap.get(key, {}).get("id")
         if not fid:
@@ -455,6 +521,26 @@ def main():
             "rows": n, "unique": len(codes),
             "written": datetime.datetime.fromtimestamp(
                 os.path.getmtime(p)).isoformat(timespec="seconds")}
+
+    for name in EXTRAS:
+        if name == "mwater_form_snapshot.json":
+            p = os.path.join(STAGE, name)
+            if os.path.isfile(p):
+                files[name] = {"extra": EXTRAS[name][0], "rows": 1, "unique": 1,
+                               "newest_submitted": None, "written": datetime.datetime.fromtimestamp(
+                                   os.path.getmtime(p)).isoformat(timespec="seconds")}
+            continue
+        doc, err = pull_extra(name)
+        if err is not None:
+            failed.append(f"{name}: {err}")
+            continue
+        p = os.path.join(STAGE, name)
+        files[name] = {"extra": EXTRAS[name][0],
+                       "rows": len(doc) if isinstance(doc, list) else 1,
+                       "unique": len(doc) if isinstance(doc, list) else 1,
+                       "newest_submitted": json_stats(doc)[2] if isinstance(doc, list) else None,
+                       "written": datetime.datetime.fromtimestamp(
+                           os.path.getmtime(p)).isoformat(timespec="seconds")}
 
     # A pull that lands on a name nothing reads is the failure that cost two
     # weeks: repairs.csv, written 21 September, was a correct export of the

@@ -344,6 +344,9 @@ def main():
         REUSE = os.path.realpath(os.path.expanduser(argv[i + 1])) if i + 1 < len(argv) else ""
         if not REUSE or not os.path.isdir(REUSE):
             sys.exit(f"--reuse-extracts: {REUSE or '(no directory given)'} is not a directory")
+        # zero mWater calls: tools/mwater/api.mjs refuses every request and
+        # tools/refresh_form_snapshot.py takes its offline path
+        os.environ["SANITAP_NO_MWATER"] = "1"
     tag = "[dry-run] " if dry else ""
     requested = os.path.isfile(REQUEST)
     if requested:
@@ -434,6 +437,9 @@ def main():
             if skip and script.endswith("pull_extract.py"):
                 log(f"{tag}SKIPPING the extract pull (SANITAP_SKIP_PULL=1); "
                     "using the extracts already on disk")
+                continue
+            if REUSE and script.endswith("mwater_backup.py"):
+                log(f"{tag}SKIPPING the mWater backup (a run on kept extracts makes no mWater call)")
                 continue
             if dry and script.endswith("mwater_backup.py"):
                 log(f"{tag}SKIPPING the mWater backup (dry run)")

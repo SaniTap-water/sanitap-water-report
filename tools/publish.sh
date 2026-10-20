@@ -37,21 +37,45 @@ done
 
 say() { printf '  %s\n' "$*"; }
 
-# ---- per-gate log -----------------------------------------------------------
-# The last command that is not bookkeeping is remembered, and every status
-# capture below calls gate_log, which prints and appends one line at once.
-mkdir -p "$REPO/logs"
+# ---- every gate runs, every result is kept (20 Oct 2026) --------------------
+# No gate stops the run. Each records its result the moment it finishes - in
+# logs/gates.log, and for this run in logs/gates_run.tsv with the file holding
+# its output - and tools/gate_decide.py decides at the end from
+# data/gate_classes.json: a BLOCKING failure publishes nothing; REVIEW failures
+# publish, PROVISIONAL on the page and on the week's approval task.
+mkdir -p "$REPO/logs/gate_out"
 GATELOG="$REPO/logs/gates.log"
-LASTCMD=""
-trap 'case "$BASH_COMMAND" in RC=*|GATE=*|gate_log*|say*|printf*|"["*|LASTCMD=*|tail*|head*|grep*) ;; *) LASTCMD="$BASH_COMMAND" ;; esac' DEBUG
-gate_log() {
-  local rc="$1" what
-  what=$(printf '%s' "$LASTCMD" | grep -o 'tools/[A-Za-z0-9_]*\.\(py\|sh\)\( --[a-z-]*\)*' | head -1)
-  [ -n "$what" ] || what=$(printf '%s' "$LASTCMD" | cut -c1-60)
-  local line
-  line="$(date -u +%FT%TZ)  GATE $([ "$rc" -eq 0 ] && echo PASS || echo "FAIL (exit $rc)")  $what"
-  printf '  %s\n' "$line"
-  printf '%s\n' "$line" >> "$GATELOG"
+RESULTS="$REPO/logs/gates_run.tsv"
+RUNLOG="$REPO/logs/publish_run.log"
+: > "$RESULTS"; : > "$RUNLOG"; rm -f "$REPO"/logs/gate_out/*.txt
+exec > >(tee -a "$RUNLOG") 2>&1
+LASTOFF=0
+gate_result() {          # gate_result ID STATUS MESSAGE
+  local id="$1" rc="$2" msg="${3:-}" now off out
+  sleep 0.3              # let tee catch up, so the gate's output is in the log
+  off=$(stat -c %s "$RUNLOG" 2>/dev/null || echo 0)
+  out="$REPO/logs/gate_out/${id//[^A-Za-z0-9_.-]/_}.txt"
+  tail -c +$((LASTOFF + 1)) "$RUNLOG" | head -c $((off - LASTOFF)) > "$out"
+  LASTOFF=$off
+  now=$(date -u +%FT%TZ)
+  if [ "$rc" -eq 0 ]; then
+    printf '  %s  GATE PASS  %s\n' "$now" "$id"
+    printf '%s  GATE PASS  %s\n' "$now" "$id" >> "$GATELOG"
+  else
+    printf '  %s  GATE FAIL (exit %s)  %s: %s\n' "$now" "$rc" "$id" "$msg"
+    printf '%s  GATE FAIL (exit %s)  %s: %s\n' "$now" "$rc" "$id" "$msg" >> "$GATELOG"
+  fi
+  printf '%s\t%s\t%s\t%s\n' "$id" "$rc" "$msg" "$out" >> "$RESULTS"
+}
+# A layout-type gate that fails is run once more on the same built page, and
+# the second result counts (data/gate_classes.json rerun_once).
+rerun_once() {           # rerun_once STATUS COMMAND...  -> sets RC
+  RC="$1"; shift
+  if [ "$RC" -ne 0 ]; then
+    say "failed (exit $RC); running it once more on the same page ..."
+    "$@"
+    RC=$?
+  fi
 }
 printf '%s  ---- publish.sh %s\n' "$(date -u +%FT%TZ)" "$([ "$CHECK_ONLY" -eq 1 ] && echo --check-only || echo -m)${REUSE:+ --reuse-extracts $REUSE}" >> "$GATELOG"
 
@@ -60,8 +84,8 @@ if [ -n "$REUSE" ]; then
   say ""
   say "verifying the reused extract set ..."
   python3 tools/pull_extract.py --verify-reuse "$REUSE"
-  RC=$?; gate_log "$RC"
-  if [ "$RC" -ne 0 ]; then say "ABORT: ~/mwater-exports is not the reused set $REUSE. Nothing committed."; exit 2; fi
+  RC=$?
+  gate_result verify_reuse "$RC" "~/mwater-exports is not the reused set $REUSE. Nothing committed."
 fi
 
 # ---- 0. freeze the outgoing edition ----------------------------------------
@@ -107,14 +131,14 @@ fi
 # This step NEVER fails the build for being offline - a machine with no network
 # or no credentials publishes from the committed snapshot and says so. It is
 # the consistency checker, below, that refuses a snapshot older than a week.
+# every build starts with no provisional items: the list is this run's alone
+python3 tools/provisional.py --clear
+
 say ""
 say "refreshing the mWater form snapshot ..."
-python3 tools/refresh_form_snapshot.py --if-possible
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the snapshot refresh failed for a reason other than being offline (exit $RC)."
-  exit 2
-fi
+python3 tools/refresh_form_snapshot.py --from-extract
+RC=$?
+gate_result form_snapshot "$RC" "the snapshot refresh failed for a reason other than being offline (exit $RC)."
 
 # Regenerate every generated region of index.html from its own generator, so
 # the gate sees current output rather than yesterday's. Each generator is
@@ -129,18 +153,15 @@ for gen in tools/render_block.py tools/render_form_freshness.py tools/render_ttr
            tools/render_datasets.py tools/asana_pull.py tools/render_actions.py tools/render_portfolio.py \
            tools/render_piped_pairing.py tools/render_sdws18.py tools/iron_manganese.py; do
   python3 "$gen" --write
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: $gen failed (exit $RC). Nothing committed."
-    exit 2
-  fi
+  RC=$?
+  gate_result "generator:$gen" "$RC" "$gen failed (exit $RC). Nothing committed."
   # owners (7 Oct 2026): Asana is the single source. The pull has taken in
   # reassignments made in Asana; an owner changed in the repository is pushed
   # to its task now, in the same run, before the action list is rendered.
   if [ "$gen" = "tools/asana_pull.py" ]; then
     python3 tools/asana_setup.py --push-owners
-    RC=$?; gate_log "${RC}"
-    if [ "$RC" -ne 0 ]; then say "ABORT: pushing owners to Asana failed (exit $RC). Nothing committed."; exit 2; fi
+    RC=$?
+    gate_result asana_push_owners "$RC" "pushing owners to Asana failed (exit $RC). Nothing committed."
   fi
 done
 
@@ -149,22 +170,16 @@ done
 # equal Asana's, and nothing is closed without recorded evidence. The Asana
 # read above is read-only; tools/asana_setup.py is the only writer.
 python3 tools/check_asana.py
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the action list disagrees with Asana or closes an action without evidence (exit $RC)."
-  exit 1
-fi
+RC=$?
+gate_result asana "$RC" "the action list disagrees with Asana or closes an action without evidence (exit $RC)."
 
 # ---- 1b. status -> action gate (30 Sep 2026) ---------------------------------
 # Every non-complete status in a requirements/evidence table names an OPEN
 # action (data/status_actions.json) and links to it. The links are written
 # after the action list, then checked; a failure stops the build here.
 python3 tools/status_actions.py --write --check
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: a non-complete status has no open action, or an action closed while its status is still open (exit $RC)."
-  exit 1
-fi
+RC=$?
+gate_result status_actions "$RC" "a non-complete status has no open action, or an action closed while its status is still open (exit $RC)."
 
 # ---- 1c. the render gate ---------------------------------------------------
 # Markup checks cannot see a page that parses but no longer shows what it
@@ -188,39 +203,24 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
     && python3 tools/asana_setup.py --approval \
     && python3 tools/render_datasets.py --write \
     && python3 tools/change_review.py --write
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the change review could not run (exit $RC). Nothing committed."
-    exit 1
-  fi
+  RC=$?
+  gate_result change_review "$RC" "the change review could not run (exit $RC). Nothing committed."
   # act-cal-working-day-ticks (7 Oct 2026): Angelo's answers in the checklist
   # workbook are copied into docs/transcription_round_notes.md every build.
   "$PYBIN" tools/calendar_check.py --write && "$PYBIN" tools/calendar_check.py --check
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the calendar checklist answers could not be copied (exit $RC). Nothing committed."
-    exit 1
-  fi
+  RC=$?
+  gate_result calendar_check "$RC" "the calendar checklist answers could not be copied (exit $RC). Nothing committed."
   say "prerendering every figure into the static HTML ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --write
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a figure could not be prerendered into the static HTML (exit $RC)."
-    exit 1
-  fi
+  RC=$?
+  gate_result prerender_write "$RC" "a figure could not be prerendered into the static HTML (exit $RC)."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/render_check.py
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the rendered page does not match the manifest (exit $RC)."
-    say "Nothing committed. Inspect, fix, or re-record with --manifest if intended."
-    exit 1
-  fi
+  RC=$?
+  rerun_once "$RC" env PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/render_check.py
+  gate_result render_check "$RC" "the rendered page does not match the manifest (exit $RC)."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/prerender_figures.py --check
-  RC=$?; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a static figure value differs from what the page computes (exit $RC)."
-    exit 1
-  fi
+  RC=$?
+  gate_result static_figures "$RC" "a static figure value differs from what the page computes (exit $RC)."
 
   # The transcription page is where the human round is done. On 28 Sep 2026 a
   # full pass exported 22 of 83 calendars because an empty calendar was never
@@ -229,55 +229,39 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   say ""
   say "checking the formatting and readability rule on every table ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_readability.py --no-shots | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a table breaks the formatting and readability rule (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result readability "$RC" "a table breaks the formatting and readability rule (exit $RC)."
   say ""
   say "checking the layout acceptance test (1522 px and 506 px, every <details> open) ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_layout.py | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the layout acceptance test failed (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  rerun_once "$RC" bash -o pipefail -c "PLAYWRIGHT_BROWSERS_PATH='$PW' '$PYBIN' tools/check_layout.py | tail -12"
+  gate_result layout "$RC" "the layout acceptance test failed (exit $RC)."
   say ""
   say "checking that every provenance panel follows the scope buttons ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_provenance.py | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a provenance panel does not match its figure, or names a source its scope does not use (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result provenance "$RC" "a provenance panel does not match its figure, or names a source its scope does not use (exit $RC)."
   say ""
   say "opening every panel and expanding block at 1280, 1440 and 1920 px ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/check_panels.py | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a panel or expanding block overlaps, is clipped or does not push the content down (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  rerun_once "$RC" bash -o pipefail -c "PLAYWRIGHT_BROWSERS_PATH='$PW' '$PYBIN' tools/check_panels.py | tail -12"
+  gate_result panels "$RC" "a panel or expanding block overlaps, is clipped or does not push the content down (exit $RC)."
   say ""
   say "testing the transcription page in the browser ..."
   # every failing assertion is printed, not only the last lines (7 Oct 2026)
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_transcription_page.py | grep -v "^  PASS" | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the transcription page fails its browser test (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result transcription_page "$RC" "the transcription page fails its browser test (exit $RC)."
   # The route page's exports (16 Oct 2026): the CSV per site holds exactly
   # its routed pumps, and the day sheets print with their map and stop table,
   # one page per day, with nothing on the console.
   say ""
   say "testing the route page's CSV and print exports in the browser ..."
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/test_routes_page.py | grep -v "^  PASS" | tail -12
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the route page's exports fail their browser test (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result routes_page "$RC" "the route page's exports fail their browser test (exit $RC)."
 
   # Every number on the page must be live, declared in PARAMS with its
   # citation, or from a dated manual file. These two gates enforce it from
@@ -296,37 +280,24 @@ if [ -x "$PYBIN" ] && PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" -c "import playwri
   say ""
   say "checking for a silent form migration ..."
   "$PYBIN" tools/populations.py --migration | tail -8
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a successor form carries a response no population reads."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result migration "$RC" "a successor form carries a response no population reads."
 
   say "checking the mWater links ..."
   python3 tools/check_links.py | tail -8
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: the page links to an mWater route that does not exist."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result links "$RC" "the page links to an mWater route that does not exist."
 
   say ""
   say "running the figure gates (LIVE: nothing unsourced may be added) ..."
   # THE FIGURE GATE IS LIVE. Anything not on the dated residue list fails
   # the build. The list may only shrink - see act-figure-residue.
   PLAYWRIGHT_BROWSERS_PATH="$PW" "$PYBIN" tools/figure_census.py --gate | tail -22
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a figure renders on the page with no source (exit $RC)."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result figure_census "$RC" "a figure renders on the page with no source (exit $RC)."
   "$PYBIN" tools/prose_figures.py --gate | tail -22
-  RC=${PIPESTATUS[0]}; gate_log "${RC}"
-  if [ "$RC" -ne 0 ]; then
-    say "ABORT: a figure is typed into the prose (exit $RC)."
-    say "Make it a data-fig span, a PARAMS entry, or a dated manual figure."
-    exit 1
-  fi
+  RC=${PIPESTATUS[0]}
+  gate_result prose_figures "$RC" "a figure is typed into the prose (exit $RC)."
 else
   say "  SKIPPED: playwright/chromium not available here."
   say "  The markup checks below still run, but nothing is verifying what renders."
@@ -339,47 +310,32 @@ fi
 say ""
 say "checking that no figure is empty without JavaScript ..."
 python3 tools/prerender_figures.py --gate
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: a figure renders empty in the static HTML (exit $RC)."
-  say "Run tools/prerender_figures.py --write (needs the headless browser)."
-  exit 1
-fi
+RC=$?
+gate_result empty_figures "$RC" "a figure renders empty in the static HTML (exit $RC)."
 
 say ""
 say "checking extract vintages ..."
-python3 tools/check_vintage.py | tail -8
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: an extract is older than the build it is feeding."
-  say "A stale edition that looks current is worse than no edition. Nothing committed."
-  exit 1
-fi
+python3 tools/check_vintage.py --part pull | tail -8
+RC=${PIPESTATUS[0]}
+gate_result vintage_pull "$RC" "an extract is missing, failed, older than the build or from another pull."
+python3 tools/check_vintage.py --part shrink | tail -6
+RC=${PIPESTATUS[0]}
+gate_result vintage_shrink "$RC" "an extract has fewer rows than at the last passing build, with no recorded acceptance."
 
 say ""
 say "checking WPOPMETA against the allocation run's own summary ..."
 python3 tools/check_wpopmeta.py | tail -4
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: a WPOPMETA field disagrees with the run that produced it."
-  exit 1
-fi
+RC=${PIPESTATUS[0]}
+gate_result wpopmeta "$RC" "a WPOPMETA field disagrees with the run that produced it."
 
 say ""
 say "checking that every embedded figure has a generator ..."
 python3 tools/change_review.py --check
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the change review failed: a repository move without a decision, an approval not by Adriaan or Jan, or a stale review (exit $RC)."
-  exit 1
-fi
+RC=$?
+gate_result change_review_check "$RC" "the change review failed: a repository move without a decision, an approval not by Adriaan or Jan, or a stale review (exit $RC)."
 python3 tools/check_generators.py
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: an embedded field has no generator, or a generator disagrees with what is stored."
-  say "A field nothing can move is a field nobody is checking. Nothing committed."
-  exit 1
-fi
+RC=$?
+gate_result generators "$RC" "an embedded field has no generator, or a generator disagrees with what is stored."
 
 # The catch-up route plans (16 Oct 2026). tools/build_routes.py draws them in
 # weekly_build.py from that build's overdue list; this refuses an edition whose
@@ -390,21 +346,14 @@ fi
 say ""
 say "checking the catch-up route plans against this edition's overdue list ..."
 python3 tools/check_routes.py
-RC=$?; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the route plans are not this build's, or do not cover the overdue pumps (exit $RC)."
-  say "They are drawn by tools/build_routes.py --write, which tools/weekly_build.py runs."
-  exit 1
-fi
+RC=$?
+gate_result routes_plans "$RC" "the route plans are not this build's, or do not cover the overdue pumps (exit $RC)."
 
 say ""
 say "checking the extracts for the paging fault ..."
 python3 tools/check_extracts.py | tail -12
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: an extract the build reads carries a repeated _id."
-  exit 1
-fi
+RC=${PIPESTATUS[0]}
+gate_result paging "$RC" "an extract the build reads carries a repeated _id."
 
 # Piped results paired with their samples (Adriaan Mol, 28 Sep 2026). A
 # readout, not a pass/fail: what did not pair is listed with its response
@@ -413,31 +362,22 @@ fi
 say ""
 say "pairing piped water-quality results with their samples (counted, never failing) ..."
 python3 tools/rebuild_piped_wq.py --pairing | head -40
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the piped pairing could not be computed (exit $RC)."
-  exit 2
-fi
+RC=${PIPESTATUS[0]}
+gate_result piped_pairing "$RC" "the piped pairing could not be computed (exit $RC)."
 
 # A new Moramanga point hung on a duplicate system record instead of the
 # record of record (Adriaan Mol, 29 Sep 2026). A readout, never failing.
 say ""
 say "checking Moramanga points for a duplicate parent (counted, never failing) ..."
 python3 tools/moramanga_dedupe.py --wrong-parent | head -20
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: the wrong-parent check could not run (exit $RC)."
-  exit 2
-fi
+RC=${PIPESTATUS[0]}
+gate_result moramanga_parent "$RC" "the wrong-parent check could not run (exit $RC)."
 
 say ""
 say "recomputing the corrections-log distances ..."
 python3 tools/check_distances.py | tail -4
-RC=${PIPESTATUS[0]}; gate_log "${RC}"
-if [ "$RC" -ne 0 ]; then
-  say "ABORT: a stated distance no longer reproduces from located_register_points."
-  exit 1
-fi
+RC=${PIPESTATUS[0]}
+gate_result distances "$RC" "a stated distance no longer reproduces from located_register_points."
 
 say ""
 say "running consistency checker ..."
@@ -445,25 +385,35 @@ say "running consistency checker ..."
 # rendered check needs Playwright, and system python3 has none (10 Oct 2026).
 CPY=python3; [ -x "$PYBIN" ] && CPY="$PYBIN"
 PLAYWRIGHT_BROWSERS_PATH="$PW" "$CPY" tools/check_consistency.py index.html portfolio.html
-GATE=$?; gate_log "${GATE}"
-say ""
+GATE=$?
+case "$GATE" in
+  0) gate_result consistency 0 "" ;;
+  2) gate_result consistency 2 "the consistency checker could not run (exit 2)." ;;
+  *) gate_result consistency "$GATE" "consistency checks FAILED (exit $GATE)." ;;
+esac
 
-if [ "$GATE" -eq 2 ]; then
-  say "ABORT: the consistency checker could not run (exit 2)."
-  say "Nothing was committed. Fix the checker's inputs and try again."
-  exit 2
-fi
-if [ "$GATE" -ne 0 ]; then
-  say "ABORT: consistency checks FAILED (exit $GATE)."
-  say "Nothing was committed and nothing was pushed."
-  say "The working tree still holds the new files - inspect, fix, re-run."
+# ---- 2b. decide, from every result ------------------------------------------
+say ""
+say "deciding from every gate's result (data/gate_classes.json) ..."
+python3 tools/gate_decide.py
+DECIDE=$?
+# this run's REVIEW failures, PROVISIONAL at the top of the page
+python3 tools/provisional.py --write
+if [ "$DECIDE" -ne 0 ]; then
+  say "Nothing was committed and nothing was pushed: a BLOCKING gate failed (listed above and in logs/gates.log)."
   exit 1
 fi
-say "consistency checks passed."
 
 if [ "$CHECK_ONLY" -eq 1 ]; then
   say "--check-only: stopping before commit as asked."
   exit 0
+fi
+
+# and on the week's approval task (the one task for the week; never a second)
+if python3 -c "import json,sys; sys.exit(0 if json.load(open('data/provisional.json'))['items'] else 1)"; then
+  python3 tools/asana_setup.py --approval
+  RC=$?
+  if [ "$RC" -ne 0 ]; then say "ABORT: the approval task could not be updated with the provisional items (exit $RC). Nothing committed."; exit 1; fi
 fi
 
 # ---- 3. commit and push ----------------------------------------------------
@@ -481,11 +431,11 @@ if [ $? -eq 0 ]; then
 fi
 
 git commit -m "$MSG"
-RC=$?; gate_log "${RC}"
+RC=$?
 if [ "$RC" -ne 0 ]; then say "ABORT: git commit failed (exit $RC). Nothing pushed."; exit "$RC"; fi
 
 git push
-RC=$?; gate_log "${RC}"
+RC=$?
 if [ "$RC" -ne 0 ]; then say "git push FAILED (exit $RC). The commit exists locally."; exit "$RC"; fi
 
 say "published: $(git rev-parse HEAD)"

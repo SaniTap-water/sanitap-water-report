@@ -9,3 +9,7 @@ logs/last_run_started
 .change-baseline-*.html
 logs/refused/
 logs/gates.log
+logs/gate_out/
+logs/gates_run.tsv
+logs/publish_run.log
+logs/preflight.json

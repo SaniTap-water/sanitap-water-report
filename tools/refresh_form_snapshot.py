@@ -148,7 +148,34 @@ def build():
     return snap
 
 
+EXTRACT = os.path.expanduser("~/mwater-exports/mwater_form_snapshot.json")
+
+
 def main():
+    # (20 Oct 2026: one mWater read per run, the pull) --to PATH is the pull's
+    # read: refresh from mWater, and put a copy in the extract set. A build
+    # step uses --from-extract: the run's own copy, never a second read.
+    if "--to" in sys.argv[1:]:
+        dest = sys.argv[sys.argv.index("--to") + 1]
+        snap = build()
+        new = json.dumps(snap, ensure_ascii=False, indent=1, sort_keys=True)
+        open(OUT, "w", encoding="utf8").write(new)
+        open(dest, "w", encoding="utf8").write(new)
+        print(f"  mWater form snapshot read with the pull ({len(snap['forms'])} forms)")
+        return 0
+    if "--from-extract" in sys.argv[1:]:
+        if os.path.isfile(EXTRACT):
+            open(OUT, "w", encoding="utf8").write(open(EXTRACT, encoding="utf8").read())
+            print(f"  form snapshot from this run's extract set "
+                  f"(fetched {json.load(open(OUT, encoding='utf8')).get('fetched')})")
+            return 0
+        age = snapshot_age()
+        print(f"  the extract set holds no form snapshot (pulled before 20 Oct 2026); "
+              f"using the committed one ({'none' if age is None else f'{age} day(s) old'})")
+        if age is not None and age > MAX_AGE_DAYS:
+            print(f"  NOTE: that is past the {MAX_AGE_DAYS}-day limit; "
+                  f"the consistency checker will fail this build.")
+        return 0
     if "--if-possible" in sys.argv[1:]:
         age = snapshot_age()
         try:

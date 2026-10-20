@@ -68,6 +68,11 @@ def main():
     ap.add_argument("--since", default=os.environ.get("SANITAP_RUN_STARTED"),
                     help="local ISO time the run started; any extract written "
                          "before it fails")
+    # (20 Oct 2026) the same checks, reported in two classes for publish.sh:
+    # "pull" = missing, failed, stale or mixed extracts (BLOCKING), "shrink" =
+    # an extract with fewer rows and no recorded acceptance (REVIEW). The
+    # checks, and when the row-count history is written, do not change.
+    ap.add_argument("--part", choices=("all", "pull", "shrink"), default="all")
     a = ap.parse_args()
     asof = datetime.date.fromisoformat(a.as_of)
 
@@ -104,6 +109,7 @@ def main():
     # only for exactly that file, from that count to that count
     accp = os.path.join(os.path.dirname(os.path.abspath(MANIFEST)), "extract_shrink_accepted.json")
     accepted = json.load(open(accp, encoding="utf8")).get("accepted", []) if os.path.isfile(accp) else []
+    shrinks = []
     for k, now in sorted(counts.items()):
         was = (hist.get("counts") or {}).get(k)
         ok = next((x for x in accepted if x.get("file") == k and x.get("from") == was
@@ -113,6 +119,7 @@ def main():
                   f"{ok['accepted_on']}: {ok['reason']}")
             continue
         if was is not None and now < was:
+            shrinks.append(len(fails))
             fails.append(f"{k}: {was} rows last build, {now} now - {was - now} "
                          f"fewer. A response form does not shrink on its own: "
                          f"either a window came back empty, or records were "
@@ -181,6 +188,8 @@ def main():
                   open(os.devnull if a.no_write else HIST, "w", encoding="utf8"),
                   indent=1, sort_keys=True)
 
+    if a.part != "all":
+        fails = [f for i, f in enumerate(fails) if (i in shrinks) == (a.part == "shrink")]
     if fails:
         print("\nFAILED:")
         for f in fails:

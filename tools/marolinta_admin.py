@@ -14,22 +14,38 @@ and only the located points hold it. Where the technician typed a fokontany
 into the record description it is carried here as a description hint, marked
 as such, and never presented as a register value.
 
-    python3 tools/marolinta_admin.py --write   # query mWater, rewrite the JSON
+    python3 tools/marolinta_admin.py --write   # from the register extract, rewrite the JSON
     python3 tools/marolinta_admin.py --show
 """
 import datetime, json, os, re, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "marolinta_admin.json")
-CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
 FKT = re.compile(r"FKT\s*_?\s*([A-Za-zÀ-ÿ' ]+?)(?:_|$|\()", re.I)
 
 
-def call(tool, args):
-    r = subprocess.run(["node", CLI, tool, json.dumps(args)],
-                       capture_output=True, text=True, cwd=os.path.dirname(CLI))
-    s = r.stdout
-    return json.loads(s[s.index("["):]) if "[" in s else []
+REGISTER = os.path.expanduser("~/mwater-exports/wp_madavance.csv")
+
+
+def register():
+    """The register rows from the run's extract (20 Oct 2026: no live read).
+    JSON-valued columns (photos) come back decoded."""
+    import csv
+    csv.field_size_limit(10 ** 9)
+    if not os.path.isfile(REGISTER):
+        sys.exit(f"marolinta_admin: no {REGISTER}")
+    rows = list(csv.DictReader(open(REGISTER, encoding="utf8", newline="")))
+    for r in rows:
+        try:
+            r["photos"] = json.loads(r.get("photos") or "[]")
+        except ValueError:
+            r["photos"] = []
+        for k in list(r):
+            if r[k] == "":
+                r[k] = None
+        if (r.get("admin_region") or "").isdigit():
+            r["admin_region"] = int(r["admin_region"])
+    return rows
 
 
 def codes():
@@ -62,19 +78,12 @@ def main():
     if mode != "--write":
         sys.exit("usage: marolinta_admin.py --write | --show")
     wanted, _ = codes()
-    ents = call("mwater_query_entities",
-                {"entity_type": "water_point",
-                 "filter_json": json.dumps({"code": {"$in": wanted}}),
-                 "limit": 60})
+    reg = register()
+    ents = [e for e in reg if e.get("code") in set(wanted)]
     # learn region -> place from every located point in the register
     regions = {}
     for r in {e.get("admin_region") for e in ents if e.get("admin_region")}:
-        got = call("mwater_query_entities",
-                   {"entity_type": "water_point",
-                    "filter_json": json.dumps(
-                        {"admin_region": r, "admin_div1": {"$exists": True}}),
-                    "fields": json.dumps({f"admin_div{i}": 1 for i in range(1, 6)}),
-                    "limit": 30})
+        got = [g for g in reg if g.get("admin_region") == r and g.get("admin_div1")]
         names = {tuple(g.get(f"admin_div{i}") for i in range(1, 4)) for g in got}
         regions[str(r)] = ({"region": list(names)[0][0], "district": list(names)[0][1],
                             "commune": list(names)[0][2], "from": len(got)}

@@ -25,6 +25,10 @@ function creds() {
 export async function mwaterFetch(url, init = {}) {
   const method = String(init.method ?? "GET").toUpperCase();
   const u = new URL(String(url));
+  // a run on a kept extract set makes no mWater call at all (20 Oct 2026)
+  if (process.env.SANITAP_NO_MWATER === "1") {
+    throw new Error(`SANITAP_NO_MWATER=1: this run does not contact mWater (${method} ${u.pathname})`);
+  }
   const isLogin = method === "POST" && u.pathname.replace(/\/+$/, "") === "/v3/clients";
   if (method !== "GET" && !isLogin) {
     throw new Error(`tools/mwater/api.mjs is read-only: refusing ${method} ${u.pathname}`);

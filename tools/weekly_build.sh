@@ -53,8 +53,10 @@ main() {
   # form from mWater; two runs close together only double the load. The start
   # of the last real run is recorded outside git; a run inside the window
   # stops here, before any fetch or pull, and says so. A dry run is exempt.
+  # A run on a kept extract set (--reuse-extracts) makes no mWater call at
+  # all (20 Oct 2026), so it is exempt too, and does not move the stamp.
   local isdry="" x
-  for x in "$@"; do [ "$x" = "--dry-run" ] && isdry=1; done
+  for x in "$@"; do [ "$x" = "--dry-run" ] || [ "$x" = "--reuse-extracts" ] && isdry=1; done
   if [ -z "${SANITAP_SYNCED:-}" ] && [ -z "$isdry" ]; then
     local stamp="$build/logs/last_run_started" now last mins
     now=$(date +%s)

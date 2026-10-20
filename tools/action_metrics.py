@@ -19,7 +19,6 @@ import collections, csv, datetime, json, os, re, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "action_metrics.json")
-CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
 
 
 def d(*p):
@@ -496,86 +495,79 @@ def _m_onb_wq():
 
 # --------------------------------------------------------------- remote ----
 def remote():
-    """REMOTE: counts that can only come from mWater."""
-    snap = json.load(open(d("data", "mwater_form_snapshot.json")))["forms"]
+    """Counts that come from mWater - read from the run's own extract set in
+    ~/mwater-exports, never live (20 Oct 2026: one mWater read per run, the
+    pull). A source the set does not hold is None: "not counted this build"."""
+    import csv as _csv
+    _csv.field_size_limit(10 ** 9)
+    ex = os.path.expanduser("~/mwater-exports")
     out = {}
 
-    def call(tool, args):
-        r = subprocess.run(["node", CLI, tool, json.dumps(args)],
-                           capture_output=True, text=True,
-                           cwd=os.path.dirname(CLI))
-        s = r.stdout
-        return json.loads(s[s.index("["):]) if "[" in s else []
+    def rows_csv(name):
+        p = os.path.join(ex, name)
+        if not os.path.isfile(p):
+            return None
+        with open(p, encoding="utf8", newline="") as fh:
+            return list(_csv.DictReader(fh))
+
+    def rows_json(name):
+        p = os.path.join(ex, name)
+        return json.load(open(p, encoding="utf8")) if os.path.isfile(p) else None
 
     # records submitted but never approved, on the two works forms
-    unapproved = 0
     import build_config as _bc
     since = (datetime.date.today() - datetime.timedelta(
         days=_bc.load()["approvals"]["window_days"])).isoformat()
-    for key in ("repair-after-breakdown", "preventive-maintenance"):
-        fid = snap.get(key, {}).get("id")
-        if not fid:
-            continue
-        rs = call("mwater_responses",
-                  {"form_id": fid, "limit": 3000,
-                   "filter_json": json.dumps({"submittedOn": {"$gte": since}})})
-        unapproved += sum(1 for r in rs if not r.get("approvals"))
-    out["unapproved_works_records"] = unapproved
+    works = [rows_csv("reparation_apres_panne.csv"), rows_csv("pm.csv")]
+    out["unapproved_works_records"] = None if None in works else sum(
+        1 for rs in works for r in rs
+        if (r.get("submittedOn") or "") >= since and r.get("approvals") in (None, "", "[]"))
 
     # household responses on the point-of-use survey
     # SDWS 26 needs the usage question ANSWERED, not merely present: a survey
     # round that leaves A9 blank evidences nothing
-    fid = snap.get("point-of-use-survey", {}).get("id")
     A9 = "6147470c7521437f8cdbe1bfa3bea6b0"
     A4 = "5a9278cdb8234d8da870bc3a9709f6e0"
-    rs = call("mwater_responses", {"form_id": fid, "limit": 3000}) if fid else []
-    # SUBMITTED responses only (final, or pending approval), as everywhere else
-    # in the build: a draft is not yet a record. Until 16 Oct 2026 a draft
-    # counted, and one draft answering A4 and A9 turned "answered 0 times" into
-    # 1 and could have closed the SDWS 26 action on an unsubmitted form.
-    rs = [r for r in rs if (r.get("status") or "final") in ("final", "pending")]
-    answered = lambda q: sum(
-        1 for r in rs if (r.get("data") or {}).get(q, {}).get("value") not in
-        (None, "", [], {}))
-    out["usage_survey_responses"] = len(rs)
-    out["usage_question_answers"] = answered(A9)
-    out["consent_question_answers"] = answered(A4)
+    rs = rows_json("pou_survey.json")
+    if rs is None:
+        out.update(usage_survey_responses=None, usage_question_answers=None,
+                   consent_question_answers=None)
+    else:
+        # SUBMITTED responses only (final, or pending approval), as everywhere
+        # else in the build: a draft is not yet a record (16 Oct 2026)
+        rs = [r for r in rs if (r.get("status") or "final") in ("final", "pending")]
+        answered = lambda q: sum(
+            1 for r in rs if (r.get("data") or {}).get(q, {}).get("value") not in
+            (None, "", [], {}))
+        out["usage_survey_responses"] = len(rs)
+        out["usage_question_answers"] = answered(A9)
+        out["consent_question_answers"] = answered(A4)
 
-    # the three named Marolinta points, by photograph
+    # the three named Marolinta points, by photograph, from the register
     named = ["987623517", "987623256", "987623115"]
-    ents = call("mwater_query_entities",
-                {"entity_type": "water_point",
-                 "filter_json": json.dumps({"code": {"$in": named}}),
-                 "limit": 10})
-    got = {e["code"]: e for e in ents}
-    fid_s = snap.get("stroke-meter", {}).get("id")
-    out["stroke_test_responses"] = (
-        len(call("mwater_responses", {"form_id": fid_s, "limit": 2000}))
-        if fid_s else None)
+    reg = rows_csv("wp_madavance.csv")
+    got = {r["code"]: r for r in reg or []}
+    out["marolinta_three_points_no_photograph"] = None if reg is None else sum(
+        1 for c in named if (got.get(c, {}).get("photos") or "[]") in ("", "[]"))
 
-    out["marolinta_three_points_no_photograph"] = sum(
-        1 for c in named if not (got.get(c, {}).get("photos") or []))
+    sm = rows_json("stroke_meter.json")
+    out["stroke_test_responses"] = None if sm is None else len(sm)
 
-    # Endur'O onboarding: the Tana enumerator team, and SDWS 27 records on
-    # the managed piped systems (both GET-only scripts through api.mjs)
-    def node_json(script, *args):
-        r = subprocess.run(["node", d("tools", "mwater", script), *args],
-                           capture_output=True, text=True, cwd=REPO)
-        return json.loads(r.stdout) if r.returncode == 0 and r.stdout.strip() else None
-    team = node_json("group_members.mjs", "58b57544a8f94313acd87ad79eae598d")
+    # Endur'O onboarding: the Tana enumerator team, and SDWS 27 records on the
+    # managed piped systems, both pulled into the set by tools/pull_extract.py
+    team = rows_json("enduro_tana_team.json")
     out["enduro_tana_enumerators"] = team["members"] if team else None
+    recs = rows_json("piped_record_forms.json")
     pw = json.load(open(d("data", "piped_wq.json"), encoding="utf8"))
     managed = [c for c, v in pw["systems"].items() if v["status"] == "managed"]
-    codes = managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]
-    recs = node_json("piped_record_forms.mjs", ",".join(codes)) if codes else None
-    out["piped_sdws27_record_types_missing"] = recs["missing"] if recs else None
+    codes = sorted(set(managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]))
+    # counted for the systems managed when it was pulled; another set is not this count
+    out["piped_sdws27_record_types_missing"] = (
+        recs["missing"] if recs and sorted(recs.get("codes") or []) == codes else None)
 
-    # Endur'O water points with no parent water system (act-enduro-link-wp-systems),
-    # read live; None rather than a count if the query did not come back
-    ents = call("mwater_query_entities",
-                {"entity_type": "water_point", "limit": 5000,
-                 "filter_json": json.dumps({"_managed_by": "group:c305b9b85f41417387b553d9a33c795b"})})
-    out["enduro_points_total"] = len(ents) or None
+    # Endur'O water points with no parent water system (act-enduro-link-wp-systems)
+    ents = rows_csv("enduro_points.csv")
+    out["enduro_points_total"] = len(ents) or None if ents is not None else None
     out["enduro_points_without_system"] = (sum(1 for e in ents if not e.get("water_system"))
                                            if ents else None)
     return out
@@ -599,7 +591,7 @@ REMOTE_SAYS = {
     "enduro_points_total":
         "water points in Endur'O's mWater group",
     "enduro_points_without_system":
-        "water points in Endur'O's mWater group with no parent water system set",
+        "water points in Endur'O's mWater group with no parent water system set, from the run's extract",
     "piped_sdws27_record_types_missing":
         "of maintenance, repair and days-not-operational, the record types with no final "
         "piped record on a managed system in mWater",

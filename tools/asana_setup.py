@@ -459,7 +459,13 @@ def approval_task():
     res = json.load(open(CHANGES, encoding="utf8")) if os.path.isfile(CHANGES) else {}
     key = f"{res.get('year')}-W{res.get('week', 0):02d}"
     w = appr["weeks"].get(key)
-    if not w or w.get("status") == "approved" or not w.get("flags"):
+    # REVIEW gates that failed (data/provisional.json, 20 Oct 2026) go on the
+    # same task, one per week, whether or not the data has major changes
+    pv = os.path.join(os.path.dirname(APPROVALS), "provisional.json")
+    prov = (json.load(open(pv, encoding="utf8")).get("items") or []) if os.path.isfile(pv) else []
+    if prov and not w:
+        w = appr["weeks"].setdefault(key, {"status": "pending", "flags": {}, "figures": {}})
+    if not w or (not w.get("flags") and not prov) or (w.get("status") == "approved" and not prov):
         print(f"approval: nothing to approve for {key}")
         return 0
     fig = w.get("figures") or {}
@@ -471,7 +477,7 @@ def approval_task():
              "Reject or request changes, with a comment: they stay provisional and the comment is shown.", "",
              "Headline figures, last week -> this week:"]
     lines += [f"  {lab[k]}: {v.get('before')} -> {v.get('after')}" for k, v in fig.items()]
-    fl = w["flags"]
+    fl = w.get("flags") or {}
     if fl.get("a"):
         lines += ["", "(a) Existing records edited so that credits or eligibility go up:"]
         lines += [f"  water point {r['wp']}: {', '.join(r['up'])}; record(s) "
@@ -482,6 +488,14 @@ def approval_task():
     if fl.get("c"):
         lines += ["", "(c) Week-on-week moves above the threshold carried by edited records:"]
         lines += [f"  {lab[c['figure']]}: {c['carried']} ({c['pct']}%)" for c in fl["c"]]
+    if prov:
+        lines += ["", "Checks that did not pass (REVIEW class, data/gate_classes.json). The edition is "
+                      "published with these marked PROVISIONAL at the top of the report until you have "
+                      "reviewed them:"]
+        for it in prov:
+            lines += [f"  {it['gate']}: {it['why']}"]
+            lines += [f"    {d}" for d in (it.get("detail") or [it.get("message") or ""])]
+        lines += [f"On the report: {A.REPORT_URL}#provisional"]
     lines += ["", f"On the report: {A.REPORT_URL}#changes"]
     notes = "\n".join(lines)
     name = f"Approve: major changes [week {res.get('week')}]"

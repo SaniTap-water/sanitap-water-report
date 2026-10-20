@@ -22,7 +22,6 @@ import collections, datetime, json, os, subprocess, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "data", "marolinta_works.json")
-CLI = os.path.expanduser("~/mwater-mcp/cli_call.mjs")
 FORM = "8764843c94484f5b984078c68f13b2ca"
 Q_TYPE = "660d59b922d843b1a6f51676ad2ccd14"
 Q_STATUS = "0a46051cee394b46ad1e7478dd40117a"
@@ -33,22 +32,6 @@ DEPLOY = {"2b408dd532e944ad91c0bb77cd6ad576": "Marolinta",
           "e8bbe3b104bb4b599132c435013ab219": "Moramanga"}
 # what Jan reported to date, against which the shortfall is measured
 REPORTED = {"Nouvelle construction": 10, "Réhabilitation": 10}
-
-
-def call(tool, args):
-    """One mWater call. A failed or empty call stops the tool: it used to
-    return [] and the counts were written as zero, which reads exactly like
-    "no records" (28 Sep 2026)."""
-    r = subprocess.run(["node", CLI, tool, json.dumps(args)],
-                       capture_output=True, text=True, cwd=os.path.dirname(CLI))
-    s = r.stdout
-    if r.returncode != 0 or "[" not in s:
-        sys.exit(f"marolinta_works: {tool} failed (exit {r.returncode}): "
-                 f"{(r.stderr or s).strip()[-200:]}")
-    rows = json.loads(s[s.index("["):])
-    if not rows:
-        sys.exit(f"marolinta_works: {tool} returned no responses for form {FORM}")
-    return rows
 
 
 EXTRACT = os.path.expanduser("~/mwater-exports/marolinta_borehole.json")
