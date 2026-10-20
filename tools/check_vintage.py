@@ -100,8 +100,18 @@ def main():
     # it never passes silently.
     hist = json.load(open(HIST, encoding="utf8")) if os.path.isfile(HIST) else {}
     counts = {k: v.get("rows") for k, v in files.items() if v.get("rows") is not None}
+    # a drop a person has accepted (data/extract_shrink_accepted.json) passes
+    # only for exactly that file, from that count to that count
+    accp = os.path.join(os.path.dirname(os.path.abspath(MANIFEST)), "extract_shrink_accepted.json")
+    accepted = json.load(open(accp, encoding="utf8")).get("accepted", []) if os.path.isfile(accp) else []
     for k, now in sorted(counts.items()):
         was = (hist.get("counts") or {}).get(k)
+        ok = next((x for x in accepted if x.get("file") == k and x.get("from") == was
+                   and x.get("to") == now), None) if was is not None else None
+        if ok:
+            print(f"  {k}: {was} -> {now} rows, accepted by {ok['accepted_by']} on "
+                  f"{ok['accepted_on']}: {ok['reason']}")
+            continue
         if was is not None and now < was:
             fails.append(f"{k}: {was} rows last build, {now} now - {was - now} "
                          f"fewer. A response form does not shrink on its own: "

@@ -244,14 +244,119 @@ def newest(path):
     return len(rows), uniq, (ds[-1] if ds else None)
 
 
+def expected_names():
+    return sorted(set(FORMS) | set(JSON_FORMS) | set(ENTITIES))
+
+
+def _sha(p):
+    import hashlib
+    h = hashlib.sha256()
+    with open(p, "rb") as fh:
+        for b in iter(lambda: fh.read(1 << 20), b""):
+            h.update(b)
+    return h.hexdigest()
+
+
+def reuse(src):
+    """Install a complete extract set already pulled - a run's kept set in
+    ~/mwater-exports.refused, or any directory holding all of them - instead of
+    pulling (20 Oct 2026: a fix to a check must never need a new mWater read).
+    No network. The files keep their own write times, so the manifest and
+    check_vintage.py see when they were really pulled; the manifest records
+    where they came from. Same staged, all-or-nothing swap as a pull."""
+    import shutil
+    src = os.path.realpath(os.path.expanduser(src or ""))
+    if not os.path.isdir(src):
+        print(f"--reuse: {src or '(none given)'} is not a directory")
+        return 2
+    if src in (os.path.realpath(EXPORTS), os.path.realpath(STAGE), os.path.realpath(PREVIOUS)):
+        print(f"--reuse: {src} is one of the build's own directories; copy it elsewhere first")
+        return 2
+    missing = [n for n in expected_names() if not os.path.isfile(os.path.join(src, n))]
+    if missing:
+        print(f"--reuse: {src} is not a complete set; missing {', '.join(missing)}")
+        return 1
+    if os.path.isdir(STAGE):
+        shutil.rmtree(STAGE)
+    os.makedirs(STAGE)
+    files = {}
+    names = expected_names() + [d for d in DERIVED if os.path.isfile(os.path.join(src, d))]
+    for n in names:
+        p = os.path.join(STAGE, n)
+        shutil.copy2(os.path.join(src, n), p)
+        if n in DERIVED:
+            continue
+        if n.endswith(".json"):
+            rows = json.load(open(p, encoding="utf8"))
+            cnt, uniq, new = json_stats(rows)
+        elif n in ENTITIES:
+            cnt = sum(1 for _ in io.open(p, encoding="utf8", errors="replace")) - 1
+            with io.open(p, encoding="utf8", errors="replace") as fh:
+                uniq = len({r["code"] for r in csv.DictReader(fh) if r.get("code")})
+            new = None
+        else:
+            cnt, uniq, new = newest(p)
+        if cnt != uniq:
+            print(f"--reuse: {n}: {cnt - uniq} duplicate rows; refusing the set")
+            return 1
+        files[n] = {"rows": cnt, "unique": uniq, "newest_submitted": new,
+                    "sha256": _sha(p),
+                    "written": datetime.datetime.fromtimestamp(
+                        os.path.getmtime(p)).isoformat(timespec="seconds")}
+        if n in FORMS:
+            files[n]["form"] = FORMS[n]
+        elif n in JSON_FORMS:
+            files[n]["form_id"] = JSON_FORMS[n]
+        else:
+            files[n].update({"entity_type": ENTITIES[n][0], "group": ENTITIES[n][1]})
+    swap_in(names)
+    written = sorted(f["written"] for f in files.values())
+    dates = [f["newest_submitted"] for f in files.values() if f.get("newest_submitted")]
+    doc = {"pulled_at": written[0], "pull_finished": written[-1],
+           "reused_from": src,
+           "reused_at": datetime.datetime.now().isoformat(timespec="seconds"),
+           "files": files, "newest_in_files": max(dates) if dates else None,
+           "failed": [], "strays": [],
+           "note": ("Reused, not pulled: the set a run pulled at pulled_at, installed "
+                    "unchanged by tools/pull_extract.py --reuse. No mWater read.")}
+    json.dump(doc, open(MANIFEST, "w"), indent=1, sort_keys=True)
+    print(f"reused {len(files)} extracts from {src}, pulled {written[0]} .. {written[-1]}")
+    return 0
+
+
+def verify_reuse(src):
+    """publish.sh --reuse-extracts: the gates are about to run on the set in
+    `src` - the manifest says so and every file on disk is byte-identical."""
+    src = os.path.realpath(os.path.expanduser(src or ""))
+    man = json.load(open(MANIFEST, encoding="utf8")) if os.path.isfile(MANIFEST) else {}
+    bad = []
+    if man.get("reused_from") != src:
+        bad.append(f"the manifest's extracts came from {man.get('reused_from') or 'a pull'}, not {src}")
+    for n, f in sorted((man.get("files") or {}).items()):
+        here, there = os.path.join(EXPORTS, n), os.path.join(src, n)
+        if not (os.path.isfile(here) and os.path.isfile(there)):
+            bad.append(f"{n}: missing")
+        elif not (_sha(here) == _sha(there) == f.get("sha256")):
+            bad.append(f"{n}: differs from {src}")
+    for b in bad:
+        print("  " + b)
+    print(f"  reuse verified: {len(man.get('files') or {})} extracts identical to {src}"
+          if not bad else f"  reuse NOT verified ({len(bad)} problem(s))")
+    return 1 if bad else 0
+
+
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--show"
     if mode == "--show":
         print(json.dumps(json.load(open(MANIFEST)), indent=1, sort_keys=True)
               if os.path.isfile(MANIFEST) else "no data/extract_manifest.json yet")
         return 0
+    if mode == "--reuse":
+        return reuse(sys.argv[2] if len(sys.argv) > 2 else "")
+    if mode == "--verify-reuse":
+        return verify_reuse(sys.argv[2] if len(sys.argv) > 2 else "")
     if mode != "--write":
-        sys.exit("usage: pull_extract.py --write | --show")
+        sys.exit("usage: pull_extract.py --write | --show | --reuse DIR | --verify-reuse DIR")
     import shutil
     if os.path.isdir(STAGE):
         shutil.rmtree(STAGE)

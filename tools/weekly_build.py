@@ -306,6 +306,9 @@ def newest_record(path):
         return None
 
 
+REUSE = None
+
+
 def publish_sh(dry, msg):
     """THE gate list, and the only way anything is published.
 
@@ -313,6 +316,8 @@ def publish_sh(dry, msg):
     same gates, then commits and pushes. Returns (ok, one-line summary, tally).
     """
     args = ["--check-only"] if dry else ["-m", msg]
+    if REUSE:
+        args = ["--reuse-extracts", REUSE] + args
     r = run(["bash", "tools/publish.sh"] + args)
     out = (r.stdout or "") + (r.stderr or "")
     io.open(os.path.join(REPO, "logs", "last_publish_sh.txt"), "w",
@@ -330,6 +335,15 @@ def publish_sh(dry, msg):
 def main():
     argv = sys.argv[1:]
     dry = "--dry-run" in argv
+    # --reuse-extracts DIR (20 Oct 2026): build and gate on a set already
+    # pulled - a refused run's ~/mwater-exports.refused, copied aside - so a
+    # fix to a check never needs a new mWater pull
+    global REUSE
+    if "--reuse-extracts" in argv:
+        i = argv.index("--reuse-extracts")
+        REUSE = os.path.realpath(os.path.expanduser(argv[i + 1])) if i + 1 < len(argv) else ""
+        if not REUSE or not os.path.isdir(REUSE):
+            sys.exit(f"--reuse-extracts: {REUSE or '(no directory given)'} is not a directory")
     tag = "[dry-run] " if dry else ""
     requested = os.path.isfile(REQUEST)
     if requested:
@@ -398,7 +412,13 @@ def main():
         # proof run exercise everything else against extracts already on disk.
         # The schedule never sets it.
         skip = os.environ.get("SANITAP_SKIP_PULL") == "1"
-        if not skip:
+        if REUSE:
+            # the set's own pull is the run's start: check_vintage.py then
+            # holds every extract to having been written by that one pull
+            started = min(datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(REUSE, n)))
+                          for n in os.listdir(REUSE) if not n.startswith("_"))
+            os.environ["SANITAP_RUN_STARTED"] = started.isoformat(timespec="seconds")
+        elif not skip:
             # every extract must be written by this run: check_vintage.py,
             # called by publish.sh, fails any file older than this moment
             os.environ["SANITAP_RUN_STARTED"] = \
@@ -411,6 +431,9 @@ def main():
             if dry and script.endswith("mwater_backup.py"):
                 log(f"{tag}SKIPPING the mWater backup (dry run)")
                 continue
+            if REUSE and script.endswith("pull_extract.py"):
+                log(f"{tag}REUSING the extracts pulled into {REUSE} (no pull)")
+                args = ["--reuse", REUSE]
             r = run([PY, script] + args)
             if script.endswith("mwater_backup.py"):
                 last = (r.stdout or r.stderr or "").strip().splitlines()
@@ -473,7 +496,9 @@ def main():
     nonfatal = (" optional step(s) skipped: " + ", ".join(failures)) if failures else ""
     wk, ed = wk_ed if wk_ed else ("?", "?")
     msg = (f"Week {wk} edition {ed}, issued {d}: {source}\n\n"
-           f"Extracts pulled, activity and call tables rebuilt, every generated "
+           + ("Extracts pulled" if not REUSE else
+              f"Extracts reused from the pull of {os.environ.get('SANITAP_RUN_STARTED')} ({REUSE})")
+           + f", activity and call tables rebuilt, every generated "
            f"region re-rendered, then gated and published by tools/publish.sh. "
            f"Data to {built_rec}.{nonfatal}")
     ok, why, tally = publish_sh(dry, msg)

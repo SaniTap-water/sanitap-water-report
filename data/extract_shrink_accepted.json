@@ -1,0 +1,29 @@
+{
+ "note": "Extract shrinks accepted by hand. tools/check_vintage.py fails when an extract has fewer rows than at the last build that passed; an entry here lets exactly that drop (file, from, to) pass, and no other.",
+ "accepted": [
+  {
+   "file": "wp_madavance.csv",
+   "from": 919,
+   "to": 910,
+   "week": "2026-W43",
+   "accepted_by": "Adriaan Mol",
+   "accepted_on": "2026-10-20",
+   "reason": "10 records left the MadAvance group in mWater between 17 and 20 Oct 2026 and 1 joined (914498582); fleet unchanged",
+   "left": [
+    "1052525215",
+    "1052525253",
+    "893672999",
+    "987623115",
+    "987623256",
+    "987623304",
+    "987623397",
+    "987623555",
+    "988432109",
+    "988432123"
+   ],
+   "joined": [
+    "914498582"
+   ]
+  }
+ ]
+}
