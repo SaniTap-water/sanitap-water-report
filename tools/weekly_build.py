@@ -388,6 +388,13 @@ def main():
     head = run(["git", "rev-parse", "HEAD"]).stdout.strip()
 
     def rollback(why, sentence=None):
+        # the refused page is kept for inspection (20 Oct 2026: a layout
+        # refusal could not be reproduced once the tree was reset)
+        keep = os.path.join(REPO, "logs", "refused")
+        os.makedirs(keep, exist_ok=True)
+        for f in ("index.html", "portfolio.html", "data/extract_manifest.json"):
+            if os.path.isfile(os.path.join(REPO, f)):
+                shutil.copy2(os.path.join(REPO, f), os.path.join(keep, f.replace("/", "_")))
         run(["git", "reset", "--hard", head])
         run(["git", "clean", "-fd", "editions", "data"])
         # the extracts too (20 Oct 2026): if this run's pull was swapped into

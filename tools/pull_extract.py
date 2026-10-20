@@ -280,6 +280,7 @@ def reuse(src):
         shutil.rmtree(STAGE)
     os.makedirs(STAGE)
     files = {}
+    snap = json.load(open(os.path.join(REPO, "data", "mwater_form_snapshot.json")))["forms"]
     names = expected_names() + [d for d in DERIVED if os.path.isfile(os.path.join(src, d))]
     for n in names:
         p = os.path.join(STAGE, n)
@@ -303,12 +304,18 @@ def reuse(src):
                     "sha256": _sha(p),
                     "written": datetime.datetime.fromtimestamp(
                         os.path.getmtime(p)).isoformat(timespec="seconds")}
+        # the same fields a pull records, so a reuse renders what the pull did
         if n in FORMS:
-            files[n]["form"] = FORMS[n]
+            files[n].update({"form": FORMS[n], "form_id": snap.get(FORMS[n], {}).get("id")})
         elif n in JSON_FORMS:
-            files[n]["form_id"] = JSON_FORMS[n]
+            files[n].update({"form_id": JSON_FORMS[n],
+                             "read_by": ("nothing yet: pulled and counted only" if n in COUNTED_ONLY
+                                         else READ_BY.get(n, "populations.py"))})
         else:
-            files[n].update({"entity_type": ENTITIES[n][0], "group": ENTITIES[n][1]})
+            files[n].update({"entity_type": ENTITIES[n][0], "group": ENTITIES[n][1],
+                             "read_by": READ_BY.get(n, "populations.py"),
+                             "pulled_by": "tools/mwater/pull_entities.mjs, filtered to the "
+                                          "managed group and walked in 90-day windows"})
     swap_in(names)
     written = sorted(f["written"] for f in files.values())
     dates = [f["newest_submitted"] for f in files.values() if f.get("newest_submitted")]
