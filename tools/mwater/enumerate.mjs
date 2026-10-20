@@ -36,7 +36,9 @@ const HEX = "0123456789abcdef";
 const sleep = (s) => new Promise((r) => setTimeout(r, s * 1000));
 // the whole _id space; a full answer splits it into children("")
 const TOP = { lo: null, hi: null, prefix: "" };
-const succ = (s) => s.slice(0, -1) + String.fromCharCode(s.charCodeAt(s.length - 1) + 1);
+// the hex string that follows every string with prefix p, in hex order
+// ("3f" -> "4", "9" -> "a"); null when p is "" or all "f"
+const nextHex = (p) => !p ? null : p.endsWith("f") ? nextHex(p.slice(0, -1)) : p.slice(0, -1) + HEX[HEX.indexOf(p.at(-1)) + 1];
 
 function why(e) {
   const c = e?.cause;
@@ -62,18 +64,21 @@ export async function query(filter, label) {
   }
 }
 
-/** The children of the _id prefix p, covering exactly the strings in
- * [p, succ(p)) - every string when p is "": the strings below p+"0" (p
- * itself included), one prefix per hex digit, the gap between "9" and "a"
- * (upper case, punctuation), and the strings above p+"f". Only the hex
- * prefixes can be split again; a gap that is full is an error, never a cut. */
+/** The children of the _id prefix p, covering [p, nextHex(p)) - every
+ * string when p is "": the strings below p+"0" (p itself), then one range per
+ * hex digit, [p+c, p+next c), the last ending at nextHex(p). Every boundary is
+ * a hex string, never punctuation: mWater compares _id in a locale collation,
+ * not byte order, and the first version's gap [":", "a") between "9" and "a"
+ * held every id that starts with a digit (build of 20 Oct 2026, 09:46 UTC).
+ * Hex strings sort the same in byte order and in any collation that puts
+ * digits before letters, so the boundaries are in order under either, and a
+ * chain of ranges between ordered boundaries covers each string exactly once,
+ * hex or not. Only the hex ranges can be split again; the range below p+"0"
+ * holds at most p itself. */
 export function children(p) {
   const out = [{ lo: p || null, hi: p + "0", prefix: null }];
-  for (const c of HEX) {
-    out.push({ lo: p + c, hi: succ(p + c), prefix: p + c });
-    if (c === "9") out.push({ lo: succ(p + "9"), hi: p + "a", prefix: null });
-  }
-  out.push({ lo: succ(p + "f"), hi: p ? succ(p) : null, prefix: null });
+  for (let i = 0; i < HEX.length; i++)
+    out.push({ lo: p + HEX[i], hi: i + 1 < HEX.length ? p + HEX[i + 1] : nextHex(p), prefix: p + HEX[i] });
   return out;
 }
 

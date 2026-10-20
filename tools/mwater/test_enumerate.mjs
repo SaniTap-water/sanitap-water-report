@@ -3,19 +3,24 @@
 // answer at one page, as mWater does. The enumerator must return every row
 // exactly once - including a day of 1,300 rows, ids that are not lower-case
 // hex, and rows with no date - and must fail loudly, never cut, when a range
-// that cannot be split is full.
+// that cannot be split is full. Run twice: comparing _id in byte order, and in
+// a locale collation, as mWater's server does (build of 20 Oct 2026).
 //   node tools/mwater/test_enumerate.mjs
 import { pullResponses, children, PAGE } from "./enumerate.mjs";
 
 let fails = 0;
 const check = (name, ok, got) => { console.log(`  ${ok ? "PASS" : "FAIL !"}  ${name}${ok ? "" : `: ${got}`}`); if (!ok) fails++; };
 
+const ORDERS = { "byte order": (a, b) => (a < b ? -1 : a > b ? 1 : 0), "locale collation": new Intl.Collator("en").compare };
+for (const [oname, cmp] of Object.entries(ORDERS)) {
+console.log(`${oname}:`);
 // the children of a prefix cover each string exactly once
-const strs = ["", "0", "00", "0f", "1", "9z", ":", "A1", "Zz", "a", "af", "f", "fz", "g", "zz", "~"];
-for (const p of ["", "a", "9f"]) {
+const strs = ["", "0", "00", "0f", "1", "9z", ":", "A1", "Zz", "a", "af", "f", "fz", "g", "zz", "~", "-9", "9-"];
+for (const p of ["", "a", "9f", "3f"]) {
   const kids = children(p);
-  for (const x of strs.map((t) => p + t)) {
-    const n = kids.filter((k) => (k.lo === null || x >= k.lo) && (k.hi === null || x < k.hi)).length;
+  const inside = (x) => p === "" || (cmp(x, p) >= 0 && (kids.at(-1).hi === null || cmp(x, kids.at(-1).hi) < 0));
+  for (const x of strs.map((t) => p + t).filter(inside)) {
+    const n = kids.filter((k) => (k.lo === null || cmp(x, k.lo) >= 0) && (k.hi === null || cmp(x, k.hi) < 0)).length;
     check(`children(${JSON.stringify(p)}) cover ${JSON.stringify(x)} once`, n === 1, n);
   }
 }
@@ -29,7 +34,7 @@ function server(rows) {
       if (d === null) { if (r.submittedOn != null) return false; }
       else if (!(r.submittedOn >= d.$gte && r.submittedOn < d.$lt)) return false;
       const id = f._id || {};
-      return (id.$gte === undefined || r._id >= id.$gte) && (id.$lt === undefined || r._id < id.$lt);
+      return (id.$gte === undefined || cmp(r._id, id.$gte) >= 0) && (id.$lt === undefined || cmp(r._id, id.$lt) < 0);
     });
     return m.sort(() => Math.random() - 0.5).slice(0, PAGE);        // no order, one page
   };
@@ -56,7 +61,8 @@ let threw = "";
 process.stderr.write = () => true;
 try { await pullResponses("F", "submittedOn", "2026-03-01", server(many)); } catch (e) { threw = e.message; }
 process.stderr.write = quiet;
-check("a full range that cannot be split fails loudly", /cannot be split/.test(threw), threw || "no error");
+check("a full range that cannot be split fails loudly", /cannot be split|still full/.test(threw), threw || "no error");
+}
 
 console.log(fails ? `${fails} FAILED` : "every assertion holds");
 process.exit(fails ? 1 : 0);
