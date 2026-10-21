@@ -25,7 +25,7 @@ main() {
   set -uo pipefail
   local here build log py
   here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-  build=/home/bushp/sanitap-water-report-build
+  build="${SANITAP_BUILD_DIR:-/home/bushp/sanitap-water-report-build}"   # tools/test_repeat_skip.py points it at a worktree
   py=/home/bushp/sdws1/venv/bin/python
   export PLAYWRIGHT_BROWSERS_PATH=/home/bushp/.cache/ms-playwright
   # wsl.exe from Task Scheduler starts a non-login shell, so ~/.local/bin -
@@ -126,7 +126,7 @@ main() {
   # 125 minutes; the trap removes the file however the run ends.
   local hold="$build/logs/keepawake.hold"
   local psh=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
-  : > "$hold"
+  mkdir -p "$build/logs" && : > "$hold"
   trap 'rm -f "'"$hold"'"' EXIT
   if [ -x "$psh" ]; then
     ( setsid "$psh" -NoProfile -ExecutionPolicy Bypass -File "$(wslpath -w "$build/tools/keepawake.ps1")" \
@@ -162,7 +162,11 @@ main() {
   # through publish.sh too, and a dry run stays a dry run.
   local dry="" a
   for a in "$@"; do [ "$a" = "--dry-run" ] && dry="--dry-run"; done
-  [ "$rc" -eq 0 ] && "$py" tools/publish_waiting.py $dry
+  # Not on a repeat that found this week's edition already out (21 Oct 2026):
+  # that run does nothing else - no pull, no Downloads candidate, no Asana.
+  if [ "$rc" -eq 0 ] && ! grep -q '^Nothing to do' "$build/logs/last_outcome.txt" 2>/dev/null; then
+    "$py" tools/publish_waiting.py $dry
+  fi
   if [ -s "$build/logs/last_outcome.txt" ]; then
     outcome "$(cat "$build/logs/last_outcome.txt")"
   else

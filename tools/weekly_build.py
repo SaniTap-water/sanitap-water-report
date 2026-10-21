@@ -383,7 +383,13 @@ def main():
     # an update was asked for (the shortcut), --force, or --dry-run. A run on
     # any later day of the week rebuilds and republishes over the current
     # edition; publish.sh archives only across a week boundary.
-    today = datetime.date.today()
+    # every repeat of the Monday trigger (every 2 h for 14 h) falls on the day
+    # the edition was issued, so this is the "this week's edition is already
+    # out" guard for the schedule; it stops before the pull, any Asana call and
+    # the Downloads candidate (tools/weekly_build.sh). SANITAP_TODAY is for
+    # tools/test_repeat_skip.py only.
+    today = (datetime.date.fromisoformat(os.environ["SANITAP_TODAY"])
+             if os.environ.get("SANITAP_TODAY") else datetime.date.today())
     issued, _ = masthead_of(os.path.join(REPO, "index.html"))
     if issued == today and not (requested or dry or "--force" in argv):
         log(f"already built today: the published edition is issued {issued}")
