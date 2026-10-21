@@ -7,20 +7,20 @@
    "step": "RECORDS: successful ⊆ all first-rehabilitation records"
   },
   {
-   "detail": "789 of 919 points",
+   "detail": "812 of 910 points",
    "holds": true,
    "internal": true,
    "step": "POINTS: first-rehabilitated ⊆ register"
   },
   {
-   "detail": "731 of 789 points",
+   "detail": "731 of 812 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: successfully rehabilitated ⊆ first-rehabilitated"
   },
   {
-   "detail": "745 of 919 points",
-   "holds": true,
+   "detail": "745 of 910 points",
+   "holds": false,
    "internal": true,
    "step": "POINTS: managed fleet ⊆ register"
   },
@@ -49,14 +49,21 @@
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
   },
   {
-   "detail": "745 of 745 points; 0 without",
+   "detail": "745 points: 742 checked, 0 without; 3 not in this week's register export",
    "holds": true,
    "internal": false,
    "step": "POINTS: every fleet point has a final works record or a recorded exception"
   }
  ],
  "form_base": "https://portal.mwater.co/#/forms/",
- "gaps": [],
+ "gaps": [
+  {
+   "known": null,
+   "n": 3,
+   "step": "managed fleet is a subset of the register",
+   "what": "3 managed point(s) are not in the register export: 1052525215, 987623304, 987623555"
+  }
+ ],
  "populations": {
   "calendar_evidenced_2026": {
    "decided": "The gardien calendar is the official record of days operational.",
@@ -91,7 +98,7 @@
     ]
    ],
    "rule": "Submitted (final) responses on the call-centre form whose approvals list is empty.",
-   "size": 2842,
+   "size": 3166,
    "unit": "records"
   },
   "carbon_fleet": {
@@ -140,7 +147,7 @@
     ]
    ],
    "rule": "Managed points whose most recent record - call, maintenance visit or repair - says the pump is not working.",
-   "size": 23,
+   "size": 22,
    "unit": "points"
   },
   "first_rehab_confirmed_out_of_order": {
@@ -245,7 +252,7 @@
     ]
    ],
    "rule": "Water points with a first-rehabilitation record on any of the three forms below - the retired combined works form, the current first-rehabilitation form, and the borehole-progress form, whose works include new constructions - whatever the outcome. One point can carry more than one such record; the point is counted once.",
-   "size": 789,
+   "size": 812,
    "unit": "points"
   },
   "first_rehabilitation_records": {
@@ -319,7 +326,7 @@
     ]
    ],
    "rule": "Water points with an identification survey on the live identification form - the first visit, before any works.",
-   "size": 55,
+   "size": 53,
    "unit": "points"
   },
   "located_register_points": {
@@ -339,7 +346,7 @@
     ]
    ],
    "rule": "Register records carrying a coordinate in mWater. This is the set every “nearest other point” distance is measured against: the whole register, not the managed fleet, because the nearest point to a dormant one is often a working point and sometimes another dormant one.",
-   "size": 919,
+   "size": 910,
    "unit": "points"
   },
   "managed_fleet": {
@@ -463,7 +470,7 @@
     ]
    ],
    "rule": "Managed points whose last preventive visit or repair - or, where there has been neither, the commissioning date - is more than 182 days before the build date. The same test the maintenance tiles and the build's own counters apply.",
-   "size": 462,
+   "size": 459,
    "unit": "points"
   },
   "pm_visits": {
@@ -480,7 +487,7 @@
     ]
    ],
    "rule": "Every submitted response on the preventive-maintenance form - drafts and rejected responses excluded.",
-   "size": 775,
+   "size": 781,
    "unit": "records"
   },
   "pm_visits_calendar_of_record": {
@@ -499,7 +506,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.6, the calendar photograph of record.",
-   "size": 734,
+   "size": 740,
    "unit": "records"
   },
   "pm_visits_calendar_photo": {
@@ -518,7 +525,7 @@
     ]
    ],
    "rule": "Of the visits on record, those with at least one photograph on question 2.15.5, the gardiens' calendar generally.",
-   "size": 772,
+   "size": 778,
    "unit": "records"
   },
   "register_records": {
@@ -536,7 +543,7 @@
     ]
    ],
    "rule": "Every water-point record in the MadAvance group in mWater. This is everything MadAvance holds, most of which we do not maintain: surveys, points handed on, rope pumps, abandoned points.",
-   "size": 919,
+   "size": 910,
    "unit": "points"
   },
   "rehabilitated_successfully": {
@@ -589,7 +596,7 @@
     ]
    ],
    "rule": "Every repair-after-breakdown record on either repair source - the retired combined form and its live successor - that is linked to a water point and was submitted on or after 1 August 2024, counted once per point and date. The de-duplication is not cosmetic: three (point, date) pairs carry two records each, one of which spans the migration boundary and is a genuine double entry.",
-   "size": 628,
+   "size": 630,
    "unit": "records"
   },
   "repairs_time_measured": {
@@ -625,7 +632,7 @@
     ]
    ],
    "rule": "Repairs since 1 August 2024 that carry BOTH a breakdown notification date and a works completion date, and whose completion is not before its notification. Only these can be timed, so only these are in the median and the mean.",
-   "size": 625,
+   "size": 627,
    "unit": "records"
   },
   "sdws18_pou_passing": {

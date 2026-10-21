@@ -2,17 +2,17 @@
  "branches": {
   "call and works on the same day -> the call wins": 192,
   "held on the published value (unsettled)": 36,
-  "latest record is a call": 325,
-  "latest record is a maintenance": 122,
-  "latest record is a repair": 83,
+  "latest record is a call": 319,
+  "latest record is a maintenance": 127,
+  "latest record is a repair": 84,
   "no answered record at all -> unknown": 23
  },
- "built": "2026-10-17",
+ "built": "2026-10-21",
  "rule": "Status is the last thing anyone recorded about a pump. A call-centre contact, a preventive-maintenance visit and a repair each carry their own question, and each answer maps to working, partially working or not working; a record that never reached its question is skipped. The latest record by date wins, and on the same date the call wins. A pump with no answered record of any kind is unknown.",
  "split": {
-  "down": 23,
-  "ok": 524,
-  "partial": 171,
+  "down": 22,
+  "ok": 527,
+  "partial": 169,
   "unknown": 27
  },
  "status": {
@@ -1646,23 +1646,23 @@
    "status": "ok"
   },
   "699597964": {
-   "date": "2026-02-10",
+   "date": "2026-10-19",
    "held": true,
    "hold_reason": "the published tables treat this pump as having no evidence although answered records exist in the extract",
    "issue": null,
    "problem": null,
-   "rid": "4cacb69e5f3b47c99af9f0075b0d7bb3",
+   "rid": "038a4b887f4048e091108e773fe9fd63",
    "src": "call",
    "status": "unknown"
   },
   "699597971": {
-   "date": "2026-10-16",
+   "date": "2026-10-17",
    "held": true,
    "hold_reason": "the published value cannot be derived from any record in the extract; the latest answered record says ok",
    "issue": null,
    "problem": null,
-   "rid": "29c7255552c4413fac53a32b03ae091a",
-   "src": "call",
+   "rid": "27b2188e310c4e4bb9bfe66b4e2232c6",
+   "src": "maintenance",
    "status": "down"
   },
   "699597988": {
@@ -1690,11 +1690,11 @@
    "status": "ok"
   },
   "699598044": {
-   "date": "2026-10-16",
+   "date": "2026-10-17",
    "issue": null,
    "problem": null,
-   "rid": "13eff59a3e474a1a961bed9f9765e01f",
-   "src": "call",
+   "rid": "6fb9fef150214c28be9a082ed8dc9332",
+   "src": "maintenance",
    "status": "ok"
   },
   "718551997": {
@@ -3965,12 +3965,12 @@
    "status": "ok"
   },
   "742897122": {
-   "date": "2026-10-08",
+   "date": "2026-10-18",
    "issue": null,
    "problem": null,
-   "rid": "1a8eec85a7164403b34fc575cbdb498e",
-   "src": "call",
-   "status": "down"
+   "rid": "e24c0ef549d94bd4b9e8858cd9b6d701",
+   "src": "repair",
+   "status": "ok"
   },
   "742897146": {
    "date": "2025-09-26",
@@ -4079,15 +4079,12 @@
    "status": "ok"
   },
   "742897270": {
-   "date": "2026-10-07",
+   "date": "2026-10-17",
    "issue": null,
-   "problem": [
-    "ceFLdqs",
-    "6h85Rvg"
-   ],
-   "rid": "002784643c47429bb94bc57f7d95076d",
-   "src": "call",
-   "status": "partial"
+   "problem": null,
+   "rid": "3a886fc6bc40440cbdfad1c2991b230e",
+   "src": "maintenance",
+   "status": "ok"
   },
   "742897287": {
    "date": "2026-03-10",
@@ -4823,11 +4820,11 @@
    "status": "unknown"
   },
   "754036911": {
-   "date": "2026-10-16",
+   "date": "2026-10-17",
    "issue": null,
    "problem": null,
-   "rid": "946a58e692fd49b78a4d09b31e33ee98",
-   "src": "call",
+   "rid": "ee969348e66f4106b65bcd85837e6e57",
+   "src": "maintenance",
    "status": "ok"
   },
   "754036928": {
@@ -6389,14 +6386,12 @@
    "status": "partial"
   },
   "905251389": {
-   "date": "2026-06-03",
+   "date": "2026-10-20",
    "issue": null,
-   "problem": [
-    "FRKjrZd"
-   ],
-   "rid": "3b8bab0d6b934cf2ae03232852795fd5",
-   "src": "call",
-   "status": "partial"
+   "problem": null,
+   "rid": "b3c7555002c24c75b2dbf98628ae0141",
+   "src": "maintenance",
+   "status": "ok"
   },
   "905251396": {
    "date": "2026-06-03",

@@ -1,6 +1,6 @@
 {
  "note": "Written by tools/build_routes.py at each build: the catch-up route plans drawn from the build's overdue list. The page's ROUTES, routes.html and itinerary.csv are its output; tools/check_routes.py gates them.",
- "drawn": "2026-10-17",
+ "drawn": "2026-10-21",
  "params": {
   "route_site_minutes": 45.0,
   "route_day_hours": 8.0,
@@ -36,11 +36,11 @@
  },
  "sites": {
   "Maroantsetra": {
-   "routed": 383,
-   "never_visited": 18,
-   "team_days": 53,
-   "road_km": 1097,
-   "hours": 372.4,
+   "routed": 380,
+   "never_visited": 17,
+   "team_days": 52,
+   "road_km": 1074,
+   "hours": 368.2,
    "days_over_length": 0,
    "field_trips": 1,
    "overnights": 9,
@@ -196,7 +196,6 @@
     "699597933",
     "699597940",
     "699597957",
-    "699597964",
     "718551997",
     "718552008",
     "742895254",
@@ -331,7 +330,6 @@
     "742897098",
     "742897108",
     "742897115",
-    "742897122",
     "742897146",
     "742897160",
     "742897177",
@@ -412,7 +410,6 @@
     "742972377",
     "743091752",
     "744500936",
-    "754036911",
     "771580703",
     "771580710",
     "771580727",

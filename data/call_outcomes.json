@@ -1,20 +1,20 @@
 {
  "note": "Written by tools/call_outcomes.py from the call-centre, preventive-maintenance and repair extracts.",
- "asof": "2026-10-16",
- "window_from_excl": "2025-10-16",
- "calls": 620,
+ "asof": "2026-10-19",
+ "window_from_excl": "2025-10-19",
+ "calls": 625,
  "classes": {
-  "repaired": 258,
-  "a": 311,
-  "b": 35,
+  "repaired": 262,
+  "a": 314,
+  "b": 33,
   "c": 16
  },
- "no_repair_calls": 362,
- "breakdowns": 593,
- "scored": 589,
- "within_target": 487,
+ "no_repair_calls": 363,
+ "breakdowns": 598,
+ "scored": 597,
+ "within_target": 494,
  "share_within": 82.7,
- "median_days": 0.0,
+ "median_days": 1,
  "target": {
   "days": 14,
   "share_pct": 90,
@@ -27,7 +27,7 @@
    "site": "Fort-Dauphin",
    "commune": "Ifarantsa",
    "since": "2025-12-16",
-   "days": 304,
+   "days": 307,
    "calls": 3,
    "rid": "7b61754706304e60aa344094c05cc49f"
   },
@@ -36,7 +36,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2025-12-23",
-   "days": 297,
+   "days": 300,
    "calls": 1,
    "rid": "f886c6a21f7040e1878341731e628876"
   },
@@ -45,7 +45,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2026-01-06",
-   "days": 283,
+   "days": 286,
    "calls": 1,
    "rid": "aea9ab09b5c44466a34aa6ea65e23e16"
   },
@@ -54,7 +54,7 @@
    "site": "Maroantsetra",
    "commune": "Voloina",
    "since": "2026-02-06",
-   "days": 252,
+   "days": 255,
    "calls": 1,
    "rid": "ce486c8e5bbe4213a1d79425ca4b10ff"
   },
@@ -63,7 +63,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "since": "2026-02-11",
-   "days": 247,
+   "days": 250,
    "calls": 1,
    "rid": "0c0e0fae332c40d0b379784f2c498bef"
   },
@@ -72,7 +72,7 @@
    "site": "Maroantsetra",
    "commune": "Voloina",
    "since": "2026-02-17",
-   "days": 241,
+   "days": 244,
    "calls": 1,
    "rid": "81c6f022b87a46788f2c12fef331fb87"
   },
@@ -81,7 +81,7 @@
    "site": "Maroantsetra",
    "commune": "Voloina",
    "since": "2026-03-10",
-   "days": 220,
+   "days": 223,
    "calls": 1,
    "rid": "6e7a318818c84a86ba694e54f569ff59"
   },
@@ -90,7 +90,7 @@
    "site": "Fort-Dauphin",
    "commune": "Manantenina",
    "since": "2026-03-17",
-   "days": 213,
+   "days": 216,
    "calls": 1,
    "rid": "1864429878db4fe18adeb1648762dea9"
   },
@@ -99,7 +99,7 @@
    "site": "Fort-Dauphin",
    "commune": "Ifarantsa",
    "since": "2026-03-17",
-   "days": 213,
+   "days": 216,
    "calls": 1,
    "rid": "d456527b6e944fac897b0b77423bf957"
   },
@@ -108,7 +108,7 @@
    "site": "Fort-Dauphin",
    "commune": "Manambaro",
    "since": "2026-03-17",
-   "days": 213,
+   "days": 216,
    "calls": 1,
    "rid": "8c1d72a96b9d42f591e60fecc18e4da8"
   },
@@ -117,7 +117,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "since": "2026-03-17",
-   "days": 213,
+   "days": 216,
    "calls": 1,
    "rid": "64c5897f44f44f3d8fcb60ab8aac849c"
   },
@@ -126,7 +126,7 @@
    "site": "Fort-Dauphin",
    "commune": "Analapatsy",
    "since": "2026-03-17",
-   "days": 213,
+   "days": 216,
    "calls": 1,
    "rid": "d796f2419eb54870bd37856a7eea1224"
   },
@@ -135,7 +135,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2026-03-18",
-   "days": 212,
+   "days": 215,
    "calls": 1,
    "rid": "30ff01a2e32e4e518d4c5ef8b414946a"
   },
@@ -144,7 +144,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2026-03-26",
-   "days": 204,
+   "days": 207,
    "calls": 1,
    "rid": "8167505d371f45e9aa90654494a1c19c"
   },
@@ -153,7 +153,7 @@
    "site": "Maroantsetra",
    "commune": "Ankofabe",
    "since": "2026-03-30",
-   "days": 200,
+   "days": 203,
    "calls": 1,
    "rid": "5d66fbef5e314ba0ac31ba4bef1c1cac"
   },
@@ -162,7 +162,7 @@
    "site": "Fort-Dauphin",
    "commune": "Manambaro",
    "since": "2026-03-30",
-   "days": 200,
+   "days": 203,
    "calls": 1,
    "rid": "f06452b8652f433cb7f7b614a3877f23"
   },
@@ -171,7 +171,7 @@
    "site": "Fort-Dauphin",
    "commune": "Mandiso",
    "since": "2026-04-20",
-   "days": 179,
+   "days": 182,
    "calls": 2,
    "rid": "e27b5ae71bd7442aac0fa8b4b2a4784c"
   },
@@ -180,7 +180,7 @@
    "site": "Fort-Dauphin",
    "commune": "Mandiso",
    "since": "2026-04-28",
-   "days": 171,
+   "days": 174,
    "calls": 1,
    "rid": "ed2f464e9e29413f970aee779035e7c8"
   },
@@ -189,7 +189,7 @@
    "site": "Fort-Dauphin",
    "commune": "Mandiso",
    "since": "2026-05-12",
-   "days": 157,
+   "days": 160,
    "calls": 1,
    "rid": "f51c9642ada54b92b5351c350c2457a6"
   },
@@ -198,7 +198,7 @@
    "site": "Fort-Dauphin",
    "commune": "Ranopiso",
    "since": "2026-05-15",
-   "days": 154,
+   "days": 157,
    "calls": 1,
    "rid": "1ee5132e25c94bfca4c542f68a6df984"
   },
@@ -207,7 +207,7 @@
    "site": "Fort-Dauphin",
    "commune": "Ankaramena",
    "since": "2026-07-03",
-   "days": 105,
+   "days": 108,
    "calls": 1,
    "rid": "9fdc9691099e485b9d47b26c0a364cac"
   },
@@ -216,7 +216,7 @@
    "site": "Maroantsetra",
    "commune": "Mariarano",
    "since": "2026-07-20",
-   "days": 88,
+   "days": 91,
    "calls": 1,
    "rid": "2bb79c8e80ee42e48c1995dd3960e3ab"
   },
@@ -225,7 +225,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "since": "2026-07-22",
-   "days": 86,
+   "days": 89,
    "calls": 1,
    "rid": "013aee47571b431f9bd6553d1877c5cc"
   },
@@ -234,7 +234,7 @@
    "site": "Maroantsetra",
    "commune": "Mahalevona",
    "since": "2026-07-27",
-   "days": 81,
+   "days": 84,
    "calls": 1,
    "rid": "b90bb69bac7547f98423a394e52ac185"
   },
@@ -243,7 +243,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2026-09-02",
-   "days": 44,
+   "days": 47,
    "calls": 1,
    "rid": "247fc27084b342b7a4f0d61cde107f2a"
   },
@@ -252,7 +252,7 @@
    "site": "Maroantsetra",
    "commune": "Anjahana",
    "since": "2026-09-02",
-   "days": 44,
+   "days": 47,
    "calls": 1,
    "rid": "4848fa6dd429483c9f8428f209d926d5"
   },
@@ -261,7 +261,7 @@
    "site": "Maroantsetra",
    "commune": "Mariarano",
    "since": "2026-09-08",
-   "days": 38,
+   "days": 41,
    "calls": 1,
    "rid": "f9897219a387465691015daff6069d8a"
   },
@@ -270,7 +270,7 @@
    "site": "Maroantsetra",
    "commune": "Mahalevona",
    "since": "2026-09-15",
-   "days": 31,
+   "days": 34,
    "calls": 1,
    "rid": "9e8d55abd56a457688e7ca10f6cd37c8"
   },
@@ -279,7 +279,7 @@
    "site": "Fort-Dauphin",
    "commune": "Ampasy Nahampoana",
    "since": "2026-09-18",
-   "days": 28,
+   "days": 31,
    "calls": 1,
    "rid": "f7009970d0b54a17a1ceed76addea2c9"
   },
@@ -288,7 +288,7 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "since": "2026-09-28",
-   "days": 18,
+   "days": 21,
    "calls": 1,
    "rid": "c3aa09ed5937460b9ca0b240ed0cad10"
   },
@@ -297,7 +297,7 @@
    "site": "Fort-Dauphin",
    "commune": "Manantenina",
    "since": "2026-10-02",
-   "days": 14,
+   "days": 17,
    "calls": 1,
    "rid": "c0cc3daf23c64bcd862a2314fff7d7c0"
   },
@@ -306,34 +306,16 @@
    "site": "Fort-Dauphin",
    "commune": "Soanierana",
    "since": "2026-10-05",
-   "days": 11,
+   "days": 14,
    "calls": 1,
    "rid": "635483bf3e2f48279d92b7ef791c8183"
-  },
-  {
-   "wp": "742897270",
-   "site": "Maroantsetra",
-   "commune": "Anjahana",
-   "since": "2026-10-07",
-   "days": 9,
-   "calls": 1,
-   "rid": "002784643c47429bb94bc57f7d95076d"
-  },
-  {
-   "wp": "742897122",
-   "site": "Maroantsetra",
-   "commune": "Anjahana",
-   "since": "2026-10-08",
-   "days": 8,
-   "calls": 1,
-   "rid": "1a8eec85a7164403b34fc575cbdb498e"
   },
   {
    "wp": "833033208",
    "site": "Maroantsetra",
    "commune": "Ambinanitelo",
    "since": "2026-10-12",
-   "days": 4,
+   "days": 7,
    "calls": 1,
    "rid": "fac45fc842d046789d7e021931ac9d4a"
   }
@@ -455,6 +437,12 @@
   },
   {
    "wp": "698772245",
+   "site": "Maroantsetra",
+   "reported": "2026-02-04",
+   "working_by": "2026-02-05"
+  },
+  {
+   "wp": "698772252",
    "site": "Maroantsetra",
    "reported": "2026-02-04",
    "working_by": "2026-02-05"
@@ -2542,10 +2530,22 @@
    "working_by": "2026-10-05"
   },
   {
+   "wp": "742897270",
+   "site": "Maroantsetra",
+   "reported": "2026-10-07",
+   "working_by": "2026-10-17"
+  },
+  {
    "wp": "699597995",
    "site": "Maroantsetra",
    "reported": "2026-10-09",
    "working_by": "2026-10-10"
+  },
+  {
+   "wp": "905251389",
+   "site": "Maroantsetra",
+   "reported": "2026-10-19",
+   "working_by": "2026-10-20"
   }
  ]
 }

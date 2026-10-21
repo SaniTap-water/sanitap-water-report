@@ -1,0 +1,6 @@
+{
+ "note": "REVIEW gates that failed in the run that built this edition (tools/gate_decide.py); shown PROVISIONAL on the page and listed on the week's approval task. Cleared at the start of every build.",
+ "run": "2026-10-21T06:43:01Z",
+ "items": [],
+ "blocking": []
+}

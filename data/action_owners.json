@@ -842,8 +842,8 @@
  "closure": {
   "note": "Written by tools/closure_types.py from data/action_conditions.json and data/action_state.json. Not part of the owners record: owner and deadline stay in 'owners'.",
   "counts": {
-   "auto": 51,
-   "evidence": 112,
+   "auto": 50,
+   "evidence": 113,
    "manual": 3
   },
   "actions": {
@@ -1884,9 +1884,9 @@
     "first_seen": "2026-09-21"
    },
    "act-undatable": {
-    "type": "auto",
-    "closes_when": "closes when every point with calendar photographs has one that can be read",
-    "closed": false,
+    "type": "evidence",
+    "closes_when": "list filed and reissue scheduled: the 10 Oct 2026 list in Evidence/2026/Calendars SDWS27, and act-calendar-v13 open with a due date",
+    "closed": true,
     "detected_closed_on": null,
     "first_seen": "2026-09-20"
    },
@@ -2279,6 +2279,19 @@
     "task": "1219128812565674",
     "from": "asana"
    },
+   "act-approve-major-changes-week-42": {
+    "recorded_on": "2026-10-21",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-21",
+    "summary": "Adriaan's \"Approved\" comment on this task, 20 Oct 2026 12:30 UTC. Headline figures unchanged week 42 (21,629 tCO2e a year, 745 water points, 126,201 people, 347 days); the only change is 1 deleted Marolinta borehole record (0cd3044eb15d458aae9cbaa3bbfeeea0).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-21",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219576216429687",
+    "task": "1219576216429687",
+    "from": "asana"
+   },
    "act-awf-2027-call-timing": {
     "recorded_on": "2026-10-08",
     "recorded_by": "tools/asana_pull.py, from the Asana task",
@@ -2344,6 +2357,19 @@
     "task": "1219101110478505",
     "from": "asana"
    },
+   "act-coddy-73-credits-deduction": {
+    "recorded_on": "2026-10-21",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-21",
+    "summary": "Coddy's written confirmation on this task, 16 Oct 2026 04:06 UTC: \"Confirmed: the 73 credits per litre deduction is already in place on all SmartTaps in Tana.\" For the NatuRano rechargers, Coddy's email \"Naturano Firmware Update - Compatibility with Endur'O, Ariary Pricing, and SmartTap Credit System\", 7 Oct 2026 13:41 UTC, states they use the same 73 credits per litre, with the Ariary price per 20 L set server-side. Not covered explicitly: the Amboasary Gara (Moramanga) taps; ticked on Adriaan's instruction, 21 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-21",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219410000778933",
+    "task": "1219410000778933",
+    "from": "asana"
+   },
    "act-coddy-naturano-card-spec": {
     "recorded_on": "2026-10-07",
     "recorded_by": "Claude, on Adriaan Mol's instruction",
@@ -2376,6 +2402,19 @@
     "source": "email “Re: Water program dashboard & actions” from James Walker, 2026-09-21",
     "summary": "v2.0 applies from 1 January 2026 with some grandfathering; alignment at the verification submission (Q1 2027), full alignment at the crediting-period renewal; v2.0 to be tried for 2025 through the design-change pathway.",
     "ref": "data/decisions.json"
+   },
+   "act-decide-how-treat-67": {
+    "recorded_on": "2026-10-21",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-21",
+    "summary": "email \"Re: Five drafts for your yes or no: VPA-DD protocol paragraph, DEVRQ-121 question, margins of error, pumps without a calendar photo, usage survey SOP\", James Walker to Adriaan Mol (cc Jan de Graaf), 20 Oct 2026 15:52 UTC, item 4: \"Calendar photo is our insertion. We have the records of visits, SoPs etc, to demonstrate ongoing program, so default 347 days.\" Decision in writing: points without a readable calendar photo are estimated at 347 days, corroborated by maintenance visits and call-centre records, not excluded. The build already applies 347 days to every pump without a sensor, so every such point has a treatment; no change to credits, pumps or people reached. Ticked on Adriaan's instruction, 21 Oct 2026.",
+    "author": "Adriaan Mol",
+    "date": "2026-10-21",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219100937142786",
+    "task": "1219100937142786",
+    "from": "asana"
    },
    "act-decommission-inactivity-field": {
     "recorded_on": "2026-09-21",
@@ -2656,6 +2695,19 @@
     "kind": "comment",
     "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219501984136078",
     "task": "1219501984136078",
+    "from": "asana"
+   },
+   "act-frld-resubmit-oct20": {
+    "recorded_on": "2026-10-20",
+    "recorded_by": "tools/asana_pull.py, from the Asana task",
+    "what": "an Evidence comment on the Asana task",
+    "source": "Adriaan Mol, Asana, 2026-10-20",
+    "summary": "\"RE: Funding Request: Restoration of Essential Water Services for Cyclone-Affected Communities in Madagascar\", Dr Timothy Afful-Koomson (AfDB) to the FRLD Secretariat (fundingrequest@frld.org, cc Jan, Adriaan, Andrew, MadAvance, AfDB team), sent 20 Oct 2026 01:14 UTC.\nClosing condition met: AfDB sent FRLD the updated package (zip \"ThirdSubmission\") before the 20 October deadline, containing (1) the funding request with tracked changes, (2) the clean version, (3) responses to the second-round feedback, (4) the consolidated annexes. Tim notes the access modality changed from B to C (FRLD funds handled outside AfDB policy-based operations; nothing else changes) and asks that the request be in the pool for Board B.10. Answers were agreed earlier (Adriaan's review 16 Oct; Jan's final documents to AfDB 18 Oct).",
+    "author": "Adriaan Mol",
+    "date": "2026-10-20",
+    "kind": "comment",
+    "link": "https://app.asana.com/1/1200141858542667/project/1209455787942089/task/1219409791753517",
+    "task": "1219409791753517",
     "from": "asana"
    },
    "act-frld-tier-split": {

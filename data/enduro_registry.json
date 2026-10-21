@@ -4,22 +4,23 @@
   "id": "c305b9b85f41417387b553d9a33c795b",
   "name": "Enduro"
  },
- "pulled": "2026-10-17",
+ "pulled": "2026-10-21",
  "counts": {
   "systems": 25,
   "systems_gps": 25,
   "systems_photo": 10,
-  "points": 221,
-  "points_gps": 221,
-  "points_photo": 140,
+  "points": 233,
+  "points_gps": 233,
+  "points_photo": 152,
   "points_no_photo": 81,
   "points_with_system": 23,
-  "points_no_system": 198,
+  "points_no_system": 210,
   "retired_excluded": 0,
   "point_types": {
    "Borehole or tubewell": 15,
-   "Protected dug well": 15,
-   "Unprotected dug well": 1,
+   "Protected dug well": 24,
+   "Protected spring": 1,
+   "Unprotected dug well": 3,
    "kiosk": 22,
    "not set": 168
   }
@@ -29,8 +30,8 @@
   "systems_registered": 25,
   "systems_diff": -106,
   "points_manual": 181,
-  "points_registered": 221,
-  "points_diff": 40,
+  "points_registered": 233,
+  "points_diff": 52,
   "regsys_manual": 24,
   "regsys_diff": 1,
   "manual_as_at": "2026-09-16",
@@ -349,13 +350,14 @@
   }
  ],
  "no_system": {
-  "points": 198,
-  "points_gps": 198,
-  "points_photo": 136,
+  "points": 210,
+  "points_gps": 210,
+  "points_photo": 148,
   "point_types": {
    "Borehole or tubewell": 11,
-   "Protected dug well": 15,
-   "Unprotected dug well": 1,
+   "Protected dug well": 24,
+   "Protected spring": 1,
+   "Unprotected dug well": 3,
    "kiosk": 3,
    "not set": 168
   }
@@ -914,6 +916,39 @@
    "desc": "miakatra amin'ny kiosk,mivily terrain boule,midina totohotra vato"
   },
   {
+   "code": "1259196704",
+   "name": "ANDOHASAHA",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.43524,
+   "lat": -18.875524,
+   "photo": "da0c5c4b711e48a5afd33133ee2e830a",
+   "device": null,
+   "desc": "Fokontany ANDRANGITANA"
+  },
+  {
+   "code": "1259196663",
+   "name": "ANDRINGITANA ANDOBOKELY",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.434669,
+   "lat": -18.873887,
+   "photo": "851ee8955a714e0bba38b9b7ab745907",
+   "device": null,
+   "desc": "Fokontany ANDRINGITANA"
+  },
+  {
+   "code": "1259196649",
+   "name": "ANTANINARENINA-ANTSAHAMARINA",
+   "type": "Unprotected dug well",
+   "system": null,
+   "lon": 47.44525,
+   "lat": -18.863528,
+   "photo": "be0140b9509347d3b1ea5d7a22392945",
+   "device": null,
+   "desc": "ANTANINARENINA AMBANIN'NY ARRET BUS"
+  },
+  {
    "code": "1259196625",
    "name": "ANTSAHAVORY",
    "type": "Protected dug well",
@@ -1178,6 +1213,17 @@
    "desc": null
   },
   {
+   "code": "1259200818",
+   "name": "Andohasa",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.434952,
+   "lat": -18.875606,
+   "photo": "0a6f964b04644906b1aa55ed51c52347",
+   "device": null,
+   "desc": "Fkt andringitana"
+  },
+  {
    "code": "1108783923",
    "name": "Andranomena",
    "type": null,
@@ -1420,6 +1466,17 @@
    "desc": "Kiosque 39"
   },
   {
+   "code": "1259200746",
+   "name": "Antaninarenina",
+   "type": "Unprotected dug well",
+   "system": null,
+   "lon": 47.44535,
+   "lat": -18.86356,
+   "photo": "42694983770445b6af85103afbb0e0dd",
+   "device": null,
+   "desc": "Antsahamarina ambany lalana"
+  },
+  {
    "code": "1259200708",
    "name": "Antsahavory",
    "type": "Protected dug well",
@@ -1594,6 +1651,61 @@
    "photo": "d4d254cf96ab48edbc4a787d1b140f05",
    "device": null,
    "desc": "Epp imamba"
+  },
+  {
+   "code": "1259196656",
+   "name": "FOKONTANY ANDRIANGITANA",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.435604,
+   "lat": -18.872384,
+   "photo": "df534fdf540f417db69ef297e2b71e6f",
+   "device": null,
+   "desc": "Pres du Bureau de Fokontany et EPP"
+  },
+  {
+   "code": "1259196670",
+   "name": "Fatsakana AMBOHIMANANJO Ambany",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.435417,
+   "lat": -18.876873,
+   "photo": "2706f832f8254bf1982292c6afdb6305",
+   "device": null,
+   "desc": "FKT AMBOHIMANANJO"
+  },
+  {
+   "code": "1259200784",
+   "name": "Fatsakana Ambohimananjoa ambany",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.435245,
+   "lat": -18.876841,
+   "photo": "e7850f56934b4ba39e73dabb22b814d4",
+   "device": null,
+   "desc": "Fkt ambohimananjoa"
+  },
+  {
+   "code": "1259200777",
+   "name": "Fatsakana akaik andombokely",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.434896,
+   "lat": -18.874224,
+   "photo": "3f2a72582b284c9d837faaf490cb9b50",
+   "device": null,
+   "desc": "Fkt andringitana"
+  },
+  {
+   "code": "1259200753",
+   "name": "Fkt andrangitana",
+   "type": "Protected spring",
+   "system": null,
+   "lon": 47.435804,
+   "lat": -18.872327,
+   "photo": "ad6d69fade1d429a9afaa6510d7a1286",
+   "device": null,
+   "desc": "Eto akaiky ny EPP"
   },
   {
    "code": "929469285",
@@ -1913,6 +2025,28 @@
    "photo": null,
    "device": null,
    "desc": null
+  },
+  {
+   "code": "1259196687",
+   "name": "RAFALIARIVONY",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.435518,
+   "lat": -18.877715,
+   "photo": "f9d0ed13ec3242a6b4b86f9827b6c779",
+   "device": null,
+   "desc": "Fokontany Ambohimananjoa"
+  },
+  {
+   "code": "1259196694",
+   "name": "RAVONJIARILALA TOKINIAINA",
+   "type": "Protected dug well",
+   "system": null,
+   "lon": 47.435291,
+   "lat": -18.875514,
+   "photo": "ba15e5353b524f798092084ac1f1b1d4",
+   "device": null,
+   "desc": "Fokontany ANDRANGITANA"
   },
   {
    "code": "988432556",

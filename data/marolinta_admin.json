@@ -1,5 +1,5 @@
 {
- "checked": "2026-10-17",
+ "checked": "2026-10-21",
  "no_photograph": 0,
  "records": [
   {
@@ -11,17 +11,6 @@
    "fokontany_from_description": "Mahatsara",
    "name": "Noveau forrage Num\u00e9ro 04 ",
    "photos": 2,
-   "source": "admin_region"
-  },
-  {
-   "admin_region": 418299,
-   "code": "1052525215",
-   "commune": "Marolinta",
-   "district": "Beloha",
-   "fokontany": null,
-   "fokontany_from_description": "Mahatsara",
-   "name": "MPOMPY FORAGE A CORDE (MANUELLE ",
-   "photos": 4,
    "source": "admin_region"
   },
   {
@@ -123,28 +112,6 @@
    "name": "Mahatsara terrain foot 011 nouveau forage ",
    "photos": 3,
    "source": "admin_region"
-  },
-  {
-   "admin_region": 418299,
-   "code": "987623304",
-   "commune": "Marolinta",
-   "district": "Beloha",
-   "fokontany": "Mahafaly Centre",
-   "fokontany_from_description": null,
-   "name": "Pompe \u00e0 cordes",
-   "photos": 3,
-   "source": "register"
-  },
-  {
-   "admin_region": 418299,
-   "code": "987623555",
-   "commune": "Marolinta",
-   "district": "Beloha",
-   "fokontany": "Mahafaly Centre",
-   "fokontany_from_description": null,
-   "name": "IndiaMark",
-   "photos": 4,
-   "source": "register"
   }
  ],
  "region_map": {
@@ -152,11 +119,11 @@
   "418299": {
    "commune": "Marolinta",
    "district": "Beloha",
-   "from": 13,
+   "from": 8,
    "region": "Androy"
   }
  },
- "resolved_from_region": 10,
- "resolved_from_register": 2,
+ "resolved_from_region": 9,
+ "resolved_from_register": 0,
  "still_missing": 1
 }

@@ -755,6 +755,32 @@
    "source": "Adriaan Mol, reply in the session, 10 Oct 2026",
    "logged_on": "2026-10-10",
    "logged_by": "Adriaan Mol"
+  },
+  "approval-major-changes-2026-W42": {
+   "answer": "Major changes of 2026-W42 approved: {\"a\": [], \"b\": [{\"file\": \"marolinta_borehole.json\", \"count\": 1, \"ids\": [\"0cd3044eb15d458aae9cbaa3bbfeeea0\"], \"wps\": [\"1052525284\"]}], \"c\": []}",
+   "decided_by": "Adriaan Mol",
+   "decided_on": "2026-10-21",
+   "source": "Asana approval task 1219576216429687",
+   "headline": {
+    "tco2e": {
+     "before": 21629,
+     "after": 21629
+    },
+    "points": {
+     "before": 745,
+     "after": 745
+    },
+    "people": {
+     "before": 126201,
+     "after": 126201
+    },
+    "days_operational": {
+     "before": 347,
+     "after": 347
+    }
+   },
+   "logged_on": "2026-10-21",
+   "logged_by": "tools/change_review.py, from the Asana approval"
   }
  },
  "note": "An item of kind 'decision' closes only on an entry here. An email is never enough: candidate answers are surfaced on the row for confirmation, and a person logs the decision.",
