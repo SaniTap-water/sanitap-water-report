@@ -2579,3 +2579,19 @@ Transcription round 1: the reader detected 0 of the 40 days both human readers m
   fails Fort-Dauphin days 11 and 12 (150 of 177 km, and 230 of 231 km, to and from the base) and one 4-km
   Maroantsetra day. Old days 13 and 14 met the stated exception. The new plan passes. `routes_wording` now also
   requires the field-trip sentence and refuses "Each day is a round trip from the base".
+
+## 20 Oct 2026 — James Walker: a water point that failed SDWS 3 is not creditable
+
+- **Decided by** James Walker, Head of Carbon, in a comment on the SDWS 3 SOP: a water point that did not pass
+  SDWS 3 is not creditable, is not part of the carbon portfolio, and is excluded from survey frames.
+- **Implemented 21 Oct 2026** (report and Sampler, one rule file `data/sdws3_rule.json` in both). The latest
+  final SDWS 3 result per point counts, and a later passing retest restores the point. It fails on E. coli > 0,
+  arsenic > 10 µg/L, fluoride ≥ 1.5 mg/L (the kit maximum, over the range) or turbidity > 5 NTU. A point with no
+  result is unchanged.
+- **Exception** (in the rule file): 742894851, response Cathy_MadAvance-D5V5UQ, 26 Apr 2025. Its turbidity of
+  11 NTU is a data-entry slip, because the team's kit cannot read turbidity that precisely, so turbidity is
+  ignored for that response only.
+- **Result on the data of 21 Oct 2026:** 6 points are not creditable, all in Maroantsetra. 833033198 failed on
+  E. coli 50 CFU/100 mL (14 Aug 2025); its retest is tracked as act-wq-retest. 800634100, 797195318,
+  797885233, 797195301 and 794012210 failed on fluoride 1.5 mg/L (15 Aug 2025). The carbon fleet goes from 732
+  to 726. The managed fleet is unchanged at 745.

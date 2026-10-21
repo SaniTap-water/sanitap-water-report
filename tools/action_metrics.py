@@ -327,7 +327,9 @@ def _m15():
 @metric("er_percent_of_type3_cap",
         "annual emission reductions as a percentage of the 60,000 tCO2e cap")
 def _m17():
-    s = js("S")["by_site"]
+    # the carbon points by site (the managed fleet less Marolinta and the points
+    # not creditable after a failed SDWS 3 test, tools/carbon_denominator.py)
+    s = js("CARBON")["carbon_by_site"]
     # Anosy as registered; Maroantsetra at its applied fNRB (36%, 21 Sep 2026)
     er = (s.get("Fort-Dauphin", 0) * 31.3
           + s.get("Maroantsetra", 0) * er_maro_applied(ctx["idx"]))

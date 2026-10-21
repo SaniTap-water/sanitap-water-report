@@ -31,10 +31,10 @@
    "step": "POINTS: Marolinta ⊆ managed fleet"
   },
   {
-   "detail": "732 + 13 = 745 points",
+   "detail": "726 + 13 + 6 = 745 points",
    "holds": true,
    "internal": false,
-   "step": "POINTS: carbon fleet + Marolinta = managed fleet"
+   "step": "POINTS: carbon fleet + Marolinta + not creditable (failed SDWS 3) = managed fleet"
   },
   {
    "detail": "731 successfully rehabilitated + 7 rehabilitated and working (Marolinta works form) + 6 completed new constructions + 1 recorded exception = 745 points",
@@ -43,7 +43,7 @@
    "step": "POINTS: the fleet is the successfully rehabilitated plus completed new constructions"
   },
   {
-   "detail": "297 of 732 points",
+   "detail": "293 of 726 points",
    "holds": true,
    "internal": false,
    "step": "POINTS: calendar-evidenced ⊆ carbon fleet"
@@ -81,7 +81,7 @@
     ]
    ],
    "rule": "Carbon-fleet points with a readable gardien calendar sheet dated 2026, the year read off the sheet itself. This is what the days-operational evidence rests on.",
-   "size": 297,
+   "size": 293,
    "unit": "points"
   },
   "callcentre_unapproved": {
@@ -102,23 +102,24 @@
    "unit": "records"
   },
   "carbon_fleet": {
-   "decided": "Marolinta is Deichmann-funded and enters no carbon figure, so it cannot be in a carbon denominator.",
-   "decided_on": "2026-09-22",
+   "decided": "Marolinta is Deichmann-funded and enters no carbon figure, so it cannot be in a carbon denominator (2026-09-22). A point that did not pass SDWS 3 is not creditable (James Walker, 2026-10-20).",
+   "decided_on": "2026-10-20",
    "derives_from": [
     "managed_fleet",
-    "marolinta"
+    "marolinta",
+    "not_creditable_sdws3"
    ],
    "id": "carbon_fleet",
    "name": "Carbon fleet",
    "reads": [
     [
-     "as managed_fleet, less the Marolinta site",
+     "as managed_fleet, less the Marolinta site and the points not creditable",
      null,
-     null
+     "tools/sdws3_creditable.py"
     ]
    ],
-   "rule": "The managed fleet less Marolinta. This is the denominator under every carbon figure on the page.",
-   "size": 732,
+   "rule": "The managed fleet less Marolinta, and less the points that failed their SDWS 3 commissioning test (not_creditable_sdws3). This is the denominator under every carbon figure on the page.",
+   "size": 726,
    "unit": "points"
   },
   "down_now": {
@@ -441,6 +442,25 @@
    "rule": "Every works record on the Marolinta borehole-progress form - rehabilitations and new constructions both. These never appear on the works form, so a query that reads only that form cannot see Marolinta at all.",
    "size": 20,
    "unit": "records"
+  },
+  "not_creditable_sdws3": {
+   "decided": "James Walker, Head of Carbon, comment on the SDWS 3 SOP: a water point that did not pass SDWS 3 is not creditable, is not part of the carbon portfolio, and is excluded from survey frames.",
+   "decided_on": "2026-10-20",
+   "derives_from": [
+    "managed_fleet"
+   ],
+   "id": "not_creditable_sdws3",
+   "name": "Not creditable: failed SDWS 3",
+   "reads": [
+    [
+     "Clean Water || Water Quality Testing SDWS 3 Result",
+     "7b33c5d7e5074808a94915939a5a0783",
+     "each point's latest final result, by result date"
+    ]
+   ],
+   "rule": "Managed water points whose latest final SDWS 3 result fails the rule in data/sdws3_rule.json (E. coli above 0, arsenic above 10 ug/L, fluoride at or above the kit maximum of 1.5 mg/L, turbidity above 5 NTU; the named exceptions there apply). They stay in the managed fleet and leave the carbon portfolio. A later passing retest restores a point.",
+   "size": 6,
+   "unit": "points"
   },
   "overdue_six_months": {
    "decided": "Six months is 182 days everywhere on the page. The table under this heading used 183 until 23 September 2026 and so counted one pump fewer than the tile above it.",

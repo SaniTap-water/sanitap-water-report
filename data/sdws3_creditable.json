@@ -1,0 +1,243 @@
+{
+ "note": "Water points whose latest final SDWS 3 result fails the rule in data/sdws3_rule.json: not creditable, outside the carbon portfolio, still in the managed fleet. Written by tools/sdws3_creditable.py.",
+ "rule": {
+  "file": "data/sdws3_rule.json",
+  "sha256": "f49d4dd369afc569ffd82a27f3dfe1e920976281cf7390ee15ee2f680324fa0d",
+  "version": "1.0",
+  "decided_by": "James Walker, Head of Carbon",
+  "decided_on": "2026-10-20",
+  "fail_if": [
+   {
+    "key": "ecoli",
+    "label": "E. coli",
+    "q": "892f1d81bf1a4c4483e53271dda474a5",
+    "code": "WS7.11",
+    "op": ">",
+    "limit": 0,
+    "unit": "CFU/100 mL"
+   },
+   {
+    "key": "arsenic",
+    "label": "arsenic",
+    "q": "4b86e349e9bc418ea5a4868e7b383604",
+    "code": "WS7.16",
+    "op": ">",
+    "limit": 10,
+    "unit": "ug/L"
+   },
+   {
+    "key": "fluoride",
+    "label": "fluoride",
+    "q": "b4e94c2a5ca4497199bcde2856f2cd0c",
+    "code": "WS7.17",
+    "op": ">=",
+    "limit": 1.5,
+    "unit": "mg/L",
+    "note": "1.5 mg/L is the kit maximum, so a reading of 1.5 means over-range, not a pass"
+   },
+   {
+    "key": "turbidity",
+    "label": "turbidity",
+    "q": "c70eb0f3cf764b04a26a2bc463a8ca2e",
+    "code": "WS7.12",
+    "op": ">",
+    "limit": 5,
+    "unit": "NTU"
+   }
+  ]
+ },
+ "form": "7b33c5d7e5074808a94915939a5a0783",
+ "extract": "wq_results.json",
+ "extracted": "2026-10-21",
+ "points_with_result": 732,
+ "not_creditable": 6,
+ "in_fleet": 6,
+ "by_site": {
+  "Maroantsetra": 6
+ },
+ "wps": [
+  "794012210",
+  "797195301",
+  "797195318",
+  "797885233",
+  "800634100",
+  "833033198"
+ ],
+ "rows": [
+  {
+   "wp": "794012210",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "fluoride",
+     "label": "fluoride",
+     "value": 1.5,
+     "op": ">=",
+     "limit": 1.5,
+     "unit": "mg/L"
+    }
+   ],
+   "result_date": "2025-08-15",
+   "response": "Cathy_MadAvance-DF95XY",
+   "response_id": "a33e90895343458eb41f562253af3508",
+   "results": 1,
+   "retest": {
+    "action": null,
+    "open": null,
+    "says": null
+   }
+  },
+  {
+   "wp": "797195301",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "fluoride",
+     "label": "fluoride",
+     "value": 1.5,
+     "op": ">=",
+     "limit": 1.5,
+     "unit": "mg/L"
+    }
+   ],
+   "result_date": "2025-08-15",
+   "response": "Cathy_MadAvance-DF968Q",
+   "response_id": "dddcfc4c7ca44671beda1ff8c549cb72",
+   "results": 1,
+   "retest": {
+    "action": null,
+    "open": null,
+    "says": null
+   }
+  },
+  {
+   "wp": "797195318",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "fluoride",
+     "label": "fluoride",
+     "value": 1.5,
+     "op": ">=",
+     "limit": 1.5,
+     "unit": "mg/L"
+    }
+   ],
+   "result_date": "2025-08-15",
+   "response": "Cathy_MadAvance-DF96EK",
+   "response_id": "538a993e053742b89cdcbcbb7a28a2d2",
+   "results": 1,
+   "retest": {
+    "action": null,
+    "open": null,
+    "says": null
+   }
+  },
+  {
+   "wp": "797885233",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "fluoride",
+     "label": "fluoride",
+     "value": 1.5,
+     "op": ">=",
+     "limit": 1.5,
+     "unit": "mg/L"
+    }
+   ],
+   "result_date": "2025-08-15",
+   "response": "Cathy_MadAvance-DF96K4",
+   "response_id": "ea51b60f98c64d4aa9e1bcde58f518fb",
+   "results": 1,
+   "retest": {
+    "action": null,
+    "open": null,
+    "says": null
+   }
+  },
+  {
+   "wp": "800634100",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "fluoride",
+     "label": "fluoride",
+     "value": 1.5,
+     "op": ">=",
+     "limit": 1.5,
+     "unit": "mg/L"
+    }
+   ],
+   "result_date": "2025-08-15",
+   "response": "Cathy_MadAvance-DF964X",
+   "response_id": "159ad1e1452c49a6bae56a2f2a6342ec",
+   "results": 1,
+   "retest": {
+    "action": null,
+    "open": null,
+    "says": null
+   }
+  },
+  {
+   "wp": "833033198",
+   "in_fleet": true,
+   "site": "Maroantsetra",
+   "district": "Maroantsetra",
+   "commune": "Ambinanitelo",
+   "failing": [
+    {
+     "key": "ecoli",
+     "label": "E. coli",
+     "value": 50.0,
+     "op": ">",
+     "limit": 0,
+     "unit": "CFU/100 mL"
+    }
+   ],
+   "result_date": "2025-08-14",
+   "response": "Cathy_MadAvance-DETZ2G",
+   "response_id": "020366aa50ba4fdf92ce64c3a60da3d2",
+   "results": 1,
+   "retest": {
+    "action": "act-wq-retest",
+    "open": true,
+    "says": "water_quality_failures_unretested = 1 (pumps with a failed E. coli result and no retest on file); target == 0"
+   }
+  }
+ ],
+ "exceptions_applied": [
+  {
+   "wp": "742894851",
+   "response": "Cathy_MadAvance-D5V5UQ",
+   "result_date": "2025-04-26",
+   "ignored": [
+    {
+     "key": "turbidity",
+     "label": "turbidity",
+     "value": 11.0,
+     "op": ">",
+     "limit": 5,
+     "unit": "NTU"
+    }
+   ],
+   "reason": "The turbidity of 11 NTU is a data-entry slip: the team's kit cannot read turbidity that precisely. Turbidity is ignored for this response only."
+  }
+ ],
+ "restored": []
+}

@@ -123,6 +123,9 @@ STEPS = [
     # quotes is reachable from the page's own data
     # the carbon denominator is derived from the register, so it must be
     # recomputed before the datasets are inlined
+    # the points not creditable after a failed SDWS 3 test (James Walker,
+    # 20 Oct 2026): the carbon denominator and the carbon fleet leave them out
+    ("tools/sdws3_creditable.py",    ["--write"],      True),
     ("tools/carbon_denominator.py",  ["--write"],      True),
     # the semantic layer, and everything that renders from it
     ("tools/populations.py",         ["--json", "data/populations.json"], True),

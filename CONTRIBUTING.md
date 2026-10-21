@@ -1169,3 +1169,46 @@ village, and the one with fewer team-days, then km, is kept. OSRM time is multip
 `route_no_shuttle` in `check_routes.py` fails a day of 4 or fewer pumps whose road km are more than 60% the drive
 from or to the base, unless it is a day-return taking a cluster's last 4 or fewer pumps. The build log records
 OSRM's one-way time to every cluster more than 30 km from its base, for comparison with real travel times.
+
+## A water point that failed SDWS 3 is not creditable (21 Oct 2026)
+
+Decision: James Walker, Head of Carbon, 20 Oct 2026 (comment on the SDWS 3 SOP): a water point that did not pass
+SDWS 3 is not creditable, is not part of the carbon portfolio, and is excluded from survey frames.
+
+**One rule, two repositories.** The rule is `data/sdws3_rule.json`. It is byte-identical in `sanitap-sampler`
+(`data/sdws3_rule.json`, embedded in `app.js` as `Core.SDWS3_RULE`), and so are its test cases,
+`data/sdws3_rule_cases.json`. Change all of them in the same pass. `tools/check_creditable.py` fails the build
+if the two copies differ.
+
+1. For each water point, only its **latest final** result on the SDWS 3 results form (`7b33c5d7…`) counts,
+   ordered by result date (WS7.10) and then by submission time. A later passing retest restores the point.
+2. The result **fails** if E. coli > 0 CFU/100 mL, arsenic > 10 µg/L, fluoride ≥ 1.5 mg/L or turbidity > 5 NTU.
+   1.5 mg/L is the kit's maximum, so a reading of 1.5 means over the range, not a pass. A blank parameter does
+   not fail the result.
+3. **Exceptions** are the named list `exceptions` in the rule file, each with its reason, and exist nowhere
+   else. Today there is one: on 742894851, response Cathy_MadAvance-D5V5UQ (26 Apr 2025), turbidity is ignored
+   because the 11 NTU entered is a data-entry slip (the team's kit cannot read turbidity that precisely).
+4. A point with **no** final result is not touched by this rule.
+
+`tools/sdws3_creditable.py --write` applies the rule to `wq_results.json`. It writes `data/sdws3_creditable.json`
+(inlined as `NOCREDIT`) and the collapsed list "Not creditable: failed SDWS 3" (region `sdws3-not-creditable`),
+which gives each point's failing parameter, value, date and retest status. The weekly build runs it before
+`tools/carbon_denominator.py`.
+
+The points **stay in the managed fleet** and in every managed figure. They **leave the carbon portfolio**, as
+follows:
+
+- `populations.carbon_fleet` is the managed fleet less Marolinta and less `not_creditable_sdws3`;
+- `CARBON` (`carbon_points`, `carbon_by_site`) leaves them out;
+- on the page, `CPUMPS` (the carbon portfolio's pumps) leaves out `NOCREDIT.wps`. Every carbon people sum, the
+  people per carbon pump and the fNRB weighting read `CPUMPS`;
+- the annual-cap tonnes multiply `CARBON.carbon_by_site`, never the managed `S.by_site`.
+
+`tools/check_creditable.py`, run inside `check_consistency.py`, fails the build if a not-creditable point is
+counted in the carbon fleet, in `CARBON`, in `CPUMPS` or in the cap tonnes, if the list is stale against the
+extract, or if the collapsed list does not name exactly those points. `tools/test_sdws3_creditable.py` runs
+the shared cases.
+
+Not covered by the rule: a diluted fluoride reading entered in `data/wq_exclusions.json` lifts the
+water-quality hold on the page, but does not make a point creditable. Only a later result on the SDWS 3 results
+form does.

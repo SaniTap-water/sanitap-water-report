@@ -108,6 +108,9 @@ SETS = {
     "CO": ("data", "call_outcomes.json"),
     # iron and manganese at the managed hand pumps, latest SDWS 3 result (tools/iron_manganese.py, 8 Oct 2026)
     "FEMN": ("data", "iron_manganese.json"),
+    # water points not creditable after a failed SDWS 3 test (tools/sdws3_creditable.py, 21 Oct 2026);
+    # the page's carbon portfolio (CPUMPS) leaves NOCREDIT.wps out
+    "NOCREDIT": ("data", "sdws3_creditable.json"),
 }
 
 

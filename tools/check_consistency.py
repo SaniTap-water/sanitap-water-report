@@ -395,7 +395,8 @@ def main():
     _fr = re.search(r"\bfnrb_mofuss_maroantsetra:\{v:([0-9.]+)", idx_raw)
     _fa = re.search(r"\bfnrb_maroantsetra_applied:\{v:([0-9.]+)", idx_raw)
     _ok = (_fr and _fa and float(_fr.group(1)) == 0.34 and float(_fa.group(1)) == 0.36
-           and "PARAMS.fnrb_maroantsetra_applied.v)/PUMPS.filter" in idx_raw
+           # over the carbon portfolio (CPUMPS, less the points not creditable, 21 Oct 2026)
+           and "PARAMS.fnrb_maroantsetra_applied.v)/CPUMPS.reduce" in idx_raw
            and "It should be" in idx and "21 Sep 2026" in idx and "0.418" not in idx)
     check("Maroantsetra fNRB: registered 34% and applied 36%, with its source",
           bool(_ok), "registered 0.34, applied 0.36, weighted on applied",
@@ -2161,11 +2162,17 @@ def main():
     if os.path.exists(cd):
         cdoc = json.loads(read(cd))
         pumps_ = js_const(idx, "PUMPS") or []
-        want = len([p for p in pumps_ if p.get("site") != "Marolinta"])
-        check("the carbon denominator is the register less Marolinta",
+        # less the points not creditable after a failed SDWS 3 test (James Walker,
+        # 20 Oct 2026; data/sdws3_creditable.json, checked against the extract
+        # by tools/check_creditable.py)
+        _ncp = os.path.join(repo_root, "data", "sdws3_creditable.json")
+        _nc = set(json.loads(read(_ncp))["wps"]) if os.path.exists(_ncp) else set()
+        want = len([p for p in pumps_ if p.get("site") != "Marolinta" and p.get("wp") not in _nc])
+        check("the carbon denominator is the register less Marolinta and less the points not creditable",
               cdoc.get("carbon_points") == want, want,
               cdoc.get("carbon_points"),
-              "actively managed register less Marolinta, which enters no carbon figure")
+              "actively managed register less Marolinta, which enters no carbon figure, and less "
+              "the points whose latest SDWS 3 result fails (data/sdws3_creditable.json)")
         check("the carbon denominator is rendered, never typed",
               'data-fig="CARBON.carbon_points"' in idx_raw
               and idx_raw.count('data-fig="CARBON.carbon_points"') >= 8,
@@ -2366,7 +2373,11 @@ def main():
     # 2025", the per-year basis withdrawn as unreproducible (per_year_carbon).
     # They stopped rendering on 23 September 2026 and must not come back until
     # act-carbon-year-basis rebuilds that basis.
-    _c25 = [v for v in ("<b>32.8%</b>", "<b>722</b>", "<b>237</b>") if v in idx]
+    # Typed values only: a live figure that happens to equal one of them is not
+    # the withdrawn figure (since 21 Oct 2026 the Fort-Dauphin share of the
+    # carbon portfolio's people renders 32.8 from CPUMPS).
+    _typed = re.sub(r'<span data-fig="[^"]*">[^<]*</span>', "\u00a7", idx_raw)
+    _c25 = [v for v in ("<b>32.8%</b>", "<b>722</b>", "<b>237</b>") if v in _typed]
     check("the 2025 custody figures stay withdrawn with their basis",
           not _c25, "absent", ", ".join(_c25) if _c25 else "absent",
           "they rest on the withdrawn per-year activity basis")
@@ -4537,6 +4548,15 @@ def main():
     # on the Endur'O card only. Rendered in every scope by tools/check_managed.py.
     import check_managed as _cm
     for _r in _cm.run(os.path.join(repo_root, "index.html")):
+        check(*_r)
+
+    # ---- not creditable after a failed SDWS 3 test (James Walker, 20 Oct 2026) --
+    # A water point whose latest final SDWS 3 result fails data/sdws3_rule.json
+    # is not creditable and not part of the carbon portfolio; it stays in the
+    # managed fleet. tools/check_creditable.py fails the build if one is counted
+    # in the carbon fleet, CARBON, the page's carbon portfolio or the cap tonnes.
+    import check_creditable as _cc
+    for _r in _cc.run(os.path.join(repo_root, "index.html")):
         check(*_r)
 
     # ---- the Endur'O programme people figure is gone (Adriaan Mol, 7 Oct 2026):
