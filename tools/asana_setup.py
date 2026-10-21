@@ -472,8 +472,8 @@ def run_failed(reason):
     year, week, _ = now.date().isocalendar()
     line = f"Build run {now:%Y-%m-%d %H:%M} UTC: {' '.join(reason.split())}"
     gid = week_task(year, week)
-    if os.environ.get("SANITAP_ASANA_DRY") == "1":     # tests: say it, write nothing
-        print(f"run-failed (dry): would post on {gid or 'a new week ' + str(week) + ' approval task'}: {line}")
+    if os.environ.get("SANITAP_NO_ASANA_WRITE") == "1":     # pre-flight, tests: say it, write nothing
+        print(f"run-failed (no write): would post on {gid or 'a new week ' + str(week) + ' approval task'}: {line}")
         return 0
     if not gid:
         secs = {s["name"]: s["gid"] for s in A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})}
