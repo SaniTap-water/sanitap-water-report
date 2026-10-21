@@ -127,18 +127,29 @@ def managed_piped_codes():
     return sorted(set(managed + [wp for c in managed for wp in pw["systems"][c]["water_points"]]))
 
 
+def why_line(r):
+    """The error itself - its message and code - not the tail of a stack trace."""
+    out = (r.stderr or r.stdout or "").splitlines()
+    msg = next((l.strip() for l in out if re.match(r"\s*(\w*Error|MISMATCH)", l)), "")
+    code = next((m.group(0) for l in out for m in [re.search(r"code: '?[A-Z_]+'?", l)] if m), "")
+    return (" ".join(f"{msg} {code}".split()) or " ".join(" ".join(out).split())[-200:] or "no output")[:200]
+
+
 def pull_extra(name):
     """One EXTRAS read into STAGE; (doc, error)."""
     _desc, cmd = EXTRAS[name]
     out = os.path.join(STAGE, name)
     cmd = [",".join(managed_piped_codes()) if a == "@managed_piped_codes"
            else out if a == "@out" else a for a in cmd]
-    for attempt in range(2):
+    # retried with backoff like the form pulls (21 Oct 2026: one ENETUNREACH
+    # on the team read, two tries five seconds apart, failed a whole pull)
+    for attempt, wait in enumerate((0, 5, 15, 45, 90)):
+        time.sleep(wait)
         r = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO)
         if "@out" in EXTRAS[name][1]:
             if r.returncode == 0 and os.path.isfile(out):
                 return json.load(open(out, encoding="utf8")), None
-            err = " ".join((r.stderr or r.stdout or "no output").split())[-200:]
+            err = why_line(r)
             continue
         if r.returncode == 0 and r.stdout.strip():
             try:
@@ -150,8 +161,8 @@ def pull_extra(name):
                 doc = {"codes": cmd[-1].split(","), **doc}
             json.dump(doc, open(os.path.join(STAGE, name), "w", encoding="utf8"), indent=1)
             return doc, None
-        err = " ".join((r.stderr or r.stdout or "no output").split())[-200:]
-    return None, f"2 attempts failed; last: {err}"
+        err = why_line(r)
+    return None, f"5 attempts failed; last: {err}"
 
 
 # Entity extracts: name -> (entity type, managed-by group). The register is
