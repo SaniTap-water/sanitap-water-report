@@ -477,17 +477,45 @@ def marolinta():
 
 
 @population(
+    name="Not creditable: failed SDWS 3",
+    unit="points",
+    rule="Managed water points whose latest final SDWS 3 result fails the rule "
+         "in data/sdws3_rule.json (E. coli above 0, arsenic above 10 ug/L, "
+         "fluoride at or above the kit maximum of 1.5 mg/L, turbidity above 5 "
+         "NTU; the named exceptions there apply). They stay in the managed "
+         "fleet and leave the carbon portfolio. A later passing retest "
+         "restores a point.",
+    reads=[("Clean Water || Water Quality Testing SDWS 3 Result",
+            F_WQ_RESULTS, "each point's latest final result, by result date")],
+    decided="James Walker, Head of Carbon, comment on the SDWS 3 SOP: a water "
+            "point that did not pass SDWS 3 is not creditable, is not part of "
+            "the carbon portfolio, and is excluded from survey frames.",
+    decided_on="2026-10-20",
+    derives_from=["managed_fleet"])
+def not_creditable_sdws3():
+    import sdws3_creditable as _SC
+    rule, _ = _SC.load_rule()
+    v = _SC.evaluate(_wq_results(), rule)
+    return {wp for wp, x in v.items() if not x["creditable"]} & managed_fleet()
+
+
+@population(
     name="Carbon fleet",
     unit="points",
-    rule="The managed fleet less Marolinta. This is the denominator under every "
-         "carbon figure on the page.",
-    reads=[("as managed_fleet, less the Marolinta site", None, None)],
+    rule="The managed fleet less Marolinta, and less the points that failed "
+         "their SDWS 3 commissioning test (not_creditable_sdws3). This is the "
+         "denominator under every carbon figure on the page.",
+    reads=[("as managed_fleet, less the Marolinta site and the points not "
+            "creditable", None, "tools/sdws3_creditable.py")],
     decided="Marolinta is Deichmann-funded and enters no carbon figure, so it "
-            "cannot be in a carbon denominator.",
-    decided_on="2026-09-22",
-    derives_from=["managed_fleet", "marolinta"])
+            "cannot be in a carbon denominator (2026-09-22). A point that did "
+            "not pass SDWS 3 is not creditable (James Walker, 2026-10-20).",
+    decided_on="2026-10-20",
+    derives_from=["managed_fleet", "marolinta", "not_creditable_sdws3"])
 def carbon_fleet():
-    return {p["wp"] for p in _page_pumps() if p.get("site") != "Marolinta"}
+    nc = not_creditable_sdws3()
+    return {p["wp"] for p in _page_pumps()
+            if p.get("site") != "Marolinta" and p["wp"] not in nc}
 
 
 @population(
@@ -1079,6 +1107,7 @@ def chain():
     fleet = managed_fleet()
     mar = marolinta()
     carbon = carbon_fleet()
+    nocr = not_creditable_sdws3()
     cal = calendar_evidenced_2026()
     frr = first_rehabilitation_records()
     okr = successful_first_rehabilitation_records()
@@ -1093,9 +1122,10 @@ def chain():
          fleet <= reg, f"{len(fleet)} of {len(reg)} points"),
         ("POINTS: Marolinta \u2286 managed fleet",
          mar <= fleet, f"{len(mar)} of {len(fleet)} points"),
-        ("POINTS: carbon fleet + Marolinta = managed fleet",
-         carbon | mar == fleet and not (carbon & mar),
-         f"{len(carbon)} + {len(mar)} = {len(fleet)} points"),
+        ("POINTS: carbon fleet + Marolinta + not creditable (failed SDWS 3) = managed fleet",
+         carbon | mar | nocr == fleet and not (carbon & mar) and not (carbon & nocr)
+         and not (mar & nocr),
+         f"{len(carbon)} + {len(mar)} + {len(nocr)} = {len(fleet)} points"),
         _fleet_works_step(fleet, ok),
         ("POINTS: calendar-evidenced \u2286 carbon fleet",
          cal <= carbon, f"{len(cal)} of {len(carbon)} points"),

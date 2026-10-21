@@ -77,11 +77,22 @@ D = {
  "S.n": dict(pop="managed_fleet",
    arith="`every record in the maintained register: ${fmt(PUMPS.length)} rows in PUMPS`",
    forms=[("the register, reconciled against the works and call forms", None, REGQ)]),
- "PUMPS.filter(p=>p.site!=='Marolinta').length": dict(pop="carbon_fleet",
+ "PUMPS.filter(p=>p.site!=='Marolinta').length": dict(pop="managed_fleet",
    arith="`${fmt(PUMPS.length)} managed less ${PUMPS.filter(p=>p.site==='Marolinta').length} Marolinta = ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').length)}`",
    forms=[("the register", None, REGQ)]),
  "CARBON.carbon_points": dict(pop="carbon_fleet",
-   arith="`${fmt(PUMPS.length)} managed less ${PUMPS.filter(p=>p.site==='Marolinta').length} Marolinta = ${fmt(CARBON.carbon_points)}`",
+   arith="`${fmt(PUMPS.length)} managed less ${PUMPS.filter(p=>p.site==='Marolinta').length} Marolinta less ${NOCREDIT.in_fleet} not creditable after a failed SDWS 3 test = ${fmt(CARBON.carbon_points)}`",
+   forms=[("the register", None, REGQ),
+          ("Clean Water || Water Quality Testing_SDWS 3 \u2014 Result", "7b33c5d7e5074808a94915939a5a0783",
+           "each point's latest final result, under data/sdws3_rule.json")]),
+ "CPUMPS.length": dict(pop="carbon_fleet",
+   arith="`${fmt(PUMPS.length)} managed less ${PUMPS.filter(p=>p.site==='Marolinta').length} Marolinta less ${NOCREDIT.in_fleet} not creditable after a failed SDWS 3 test = ${fmt(CPUMPS.length)}`",
+   forms=[("the register", None, REGQ)]),
+ "CARBON.carbon_by_site['Fort-Dauphin']": dict(pop="carbon_fleet",
+   arith="`carbon points whose site is Fort-Dauphin: ${fmt(CPUMPS.filter(p=>p.site==='Fort-Dauphin').length)} (${fmt(PUMPS.filter(p=>p.site==='Fort-Dauphin').length)} managed, less the points not creditable there)`",
+   forms=[("the register", None, REGQ)]),
+ "CARBON.carbon_by_site['Maroantsetra']": dict(pop="carbon_fleet",
+   arith="`carbon points whose site is Maroantsetra: ${fmt(CPUMPS.filter(p=>p.site==='Maroantsetra').length)} (${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').length)} managed, less the points not creditable there)`",
    forms=[("the register", None, REGQ)]),
  "CARBON.carbon_points_with_2026_sheet": dict(pop="calendar_evidenced_2026",
    arith="`carbon-fleet points with a dated 2026 sheet: ${fmt(CARBON.carbon_points_with_2026_sheet)} of ${fmt(CARBON.carbon_points)}`",
@@ -158,8 +169,8 @@ D = {
    arith="`hand-entered: ${ENDURO.systems} piped systems`",
    forms=[]),
 }
-D["((PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_toliary.v+PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_maroantsetra_applied.v)/PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)"] = dict(pop="carbon_fleet",
-    arith="`Fort-Dauphin ${fmt(PUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0))} people at fNRB ${PARAMS.fnrb_toliary.v} + Maroantsetra ${fmt(PUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0))} at ${PARAMS.fnrb_maroantsetra_applied.v} (applied; registered ${PARAMS.fnrb_mofuss_maroantsetra.v}), over ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} people served`",
+D["((CPUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_toliary.v+CPUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0)*PARAMS.fnrb_maroantsetra_applied.v)/CPUMPS.reduce((a,p)=>a+(p.wpop||0),0)).toFixed(3)"] = dict(pop="carbon_fleet",
+    arith="`Fort-Dauphin ${fmt(CPUMPS.filter(p=>p.site==='Fort-Dauphin').reduce((a,p)=>a+(p.wpop||0),0))} people at fNRB ${PARAMS.fnrb_toliary.v} + Maroantsetra ${fmt(CPUMPS.filter(p=>p.site==='Maroantsetra').reduce((a,p)=>a+(p.wpop||0),0))} at ${PARAMS.fnrb_maroantsetra_applied.v} (applied; registered ${PARAMS.fnrb_mofuss_maroantsetra.v}), over ${fmt(CPUMPS.reduce((a,p)=>a+(p.wpop||0),0))} people served`",
     forms=[("the registered fNRB values, weighted by people served",
             None, "PARAMS.fnrb_toliary and PARAMS.fnrb_maroantsetra_applied (James Walker, 21 Sep 2026)")])
 
@@ -184,12 +195,29 @@ for _site, _lab in (("Fort-Dauphin", "Fort-Dauphin"),
         forms=[("WorldPop R2025A run, capped per pump type", None,
                 "SDWS 1 barrier clip applied; caps from PARAMS")])
 D["PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(
-    pop="carbon_fleet",
-    arith='`the capped WorldPop allocation summed over the carbon fleet: '
+    pop="managed_fleet",
+    arith='`the capped WorldPop allocation summed over the managed points in the two carbon districts (Maroantsetra and Fort-Dauphin): '
           '${fmt(PUMPS.filter(p=>p.site!==\'Marolinta\').reduce((a,p)=>a+(p.wpop||0),0))} '
           'over ${PUMPS.filter(p=>p.site!==\'Marolinta\').length} points`',
     forms=[("WorldPop R2025A run, capped per pump type", None,
             "SDWS 1 barrier clip applied; Marolinta excluded")])
+
+D["CPUMPS.reduce((a,p)=>a+(p.wpop||0),0)"] = dict(
+    pop="carbon_fleet",
+    arith='`the capped WorldPop allocation summed over the carbon portfolio (less Marolinta and the points not creditable after a failed SDWS 3 test): '
+          '${fmt(CPUMPS.reduce((a,p)=>a+(p.wpop||0),0))} '
+          'over ${CPUMPS.length} points`',
+    forms=[("WorldPop R2025A run, capped per pump type", None,
+            "SDWS 1 barrier clip applied; Marolinta and NOCREDIT excluded")])
+
+for _site in ("Fort-Dauphin", "Maroantsetra"):
+    D[f"CPUMPS.filter(p=>p.site==='{_site}').reduce((a,p)=>a+(p.wpop||0),0)"] = dict(
+        pop="carbon_fleet",
+        arith=f'`the capped WorldPop allocation summed over the {_site} carbon points: '
+              f'${{fmt(CPUMPS.filter(p=>p.site===\'{_site}\').reduce((a,p)=>a+(p.wpop||0),0))}} '
+              f'over ${{CPUMPS.filter(p=>p.site===\'{_site}\').length}} points`',
+        forms=[("WorldPop R2025A run, capped per pump type", None,
+                "SDWS 1 barrier clip applied; points not creditable (NOCREDIT) excluded")])
 
 # ---- SDWS 18, the 2025 household round: each figure is a count over the
 # population sdws18_pou_samples (final records on the two deployments) --------
@@ -246,12 +274,12 @@ for _k, _pop, _what in (("h", "first_rehabilitated", "a first-rehabilitation rec
     D[f"Object.values(RESP).filter(e=>e.{_k}).length"] = dict(pop=_pop,
         arith=f"`water points with {_what}: ${{Object.values(RESP).filter(e=>e.{_k}).length}}`",
         forms=[])
-_ER = "S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)"
+_ER = "CARBON.carbon_by_site['Fort-Dauphin']*PARAMS.er_anosy.v+CARBON.carbon_by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)"
 D[f"Math.round({_ER})"] = dict(pop="carbon_fleet",
-    arith="`${S.by_site['Fort-Dauphin']} Fort-Dauphin points × ${PARAMS.er_anosy.v} + ${S.by_site['Maroantsetra']} Maroantsetra points × ${(PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)).toFixed(2)} tCO2e (registered ${PARAMS.er_maro.v}, at the applied fNRB) = ${fmt(Math.round(" + _ER + "))} tCO2e a year`",
+    arith="`${CARBON.carbon_by_site['Fort-Dauphin']} Fort-Dauphin points × ${PARAMS.er_anosy.v} + ${CARBON.carbon_by_site['Maroantsetra']} Maroantsetra points × ${(PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)).toFixed(2)} tCO2e (registered ${PARAMS.er_maro.v}, at the applied fNRB) = ${fmt(Math.round(" + _ER + "))} tCO2e a year`",
     forms=[("the register and the registered per-point emission reductions", None, "PARAMS.er_anosy, PARAMS.er_maro")])
-D[f"Math.floor(PARAMS.cap_t.v/(({_ER})/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra'])))"] = dict(pop="carbon_fleet",
-    arith="`${fmt(PARAMS.cap_t.v)} tCO2e cap ÷ the current mean per point = ${fmt(Math.floor(PARAMS.cap_t.v/((" + _ER + ")/(S.by_site['Fort-Dauphin']+S.by_site['Maroantsetra']))))} points`",
+D[f"Math.floor(PARAMS.cap_t.v/(({_ER})/(CARBON.carbon_by_site['Fort-Dauphin']+CARBON.carbon_by_site['Maroantsetra'])))"] = dict(pop="carbon_fleet",
+    arith="`${fmt(PARAMS.cap_t.v)} tCO2e cap ÷ the current mean per point = ${fmt(Math.floor(PARAMS.cap_t.v/((" + _ER + ")/(CARBON.carbon_by_site['Fort-Dauphin']+CARBON.carbon_by_site['Maroantsetra']))))} points`",
     forms=[("the register and PARAMS", None, "PARAMS.cap_t, er_anosy, er_maro")])
 for _s in ("Maroantsetra", "Fort-Dauphin"):
     _e = (f"(ROUTES.{_s}.n/ROUTES.{_s}.days.length).toFixed(1)" if _s == "Maroantsetra"
@@ -263,12 +291,12 @@ for _s in ("Maroantsetra", "Fort-Dauphin"):
         D[f"HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0)"] = dict(pop="managed_fleet",
             arith=f"`{_lab} summed over the {_s} points in this scope: ${{fmt(HP.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.{_f}||0),0))}}`",
             forms=[])
-    D[f"Math.round(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site==='{_s}').length)"] = dict(pop="carbon_fleet",
-        arith=f"`people served in {_s} ${{fmt(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0))}} \u00f7 ${{PUMPS.filter(p=>p.site==='{_s}').length}} maintained pumps = ${{fmt(Math.round(PUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site==='{_s}').length))}} per pump`",
+    D[f"Math.round(CPUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/CPUMPS.filter(p=>p.site==='{_s}').length)"] = dict(pop="carbon_fleet",
+        arith=f"`people served in {_s} ${{fmt(CPUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0))}} \u00f7 ${{CPUMPS.filter(p=>p.site==='{_s}').length}} carbon pumps = ${{fmt(Math.round(CPUMPS.filter(p=>p.site==='{_s}').reduce((a,p)=>a+(p.wpop||0),0)/CPUMPS.filter(p=>p.site==='{_s}').length))}} per pump`",
         forms=[("WorldPop R2025A run", None, _WBASIS)],
         why=_PPWHY)
-D["Math.round(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site!=='Marolinta').length)"] = dict(pop="carbon_fleet",
-    arith="`people served across the carbon portfolio ${fmt(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0))} \u00f7 ${PUMPS.filter(p=>p.site!=='Marolinta').length} maintained pumps = ${fmt(Math.round(PUMPS.filter(p=>p.site!=='Marolinta').reduce((a,p)=>a+(p.wpop||0),0)/PUMPS.filter(p=>p.site!=='Marolinta').length))} per pump; Marolinta is outside the carbon programme and not counted`",
+D["Math.round(CPUMPS.reduce((a,p)=>a+(p.wpop||0),0)/CPUMPS.length)"] = dict(pop="carbon_fleet",
+    arith="`people served across the carbon portfolio ${fmt(CPUMPS.reduce((a,p)=>a+(p.wpop||0),0))} \u00f7 ${CPUMPS.length} carbon pumps = ${fmt(Math.round(CPUMPS.reduce((a,p)=>a+(p.wpop||0),0)/CPUMPS.length))} per pump; Marolinta, outside the carbon programme, and the points not creditable after a failed SDWS 3 test are not counted`",
     forms=[("WorldPop R2025A run", None, _WBASIS)],
     why=_PPWHY)
 for _f, _lab in (("wpop", "the capped WorldPop allocation"), ("benef", "the roof-count census")):
@@ -462,6 +490,9 @@ RULES = [
  dict(re=r"^\(?FEMN\.", pop=None,
       what="iron and manganese at the managed hand pumps: each pump's latest result on the SDWS 3 results form by result date (drafts and rejected excluded), its Iron (mg/L) and Manganese (mg/L) values, classed against the WHO thresholds in PARAMS (wq_iron_accept, wq_manganese_accept, wq_manganese_max; a value equal to a threshold is within it); a pump whose latest result carries no value, or with no result, is not tested; computed by tools/iron_manganese.py into data/iron_manganese.json",
       forms=[("Clean Water || Water Quality Testing_SDWS 3 \u2014 Result", "7b33c5d7e5074808a94915939a5a0783", None)], why=None),
+ dict(re=r"^\(?NOCREDIT\.", pop="not_creditable_sdws3",
+      what="water points whose latest final result on the SDWS 3 results form (by result date) fails the rule in data/sdws3_rule.json: E. coli above 0 CFU/100 mL, arsenic above 10 ug/L, fluoride at or above 1.5 mg/L (the kit maximum, so over-range) or turbidity above 5 NTU, with the named exceptions there applied; not creditable and outside the carbon portfolio (James Walker, 20 Oct 2026), still in the managed fleet; written by tools/sdws3_creditable.py",
+      forms=[("Clean Water || Water Quality Testing_SDWS 3 \u2014 Result", "7b33c5d7e5074808a94915939a5a0783", "WS7.10 result date, WS7.11 E. coli, WS7.12 turbidity, WS7.16 arsenic, WS7.17 fluoride")], why=None),
  dict(re=r"^\(?RB\.", pop=None,
       what="repeat breakdowns and report-to-repair time: repair records per managed pump on both repair sources (retired combined form and live repair form), over the last twelve months and all time; and, for every call in the last twelve months that reported a managed pump not working (down, or partially working for a reason other than a service request), the days to the next submitted repair record; computed by tools/repeat_breakdowns.py into data/repeat_breakdowns.json",
       forms=[("Réparation après panne (repair)", "958b4763788348d699e7d8c5821f92ee", None), ("Clean Water || Première réhabilitation / Entretien préventif / Réparation après panne (retired combined form)", "86cf66efdd3749dd8a121314bab3675a", None), ("Appel / signalement de pannes (call centre)", "c08b3fe26d0f42c084074701f29eb75e", None)], why=None),
@@ -539,6 +570,14 @@ RULES = [
       what="computed by marBasis() from the Marolinta works records and the register",
       forms=[("Marolinta borehole-progress form", F_MAR, "the Marolinta deployment")],
       why="The Marolinta scope is based on the work, not the register; both counts are shown so neither is mistaken for the other."),
+ dict(re=r"\bCARBON\.carbon_by_site\b", pop="carbon_fleet",
+      what="the carbon points by site: the managed fleet less Marolinta and less the points not creditable after a failed SDWS 3 test, counted per site by tools/carbon_denominator.py (data/carbon_denominator.json)",
+      forms=[_REGF, ("Clean Water || Water Quality Testing_SDWS 3 \u2014 Result", "7b33c5d7e5074808a94915939a5a0783", "each point's latest final result")],
+      why=None),
+ dict(re=r"\bCPUMPS\.(filter|length|reduce)", pop="carbon_fleet",
+      what="counted in the browser over the carbon portfolio's pumps (CPUMPS): the managed hand pumps less Marolinta and less the points not creditable after a failed SDWS 3 test (NOCREDIT, data/sdws3_rule.json; James Walker, 20 Oct 2026)",
+      forms=[_REGF, ("Clean Water || Water Quality Testing_SDWS 3 \u2014 Result", "7b33c5d7e5074808a94915939a5a0783", "each point's latest final result")],
+      why=None),
  dict(re=r"^(HP|PUMPS)\.(filter|length|reduce)", pop="managed_fleet",
       what="counted in the browser over the managed pumps",
       forms=[_REGF, _PM, _REP],

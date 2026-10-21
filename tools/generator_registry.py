@@ -176,6 +176,8 @@ GENERATED = {
     'CARBON.basis': 'render_datasets',
     'CARBON.carbon_2026_coverage_pct': 'render_datasets',
     'CARBON.carbon_points': 'render_datasets',
+    'CARBON.carbon_by_site': 'render_datasets',
+    'CARBON.not_creditable_in_fleet': 'render_datasets',
     'CARBON.carbon_points_with_2026_sheet': 'render_datasets',
     'CARBON.carbon_points_without_2026_sheet': 'render_datasets',
     'CARBON.sheets_2026_outside_the_fleet': 'render_datasets',
@@ -341,6 +343,8 @@ WHOLE = {
     'ACTKIDS': ('eval_conditions', 'render_datasets'),
     # iron and manganese at the managed hand pumps (latest SDWS 3 result)
     'FEMN': ('iron_manganese', 'render_datasets'),
+    # points not creditable after a failed SDWS 3 test (21 Oct 2026)
+    'NOCREDIT': ('sdws3_creditable', 'render_datasets'),
 }
 
 POPULATION = {

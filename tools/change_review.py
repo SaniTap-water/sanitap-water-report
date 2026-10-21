@@ -107,7 +107,7 @@ SNAP_JS = """() => {
   const gaps = {};
   (ev("ELIG.gaps") || []).forEach(g => { gaps[g.wp] = g.status || g.issue || 'gap'; });
   return {figures: {
-      tco2e: ev("Math.round(S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v))"),
+      tco2e: ev("(typeof CARBON!=='undefined'&&CARBON.carbon_by_site)?Math.round(CARBON.carbon_by_site['Fort-Dauphin']*PARAMS.er_anosy.v+CARBON.carbon_by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v)):Math.round(S.by_site['Fort-Dauphin']*PARAMS.er_anosy.v+S.by_site['Maroantsetra']*PARAMS.er_maro.v*efbMaro(PARAMS.fnrb_maroantsetra_applied.v)/efbMaro(PARAMS.fnrb_mofuss_maroantsetra.v))"),
       points: ev("S.n"), people: (ev("agg(HP).wpop") || 0) + (ev("KIOSK.people") || 0), days_operational: ev("PARAMS.do_cap.v")},
     er, points: pts, gaps: ev("ELIG.gaps") ? gaps : null};
 }"""

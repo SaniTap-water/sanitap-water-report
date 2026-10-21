@@ -35,6 +35,13 @@ which of the old figures was right: 434 points with no dated 2026 sheet
 reproduces EXACTLY on the 731 basis. It was the denominator (727) and the
 covered count (293) that were wrong; 293 was simply 727 - 434.
 
+Since 21 October 2026 it is also less the points that failed their SDWS 3
+commissioning test (James Walker, 20 Oct 2026: not creditable, not part of
+the carbon portfolio), read from data/sdws3_creditable.json, which
+tools/sdws3_creditable.py writes from the SDWS 3 results form. They stay in
+the managed fleet. carbon_by_site is what the annual-cap check multiplies by
+the registered per-point emission reductions.
+
     python3 tools/carbon_denominator.py --write
 """
 import csv, json, os, re, sys
@@ -70,9 +77,21 @@ def pumps():
     return json.loads(html[i:j + 1])
 
 
+def not_creditable():
+    p = os.path.join(REPO, "data", "sdws3_creditable.json")
+    if not os.path.isfile(p):
+        sys.exit("data/sdws3_creditable.json is missing: run tools/sdws3_creditable.py --write first")
+    return set(json.load(open(p, encoding="utf8"))["wps"])
+
+
 def compute():
     P = pumps()
-    carbon = {p["wp"] for p in P if p["site"] != "Marolinta"}
+    nc = not_creditable()
+    carbon = {p["wp"] for p in P if p["site"] != "Marolinta" and p["wp"] not in nc}
+    by_site = {}
+    for p in P:
+        if p["wp"] in carbon:
+            by_site[p["site"]] = by_site.get(p["site"], 0) + 1
     rows = list(csv.DictReader(
         open(os.path.join(REPO, "data", "calendar_year_coverage.csv"),
              encoding="utf8")))
@@ -80,12 +99,15 @@ def compute():
     with_ev = len(y2026 & carbon)
     return {
         "carbon_points": len(carbon),
+        "carbon_by_site": dict(sorted(by_site.items())),
+        "not_creditable_in_fleet": len(nc & {p["wp"] for p in P}),
         "carbon_points_with_2026_sheet": with_ev,
         "carbon_points_without_2026_sheet": len(carbon) - with_ev,
         "carbon_2026_coverage_pct": round(with_ev / len(carbon) * 100, 1),
         "sheets_2026_outside_the_fleet": len(y2026 - {p["wp"] for p in P}),
         "basis": ("actively managed register less Marolinta (Deichmann-funded, "
-                  "no carbon figure); 2026 evidence is a dated 2026 sheet in "
+                  "no carbon figure) and less the points not creditable after a "
+                  "failed SDWS 3 test (data/sdws3_creditable.json); 2026 evidence is a dated 2026 sheet in "
                   "data/calendar_year_coverage.csv, sheet year read off the "
                   "sheet"),
         "supersedes": ("727 active carbon points and 293 covered, which were "
