@@ -22,6 +22,11 @@ def _token():
 
 
 def _call(method, path, params=None, body=None):
+    # SANITAP_NO_ASANA_WRITE=1 (21 Oct 2026): reads go through, nothing is
+    # written - pre-flight (tools/preflight.sh) and tests run with it
+    if method != "GET" and os.environ.get("SANITAP_NO_ASANA_WRITE") == "1":
+        print(f"asana (no write): would {method} {path}")
+        return {"data": {"gid": "no-write"}}
     url = BASE + path + ("?" + urllib.parse.urlencode(params) if params else "")
     data = json.dumps({"data": body}).encode() if body is not None else None
     req = urllib.request.Request(url, data=data, method=method, headers={

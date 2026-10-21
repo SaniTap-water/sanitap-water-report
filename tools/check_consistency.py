@@ -4008,6 +4008,8 @@ def main():
         ("build_call_tables.py", "status_src"): "a record-type label (call / maintenance / repair), not a count",
         ("render_actions.py", "owner"): "an owner's name from the owners record, not a figure",
         ("asana_setup.py", "due_on"): "the action's deadline date sent to its Asana task, not a figure",
+        ("asana_pull.py", "deadline"): "the Asana task's due date copied into the owners record "
+                                       "(Asana is the source, 21 Oct 2026), not a figure",
         ("recompute_figures.py", "real_cells"): "written only under the retired all-cells basis, to reproduce an "
                                                "archived edition; absent from the current figures file",
     }

@@ -13,3 +13,6 @@ logs/gate_out/
 logs/gates_run.tsv
 logs/publish_run.log
 logs/preflight.json
+logs/checks/
+logs/current_step
+logs/keepawake.hold

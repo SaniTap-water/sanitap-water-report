@@ -47,6 +47,16 @@ main() {
     mkdir -p "$build/logs"
     printf '%s  OUTCOME: %s\n' "$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" "$1" >> "$log"
     echo "OUTCOME: $1"
+    # a run that did not publish puts one line on the week's approval task
+    # (Adriaan Mol, 21 Oct 2026); Asana unreachable never changes the result
+    case "$1" in
+      "Not published"*|"Dry run failed"*)
+        if [ -f "$build/tools/asana_setup.py" ] && [ -f "$build/tools/limit.py" ]; then
+          python3 "$build/tools/limit.py" 120 "approval-task line" -- \
+            python3 "$build/tools/asana_setup.py" --run-failed "$1" 2>&1 | tail -2 \
+            | sed 's/^/  /' | tee -a "$log" >/dev/null || true
+        fi ;;
+    esac
   }
 
   # AT LEAST 60 MINUTES BETWEEN RUNS (25 September 2026). A run pulls every
@@ -108,9 +118,45 @@ main() {
     SANITAP_SYNCED=1 exec bash "$build/tools/weekly_build.sh" "$@"
   fi
 
-  rm -f "$build/logs/last_outcome.txt"
-  "$py" tools/weekly_build.py "$@"
+  rm -f "$build/logs/last_outcome.txt" "$build/logs/current_step"
+
+  # NO SLEEP WHILE A RUN IS GOING (21 Oct 2026). Modern Standby suspended a
+  # pre-flight run for 12 hours on 20 Oct. tools/keepawake.ps1 holds a
+  # system-required power request while logs/keepawake.hold exists, at most
+  # 125 minutes; the trap removes the file however the run ends.
+  local hold="$build/logs/keepawake.hold"
+  local psh=/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+  : > "$hold"
+  trap 'rm -f "'"$hold"'"' EXIT
+  if [ -x "$psh" ]; then
+    ( setsid "$psh" -NoProfile -ExecutionPolicy Bypass -File "$(wslpath -w "$build/tools/keepawake.ps1")" \
+        -HoldFile "$(wslpath -w "$hold")" -Minutes 125 >/dev/null 2>&1 & )
+    printf '%s  sleep held off for this run (tools/keepawake.ps1)\n' "$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" >> "$log"
+  else
+    printf '%s  WARNING: powershell.exe not found, so the laptop may sleep during this run\n' "$(date -u +%Y-%m-%dT%H:%M:%S+00:00)" >> "$log"
+  fi
+
+  # THE WHOLE RUN HAS 2 HOURS (21 Oct 2026). tools/limit.py stops the run's
+  # whole process tree at the limit; the tree and the extracts are then rolled
+  # back here, as weekly_build.py would have, and the outcome names the step
+  # that was running (logs/current_step).
+  local head; head=$(git rev-parse HEAD)
+  python3 tools/limit.py "${SANITAP_RUN_LIMIT:-7200}" "the whole run" -- "$py" tools/weekly_build.py "$@"
   local rc=$?
+  if [ "$rc" -eq 124 ]; then
+    local step; step=$(cat "$build/logs/current_step" 2>/dev/null || echo "an unrecorded step")
+    local lim=$(( ${SANITAP_RUN_LIMIT:-7200} / 60 ))
+    case "$step" in
+      published*)
+        echo "Published, but the run ran longer than $lim min and was stopped afterwards, during: ${step#published: }" \
+          > "$build/logs/last_outcome.txt" ;;
+      *)
+        git reset -q --hard "$head"; git clean -qfd editions data
+        "$py" -c "import sys; sys.path.insert(0, 'tools'); import pull_extract as P; b = P.restore_previous(); print(f'~/mwater-exports restored ({len(b)} files)' if b else '')" >> "$log" 2>&1
+        echo "Not published: the run timed out: it ran longer than $lim min and was stopped during $step; the tree and the extracts were rolled back to $(echo "$head" | cut -c1-8)" \
+          > "$build/logs/last_outcome.txt" ;;
+    esac
+  fi
   # If the local build did nothing, a candidate may still be waiting in
   # Downloads from a stretch when this machine was unavailable. It publishes
   # through publish.sh too, and a dry run stays a dry run.

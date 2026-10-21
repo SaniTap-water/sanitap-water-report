@@ -38,7 +38,7 @@ duplicated. Re-running creates nothing twice.
     python3 tools/asana_setup.py --dry-run
     python3 tools/asana_setup.py --write [--complete act-a act-b ...]
 """
-import argparse, json, os, re, sys
+import argparse, datetime, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import asana_api as A  # noqa: E402
@@ -295,14 +295,16 @@ def rewrite_task(aid):
         gid, _n, _x, _f = match_owner(rec.get("owner"))
         body["assignee"] = gid
     rec = rec or {}
-    if rec.get("deadline"):
-        body["due_on"] = rec["deadline"]            # never clears a due date set in Asana
+    # Asana is the source of truth for due dates (Adriaan Mol, 21 Oct 2026):
+    # the record's date is sent only to a task that has none, never over one
+    if rec.get("deadline") and not A.get(f"/tasks/{amap[aid]}", {"opt_fields": "due_on"}).get("due_on"):
+        body["due_on"] = rec["deadline"]
     custom = os.path.join(REPO, "data", "asana_notes.json")
     lines = (json.load(open(custom, encoding="utf8"))["tasks"].get(aid) if os.path.isfile(custom) else None)
     if lines:
         body["notes"] = "\n".join(lines)
     A.put(f"/tasks/{amap[aid]}", body)
-    print(f"rewrite-task: {aid} -> {NAME_OF.get(body.get('assignee'), 'assignee unchanged')}, due {rec.get('deadline')}"
+    print(f"rewrite-task: {aid} -> {NAME_OF.get(body.get('assignee'), 'assignee unchanged')}, due {body.get('due_on') or 'kept as in Asana'}"
           + (", description rewritten" if "notes" in body else ""))
     return 0
 
@@ -447,6 +449,48 @@ def push_owners():
     return 0
 
 
+def week_task(year, week):
+    """The week's approval task gid: from data/approvals.json, else found in
+    the project by its exact name, else None. One task per week, never two."""
+    appr = json.load(open(APPROVALS, encoding="utf8")) if os.path.isfile(APPROVALS) else {"weeks": {}}
+    gid = (appr["weeks"].get(f"{year}-W{week:02d}") or {}).get("task")
+    if gid:
+        return gid
+    name = f"Approve: major changes [week {week}]"
+    for t in A.get(f"/projects/{A.PROJECT}/tasks", {"opt_fields": "name,created_at"}):
+        if t.get("name") == name and (t.get("created_at") or "")[:4] == str(year):
+            return t["gid"]
+    return None
+
+
+def run_failed(reason):
+    """(21 Oct 2026) A refused, failed or timed-out build run puts one line on
+    the week's approval task: a comment, so the line stays when a later build
+    rewrites the description. The task is created, in the usual form, only if
+    the week has none."""
+    now = datetime.datetime.now(datetime.timezone.utc)
+    year, week, _ = now.date().isocalendar()
+    line = f"Build run {now:%Y-%m-%d %H:%M} UTC: {' '.join(reason.split())}"
+    gid = week_task(year, week)
+    if os.environ.get("SANITAP_NO_ASANA_WRITE") == "1":     # pre-flight, tests: say it, write nothing
+        print(f"run-failed (no write): would post on {gid or 'a new week ' + str(week) + ' approval task'}: {line}")
+        return 0
+    if not gid:
+        secs = {s["name"]: s["gid"] for s in A.get(f"/projects/{A.PROJECT}/sections", {"opt_fields": "name"})}
+        t = A.post("/tasks", {"name": f"Approve: major changes [week {week}]", "assignee": ADRIAAN,
+                              "followers": [JAN], "projects": [A.PROJECT], "workspace": A.WORKSPACE,
+                              "notes": f"Week {week}. No edition of this week has been published yet; each "
+                                       "run that did not publish is listed in the comments. The build fills "
+                                       "this description with the week's major changes when it has any."})
+        if A.SECTION_NAME in secs:
+            A.post(f"/sections/{secs[A.SECTION_NAME]}/addTask", {"task": t["gid"]})
+        gid = t["gid"]
+        print(f"run-failed: created the week {week} approval task ({gid})")
+    A.post(f"/tasks/{gid}/stories", {"text": line})
+    print(f"run-failed: on task {gid}: {line}")
+    return 0
+
+
 def approval_task():
     """(7 Oct 2026) One Asana approval task per week with major changes, in the
     section, assigned to Adriaan with Jan following. Created once; its
@@ -499,6 +543,11 @@ def approval_task():
     lines += ["", f"On the report: {A.REPORT_URL}#changes"]
     notes = "\n".join(lines)
     name = f"Approve: major changes [week {res.get('week')}]"
+    if not w.get("task"):
+        # a task a failed run created this week (run_failed) is the week's task
+        found = week_task(int(res.get("year") or 0), int(res.get("week") or 0))
+        if found:
+            w.update(task=found)
     if w.get("task"):
         A.put(f"/tasks/{w['task']}", {"notes": notes})
         print(f"approval: updated {name} ({w['task']})")
@@ -539,6 +588,8 @@ def main():
     g.add_argument("--merge", nargs=3, metavar=("FROM", "INTO", "WHY"),
                    help="carry FROM's comments to INTO and close FROM as merged")
     ap.add_argument("--rename", help="with --close: the new task name, without the [act-id]")
+    g.add_argument("--run-failed", metavar="REASON",
+                   help="post a one-line reason on this week's approval task (a run that did not publish)")
     g.add_argument("--approval", action="store_true",
                    help="create or update this week's approval task from data/approvals.json (rule of 7 Oct 2026)")
     ap.add_argument("--complete", nargs="*", default=[])
@@ -547,6 +598,8 @@ def main():
     ap.add_argument("--section-top", action="store_true",
                     help="move the section 'Weekly report actions' above the project's first section")
     a = ap.parse_args()
+    if a.run_failed:
+        return run_failed(a.run_failed)
     if a.approval:
         return approval_task()
     if a.push_owners:

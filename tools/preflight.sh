@@ -4,7 +4,8 @@
 # Builds the commit the scheduled build would build (same SANITAP_BUILD_FROM /
 # SANITAP_BUILD_BRANCH, in the build clone) on an extract set already pulled -
 # by default the newest ~/mwater-exports.pull-* or ~/mwater-exports.refused -
-# and runs every gate in publish.sh --check-only. No mWater call is made
+# and runs every gate in publish.sh --check-only. No mWater call and no Asana
+# write is made
 # (--reuse-extracts sets SANITAP_NO_MWATER=1, which tools/mwater/api.mjs
 # enforces), so there is no hour guard. Nothing is published; the tree is
 # rolled back as after any dry run. The verdict - every gate, its class, and
@@ -24,6 +25,9 @@ if [ -z "$SET" ] || [ ! -d "$SET" ]; then
   exit 2
 fi
 SET="$(cd "$SET" && pwd)"
+# no Asana write either (21 Oct 2026): the approval task, owners and the
+# failure line are only read and reported (tools/asana_api.py)
+export SANITAP_NO_ASANA_WRITE=1
 echo "preflight: gating ${SANITAP_BUILD_FROM:-origin}/${SANITAP_BUILD_BRANCH:-main} on $SET (no mWater call)"
 bash "$BUILD/tools/weekly_build.sh" --dry-run --reuse-extracts "$SET"
 RC=$?
