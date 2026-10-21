@@ -1118,11 +1118,16 @@ def chain():
     _c = json.load(open(_cp, encoding="utf8")) if os.path.isfile(_cp) else {}
     works = _CR.works_points(sys.modules[__name__], {e["wp"] for e in _c.get("corrected", [])})
     unexplained = (fleet - works) - orphan
+    # (21 Oct 2026) points the register export no longer carries are named, not
+    # left as a shortfall: "742 of 745 points" read as a hole in the estate
+    # (tools/check_consistency.py, "all-but-a-few"); the gap is listed below.
     steps.append((
         "POINTS: every fleet point has a final works record or a recorded exception",
         not unexplained,
-        f"{len(fleet - unexplained - orphan)} of {len(fleet)} points; "
-        f"{len(unexplained)} without"))
+        (f"{len(fleet)} points: {len(fleet - unexplained - orphan)} checked, "
+         f"{len(unexplained)} without; {len(orphan)} not in this week's register export"
+         if orphan else
+         f"{len(fleet - unexplained)} of {len(fleet)} points; {len(unexplained)} without")))
     if unexplained:
         gaps.append({
             "step": "points in the fleet with no final works record",

@@ -29,6 +29,7 @@ STAGE = os.path.expanduser("~/mwater-exports.staging")
 REFUSED = os.path.expanduser("~/mwater-exports.refused")   # the last refused run's set
 PREVIOUS = os.path.expanduser("~/mwater-exports.previous")
 SWAP_MARK = os.path.join(PREVIOUS, "_swapped_by_run")
+ADDED_MARK = os.path.join(PREVIOUS, "_added_by_run")
 # derived files a build step writes into EXPORTS from this pull; kept and
 # restored with the set so a rollback cannot leave one from another pull
 DERIVED = ("piped_wq_pairs.json",)
@@ -237,10 +238,17 @@ def swap_in(names):
     if os.path.isdir(PREVIOUS):
         shutil.rmtree(PREVIOUS)
     os.makedirs(PREVIOUS)
+    added = []
     for n in sorted(set(names) | set(DERIVED)):
         cur = os.path.join(EXPORTS, n)
         if os.path.isfile(cur):
             shutil.copy2(cur, os.path.join(PREVIOUS, n))
+        elif n in names:
+            added.append(n)
+    # files the swap adds with no earlier version: a rollback removes them too
+    # (21 Oct 2026: four new extracts stayed in EXPORTS after a refusal)
+    with open(ADDED_MARK, "w") as fh:
+        fh.write("".join(n + "\n" for n in added))
     with open(SWAP_MARK, "w") as fh:
         fh.write(os.environ.get("SANITAP_RUN_STARTED") or datetime.datetime.now().isoformat(timespec="seconds"))
     for n in names:
@@ -249,8 +257,9 @@ def swap_in(names):
 
 def clear_swap():
     """After a publish the swapped-in set is the page's own: forget the swap."""
-    if os.path.isfile(SWAP_MARK):
-        os.remove(SWAP_MARK)
+    for m in (SWAP_MARK, ADDED_MARK):
+        if os.path.isfile(m):
+            os.remove(m)
 
 
 def restore_previous(run=None):
@@ -261,7 +270,9 @@ def restore_previous(run=None):
         return None
     if run is not None and open(SWAP_MARK).read().strip() != run:
         return None
-    back = sorted(n for n in os.listdir(PREVIOUS) if n != os.path.basename(SWAP_MARK))
+    marks = {os.path.basename(SWAP_MARK), os.path.basename(ADDED_MARK)}
+    back = sorted(n for n in os.listdir(PREVIOUS) if n not in marks)
+    added = open(ADDED_MARK).read().split() if os.path.isfile(ADDED_MARK) else []
     # the refused set is kept for diagnosis, replaced by the next refusal
     # (20 Oct 2026: a refused build's fresh pull was overwritten and lost)
     shutil.rmtree(REFUSED, ignore_errors=True)
@@ -270,8 +281,13 @@ def restore_previous(run=None):
         if os.path.exists(os.path.join(EXPORTS, n)):
             shutil.copy2(os.path.join(EXPORTS, n), os.path.join(REFUSED, n))
         shutil.copy2(os.path.join(PREVIOUS, n), os.path.join(EXPORTS, n))
+    for n in added:
+        if os.path.exists(os.path.join(EXPORTS, n)):
+            os.replace(os.path.join(EXPORTS, n), os.path.join(REFUSED, n))
     os.remove(SWAP_MARK)
-    return back
+    if os.path.isfile(ADDED_MARK):
+        os.remove(ADDED_MARK)
+    return back + added
 
 
 def write_csv(rows, path):

@@ -49,7 +49,7 @@
    "title": "Print and hand out the new blank calendar, withdrawing old stock"
   },
   "act-call-no-followup": {
-   "deadline": "2026-10-16",
+   "deadline": "2026-11-06",
    "owner": "Angelo Nahavitatsara",
    "source": "commit 9c35dca",
    "title": "Send a repair within a week for every pump reported down"
@@ -637,7 +637,7 @@
    "title": "Run the carbon baseline survey around the Antananarivo kiosks"
   },
   "act-tana-jirama-licence-filed": {
-   "deadline": "2026-10-16",
+   "deadline": "2026-10-30",
    "owner": "Endur’O (Coddy Velonizy)",
    "title": "File the national water utility licence for the Antananarivo kiosks (JIRAMA)"
   },
@@ -677,7 +677,7 @@
    "title": "Pick survey pumps and households at random"
   },
   "act-usage-survey-sop": {
-   "deadline": "2026-10-16",
+   "deadline": "2026-10-30",
    "owner": "James Walker",
    "title": "Write the procedure for the yearly household water-use survey (SDWS 26)"
   },
