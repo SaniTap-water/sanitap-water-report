@@ -10,7 +10,13 @@ the only writer.
 
 A task is matched to its action by its gid in data/asana_map.json (since
 2 Oct 2026), so people can rename tasks freely; the "[act-id]" tag at the end
-of a name is for readers. A task added by hand in the section is placed by its
+of a name is for readers. Since 21 Oct 2026 Asana is the source of truth for each action's due date,
+owner and completion (Jan edits there): every pull copies them into
+data/action_owners.json and logs each change with its old and new value, so a
+re-date in Asana never blocks a publish. A record date is never written back
+over Asana (tools/asana_setup.py sets a due date only on a task without one).
+
+A task added by hand in the section is placed by its
 tag if it carries an unused one, otherwise gets an act-id generated from its
 name ("act-" + a slug); either way it is added to the map and listed as "new
 from Asana" in the build log. A task whose owner renamed it gives the action
@@ -116,6 +122,54 @@ def sync_evidence(own, out):
     return changes
 
 
+def sync_from_asana(own, out):
+    """Asana's due date, assignee and completion -> data/action_owners.json.
+    Owner rows that exist are updated (deadline and owner); completion goes in
+    the "asana_completion" block, never in an owner row, because status and
+    closure are computed. -> the changes, each with its old and new value."""
+    changes = []
+    det = json.load(open(os.path.join(REPO, "data", "action_details.json"), encoding="utf8"))
+    for aid, r in sorted(out.items()):
+        row = own["owners"].get(aid)
+        if row is None:
+            continue
+        if row.get("deadline") != r["due_on"]:
+            was = row.get("deadline")
+            if r["due_on"]:
+                row["deadline"] = r["due_on"]
+            else:
+                row.pop("deadline", None)
+            changes.append(f"deadline from Asana: {aid}: {was or 'none'} -> {r['due_on'] or 'none'}")
+        if r["completed"] or not r["assignee_gid"]:
+            continue
+        if match_owner(row.get("owner") or (det.get(aid) or {}).get("owner"))[0] != r["assignee_gid"]:
+            was = row.get("owner")
+            row["owner"] = NAME_OF.get(r["assignee_gid"]) or r["owner"]
+            changes.append(f"owner from Asana: {aid}: {was!r} -> {row['owner']!r}")
+    comp = own.setdefault("asana_completion", {
+        "note": "Completion of each action's Asana task, copied by tools/asana_pull.py at every build "
+                "(Asana is the source of truth, Adriaan Mol, 21 Oct 2026). Closure on the page still "
+                "needs evidence (the closure and evidence blocks).", "tasks": {}})["tasks"]
+    for aid, r in sorted(out.items()):
+        new = {"completed": r["completed"], "completed_at": r["completed_at"]}
+        if r["completed"]:
+            new["ticked_by"] = r.get("ticked_by")
+        cur = comp.get(aid)
+        if cur != new:
+            if cur is None:
+                comp[aid] = new            # first record of a task: not a change
+                continue
+            was = "completed" if (cur or {}).get("completed") else "open"
+            comp[aid] = new
+            changes.append(f"completion from Asana: {aid}: {was} -> "
+                           + (f"completed {r['completed_at']} by {new.get('ticked_by')}" if r["completed"] else "open"))
+    for aid in sorted(set(comp) - set(out)):
+        del comp[aid]
+        changes.append(f"completion from Asana: {aid}: no task in the section any more, dropped")
+    own["asana_completion"]["tasks"] = dict(sorted(comp.items()))
+    return changes
+
+
 def main():
     if "--write" not in sys.argv:
         sys.exit("usage: asana_pull.py --write")
@@ -131,7 +185,6 @@ def main():
         print(f"asana_pull: Asana not readable ({str(e)[:120]}); the committed data/asana_pull.json stays as it is")
         return 0
     out, dup, new, alias_seen = {}, {}, [], []
-    prev = (json.load(open(OUT, encoding="utf8")).get("tasks", {}) if os.path.isfile(OUT) else {})
     own_path = os.path.join(REPO, "data", "action_owners.json")
     own = json.load(open(own_path, encoding="utf8"))
     retitled = []
@@ -177,17 +230,13 @@ def main():
     # owner change is pushed to Asana by tools/asana_setup.py --push-owners in
     # the same run, and tools/check_asana.py fails any open action whose two
     # owners still differ.
-    owner_changes = []
-    det = json.load(open(os.path.join(REPO, "data", "action_details.json"), encoding="utf8"))
-    for aid, r in out.items():
-        row = own["owners"].get(aid)
-        if row is None or r["completed"] or not r["assignee_gid"]:
-            continue
-        if match_owner(row.get("owner") or (det.get(aid) or {}).get("owner"))[0] != r["assignee_gid"] \
-                and (prev.get(aid) or {}).get("assignee_gid") != r["assignee_gid"]:
-            was = row.get("owner")
-            row["owner"] = NAME_OF.get(r["assignee_gid"]) or r["owner"]
-            owner_changes.append(f"owner from Asana: {aid}: {was!r} -> {row['owner']!r}")
+    #
+    # Since 21 Oct 2026 (Adriaan Mol) Asana is the source of truth for due
+    # dates, owners and completion - Jan edits there. Every build copies them
+    # into data/action_owners.json, logging each change with the old and new
+    # value, so a re-date or reassignment in Asana can never leave the record
+    # behind the page and block a publish. Nothing here writes to Asana.
+    owner_changes = sync_from_asana(own, out)
     doc = {"note": "Read-only copy of the Asana section 'Weekly report actions', written by tools/asana_pull.py "
                    "at each build. The action list renders owner, deadline and completion from it.",
            "pulled_at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -200,9 +249,9 @@ def main():
         amap["tasks"] = dict(sorted(amap["tasks"].items()))
         json.dump(amap, open(MAP, "w", encoding="utf8"), indent=1, ensure_ascii=False)
         open(MAP, "a").write("\n")
-    if retitled or evchanges or owner_changes:
-        json.dump(own, open(own_path, "w", encoding="utf8"), indent=1, ensure_ascii=False)
-        open(own_path, "a").write("\n")
+    own_text = json.dumps(own, indent=1, ensure_ascii=False) + "\n"
+    if own_text != open(own_path, encoding="utf8").read():
+        open(own_path, "w", encoding="utf8").write(own_text)
     for aid, was, now in retitled:
         print(f"asana_pull: title from Asana: {aid}: {was!r} -> {now!r}")
     done = sum(1 for r in out.values() if r["completed"])

@@ -295,14 +295,16 @@ def rewrite_task(aid):
         gid, _n, _x, _f = match_owner(rec.get("owner"))
         body["assignee"] = gid
     rec = rec or {}
-    if rec.get("deadline"):
-        body["due_on"] = rec["deadline"]            # never clears a due date set in Asana
+    # Asana is the source of truth for due dates (Adriaan Mol, 21 Oct 2026):
+    # the record's date is sent only to a task that has none, never over one
+    if rec.get("deadline") and not A.get(f"/tasks/{amap[aid]}", {"opt_fields": "due_on"}).get("due_on"):
+        body["due_on"] = rec["deadline"]
     custom = os.path.join(REPO, "data", "asana_notes.json")
     lines = (json.load(open(custom, encoding="utf8"))["tasks"].get(aid) if os.path.isfile(custom) else None)
     if lines:
         body["notes"] = "\n".join(lines)
     A.put(f"/tasks/{amap[aid]}", body)
-    print(f"rewrite-task: {aid} -> {NAME_OF.get(body.get('assignee'), 'assignee unchanged')}, due {rec.get('deadline')}"
+    print(f"rewrite-task: {aid} -> {NAME_OF.get(body.get('assignee'), 'assignee unchanged')}, due {body.get('due_on') or 'kept as in Asana'}"
           + (", description rewritten" if "notes" in body else ""))
     return 0
 
