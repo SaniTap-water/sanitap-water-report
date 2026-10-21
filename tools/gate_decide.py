@@ -42,7 +42,7 @@ def detail(path, n=6):
         return []
     lines = [l.rstrip() for l in open(path, encoding="utf8", errors="replace")]
     keep = [l.strip() for l in lines
-            if re.search(r"FAIL|clipped|overlapped|fewer|unread|not found|differs|missing|DRIFTED|!", l)
+            if re.search(r"FAIL|TIMEOUT|clipped|overlapped|fewer|unread|not found|differs|missing|DRIFTED|!", l)
             and "GATE PASS" not in l and not l.strip().startswith(("ABORT", "20"))]
     return [re.sub(r"\s+", " ", l)[:240] for l in keep[:n]]
 

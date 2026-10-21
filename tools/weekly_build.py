@@ -307,6 +307,14 @@ def newest_record(path):
 
 
 REUSE = None
+PULL_LIMIT = int(os.environ.get("SANITAP_PULL_LIMIT", "3600"))   # the pull: 60 min (21 Oct 2026)
+TIMEOUT_EXIT = 124                                              # tools/limit.py
+
+
+def step(name):
+    """The step now running, for a run stopped at its 2-hour limit
+    (tools/weekly_build.sh names it in the outcome)."""
+    io.open(os.path.join(REPO, "logs", "current_step"), "w", encoding="utf8").write(name + "\n")
 
 
 def publish_sh(dry, msg):
@@ -315,6 +323,7 @@ def publish_sh(dry, msg):
     --check-only runs every gate and stops before commit and push; -m runs the
     same gates, then commits and pushes. Returns (ok, one-line summary, tally).
     """
+    step("publish.sh")
     args = ["--check-only"] if dry else ["-m", msg]
     if REUSE:
         args = ["--reuse-extracts", REUSE] + args
@@ -447,7 +456,13 @@ def main():
             if REUSE and script.endswith("pull_extract.py"):
                 log(f"{tag}REUSING the extracts pulled into {REUSE} (no pull)")
                 args = ["--reuse", REUSE]
-            r = run([PY, script] + args)
+            step(f"build step {script}")
+            if script.endswith("pull_extract.py") and not REUSE:
+                # the pull has 60 minutes; at the limit its whole process tree
+                # is stopped and the run fails here, naming it
+                r = run([PY, "tools/limit.py", str(PULL_LIMIT), "the extract pull", "--", PY, script] + args)
+            else:
+                r = run([PY, script] + args)
             if script.endswith("mwater_backup.py"):
                 last = (r.stdout or r.stderr or "").strip().splitlines()
                 log(f"{tag}{last[-1][:200] if last else 'mWater backup: no output'}")
@@ -467,6 +482,9 @@ def main():
                 msg = (r.stdout + "\n" + r.stderr if script.endswith("mwater_backup.py")
                        else r.stderr or r.stdout or "").strip().splitlines()
                 msg = msg[-1][:160] if msg else "no output"
+                if r.returncode == TIMEOUT_EXIT:
+                    msg = next((l for l in (r.stdout or "").splitlines() if l.startswith("TIMEOUT:")),
+                               f"timed out after {PULL_LIMIT // 60} min")
                 if required:
                     raise RuntimeError(f"{script} failed: {msg}")
                 log(f"{tag}!!! OPTIONAL STEP FAILED, publishing anyway: {script}: {msg}")
@@ -573,6 +591,7 @@ def main():
     sys.path.insert(0, os.path.join(REPO, "tools"))
     import pull_extract as PE
     PE.clear_swap()
+    step("published: the live check after publishing")
     sha = run(["git", "rev-parse", "HEAD"]).stdout.strip()[:8]
     bad_urls = []
     for u in (SITE, SITE + "routes.html"):
