@@ -13,3 +13,4 @@ logs/gate_out/
 logs/gates_run.tsv
 logs/publish_run.log
 logs/preflight.json
+logs/checks/

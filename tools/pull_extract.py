@@ -120,6 +120,47 @@ EXTRAS = {
 }
 
 
+# Checks read in the same run as the pull, so they cost no extra mWater read
+# run (one read run an hour). Optional: a failure is logged, never fails the
+# pull, and the result is not an extract - it goes to logs/checks/, outside
+# the extract set, and into the build log.
+#   marolinta_moved: the three Marolinta fleet points that left the MadAvance
+#   register group 17-20 Oct 2026, with 914498582 (still in the group) as the
+#   control (Adriaan Mol, 21 Oct 2026). Remove once the three are placed.
+CHECKS = {
+    "marolinta_moved": {"codes": ["1052525215", "987623304", "987623555"], "control": "914498582"},
+}
+CHECKS_DIR = os.path.join(REPO, "logs", "checks")
+
+
+def run_checks():
+    """The CHECKS reads, after the extracts; prints one line per check."""
+    os.makedirs(CHECKS_DIR, exist_ok=True)
+    for name, c in CHECKS.items():
+        r = subprocess.run(["node", "tools/mwater/points_visible.mjs", *c["codes"], c["control"]],
+                           capture_output=True, text=True, cwd=REPO)
+        try:
+            doc = json.loads(r.stdout) if r.returncode == 0 else None
+        except ValueError:
+            doc = None
+        if doc is None:
+            print(f"check {name}: the read failed ({why_line(r)}); nothing concluded")
+            continue
+        seen = {g["code"]: g for g in doc["got"]}
+        if c["control"] not in seen:
+            verdict = "control not returned: the read tells us nothing"
+        elif not any(k in seen for k in c["codes"]):
+            verdict = "moved to a group this account cannot see"
+        else:
+            verdict = "visible again: " + ", ".join(f"{k} ({seen[k].get('_managed_by')})"
+                                                    for k in c["codes"] if k in seen)
+        doc.update(check=name, at=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+                   control=c["control"], verdict=verdict)
+        json.dump(doc, open(os.path.join(CHECKS_DIR, f"{name}.json"), "w", encoding="utf8"), indent=1)
+        print(f"check {name}: {verdict} (asked {', '.join(c['codes'])}; control {c['control']} "
+              f"{'returned' if c['control'] in seen else 'NOT returned'})")
+
+
 def managed_piped_codes():
     """The managed piped systems and their water points, from the last build's
     data/piped_wq.json (the pull runs before this build recomputes it)."""
@@ -568,6 +609,8 @@ def main():
                        "newest_submitted": json_stats(doc)[2] if isinstance(doc, list) else None,
                        "written": datetime.datetime.fromtimestamp(
                            os.path.getmtime(p)).isoformat(timespec="seconds")}
+
+    run_checks()
 
     # A pull that lands on a name nothing reads is the failure that cost two
     # weeks: repairs.csv, written 21 September, was a correct export of the
