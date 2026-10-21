@@ -473,6 +473,12 @@ def main():
                         if x.startswith("build_routes:")]
                 for x in last or ["build_routes: no output"]:
                     log(f"{tag}{x[:400]}")
+            if script.endswith("asana_pull.py"):
+                # every value copied from Asana into the owners record, old ->
+                # new (Asana is the source of truth, 21 Oct 2026)
+                for x in (r.stdout or "").splitlines():
+                    if " from Asana" in x or x.startswith("asana_pull: new from Asana"):
+                        log(f"{tag}{x[:400]}")
             if script.endswith("action_metrics.py") and r.returncode == 0:
                 # the pumps behind a count an action row names by code, each set
                 # against the codes its condition compares with (20 Oct 2026)
